@@ -63,7 +63,7 @@ float4& float4::operator*=(const class float4x4& _Other)
 	return *this;
 }
 
-float4x4 operator *(const float4x4& _Left, const float4x4& _Right)
+float4x4 operator*(const float4x4& _Left, const float4x4& _Right)
 {
 	float4x4 Result;
 	const float4x4& A = _Left;
