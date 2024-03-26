@@ -12,6 +12,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EnginePlatform", "EnginePlatform\EnginePlatform.vcxproj", "{F0716EC2-0BC5-43EA-9046-B203E0985A67}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "App", "App\App.vcxproj", "{DA3C38A9-6DFA-4DEC-881D-001FEED0F76E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9E7ED6E7-59C1-4017-8C39-E272494FDD71} = {9E7ED6E7-59C1-4017-8C39-E272494FDD71}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Level2", "Level2", "{F6F993E0-E342-4194-8E0E-9369CC1BE144}"
 EndProject
