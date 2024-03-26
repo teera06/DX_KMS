@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="GameCore">
+      <UniqueIdentifier>{4c734fb0-f498-4a17-9177-9be7f63c51ca}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Game_Core.cpp">
+      <Filter>GameCore</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Game_Core.h">
+      <Filter>GameCore</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
