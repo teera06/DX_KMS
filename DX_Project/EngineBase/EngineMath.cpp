@@ -1,3 +1,5 @@
+#include "PreCompile.h"
+#include "PreCompile.h"
 #include "EngineMath.h"
 
 const float UEngineMath::PI = 3.14159265358979323846264338327950288419716939937510f;
