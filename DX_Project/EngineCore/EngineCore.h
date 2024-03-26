@@ -1,19 +1,35 @@
 #pragma once
-class EngineCore
+#include <Windows.h>
+#include <EnginePlatform/EngineWindow.h>
+
+#pragma comment (lib, "EngineBase.lib")
+#pragma comment (lib, "EnginePlatform.lib")
+// 설명 :
+class UEngineCore
 {
 public:
 	// constrcuter destructer
-	EngineCore(); // 디폴트 생성자
-	~EngineCore(); // 디폴트 소멸자
+	UEngineCore();
+	~UEngineCore();
 
 	// delete Function
-	EngineCore(const EngineCore& _Other) = delete; // 디폴트 복사 생성자
-	EngineCore(EngineCore&& _Other) noexcept = delete; 
-	EngineCore& operator=(const EngineCore& _Other) = delete; // 디폴트 대입 연산자
-	EngineCore& operator=(EngineCore&& _Other) noexcept = delete;
+	UEngineCore(const UEngineCore& _Other) = delete;
+	UEngineCore(UEngineCore&& _Other) noexcept = delete;
+	UEngineCore& operator=(const UEngineCore& _Other) = delete;
+	UEngineCore& operator=(UEngineCore&& _Other) noexcept = delete;
+
+	static void Start(HINSTANCE _Inst);
+
+	static void SetWindowScale(FVector _Scale)
+	{
+		EngineWindow.SetWindowScale(_Scale);
+	}
 
 protected:
 
 private:
+	static UEngineWindow EngineWindow;
+
+
 };
 

@@ -1,19 +1,39 @@
 #pragma once
-class EngineOption
+#include <EngineBase/EngineSerializer.h>
+#include <EngineBase/EngineMath.h>
+#include <EngineBase/EngineString.h>
+#include <sstream>
+#include <iostream>
+#include <format>
+
+// 설명 : 엔진의 옵션 데이터를 저장하는 용도의 구조체
+// 내부에 값형 이외의 것을 넣으면 너죽고 나죽자.
+// 가상함수 포인터 std::string 등등이 들어가면 안되는데.
+// std::string이 안들어가는건 너무 불편하죠?
+struct FEngineOption : public UEngineSerializeObject
 {
 public:
-	// constrcuter destructer
-	EngineOption(); // 디폴트 생성자
-	~EngineOption(); // 디폴트 소멸자
+	FVector WindowScale = FVector::Zero;
+	bool IsDebug = false;
 
-	// delete Function
-	EngineOption(const EngineOption& _Other) = delete; // 디폴트 복사 생성자
-	EngineOption(EngineOption&& _Other) noexcept = delete; 
-	EngineOption& operator=(const EngineOption& _Other) = delete; // 디폴트 대입 연산자
-	EngineOption& operator=(EngineOption&& _Other) noexcept = delete;
+	void Serialize(UEngineSerializer& _Ser) override
+	{
+		{
+			// c++ 20에서 문자열 최신 버전이 나왔어요.
 
-protected:
+			std::string DebugOptionText;
 
-private:
+			DebugOptionText += std::format("WindowScale : {}, {}\n", WindowScale.iX(), WindowScale.iY());
+			DebugOptionText += std::format("IsDebug : {}\n", IsDebug);
+
+			_Ser.WriteText(DebugOptionText);
+		}
+	}
+
+	void DeSerialize(UEngineSerializer& _Ser) override
+	{
+		std::string OptionText = _Ser.ToString();
+	}
+	
 };
 
