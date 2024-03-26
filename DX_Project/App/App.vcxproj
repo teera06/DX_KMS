@@ -166,6 +166,9 @@
       <Project>{97fa66bd-73f5-4ca4-9a29-8415e66211c8}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Config\EngineOption.EData" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
