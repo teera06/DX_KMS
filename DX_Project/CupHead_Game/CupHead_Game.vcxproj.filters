@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="GameCore">
-      <UniqueIdentifier>{4c734fb0-f498-4a17-9177-9be7f63c51ca}</UniqueIdentifier>
+      <UniqueIdentifier>{619b90c9-030a-4c49-878b-ba61b8c61b91}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

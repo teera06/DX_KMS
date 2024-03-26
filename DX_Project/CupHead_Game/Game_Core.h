@@ -1,5 +1,7 @@
 #pragma once
-class UGame_Core
+#include <EngineCore/EngineCore.h>
+
+class UGame_Core : public UserCore
 {
 public:
 	// constrcuter destructer
@@ -13,7 +15,7 @@ public:
 	UGame_Core& operator=(UGame_Core&& _Other) noexcept = delete;
 
 protected:
-
+	void Initialize() override;
 private:
 };
 
