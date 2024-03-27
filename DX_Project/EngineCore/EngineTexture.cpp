@@ -1,9 +1,15 @@
+#include "PreCompile.h"
 #include "EngineTexture.h"
 
-EngineTexture::EngineTexture()
+UEngineTexture::UEngineTexture() 
 {
 }
 
-EngineTexture::~EngineTexture()
+UEngineTexture::~UEngineTexture() 
 {
+	if (nullptr != Texture)
+	{
+		Texture->Release();
+	}
 }
+

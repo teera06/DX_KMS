@@ -1,9 +1,16 @@
+#include "PreCompile.h"
 #include "EngineRenderTarget.h"
 
-EngineRenderTarget::EngineRenderTarget()
+UEngineRenderTarget::UEngineRenderTarget() 
 {
 }
 
-EngineRenderTarget::~EngineRenderTarget()
+UEngineRenderTarget::~UEngineRenderTarget() 
 {
+}
+
+
+void UEngineRenderTarget::AddNewTexture(std::shared_ptr<UEngineTexture> _Texture)
+{
+	Textures.push_back(_Texture);
 }
