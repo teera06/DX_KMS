@@ -25,11 +25,14 @@
     <Filter Include="Object\Component">
       <UniqueIdentifier>{32d4e73a-fc99-4241-8668-011e8483b805}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Object\Component\Rendering">
-      <UniqueIdentifier>{7ee95929-42c6-4914-b8fc-54a50f7c8108}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Object\Actor\GameMode">
       <UniqueIdentifier>{028e5211-f0bc-4806-b089-5c8b461079e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Rendering">
+      <UniqueIdentifier>{4fb2e306-fa95-4e54-848b-3fb807dace96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Rendering\Component">
+      <UniqueIdentifier>{7ee95929-42c6-4914-b8fc-54a50f7c8108}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -64,13 +67,19 @@
       <Filter>Object\Component</Filter>
     </ClCompile>
     <ClCompile Include="Renderer.cpp">
-      <Filter>Object\Component\Rendering</Filter>
+      <Filter>Object\Rendering\Component</Filter>
     </ClCompile>
     <ClCompile Include="TickObject.cpp">
       <Filter>Object</Filter>
     </ClCompile>
     <ClCompile Include="GameMode.cpp">
       <Filter>Object\Actor\GameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldObject.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Object\Rendering</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -105,13 +114,19 @@
       <Filter>Object\Component</Filter>
     </ClInclude>
     <ClInclude Include="Renderer.h">
-      <Filter>Object\Component\Rendering</Filter>
+      <Filter>Object\Rendering\Component</Filter>
     </ClInclude>
     <ClInclude Include="TickObject.h">
       <Filter>Object</Filter>
     </ClInclude>
     <ClInclude Include="GameMode.h">
       <Filter>Object\Actor\GameMode</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldObject.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Object\Rendering</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
