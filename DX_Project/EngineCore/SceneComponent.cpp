@@ -1,9 +1,11 @@
+#include "PreCompile.h"
 #include "SceneComponent.h"
 
-SceneComponent::SceneComponent()
+USceneComponent::USceneComponent() 
 {
 }
 
-SceneComponent::~SceneComponent()
+USceneComponent::~USceneComponent() 
 {
 }
+

@@ -1,9 +1,15 @@
+#include "PreCompile.h"
 #include "Actor.h"
 
-Actor::Actor()
+AActor::AActor() 
 {
 }
 
-Actor::~Actor()
+AActor::~AActor() 
 {
+}
+
+void AActor::Tick(float _DeltaTime)
+{
+
 }

@@ -1,9 +1,11 @@
+#include "PreCompile.h"
 #include "TransformObject.h"
 
-TransformObject::TransformObject()
+UTransformObject::UTransformObject() 
 {
 }
 
-TransformObject::~TransformObject()
+UTransformObject::~UTransformObject() 
 {
 }
+

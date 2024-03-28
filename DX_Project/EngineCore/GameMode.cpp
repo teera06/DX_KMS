@@ -1,9 +1,11 @@
+#include "PreCompile.h"
 #include "GameMode.h"
 
-GameMode::GameMode()
+AGameMode::AGameMode() 
 {
 }
 
-GameMode::~GameMode()
+AGameMode::~AGameMode() 
 {
 }
+

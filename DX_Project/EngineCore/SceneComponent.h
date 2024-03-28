@@ -1,19 +1,23 @@
 #pragma once
-class SceneComponent
+#include <EngineBase/TransformObject.h>
+
+// 설명 :
+class USceneComponent : public UTransformObject
 {
 public:
 	// constrcuter destructer
-	SceneComponent(); // 디폴트 생성자
-	~SceneComponent(); // 디폴트 소멸자
+	USceneComponent();
+	~USceneComponent();
 
 	// delete Function
-	SceneComponent(const SceneComponent& _Other) = delete; // 디폴트 복사 생성자
-	SceneComponent(SceneComponent&& _Other) noexcept = delete; 
-	SceneComponent& operator=(const SceneComponent& _Other) = delete; // 디폴트 대입 연산자
-	SceneComponent& operator=(SceneComponent&& _Other) noexcept = delete;
+	USceneComponent(const USceneComponent& _Other) = delete;
+	USceneComponent(USceneComponent&& _Other) noexcept = delete;
+	USceneComponent& operator=(const USceneComponent& _Other) = delete;
+	USceneComponent& operator=(USceneComponent&& _Other) noexcept = delete;
 
 protected:
 
 private:
+
 };
 

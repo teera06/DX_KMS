@@ -1,9 +1,11 @@
+#include "PreCompile.h"
 #include "ActorComponent.h"
 
-ActorComponent::ActorComponent()
+UActorComponent::UActorComponent() 
 {
 }
 
-ActorComponent::~ActorComponent()
+UActorComponent::~UActorComponent() 
 {
 }
+

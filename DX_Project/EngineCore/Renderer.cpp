@@ -1,9 +1,11 @@
+#include "PreCompile.h"
 #include "Renderer.h"
 
-Renderer::Renderer()
+URenderer::URenderer() 
 {
 }
 
-Renderer::~Renderer()
+URenderer::~URenderer() 
 {
 }
+

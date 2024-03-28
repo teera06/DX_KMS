@@ -1,19 +1,31 @@
 #pragma once
-class Actor
+#include <vector>
+#include "TickObject.h"
+
+// 설명 : 액터가 트랜스폼을 가지는게 아니라
+class ULevel;
+class USceneComponent;
+class AActor : public UTickObject
 {
+	friend ULevel;
+
 public:
 	// constrcuter destructer
-	Actor(); // 디폴트 생성자
-	~Actor(); // 디폴트 소멸자
+	AActor();
+	~AActor();
 
 	// delete Function
-	Actor(const Actor& _Other) = delete; // 디폴트 복사 생성자
-	Actor(Actor&& _Other) noexcept = delete; 
-	Actor& operator=(const Actor& _Other) = delete; // 디폴트 대입 연산자
-	Actor& operator=(Actor&& _Other) noexcept = delete;
+	AActor(const AActor& _Other) = delete;
+	AActor(AActor&& _Other) noexcept = delete;
+	AActor& operator=(const AActor& _Other) = delete;
+	AActor& operator=(AActor&& _Other) noexcept = delete;
 
 protected:
+	void Tick(float _DeltaTime);
 
 private:
+	// 액터가 루트 컴포넌트를 가지면 
+	USceneComponent* RootComponent = nullptr;
+	// std::vector<UActorComponent*> Components;
 };
 

@@ -1,19 +1,23 @@
 #pragma once
-class GameMode
+#include "Actor.h"
+
+// 설명 :
+class AGameMode : public AActor
 {
 public:
 	// constrcuter destructer
-	GameMode(); // 디폴트 생성자
-	~GameMode(); // 디폴트 소멸자
+	AGameMode();
+	~AGameMode();
 
 	// delete Function
-	GameMode(const GameMode& _Other) = delete; // 디폴트 복사 생성자
-	GameMode(GameMode&& _Other) noexcept = delete; 
-	GameMode& operator=(const GameMode& _Other) = delete; // 디폴트 대입 연산자
-	GameMode& operator=(GameMode&& _Other) noexcept = delete;
+	AGameMode(const AGameMode& _Other) = delete;
+	AGameMode(AGameMode&& _Other) noexcept = delete;
+	AGameMode& operator=(const AGameMode& _Other) = delete;
+	AGameMode& operator=(AGameMode&& _Other) noexcept = delete;
 
 protected:
 
 private:
+
 };
 

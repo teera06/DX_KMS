@@ -1,19 +1,39 @@
 #pragma once
-class TickObject
+
+#define GENERATED_BODY(Parent) \
+	typedef Parent Super;
+
+// 설명 :
+class UTickObject
 {
 public:
 	// constrcuter destructer
-	TickObject(); // 디폴트 생성자
-	~TickObject(); // 디폴트 소멸자
+	UTickObject();
+	~UTickObject();
 
 	// delete Function
-	TickObject(const TickObject& _Other) = delete; // 디폴트 복사 생성자
-	TickObject(TickObject&& _Other) noexcept = delete; 
-	TickObject& operator=(const TickObject& _Other) = delete; // 디폴트 대입 연산자
-	TickObject& operator=(TickObject&& _Other) noexcept = delete;
+	UTickObject(const UTickObject& _Other) = delete;
+	UTickObject(UTickObject&& _Other) noexcept = delete;
+	UTickObject& operator=(const UTickObject& _Other) = delete;
+	UTickObject& operator=(UTickObject&& _Other) noexcept = delete;
+
+	virtual void BeginPlay();
+	virtual void Tick(float _DeltaTime);
+
+	int GetOrder()
+	{
+		return Order;
+	}
+
+	void SetOrder(int _Order)
+	{
+		Order = _Order;
+	}
 
 protected:
 
 private:
+	int Order = 0;
+
 };
 

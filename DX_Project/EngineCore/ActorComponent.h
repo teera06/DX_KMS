@@ -1,19 +1,24 @@
 #pragma once
-class ActorComponent
+#include "Actor.h"
+
+// 설명 : 그냥 소유만 당하는 애들이 있고
+class UActorComponent
 {
 public:
 	// constrcuter destructer
-	ActorComponent(); // 디폴트 생성자
-	~ActorComponent(); // 디폴트 소멸자
+	UActorComponent();
+	~UActorComponent();
 
 	// delete Function
-	ActorComponent(const ActorComponent& _Other) = delete; // 디폴트 복사 생성자
-	ActorComponent(ActorComponent&& _Other) noexcept = delete; 
-	ActorComponent& operator=(const ActorComponent& _Other) = delete; // 디폴트 대입 연산자
-	ActorComponent& operator=(ActorComponent&& _Other) noexcept = delete;
+	UActorComponent(const UActorComponent& _Other) = delete;
+	UActorComponent(UActorComponent&& _Other) noexcept = delete;
+	UActorComponent& operator=(const UActorComponent& _Other) = delete;
+	UActorComponent& operator=(UActorComponent&& _Other) noexcept = delete;
 
 protected:
 
 private:
+	AActor* Actor = nullptr;
+
 };
 

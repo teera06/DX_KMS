@@ -1,19 +1,27 @@
 #pragma once
-class TransformObject
+#include "Transform.h"
+#include <vector>
+
+// 설명 :
+class UTransformObject
 {
 public:
 	// constrcuter destructer
-	TransformObject(); // 디폴트 생성자
-	~TransformObject(); // 디폴트 소멸자
+	UTransformObject();
+	~UTransformObject();
 
 	// delete Function
-	TransformObject(const TransformObject& _Other) = delete; // 디폴트 복사 생성자
-	TransformObject(TransformObject&& _Other) noexcept = delete; 
-	TransformObject& operator=(const TransformObject& _Other) = delete; // 디폴트 대입 연산자
-	TransformObject& operator=(TransformObject&& _Other) noexcept = delete;
+	UTransformObject(const UTransformObject& _Other) = delete;
+	UTransformObject(UTransformObject&& _Other) noexcept = delete;
+	UTransformObject& operator=(const UTransformObject& _Other) = delete;
+	UTransformObject& operator=(UTransformObject&& _Other) noexcept = delete;
 
 protected:
 
 private:
+	UTransformObject* Parent = nullptr;
+	std::vector<UTransformObject*> Childs;
+
+	FTransform Transform;
 };
 

@@ -1,19 +1,23 @@
 #pragma once
-class Renderer
+#include "SceneComponent.h"
+
+// 설명 :
+class URenderer : public USceneComponent
 {
 public:
 	// constrcuter destructer
-	Renderer(); // 디폴트 생성자
-	~Renderer(); // 디폴트 소멸자
+	URenderer();
+	~URenderer();
 
 	// delete Function
-	Renderer(const Renderer& _Other) = delete; // 디폴트 복사 생성자
-	Renderer(Renderer&& _Other) noexcept = delete; 
-	Renderer& operator=(const Renderer& _Other) = delete; // 디폴트 대입 연산자
-	Renderer& operator=(Renderer&& _Other) noexcept = delete;
+	URenderer(const URenderer& _Other) = delete;
+	URenderer(URenderer&& _Other) noexcept = delete;
+	URenderer& operator=(const URenderer& _Other) = delete;
+	URenderer& operator=(URenderer&& _Other) noexcept = delete;
 
 protected:
 
 private:
+
 };
 
