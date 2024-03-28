@@ -28,6 +28,9 @@
     <Filter Include="Object\Component\Rendering">
       <UniqueIdentifier>{7ee95929-42c6-4914-b8fc-54a50f7c8108}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\Actor\GameMode">
+      <UniqueIdentifier>{028e5211-f0bc-4806-b089-5c8b461079e5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp">
@@ -66,6 +69,9 @@
     <ClCompile Include="TickObject.cpp">
       <Filter>Object</Filter>
     </ClCompile>
+    <ClCompile Include="GameMode.cpp">
+      <Filter>Object\Actor\GameMode</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EngineCore.h">
@@ -103,6 +109,9 @@
     </ClInclude>
     <ClInclude Include="TickObject.h">
       <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMode.h">
+      <Filter>Object\Actor\GameMode</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
