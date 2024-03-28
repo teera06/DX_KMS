@@ -1,9 +1,11 @@
+#include "PreCompile.h"
 #include "Camera.h"
 
-Camera::Camera()
+UCamera::UCamera() 
 {
 }
 
-Camera::~Camera()
+UCamera::~UCamera() 
 {
 }
+

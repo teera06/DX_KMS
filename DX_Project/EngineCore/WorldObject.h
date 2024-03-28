@@ -1,19 +1,37 @@
 #pragma once
-class WorldObject
+#include "Level.h"
+
+// 설명 :
+class AActor;
+class ULevel;
+class UWorldObject
 {
 public:
+	friend AActor;
+	friend ULevel;
 	// constrcuter destructer
-	WorldObject(); // 디폴트 생성자
-	~WorldObject(); // 디폴트 소멸자
+	UWorldObject();
+	~UWorldObject();
 
 	// delete Function
-	WorldObject(const WorldObject& _Other) = delete; // 디폴트 복사 생성자
-	WorldObject(WorldObject&& _Other) noexcept = delete; 
-	WorldObject& operator=(const WorldObject& _Other) = delete; // 디폴트 대입 연산자
-	WorldObject& operator=(WorldObject&& _Other) noexcept = delete;
+	UWorldObject(const UWorldObject& _Other) = delete;
+	UWorldObject(UWorldObject&& _Other) noexcept = delete;
+	UWorldObject& operator=(const UWorldObject& _Other) = delete;
+	UWorldObject& operator=(UWorldObject&& _Other) noexcept = delete;
+
+	ULevel* GetWorld()
+	{
+		return World;
+	}
 
 protected:
 
 private:
+	ULevel* World = nullptr;
+
+	void SetWorld(ULevel* _World)
+	{
+		World = _World;
+	}
 };
 

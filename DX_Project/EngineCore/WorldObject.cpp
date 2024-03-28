@@ -1,9 +1,11 @@
+#include "PreCompile.h"
 #include "WorldObject.h"
 
-WorldObject::WorldObject()
+UWorldObject::UWorldObject() 
 {
 }
 
-WorldObject::~WorldObject()
+UWorldObject::~UWorldObject() 
 {
 }
+

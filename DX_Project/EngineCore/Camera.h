@@ -1,16 +1,19 @@
 #pragma once
-class Camera
+#include <EngineBase/TransformObject.h>
+
+// 설명 :
+class UCamera : public UTransformObject
 {
 public:
 	// constrcuter destructer
-	Camera(); // 디폴트 생성자
-	~Camera(); // 디폴트 소멸자
+	UCamera();
+	~UCamera();
 
 	// delete Function
-	Camera(const Camera& _Other) = delete; // 디폴트 복사 생성자
-	Camera(Camera&& _Other) noexcept = delete; 
-	Camera& operator=(const Camera& _Other) = delete; // 디폴트 대입 연산자
-	Camera& operator=(Camera&& _Other) noexcept = delete;
+	UCamera(const UCamera& _Other) = delete;
+	UCamera(UCamera&& _Other) noexcept = delete;
+	UCamera& operator=(const UCamera& _Other) = delete;
+	UCamera& operator=(UCamera&& _Other) noexcept = delete;
 
 protected:
 
