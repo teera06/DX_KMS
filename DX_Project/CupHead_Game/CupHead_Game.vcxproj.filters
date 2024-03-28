@@ -7,8 +7,14 @@
     <Filter Include="PreCompile">
       <UniqueIdentifier>{663d6888-49ae-4907-9949-d4e2d55c8542}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Level">
+    <Filter Include="test">
+      <UniqueIdentifier>{36df9139-52cc-4dbf-897f-b6f12284dcc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test\Level">
       <UniqueIdentifier>{1afdbd68-a55b-45d2-8bc4-0aa2c2267690}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test\Player">
+      <UniqueIdentifier>{44f325d7-338a-402d-acf0-9808b03ec02b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -19,7 +25,10 @@
       <Filter>PreCompile</Filter>
     </ClCompile>
     <ClCompile Include="PlayGameMode.cpp">
-      <Filter>Level</Filter>
+      <Filter>test\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>test\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -30,7 +39,10 @@
       <Filter>PreCompile</Filter>
     </ClInclude>
     <ClInclude Include="PlayGameMode.h">
-      <Filter>Level</Filter>
+      <Filter>test\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>test\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
