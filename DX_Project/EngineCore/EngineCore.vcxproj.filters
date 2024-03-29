@@ -102,6 +102,9 @@
     <ClCompile Include="DefaultSceneComponent.cpp">
       <Filter>Object\EngineContent</Filter>
     </ClCompile>
+    <ClCompile Include="EngineGraphicDevice_Resources.cpp">
+      <Filter>Device</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EngineCore.h">
