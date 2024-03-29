@@ -1,9 +1,15 @@
+#include "PreCompile.h"
 #include "EngineBuffer.h"
 
-EngineBuffer::EngineBuffer()
+UEngineBuffer::UEngineBuffer() 
 {
 }
 
-EngineBuffer::~EngineBuffer()
+UEngineBuffer::~UEngineBuffer() 
 {
+	if (nullptr != Buffer)
+	{
+		Buffer->Release();
+	}
 }
+

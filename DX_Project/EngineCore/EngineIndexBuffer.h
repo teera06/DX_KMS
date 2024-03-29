@@ -1,19 +1,36 @@
 #pragma once
-class EngineIndexBuffer
+#include "EngineBuffer.h"
+
+// 설명 :
+class UEngineIndexBuffer : public UEngineResources<UEngineIndexBuffer>, public UEngineBuffer
 {
 public:
 	// constrcuter destructer
-	EngineIndexBuffer(); // 디폴트 생성자
-	~EngineIndexBuffer(); // 디폴트 소멸자
+	UEngineIndexBuffer();
+	~UEngineIndexBuffer();
 
 	// delete Function
-	EngineIndexBuffer(const EngineIndexBuffer& _Other) = delete; // 디폴트 복사 생성자
-	EngineIndexBuffer(EngineIndexBuffer&& _Other) noexcept = delete; 
-	EngineIndexBuffer& operator=(const EngineIndexBuffer& _Other) = delete; // 디폴트 대입 연산자
-	EngineIndexBuffer& operator=(EngineIndexBuffer&& _Other) noexcept = delete;
+	UEngineIndexBuffer(const UEngineIndexBuffer& _Other) = delete;
+	UEngineIndexBuffer(UEngineIndexBuffer&& _Other) noexcept = delete;
+	UEngineIndexBuffer& operator=(const UEngineIndexBuffer& _Other) = delete;
+	UEngineIndexBuffer& operator=(UEngineIndexBuffer&& _Other) noexcept = delete;
+
+	template<typename IndexType>
+	static std::shared_ptr<UEngineIndexBuffer> Create(std::string_view _Name, const std::vector<IndexType> _Data)
+	{
+		std::shared_ptr<UEngineIndexBuffer> Res = CreateResName(_Name);
+		Res->ResCreate(&_Data[0], static_cast<UINT>(sizeof(IndexType)), static_cast<UINT>(_Data.size()));
+		return Res;
+	}
 
 protected:
 
 private:
+	DXGI_FORMAT Format = DXGI_FORMAT::DXGI_FORMAT_R32_SINT;
+
+	UINT Size = 0;
+	UINT Count = 0;
+	
+	void ResCreate(const void* _Data, UINT _Size, UINT _Count);
 };
 

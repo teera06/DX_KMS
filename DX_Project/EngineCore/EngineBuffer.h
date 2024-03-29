@@ -1,18 +1,22 @@
 #pragma once
-class EngineBuffer
+#include <EnginePlatform/EngineResources.h>
+// 설명 :
+class UEngineBuffer
 {
 public:
 	// constrcuter destructer
-	EngineBuffer(); // 디폴트 생성자
-	~EngineBuffer(); // 디폴트 소멸자
+	UEngineBuffer();
+	~UEngineBuffer();
 
 	// delete Function
-	EngineBuffer(const EngineBuffer& _Other) = delete; // 디폴트 복사 생성자
-	EngineBuffer(EngineBuffer&& _Other) noexcept = delete; 
-	EngineBuffer& operator=(const EngineBuffer& _Other) = delete; // 디폴트 대입 연산자
-	EngineBuffer& operator=(EngineBuffer&& _Other) noexcept = delete;
+	UEngineBuffer(const UEngineBuffer& _Other) = delete;
+	UEngineBuffer(UEngineBuffer&& _Other) noexcept = delete;
+	UEngineBuffer& operator=(const UEngineBuffer& _Other) = delete;
+	UEngineBuffer& operator=(UEngineBuffer&& _Other) noexcept = delete;
 
 protected:
+	D3D11_BUFFER_DESC BufferInfo = {};
+	ID3D11Buffer* Buffer = nullptr;
 
 private:
 };
