@@ -34,6 +34,9 @@
     <Filter Include="Object\Rendering\Component">
       <UniqueIdentifier>{7ee95929-42c6-4914-b8fc-54a50f7c8108}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resources\Mesh">
+      <UniqueIdentifier>{d6f336dd-ec7e-403e-94ce-fabbfcba6ab4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp">
@@ -81,6 +84,18 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Object\Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="EngineBuffer.cpp">
+      <Filter>Resources\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineIndexBuffer.cpp">
+      <Filter>Resources\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineMesh.cpp">
+      <Filter>Resources\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineVertexBuffer.cpp">
+      <Filter>Resources\Mesh</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EngineCore.h">
@@ -127,6 +142,21 @@
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>Object\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineBuffer.h">
+      <Filter>Resources\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineIndexBuffer.h">
+      <Filter>Resources\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineMesh.h">
+      <Filter>Resources\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineVertex.h">
+      <Filter>Resources\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineVertexBuffer.h">
+      <Filter>Resources\Mesh</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
