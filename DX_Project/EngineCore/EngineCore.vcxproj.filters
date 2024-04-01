@@ -40,6 +40,12 @@
     <Filter Include="Object\EngineContent">
       <UniqueIdentifier>{65c23740-1e3a-4f33-8b76-0965a7d79c4b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resources\Shader">
+      <UniqueIdentifier>{7754ea1e-493b-4092-956e-6a8c96171fd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\NewFilter1">
+      <UniqueIdentifier>{f975e487-9c3b-4d65-80c0-f16cc2a93e66}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp">
@@ -105,6 +111,15 @@
     <ClCompile Include="EngineGraphicDevice_Resources.cpp">
       <Filter>Device</Filter>
     </ClCompile>
+    <ClCompile Include="EnginePixelShader.cpp">
+      <Filter>Resources\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineShader.cpp">
+      <Filter>Resources\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineVertexShader.cpp">
+      <Filter>Resources\Shader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EngineCore.h">
@@ -169,6 +184,15 @@
     </ClInclude>
     <ClInclude Include="DefaultSceneComponent.h">
       <Filter>Object\EngineContent</Filter>
+    </ClInclude>
+    <ClInclude Include="EnginePixelShader.h">
+      <Filter>Resources\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineShader.h">
+      <Filter>Resources\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineVertexShader.h">
+      <Filter>Resources\Shader</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
