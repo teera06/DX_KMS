@@ -1,19 +1,36 @@
 #pragma once
-class EngineRasterizer
+#include <EnginePlatform/EngineResources.h>
+
+class UEngineMaterial;
+// 설명 :
+class UEngineRasterizer : public UEngineResources<UEngineRasterizer>
 {
+	friend UEngineMaterial;
+
 public:
 	// constrcuter destructer
-	EngineRasterizer(); // 디폴트 생성자
-	~EngineRasterizer(); // 디폴트 소멸자
+	UEngineRasterizer();
+	~UEngineRasterizer();
 
 	// delete Function
-	EngineRasterizer(const EngineRasterizer& _Other) = delete; // 디폴트 복사 생성자
-	EngineRasterizer(EngineRasterizer&& _Other) noexcept = delete; 
-	EngineRasterizer& operator=(const EngineRasterizer& _Other) = delete; // 디폴트 대입 연산자
-	EngineRasterizer& operator=(EngineRasterizer&& _Other) noexcept = delete;
+	UEngineRasterizer(const UEngineRasterizer& _Other) = delete;
+	UEngineRasterizer(UEngineRasterizer&& _Other) noexcept = delete;
+	UEngineRasterizer& operator=(const UEngineRasterizer& _Other) = delete;
+	UEngineRasterizer& operator=(UEngineRasterizer&& _Other) noexcept = delete;
+
+	static std::shared_ptr<UEngineRasterizer> Create(std::string_view _Name, const D3D11_RASTERIZER_DESC& _Info)
+	{
+		std::shared_ptr<UEngineRasterizer> Res = CreateResName(_Name);
+		Res->ResCreate(_Info);
+		return Res;
+	}
 
 protected:
+	
 
 private:
-};
+	ID3D11RasterizerState* State = nullptr;
 
+	void ResCreate(const D3D11_RASTERIZER_DESC& _Info);
+	void Setting();
+};

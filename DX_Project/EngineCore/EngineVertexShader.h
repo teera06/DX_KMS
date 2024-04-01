@@ -1,19 +1,48 @@
 #pragma once
-class EngineVertexShader
+#include <EnginePlatform/EngineResources.h>
+#include "EngineShader.h"
+
+class UEngineMaterial;
+// 설명 :
+class UEngineVertexShader : public UEngineResources<UEngineVertexShader>, public UEngineShader
 {
+	friend UEngineMaterial;
+
 public:
 	// constrcuter destructer
-	EngineVertexShader(); // 디폴트 생성자
-	~EngineVertexShader(); // 디폴트 소멸자
+	UEngineVertexShader();
+	~UEngineVertexShader();
 
 	// delete Function
-	EngineVertexShader(const EngineVertexShader& _Other) = delete; // 디폴트 복사 생성자
-	EngineVertexShader(EngineVertexShader&& _Other) noexcept = delete; 
-	EngineVertexShader& operator=(const EngineVertexShader& _Other) = delete; // 디폴트 대입 연산자
-	EngineVertexShader& operator=(EngineVertexShader&& _Other) noexcept = delete;
+	UEngineVertexShader(const UEngineVertexShader& _Other) = delete;
+	UEngineVertexShader(UEngineVertexShader&& _Other) noexcept = delete;
+	UEngineVertexShader& operator=(const UEngineVertexShader& _Other) = delete;
+	UEngineVertexShader& operator=(UEngineVertexShader&& _Other) noexcept = delete;
+
+	static std::shared_ptr<UEngineVertexShader> Load(std::string_view _Path, std::string_view _EntryPoint, UINT _High = 5, UINT _Low = 0)
+	{
+		std::shared_ptr<UEngineVertexShader> Res = CreateResName(_Path);
+		Res->ResLoad(_EntryPoint,_High, _Low);
+		return Res;
+	}
+
+	static std::shared_ptr<UEngineVertexShader> Load(std::string_view _Name, std::string_view _Path, std::string_view _EntryPoint, UINT _High = 5, UINT _Low = 0)
+	{
+		std::shared_ptr<UEngineVertexShader> Res = CreateResName(_Name, _Path);
+		Res->ResLoad(_EntryPoint, _High, _Low);
+		return Res;
+	}
 
 protected:
 
 private:
+	// 실제 셑이할수 있는 쉐이더 핸들
+	ID3D11VertexShader* ShaderPtr = nullptr;
+
+	//                                               5    .   0
+	void ResLoad(std::string_view _EntryPoint, UINT _High, UINT Low);
+
+	void Setting();
+
 };
 

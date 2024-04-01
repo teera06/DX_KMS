@@ -1,9 +1,20 @@
+#include "PreCompile.h"
 #include "EngineShader.h"
 
-EngineShader::EngineShader()
+UEngineShader::UEngineShader() 
 {
 }
 
-EngineShader::~EngineShader()
+UEngineShader::~UEngineShader() 
 {
+	if (nullptr != ErrorCodeBlob)
+	{
+		ErrorCodeBlob->Release();
+	}
+
+	if (nullptr != ShaderCodeBlob)
+	{
+		ShaderCodeBlob->Release();
+	}
 }
+

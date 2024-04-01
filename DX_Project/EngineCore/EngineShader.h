@@ -1,19 +1,26 @@
 #pragma once
-class EngineShader
+
+// 설명 :
+class UEngineShader
 {
 public:
 	// constrcuter destructer
-	EngineShader(); // 디폴트 생성자
-	~EngineShader(); // 디폴트 소멸자
+	UEngineShader();
+	~UEngineShader();
 
 	// delete Function
-	EngineShader(const EngineShader& _Other) = delete; // 디폴트 복사 생성자
-	EngineShader(EngineShader&& _Other) noexcept = delete; 
-	EngineShader& operator=(const EngineShader& _Other) = delete; // 디폴트 대입 연산자
-	EngineShader& operator=(EngineShader&& _Other) noexcept = delete;
+	UEngineShader(const UEngineShader& _Other) = delete;
+	UEngineShader(UEngineShader&& _Other) noexcept = delete;
+	UEngineShader& operator=(const UEngineShader& _Other) = delete;
+	UEngineShader& operator=(UEngineShader&& _Other) noexcept = delete;
 
 protected:
+	// 컴파일된 쉐이더코드의 핸들입니다.
+	// 컴파일된 결과물이 여기에 들어간다고 하고 세팅하거나 특정 함수들을 사용할때 필요합니다.
+	ID3DBlob* ShaderCodeBlob = nullptr;
+	ID3DBlob* ErrorCodeBlob = nullptr;
 
 private:
+
 };
 
