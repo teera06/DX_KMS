@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="2D">
+      <UniqueIdentifier>{525e6f77-c786-4734-98b1-e7215d5e3044}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
