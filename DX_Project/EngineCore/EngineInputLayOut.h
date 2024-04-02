@@ -1,19 +1,38 @@
 #pragma once
-class EngineInputLayOut
+#include <EnginePlatform/EngineResources.h>
+
+class URenderer;
+class UEngineVertexBuffer;
+class UEngineVertexShader;
+// 설명 :
+class UEngineInputLayOut : public UEngineResources<UEngineInputLayOut>
 {
+	friend URenderer;
+
 public:
 	// constrcuter destructer
-	EngineInputLayOut(); // 디폴트 생성자
-	~EngineInputLayOut(); // 디폴트 소멸자
+	UEngineInputLayOut();
+	~UEngineInputLayOut();
 
 	// delete Function
-	EngineInputLayOut(const EngineInputLayOut& _Other) = delete; // 디폴트 복사 생성자
-	EngineInputLayOut(EngineInputLayOut&& _Other) noexcept = delete; 
-	EngineInputLayOut& operator=(const EngineInputLayOut& _Other) = delete; // 디폴트 대입 연산자
-	EngineInputLayOut& operator=(EngineInputLayOut&& _Other) noexcept = delete;
+	UEngineInputLayOut(const UEngineInputLayOut& _Other) = delete;
+	UEngineInputLayOut(UEngineInputLayOut&& _Other) noexcept = delete;
+	UEngineInputLayOut& operator=(const UEngineInputLayOut& _Other) = delete;
+	UEngineInputLayOut& operator=(UEngineInputLayOut&& _Other) noexcept = delete;
+
+	static std::shared_ptr<UEngineInputLayOut> Create(std::shared_ptr<UEngineVertexBuffer> _Buffer, std::shared_ptr<UEngineVertexShader> _Shader)
+	{
+		std::shared_ptr<UEngineInputLayOut> Res = CreateResUnName();
+		Res->ResCreate(_Buffer, _Shader);
+		return Res;
+	}
 
 protected:
 
 private:
+	ID3D11InputLayout* LayOut = nullptr;
+
+	void ResCreate(std::shared_ptr<UEngineVertexBuffer> _Buffer, std::shared_ptr<UEngineVertexShader> _Shader);
+	void Setting();
 };
 
