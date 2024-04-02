@@ -1,9 +1,11 @@
+#include "PreCompile.h"
 #include "EngineConstantBuffer.h"
 
-EngineConstantBuffer::EngineConstantBuffer()
+UEngineConstantBuffer::UEngineConstantBuffer() 
 {
 }
 
-EngineConstantBuffer::~EngineConstantBuffer()
+UEngineConstantBuffer::~UEngineConstantBuffer() 
 {
 }
+

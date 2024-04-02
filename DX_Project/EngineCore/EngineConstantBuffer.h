@@ -1,19 +1,23 @@
 #pragma once
-class EngineConstantBuffer
+#include <EnginePlatform/EngineResources.h>
+
+// 설명 :
+class UEngineConstantBuffer : public UEngineResources<UEngineConstantBuffer>
 {
 public:
 	// constrcuter destructer
-	EngineConstantBuffer(); // 디폴트 생성자
-	~EngineConstantBuffer(); // 디폴트 소멸자
+	UEngineConstantBuffer();
+	~UEngineConstantBuffer();
 
 	// delete Function
-	EngineConstantBuffer(const EngineConstantBuffer& _Other) = delete; // 디폴트 복사 생성자
-	EngineConstantBuffer(EngineConstantBuffer&& _Other) noexcept = delete; 
-	EngineConstantBuffer& operator=(const EngineConstantBuffer& _Other) = delete; // 디폴트 대입 연산자
-	EngineConstantBuffer& operator=(EngineConstantBuffer&& _Other) noexcept = delete;
+	UEngineConstantBuffer(const UEngineConstantBuffer& _Other) = delete;
+	UEngineConstantBuffer(UEngineConstantBuffer&& _Other) noexcept = delete;
+	UEngineConstantBuffer& operator=(const UEngineConstantBuffer& _Other) = delete;
+	UEngineConstantBuffer& operator=(UEngineConstantBuffer&& _Other) noexcept = delete;
 
 protected:
 
 private:
+
 };
 
