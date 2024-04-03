@@ -16,6 +16,15 @@
     <Filter Include="test\Player">
       <UniqueIdentifier>{44f325d7-338a-402d-acf0-9808b03ec02b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlayStage">
+      <UniqueIdentifier>{64bee418-037e-4aa3-a8e6-bc1fd0a720d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayStage\Actor">
+      <UniqueIdentifier>{29f04d66-9a78-4151-ba52-3b7e61a4283b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayStage\Actor\CupHead_Player">
+      <UniqueIdentifier>{a6906e9e-017a-4d04-b6f9-c2051d719ccc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game_Core.cpp">
@@ -29,6 +38,9 @@
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>test\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Play_Cuphead.cpp">
+      <Filter>PlayStage\Actor\CupHead_Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -45,5 +57,8 @@
       <Filter>test\Player</Filter>
     </ClInclude>
     <ClInclude Include="ContentsENum.h" />
+    <ClInclude Include="Play_Cuphead.h">
+      <Filter>PlayStage\Actor\CupHead_Player</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
