@@ -1,6 +1,8 @@
 #pragma once
 #include <EngineCore/Actor.h>
 
+#include "ContentsENum.h"
+
 class APlay_Cuphead : public AActor
 {
 public:
@@ -20,8 +22,11 @@ protected:
 private:
 	// 상태에 따른 조작, 애니메이션 업데이트
 	//void StateAniChange(EActorState _State); // 커비의 움직임 상태에 맞는 애니메이션 실행
-	//void StateUpdate(float _DeltaTime);
+	
 
+	EPlayerState State = EPlayerState::None;
+
+	void StateUpdate(float _DeltaTime);
 	// 상태에 따른 조작
 	//void Idle(float _DeltaTime); // 서있기
 	//void Move(float _DeltaTime); // 걷기

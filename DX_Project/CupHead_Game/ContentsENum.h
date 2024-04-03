@@ -6,8 +6,11 @@ enum class EPlayerState
 	Idle,
 	Move,
 	Jump,
+	Dash,
+	IdleAtt,
+	MoveAtt,
+	JumpAtt,
 	hit,
 	HeadDown,
-	Att1,
-	Att2
+	MaxAtt
 };
