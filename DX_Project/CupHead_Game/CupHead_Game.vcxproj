@@ -167,6 +167,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ContentsENum.h" />
     <ClInclude Include="Game_Core.h">
       <SubType>
       </SubType>
