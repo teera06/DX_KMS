@@ -33,10 +33,35 @@ void APlay_Cuphead::StateUpdate(float _DeltaTime)
 	case EPlayerState::Jump: // 점프
 		//Run(_DeltaTime);
 		break;
-	case EPlayerState::Dash: // 
+	case EPlayerState::Dash: // shift 이동
+		break;
+	case EPlayerState::IdleAtt: // 서 있기 공격
+		break;
+	case EPlayerState::MoveAtt: // 이동 하며 공격
+		break;
+	case EPlayerState::JumpAtt: // 점프 공격
 		break;
 	
 	default:
 		break;
 	}
 }
+
+void APlay_Cuphead::Idle(float _DeltaTime)
+{
+	
+	// 이동
+	if (
+		true == UEngineInput::IsPress(VK_LEFT) ||
+		true == UEngineInput::IsPress(VK_RIGHT)
+		)
+	{
+		//StateAniChange(EPlayerState::Move);
+		return;
+	}
+
+	
+
+
+}
+
