@@ -11,6 +11,26 @@ UGame_Core::~UGame_Core()
 
 void UGame_Core::Initialize()
 {
+
+	{
+		// 파일의 헤더
+		UEngineDirectory Dir;
+		Dir.MoveToSearchChild("GameResource");
+		Dir.Move("Image");
+		Dir.Move("Cuphead");
+		Dir.Move("Idle");
+		std::vector<UEngineFile> Files = Dir.GetAllFile({ ".png" }, true);
+		for (UEngineFile& File : Files)
+		{
+			//File.Open(EIOOpenMode::Read, EIODataType::Binary);
+
+			//char Arr[100];
+			//File.Read(Arr, 100);
+
+			UEngineTexture::Load(File.GetFullPath());
+		}
+		// UEngineSound::SoundPlay("anipang_ingame_wav.wav");
+	}
 	GEngine->CreateLevel<APlayGameMode>("PlayLevel");
 	GEngine->ChangeLevel("PlayLevel");
 
