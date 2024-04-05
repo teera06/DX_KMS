@@ -23,12 +23,15 @@ void AMainTitleGameMode::BeginPlay()
 
 void AMainTitleGameMode::Tick(float _DeltaTime)
 {
+	Super::Tick(_DeltaTime);
 }
 
 void AMainTitleGameMode::LevelEnd(ULevel* _NextLevel)
 {
+	Super::LevelEnd(_NextLevel);
 }
 
 void AMainTitleGameMode::LevelStart(ULevel* _PrevLevel)
 {
+	Super::LevelStart(_PrevLevel);
 }

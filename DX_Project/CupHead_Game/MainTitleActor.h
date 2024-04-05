@@ -4,6 +4,7 @@
 
 class AMainTitleActor : public AActor
 {
+	GENERATED_BODY(AActor)
 public:
 	// constrcuter destructer
 	AMainTitleActor(); // 디폴트 생성자
