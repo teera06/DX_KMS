@@ -3,8 +3,10 @@
 
 #include "ContentsENum.h"
 
+class URenderer;
 class APlay_Cuphead : public AActor
 {
+	GENERATED_BODY(AActor)
 public:
 	// constrcuter destructer
 	APlay_Cuphead(); // 디폴트 생성자
@@ -23,9 +25,10 @@ private:
 	// 상태에 따른 조작, 애니메이션 업데이트
 	//void StateAniChange(EActorState _State); // 커비의 움직임 상태에 맞는 애니메이션 실행
 	
+	URenderer* CupHeadRenderer=nullptr;
+
 
 	EPlayerState State = EPlayerState::None;
-
 	void StateUpdate(float _DeltaTime);
 	// 상태에 따른 조작
 	void Idle(float _DeltaTime); // 서있기
