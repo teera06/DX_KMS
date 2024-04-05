@@ -27,12 +27,14 @@ private:
 	
 	URenderer* CupHeadRenderer=nullptr;
 
+	float MoveSpeed = 400.0f;
+
 
 	EPlayerState State = EPlayerState::None;
 	void StateUpdate(float _DeltaTime);
 	// 상태에 따른 조작
 	void Idle(float _DeltaTime); // 서있기
-	//void Move(float _DeltaTime); // 걷기
+	void Move(float _DeltaTime); // 걷기
 	//void Jump(float _DeltaTime); // 점프
 	//void hit(float _DeltaTime); // 몬스터와의 충돌
 	//void HeadDown(float _DeltaTime); // 숙이기

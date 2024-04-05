@@ -87,3 +87,7 @@ void APlay_Cuphead::Idle(float _DeltaTime)
 
 }
 
+void APlay_Cuphead::Move(float _DeltaTime)
+{
+}
+
