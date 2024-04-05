@@ -15,7 +15,7 @@ ATitleLogo::~ATitleLogo()
 
 void ATitleLogo::RendererOn()
 {
-	Renderer->SetSprite("CuttingTest.png", 11);
+	Renderer->SetSprite("CharRun0.png", 11);
 	//Renderer->SetActive(true);
 	DelayCallBack(0.2f, std::bind(&ATitleLogo::RendererOff, this));
 
@@ -24,7 +24,7 @@ void ATitleLogo::RendererOn()
 
 void ATitleLogo::RendererOff()
 {
-	Renderer->SetSprite("CuttingTest.png", 11);
+	Renderer->SetSprite("CharRun0.png", 11);
 	//Renderer->SetActive(false);
 	DelayCallBack(0.2f, std::bind(&ATitleLogo::RendererOn, this));
 
@@ -37,12 +37,12 @@ void ATitleLogo::BeginPlay()
 
 	SetActorScale3D(FVector(700.0f, 300.0f, 100.0f));
 
-	DelayCallBack(1.0f, std::bind(&ATitleLogo::RendererOff, this));
+	//DelayCallBack(1.0f, std::bind(&ATitleLogo::RendererOff, this));
 
 	// Renderer->SetSamplering(ETextureSampling::LINEAR);
-	Renderer->SetSprite("CuttingTest.png", 11);
+	Renderer->SetSprite("CharRun0.png");
 
-	Renderer->CreateAnimation("Run", "CuttingTest.png", 0.1f);
+	Renderer->CreateAnimation("Run", "Run", 0.5f);
 
 	Renderer->ChangeAnimation("Run");
 

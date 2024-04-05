@@ -25,6 +25,12 @@
     <Filter Include="PlayStage\Actor\CupHead_Player">
       <UniqueIdentifier>{a6906e9e-017a-4d04-b6f9-c2051d719ccc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="TitleStage">
+      <UniqueIdentifier>{ae1559e4-c774-4d0c-8d24-20719249d681}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TitleStage\Actor">
+      <UniqueIdentifier>{b9aac5aa-96ac-4647-ae6c-453eca266f59}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game_Core.cpp">
@@ -47,6 +53,12 @@
     </ClCompile>
     <ClCompile Include="TitleLogo.cpp">
       <Filter>test\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="MainTitleGameMode.cpp">
+      <Filter>TitleStage</Filter>
+    </ClCompile>
+    <ClCompile Include="MainTitleActor.cpp">
+      <Filter>TitleStage\Actor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -71,6 +83,12 @@
     </ClInclude>
     <ClInclude Include="TitleLogo.h">
       <Filter>test\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="MainTitleGameMode.h">
+      <Filter>TitleStage</Filter>
+    </ClInclude>
+    <ClInclude Include="MainTitleActor.h">
+      <Filter>TitleStage\Actor</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

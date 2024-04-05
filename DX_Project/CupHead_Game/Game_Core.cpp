@@ -19,6 +19,7 @@ void UGame_Core::Initialize()
 		UEngineDirectory Dir;
 		Dir.MoveToSearchChild("ContentsResources");
 		Dir.Move("Image");
+		//Dir.Move("Cuphead");
 		std::vector<UEngineFile> Files = Dir.GetAllFile({ ".png" }, true);
 		for (UEngineFile& File : Files)
 		{
@@ -42,7 +43,8 @@ void UGame_Core::Initialize()
 		// 이미 이 이름을 가진 스프라이트가 존재한다.
 		// 그러면 기존의 스프라이트 데이터는 날려버리고
 		// 자른 스프라이트 데이터 변경한다.
-		UEngineSprite::CreateCutting("CuttingTest.png", 4, 3);
+		//UEngineSprite::
+		//UEngineSprite::CreateCutting("CharRun0.png", 0, 6);
 	}
 
 
