@@ -1,7 +1,7 @@
 #include "PreCompile.h"
 #include "Game_Core.h"
-#include "PlayGameMode.h"
-#include "TitleGameMode.h"
+#include "MainTitleGameMode.h"
+
 #include <EngineCore/EngineSprite.h>
 UGame_Core::UGame_Core()
 {
@@ -17,9 +17,9 @@ void UGame_Core::Initialize()
 	{
 		// 파일의 헤더
 		UEngineDirectory Dir;
-		Dir.MoveToSearchChild("ContentsResources");
+		Dir.MoveToSearchChild("GameResource");
 		Dir.Move("Image");
-		//Dir.Move("Cuphead");
+		Dir.Move("Title");
 		std::vector<UEngineFile> Files = Dir.GetAllFile({ ".png" }, true);
 		for (UEngineFile& File : Files)
 		{
@@ -49,23 +49,22 @@ void UGame_Core::Initialize()
 
 
 	{
-		UEngineDirectory Dir;
-		Dir.MoveToSearchChild("ContentsResources");
-		Dir.Move("Sound");
-		std::vector<UEngineFile> Files = Dir.GetAllFile({ ".wav" });
-		for (UEngineFile& File : Files)
-		{
+		//UEngineDirectory Dir;
+		//Dir.MoveToSearchChild("ContentsResources");
+		//Dir.Move("Sound");
+		//std::vector<UEngineFile> Files = Dir.GetAllFile({ ".wav" });
+		//for (UEngineFile& File : Files)
+		//{
 			//File.Open(EIOOpenMode::Read, EIODataType::Binary);
 
 			//char Arr[100];
 			//File.Read(Arr, 100);
 
-			UEngineSound::Load(File.GetFullPath());
-		}
+			//UEngineSound::Load(File.GetFullPath());
+		//}
 		// UEngineSound::SoundPlay("anipang_ingame_wav.wav");
 	}
 
-	GEngine->CreateLevel<APlayGameMode>("PlayLevel");
-	GEngine->CreateLevel<ATitleGameMode>("TitleLevel");
-	GEngine->ChangeLevel("TitleLevel");
+	GEngine->CreateLevel<AMainTitleGameMode>("MainTitle");
+	GEngine->ChangeLevel("MainTitle");
 }

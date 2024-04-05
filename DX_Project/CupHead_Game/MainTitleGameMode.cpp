@@ -1,32 +1,34 @@
 #include "PreCompile.h"
 #include "MainTitleGameMode.h"
+#include "MainTitleActor.h"
+
 #include <EngineCore/Camera.h>
 
-MainTitleGameMode::MainTitleGameMode()
+AMainTitleGameMode::AMainTitleGameMode()
 {
 }
 
-MainTitleGameMode::~MainTitleGameMode()
+AMainTitleGameMode::~AMainTitleGameMode()
 {
 }
 
-void MainTitleGameMode::BeginPlay()
+void AMainTitleGameMode::BeginPlay()
 {
 	Super::BeginPlay();
 
 	std::shared_ptr<UCamera> Camera = GetWorld()->GetMainCamera();
 	Camera->SetActorLocation(FVector(0.0f, 0.0f, -100.0f));
-	GetWorld()->SpawnActor<ATitleLogo>("TitleLogo");
+	GetWorld()->SpawnActor<AMainTitleActor>("TitleLogo");
 }
 
-void MainTitleGameMode::Tick(float _DeltaTime)
+void AMainTitleGameMode::Tick(float _DeltaTime)
 {
 }
 
-void MainTitleGameMode::LevelEnd(ULevel* _NextLevel)
+void AMainTitleGameMode::LevelEnd(ULevel* _NextLevel)
 {
 }
 
-void MainTitleGameMode::LevelStart(ULevel* _PrevLevel)
+void AMainTitleGameMode::LevelStart(ULevel* _PrevLevel)
 {
 }

@@ -1,18 +1,18 @@
 #pragma once
 #include <EngineCore/GameMode.h>
-class MainTitleGameMode : public AGameMode
+class AMainTitleGameMode : public AGameMode
 {
 	GENERATED_BODY(AGameMode)
 public:
 	// constrcuter destructer
-	MainTitleGameMode(); // 디폴트 생성자
-	~MainTitleGameMode(); // 디폴트 소멸자
+	AMainTitleGameMode(); // 디폴트 생성자
+	~AMainTitleGameMode(); // 디폴트 소멸자
 
 	// delete Function
-	MainTitleGameMode(const MainTitleGameMode& _Other) = delete; // 디폴트 복사 생성자
-	MainTitleGameMode(MainTitleGameMode&& _Other) noexcept = delete; 
-	MainTitleGameMode& operator=(const MainTitleGameMode& _Other) = delete; // 디폴트 대입 연산자
-	MainTitleGameMode& operator=(MainTitleGameMode&& _Other) noexcept = delete;
+	AMainTitleGameMode(const AMainTitleGameMode& _Other) = delete; // 디폴트 복사 생성자
+	AMainTitleGameMode(AMainTitleGameMode&& _Other) noexcept = delete; 
+	AMainTitleGameMode& operator=(const AMainTitleGameMode& _Other) = delete; // 디폴트 대입 연산자
+	AMainTitleGameMode& operator=(AMainTitleGameMode&& _Other) noexcept = delete;
 
 protected:
 	void BeginPlay() override;

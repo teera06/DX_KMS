@@ -2,18 +2,18 @@
 #include <Enginecore/Actor.h>
 #include <EngineCore/SpriteRenderer.h>
 
-class MainTitleActor : public AActor
+class AMainTitleActor : public AActor
 {
 public:
 	// constrcuter destructer
-	MainTitleActor(); // 디폴트 생성자
-	~MainTitleActor(); // 디폴트 소멸자
+	AMainTitleActor(); // 디폴트 생성자
+	~AMainTitleActor(); // 디폴트 소멸자
 
 	// delete Function
-	MainTitleActor(const MainTitleActor& _Other) = delete; // 디폴트 복사 생성자
-	MainTitleActor(MainTitleActor&& _Other) noexcept = delete; 
-	MainTitleActor& operator=(const MainTitleActor& _Other) = delete; // 디폴트 대입 연산자
-	MainTitleActor& operator=(MainTitleActor&& _Other) noexcept = delete;
+	AMainTitleActor(const AMainTitleActor& _Other) = delete; // 디폴트 복사 생성자
+	AMainTitleActor(AMainTitleActor&& _Other) noexcept = delete; 
+	AMainTitleActor& operator=(const AMainTitleActor& _Other) = delete; // 디폴트 대입 연산자
+	AMainTitleActor& operator=(AMainTitleActor&& _Other) noexcept = delete;
 
 protected:
 	void BeginPlay() override;

@@ -1,17 +1,18 @@
+#include "PreCompile.h"
 #include "MainTitleActor.h"
 
-MainTitleActor::MainTitleActor()
+AMainTitleActor::AMainTitleActor()
 {
 }
 
-MainTitleActor::~MainTitleActor()
+AMainTitleActor::~AMainTitleActor()
 {
 }
 
-void MainTitleActor::BeginPlay()
+void AMainTitleActor::BeginPlay()
 {
 }
 
-void MainTitleActor::Tick(float _DeltaTime)
+void AMainTitleActor::Tick(float _DeltaTime)
 {
 }
