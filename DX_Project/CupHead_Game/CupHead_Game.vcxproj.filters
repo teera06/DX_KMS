@@ -42,6 +42,12 @@
     <ClCompile Include="Play_Cuphead.cpp">
       <Filter>PlayStage\Actor\CupHead_Player</Filter>
     </ClCompile>
+    <ClCompile Include="TitleGameMode.cpp">
+      <Filter>test\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleLogo.cpp">
+      <Filter>test\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -59,6 +65,12 @@
     <ClInclude Include="ContentsENum.h" />
     <ClInclude Include="Play_Cuphead.h">
       <Filter>PlayStage\Actor\CupHead_Player</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleGameMode.h">
+      <Filter>test\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleLogo.h">
+      <Filter>test\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
