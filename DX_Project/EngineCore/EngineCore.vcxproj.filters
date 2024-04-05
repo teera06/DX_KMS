@@ -265,13 +265,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="ThirdParty\DirectxTex\Release\DirectXTex.lib">
-      <Filter>ThirdParty\DirectXTex\Release</Filter>
-    </Library>
-  </ItemGroup>
-  <ItemGroup>
     <CopyFileToFolders Include="ThirdParty\DirectxTex\Debug\DirectXTex.lib">
       <Filter>ThirdParty\DirectXTex\Debug</Filter>
     </CopyFileToFolders>
+    <CopyFileToFolders Include="ThirdParty\DirectxTex\Release\DirectXTex.lib" />
   </ItemGroup>
 </Project>
