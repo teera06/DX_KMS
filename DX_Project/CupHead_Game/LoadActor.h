@@ -2,19 +2,19 @@
 #include <Enginecore/Actor.h>
 #include <EngineCore/SpriteRenderer.h>
 
-class LoadActor : public AActor
+class ALoadActor : public AActor
 {
 	GENERATED_BODY(AActor)
 public:
 	// constrcuter destructer
-	LoadActor(); // 디폴트 생성자
-	~LoadActor(); // 디폴트 소멸자
+	ALoadActor(); // 디폴트 생성자
+	~ALoadActor(); // 디폴트 소멸자
 
 	// delete Function
-	LoadActor(const LoadActor& _Other) = delete; // 디폴트 복사 생성자
-	LoadActor(LoadActor&& _Other) noexcept = delete; 
-	LoadActor& operator=(const LoadActor& _Other) = delete; // 디폴트 대입 연산자
-	LoadActor& operator=(LoadActor&& _Other) noexcept = delete;
+	ALoadActor(const ALoadActor& _Other) = delete; // 디폴트 복사 생성자
+	ALoadActor(ALoadActor&& _Other) noexcept = delete; 
+	ALoadActor& operator=(const ALoadActor& _Other) = delete; // 디폴트 대입 연산자
+	ALoadActor& operator=(ALoadActor&& _Other) noexcept = delete;
 
 protected:
 	void BeginPlay() override;
