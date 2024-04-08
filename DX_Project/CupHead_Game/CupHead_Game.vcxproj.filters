@@ -55,6 +55,9 @@
     <Filter Include="LoadingStage\Actor">
       <UniqueIdentifier>{36702449-37e1-420e-a1ab-aeb1829cd17f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="WorldStage\Actor\Map">
+      <UniqueIdentifier>{7ba72f86-e36c-4da7-813d-2aa2f2ecb0f3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game_Core.cpp">
@@ -92,6 +95,9 @@
     </ClCompile>
     <ClCompile Include="LoadActor.cpp">
       <Filter>LoadingStage\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldMap.cpp">
+      <Filter>WorldStage\Actor\Map</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -131,6 +137,9 @@
     </ClInclude>
     <ClInclude Include="LoadActor.h">
       <Filter>LoadingStage\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldMap.h">
+      <Filter>WorldStage\Actor\Map</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
