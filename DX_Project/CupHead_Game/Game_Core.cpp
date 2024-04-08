@@ -19,7 +19,6 @@ void UGame_Core::Initialize()
 		UEngineDirectory Dir;
 		Dir.MoveToSearchChild("GameResource");
 		Dir.Move("Image\\Title");
-		//Dir.Move("Title");
 		std::vector<UEngineFile> Files = Dir.GetAllFile({ ".png" }, true);
 		for (UEngineFile& File : Files)
 		{
