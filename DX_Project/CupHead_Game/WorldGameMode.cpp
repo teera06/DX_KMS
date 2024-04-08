@@ -1,30 +1,31 @@
 #include "PreCompile.h"
 #include "WorldGameMode.h"
 
-WorldGameMode::WorldGameMode()
+#include <EngineCore/EngineSprite.h>
+AWorldGameMode::AWorldGameMode()
 {
 }
 
-WorldGameMode::~WorldGameMode()
+AWorldGameMode::~AWorldGameMode()
 {
 }
 
-void WorldGameMode::BeginPlay()
+void AWorldGameMode::BeginPlay()
 {
 	Super::BeginPlay();
 }
 
-void WorldGameMode::Tick(float _DeltaTime)
+void AWorldGameMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 }
 
-void WorldGameMode::LevelEnd(ULevel* _NextLevel)
+void AWorldGameMode::LevelEnd(ULevel* _NextLevel)
 {
 	Super::LevelEnd(_NextLevel);
 }
 
-void WorldGameMode::LevelStart(ULevel* _PrevLevel)
+void AWorldGameMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
 }

@@ -1,7 +1,10 @@
 #include "PreCompile.h"
 #include "MainTitleGameMode.h"
+
+
 #include "MainTitleActor.h"
 
+#include "WorldGameMode.h"
 #include <EngineCore/Camera.h>
 
 AMainTitleGameMode::AMainTitleGameMode()
@@ -27,7 +30,7 @@ void AMainTitleGameMode::Tick(float _DeltaTime)
 
 	if (true == UEngineInput::IsDown('Z'))
 	{
-		//GEngine->ChangeLevel("PlayLevel");
+		GEngine->ChangeLevel("MainWorld");
 	}
 }
 
@@ -40,6 +43,5 @@ void AMainTitleGameMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
 
-	GEngine->CreateLevel<AMainTitleGameMode>("MainWorld");
-	//GEngine->ChangeLevel("MainTitle");
+	GEngine->CreateLevel<AWorldGameMode>("MainWorld");
 }
