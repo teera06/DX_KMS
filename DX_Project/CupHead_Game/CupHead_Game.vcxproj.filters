@@ -46,6 +46,12 @@
     <Filter Include="WorldStage\Level">
       <UniqueIdentifier>{787286b2-0c78-48f1-883a-659527dafd9f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="LoadingStage">
+      <UniqueIdentifier>{69fa53df-47ee-4a8d-8a4c-9a0c0abc44cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LoadingStage\Level">
+      <UniqueIdentifier>{166c84c4-2b85-4c72-a118-d75049b9a8ab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game_Core.cpp">
@@ -77,6 +83,9 @@
     </ClCompile>
     <ClCompile Include="WorldGameMode.cpp">
       <Filter>WorldStage\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadingGameMode.cpp">
+      <Filter>LoadingStage\Level</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -110,6 +119,9 @@
     </ClInclude>
     <ClInclude Include="WorldGameMode.h">
       <Filter>WorldStage\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadingGameMode.h">
+      <Filter>LoadingStage\Level</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
