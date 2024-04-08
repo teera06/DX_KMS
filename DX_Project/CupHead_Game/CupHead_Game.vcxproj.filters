@@ -90,6 +90,7 @@
     <ClCompile Include="BossStage1GameMode.cpp">
       <Filter>PlayStage\Boss1\Level</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerCommon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -126,5 +127,6 @@
     <ClInclude Include="BossStage1GameMode.h">
       <Filter>PlayStage\Boss1\Level</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerCommon.h" />
   </ItemGroup>
 </Project>
