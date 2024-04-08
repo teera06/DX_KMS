@@ -19,15 +19,6 @@
     <Filter Include="TitleStage\Level">
       <UniqueIdentifier>{916178a0-4afc-4096-8ecd-f26e90f32c55}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlayStage\PlayActor">
-      <UniqueIdentifier>{29f04d66-9a78-4151-ba52-3b7e61a4283b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlayStage\PlayActor\CupHead_Player">
-      <UniqueIdentifier>{a6906e9e-017a-4d04-b6f9-c2051d719ccc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlayStage\Level">
-      <UniqueIdentifier>{fa1171ba-b9da-4e44-8d11-e882229307b3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="WorldStage">
       <UniqueIdentifier>{e4799b0b-17d8-4f2e-ac04-18a6f116e3e5}</UniqueIdentifier>
     </Filter>
@@ -52,6 +43,18 @@
     <Filter Include="WorldStage\Actor\Player">
       <UniqueIdentifier>{868e2a9e-6f3d-46ab-b4c8-6e93da061f3b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlayStage\Boss1">
+      <UniqueIdentifier>{bb55e811-1479-4bda-a1ca-bfd83b048bf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayStage\Boss1\Level">
+      <UniqueIdentifier>{fa1171ba-b9da-4e44-8d11-e882229307b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayStage\Boss1\PlayActor">
+      <UniqueIdentifier>{29f04d66-9a78-4151-ba52-3b7e61a4283b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayStage\Boss1\PlayActor\CupHead_Player">
+      <UniqueIdentifier>{a6906e9e-017a-4d04-b6f9-c2051d719ccc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game_Core.cpp">
@@ -61,7 +64,7 @@
       <Filter>PreCompile</Filter>
     </ClCompile>
     <ClCompile Include="Play_Cuphead.cpp">
-      <Filter>PlayStage\PlayActor\CupHead_Player</Filter>
+      <Filter>PlayStage\Boss1\PlayActor\CupHead_Player</Filter>
     </ClCompile>
     <ClCompile Include="MainTitleActor.cpp">
       <Filter>TitleStage\Actor</Filter>
@@ -94,7 +97,7 @@
     </ClInclude>
     <ClInclude Include="ContentsENum.h" />
     <ClInclude Include="Play_Cuphead.h">
-      <Filter>PlayStage\PlayActor\CupHead_Player</Filter>
+      <Filter>PlayStage\Boss1\PlayActor\CupHead_Player</Filter>
     </ClInclude>
     <ClInclude Include="MainTitleActor.h">
       <Filter>TitleStage\Actor</Filter>
