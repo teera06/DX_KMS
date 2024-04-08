@@ -58,6 +58,9 @@
     <Filter Include="WorldStage\Actor\Map">
       <UniqueIdentifier>{7ba72f86-e36c-4da7-813d-2aa2f2ecb0f3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="WorldStage\Actor\Player">
+      <UniqueIdentifier>{868e2a9e-6f3d-46ab-b4c8-6e93da061f3b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game_Core.cpp">
@@ -98,6 +101,9 @@
     </ClCompile>
     <ClCompile Include="WorldMap.cpp">
       <Filter>WorldStage\Actor\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldPlayer.cpp">
+      <Filter>WorldStage\Actor\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -140,6 +146,9 @@
     </ClInclude>
     <ClInclude Include="WorldMap.h">
       <Filter>WorldStage\Actor\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldPlayer.h">
+      <Filter>WorldStage\Actor\Player</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
