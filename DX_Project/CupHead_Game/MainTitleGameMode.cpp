@@ -64,7 +64,7 @@ void AMainTitleGameMode::Tick(float _DeltaTime)
 
 	if (true == UEngineInput::IsDown('Z'))
 	{
-		UPlayerCommon::StageCount++;
+		UPlayerCommon::StageCount=1;
 		GEngine->ChangeLevel("Loading");
 	}
 }

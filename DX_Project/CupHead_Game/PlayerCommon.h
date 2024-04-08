@@ -14,6 +14,10 @@ public:
 	UPlayerCommon& operator=(UPlayerCommon&& _Other) noexcept = delete;
 
 	static int StageCount;
+	// Stage 0 Å¸ÀÌÆ²
+	// Stage 1 ¿ùµå¸Ê
+	// Stage 2 º¸½º ¸Ê 1
+	// Stage 3 º¸½º ¸Ê 2
 protected:
 private:
 };
