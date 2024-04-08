@@ -52,6 +52,9 @@
     <Filter Include="LoadingStage\Level">
       <UniqueIdentifier>{166c84c4-2b85-4c72-a118-d75049b9a8ab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="LoadingStage\Actor">
+      <UniqueIdentifier>{36702449-37e1-420e-a1ab-aeb1829cd17f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game_Core.cpp">
@@ -86,6 +89,9 @@
     </ClCompile>
     <ClCompile Include="LoadingGameMode.cpp">
       <Filter>LoadingStage\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadActor.cpp">
+      <Filter>LoadingStage\Actor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -122,6 +128,9 @@
     </ClInclude>
     <ClInclude Include="LoadingGameMode.h">
       <Filter>LoadingStage\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadActor.h">
+      <Filter>LoadingStage\Actor</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
