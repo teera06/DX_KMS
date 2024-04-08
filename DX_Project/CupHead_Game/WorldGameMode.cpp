@@ -1,7 +1,9 @@
 #include "PreCompile.h"
 #include "WorldGameMode.h"
 
-#include <EngineCore/EngineSprite.h>
+#include "WorldMap.h"
+
+#include <EngineCore/Camera.h>
 AWorldGameMode::AWorldGameMode()
 {
 }
@@ -13,6 +15,9 @@ AWorldGameMode::~AWorldGameMode()
 void AWorldGameMode::BeginPlay()
 {
 	Super::BeginPlay();
+	std::shared_ptr<UCamera> Camera = GetWorld()->GetMainCamera();
+	Camera->SetActorLocation(FVector(0.0f, 0.0f, -100.0f));
+	GetWorld()->SpawnActor<AWorldMap>("WorldMap");
 }
 
 void AWorldGameMode::Tick(float _DeltaTime)
