@@ -87,6 +87,9 @@
     <ClCompile Include="WorldPlayer.cpp">
       <Filter>WorldStage\Actor\Player</Filter>
     </ClCompile>
+    <ClCompile Include="BossStage1.cpp">
+      <Filter>PlayStage\Boss1\Level</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -119,6 +122,9 @@
     </ClInclude>
     <ClInclude Include="WorldPlayer.h">
       <Filter>WorldStage\Actor\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="BossStage1.h">
+      <Filter>PlayStage\Boss1\Level</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
