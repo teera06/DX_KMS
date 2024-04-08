@@ -4,7 +4,7 @@
 
 #include "MainTitleActor.h"
 
-#include "WorldGameMode.h"
+#include "LoadingGameMode.h"
 #include <EngineCore/Camera.h>
 
 AMainTitleGameMode::AMainTitleGameMode()
@@ -63,7 +63,7 @@ void AMainTitleGameMode::Tick(float _DeltaTime)
 
 	if (true == UEngineInput::IsDown('Z'))
 	{
-		GEngine->ChangeLevel("MainWorld");
+		GEngine->ChangeLevel("Loading");
 	}
 }
 
@@ -76,5 +76,5 @@ void AMainTitleGameMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
 
-	GEngine->CreateLevel<AWorldGameMode>("MainWorld");
+	GEngine->CreateLevel<ALoadingGameMode>("Loading");
 }
