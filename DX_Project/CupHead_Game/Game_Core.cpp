@@ -18,8 +18,8 @@ void UGame_Core::Initialize()
 		// 파일의 헤더
 		UEngineDirectory Dir;
 		Dir.MoveToSearchChild("GameResource");
-		Dir.Move("Image");
-		Dir.Move("Title");
+		Dir.Move("Image\\Title");
+		//Dir.Move("Title");
 		std::vector<UEngineFile> Files = Dir.GetAllFile({ ".png" }, true);
 		for (UEngineFile& File : Files)
 		{
