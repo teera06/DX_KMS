@@ -75,6 +75,5 @@ void AMainTitleGameMode::LevelEnd(ULevel* _NextLevel)
 void AMainTitleGameMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
-
 	GEngine->CreateLevel<ALoadingGameMode>("Loading");
 }
