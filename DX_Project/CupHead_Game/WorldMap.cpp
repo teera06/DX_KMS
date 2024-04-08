@@ -14,7 +14,7 @@ void AWorldMap::BeginPlay()
 {
 	Super::BeginPlay();
 	SetActorScale3D(FVector(3200.0f, 2220.0f, 100.0f));
-
+	SetActorLocation(FVector(0.0f, 0.0f, -50.0f));
 	//DelayCallBack(1.0f, std::bind(&ATitleLogo::RendererOff, this));
 	MapRenderer->SetSprite("WorldMap.png");
 	MapRenderer->SetSamplering(ETextureSampling::LINEAR);

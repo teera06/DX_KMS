@@ -54,6 +54,7 @@ void ALoadingGameMode::LevelStart(ULevel* _PrevLevel)
 			UEngineSprite::Load(File.GetFullPath());
 		}
 
+		Dir.Move("Cuphead");
 		// 로드폴더는 이렇게 한다고 칩시다.
 		std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory();
 		for (size_t i = 0; i < Directorys.size(); i++)
