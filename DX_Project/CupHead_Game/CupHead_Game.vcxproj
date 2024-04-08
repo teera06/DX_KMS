@@ -167,6 +167,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Boss1Map.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="BossStage1GameMode.h">
       <SubType>
       </SubType>
@@ -218,6 +222,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Boss1Map.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="BossStage1GameMode.cpp">
       <SubType>
       </SubType>

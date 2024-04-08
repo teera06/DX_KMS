@@ -55,6 +55,9 @@
     <Filter Include="PlayStage\Boss1\PlayActor\CupHead_Player">
       <UniqueIdentifier>{a6906e9e-017a-4d04-b6f9-c2051d719ccc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlayStage\Map">
+      <UniqueIdentifier>{eb76366e-79e0-423e-881a-3134d4913d22}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game_Core.cpp">
@@ -91,6 +94,9 @@
       <Filter>PlayStage\Boss1\Level</Filter>
     </ClCompile>
     <ClCompile Include="PlayerCommon.cpp" />
+    <ClCompile Include="Boss1Map.cpp">
+      <Filter>PlayStage\Map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -128,5 +134,8 @@
       <Filter>PlayStage\Boss1\Level</Filter>
     </ClInclude>
     <ClInclude Include="PlayerCommon.h" />
+    <ClInclude Include="Boss1Map.h">
+      <Filter>PlayStage\Map</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
