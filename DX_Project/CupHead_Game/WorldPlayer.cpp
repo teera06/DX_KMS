@@ -31,6 +31,11 @@ void AWorldPlayer::Tick(float _DeltaTime)
 	Super::Tick(_DeltaTime);
 	float Speed = 100.0f;
 
+	if (true == UEngineInput::IsDown('Z'))
+	{
+		GEngine->ChangeLevel("Loading");
+	}
+
 	if (true == IsPress('A'))
 	{
 		AddActorLocation(FVector::Left * _DeltaTime * Speed);

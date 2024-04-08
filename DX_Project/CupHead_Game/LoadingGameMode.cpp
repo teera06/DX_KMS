@@ -52,6 +52,7 @@ void ALoadingGameMode::BeginPlay()
 		//UEngineSprite::
 		//UEngineSprite::CreateCutting("CharRun0.png", 0, 6);
 	}
+	GEngine->CreateLevel<AWorldGameMode>("WorldLevel");
 }
 
 void ALoadingGameMode::Tick(float _DeltaTime)
@@ -62,6 +63,7 @@ void ALoadingGameMode::Tick(float _DeltaTime)
 	if (0 > coolDowntime)
 	{
 		GEngine->ChangeLevel("WorldLevel");
+		coolDowntime = 6.0f;
 	}
 }
 
@@ -73,5 +75,4 @@ void ALoadingGameMode::LevelEnd(ULevel* _NextLevel)
 void ALoadingGameMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
-	GEngine->CreateLevel<AWorldGameMode>("WorldLevel");
 }
