@@ -18,7 +18,7 @@ void AMainTitleActor::BeginPlay()
 
 	//DelayCallBack(1.0f, std::bind(&ATitleLogo::RendererOff, this));
 
-	// Renderer->SetSamplering(ETextureSampling::LINEAR);
+	Renderer->SetSamplering(ETextureSampling::LINEAR);
 	Renderer->SetSprite("cuphead_title_screen_0001.png");
 
 	Renderer->CreateAnimation("CupDence", "CupDence", 0.05f);
