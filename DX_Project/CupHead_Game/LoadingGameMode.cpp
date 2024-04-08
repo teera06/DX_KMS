@@ -3,6 +3,7 @@
 
 #include "LoadActor.h"
 
+#include "WorldGameMode.h"
 #include <EngineCore/Camera.h>
 ALoadingGameMode::ALoadingGameMode()
 {
@@ -24,6 +25,12 @@ void ALoadingGameMode::BeginPlay()
 void ALoadingGameMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+	coolDowntime -= _DeltaTime;
+	if (0 > coolDowntime)
+	{
+		GEngine->ChangeLevel("WorldLevel");
+	}
 }
 
 void ALoadingGameMode::LevelEnd(ULevel* _NextLevel)
@@ -34,4 +41,5 @@ void ALoadingGameMode::LevelEnd(ULevel* _NextLevel)
 void ALoadingGameMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
+	GEngine->CreateLevel<AWorldGameMode>("WorldLevel");
 }

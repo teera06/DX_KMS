@@ -21,5 +21,6 @@ protected:
 	void LevelEnd(ULevel* _NextLevel);
 	void LevelStart(ULevel* _PrevLevel);
 private:
+	float coolDowntime = 5.0f;
 };
 

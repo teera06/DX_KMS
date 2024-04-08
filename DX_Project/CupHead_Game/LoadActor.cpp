@@ -27,4 +27,6 @@ void ALoadActor::BeginPlay()
 void ALoadActor::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+
 }
