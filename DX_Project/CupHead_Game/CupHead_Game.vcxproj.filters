@@ -31,6 +31,9 @@
     <Filter Include="TitleStage\Actor">
       <UniqueIdentifier>{b9aac5aa-96ac-4647-ae6c-453eca266f59}</UniqueIdentifier>
     </Filter>
+    <Filter Include="TitleStage\Level">
+      <UniqueIdentifier>{916178a0-4afc-4096-8ecd-f26e90f32c55}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game_Core.cpp">
@@ -54,11 +57,11 @@
     <ClCompile Include="TitleLogo.cpp">
       <Filter>test\Player</Filter>
     </ClCompile>
-    <ClCompile Include="MainTitleGameMode.cpp">
-      <Filter>TitleStage</Filter>
-    </ClCompile>
     <ClCompile Include="MainTitleActor.cpp">
       <Filter>TitleStage\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="MainTitleGameMode.cpp">
+      <Filter>TitleStage\Level</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -84,11 +87,11 @@
     <ClInclude Include="TitleLogo.h">
       <Filter>test\Player</Filter>
     </ClInclude>
-    <ClInclude Include="MainTitleGameMode.h">
-      <Filter>TitleStage</Filter>
-    </ClInclude>
     <ClInclude Include="MainTitleActor.h">
       <Filter>TitleStage\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="MainTitleGameMode.h">
+      <Filter>TitleStage\Level</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
