@@ -21,7 +21,7 @@ void AMainTitleActor::BeginPlay()
 	// Renderer->SetSamplering(ETextureSampling::LINEAR);
 	Renderer->SetSprite("cuphead_title_screen_0001.png");
 
-	Renderer->CreateAnimation("CupDence", "CupDence", 0.1f);
+	Renderer->CreateAnimation("CupDence", "CupDence", 0.05f);
 
 	Renderer->ChangeAnimation("CupDence");
 }
