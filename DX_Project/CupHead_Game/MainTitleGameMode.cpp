@@ -24,6 +24,11 @@ void AMainTitleGameMode::BeginPlay()
 void AMainTitleGameMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+	if (true == UEngineInput::IsDown('Z'))
+	{
+		//GEngine->ChangeLevel("PlayLevel");
+	}
 }
 
 void AMainTitleGameMode::LevelEnd(ULevel* _NextLevel)

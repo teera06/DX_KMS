@@ -19,12 +19,6 @@
     <Filter Include="PlayStage">
       <UniqueIdentifier>{64bee418-037e-4aa3-a8e6-bc1fd0a720d6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlayStage\Actor">
-      <UniqueIdentifier>{29f04d66-9a78-4151-ba52-3b7e61a4283b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PlayStage\Actor\CupHead_Player">
-      <UniqueIdentifier>{a6906e9e-017a-4d04-b6f9-c2051d719ccc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="TitleStage">
       <UniqueIdentifier>{ae1559e4-c774-4d0c-8d24-20719249d681}</UniqueIdentifier>
     </Filter>
@@ -33,6 +27,24 @@
     </Filter>
     <Filter Include="TitleStage\Level">
       <UniqueIdentifier>{916178a0-4afc-4096-8ecd-f26e90f32c55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayStage\PlayActor">
+      <UniqueIdentifier>{29f04d66-9a78-4151-ba52-3b7e61a4283b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayStage\PlayActor\CupHead_Player">
+      <UniqueIdentifier>{a6906e9e-017a-4d04-b6f9-c2051d719ccc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayStage\Level">
+      <UniqueIdentifier>{fa1171ba-b9da-4e44-8d11-e882229307b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WorldStage">
+      <UniqueIdentifier>{e4799b0b-17d8-4f2e-ac04-18a6f116e3e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WorldStage\Actor">
+      <UniqueIdentifier>{14d246f6-0082-445f-bea9-4d4f9e7f3859}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="WorldStage\Level">
+      <UniqueIdentifier>{787286b2-0c78-48f1-883a-659527dafd9f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -49,7 +61,7 @@
       <Filter>test\Player</Filter>
     </ClCompile>
     <ClCompile Include="Play_Cuphead.cpp">
-      <Filter>PlayStage\Actor\CupHead_Player</Filter>
+      <Filter>PlayStage\PlayActor\CupHead_Player</Filter>
     </ClCompile>
     <ClCompile Include="TitleGameMode.cpp">
       <Filter>test\Level</Filter>
@@ -62,6 +74,9 @@
     </ClCompile>
     <ClCompile Include="MainTitleGameMode.cpp">
       <Filter>TitleStage\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldGameMode.cpp">
+      <Filter>WorldStage\Level</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -79,7 +94,7 @@
     </ClInclude>
     <ClInclude Include="ContentsENum.h" />
     <ClInclude Include="Play_Cuphead.h">
-      <Filter>PlayStage\Actor\CupHead_Player</Filter>
+      <Filter>PlayStage\PlayActor\CupHead_Player</Filter>
     </ClInclude>
     <ClInclude Include="TitleGameMode.h">
       <Filter>test\Level</Filter>
@@ -92,6 +107,9 @@
     </ClInclude>
     <ClInclude Include="MainTitleGameMode.h">
       <Filter>TitleStage\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldGameMode.h">
+      <Filter>WorldStage\Level</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
