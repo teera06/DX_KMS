@@ -1,4 +1,5 @@
 #include "PreCompile.h"
+#include "PlayerCommon.h"
 #include "MainTitleGameMode.h"
 
 
@@ -63,6 +64,7 @@ void AMainTitleGameMode::Tick(float _DeltaTime)
 
 	if (true == UEngineInput::IsDown('Z'))
 	{
+		UPlayerCommon::StageCount++;
 		GEngine->ChangeLevel("Loading");
 	}
 }

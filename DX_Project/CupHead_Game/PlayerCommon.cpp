@@ -1,11 +1,11 @@
 #include "PreCompile.h"
 #include "PlayerCommon.h"
 
-int PlayerCommon::StageCount = 0;
-PlayerCommon::PlayerCommon()
+int UPlayerCommon::StageCount = 0;
+UPlayerCommon::UPlayerCommon()
 {
 }
 
-PlayerCommon::~PlayerCommon()
+UPlayerCommon::~UPlayerCommon()
 {
 }
