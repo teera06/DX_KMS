@@ -7,15 +7,6 @@
     <Filter Include="PreCompile">
       <UniqueIdentifier>{663d6888-49ae-4907-9949-d4e2d55c8542}</UniqueIdentifier>
     </Filter>
-    <Filter Include="test">
-      <UniqueIdentifier>{36df9139-52cc-4dbf-897f-b6f12284dcc9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="test\Level">
-      <UniqueIdentifier>{1afdbd68-a55b-45d2-8bc4-0aa2c2267690}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="test\Player">
-      <UniqueIdentifier>{44f325d7-338a-402d-acf0-9808b03ec02b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PlayStage">
       <UniqueIdentifier>{64bee418-037e-4aa3-a8e6-bc1fd0a720d6}</UniqueIdentifier>
     </Filter>
@@ -69,20 +60,8 @@
     <ClCompile Include="PreCompile.cpp">
       <Filter>PreCompile</Filter>
     </ClCompile>
-    <ClCompile Include="PlayGameMode.cpp">
-      <Filter>test\Level</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>test\Player</Filter>
-    </ClCompile>
     <ClCompile Include="Play_Cuphead.cpp">
       <Filter>PlayStage\PlayActor\CupHead_Player</Filter>
-    </ClCompile>
-    <ClCompile Include="TitleGameMode.cpp">
-      <Filter>test\Level</Filter>
-    </ClCompile>
-    <ClCompile Include="TitleLogo.cpp">
-      <Filter>test\Player</Filter>
     </ClCompile>
     <ClCompile Include="MainTitleActor.cpp">
       <Filter>TitleStage\Actor</Filter>
@@ -113,21 +92,9 @@
     <ClInclude Include="PreCompile.h">
       <Filter>PreCompile</Filter>
     </ClInclude>
-    <ClInclude Include="PlayGameMode.h">
-      <Filter>test\Level</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>test\Player</Filter>
-    </ClInclude>
     <ClInclude Include="ContentsENum.h" />
     <ClInclude Include="Play_Cuphead.h">
       <Filter>PlayStage\PlayActor\CupHead_Player</Filter>
-    </ClInclude>
-    <ClInclude Include="TitleGameMode.h">
-      <Filter>test\Level</Filter>
-    </ClInclude>
-    <ClInclude Include="TitleLogo.h">
-      <Filter>test\Player</Filter>
     </ClInclude>
     <ClInclude Include="MainTitleActor.h">
       <Filter>TitleStage\Actor</Filter>

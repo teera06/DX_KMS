@@ -188,27 +188,11 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="PlayGameMode.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="Play_Cuphead.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="PreCompile.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="TitleGameMode.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="TitleLogo.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -246,14 +230,6 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="PlayGameMode.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
     <ClCompile Include="Play_Cuphead.cpp">
       <SubType>
       </SubType>
@@ -265,14 +241,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="TitleGameMode.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="TitleLogo.cpp">
-      <SubType>
-      </SubType>
     </ClCompile>
     <ClCompile Include="WorldGameMode.cpp">
       <SubType>
