@@ -11,12 +11,12 @@ void AWorldPlayer::StateInit()
 {
 	// 스테이트 만들고
 	//State.CreateState("Die");
-	State.CreateState("Idle");
-	//State.CreateState("Jump");
+	State.CreateState("UpIdle");
+	State.CreateState("UpWalk");
 	//State.CreateState("Run");
 
 	// 함수들 세팅하고
-	State.SetUpdateFunction("Idle", std::bind(&AWorldPlayer::Idle, this, std::placeholders::_1));
+	State.SetUpdateFunction("UpIdle", std::bind(&AWorldPlayer::UpIdle, this, std::placeholders::_1));
 
 	// 즉석 함수
 	// = [ 람다캡쳐 Renderer]
@@ -29,9 +29,11 @@ void AWorldPlayer::StateInit()
 	// 메모리를 할당해서 Renderer를 같은 이름으로 복사한다.
 
 
-	State.SetStartFunction("Idle", [=] {WorldPlayerRenderer->ChangeAnimation("Idle"); });
+	State.SetStartFunction("UpIdle", [=] {WorldPlayerRenderer->ChangeAnimation("UpIdle"); });
 
 
+	State.SetUpdateFunction("UpWalk", std::bind(&AWorldPlayer::UpWalk, this, std::placeholders::_1));
+	State.SetStartFunction("UpWalk", [=] {WorldPlayerRenderer->ChangeAnimation("UpWalk"); });
 	//State.SetUpdateFunction("Run", std::bind(&AWorldPlayer::Run, this, std::placeholders::_1));
 
 	//State.SetStartFunction("Run", std::bind(&AWorldPlayer::RunStart, this));
@@ -41,72 +43,45 @@ void AWorldPlayer::StateInit()
 
 
 	// 체인지
-	State.ChangeState("Idle");
+	State.ChangeState("UpIdle");
 }
 
 
-void AWorldPlayer::Die(float _Update)
-{
 
-}
-
-void AWorldPlayer::Idle(float _Update)
+void AWorldPlayer::UpIdle(float _Update)
 {
-	if (true == IsPress('A') || true == IsPress('D') || true == IsPress('W') || true == IsPress('S'))
+	if (true == IsPress(VK_UP))
 	{
-		//State.ChangeState("Run");
+		State.ChangeState("UpWalk");
 		return;
 	}
 }
 
-void AWorldPlayer::Jump(float _Update)
+void AWorldPlayer::UpWalk(float _DeltaTime)
 {
-
+	if (true == IsPress(VK_UP))
+	{
+		AddActorLocation(FVector::Up * _DeltaTime * Speed);
+	}
 }
 
 
 
-void AWorldPlayer::Run(float _DeltaTime)
-{
+//void AWorldPlayer::Run(float _DeltaTime)
+//{
 
-	float Speed = 500.0f;
-
-	if (true == IsPress('A'))
-	{
-		AddActorLocation(FVector::Left * _DeltaTime * Speed);
-	}
-
-	if (true == IsPress('D'))
-	{
-		AddActorLocation(FVector::Right * _DeltaTime * Speed);
-	}
-
-	if (true == IsPress('W'))
-	{
-		AddActorLocation(FVector::Up * _DeltaTime * Speed);
-	}
-
-	if (true == IsPress('S'))
-	{
-		AddActorLocation(FVector::Down * _DeltaTime * Speed);
-	}
-
-	if (true == IsPress(VK_NUMPAD1))
-	{
-		// AddActorRotation(float4{0.0f, 0.0f, 1.0f} * 360.0f * _DeltaTime);
-		// Color.X += _DeltaTime;
-	}
+	
 
 	
 
 	//std::shared_ptr<UEngineTexture> Tex = UContentsConstValue::MapTex;
 
-#ifdef _DEBUG
+//#ifdef _DEBUG
 	//if (nullptr == Tex)
 	//{
 		//MsgBoxAssert("이미지 충돌체크중 이미지가 존재하지 않습니다.");
 	//}
-#endif
+//#endif
 
 	//float4 Pos = GetActorLocation();
 
@@ -122,4 +97,4 @@ void AWorldPlayer::Run(float _DeltaTime)
 	//}
 
 
-}
+//}

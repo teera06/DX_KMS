@@ -24,15 +24,13 @@ protected:
 private:
 	USpriteRenderer* WorldPlayerRenderer = nullptr;
 
+	float Speed = 300.0f;
 	///////////////////////// State
 	void StateInit();
 
-	void Die(float _DeltaTime);
 
-	void Idle(float _DeltaTime);
-	void Jump(float _DeltaTime);
+	void UpIdle(float _DeltaTime);
+	void UpWalk(float _DeltaTime);
 
-	void RunStart();
-	void Run(float _DeltaTime);
 };
 
