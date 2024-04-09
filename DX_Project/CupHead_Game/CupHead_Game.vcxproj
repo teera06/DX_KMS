@@ -286,6 +286,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="WorldPlayer_State.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EngineBase\EngineBase.vcxproj">

@@ -103,6 +103,9 @@
     <ClCompile Include="ScreenEffect.cpp">
       <Filter>ScreenEffect</Filter>
     </ClCompile>
+    <ClCompile Include="WorldPlayer_State.cpp">
+      <Filter>WorldStage\Actor\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">

@@ -1,6 +1,7 @@
 #pragma once
 #include <Enginecore/Actor.h>
 #include <EngineCore/SpriteRenderer.h>
+#include <EngineCore/StateManager.h>
 
 class AWorldPlayer : public AActor
 {
@@ -16,10 +17,22 @@ public:
 	AWorldPlayer& operator=(const AWorldPlayer& _Other) = delete; // 디폴트 대입 연산자
 	AWorldPlayer& operator=(AWorldPlayer&& _Other) noexcept = delete;
 
+	UStateManager State;
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 private:
 	USpriteRenderer* WorldPlayerRenderer = nullptr;
+
+	///////////////////////// State
+	void StateInit();
+
+	void Die(float _DeltaTime);
+
+	void Idle(float _DeltaTime);
+	void Jump(float _DeltaTime);
+
+	void RunStart();
+	void Run(float _DeltaTime);
 };
 
