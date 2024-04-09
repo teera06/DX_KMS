@@ -29,4 +29,5 @@ enum class ERenderOrder
 	kirby,
 	HPBar,
 	HPgauge,
+	Filter
 };

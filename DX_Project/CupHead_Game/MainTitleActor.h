@@ -20,6 +20,8 @@ protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 private:
-	USpriteRenderer* Renderer = nullptr;
+	USpriteRenderer* titleRenderer = nullptr;
+	USpriteRenderer* CupRenderer = nullptr;
+	USpriteRenderer* OldRenderer = nullptr;
 };
 
