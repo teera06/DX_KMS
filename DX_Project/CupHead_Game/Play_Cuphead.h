@@ -1,7 +1,7 @@
 #pragma once
-#include <EngineCore/Actor.h>
+#include <Enginecore/Actor.h>
+#include <EngineCore/SpriteRenderer.h>
 
-#include "ContentsENum.h"
 
 class URenderer;
 class APlay_Cuphead : public AActor
@@ -25,20 +25,9 @@ private:
 	// 상태에 따른 조작, 애니메이션 업데이트
 	//void StateAniChange(EActorState _State); // 커비의 움직임 상태에 맞는 애니메이션 실행
 	
-	URenderer* CupHeadRenderer=nullptr;
+	USpriteRenderer* PlayCuphead= nullptr;
 
 	float MoveSpeed = 400.0f;
 
-
-	EPlayerState State = EPlayerState::None;
-	void StateUpdate(float _DeltaTime);
-	// 상태에 따른 조작
-	void Idle(float _DeltaTime); // 서있기
-	void Move(float _DeltaTime); // 걷기
-	//void Jump(float _DeltaTime); // 점프
-	//void hit(float _DeltaTime); // 몬스터와의 충돌
-	//void HeadDown(float _DeltaTime); // 숙이기
-	//void Att1(float _DeltaTime); // 숙이기
-	//void Att2(float _DeltaTime); // 숙이기
 };
 

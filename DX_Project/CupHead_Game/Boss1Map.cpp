@@ -17,7 +17,7 @@ void ABoss1Map::BeginPlay()
 {
 	Super::BeginPlay();
 	//SetActorScale3D(FVector(1600.0f, 900.0f, 100.0f));
-	//SetActorLocation(FVector(0.0f, 0.0f, 50.0f));
+	SetActorLocation(FVector(0.0f, 0.0f, 50.0f));
 	//DelayCallBack(1.0f, std::bind(&ATitleLogo::RendererOff, this));
 	
 

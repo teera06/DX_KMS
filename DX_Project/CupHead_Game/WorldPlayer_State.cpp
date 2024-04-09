@@ -1,5 +1,6 @@
 #include "PreCompile.h"
 #include "WorldPlayer.h"
+#include "ContentsHelper.h"
 #include <EngineCore/SpriteRenderer.h>
 
 //void Function(URenderer* Renderer)
@@ -84,6 +85,12 @@ void AWorldPlayer::StateInit()
 
 void AWorldPlayer::UpIdle(float _Update)
 {
+
+	if (true == UEngineInput::IsDown('Z'))
+	{
+		GEngine->ChangeLevel("Loading");
+	}
+
 	if (true == IsPress(VK_UP))
 	{
 		State.ChangeState("UpWalk");
@@ -138,6 +145,11 @@ void AWorldPlayer::UpWalk(float _DeltaTime)
 
 void AWorldPlayer::DownIdle(float _Update)
 {
+	if (true == UEngineInput::IsDown('Z'))
+	{
+		GEngine->ChangeLevel("Loading");
+	}
+
 	if (true == IsPress(VK_DOWN))
 	{
 		State.ChangeState("DownWalk");
@@ -192,6 +204,12 @@ void AWorldPlayer::DownWalk(float _DeltaTime)
 
 void AWorldPlayer::StraightIdle(float _Update)
 {
+
+	if (true == UEngineInput::IsDown('Z'))
+	{
+		GEngine->ChangeLevel("Loading");
+	}
+
 	if (true == IsPress(VK_DOWN))
 	{
 		State.ChangeState("DownWalk");
@@ -257,6 +275,11 @@ void AWorldPlayer::StraightWalk(float _DeltaTime)
 
 void AWorldPlayer::DiagonalUpIdle(float _Update)
 {
+	if (true == UEngineInput::IsDown('Z'))
+	{
+		GEngine->ChangeLevel("Loading");
+	}
+
 	if (true == IsPress(VK_UP))
 	{
 		State.ChangeState("UpWalk");
@@ -318,6 +341,11 @@ void AWorldPlayer::DiagonalUpWalk(float _DeltaTime)
 
 void AWorldPlayer::DiagonalDownIdle(float _Update)
 {
+	if (true == UEngineInput::IsDown('Z'))
+	{
+		GEngine->ChangeLevel("Loading");
+	}
+
 	if (true == IsPress(VK_UP))
 	{
 		State.ChangeState("UpWalk");
