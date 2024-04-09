@@ -58,6 +58,9 @@
     <Filter Include="PlayStage\Map">
       <UniqueIdentifier>{eb76366e-79e0-423e-881a-3134d4913d22}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ScreenEffect">
+      <UniqueIdentifier>{5fe114ce-4138-4025-a10c-6b971c51c280}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game_Core.cpp">
@@ -96,6 +99,9 @@
     <ClCompile Include="ContentsHelper.cpp" />
     <ClCompile Include="Boss1Map.cpp">
       <Filter>PlayStage\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="ScreenEffect.cpp">
+      <Filter>ScreenEffect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -136,6 +142,9 @@
     <ClInclude Include="ContentsHelper.h" />
     <ClInclude Include="Boss1Map.h">
       <Filter>PlayStage\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenEffect.h">
+      <Filter>ScreenEffect</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

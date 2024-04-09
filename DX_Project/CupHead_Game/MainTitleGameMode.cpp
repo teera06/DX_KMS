@@ -4,6 +4,8 @@
 
 
 #include "MainTitleActor.h"
+#include "ScreenEffect.h"
+
 
 #include "LoadingGameMode.h"
 #include <EngineCore/Camera.h>
@@ -56,6 +58,7 @@ void AMainTitleGameMode::BeginPlay()
 	std::shared_ptr<UCamera> Camera = GetWorld()->GetMainCamera();
 	Camera->SetActorLocation(FVector(0.0f, 0.0f, -100.0f));
 	GetWorld()->SpawnActor<AMainTitleActor>("TitleLogo");
+	GetWorld()->SpawnActor<AScreenEffect>("ScreenEffect");
 }
 
 void AMainTitleGameMode::Tick(float _DeltaTime)
