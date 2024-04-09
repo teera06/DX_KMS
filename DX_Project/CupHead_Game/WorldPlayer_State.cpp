@@ -19,6 +19,9 @@ void AWorldPlayer::StateInit()
 
 	State.CreateState("StraightIdle");
 	State.CreateState("StraightWalk");
+
+	State.CreateState("DiagonalUpIdle");
+	State.CreateState("DiagonalUpWalk");
 	//State.CreateState("Run");
 
 	// 함수들 세팅하고
@@ -39,6 +42,15 @@ void AWorldPlayer::StateInit()
 
 	State.SetUpdateFunction("StraightWalk", std::bind(&AWorldPlayer::StraightWalk, this, std::placeholders::_1));
 	State.SetStartFunction("StraightWalk", [=] {WorldPlayerRenderer->ChangeAnimation("StraightWalk"); });
+
+	State.SetUpdateFunction("StraightIdle", std::bind(&AWorldPlayer::StraightIdle, this, std::placeholders::_1));
+	State.SetStartFunction("StraightIdle", [=] {WorldPlayerRenderer->ChangeAnimation("StraightIdle"); });
+
+	State.SetUpdateFunction("DiagonalUpIdle", std::bind(&AWorldPlayer::DiagonalUpIdle, this, std::placeholders::_1));
+	State.SetStartFunction("DiagonalUpIdle", [=] {WorldPlayerRenderer->ChangeAnimation("DiagonalUpIdle"); });
+
+	State.SetUpdateFunction("DiagonalUpWalk", std::bind(&AWorldPlayer::DiagonalUpWalk, this, std::placeholders::_1));
+	State.SetStartFunction("DiagonalUpWalk", [=] {WorldPlayerRenderer->ChangeAnimation("DiagonalUpWalk"); });
 	//State.SetUpdateFunction("Run", std::bind(&AWorldPlayer::Run, this, std::placeholders::_1));
 
 	//State.SetStartFunction("Run", std::bind(&AWorldPlayer::RunStart, this));
@@ -75,7 +87,13 @@ void AWorldPlayer::UpIdle(float _Update)
 		return;
 	}
 
-	if (true == IsPress(VK_LEFT) && true == IsPress(VK_RIGHT))
+	if (true == IsPress(VK_RIGHT))
+	{
+		State.ChangeState("StraightWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_LEFT))
 	{
 		State.ChangeState("StraightWalk");
 		return;
@@ -88,6 +106,18 @@ void AWorldPlayer::UpWalk(float _DeltaTime)
 	if (true == IsFree(VK_UP))
 	{
 		State.ChangeState("UpIdle");
+		return;
+	}
+
+	if (true == IsPress(VK_RIGHT))
+	{
+		State.ChangeState("DiagonalUpWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_LEFT))
+	{
+		State.ChangeState("DiagonalUpWalk");
 		return;
 	}
 
@@ -111,7 +141,13 @@ void AWorldPlayer::DownIdle(float _Update)
 		return;
 	}
 
-	if (true == IsPress(VK_LEFT) && true == IsPress(VK_RIGHT))
+	if (true == IsPress(VK_RIGHT))
+	{
+		State.ChangeState("StraightWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_LEFT))
 	{
 		State.ChangeState("StraightWalk");
 		return;
@@ -147,11 +183,19 @@ void AWorldPlayer::StraightIdle(float _Update)
 		return;
 	}
 
-	if (true == IsPress(VK_LEFT) && true == IsPress(VK_RIGHT))
+	if (true == IsPress(VK_RIGHT))
 	{
 		State.ChangeState("StraightWalk");
 		return;
 	}
+
+	if (true == IsPress(VK_LEFT))
+	{
+		State.ChangeState("StraightWalk");
+		return;
+	}
+
+
 }
 
 void AWorldPlayer::StraightWalk(float _DeltaTime)
@@ -163,17 +207,87 @@ void AWorldPlayer::StraightWalk(float _DeltaTime)
 		return;
 	}
 
+	if (true == IsPress(VK_UP))
+	{
+		State.ChangeState("DiagonalUpWalk");
+		return;
+	}
+
+
 	if (true == IsPress(VK_LEFT))
 	{
+		SetActorScale3D(FVector(-60.0f, 100.0f, 100.0f));
 		AddActorLocation(FVector::Left * _DeltaTime * Speed);
 	}
 
 	if (true == IsPress(VK_RIGHT))
 	{
+		SetActorScale3D(FVector(60.0f, 100.0f, 100.0f));
 		AddActorLocation(FVector::Right * _DeltaTime * Speed);
 	}
 }
 
+
+void AWorldPlayer::DiagonalUpIdle(float _Update)
+{
+	if (true == IsPress(VK_UP))
+	{
+		State.ChangeState("UpWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_DOWN))
+	{
+		State.ChangeState("DownWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_RIGHT))
+	{
+		State.ChangeState("StraightWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_LEFT))
+	{
+		State.ChangeState("StraightWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_RIGHT) && true == IsPress(VK_UP))
+	{
+		State.ChangeState("DiagonalUpWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_LEFT) && true == IsPress(VK_UP))
+	{
+		State.ChangeState("DiagonalUpWalk");
+		return;
+	}
+}
+
+void AWorldPlayer::DiagonalUpWalk(float _DeltaTime)
+{
+
+	if (true == IsFree(VK_UP))
+	{
+		State.ChangeState("DiagonalUpIdle");
+		return;
+	}
+
+	if (true == IsPress(VK_LEFT) && true == IsPress(VK_UP))
+	{
+		SetActorScale3D(FVector(-60.0f, 100.0f, 100.0f));
+		AddActorLocation((FVector::Left+ FVector::Up) * _DeltaTime * Speed);
+	}
+
+	if (true == IsPress(VK_RIGHT) && true == IsPress(VK_UP))
+	{
+		SetActorScale3D(FVector(60.0f, 100.0f, 100.0f));
+		AddActorLocation((FVector::Right + FVector::Up)* _DeltaTime * Speed);
+	}
+}
 
 //void AWorldPlayer::Run(float _DeltaTime)
 //{

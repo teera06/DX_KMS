@@ -38,5 +38,8 @@ private:
 	void StraightIdle(float _DeltaTime);
 	void StraightWalk(float _DeltaTime);
 
+	void DiagonalUpIdle(float _DeltaTime);
+	void DiagonalUpWalk(float _DeltaTime);
+
 };
 
