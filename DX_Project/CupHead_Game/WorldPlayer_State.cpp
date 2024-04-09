@@ -2,7 +2,7 @@
 #include "WorldPlayer.h"
 #include "ContentsHelper.h"
 #include <EngineCore/SpriteRenderer.h>
-
+#include <EngineCore/EngineEnums.h>
 //void Function(URenderer* Renderer)
 //{
 //	Renderer->ChangeAnimation("Idle");
@@ -105,12 +105,14 @@ void AWorldPlayer::UpIdle(float _Update)
 
 	if (true == IsPress(VK_RIGHT))
 	{
+		WorldPlayerRenderer->SetDir(EEngineDir::Right);
 		State.ChangeState("StraightWalk");
 		return;
 	}
 
 	if (true == IsPress(VK_LEFT))
 	{
+		WorldPlayerRenderer->SetDir(EEngineDir::Left);
 		State.ChangeState("StraightWalk");
 		return;
 	}
@@ -164,12 +166,14 @@ void AWorldPlayer::DownIdle(float _Update)
 
 	if (true == IsPress(VK_RIGHT))
 	{
+		WorldPlayerRenderer->SetDir(EEngineDir::Right);
 		State.ChangeState("StraightWalk");
 		return;
 	}
 
 	if (true == IsPress(VK_LEFT))
 	{
+		WorldPlayerRenderer->SetDir(EEngineDir::Left);
 		State.ChangeState("StraightWalk");
 		return;
 	}
@@ -224,12 +228,14 @@ void AWorldPlayer::StraightIdle(float _Update)
 
 	if (true == IsPress(VK_RIGHT))
 	{
+		WorldPlayerRenderer->SetDir(EEngineDir::Right);
 		State.ChangeState("StraightWalk");
 		return;
 	}
 
 	if (true == IsPress(VK_LEFT))
 	{
+		WorldPlayerRenderer->SetDir(EEngineDir::Left);
 		State.ChangeState("StraightWalk");
 		return;
 	}
@@ -261,13 +267,11 @@ void AWorldPlayer::StraightWalk(float _DeltaTime)
 
 	if (true == IsPress(VK_LEFT))
 	{
-		SetActorScale3D(FVector(-60.0f, 100.0f, 100.0f));
 		AddActorLocation(FVector::Left * _DeltaTime * Speed);
 	}
 
 	if (true == IsPress(VK_RIGHT))
 	{
-		SetActorScale3D(FVector(60.0f, 100.0f, 100.0f));
 		AddActorLocation(FVector::Right * _DeltaTime * Speed);
 	}
 }
@@ -294,24 +298,28 @@ void AWorldPlayer::DiagonalUpIdle(float _Update)
 
 	if (true == IsPress(VK_RIGHT))
 	{
+		WorldPlayerRenderer->SetDir(EEngineDir::Right);
 		State.ChangeState("StraightWalk");
 		return;
 	}
 
 	if (true == IsPress(VK_LEFT))
 	{
+		WorldPlayerRenderer->SetDir(EEngineDir::Left);
 		State.ChangeState("StraightWalk");
 		return;
 	}
 
 	if (true == IsPress(VK_RIGHT) && true == IsPress(VK_UP))
 	{
+		WorldPlayerRenderer->SetDir(EEngineDir::Right);
 		State.ChangeState("DiagonalUpWalk");
 		return;
 	}
 
 	if (true == IsPress(VK_LEFT) && true == IsPress(VK_UP))
 	{
+		WorldPlayerRenderer->SetDir(EEngineDir::Left);
 		State.ChangeState("DiagonalUpWalk");
 		return;
 	}
@@ -360,12 +368,14 @@ void AWorldPlayer::DiagonalDownIdle(float _Update)
 
 	if (true == IsPress(VK_RIGHT))
 	{
+		WorldPlayerRenderer->SetDir(EEngineDir::Right);
 		State.ChangeState("StraightWalk");
 		return;
 	}
 
 	if (true == IsPress(VK_LEFT))
 	{
+		WorldPlayerRenderer->SetDir(EEngineDir::Left);
 		State.ChangeState("StraightWalk");
 		return;
 	}

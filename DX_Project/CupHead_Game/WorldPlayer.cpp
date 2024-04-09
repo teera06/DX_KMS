@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "WorldPlayer.h"
 #include "ContentsENum.h"
+
 AWorldPlayer::AWorldPlayer()
 {
 	WorldPlayerRenderer = CreateDefaultSubObject<USpriteRenderer>("WorldPlayer");
@@ -14,7 +15,7 @@ AWorldPlayer::~AWorldPlayer()
 void AWorldPlayer::BeginPlay()
 {
 	Super::BeginPlay();
-	SetActorScale3D(FVector(60.0f, 100.0f, 100.0f));
+	//SetActorScale3D(FVector(60.0f, 100.0f, 100.0f));
 	//SetActorLocation(FVector(0.0f, 0.0f, -50.0f));
 
 	//DelayCallBack(1.0f, std::bind(&ATitleLogo::RendererOff, this));
@@ -36,7 +37,7 @@ void AWorldPlayer::BeginPlay()
 	//WorldPlayerRenderer->CreateAnimation("UpIdle", "UpIdle", 0.05f);
 
 	StateInit();
-	//WorldPlayerRenderer->SetAutoSize(1.0f, true);
+	WorldPlayerRenderer->SetAutoSize(1.0f, true);
 
 	//WorldPlayerRenderer->ChangeAnimation("Idle");
 }
