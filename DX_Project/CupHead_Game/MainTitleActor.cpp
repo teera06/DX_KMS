@@ -18,7 +18,7 @@ void AMainTitleActor::BeginPlay()
 	//SetActorLocation(FVector(0.0f, 0.0f, 50.0f));
 	//SetActorScale3D(FVector(1100.0f, 620.0f, 0.0f));
 
-	titleRenderer->SetOrder(ERenderOrder::Title);
+	titleRenderer->SetOrder(ERenderOrder::background);
 	titleRenderer->SetSprite("title_screen_background.png");
 	titleRenderer->SetAutoSize(1.0f, true);
 	titleRenderer->SetSamplering(ETextureSampling::LINEAR);
