@@ -22,6 +22,9 @@ void AWorldPlayer::StateInit()
 
 	State.CreateState("DiagonalUpIdle");
 	State.CreateState("DiagonalUpWalk");
+
+	State.CreateState("DiagonalDownIdle");
+	State.CreateState("DiagonalDownWalk");
 	//State.CreateState("Run");
 
 	// 함수들 세팅하고
@@ -51,6 +54,12 @@ void AWorldPlayer::StateInit()
 
 	State.SetUpdateFunction("DiagonalUpWalk", std::bind(&AWorldPlayer::DiagonalUpWalk, this, std::placeholders::_1));
 	State.SetStartFunction("DiagonalUpWalk", [=] {WorldPlayerRenderer->ChangeAnimation("DiagonalUpWalk"); });
+
+	State.SetUpdateFunction("DiagonalDownIdle", std::bind(&AWorldPlayer::DiagonalDownIdle, this, std::placeholders::_1));
+	State.SetStartFunction("DiagonalDownIdle", [=] {WorldPlayerRenderer->ChangeAnimation("DiagonalDownIdle"); });
+
+	State.SetUpdateFunction("DiagonalDownWalk", std::bind(&AWorldPlayer::DiagonalDownWalk, this, std::placeholders::_1));
+	State.SetStartFunction("DiagonalDownWalk", [=] {WorldPlayerRenderer->ChangeAnimation("DiagonalDownWalk"); });
 	//State.SetUpdateFunction("Run", std::bind(&AWorldPlayer::Run, this, std::placeholders::_1));
 
 	//State.SetStartFunction("Run", std::bind(&AWorldPlayer::RunStart, this));
@@ -163,6 +172,18 @@ void AWorldPlayer::DownWalk(float _DeltaTime)
 		return;
 	}
 
+	if (true == IsPress(VK_RIGHT))
+	{
+		State.ChangeState("DiagonalDownWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_LEFT))
+	{
+		State.ChangeState("DiagonalDownWalk");
+		return;
+	}
+
 	if (true == IsPress(VK_DOWN))
 	{
 		AddActorLocation(FVector::Down * _DeltaTime * Speed);
@@ -210,6 +231,12 @@ void AWorldPlayer::StraightWalk(float _DeltaTime)
 	if (true == IsPress(VK_UP))
 	{
 		State.ChangeState("DiagonalUpWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_DOWN))
+	{
+		State.ChangeState("DiagonalDownWalk");
 		return;
 	}
 
@@ -286,6 +313,67 @@ void AWorldPlayer::DiagonalUpWalk(float _DeltaTime)
 	{
 		SetActorScale3D(FVector(60.0f, 100.0f, 100.0f));
 		AddActorLocation((FVector::Right + FVector::Up)* _DeltaTime * Speed);
+	}
+}
+
+void AWorldPlayer::DiagonalDownIdle(float _Update)
+{
+	if (true == IsPress(VK_UP))
+	{
+		State.ChangeState("UpWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_DOWN))
+	{
+		State.ChangeState("DownWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_RIGHT))
+	{
+		State.ChangeState("StraightWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_LEFT))
+	{
+		State.ChangeState("StraightWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_RIGHT) && true == IsPress(VK_DOWN))
+	{
+		State.ChangeState("DiagonalDownWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_LEFT) && true == IsPress(VK_DOWN))
+	{
+		State.ChangeState("DiagonalDownWalk");
+		return;
+	}
+}
+
+void AWorldPlayer::DiagonalDownWalk(float _DeltaTime)
+{
+
+	if (true == IsFree(VK_DOWN))
+	{
+		State.ChangeState("DiagonalDownIdle");
+		return;
+	}
+
+	if (true == IsPress(VK_LEFT) && true == IsPress(VK_DOWN))
+	{
+		SetActorScale3D(FVector(-60.0f, 100.0f, 100.0f));
+		AddActorLocation((FVector::Left + FVector::Down) * _DeltaTime * Speed);
+	}
+
+	if (true == IsPress(VK_RIGHT) && true == IsPress(VK_DOWN))
+	{
+		SetActorScale3D(FVector(60.0f, 100.0f, 100.0f));
+		AddActorLocation((FVector::Right + FVector::Down) * _DeltaTime * Speed);
 	}
 }
 

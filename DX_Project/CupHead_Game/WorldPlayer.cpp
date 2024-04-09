@@ -29,6 +29,8 @@ void AWorldPlayer::BeginPlay()
 	WorldPlayerRenderer->CreateAnimation("StraightWalk", "StraightWalk", 0.05f);
 	WorldPlayerRenderer->CreateAnimation("DiagonalUpIdle", "DiagonalUpIdle", 0.05f);
 	WorldPlayerRenderer->CreateAnimation("DiagonalUpWalk", "DiagonalUpWalk", 0.05f);
+	WorldPlayerRenderer->CreateAnimation("DiagonalDownIdle", "DiagonalDownIdle", 0.05f);
+	WorldPlayerRenderer->CreateAnimation("DiagonalDownWalk", "DiagonalDownWalk", 0.05f);
 	//WorldPlayerRenderer->CreateAnimation("DownIdle", "DownIdle", 0.05f);
 	//WorldPlayerRenderer->CreateAnimation("DownWalk", "DownWalk", 0.05f);
 	//WorldPlayerRenderer->CreateAnimation("UpIdle", "UpIdle", 0.05f);

@@ -41,5 +41,8 @@ private:
 	void DiagonalUpIdle(float _DeltaTime);
 	void DiagonalUpWalk(float _DeltaTime);
 
+	void DiagonalDownIdle(float _DeltaTime);
+	void DiagonalDownWalk(float _DeltaTime);
+
 };
 
