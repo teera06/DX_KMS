@@ -13,10 +13,27 @@ void AWorldPlayer::StateInit()
 	//State.CreateState("Die");
 	State.CreateState("UpIdle");
 	State.CreateState("UpWalk");
+
+	State.CreateState("DownIdle");
+	State.CreateState("DownWalk");
 	//State.CreateState("Run");
 
 	// 함수들 세팅하고
 	State.SetUpdateFunction("UpIdle", std::bind(&AWorldPlayer::UpIdle, this, std::placeholders::_1));
+	State.SetStartFunction("UpIdle", [=] {WorldPlayerRenderer->ChangeAnimation("UpIdle"); });
+
+	State.SetUpdateFunction("UpWalk", std::bind(&AWorldPlayer::UpWalk, this, std::placeholders::_1));
+	State.SetStartFunction("UpWalk", [=] {WorldPlayerRenderer->ChangeAnimation("UpWalk"); });
+
+	State.SetUpdateFunction("DownIdle", std::bind(&AWorldPlayer::DownIdle, this, std::placeholders::_1));
+	State.SetStartFunction("DownIdle", [=] {WorldPlayerRenderer->ChangeAnimation("DownIdle"); });
+
+	State.SetUpdateFunction("DownWalk", std::bind(&AWorldPlayer::DownWalk, this, std::placeholders::_1));
+	State.SetStartFunction("DownWalk", [=] {WorldPlayerRenderer->ChangeAnimation("DownWalk"); });
+	//State.SetUpdateFunction("Run", std::bind(&AWorldPlayer::Run, this, std::placeholders::_1));
+
+	//State.SetStartFunction("Run", std::bind(&AWorldPlayer::RunStart, this));
+
 
 	// 즉석 함수
 	// = [ 람다캡쳐 Renderer]
@@ -27,19 +44,6 @@ void AWorldPlayer::StateInit()
 	// 람다캡처의 내용안에 =을 쓰면
 	// 현재 스택에서 사용가능한 복사본을 만든다.
 	// 메모리를 할당해서 Renderer를 같은 이름으로 복사한다.
-
-
-	State.SetStartFunction("UpIdle", [=] {WorldPlayerRenderer->ChangeAnimation("UpIdle"); });
-
-
-	State.SetUpdateFunction("UpWalk", std::bind(&AWorldPlayer::UpWalk, this, std::placeholders::_1));
-	State.SetStartFunction("UpWalk", [=] {WorldPlayerRenderer->ChangeAnimation("UpWalk"); });
-	//State.SetUpdateFunction("Run", std::bind(&AWorldPlayer::Run, this, std::placeholders::_1));
-
-	//State.SetStartFunction("Run", std::bind(&AWorldPlayer::RunStart, this));
-
-
-
 
 
 	// 체인지
@@ -55,16 +59,58 @@ void AWorldPlayer::UpIdle(float _Update)
 		State.ChangeState("UpWalk");
 		return;
 	}
+
+	if (true == IsPress(VK_DOWN))
+	{
+		State.ChangeState("DownWalk");
+		return;
+	}
 }
 
 void AWorldPlayer::UpWalk(float _DeltaTime)
 {
+
+	if (true == IsFree(VK_UP))
+	{
+		State.ChangeState("UpIdle");
+		return;
+	}
+
 	if (true == IsPress(VK_UP))
 	{
 		AddActorLocation(FVector::Up * _DeltaTime * Speed);
 	}
 }
 
+void AWorldPlayer::DownIdle(float _Update)
+{
+	if (true == IsPress(VK_DOWN))
+	{
+		State.ChangeState("DownWalk");
+		return;
+	}
+
+	if (true == IsPress(VK_UP))
+	{
+		State.ChangeState("UpWalk");
+		return;
+	}
+}
+
+void AWorldPlayer::DownWalk(float _DeltaTime)
+{
+
+	if (true == IsFree(VK_DOWN))
+	{
+		State.ChangeState("DownIdle");
+		return;
+	}
+
+	if (true == IsPress(VK_DOWN))
+	{
+		AddActorLocation(FVector::Down * _DeltaTime * Speed);
+	}
+}
 
 
 //void AWorldPlayer::Run(float _DeltaTime)

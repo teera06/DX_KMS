@@ -32,5 +32,8 @@ private:
 	void UpIdle(float _DeltaTime);
 	void UpWalk(float _DeltaTime);
 
+	void DownIdle(float _DeltaTime);
+	void DownWalk(float _DeltaTime);
+
 };
 
