@@ -196,7 +196,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="PlayerCommon.h">
+    <ClInclude Include="ContentsHelper.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -250,7 +250,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="PlayerCommon.cpp">
+    <ClCompile Include="ContentsHelper.cpp">
       <SubType>
       </SubType>
     </ClCompile>

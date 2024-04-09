@@ -93,7 +93,7 @@
     <ClCompile Include="BossStage1GameMode.cpp">
       <Filter>PlayStage\Boss1\Level</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerCommon.cpp" />
+    <ClCompile Include="ContentsHelper.cpp" />
     <ClCompile Include="Boss1Map.cpp">
       <Filter>PlayStage\Map</Filter>
     </ClCompile>
@@ -133,7 +133,7 @@
     <ClInclude Include="BossStage1GameMode.h">
       <Filter>PlayStage\Boss1\Level</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerCommon.h" />
+    <ClInclude Include="ContentsHelper.h" />
     <ClInclude Include="Boss1Map.h">
       <Filter>PlayStage\Map</Filter>
     </ClInclude>
