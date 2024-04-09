@@ -1,6 +1,6 @@
 #include "PreCompile.h"
 #include "LoadingGameMode.h"
-#include "PlayerCommon.h"
+#include "ContentsHelper.h"
 
 #include "LoadActor.h"
 
