@@ -14,3 +14,19 @@ enum class EPlayerState
 	HeadDown,
 	MaxAtt
 };
+
+enum class ERenderOrder
+{
+	Title,
+	CupheadDence,
+	Log,
+	WorldMap,
+	Boss1_back1,
+	Boss1_back2,
+	Boss1_Back3,
+	Monster,
+	skill,
+	kirby,
+	HPBar,
+	HPgauge,
+};
