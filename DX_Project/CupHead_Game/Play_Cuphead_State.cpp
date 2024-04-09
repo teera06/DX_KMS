@@ -120,7 +120,7 @@ void APlay_Cuphead::Run(float  _DeltaTime)
 
 void APlay_Cuphead::Dash(float _DeltaTime)
 {
-	if (true == IsFree(VK_SHIFT))
+	if (true == PlayCuphead->IsCurAnimationEnd())
 	{
 		State.ChangeState("Idle");
 		return;
