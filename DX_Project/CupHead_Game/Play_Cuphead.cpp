@@ -29,6 +29,9 @@ void APlay_Cuphead::BeginPlay()
 
 	PlayCuphead->CreateAnimation("Run", "Run", 0.05f);
 	PlayCuphead->CreateAnimation("Dash", "Dash", 0.05f);
+	PlayCuphead->CreateAnimation("Duck", "Duck", 0.05f,false);
+	PlayCuphead->CreateAnimation("Shoot_Straight", "Shoot_Straight", 0.05f);
+	//PlayCuphead->CreateAnimation("Duck", "Duck", 0.05f, false);
 
 	StateInit();
 	PlayCuphead->SetAutoSize(1.0f, true);

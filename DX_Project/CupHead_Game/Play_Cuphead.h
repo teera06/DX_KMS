@@ -38,5 +38,7 @@ private:
 	void Idle(float _DeltaTime);
 	void Run(float _DeltaTime);
 	void Dash(float _DeltaTime);
+	void Duck(float _DeltaTime);
+	void Shoot_Straight(float _DeltaTime);
 };
 
