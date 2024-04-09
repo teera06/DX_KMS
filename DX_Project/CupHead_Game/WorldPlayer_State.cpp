@@ -129,12 +129,14 @@ void AWorldPlayer::UpWalk(float _DeltaTime)
 
 	if (true == IsPress(VK_RIGHT))
 	{
+		WorldPlayerRenderer->SetDir(EEngineDir::Right);
 		State.ChangeState("DiagonalUpWalk");
 		return;
 	}
 
 	if (true == IsPress(VK_LEFT))
 	{
+		WorldPlayerRenderer->SetDir(EEngineDir::Left);
 		State.ChangeState("DiagonalUpWalk");
 		return;
 	}
@@ -190,12 +192,14 @@ void AWorldPlayer::DownWalk(float _DeltaTime)
 
 	if (true == IsPress(VK_RIGHT))
 	{
+		WorldPlayerRenderer->SetDir(EEngineDir::Right);
 		State.ChangeState("DiagonalDownWalk");
 		return;
 	}
 
 	if (true == IsPress(VK_LEFT))
 	{
+		WorldPlayerRenderer->SetDir(EEngineDir::Left);
 		State.ChangeState("DiagonalDownWalk");
 		return;
 	}
@@ -298,14 +302,12 @@ void AWorldPlayer::DiagonalUpIdle(float _Update)
 
 	if (true == IsPress(VK_RIGHT))
 	{
-		WorldPlayerRenderer->SetDir(EEngineDir::Right);
 		State.ChangeState("StraightWalk");
 		return;
 	}
 
 	if (true == IsPress(VK_LEFT))
 	{
-		WorldPlayerRenderer->SetDir(EEngineDir::Left);
 		State.ChangeState("StraightWalk");
 		return;
 	}
@@ -336,13 +338,13 @@ void AWorldPlayer::DiagonalUpWalk(float _DeltaTime)
 
 	if (true == IsPress(VK_LEFT) && true == IsPress(VK_UP))
 	{
-		SetActorScale3D(FVector(-60.0f, 100.0f, 100.0f));
+		WorldPlayerRenderer->SetDir(EEngineDir::Left);
 		AddActorLocation((FVector::Left+ FVector::Up) * _DeltaTime * Speed);
 	}
 
 	if (true == IsPress(VK_RIGHT) && true == IsPress(VK_UP))
 	{
-		SetActorScale3D(FVector(60.0f, 100.0f, 100.0f));
+		WorldPlayerRenderer->SetDir(EEngineDir::Right);
 		AddActorLocation((FVector::Right + FVector::Up)* _DeltaTime * Speed);
 	}
 }
@@ -382,12 +384,14 @@ void AWorldPlayer::DiagonalDownIdle(float _Update)
 
 	if (true == IsPress(VK_RIGHT) && true == IsPress(VK_DOWN))
 	{
+		WorldPlayerRenderer->SetDir(EEngineDir::Right);
 		State.ChangeState("DiagonalDownWalk");
 		return;
 	}
 
 	if (true == IsPress(VK_LEFT) && true == IsPress(VK_DOWN))
 	{
+		WorldPlayerRenderer->SetDir(EEngineDir::Left);
 		State.ChangeState("DiagonalDownWalk");
 		return;
 	}
@@ -404,13 +408,13 @@ void AWorldPlayer::DiagonalDownWalk(float _DeltaTime)
 
 	if (true == IsPress(VK_LEFT) && true == IsPress(VK_DOWN))
 	{
-		SetActorScale3D(FVector(-60.0f, 100.0f, 100.0f));
+		WorldPlayerRenderer->SetDir(EEngineDir::Left);
 		AddActorLocation((FVector::Left + FVector::Down) * _DeltaTime * Speed);
 	}
 
 	if (true == IsPress(VK_RIGHT) && true == IsPress(VK_DOWN))
 	{
-		SetActorScale3D(FVector(60.0f, 100.0f, 100.0f));
+		WorldPlayerRenderer->SetDir(EEngineDir::Right);
 		AddActorLocation((FVector::Right + FVector::Down) * _DeltaTime * Speed);
 	}
 }
