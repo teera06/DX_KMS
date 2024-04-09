@@ -262,6 +262,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Play_Cuphead_State.cpp" />
     <ClCompile Include="PreCompile.cpp">
       <SubType>
       </SubType>

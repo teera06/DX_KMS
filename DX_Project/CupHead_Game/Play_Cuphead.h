@@ -1,9 +1,8 @@
 #pragma once
 #include <Enginecore/Actor.h>
 #include <EngineCore/SpriteRenderer.h>
+#include <EngineCore/StateManager.h>
 
-
-class URenderer;
 class APlay_Cuphead : public AActor
 {
 	GENERATED_BODY(AActor)
@@ -18,6 +17,7 @@ public:
 	APlay_Cuphead& operator=(const APlay_Cuphead& _Other) = delete; // 디폴트 대입 연산자
 	APlay_Cuphead& operator=(APlay_Cuphead&& _Other) noexcept = delete;
 
+	UStateManager State;
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -27,7 +27,16 @@ private:
 	
 	USpriteRenderer* PlayCuphead= nullptr;
 
-	float MoveSpeed = 400.0f;
+	float Speed = 500.0f;
+	float DashSpeed = 1000.0f;
+	bool LRCheck = false;
 
+	//false =Left
+	// true = Right
+	///////////////////////// State
+	void StateInit();
+	void Idle(float _DeltaTime);
+	void Run(float _DeltaTime);
+	void Dash(float _DeltaTime);
 };
 

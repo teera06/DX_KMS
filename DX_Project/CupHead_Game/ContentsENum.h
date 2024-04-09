@@ -26,7 +26,7 @@ enum class ERenderOrder
 	Boss1_Back3,
 	Monster,
 	skill,
-	kirby,
+	Cuphead,
 	HPBar,
 	HPgauge,
 	Filter

@@ -19,7 +19,7 @@ void AWorldPlayer::BeginPlay()
 	//SetActorLocation(FVector(0.0f, 0.0f, -50.0f));
 
 	//DelayCallBack(1.0f, std::bind(&ATitleLogo::RendererOff, this));
-	WorldPlayerRenderer->SetOrder(ERenderOrder::kirby);
+	WorldPlayerRenderer->SetOrder(ERenderOrder::Cuphead);
 	WorldPlayerRenderer->SetSprite("WorldDiagonalIdle_01.png");
 	WorldPlayerRenderer->SetSamplering(ETextureSampling::LINEAR);
 	WorldPlayerRenderer->CreateAnimation("UpIdle", "UpIdle", 0.05f);
