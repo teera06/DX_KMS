@@ -20,6 +20,8 @@ protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 private:
-	USpriteRenderer* Boss1MapRenderer = nullptr;
+	USpriteRenderer* back1Map = nullptr;
+	USpriteRenderer* back2Map = nullptr;
+	USpriteRenderer* back3Map = nullptr;
 };
 

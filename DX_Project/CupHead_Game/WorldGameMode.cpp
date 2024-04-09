@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "WorldGameMode.h"
 
+#include "ScreenEffect.h"
 #include "WorldMap.h"
 #include "WorldPlayer.h"
 
@@ -20,6 +21,7 @@ void AWorldGameMode::BeginPlay()
 	Camera->SetActorLocation(FVector(0.0f, 0.0f, -100.0f));
 	GetWorld()->SpawnActor<AWorldPlayer>("WorldPlayer");
 	GetWorld()->SpawnActor<AWorldMap>("WorldMap");
+	GetWorld()->SpawnActor<AScreenEffect>("ScreenEffect");
 }
 
 void AWorldGameMode::Tick(float _DeltaTime)
