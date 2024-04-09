@@ -2,6 +2,9 @@
 #include "BossStage1GameMode.h"
 
 #include "Boss1Map.h"
+#include "Boss2Map.h"
+#include "Boss3Map.h"
+#include "ScreenEffect.h"
 #include "Play_Cuphead.h"
 #include <EngineCore/Camera.h>
 
@@ -19,7 +22,11 @@ void ABossStage1GameMode::BeginPlay()
 	std::shared_ptr<UCamera> Camera = GetWorld()->GetMainCamera();
 	Camera->SetActorLocation(FVector(0.0f, 0.0f, -100.0f));
 	GetWorld()->SpawnActor<ABoss1Map>("Boss1Map");
+	GetWorld()->SpawnActor<ABoss2Map>("Boss2Map");
+	GetWorld()->SpawnActor<ABoss3Map>("Boss3Map");
 	GetWorld()->SpawnActor<APlay_Cuphead>("Play_Cuphead");
+	GetWorld()->SpawnActor<AScreenEffect>("ScreenEffect");
+
 }
 
 void ABossStage1GameMode::Tick(float _DeltaTime)

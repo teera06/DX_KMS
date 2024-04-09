@@ -109,6 +109,12 @@
     <ClCompile Include="Play_Cuphead_State.cpp">
       <Filter>PlayStage\Boss1\PlayActor\CupHead_Player</Filter>
     </ClCompile>
+    <ClCompile Include="Boss2Map.cpp">
+      <Filter>PlayStage\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss3Map.cpp">
+      <Filter>PlayStage\Map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -151,6 +157,12 @@
     </ClInclude>
     <ClInclude Include="ScreenEffect.h">
       <Filter>ScreenEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss2Map.h">
+      <Filter>PlayStage\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss3Map.h">
+      <Filter>PlayStage\Map</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
