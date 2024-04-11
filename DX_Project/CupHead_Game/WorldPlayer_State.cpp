@@ -22,6 +22,42 @@ void AWorldPlayer::DebugMessageFunction()
 	}
 }
 
+void AWorldPlayer::DirCheck()
+{
+	if (UEngineInput::IsPress(VK_LEFT))
+	{
+		WorldPlayerRenderer->SetDir(EEngineDir::Left);
+	}
+	if (UEngineInput::IsPress(VK_RIGHT))
+	{
+		WorldPlayerRenderer->SetDir(EEngineDir::Right);
+	}
+}
+
+void AWorldPlayer::MoveUpDate(float _DeltaTime, FVector _MovePos)
+{
+	std::shared_ptr<UEngineTexture> Tex = UContentsHelper::MapTex;
+
+#ifdef _DEBUG
+	if (nullptr == Tex)
+	{
+		MsgBoxAssert("이미지 충돌체크중 이미지가 존재하지 않습니다.");
+	}
+#endif
+
+	float4 Pos = GetActorLocation();
+
+	Color8Bit Color = Tex->GetColor(Pos, Color8Bit::Black);
+
+	if (Color != Color8Bit::Black)
+	{
+		_MovePos = FVector::Zero;
+	}
+
+	AddActorLocation(_MovePos);
+
+}
+
 void AWorldPlayer::StateInit()
 {
 	// 스테이트 만들고
@@ -99,6 +135,7 @@ void AWorldPlayer::StateInit()
 
 void AWorldPlayer::UpIdle(float _Update)
 {
+	DirCheck();
 
 	if (true == UEngineInput::IsDown('Z'))
 	{
@@ -134,7 +171,8 @@ void AWorldPlayer::UpIdle(float _Update)
 
 void AWorldPlayer::UpWalk(float _DeltaTime)
 {
-
+	DirCheck();
+	FVector MovePos = FVector::Zero;
 	if (true == IsFree(VK_UP))
 	{
 		State.ChangeState("UpIdle");
@@ -143,26 +181,26 @@ void AWorldPlayer::UpWalk(float _DeltaTime)
 
 	if (true == IsPress(VK_RIGHT))
 	{
-		WorldPlayerRenderer->SetDir(EEngineDir::Right);
 		State.ChangeState("DiagonalUpWalk");
 		return;
 	}
 
 	if (true == IsPress(VK_LEFT))
 	{
-		WorldPlayerRenderer->SetDir(EEngineDir::Left);
 		State.ChangeState("DiagonalUpWalk");
 		return;
 	}
 
 	if (true == IsPress(VK_UP))
 	{
-		AddActorLocation(FVector::Up * _DeltaTime * Speed);
+		MovePos+=FVector::Up * _DeltaTime * Speed;
 	}
+	MoveUpDate(_DeltaTime, MovePos);
 }
 
 void AWorldPlayer::DownIdle(float _Update)
 {
+	DirCheck();
 	if (true == UEngineInput::IsDown('Z'))
 	{
 		GEngine->ChangeLevel("Loading");
@@ -182,14 +220,12 @@ void AWorldPlayer::DownIdle(float _Update)
 
 	if (true == IsPress(VK_RIGHT))
 	{
-		WorldPlayerRenderer->SetDir(EEngineDir::Right);
 		State.ChangeState("StraightWalk");
 		return;
 	}
 
 	if (true == IsPress(VK_LEFT))
 	{
-		WorldPlayerRenderer->SetDir(EEngineDir::Left);
 		State.ChangeState("StraightWalk");
 		return;
 	}
@@ -197,7 +233,8 @@ void AWorldPlayer::DownIdle(float _Update)
 
 void AWorldPlayer::DownWalk(float _DeltaTime)
 {
-
+	DirCheck();
+	FVector MovePos = FVector::Zero;
 	if (true == IsFree(VK_DOWN))
 	{
 		State.ChangeState("DownIdle");
@@ -206,27 +243,26 @@ void AWorldPlayer::DownWalk(float _DeltaTime)
 
 	if (true == IsPress(VK_RIGHT))
 	{
-		WorldPlayerRenderer->SetDir(EEngineDir::Right);
 		State.ChangeState("DiagonalDownWalk");
 		return;
 	}
 
 	if (true == IsPress(VK_LEFT))
 	{
-		WorldPlayerRenderer->SetDir(EEngineDir::Left);
 		State.ChangeState("DiagonalDownWalk");
 		return;
 	}
 
 	if (true == IsPress(VK_DOWN))
 	{
-		AddActorLocation(FVector::Down * _DeltaTime * Speed);
+		MovePos+=FVector::Down * _DeltaTime * Speed;
 	}
+	MoveUpDate(_DeltaTime, MovePos);
 }
 
 void AWorldPlayer::StraightIdle(float _Update)
 {
-
+	DirCheck();
 	if (true == UEngineInput::IsDown('Z'))
 	{
 		GEngine->ChangeLevel("Loading");
@@ -246,14 +282,12 @@ void AWorldPlayer::StraightIdle(float _Update)
 
 	if (true == IsPress(VK_RIGHT))
 	{
-		WorldPlayerRenderer->SetDir(EEngineDir::Right);
 		State.ChangeState("StraightWalk");
 		return;
 	}
 
 	if (true == IsPress(VK_LEFT))
 	{
-		WorldPlayerRenderer->SetDir(EEngineDir::Left);
 		State.ChangeState("StraightWalk");
 		return;
 	}
@@ -263,7 +297,8 @@ void AWorldPlayer::StraightIdle(float _Update)
 
 void AWorldPlayer::StraightWalk(float _DeltaTime)
 {
-
+	DirCheck();
+	FVector MovePos = FVector::Zero;
 	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
 	{
 		State.ChangeState("StraightIdle");
@@ -285,18 +320,21 @@ void AWorldPlayer::StraightWalk(float _DeltaTime)
 
 	if (true == IsPress(VK_LEFT))
 	{
-		AddActorLocation(FVector::Left * _DeltaTime * Speed);
+		MovePos+=FVector::Left * _DeltaTime * Speed;
 	}
 
 	if (true == IsPress(VK_RIGHT))
 	{
-		AddActorLocation(FVector::Right * _DeltaTime * Speed);
+		MovePos += FVector::Right * _DeltaTime * Speed;
 	}
+
+	MoveUpDate(_DeltaTime, MovePos);
 }
 
 
 void AWorldPlayer::DiagonalUpIdle(float _Update)
 {
+	DirCheck();
 	if (true == UEngineInput::IsDown('Z'))
 	{
 		GEngine->ChangeLevel("Loading");
@@ -328,14 +366,12 @@ void AWorldPlayer::DiagonalUpIdle(float _Update)
 
 	if (true == IsPress(VK_RIGHT) && true == IsPress(VK_UP))
 	{
-		WorldPlayerRenderer->SetDir(EEngineDir::Right);
 		State.ChangeState("DiagonalUpWalk");
 		return;
 	}
 
 	if (true == IsPress(VK_LEFT) && true == IsPress(VK_UP))
 	{
-		WorldPlayerRenderer->SetDir(EEngineDir::Left);
 		State.ChangeState("DiagonalUpWalk");
 		return;
 	}
@@ -343,7 +379,8 @@ void AWorldPlayer::DiagonalUpIdle(float _Update)
 
 void AWorldPlayer::DiagonalUpWalk(float _DeltaTime)
 {
-
+	DirCheck();
+	FVector MovePos = FVector::Zero;
 	if (true == IsFree(VK_UP))
 	{
 		State.ChangeState("DiagonalUpIdle");
@@ -352,19 +389,20 @@ void AWorldPlayer::DiagonalUpWalk(float _DeltaTime)
 
 	if (true == IsPress(VK_LEFT) && true == IsPress(VK_UP))
 	{
-		WorldPlayerRenderer->SetDir(EEngineDir::Left);
-		AddActorLocation((FVector::Left+ FVector::Up) * _DeltaTime * Speed);
+		MovePos+=(FVector::Left+ FVector::Up) * _DeltaTime * Speed;
 	}
 
 	if (true == IsPress(VK_RIGHT) && true == IsPress(VK_UP))
 	{
-		WorldPlayerRenderer->SetDir(EEngineDir::Right);
-		AddActorLocation((FVector::Right + FVector::Up)* _DeltaTime * Speed);
+		MovePos+=(FVector::Right + FVector::Up)* _DeltaTime * Speed;
 	}
+
+	MoveUpDate(_DeltaTime, MovePos);
 }
 
 void AWorldPlayer::DiagonalDownIdle(float _Update)
 {
+	DirCheck();
 	if (true == UEngineInput::IsDown('Z'))
 	{
 		GEngine->ChangeLevel("Loading");
@@ -384,28 +422,24 @@ void AWorldPlayer::DiagonalDownIdle(float _Update)
 
 	if (true == IsPress(VK_RIGHT))
 	{
-		WorldPlayerRenderer->SetDir(EEngineDir::Right);
 		State.ChangeState("StraightWalk");
 		return;
 	}
 
 	if (true == IsPress(VK_LEFT))
 	{
-		WorldPlayerRenderer->SetDir(EEngineDir::Left);
 		State.ChangeState("StraightWalk");
 		return;
 	}
 
 	if (true == IsPress(VK_RIGHT) && true == IsPress(VK_DOWN))
 	{
-		WorldPlayerRenderer->SetDir(EEngineDir::Right);
 		State.ChangeState("DiagonalDownWalk");
 		return;
 	}
 
 	if (true == IsPress(VK_LEFT) && true == IsPress(VK_DOWN))
 	{
-		WorldPlayerRenderer->SetDir(EEngineDir::Left);
 		State.ChangeState("DiagonalDownWalk");
 		return;
 	}
@@ -413,7 +447,8 @@ void AWorldPlayer::DiagonalDownIdle(float _Update)
 
 void AWorldPlayer::DiagonalDownWalk(float _DeltaTime)
 {
-
+	DirCheck();
+	FVector MovePos = FVector::Zero;
 	if (true == IsFree(VK_DOWN))
 	{
 		State.ChangeState("DiagonalDownIdle");
@@ -422,45 +457,14 @@ void AWorldPlayer::DiagonalDownWalk(float _DeltaTime)
 
 	if (true == IsPress(VK_LEFT) && true == IsPress(VK_DOWN))
 	{
-		WorldPlayerRenderer->SetDir(EEngineDir::Left);
-		AddActorLocation((FVector::Left + FVector::Down) * _DeltaTime * Speed);
+		MovePos+=(FVector::Left + FVector::Down) * _DeltaTime * Speed;
 	}
 
 	if (true == IsPress(VK_RIGHT) && true == IsPress(VK_DOWN))
 	{
-		WorldPlayerRenderer->SetDir(EEngineDir::Right);
-		AddActorLocation((FVector::Right + FVector::Down) * _DeltaTime * Speed);
+		MovePos += (FVector::Right + FVector::Down) * _DeltaTime * Speed;
 	}
+
+	MoveUpDate(_DeltaTime, MovePos);
 }
 
-//void AWorldPlayer::Run(float _DeltaTime)
-//{
-
-	
-
-	
-
-	//std::shared_ptr<UEngineTexture> Tex = UContentsConstValue::MapTex;
-
-//#ifdef _DEBUG
-	//if (nullptr == Tex)
-	//{
-		//MsgBoxAssert("이미지 충돌체크중 이미지가 존재하지 않습니다.");
-	//}
-//#endif
-
-	//float4 Pos = GetActorLocation();
-
-
-	//Pos /= UContentsConstValue::TileSize;
-	//Pos.Y = -Pos.Y;
-
-	//Color8Bit Color = Tex->GetColor(Pos, Color8Bit::Black);
-
-	//if (Color != Color8Bit::Black)
-	//{
-		//AddActorLocation(float4::Down * _DeltaTime * 100.0f);
-	//}
-
-
-//}

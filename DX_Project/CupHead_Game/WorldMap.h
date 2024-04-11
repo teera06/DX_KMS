@@ -16,8 +16,8 @@ public:
 	AWorldMap& operator=(const AWorldMap& _Other) = delete; // 디폴트 대입 연산자
 	AWorldMap& operator=(AWorldMap&& _Other) noexcept = delete;
 
-	void SetMapImage(std::string_view _MapImageName); // 맵 이미지 Set
-	void SetColMapImage(std::string_view _MapImageName); // 픽셀 충돌 맵 이미지 Set
+	void SetMapImage(); // 맵 이미지 Set
+	void SetColMapImage(); // 픽셀 충돌 맵 이미지 Set
 
 	void SwitchDebug();
 protected:
@@ -25,5 +25,6 @@ protected:
 	void Tick(float _DeltaTime) override;
 private:
 	USpriteRenderer* MapRenderer = nullptr;
+	USpriteRenderer* ColRenderer = nullptr;
 };
 

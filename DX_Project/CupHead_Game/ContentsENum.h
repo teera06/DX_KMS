@@ -18,6 +18,7 @@ enum class EPlayerState
 enum class ERenderOrder
 {
 	background,
+	WorldCol,
 	CupheadDence,
 	Log,
 	WorldMap,

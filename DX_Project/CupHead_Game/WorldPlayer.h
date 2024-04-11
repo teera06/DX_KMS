@@ -27,6 +27,8 @@ private:
 	float Speed = 300.0f;
 
 	void DebugMessageFunction();
+	void DirCheck();
+	void MoveUpDate(float _DeltaTime,FVector _MovePos);
 	///////////////////////// State
 	void StateInit();
 
