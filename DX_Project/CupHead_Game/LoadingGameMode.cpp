@@ -35,7 +35,7 @@ void ALoadingGameMode::Tick(float _DeltaTime)
 	if (0 > coolDowntime && 1 == UContentsHelper::StageCount)
 	{
 		GEngine->ChangeLevel("WorldLevel");
-		coolDowntime = 6.0f;
+		coolDowntime = 3.0f;
 		UContentsHelper::StageCount = 2;
 	}else if (0 > coolDowntime && 2 == UContentsHelper::StageCount)
 	{

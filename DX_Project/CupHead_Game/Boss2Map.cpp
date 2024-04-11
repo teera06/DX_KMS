@@ -13,7 +13,7 @@ ABoss2Map::~ABoss2Map()
 void ABoss2Map::BeginPlay()
 {
 	Super::BeginPlay();
-	SetActorLocation(FVector(0.0f, -10.0f, 100.0f));
+	SetActorLocation(FVector(0.0f, 100.0f, 160.0f));
 	back2Map->SetOrder(ERenderOrder::Boss1_back2);
 	back2Map->SetSprite("back2.png");
 	back2Map->SetSamplering(ETextureSampling::LINEAR);

@@ -13,7 +13,7 @@ ABoss3Map::~ABoss3Map()
 void ABoss3Map::BeginPlay()
 {
 	Super::BeginPlay();
-	SetActorLocation(FVector(0.0f, -50.0f, 50.0f));
+	SetActorLocation(FVector(0.0f, 0.0f, 75.0f));
 	back3Map->SetOrder(ERenderOrder::Boss1_Back3);
 	back3Map->SetSprite("back3.png");
 	back3Map->SetSamplering(ETextureSampling::LINEAR);
