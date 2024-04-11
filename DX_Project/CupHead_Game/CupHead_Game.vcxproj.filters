@@ -61,6 +61,9 @@
     <Filter Include="ScreenEffect">
       <UniqueIdentifier>{5fe114ce-4138-4025-a10c-6b971c51c280}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlayStage\Boss1\Monster">
+      <UniqueIdentifier>{001c3676-f07e-4d7b-8d8f-7e49dd5951ed}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game_Core.cpp">
@@ -119,6 +122,9 @@
       <Filter>WorldStage\Actor\Map</Filter>
     </ClCompile>
     <ClCompile Include="PlayerCommon.cpp" />
+    <ClCompile Include="Boss1_Monster1.cpp">
+      <Filter>PlayStage\Boss1\Monster</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -172,5 +178,8 @@
       <Filter>WorldStage\Actor\Map</Filter>
     </ClInclude>
     <ClInclude Include="PlayerCommon.h" />
+    <ClInclude Include="Boss1_Monster1.h">
+      <Filter>PlayStage\Boss1\Monster</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
