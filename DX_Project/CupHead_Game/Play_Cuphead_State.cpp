@@ -19,6 +19,7 @@ void APlay_Cuphead::StateInit()
 	State.CreateState("Duck");
 	State.CreateState("Shoot_Straight");
 	State.CreateState("Run_Shoot_Straight");
+	State.CreateState("Duck_Shoot");
 	
 
 	State.SetUpdateFunction("Idle", std::bind(&APlay_Cuphead::Idle, this, std::placeholders::_1));
@@ -38,6 +39,9 @@ void APlay_Cuphead::StateInit()
 
 	State.SetUpdateFunction("Run_Shoot_Straight", std::bind(&APlay_Cuphead::Run_Shoot_Straight, this, std::placeholders::_1));
 	State.SetStartFunction("Run_Shoot_Straight", [=] {PlayCuphead->ChangeAnimation("Run_Shoot_Straight"); });
+
+	State.SetUpdateFunction("Duck_Shoot", std::bind(&APlay_Cuphead::Duck_Shoot, this, std::placeholders::_1));
+	State.SetStartFunction("Duck_Shoot", [=] {PlayCuphead->ChangeAnimation("Duck_Shoot"); });
 
 	//State.SetUpdateFunction("Duck", std::bind(&APlay_Cuphead::Duck, this, std::placeholders::_1));
 	//State.SetStartFunction("Duck", [=] {PlayCuphead->ChangeAnimation("Duck"); });
@@ -154,6 +158,16 @@ void APlay_Cuphead::Run_Shoot_Straight(float  _DeltaTime)
 		return;
 	}
 
+	if (true == IsPress(VK_LEFT))
+	{
+		AddActorLocation(FVector::Left * _DeltaTime * Speed);
+	}
+
+	if (true == IsPress(VK_RIGHT))
+	{
+		AddActorLocation(FVector::Right * _DeltaTime * Speed);
+	}
+
 	if (true == IsFree('X'))
 	{
 		State.ChangeState("Run");
@@ -201,10 +215,15 @@ void APlay_Cuphead::Shoot_Straight(float _DeltaTime)
 		State.ChangeState("Idle");
 		return;
 	}
+}
 
-	//if (true == IsFree('X'))
-	//{
-		//State.ChangeState("Idle");
-		//return;
-	//}
+void APlay_Cuphead::Duck_Shoot(float _DeltaTime)
+{
+	DirCheck();
+	
+	if (true == IsFree('X'))
+	{
+		State.ChangeState("Duck");
+		return;
+	}
 }
