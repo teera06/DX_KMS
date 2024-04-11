@@ -29,6 +29,7 @@ enum class ERenderOrder
 	Monster,
 	skill,
 	Cuphead,
+	Object,
 	HPBar,
 	HPgauge,
 	Filter

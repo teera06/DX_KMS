@@ -21,5 +21,7 @@ protected:
 private:
 	USpriteRenderer* back3Map = nullptr;
 	USpriteRenderer* crowd3 = nullptr;
+	USpriteRenderer* Object1 = nullptr;
+	USpriteRenderer* Object2 = nullptr;
 };
 
