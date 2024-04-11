@@ -186,6 +186,9 @@
     <ClCompile Include="EngineEditorGUI.cpp">
       <Filter>Editor</Filter>
     </ClCompile>
+    <ClCompile Include="EngineEditorWindow.cpp">
+      <Filter>Editor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EngineCore.h">
@@ -300,6 +303,9 @@
       <Filter>Contents</Filter>
     </ClInclude>
     <ClInclude Include="EngineEditorGUI.h">
+      <Filter>Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineEditorWindow.h">
       <Filter>Editor</Filter>
     </ClInclude>
   </ItemGroup>
