@@ -3,7 +3,8 @@
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/StateManager.h>
 #include "ContentsENum.h"
-class AWorldPlayer : public AActor
+#include "PlayerCommon.h"
+class AWorldPlayer : public AActor, public UPlayerCommon
 {
 	GENERATED_BODY(AActor)
 public:
@@ -21,15 +22,15 @@ public:
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
+
+	void DirCheck() override;
 private:
 	USpriteRenderer* WorldPlayerRenderer = nullptr;
 
 	float Speed = 300.0f;
 
-	EDir Dir = EDir::None;
 
 	void DebugMessageFunction();
-	void DirCheck();
 	void MoveUpDate(float _DeltaTime,FVector _MovePos);
 	///////////////////////// State
 	void StateInit();
