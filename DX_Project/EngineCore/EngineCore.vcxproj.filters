@@ -67,6 +67,9 @@
     <Filter Include="Contents">
       <UniqueIdentifier>{96661006-cad0-4b7a-9a80-1199f1551aa6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Editor">
+      <UniqueIdentifier>{e39ac7be-1f89-4a24-a7fe-e7ff40cb8267}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp">
@@ -176,6 +179,9 @@
     </ClCompile>
     <ClCompile Include="StateManager.cpp">
       <Filter>Contents</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineEditorGUI.cpp">
+      <Filter>Editor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -289,6 +295,9 @@
     </ClInclude>
     <ClInclude Include="StateManager.h">
       <Filter>Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineEditorGUI.h">
+      <Filter>Editor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
