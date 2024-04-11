@@ -31,6 +31,7 @@ void APlay_Cuphead::BeginPlay()
 	PlayCuphead->CreateAnimation("Dash", "Dash", 0.05f);
 	PlayCuphead->CreateAnimation("Duck", "Duck", 0.05f,false);
 	PlayCuphead->CreateAnimation("Shoot_Straight", "Shoot_Straight", 0.05f);
+	PlayCuphead->CreateAnimation("Run_Shoot_Straight", "Run_Shoot_Straight", 0.05f);
 	//PlayCuphead->CreateAnimation("Duck", "Duck", 0.05f, false);
 
 	StateInit();
@@ -45,6 +46,7 @@ void APlay_Cuphead::Tick(float _DeltaTime)
 	State.Update(_DeltaTime);
 	
 }
+
 
 
 

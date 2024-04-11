@@ -18,6 +18,7 @@ void APlay_Cuphead::StateInit()
 	State.CreateState("Dash");
 	State.CreateState("Duck");
 	State.CreateState("Shoot_Straight");
+	State.CreateState("Run_Shoot_Straight");
 	
 
 	State.SetUpdateFunction("Idle", std::bind(&APlay_Cuphead::Idle, this, std::placeholders::_1));
@@ -34,6 +35,9 @@ void APlay_Cuphead::StateInit()
 
 	State.SetUpdateFunction("Shoot_Straight", std::bind(&APlay_Cuphead::Shoot_Straight, this, std::placeholders::_1));
 	State.SetStartFunction("Shoot_Straight", [=] {PlayCuphead->ChangeAnimation("Shoot_Straight"); });
+
+	State.SetUpdateFunction("Run_Shoot_Straight", std::bind(&APlay_Cuphead::Run_Shoot_Straight, this, std::placeholders::_1));
+	State.SetStartFunction("Run_Shoot_Straight", [=] {PlayCuphead->ChangeAnimation("Run_Shoot_Straight"); });
 
 	//State.SetUpdateFunction("Duck", std::bind(&APlay_Cuphead::Duck, this, std::placeholders::_1));
 	//State.SetStartFunction("Duck", [=] {PlayCuphead->ChangeAnimation("Duck"); });
@@ -57,12 +61,26 @@ void APlay_Cuphead::StateInit()
 	State.ChangeState("Idle");
 }
 
+void APlay_Cuphead::DirCheck()
+{
+
+	if (UEngineInput::IsPress(VK_LEFT))
+	{
+		PlayCuphead->SetDir(EEngineDir::Left);
+		Dir = EDir::Left;
+	}
+	if (UEngineInput::IsPress(VK_RIGHT))
+	{
+		PlayCuphead->SetDir(EEngineDir::Right);
+		Dir = EDir::Right;
+	}
+}
 
 
 void APlay_Cuphead::Idle(float _Update)
 {
 
-
+	DirCheck();
 	if (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT))
 	{
 		State.ChangeState("Run");
@@ -90,7 +108,7 @@ void APlay_Cuphead::Idle(float _Update)
 
 void APlay_Cuphead::Run(float  _DeltaTime)
 {
-
+	DirCheck();
 	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
 	{
 		State.ChangeState("Idle");
@@ -103,52 +121,81 @@ void APlay_Cuphead::Run(float  _DeltaTime)
 		return;
 	}
 
+	if (true == IsPress('X'))
+	{
+		State.ChangeState("Run_Shoot_Straight");
+		return;
+	}
+
 	if (true == IsPress(VK_LEFT))
 	{
-		LRCheck = false;
-		PlayCuphead->SetDir(EEngineDir::Left);
 		AddActorLocation(FVector::Left * _DeltaTime * Speed);
 	}
 
 	if (true == IsPress(VK_RIGHT))
 	{
-		LRCheck = true;
-		PlayCuphead->SetDir(EEngineDir::Right);
 		AddActorLocation(FVector::Right * _DeltaTime * Speed);
+	}
+}
+
+void APlay_Cuphead::Run_Shoot_Straight(float  _DeltaTime)
+{
+	DirCheck();
+
+	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT) && true == IsFree('X'))
+	{
+		State.ChangeState("Idle");
+		return;
+	}
+
+	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
+	{
+		State.ChangeState("Shoot_Straight");
+		return;
+	}
+
+	if (true == IsFree('X'))
+	{
+		State.ChangeState("Run");
+		return;
 	}
 }
 
 void APlay_Cuphead::Dash(float _DeltaTime)
 {
+	DirCheck();
 	if (true == PlayCuphead->IsCurAnimationEnd())
 	{
 		State.ChangeState("Idle");
 		return;
 	}
 
-	if (false==LRCheck)
+	switch (Dir)
 	{
+	case EDir::Left:
 		AddActorLocation(FVector::Left * _DeltaTime * DashSpeed);
-	}
-	else {
+		break;
+	case EDir::Right:
 		AddActorLocation(FVector::Right * _DeltaTime * DashSpeed);
+		break;
+	default:
+		break;
 	}
-
 }
 
 void APlay_Cuphead::Duck(float _DeltaTime)
 {
+	DirCheck();
 	if (true == IsFree(VK_DOWN))
 	{
 		State.ChangeState("Idle");
 		return;
 	}
-
-
 }
 
 void APlay_Cuphead::Shoot_Straight(float _DeltaTime)
 {
+	DirCheck();
 	if (true == IsFree('X'))
 	{
 		State.ChangeState("Idle");
