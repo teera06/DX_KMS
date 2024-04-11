@@ -1,19 +1,31 @@
 #pragma once
-class EngineDebugMsgWindow
+#include "EngineDefines.h"
+#include "EngineEditorWindow.h"
+#include <vector>
+
+// 설명 :
+class UEngineDebugMsgWindow : public UEngineEditorWindow
 {
+	GENERATED_BODY(UEngineEditorWindow);
+
 public:
 	// constrcuter destructer
-	EngineDebugMsgWindow(); // 디폴트 생성자
-	~EngineDebugMsgWindow(); // 디폴트 소멸자
+	UEngineDebugMsgWindow();
+	~UEngineDebugMsgWindow();
 
 	// delete Function
-	EngineDebugMsgWindow(const EngineDebugMsgWindow& _Other) = delete; // 디폴트 복사 생성자
-	EngineDebugMsgWindow(EngineDebugMsgWindow&& _Other) noexcept = delete; 
-	EngineDebugMsgWindow& operator=(const EngineDebugMsgWindow& _Other) = delete; // 디폴트 대입 연산자
-	EngineDebugMsgWindow& operator=(EngineDebugMsgWindow&& _Other) noexcept = delete;
+	UEngineDebugMsgWindow(const UEngineDebugMsgWindow& _Other) = delete;
+	UEngineDebugMsgWindow(UEngineDebugMsgWindow&& _Other) noexcept = delete;
+	UEngineDebugMsgWindow& operator=(const UEngineDebugMsgWindow& _Other) = delete;
+	UEngineDebugMsgWindow& operator=(UEngineDebugMsgWindow&& _Other) noexcept = delete;
+
+	static void PushMsg(std::string_view _Msg);
 
 protected:
+	void Init() override;
+	void OnGui(float _Delta) override;
 
 private:
+	static std::vector<std::string> Msg;
 };
 

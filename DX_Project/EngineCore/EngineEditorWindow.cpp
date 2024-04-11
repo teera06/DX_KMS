@@ -1,10 +1,26 @@
 #include "PreCompile.h"
 #include "EngineEditorWindow.h"
+#include "imgui.h"
 
-EngineEditorWindow::EngineEditorWindow()
+UEngineEditorWindow::UEngineEditorWindow() 
 {
 }
 
-EngineEditorWindow::~EngineEditorWindow()
+UEngineEditorWindow::~UEngineEditorWindow() 
 {
+}
+
+	
+
+void UEngineEditorWindow::Begin()
+{
+	std::string Name = GetName();
+
+	// 이름이 없으면 터진다.
+	ImGui::Begin(Name.c_str(), &IsActive);   // Pass a pointer to our bool variable (the window will have a closing button that will clear the bool when clicked)
+}
+
+void UEngineEditorWindow::End()
+{
+	ImGui::End();
 }
