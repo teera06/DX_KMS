@@ -70,6 +70,9 @@
     <Filter Include="Editor">
       <UniqueIdentifier>{e39ac7be-1f89-4a24-a7fe-e7ff40cb8267}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Editor\Imgui">
+      <UniqueIdentifier>{7268c4ab-53e6-47ed-b0ae-db61f86f03c3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp">
