@@ -28,3 +28,15 @@ void AWorldMap::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 }
+
+void AWorldMap::SetMapImage(std::string_view _MapImageName)
+{
+}
+
+void AWorldMap::SetColMapImage(std::string_view _MapImageName)
+{
+}
+
+void AWorldMap::SwitchDebug()
+{
+}
