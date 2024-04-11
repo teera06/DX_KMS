@@ -4,6 +4,9 @@
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/EngineEnums.h>
 #include <EngineCore/EngineDebugMsgWindow.h>
+#include <EngineCore/EngineCore.h>
+#include <EngineCore/Camera.h>
+
 //void Function(URenderer* Renderer)
 //{
 //	Renderer->ChangeAnimation("Idle");
@@ -83,6 +86,7 @@ void AWorldPlayer::MoveUpDate(float _DeltaTime, FVector _MovePos)
 		_MovePos = FVector::Zero;
 	}
 
+	GetWorld()->GetMainCamera()->AddActorLocation(_MovePos);
 	AddActorLocation(_MovePos);
 
 }
