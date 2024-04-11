@@ -21,5 +21,6 @@ protected:
 	void Tick(float _DeltaTime) override;
 private:
 	USpriteRenderer* back2Map = nullptr;
+	USpriteRenderer* crowd2 = nullptr;
 };
 
