@@ -73,6 +73,9 @@
     <Filter Include="Editor\Imgui">
       <UniqueIdentifier>{7268c4ab-53e6-47ed-b0ae-db61f86f03c3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Editor\Contents">
+      <UniqueIdentifier>{fa01011f-1889-4b97-8059-71e78873a267}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp">
@@ -188,6 +191,9 @@
     </ClCompile>
     <ClCompile Include="EngineEditorWindow.cpp">
       <Filter>Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineDebugMsgWindow.cpp">
+      <Filter>Editor\Contents</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -307,6 +313,9 @@
     </ClInclude>
     <ClInclude Include="EngineEditorWindow.h">
       <Filter>Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineDebugMsgWindow.h">
+      <Filter>Editor\Contents</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
