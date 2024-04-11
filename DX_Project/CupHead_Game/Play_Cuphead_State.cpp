@@ -20,6 +20,7 @@ void APlay_Cuphead::StateInit()
 	State.CreateState("Shoot_Straight");
 	State.CreateState("Run_Shoot_Straight");
 	State.CreateState("Duck_Shoot");
+	State.CreateState("Jump");
 	
 
 	State.SetUpdateFunction("Idle", std::bind(&APlay_Cuphead::Idle, this, std::placeholders::_1));
@@ -42,6 +43,9 @@ void APlay_Cuphead::StateInit()
 
 	State.SetUpdateFunction("Duck_Shoot", std::bind(&APlay_Cuphead::Duck_Shoot, this, std::placeholders::_1));
 	State.SetStartFunction("Duck_Shoot", [=] {PlayCuphead->ChangeAnimation("Duck_Shoot"); });
+
+	State.SetUpdateFunction("Jump", std::bind(&APlay_Cuphead::Jump, this, std::placeholders::_1));
+	State.SetStartFunction("Jump", [=] {PlayCuphead->ChangeAnimation("Jump"); });
 
 	//State.SetUpdateFunction("Duck", std::bind(&APlay_Cuphead::Duck, this, std::placeholders::_1));
 	//State.SetStartFunction("Duck", [=] {PlayCuphead->ChangeAnimation("Duck"); });
@@ -80,6 +84,49 @@ void APlay_Cuphead::DirCheck()
 	}
 }
 
+void APlay_Cuphead::MoveUpDate(float _DeltaTime, FVector _MovePos)
+{
+	std::shared_ptr<UEngineTexture> Tex = UContentsHelper::MapTex;
+
+#ifdef _DEBUG
+	if (nullptr == Tex)
+	{
+		MsgBoxAssert("이미지 충돌체크중 이미지가 존재하지 않습니다.");
+	}
+#endif
+
+	// 방향 별 픽셀 충돌 인식 범위
+	float4 Pos = GetActorLocation();
+
+	switch (Dir)
+	{
+	case EDir::Left:
+		Pos.X -= 30.0f;
+		break;
+	case EDir::Right:
+		Pos.X += 30.0f;
+		break;
+	case EDir::Up:
+		Pos.Y += 30.0f;
+		break;
+	case EDir::Down:
+		Pos.Y -= 30.0f;
+		break;
+	default:
+		break;
+	}
+
+	//Color8Bit Color = Tex->GetColor(Pos.iX(), Pos.iY(), Color8Bit::BlackA);
+
+	//if (Color == Color8Bit::Black)
+	//{
+		//_MovePos = FVector::Zero;
+	//}
+
+	AddActorLocation(_MovePos);
+
+}
+
 
 void APlay_Cuphead::Idle(float _Update)
 {
@@ -108,11 +155,19 @@ void APlay_Cuphead::Idle(float _Update)
 		State.ChangeState("Shoot_Straight");
 		return;
 	}
+
+	if (true == IsDown('Z'))
+	{
+		State.ChangeState("Jump");
+		return;
+	}
 }
 
 void APlay_Cuphead::Run(float  _DeltaTime)
 {
 	DirCheck();
+
+	FVector MovePos = FVector::Zero;
 	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
 	{
 		State.ChangeState("Idle");
@@ -131,24 +186,49 @@ void APlay_Cuphead::Run(float  _DeltaTime)
 		return;
 	}
 
+	if (true == IsDown('Z'))
+	{
+		State.ChangeState("Jump");
+		return;
+	}
+
 	if (true == IsPress(VK_LEFT))
 	{
-		AddActorLocation(FVector::Left * _DeltaTime * Speed);
+		MovePos+=FVector::Left * _DeltaTime * Speed;
 	}
 
 	if (true == IsPress(VK_RIGHT))
 	{
-		AddActorLocation(FVector::Right * _DeltaTime * Speed);
+		MovePos += FVector::Right * _DeltaTime * Speed;
 	}
+
+	MoveUpDate(_DeltaTime, MovePos);
 }
 
 void APlay_Cuphead::Run_Shoot_Straight(float  _DeltaTime)
 {
 	DirCheck();
 
+	FVector MovePos = FVector::Zero;
 	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT) && true == IsFree('X'))
 	{
 		State.ChangeState("Idle");
+		return;
+	}
+
+	if (true == IsPress(VK_LEFT))
+	{
+		MovePos += FVector::Left * _DeltaTime * Speed;
+	}
+
+	if (true == IsPress(VK_RIGHT))
+	{
+		MovePos += FVector::Right * _DeltaTime * Speed;
+	}
+
+	if (true == IsFree('X'))
+	{
+		State.ChangeState("Run");
 		return;
 	}
 
@@ -158,26 +238,13 @@ void APlay_Cuphead::Run_Shoot_Straight(float  _DeltaTime)
 		return;
 	}
 
-	if (true == IsPress(VK_LEFT))
-	{
-		AddActorLocation(FVector::Left * _DeltaTime * Speed);
-	}
-
-	if (true == IsPress(VK_RIGHT))
-	{
-		AddActorLocation(FVector::Right * _DeltaTime * Speed);
-	}
-
-	if (true == IsFree('X'))
-	{
-		State.ChangeState("Run");
-		return;
-	}
+	MoveUpDate(_DeltaTime, MovePos);
 }
 
 void APlay_Cuphead::Dash(float _DeltaTime)
 {
 	DirCheck();
+	FVector MovePos = FVector::Zero;
 	if (true == PlayCuphead->IsCurAnimationEnd())
 	{
 		State.ChangeState("Idle");
@@ -187,14 +254,15 @@ void APlay_Cuphead::Dash(float _DeltaTime)
 	switch (Dir)
 	{
 	case EDir::Left:
-		AddActorLocation(FVector::Left * _DeltaTime * DashSpeed);
+		MovePos+=FVector::Left * _DeltaTime * DashSpeed;
 		break;
 	case EDir::Right:
-		AddActorLocation(FVector::Right * _DeltaTime * DashSpeed);
+		MovePos += FVector::Right * _DeltaTime * DashSpeed;
 		break;
 	default:
 		break;
 	}
+	MoveUpDate(_DeltaTime, MovePos);
 }
 
 void APlay_Cuphead::Duck(float _DeltaTime)
@@ -203,6 +271,12 @@ void APlay_Cuphead::Duck(float _DeltaTime)
 	if (true == IsFree(VK_DOWN))
 	{
 		State.ChangeState("Idle");
+		return;
+	}
+
+	if (true == IsPress('X'))
+	{
+		State.ChangeState("Duck_Shoot");
 		return;
 	}
 }
@@ -215,6 +289,12 @@ void APlay_Cuphead::Shoot_Straight(float _DeltaTime)
 		State.ChangeState("Idle");
 		return;
 	}
+
+	if (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT))
+	{
+		State.ChangeState("Run_Shoot_Straight");
+		return;
+	}
 }
 
 void APlay_Cuphead::Duck_Shoot(float _DeltaTime)
@@ -224,6 +304,17 @@ void APlay_Cuphead::Duck_Shoot(float _DeltaTime)
 	if (true == IsFree('X'))
 	{
 		State.ChangeState("Duck");
+		return;
+	}
+}
+
+void APlay_Cuphead::Jump(float _DeltaTime)
+{
+	DirCheck();
+
+	if (true == PlayCuphead->IsCurAnimationEnd())
+	{
+		State.ChangeState("Idle");
 		return;
 	}
 }

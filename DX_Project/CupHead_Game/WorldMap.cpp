@@ -33,7 +33,7 @@ void AWorldMap::Tick(float _DeltaTime)
 
 void AWorldMap::SetMapImage()
 {
-	SetActorLocation(FVector(0.0f, 0.0f, 50.0f));
+	//SetActorLocation(FVector(0.0f, 0.0f, 50.0f));
 	MapRenderer->SetOrder(ERenderOrder::WorldMap);
 	MapRenderer->SetSprite("WorldMap.png");
 	MapRenderer->SetSamplering(ETextureSampling::LINEAR);

@@ -24,6 +24,7 @@ protected:
 	void Tick(float _DeltaTime) override;
 
 	void DirCheck() override;
+	void MoveUpDate(float _DeltaTime, FVector _MovePos) override;
 private:
 	USpriteRenderer* WorldPlayerRenderer = nullptr;
 
@@ -31,7 +32,6 @@ private:
 
 
 	void DebugMessageFunction();
-	void MoveUpDate(float _DeltaTime,FVector _MovePos);
 	///////////////////////// State
 	void StateInit();
 
