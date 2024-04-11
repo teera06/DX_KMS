@@ -3,10 +3,24 @@
 #include "ContentsHelper.h"
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/EngineEnums.h>
+#include <EngineCore/EngineDebugMsgWindow.h>
 //void Function(URenderer* Renderer)
 //{
 //	Renderer->ChangeAnimation("Idle");
 //}
+
+void AWorldPlayer::DebugMessageFunction()
+{
+	{
+		std::string Msg = std::format("PlayerPos : {}\n", GetActorLocation().ToString());
+		UEngineDebugMsgWindow::PushMsg(Msg);
+	}
+
+	{
+		std::string Msg = std::format("MousePos : {}\n", GEngine->EngineWindow.GetScreenMousePos().ToString());
+		UEngineDebugMsgWindow::PushMsg(Msg);
+	}
+}
 
 void AWorldPlayer::StateInit()
 {

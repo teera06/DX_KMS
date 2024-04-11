@@ -46,4 +46,5 @@ void AWorldPlayer::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 	State.Update(_DeltaTime);
+	DebugMessageFunction();
 }
