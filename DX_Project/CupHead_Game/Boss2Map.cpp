@@ -5,6 +5,7 @@ ABoss2Map::ABoss2Map()
 {
 	back2Map = CreateDefaultSubObject<USpriteRenderer>("back2");
 	crowd2 = CreateDefaultSubObject<USpriteRenderer>("crowd2");
+	JazzGirls = CreateDefaultSubObject<USpriteRenderer>("JazzGirls");
 }
 
 ABoss2Map::~ABoss2Map()
@@ -27,6 +28,14 @@ void ABoss2Map::BeginPlay()
 	crowd2->ChangeAnimation("B");
 
 	crowd2->SetAutoSize(1.0f, true);
+
+	JazzGirls->SetOrder(ERenderOrder::Boss1_crowd2);
+	JazzGirls->SetSprite("jazz_girls_0001.png");
+	JazzGirls->SetSamplering(ETextureSampling::LINEAR);
+	JazzGirls->CreateAnimation("Jazz Girls", "Jazz Girls", 0.1f);
+	JazzGirls->ChangeAnimation("Jazz Girls");
+
+	JazzGirls->SetAutoSize(1.0f, true);
 }
 
 void ABoss2Map::Tick(float _DeltaTime)

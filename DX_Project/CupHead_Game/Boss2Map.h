@@ -22,5 +22,6 @@ protected:
 private:
 	USpriteRenderer* back2Map = nullptr;
 	USpriteRenderer* crowd2 = nullptr;
+	USpriteRenderer* JazzGirls = nullptr;
 };
 
