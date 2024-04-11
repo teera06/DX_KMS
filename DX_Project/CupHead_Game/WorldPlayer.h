@@ -2,7 +2,7 @@
 #include <Enginecore/Actor.h>
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/StateManager.h>
-
+#include "ContentsENum.h"
 class AWorldPlayer : public AActor
 {
 	GENERATED_BODY(AActor)
@@ -25,6 +25,8 @@ private:
 	USpriteRenderer* WorldPlayerRenderer = nullptr;
 
 	float Speed = 300.0f;
+
+	EDir Dir = EDir::None;
 
 	void DebugMessageFunction();
 	void DirCheck();

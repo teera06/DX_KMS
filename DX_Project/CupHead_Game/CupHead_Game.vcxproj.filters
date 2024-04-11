@@ -115,6 +115,9 @@
     <ClCompile Include="Boss3Map.cpp">
       <Filter>PlayStage\Map</Filter>
     </ClCompile>
+    <ClCompile Include="WorldBack.cpp">
+      <Filter>WorldStage\Actor\Map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -163,6 +166,9 @@
     </ClInclude>
     <ClInclude Include="Boss3Map.h">
       <Filter>PlayStage\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldBack.h">
+      <Filter>WorldStage\Actor\Map</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

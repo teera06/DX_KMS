@@ -1,7 +1,7 @@
 #pragma once
 #include <Enginecore/Actor.h>
-#include <EngineCore/SpriteRenderer.h>
 
+class USpriteRenderer;
 class AWorldMap : public AActor
 {
 	GENERATED_BODY(AActor)
@@ -17,14 +17,10 @@ public:
 	AWorldMap& operator=(AWorldMap&& _Other) noexcept = delete;
 
 	void SetMapImage(); // ∏  ¿ÃπÃ¡ˆ Set
-	void SetColMapImage(); // «»ºø √Êµπ ∏  ¿ÃπÃ¡ˆ Set
-
-	void SwitchDebug();
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 private:
 	USpriteRenderer* MapRenderer = nullptr;
-	USpriteRenderer* ColRenderer = nullptr;
 };
 

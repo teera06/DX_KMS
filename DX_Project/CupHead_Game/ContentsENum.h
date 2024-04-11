@@ -15,6 +15,15 @@ enum class EPlayerState
 	MaxAtt
 };
 
+enum class EDir
+{
+	None,
+	Left,
+	Right,
+	Up,
+	Down
+};
+
 enum class ERenderOrder
 {
 	background,

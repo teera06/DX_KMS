@@ -4,7 +4,7 @@ class UContentsHelper
 {
 public:
 	static std::shared_ptr<UEngineTexture> MapTex;
-
+	static float4 MapTexScale;
 	static int StageCount;
 	// Stage 0 타이틀
 	// Stage 1 월드맵

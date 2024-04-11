@@ -27,10 +27,20 @@ void AWorldPlayer::DirCheck()
 	if (UEngineInput::IsPress(VK_LEFT))
 	{
 		WorldPlayerRenderer->SetDir(EEngineDir::Left);
+		Dir = EDir::Left;
 	}
 	if (UEngineInput::IsPress(VK_RIGHT))
 	{
 		WorldPlayerRenderer->SetDir(EEngineDir::Right);
+		Dir = EDir::Right;
+	}
+	if (UEngineInput::IsPress(VK_UP))
+	{
+		Dir = EDir::Up;
+	}
+	if (UEngineInput::IsPress(VK_DOWN))
+	{
+		Dir = EDir::Down;
 	}
 }
 
@@ -45,11 +55,30 @@ void AWorldPlayer::MoveUpDate(float _DeltaTime, FVector _MovePos)
 	}
 #endif
 
+	// 방향 별 픽셀 충돌 인식 범위
 	float4 Pos = GetActorLocation();
 
-	Color8Bit Color = Tex->GetColor(Pos, Color8Bit::Black);
+	switch (Dir)
+	{
+	case EDir::Left:
+		Pos.X-= 30.0f;
+		break;
+	case EDir::Right:
+		Pos.X += 30.0f;
+		break;
+	case EDir::Up:
+		Pos.Y += 30.0f;
+		break;
+	case EDir::Down:
+		Pos.Y -= 30.0f;
+		break;
+	default:
+		break;
+	}
 
-	if (Color != Color8Bit::Black)
+	Color8Bit Color = Tex->GetColor(Pos.iX(),Pos.iY(), Color8Bit::BlackA);
+
+	if (Color == Color8Bit::Black)
 	{
 		_MovePos = FVector::Zero;
 	}
