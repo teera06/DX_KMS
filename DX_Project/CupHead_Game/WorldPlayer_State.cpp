@@ -65,16 +65,16 @@ void AWorldPlayer::MoveUpDate(float _DeltaTime, FVector _MovePos)
 	switch (Dir)
 	{
 	case EDir::Left:
-		//Pos.X-= 30.0f;
+		Pos.X-= 30.0f;
 		break;
 	case EDir::Right:
-		//Pos.X += 30.0f;
+		Pos.X += 30.0f;
 		break;
 	case EDir::Up:
-		//Pos.Y += 30.0f;
+		Pos.Y -= 30.0f;
 		break;
 	case EDir::Down:
-		//Pos.Y -= 30.0f;
+		Pos.Y += 30.0f;
 		break;
 	default:
 		break;
