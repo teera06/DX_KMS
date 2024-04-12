@@ -1,5 +1,6 @@
 #pragma once
 #include <EngineCore/Actor.h>
+#include <EngineCore/StateManager.h>
 class USpriteRenderer;
 class ABoss1_Monster1 : public AActor
 {
@@ -16,6 +17,7 @@ public:
 	ABoss1_Monster1& operator=(const ABoss1_Monster1& _Other) = delete; // 디폴트 대입 연산자
 	ABoss1_Monster1& operator=(ABoss1_Monster1&& _Other) noexcept = delete;
 
+	UStateManager State;
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -23,8 +25,14 @@ private:
 
 	USpriteRenderer* Boss1 = nullptr;
 
-	float coolDownTime = 3.0f;
+	float coolDownTime = 6.0f;
 
 	bool att = false;
+
+	// 상태 
+	void StateInit();
+
+	void Boss1Idle(float _DeltaTime);
+	void Boss1FistAttack(float _DeltaTime);
 };
 

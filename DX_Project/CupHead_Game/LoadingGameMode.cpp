@@ -34,12 +34,12 @@ void ALoadingGameMode::Tick(float _DeltaTime)
 	coolDowntime -= _DeltaTime;
 	if (0 > coolDowntime && 1 == UContentsHelper::StageCount)
 	{
-		GEngine->ChangeLevel("WorldLevel");
+		GEngine->ChangeLevel("BossStage1GameMode");
 		coolDowntime = 6.0f;
 		UContentsHelper::StageCount = 2;
 	}else if (0 > coolDowntime && 2 == UContentsHelper::StageCount)
 	{
-		GEngine->ChangeLevel("BossStage1GameMode");
+		GEngine->ChangeLevel("WorldLevel");
 		//coolDowntime = 6.0f;
 		//UPlayerCommon::StageCount = 2;
 	}
@@ -54,7 +54,7 @@ void ALoadingGameMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
 
-	if (1 == UContentsHelper::StageCount)
+	if (2 == UContentsHelper::StageCount)
 	{
 		{
 			UEngineDirectory Dir;
@@ -89,7 +89,7 @@ void ALoadingGameMode::LevelStart(ULevel* _PrevLevel)
 			//UEngineSprite::CreateCutting("CharRun0.png", 0, 6);
 		}
 		GEngine->CreateLevel<AWorldGameMode>("WorldLevel");
-	}else if (2 == UContentsHelper::StageCount)
+	}else if (1 == UContentsHelper::StageCount)
 	{
 		{
 			UEngineDirectory Dir;

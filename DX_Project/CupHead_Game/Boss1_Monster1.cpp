@@ -30,8 +30,7 @@ void ABoss1_Monster1::BeginPlay()
 	Boss1->CreateAnimation("Boss1Idle", "Boss1Idle", 0.1f);
 	Boss1->CreateAnimation("Boss1Fist Attack", "Boss1Fist Attack", 0.1f);
 
-	Boss1->ChangeAnimation("Boss1Idle");
-
+	StateInit();
 	Boss1->SetAutoSize(1.0f, true);
 }
 
@@ -40,16 +39,39 @@ void ABoss1_Monster1::Tick(float _DeltaTime)
 	Super::Tick(_DeltaTime);
 
 	coolDownTime -= _DeltaTime;
+	State.Update(_DeltaTime);
 
-	if (coolDownTime < 0 && false == att)
+}
+
+void ABoss1_Monster1::StateInit()
+{
+	State.CreateState("Boss1Idle");
+	State.CreateState("Boss1Fist Attack");
+
+	State.SetUpdateFunction("Boss1Idle", std::bind(&ABoss1_Monster1::Boss1Idle, this, std::placeholders::_1));
+	State.SetStartFunction("Boss1Idle", [=] {Boss1->ChangeAnimation("Boss1Idle"); });
+
+	State.SetUpdateFunction("Boss1Fist Attack", std::bind(&ABoss1_Monster1::Boss1FistAttack, this, std::placeholders::_1));
+	State.SetStartFunction("Boss1Fist Attack", [=] {Boss1->ChangeAnimation("Boss1Fist Attack"); });
+
+	State.ChangeState("Boss1Idle");
+}
+
+void ABoss1_Monster1::Boss1Idle(float _DeltaTime)
+{
+	if (coolDownTime < 0)
 	{
-		Boss1->ChangeAnimation("Boss1Fist Attack");
-		att = true;
-		if (true == Boss1->IsCurAnimationEnd())
-		{
-			coolDownTime = 3.0f;
-			att = false;
-		}
+		State.ChangeState("Boss1Fist Attack");
+		return;
 	}
+}
 
+void ABoss1_Monster1::Boss1FistAttack(float _DeltaTime)
+{
+	if (true == Boss1->IsCurAnimationEnd())
+	{
+		coolDownTime = 6.0f;
+		State.ChangeState("Boss1Idle");
+		return;
+	}
 }
