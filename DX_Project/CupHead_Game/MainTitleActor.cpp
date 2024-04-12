@@ -1,11 +1,26 @@
 #include "PreCompile.h"
 #include "MainTitleActor.h"
 #include "ContentsENum.h"
+#include <EngineCore/DefaultSceneComponent.h>
 
 AMainTitleActor::AMainTitleActor()
 {
+
+	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("title");
+
 	titleRenderer = CreateDefaultSubObject<USpriteRenderer>("titleRenderer");
+
 	CupRenderer = CreateDefaultSubObject<USpriteRenderer>("CupRenderer");
+
+	//Renderer->SetScale(FVector(100.0f, 100.0f, 100.0f));
+	titleRenderer->SetupAttachment(Root);
+	CupRenderer->SetupAttachment(Root);
+
+	//USpriteRenderer* ChildRenderer = CreateDefaultSubObject<USpriteRenderer>("Renderer");
+	//ChildRenderer->SetupAttachment(Root);
+	//ChildRenderer->SetScale(FVector(100.0f, 100.0f, 100.0f));
+	CupRenderer->AddPosition({ 0.0f, -55.0f, 0.0f });
+	SetRoot(Root);
 }
 
 AMainTitleActor::~AMainTitleActor()
