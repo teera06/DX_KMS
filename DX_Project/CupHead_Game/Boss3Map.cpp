@@ -30,15 +30,15 @@ void ABoss3Map::BeginPlay()
 
 	crowd3->SetAutoSize(1.0f, true);
 
-	//Object1->SetOrder(ERenderOrder::Object);
-	//Object1->SetSprite("table.png");
+	Object1->SetOrder(ERenderOrder::Object);
+	Object1->SetSprite("table.png");
 
-	//Object1->SetAutoSize(1.0f, true);
+	Object1->SetAutoSize(1.0f, true);
 
-	//Object2->SetOrder(ERenderOrder::Object);
-	//Object2->SetSprite("C8.png");
+	Object2->SetOrder(ERenderOrder::Object);
+	Object2->SetSprite("C8.png");
 
-	//Object2->SetAutoSize(1.0f, true);
+	Object2->SetAutoSize(1.0f, true);
 }
 
 void ABoss3Map::Tick(float _DeltaTime)
