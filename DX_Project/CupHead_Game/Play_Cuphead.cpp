@@ -11,6 +11,7 @@ APlay_Cuphead::APlay_Cuphead()
 	PlayCuphead = CreateDefaultSubObject<USpriteRenderer>("WorldPlayer");
 
 	PlayCuphead->SetupAttachment(Root);
+	PlayCuphead->SetPivot(EPivot::BOT);
 
 	SetRoot(Root);
 	InputOn();

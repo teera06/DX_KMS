@@ -10,7 +10,7 @@ ABoss1_Monster1::ABoss1_Monster1()
 	Boss1 = CreateDefaultSubObject<USpriteRenderer>("Boss1");
 
 	Boss1->SetupAttachment(Root);
-
+	Boss1->SetPivot(EPivot::BOT);
 	SetRoot(Root);
 }
 

@@ -18,8 +18,8 @@ ABoss3Map::ABoss3Map()
 	Object1->SetupAttachment(Root);
 	Object2->SetupAttachment(Root);
 
-	Object1->AddPosition({ 0.0f, -350.0f, 50.0f });
-	Object2->AddPosition({ 0.0f, -350.0f, 50.0f });
+	Object1->AddPosition({ 0.0f, -355.0f, 50.0f });
+	Object2->AddPosition({ 0.0f, -350.0f, -90.0f });
 	crowd3->AddPosition({ 9.0f, -60.0f, 80.0f });
 	SetRoot(Root);
 }
@@ -48,12 +48,12 @@ void ABoss3Map::BeginPlay()
 	Object1->SetOrder(ERenderOrder::Object1);
 	Object1->SetSprite("table.png");
 
-	Object1->SetAutoSize(2.0f, true);
+	Object1->SetAutoSize(2.1f, true);
 
 	Object2->SetOrder(ERenderOrder::Object2);
 	Object2->SetSprite("C8.png");
 
-	Object2->SetAutoSize(2.0f, true);
+	Object2->SetAutoSize(1.3f, true);
 }
 
 void ABoss3Map::Tick(float _DeltaTime)
