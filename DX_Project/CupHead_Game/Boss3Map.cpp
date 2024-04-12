@@ -19,7 +19,7 @@ ABoss3Map::ABoss3Map()
 	Object2->SetupAttachment(Root);
 
 	Object1->AddPosition({ 0.0f, -355.0f, 50.0f });
-	Object2->AddPosition({ 0.0f, -350.0f, -90.0f });
+	Object2->AddPosition({ 0.0f, -380.0f, -90.0f });
 	crowd3->AddPosition({ 9.0f, -60.0f, 80.0f });
 	SetRoot(Root);
 }

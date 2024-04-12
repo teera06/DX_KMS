@@ -22,5 +22,9 @@ protected:
 private:
 
 	USpriteRenderer* Boss1 = nullptr;
+
+	float coolDownTime = 3.0f;
+
+	bool att = false;
 };
 

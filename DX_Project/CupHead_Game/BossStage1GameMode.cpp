@@ -7,6 +7,7 @@
 #include "ScreenEffect.h"
 #include "Play_Cuphead.h"
 #include "Boss1_Monster1.h"
+#include "Boss1_Monster2.h"
 #include "ContentsHelper.h"
 
 #include <EngineCore/Camera.h>
@@ -32,6 +33,7 @@ void ABossStage1GameMode::BeginPlay()
 	GetWorld()->SpawnActor<ABoss3Map>("Boss3Map");
 	GetWorld()->SpawnActor<APlay_Cuphead>("Play_Cuphead");
 	GetWorld()->SpawnActor<ABoss1_Monster1>("Boss1_Monster1");
+	GetWorld()->SpawnActor<ABoss1_Monster2>("Boss1_Monster2");
 	GetWorld()->SpawnActor<AScreenEffect>("ScreenEffect");
 
 }

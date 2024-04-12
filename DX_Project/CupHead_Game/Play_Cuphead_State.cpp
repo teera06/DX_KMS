@@ -9,6 +9,7 @@
 //	Renderer->ChangeAnimation("Idle");
 //}
 
+// 콜리전으로 충돌 하기
 void APlay_Cuphead::StateInit()
 {
 	// 스테이트 만들고

@@ -6,7 +6,7 @@
 
 ABoss1_Monster1::ABoss1_Monster1()
 {
-	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("ScreenEffect");
+	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("Boss1");
 	Boss1 = CreateDefaultSubObject<USpriteRenderer>("Boss1");
 
 	Boss1->SetupAttachment(Root);
@@ -23,11 +23,12 @@ void ABoss1_Monster1::BeginPlay()
 	Super::BeginPlay();
 
 	//SetActorScale3D(FVector(324.0f, 350.0f, 0.0f));
-	SetActorLocation(FVector(450.0f, -100.0f, 0.0f));
-	Boss1->SetOrder(ERenderOrder::Monster);
+	SetActorLocation(FVector(400.0f, -250.0f, 0.0f));
+	Boss1->SetOrder(ERenderOrder::Monster2);
 	Boss1->SetSprite("shortFrog_idle_0001.png");
 	Boss1->SetSamplering(ETextureSampling::LINEAR);
 	Boss1->CreateAnimation("Boss1Idle", "Boss1Idle", 0.1f);
+	Boss1->CreateAnimation("Boss1Fist Attack", "Boss1Fist Attack", 0.1f);
 
 	Boss1->ChangeAnimation("Boss1Idle");
 
@@ -37,5 +38,18 @@ void ABoss1_Monster1::BeginPlay()
 void ABoss1_Monster1::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+	coolDownTime -= _DeltaTime;
+
+	if (coolDownTime < 0 && false == att)
+	{
+		Boss1->ChangeAnimation("Boss1Fist Attack");
+		att = true;
+		if (true == Boss1->IsCurAnimationEnd())
+		{
+			coolDownTime = 3.0f;
+			att = false;
+		}
+	}
 
 }
