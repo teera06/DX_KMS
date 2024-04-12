@@ -2,9 +2,17 @@
 #include "WorldPlayer.h"
 #include "ContentsENum.h"
 
+#include <EngineCore/DefaultSceneComponent.h>
+
 AWorldPlayer::AWorldPlayer()
 {
+	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("WorldMap");
+
 	WorldPlayerRenderer = CreateDefaultSubObject<USpriteRenderer>("WorldPlayer");
+
+	WorldPlayerRenderer->SetupAttachment(Root);
+
+	SetRoot(Root);
 	InputOn();
 }
 
@@ -15,7 +23,7 @@ AWorldPlayer::~AWorldPlayer()
 void AWorldPlayer::BeginPlay()
 {
 	Super::BeginPlay();
-	SetActorScale3D(FVector(10.0f, 10.0f, 100.0f));
+	//SetActorScale3D(FVector(10.0f, 10.0f, 100.0f));
 	SetActorLocation(FVector(1500.0f/2.0f, -1700.0f/2.0f, 50.0f));
 
 	//DelayCallBack(1.0f, std::bind(&ATitleLogo::RendererOff, this));

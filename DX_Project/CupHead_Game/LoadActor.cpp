@@ -2,10 +2,19 @@
 #include "LoadActor.h"
 #include "ContentsENum.h"
 
+#include <EngineCore/DefaultSceneComponent.h>
 ALoadActor::ALoadActor()
 {
+	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("LoadActor");
+
 	back = CreateDefaultSubObject<USpriteRenderer>("back");
 	timmer = CreateDefaultSubObject<USpriteRenderer>("timmer");
+
+	back->SetupAttachment(Root);
+	timmer->SetupAttachment(Root);
+
+	timmer->AddPosition({ 250.0f, -120.0f, 0.0f });
+	SetRoot(Root);
 }
 
 ALoadActor::~ALoadActor()
