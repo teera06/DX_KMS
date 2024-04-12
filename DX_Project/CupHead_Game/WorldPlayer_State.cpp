@@ -422,6 +422,12 @@ void AWorldPlayer::DiagonalUpWalk(float _DeltaTime)
 		return;
 	}
 
+	if (true == IsPress(VK_UP) && true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
+	{
+		State.ChangeState("DiagonalUpIdle");
+		return;
+	}
+
 	if (true == IsPress(VK_LEFT) && true == IsPress(VK_UP))
 	{
 		MovePos+=(FVector::Left+ FVector::Up) * _DeltaTime * Speed;
@@ -485,6 +491,11 @@ void AWorldPlayer::DiagonalDownWalk(float _DeltaTime)
 	DirCheck();
 	FVector MovePos = FVector::Zero;
 	if (true == IsFree(VK_DOWN))
+	{
+		State.ChangeState("DiagonalDownIdle");
+		return;
+	}
+	if (true == IsPress(VK_DOWN) && true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
 	{
 		State.ChangeState("DiagonalDownIdle");
 		return;
