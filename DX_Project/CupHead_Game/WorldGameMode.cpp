@@ -33,9 +33,8 @@ void AWorldGameMode::BeginPlay()
 
 		//Front->SetActorScale3D(ImageScale);
 		Front->SetActorLocation({ ImageScale.hX(), -ImageScale.hY(), 100.0f});
+		GetWorld()->SpawnActor<AScreenEffect>("ScreenEffect")->SetActorLocation({ ImageScale.hX(), -ImageScale.hY(), 0.0f });
 	}
-
-	GetWorld()->SpawnActor<AScreenEffect>("ScreenEffect");
 }
 
 void AWorldGameMode::Tick(float _DeltaTime)
