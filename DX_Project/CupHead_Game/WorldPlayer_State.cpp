@@ -61,6 +61,7 @@ void AWorldPlayer::MoveUpDate(float _DeltaTime, FVector _MovePos)
 	// 방향 별 픽셀 충돌 인식 범위
 	float4 Pos = GetActorLocation();
 
+	Pos.Y = -Pos.Y;
 	switch (Dir)
 	{
 	case EDir::Left:

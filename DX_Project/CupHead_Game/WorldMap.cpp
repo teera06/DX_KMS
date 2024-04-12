@@ -10,6 +10,7 @@ AWorldMap::AWorldMap()
 {
 	//MapRenderer = CreateDefaultSubObject<USpriteRenderer>("MapRenderer");
 	ColRenderer = CreateDefaultSubObject<USpriteRenderer>("ColRenderer");
+	InputOn();
 }
 
 AWorldMap::~AWorldMap()
@@ -18,9 +19,9 @@ AWorldMap::~AWorldMap()
 
 void AWorldMap::SetColMapImage()
 {
-	ColRenderer->SetOrder(ERenderOrder::WorldMap);
 	ColRenderer->SetSprite("WorldMap_PixelCheck.png");
-	UContentsHelper::MapTex = UEngineTexture::FindRes("WorldMap_PixelCheck.png");; // ÇÈ¼¿ Ãæµ¹ÇÒ ¸Ê ¼³Á¤
+	ColRenderer->SetOrder(ERenderOrder::WorldMap);
+	//UContentsHelper::MapTex = UEngineTexture::FindRes("WorldMap_PixelCheck.png");; // ÇÈ¼¿ Ãæµ¹ÇÒ ¸Ê ¼³Á¤
 	ColRenderer->SetAutoSize(1.0f, true);
 }
 
