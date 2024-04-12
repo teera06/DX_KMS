@@ -228,10 +228,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="WorldBack.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="WorldGameMode.h">
       <SubType>
       </SubType>
@@ -308,10 +304,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="ScreenEffect.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="WorldBack.cpp">
       <SubType>
       </SubType>
     </ClCompile>

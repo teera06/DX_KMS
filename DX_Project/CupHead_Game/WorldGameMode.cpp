@@ -3,7 +3,6 @@
 
 #include "ScreenEffect.h"
 #include "WorldMap.h"
-#include "WorldBack.h"
 #include "WorldPlayer.h"
 #include "ContentsHelper.h"
 
@@ -39,16 +38,6 @@ void AWorldGameMode::BeginPlay()
 		Front->SetActorLocation({ 0.0f, 0.0f, 100.0f });
 	}
 
-	GetWorld()->SpawnActor<AWorldBack>("WorldBack");
-	{
-		std::shared_ptr<AWorldBack> Back = GetWorld()->SpawnActor<AWorldBack>("WorldMap");
-
-		float4 TexScale = UContentsHelper::MapTexScale;
-		float4 ImageScale = { TexScale.X, TexScale.Y, 0.0f };
-
-		Back->SetActorScale3D(FVector(3844.0f,2211.0f,0.0f));
-		Back->SetActorLocation({ 0.0f, 0.0f, 100.0f });
-	}
 	GetWorld()->SpawnActor<AScreenEffect>("ScreenEffect");
 }
 
