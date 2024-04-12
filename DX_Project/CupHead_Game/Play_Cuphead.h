@@ -23,16 +23,23 @@ protected:
 	void Tick(float _DeltaTime) override;
 
 	void DirCheck() override;
-	void MoveUpDate(float _DeltaTime, FVector _MovePos) override;
+	void MoveUpDate(float _DeltaTime, FVector _MovePos = FVector::Zero) override;
 private:
 	// 상태에 따른 조작, 애니메이션 업데이트
 	//void StateAniChange(EActorState _State); // 커비의 움직임 상태에 맞는 애니메이션 실행
 	
 	USpriteRenderer* PlayCuphead= nullptr;
 
+	FVector GravityVector = FVector::Zero; // 중력값 받기
+
+	// 점프력 제어
+	FVector JumpPower = FVector::Up * 500.0f; // 이동할때의 점프력
+	FVector JumpVector = FVector::Zero; // 최종 점프력
+
 	float Speed = 500.0f;
 	float DashSpeed = 1000.0f;
-	bool LRCheck = false;
+
+	float Gravity = 700.0f;
 
 	//false =Left
 	// true = Right

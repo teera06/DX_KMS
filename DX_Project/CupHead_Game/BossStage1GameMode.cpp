@@ -7,6 +7,8 @@
 #include "ScreenEffect.h"
 #include "Play_Cuphead.h"
 #include "Boss1_Monster1.h"
+#include "ContentsHelper.h"
+
 #include <EngineCore/Camera.h>
 
 ABossStage1GameMode::ABossStage1GameMode()
@@ -20,6 +22,9 @@ ABossStage1GameMode::~ABossStage1GameMode()
 void ABossStage1GameMode::BeginPlay()
 {
 	Super::BeginPlay();
+	UContentsHelper::MapTex = UEngineTexture::FindRes("back3back.png");
+	UContentsHelper::MapTexScale = UContentsHelper::MapTex->GetScale();
+
 	std::shared_ptr<UCamera> Camera = GetWorld()->GetMainCamera();
 	Camera->SetActorLocation(FVector(0.0f, 0.0f, -100.0f));
 	GetWorld()->SpawnActor<ABoss1Map>("Boss1Map");

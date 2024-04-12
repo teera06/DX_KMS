@@ -95,8 +95,12 @@ void APlay_Cuphead::MoveUpDate(float _DeltaTime, FVector _MovePos)
 	}
 #endif
 
+
+
 	// 방향 별 픽셀 충돌 인식 범위
 	float4 Pos = GetActorLocation();
+	GravityVector += (FVector::Down * Gravity * _DeltaTime); // 중력은 계속 가해진다.
+	//Pos.Y = -Pos.Y;
 
 	switch (Dir)
 	{
@@ -106,29 +110,23 @@ void APlay_Cuphead::MoveUpDate(float _DeltaTime, FVector _MovePos)
 	case EDir::Right:
 		Pos.X += 30.0f;
 		break;
-	case EDir::Up:
-		Pos.Y += 30.0f;
-		break;
-	case EDir::Down:
-		Pos.Y -= 30.0f;
-		break;
 	default:
 		break;
 	}
 
-	//Color8Bit Color = Tex->GetColor(Pos.iX(), Pos.iY(), Color8Bit::BlackA);
+	Color8Bit Color = Tex->GetColor(Pos.iX(), Pos.iY(), Color8Bit::Black);
 
-	//if (Color == Color8Bit::Black)
-	//{
-		//_MovePos = FVector::Zero;
-	//}
+	if (Color == Color8Bit::Black)
+	{
+		GravityVector = FVector::Zero; // 중력의 힘은 0으로
+	}
 
-	AddActorLocation(_MovePos);
+	AddActorLocation(_MovePos+ GravityVector+(JumpVector* _DeltaTime));
 
 }
 
 
-void APlay_Cuphead::Idle(float _Update)
+void APlay_Cuphead::Idle(float _DeltaTime)
 {
 
 	DirCheck();
@@ -158,9 +156,12 @@ void APlay_Cuphead::Idle(float _Update)
 
 	if (true == IsDown('Z'))
 	{
+		JumpVector = JumpPower;
 		State.ChangeState("Jump");
 		return;
 	}
+
+	MoveUpDate(_DeltaTime);
 }
 
 void APlay_Cuphead::Run(float  _DeltaTime)
@@ -312,8 +313,16 @@ void APlay_Cuphead::Jump(float _DeltaTime)
 {
 	DirCheck();
 
+	std::shared_ptr<UEngineTexture> Tex = UContentsHelper::MapTex;
+	Color8Bit Color = Tex->GetColor(GetActorLocation().iX(), GetActorLocation().iY(), Color8Bit::Black);
+
+	if (Color == Color8Bit::Black)
+	{
+		//JumpVector = FVector::Zero;
+	}
 	if (true == PlayCuphead->IsCurAnimationEnd())
 	{
+		JumpVector = FVector::Zero;
 		State.ChangeState("Idle");
 		return;
 	}
