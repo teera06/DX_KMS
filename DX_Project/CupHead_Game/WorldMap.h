@@ -17,10 +17,12 @@ public:
 	AWorldMap& operator=(AWorldMap&& _Other) noexcept = delete;
 
 	void SetMapImage(); // ¸Ê ÀÌ¹ÌÁö Set
+	void SetColMapImage(); // ÇÈ¼¿ Ãæµ¹ ¸Ê ÀÌ¹ÌÁö Set
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 private:
-	USpriteRenderer* MapRenderer = nullptr;
+	//USpriteRenderer* MapRenderer = nullptr;
+	USpriteRenderer* ColRenderer = nullptr;
 };
 
