@@ -33,6 +33,6 @@ private:
 	void StateInit();
 
 	void Boss1Idle(float _DeltaTime);
-	void Boss1FistAttack(float _DeltaTime);
+	void Boss1ClapAttack(float _DeltaTime);
 };
 
