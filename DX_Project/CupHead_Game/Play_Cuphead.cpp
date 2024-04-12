@@ -3,10 +3,16 @@
 #include "ContentsENum.h"
 #include <EngineCore/Renderer.h>
 
-
+#include <EngineCore/DefaultSceneComponent.h>
 APlay_Cuphead::APlay_Cuphead()
 {
+	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("ScreenEffect");
+
 	PlayCuphead = CreateDefaultSubObject<USpriteRenderer>("WorldPlayer");
+
+	PlayCuphead->SetupAttachment(Root);
+
+	SetRoot(Root);
 	InputOn();
 }
 

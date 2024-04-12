@@ -1,11 +1,23 @@
 #include "PreCompile.h"
 #include "Boss2Map.h"
 #include "ContentsENum.h"
+
+#include <EngineCore/DefaultSceneComponent.h>
 ABoss2Map::ABoss2Map()
 {
+
+	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("ScreenEffect");
 	back2Map = CreateDefaultSubObject<USpriteRenderer>("back2");
 	crowd2 = CreateDefaultSubObject<USpriteRenderer>("crowd2");
 	JazzGirls = CreateDefaultSubObject<USpriteRenderer>("JazzGirls");
+
+	back2Map->SetupAttachment(Root);
+	crowd2->SetupAttachment(Root);
+	JazzGirls->SetupAttachment(Root);
+
+	crowd2->AddPosition({ -350.0f,-150.0f,0.0f });
+	JazzGirls->AddPosition({ 20.0f,-78.0f,0.0f });
+	SetRoot(Root);
 }
 
 ABoss2Map::~ABoss2Map()

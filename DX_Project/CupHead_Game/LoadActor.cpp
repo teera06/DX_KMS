@@ -13,7 +13,7 @@ ALoadActor::ALoadActor()
 	back->SetupAttachment(Root);
 	timmer->SetupAttachment(Root);
 
-	timmer->AddPosition({ 250.0f, -120.0f, 0.0f });
+	timmer->AddPosition({ 380.0f, -150.0f, 0.0f });
 	SetRoot(Root);
 }
 

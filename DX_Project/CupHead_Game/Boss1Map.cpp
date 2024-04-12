@@ -1,10 +1,16 @@
 #include "PreCompile.h"
 #include "Boss1Map.h"
 #include "ContentsENum.h"
+#include <EngineCore/DefaultSceneComponent.h>
 
 ABoss1Map::ABoss1Map()
 {
+	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("ScreenEffect");
 	back1Map = CreateDefaultSubObject<USpriteRenderer>("back1");
+
+	back1Map->SetupAttachment(Root);
+
+	SetRoot(Root);
 	//back3Map = CreateDefaultSubObject<USpriteRenderer>("back3");
 }
 
