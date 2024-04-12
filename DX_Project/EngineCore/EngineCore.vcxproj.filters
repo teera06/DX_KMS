@@ -362,6 +362,9 @@
     <ClInclude Include="imstb_truetype.h">
       <Filter>Editor\Imgui</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\GM\DX\DirectX\EngineCore\EngineDefines.h">
+      <Filter>Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="ThirdParty\DirectxTex\Debug\DirectXTex.lib">

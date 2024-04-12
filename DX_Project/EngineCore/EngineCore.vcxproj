@@ -167,6 +167,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\GM\DX\DirectX\EngineCore\EngineDefines.h" />
     <ClInclude Include="Actor.h">
       <SubType>
       </SubType>
