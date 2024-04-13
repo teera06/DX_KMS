@@ -23,7 +23,7 @@ void ABoss1_Monster1::BeginPlay()
 	Super::BeginPlay();
 
 	//SetActorScale3D(FVector(324.0f, 350.0f, 0.0f));
-	SetActorLocation(FVector(400.0f, -250.0f, 0.0f));
+	SetActorLocation(FVector(380.0f, -280.0f, 0.0f));
 	Boss1->SetOrder(ERenderOrder::Monster2);
 	Boss1->SetSprite("shortFrog_idle_0001.png");
 	Boss1->SetSamplering(ETextureSampling::LINEAR);
