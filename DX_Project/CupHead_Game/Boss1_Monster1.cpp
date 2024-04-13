@@ -30,7 +30,7 @@ void ABoss1_Monster1::BeginPlay()
 	Boss1->CreateAnimation("smallIdle", "smallIdle", 0.1f);
 	Boss1->CreateAnimation("smallatt", "smallatt", 0.1f);
 
-	StateInit();
+	Phase1StateInit();
 	Boss1->SetAutoSize(1.0f, true);
 }
 
@@ -39,30 +39,30 @@ void ABoss1_Monster1::Tick(float _DeltaTime)
 	Super::Tick(_DeltaTime);
 
 	coolDownTime -= _DeltaTime;
-	State.Update(_DeltaTime);
+	Phase1.Update(_DeltaTime);
 
 }
 
-void ABoss1_Monster1::StateInit()
+void ABoss1_Monster1::Phase1StateInit()
 {
-	State.CreateState("smallIdle");
-	State.CreateState("smallattready");
-	State.CreateState("smallatt");
+	Phase1.CreateState("smallIdle");
+	Phase1.CreateState("smallattready");
+	Phase1.CreateState("smallatt");
 
-	State.SetUpdateFunction("smallIdle", std::bind(&ABoss1_Monster1::smallIdle, this, std::placeholders::_1));
-	State.SetStartFunction("smallIdle", [=] {Boss1->ChangeAnimation("smallIdle"); });
+	Phase1.SetUpdateFunction("smallIdle", std::bind(&ABoss1_Monster1::smallIdle, this, std::placeholders::_1));
+	Phase1.SetStartFunction("smallIdle", [=] {Boss1->ChangeAnimation("smallIdle"); });
 
-	State.SetUpdateFunction("smallatt", std::bind(&ABoss1_Monster1::smallatt, this, std::placeholders::_1));
-	State.SetStartFunction("smallatt", [=] {Boss1->ChangeAnimation("smallatt"); });
+	Phase1.SetUpdateFunction("smallatt", std::bind(&ABoss1_Monster1::smallatt, this, std::placeholders::_1));
+	Phase1.SetStartFunction("smallatt", [=] {Boss1->ChangeAnimation("smallatt"); });
 
-	State.ChangeState("smallIdle");
+	Phase1.ChangeState("smallIdle");
 }
 
 void ABoss1_Monster1::smallIdle(float _DeltaTime)
 {
 	if (coolDownTime < 0)
 	{
-		State.ChangeState("smallatt");
+		Phase1.ChangeState("smallatt");
 		return;
 	}
 }
@@ -77,7 +77,7 @@ void ABoss1_Monster1::smallatt(float _DeltaTime)
 
 	if (count > 3)
 	{
-		State.ChangeState("smallIdle");
+		Phase1.ChangeState("smallIdle");
 		coolDownTime = 6.0f;
 		count = 0;
 		return;
