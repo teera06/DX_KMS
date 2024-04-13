@@ -42,5 +42,21 @@ void ABoss1_Monster2::Tick(float _DeltaTime)
 
 void ABoss1_Monster2::Phase1StateInit()
 {
+	Phase1.CreateState("bigIdle");
+	
+
+	Phase1.SetUpdateFunction("bigIdle", std::bind(&ABoss1_Monster2::bigIdle, this, std::placeholders::_1));
+	Phase1.SetStartFunction("bigIdle", [=] {BigBoss1->ChangeAnimation("bigIdle"); });
+
+	
+	Phase1.ChangeState("bigIdle");
+}
+
+void ABoss1_Monster2::bigIdle(float _DeltaTime)
+{
+}
+
+void ABoss1_Monster2::bigatt(float _DeltaTime)
+{
 
 }

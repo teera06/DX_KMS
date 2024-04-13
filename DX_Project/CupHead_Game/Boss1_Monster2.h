@@ -24,5 +24,8 @@ protected:
 	void Phase1StateInit() override;
 private:
 	USpriteRenderer* BigBoss1 = nullptr;
+
+	void bigIdle(float _DeltaTime);
+	void bigatt(float _DeltaTime);
 };
 

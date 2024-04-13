@@ -1,6 +1,5 @@
 #pragma once
 #include <EngineCore/Actor.h>
-#include <EngineCore/StateManager.h>
 
 #include "Boss1Common.h"
 class USpriteRenderer;
