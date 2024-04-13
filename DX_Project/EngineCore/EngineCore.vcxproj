@@ -167,7 +167,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\GM\DX\DirectX\EngineCore\Collision.h" />
     <ClInclude Include="..\..\..\GM\DX\DirectX\EngineCore\EngineDefines.h" />
     <ClInclude Include="Actor.h">
       <SubType>
@@ -181,6 +180,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Collision.h" />
     <ClInclude Include="DefaultSceneComponent.h">
       <SubType>
       </SubType>
@@ -327,7 +327,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\GM\DX\DirectX\EngineCore\Collision.cpp" />
     <ClCompile Include="Actor.cpp">
       <SubType>
       </SubType>
@@ -340,6 +339,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Collision.cpp" />
     <ClCompile Include="DefaultSceneComponent.cpp">
       <SubType>
       </SubType>

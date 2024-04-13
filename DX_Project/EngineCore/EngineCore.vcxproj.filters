@@ -219,7 +219,7 @@
     <ClCompile Include="SpriteRenderer.cpp">
       <Filter>Object\Component\Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\GM\DX\DirectX\EngineCore\Collision.cpp">
+    <ClCompile Include="Collision.cpp">
       <Filter>Object\Component\Collision</Filter>
     </ClCompile>
   </ItemGroup>
@@ -371,7 +371,7 @@
     <ClInclude Include="SpriteRenderer.h">
       <Filter>Object\Component\Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\GM\DX\DirectX\EngineCore\Collision.h">
+    <ClInclude Include="Collision.h">
       <Filter>Object\Component\Collision</Filter>
     </ClInclude>
   </ItemGroup>
