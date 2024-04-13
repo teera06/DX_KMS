@@ -8,10 +8,10 @@
 ABoss1_Monster2::ABoss1_Monster2()
 {
 	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("Boss1_1");
-	Boss1_1 = CreateDefaultSubObject<USpriteRenderer>("Boss1_1");
+	BigBoss1 = CreateDefaultSubObject<USpriteRenderer>("Boss1_1");
 
-	Boss1_1->SetupAttachment(Root);
-	Boss1_1->SetPivot(EPivot::BOT);
+	BigBoss1->SetupAttachment(Root);
+	BigBoss1->SetPivot(EPivot::BOT);
 	SetRoot(Root);
 }
 
@@ -25,17 +25,22 @@ void ABoss1_Monster2::BeginPlay()
 
 	//SetActorScale3D(FVector(324.0f, 350.0f, 0.0f));
 	SetActorLocation(FVector(450.0f, -250.0f, 0.0f));
-	Boss1_1->SetOrder(ERenderOrder::Monster1);
-	Boss1_1->SetSprite("tallfrog_idle_0001.png");
-	Boss1_1->SetSamplering(ETextureSampling::LINEAR);
-	Boss1_1->CreateAnimation("bigIdle", "bigIdle", 0.1f);
+	BigBoss1->SetOrder(ERenderOrder::Monster1);
+	BigBoss1->SetSprite("tallfrog_idle_0001.png");
+	BigBoss1->SetSamplering(ETextureSampling::LINEAR);
+	BigBoss1->CreateAnimation("bigIdle", "bigIdle", 0.1f);
 
-	Boss1_1->ChangeAnimation("bigIdle");
+	BigBoss1->ChangeAnimation("bigIdle");
 
-	Boss1_1->SetAutoSize(1.0f, true);
+	BigBoss1->SetAutoSize(1.0f, true);
 }
 
 void ABoss1_Monster2::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+}
+
+void ABoss1_Monster2::Phase1StateInit()
+{
+
 }

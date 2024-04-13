@@ -26,7 +26,7 @@ protected:
 	void Phase1StateInit() override;
 private:
 
-	USpriteRenderer* Boss1 = nullptr;
+	USpriteRenderer* SmallBoss1 = nullptr;
 
 	float coolDownTime = 6.0f;
 

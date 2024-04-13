@@ -1,7 +1,9 @@
 #pragma once
 #include <EngineCore/Actor.h>
+
+#include "Boss1Common.h"
 class USpriteRenderer;
-class ABoss1_Monster2 : public AActor
+class ABoss1_Monster2 : public AActor, public ABoss1Common
 {
 	GENERATED_BODY(AActor)
 public:
@@ -18,7 +20,9 @@ public:
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
+
+	void Phase1StateInit() override;
 private:
-	USpriteRenderer* Boss1_1 = nullptr;
+	USpriteRenderer* BigBoss1 = nullptr;
 };
 
