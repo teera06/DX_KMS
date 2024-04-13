@@ -27,8 +27,8 @@ void ABoss1_Monster1::BeginPlay()
 	Boss1->SetOrder(ERenderOrder::Monster2);
 	Boss1->SetSprite("shortFrog_idle_0001.png");
 	Boss1->SetSamplering(ETextureSampling::LINEAR);
-	Boss1->CreateAnimation("Boss1Idle", "Boss1Idle", 0.1f);
-	Boss1->CreateAnimation("Boss1ClapAttack", "Boss1ClapAttack", 0.1f);
+	Boss1->CreateAnimation("smallIdle", "smallIdle", 0.1f);
+	Boss1->CreateAnimation("smallatt", "smallatt", 0.1f);
 
 	StateInit();
 	Boss1->SetAutoSize(1.0f, true);
@@ -45,32 +45,33 @@ void ABoss1_Monster1::Tick(float _DeltaTime)
 
 void ABoss1_Monster1::StateInit()
 {
-	State.CreateState("Boss1Idle");
-	State.CreateState("Boss1ClapAttack");
+	State.CreateState("smallIdle");
+	State.CreateState("smallattready");
+	State.CreateState("smallatt");
 
-	State.SetUpdateFunction("Boss1Idle", std::bind(&ABoss1_Monster1::Boss1Idle, this, std::placeholders::_1));
-	State.SetStartFunction("Boss1Idle", [=] {Boss1->ChangeAnimation("Boss1Idle"); });
+	State.SetUpdateFunction("smallIdle", std::bind(&ABoss1_Monster1::smallIdle, this, std::placeholders::_1));
+	State.SetStartFunction("smallIdle", [=] {Boss1->ChangeAnimation("smallIdle"); });
 
-	State.SetUpdateFunction("Boss1ClapAttack", std::bind(&ABoss1_Monster1::Boss1ClapAttack, this, std::placeholders::_1));
-	State.SetStartFunction("Boss1ClapAttack", [=] {Boss1->ChangeAnimation("Boss1ClapAttack"); });
+	State.SetUpdateFunction("smallatt", std::bind(&ABoss1_Monster1::smallatt, this, std::placeholders::_1));
+	State.SetStartFunction("smallatt", [=] {Boss1->ChangeAnimation("smallatt"); });
 
-	State.ChangeState("Boss1ClapAttack");
+	State.ChangeState("smallIdle");
 }
 
-void ABoss1_Monster1::Boss1Idle(float _DeltaTime)
+void ABoss1_Monster1::smallIdle(float _DeltaTime)
 {
 	if (coolDownTime < 0)
 	{
-		State.ChangeState("Boss1ClapAttack");
+		State.ChangeState("smallatt");
 		return;
 	}
 }
 
-void ABoss1_Monster1::Boss1ClapAttack(float _DeltaTime)
+void ABoss1_Monster1::smallatt(float _DeltaTime)
 {
 	if (true == Boss1->IsCurAnimationEnd())
 	{
-		State.ChangeState("Boss1Idle");
+		State.ChangeState("smallIdle");
 		coolDownTime = 6.0f;
 		return;
 	}

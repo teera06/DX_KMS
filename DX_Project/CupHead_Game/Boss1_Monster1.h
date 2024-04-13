@@ -32,7 +32,7 @@ private:
 	// ป๓ลย 
 	void StateInit();
 
-	void Boss1Idle(float _DeltaTime);
-	void Boss1ClapAttack(float _DeltaTime);
+	void smallIdle(float _DeltaTime);
+	void smallatt(float _DeltaTime);
 };
 

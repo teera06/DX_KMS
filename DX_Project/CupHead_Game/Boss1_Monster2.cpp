@@ -28,9 +28,9 @@ void ABoss1_Monster2::BeginPlay()
 	Boss1_1->SetOrder(ERenderOrder::Monster1);
 	Boss1_1->SetSprite("tallfrog_idle_0001.png");
 	Boss1_1->SetSamplering(ETextureSampling::LINEAR);
-	Boss1_1->CreateAnimation("Boss1Idle1", "Boss1Idle1", 0.1f);
+	Boss1_1->CreateAnimation("bigIdle", "bigIdle", 0.1f);
 
-	Boss1_1->ChangeAnimation("Boss1Idle1");
+	Boss1_1->ChangeAnimation("bigIdle");
 
 	Boss1_1->SetAutoSize(1.0f, true);
 }
