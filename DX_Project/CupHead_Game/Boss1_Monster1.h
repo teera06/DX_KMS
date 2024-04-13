@@ -27,6 +27,7 @@ private:
 
 	float coolDownTime = 6.0f;
 
+	int count = 0;
 	bool att = false;
 
 	// ป๓ลย 

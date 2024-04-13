@@ -71,8 +71,15 @@ void ABoss1_Monster1::smallatt(float _DeltaTime)
 {
 	if (true == Boss1->IsCurAnimationEnd())
 	{
+
+		count++;
+	}
+
+	if (count > 3)
+	{
 		State.ChangeState("smallIdle");
 		coolDownTime = 6.0f;
+		count = 0;
 		return;
 	}
 }
