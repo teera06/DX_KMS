@@ -35,6 +35,9 @@ private:
 	// ป๓ลย 
 
 	void smallIdle(float _DeltaTime);
+	void smallattready(float _DeltaTime);
 	void smallatt(float _DeltaTime);
+	void phase2changeReady(float _DeltaTime);
+	void phase2change1(float _DeltaTime);
 };
 
