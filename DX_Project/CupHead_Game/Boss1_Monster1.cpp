@@ -32,8 +32,10 @@ void ABoss1_Monster1::BeginPlay()
 	SmallBoss1->CreateAnimation("smallatt", "smallatt", 0.1f);
 	SmallBoss1->CreateAnimation("phase2changeReady", "phase2changeReady", 0.1f);
 	SmallBoss1->CreateAnimation("phase2change1", "phase2change1", 0.1f);
+	SmallBoss1->CreateAnimation("smallatt2", "smallatt2", 0.1f);
 
 	Phase1StateInit();
+
 	SmallBoss1->SetAutoSize(1.0f, true);
 }
 
@@ -42,7 +44,14 @@ void ABoss1_Monster1::Tick(float _DeltaTime)
 	Super::Tick(_DeltaTime);
 
 	coolDownTime -= _DeltaTime;
-	Phase1.Update(_DeltaTime);
+
+	if (1 == phasecheck)
+	{
+		Phase1.Update(_DeltaTime);
+	}
+	else {
+		Phase2.Update(_DeltaTime);
+	}
 
 }
 
@@ -70,6 +79,16 @@ void ABoss1_Monster1::Phase1StateInit()
 	Phase1.SetStartFunction("phase2change1", [=] {SmallBoss1->ChangeAnimation("phase2change1"); });
 
 	Phase1.ChangeState("smallIdle");
+}
+
+void ABoss1_Monster1::Phase2StateInit()
+{
+	Phase2.CreateState("smallatt2");
+
+	Phase2.SetUpdateFunction("smallatt2", std::bind(&ABoss1_Monster1::smallatt2, this, std::placeholders::_1));
+	Phase2.SetStartFunction("smallatt2", [=] {SmallBoss1->ChangeAnimation("smallatt2"); });
+
+	Phase2.ChangeState("smallatt2");
 }
 
 void ABoss1_Monster1::smallIdle(float _DeltaTime)
@@ -119,6 +138,17 @@ void ABoss1_Monster1::phase2changeReady(float _DeltaTime)
 }
 
 void ABoss1_Monster1::phase2change1(float _DeltaTime)
+{
+
+	if (true == SmallBoss1->IsCurAnimationEnd())
+	{
+		Phase2StateInit();
+		phasecheck = 2;
+		return;
+	}
+}
+
+void ABoss1_Monster1::smallatt2(float _DeltaTime)
 {
 
 }

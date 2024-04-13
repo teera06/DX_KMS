@@ -15,14 +15,17 @@ public:
 	ABoss1Common& operator=(ABoss1Common&& _Other) noexcept = delete;
 
 	UStateManager Phase1;
+	UStateManager Phase2;
 
 	int GetHp() const
 	{
 		return Hp;
 	}
 
+	int phasecheck = 1;
 protected:
 	virtual void Phase1StateInit();
+	virtual void Phase2StateInit();
 private:
 
 	int Hp = 100;

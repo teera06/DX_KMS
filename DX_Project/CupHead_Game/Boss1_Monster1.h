@@ -23,6 +23,7 @@ protected:
 	void Tick(float _DeltaTime) override;
 
 	void Phase1StateInit() override;
+	void Phase2StateInit() override;
 private:
 
 	USpriteRenderer* SmallBoss1 = nullptr;
@@ -39,5 +40,8 @@ private:
 	void smallatt(float _DeltaTime);
 	void phase2changeReady(float _DeltaTime);
 	void phase2change1(float _DeltaTime);
+
+
+	void smallatt2(float _DeltaTime);
 };
 
