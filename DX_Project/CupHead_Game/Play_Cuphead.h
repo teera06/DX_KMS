@@ -3,7 +3,7 @@
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/StateManager.h>
 #include "PlayerCommon.h"
-class APlay_Cuphead : public AActor, public UPlayerCommon
+class APlay_Cuphead : public AActor, public APlayerCommon
 {
 	GENERATED_BODY(AActor)
 public:

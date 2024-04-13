@@ -4,7 +4,7 @@
 #include <EngineCore/StateManager.h>
 #include "ContentsENum.h"
 #include "PlayerCommon.h"
-class AWorldPlayer : public AActor, public UPlayerCommon
+class AWorldPlayer : public AActor, public APlayerCommon
 {
 	GENERATED_BODY(AActor)
 public:

@@ -1,18 +1,18 @@
 #include "PreCompile.h"
 #include "PlayerCommon.h"
 
-UPlayerCommon::UPlayerCommon()
+APlayerCommon::APlayerCommon()
 {
 }
 
-UPlayerCommon::~UPlayerCommon()
+APlayerCommon::~APlayerCommon()
 {
 }
 
-void UPlayerCommon::DirCheck()
+void APlayerCommon::DirCheck()
 {
 }
 
-void UPlayerCommon::MoveUpDate(float _DeltaTime, FVector _MovePos)
+void APlayerCommon::MoveUpDate(float _DeltaTime, FVector _MovePos)
 {
 }

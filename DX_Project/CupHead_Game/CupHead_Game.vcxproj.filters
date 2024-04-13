@@ -125,6 +125,9 @@
     <ClCompile Include="Boss1_Monster2.cpp">
       <Filter>PlayStage\Boss1\Monster</Filter>
     </ClCompile>
+    <ClCompile Include="Boss1Common.cpp">
+      <Filter>PlayStage\Boss1\Monster</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -179,6 +182,9 @@
       <Filter>PlayStage\Boss1\Monster</Filter>
     </ClInclude>
     <ClInclude Include="Boss1_Monster2.h">
+      <Filter>PlayStage\Boss1\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss1Common.h">
       <Filter>PlayStage\Boss1\Monster</Filter>
     </ClInclude>
   </ItemGroup>
