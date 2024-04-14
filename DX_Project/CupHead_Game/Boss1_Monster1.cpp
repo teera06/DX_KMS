@@ -118,6 +118,13 @@ void ABoss1_Monster1::AniCreate()
 
 void ABoss1_Monster1::smallIdle(float _DeltaTime)
 {
+
+	if (GetHp() <= 80 && 1 == phasecheck)
+	{
+		Phase1.ChangeState("phase2changeReady");
+		return;
+	}
+
 	if (coolDownTime < 0 && 1 == phasecheck)
 	{
 		Phase1.ChangeState("smallattready");
@@ -151,7 +158,7 @@ void ABoss1_Monster1::smallatt(float _DeltaTime)
 
 	if (smallattcount > 3)
 	{
-		Phase1.ChangeState("phase2changeReady");
+		Phase1.ChangeState("smallIdle");
 		//coolDownTime = 6.0f;
 		//count = 0;
 		return;
