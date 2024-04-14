@@ -12,6 +12,45 @@
 //	Renderer->ChangeAnimation("Idle");
 //}
 
+void APlay_Cuphead::CalGravityVector(float _DeltaTime)
+{
+	GravityVector += (FVector::Down * Gravity * _DeltaTime); // 중력은 계속 가해진다.
+
+	if (GetActorLocation().iY() <= -250)
+	{
+		GravityVector = FVector::Zero;
+	}
+}
+
+void APlay_Cuphead::CalLastMoveVector(float _DeltaTime, const FVector& _MovePos)
+{
+	PlayerMoveY = FVector::Zero;
+
+	PlayerMoveY += GravityVector;
+
+	FVector CheckPos = GetActorLocation(); // Kirby
+
+	FVector MovePos = _MovePos;
+	switch (Dir)
+	{
+	case EDir::Left:
+		CheckPos.X -= 30.0f;
+		break;
+	case EDir::Right:
+		CheckPos.X += 30.0f;
+		break;
+	default:
+		break;
+	}
+
+	if (CheckPos.iX()<=-550 || CheckPos.iX()>=550) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
+	{
+		MovePos = FVector::Zero;
+	}
+
+	AddActorLocation(MovePos + (PlayerMoveY * _DeltaTime));
+}
+
 // 콜리전으로 충돌 하기
 void APlay_Cuphead::StateInit()
 {
@@ -90,42 +129,30 @@ void APlay_Cuphead::DirCheck()
 
 void APlay_Cuphead::MoveUpDate(float _DeltaTime,const FVector& _MovePos)
 {
-	std::shared_ptr<UEngineTexture> Tex = UContentsHelper::MapTex;
+	//std::shared_ptr<UEngineTexture> Tex = UContentsHelper::MapTex;
 
-#ifdef _DEBUG
-	if (nullptr == Tex)
-	{
-		MsgBoxAssert("이미지 충돌체크중 이미지가 존재하지 않습니다.");
-	}
-#endif
-
-	FVector PlayMove = _MovePos;
+//#ifdef _DEBUG
+	//if (nullptr == Tex)
+	//{
+		//MsgBoxAssert("이미지 충돌체크중 이미지가 존재하지 않습니다.");
+	//}
+//#endif
+	CalGravityVector(_DeltaTime);
+	CalLastMoveVector(_DeltaTime, _MovePos);
 
 	// 방향 별 픽셀 충돌 인식 범위
-	float4 Pos = GetActorLocation();
-	GravityVector += (FVector::Down * Gravity * _DeltaTime); // 중력은 계속 가해진다.
+	//float4 Pos = GetActorLocation();
 	//Pos.Y = -Pos.Y;
 
-	switch (Dir)
-	{
-	case EDir::Left:
-		Pos.X -= 30.0f;
-		break;
-	case EDir::Right:
-		Pos.X += 30.0f;
-		break;
-	default:
-		break;
-	}
 
-	Color8Bit Color = Tex->GetColor(Pos.iX(), Pos.iY(), Color8Bit::Black);
+	//Color8Bit Color = Tex->GetColor(Pos.iX(), Pos.iY(), Color8Bit::Black);
 
-	if (Color == Color8Bit::Black)
-	{
-		GravityVector = FVector::Zero; // 중력의 힘은 0으로
-	}
+	//if (Color == Color8Bit::Black)
+	//{
+		//GravityVector = FVector::Zero; // 중력의 힘은 0으로
+	//}
 
-	AddActorLocation(PlayMove + GravityVector+(JumpVector* _DeltaTime));
+	//AddActorLocation(PlayerMove + GravityVector+(JumpVector* _DeltaTime));
 
 }
 

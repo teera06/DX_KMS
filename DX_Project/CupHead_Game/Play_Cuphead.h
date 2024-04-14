@@ -32,6 +32,8 @@ private:
 	
 	USpriteRenderer* PlayCuphead= nullptr;
 
+	FVector PlayerMoveY = FVector::Zero;
+
 	FVector GravityVector = FVector::Zero; // 중력값 받기
 
 	// 점프력 제어
@@ -43,6 +45,11 @@ private:
 
 	float Gravity = 700.0f;
 
+
+	// 이동함수
+	
+	void CalGravityVector(float _DeltaTime);
+	void CalLastMoveVector(float _DeltaTime, const FVector& _MovePos = FVector::Zero);
 	//false =Left
 	// true = Right
 	///////////////////////// State
