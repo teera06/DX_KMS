@@ -37,13 +37,14 @@ private:
 	FVector GravityVector = FVector::Zero; // 중력값 받기
 
 	// 점프력 제어
-	FVector JumpPower = FVector::Up * 500.0f; // 이동할때의 점프력
+	FVector JumpPower = FVector::Up * 600.0f; // 이동할때의 점프력
 	FVector JumpVector = FVector::Zero; // 최종 점프력
 
 	float Speed = 500.0f;
+	float JumpSpeed = 300.0f;
 	float DashSpeed = 1000.0f;
 
-	float Gravity = 700.0f;
+	float Gravity = 1000.0f;
 
 
 	// 이동함수

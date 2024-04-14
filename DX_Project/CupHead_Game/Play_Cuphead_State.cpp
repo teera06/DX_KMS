@@ -26,8 +26,8 @@ void APlay_Cuphead::CalLastMoveVector(float _DeltaTime, const FVector& _MovePos)
 {
 	PlayerMoveY = FVector::Zero;
 
-	PlayerMoveY += GravityVector;
 	PlayerMoveY += JumpVector;
+	PlayerMoveY += GravityVector;
 
 	FVector CheckPos = GetActorLocation(); // Kirby
 
@@ -373,7 +373,21 @@ void APlay_Cuphead::Jump(float _DeltaTime)
 	//{
 		//JumpVector = FVector::Zero;
 	//}
-	MoveUpDate(_DeltaTime); // 최종 움직임
+
+	FVector MovePos;
+
+	// 점프 도중 X축 이동
+	if (UEngineInput::IsPress(VK_LEFT))
+	{
+		MovePos += FVector::Left * JumpSpeed * _DeltaTime;
+	}
+
+	if (UEngineInput::IsPress(VK_RIGHT))
+	{
+		MovePos += FVector::Right * JumpSpeed * _DeltaTime;
+	}
+
+	MoveUpDate(_DeltaTime, MovePos); // 최종 움직임
 	if (GetActorLocation().iY() <= -250)
 	{
 		JumpVector = FVector::Zero;
