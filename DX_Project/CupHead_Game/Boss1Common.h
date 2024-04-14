@@ -17,9 +17,14 @@ public:
 	UStateManager Phase1;
 	UStateManager Phase2;
 
-	int GetHp() const
+	static int GetHp()
 	{
 		return Hp;
+	}
+
+	static void SetHp(const int& _Hp)
+	{
+		Hp=_Hp;
 	}
 
 	static int phasecheck;
@@ -30,6 +35,6 @@ protected:
 	virtual void AniCreate();
 private:
 
-	int Hp = 100;
+	static int Hp;
 };
 

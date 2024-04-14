@@ -5,6 +5,8 @@
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/EngineDebugMsgWindow.h>
 #include <EngineCore/EngineEnums.h>
+
+#include "Boss1Common.h"
 //void Function(URenderer* Renderer)
 //{
 //	Renderer->ChangeAnimation("Idle");
@@ -145,6 +147,13 @@ void APlay_Cuphead::Idle(float _DeltaTime)
 {
 
 	DirCheck();
+
+	if (true == IsDown('1'))
+	{
+		ABoss1Common::SetHp(80);
+		return;
+	}
+
 	if (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT))
 	{
 		State.ChangeState("Run");

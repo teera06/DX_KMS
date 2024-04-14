@@ -2,6 +2,7 @@
 #include "Boss1Common.h"
 
 int ABoss1Common::phasecheck=1;
+int ABoss1Common::Hp = 100;
 
 ABoss1Common::ABoss1Common()
 {

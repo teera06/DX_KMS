@@ -4,6 +4,7 @@
 #include <EngineCore/Renderer.h>
 
 #include <EngineCore/DefaultSceneComponent.h>
+
 APlay_Cuphead::APlay_Cuphead()
 {
 	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("ScreenEffect");
