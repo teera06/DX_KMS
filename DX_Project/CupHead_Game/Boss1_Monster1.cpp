@@ -27,12 +27,7 @@ void ABoss1_Monster1::BeginPlay()
 	SmallBoss1->SetOrder(ERenderOrder::Monster2);
 	SmallBoss1->SetSprite("shortFrog_idle_0001.png");
 	SmallBoss1->SetSamplering(ETextureSampling::LINEAR);
-	SmallBoss1->CreateAnimation("smallIdle", "smallIdle", 0.1f);
-	SmallBoss1->CreateAnimation("smallattready", "smallattready", 0.1f);
-	SmallBoss1->CreateAnimation("smallatt", "smallatt", 0.1f);
-	SmallBoss1->CreateAnimation("phase2changeReady", "phase2changeReady", 0.1f);
-	SmallBoss1->CreateAnimation("phase2change1", "phase2change1", 0.1f);
-	SmallBoss1->CreateAnimation("smallatt2", "smallatt2", 0.1f);
+	AniCreate();
 
 	Phase1StateInit();
 
@@ -61,6 +56,7 @@ void ABoss1_Monster1::Phase1StateInit()
 	Phase1.CreateState("smallattready");
 	Phase1.CreateState("smallatt");
 	Phase1.CreateState("phase2changeReady");
+	Phase1.CreateState("phase2changeReady2");
 	Phase1.CreateState("phase2change1");
 
 	Phase1.SetUpdateFunction("smallIdle", std::bind(&ABoss1_Monster1::smallIdle, this, std::placeholders::_1));
@@ -74,6 +70,9 @@ void ABoss1_Monster1::Phase1StateInit()
 
 	Phase1.SetUpdateFunction("phase2changeReady", std::bind(&ABoss1_Monster1::phase2changeReady, this, std::placeholders::_1));
 	Phase1.SetStartFunction("phase2changeReady", [=] {SmallBoss1->ChangeAnimation("phase2changeReady"); });
+
+	Phase1.SetUpdateFunction("phase2changeReady2", std::bind(&ABoss1_Monster1::phase2changeReady2, this, std::placeholders::_1));
+	Phase1.SetStartFunction("phase2changeReady2", [=] {SmallBoss1->ChangeAnimation("phase2changeReady2"); });
 
 	Phase1.SetUpdateFunction("phase2change1", std::bind(&ABoss1_Monster1::phase2change1, this, std::placeholders::_1));
 	Phase1.SetStartFunction("phase2change1", [=] {SmallBoss1->ChangeAnimation("phase2change1"); });
@@ -89,6 +88,17 @@ void ABoss1_Monster1::Phase2StateInit()
 	Phase2.SetStartFunction("smallatt2", [=] {SmallBoss1->ChangeAnimation("smallatt2"); });
 
 	Phase2.ChangeState("smallatt2");
+}
+
+void ABoss1_Monster1::AniCreate()
+{
+	SmallBoss1->CreateAnimation("smallIdle", "smallIdle", 0.1f);
+	SmallBoss1->CreateAnimation("smallattready", "smallattready", 0.1f);
+	SmallBoss1->CreateAnimation("smallatt", "smallatt", 0.1f);
+	SmallBoss1->CreateAnimation("phase2changeReady", "phase2changeReady", 0.1f);
+	SmallBoss1->CreateAnimation("phase2changeReady2", "phase2changeReady2", 0.1f);
+	SmallBoss1->CreateAnimation("phase2change1", "phase2change1", 0.1f);
+	SmallBoss1->CreateAnimation("smallatt2", "smallatt2", 0.1f);
 }
 
 void ABoss1_Monster1::smallIdle(float _DeltaTime)
@@ -115,10 +125,10 @@ void ABoss1_Monster1::smallatt(float _DeltaTime)
 	if (true == SmallBoss1->IsCurAnimationEnd())
 	{
 
-		count++;
+		smallattcount++;
 	}
 
-	if (count > 3)
+	if (smallattcount > 3)
 	{
 		Phase1.ChangeState("phase2changeReady");
 		//coolDownTime = 6.0f;
@@ -132,7 +142,24 @@ void ABoss1_Monster1::phase2changeReady(float _DeltaTime)
 	if (true == SmallBoss1->IsCurAnimationEnd())
 	{
 
-		Phase1.ChangeState("phase2change1");
+		Phase1.ChangeState("phase2changeReady2");
+		return;
+	}
+}
+
+void ABoss1_Monster1::phase2changeReady2(float _DeltaTime)
+{
+	if (true == SmallBoss1->IsCurAnimationEnd())
+	{
+
+		phase2changecount++;
+	}
+
+	if (phase2changecount > 3)
+	{
+		Phase1.ChangeState("phase2changeReady");
+		//coolDownTime = 6.0f;
+		//count = 0;
 		return;
 	}
 }

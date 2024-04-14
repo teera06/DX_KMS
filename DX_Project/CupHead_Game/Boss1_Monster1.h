@@ -24,13 +24,16 @@ protected:
 
 	void Phase1StateInit() override;
 	void Phase2StateInit() override;
+
+	void AniCreate() override;
 private:
 
 	USpriteRenderer* SmallBoss1 = nullptr;
 
 	float coolDownTime = 6.0f;
 
-	int count = 0;
+	int smallattcount = 0;
+	int phase2changecount = 0;
 	bool att = false;
 
 	// ป๓ลย 
@@ -39,6 +42,7 @@ private:
 	void smallattready(float _DeltaTime);
 	void smallatt(float _DeltaTime);
 	void phase2changeReady(float _DeltaTime);
+	void phase2changeReady2(float _DeltaTime);
 	void phase2change1(float _DeltaTime);
 
 

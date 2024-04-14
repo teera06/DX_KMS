@@ -22,10 +22,12 @@ public:
 		return Hp;
 	}
 
-	int phasecheck = 1;
+	static int phasecheck;
 protected:
 	virtual void Phase1StateInit();
 	virtual void Phase2StateInit();
+
+	virtual void AniCreate();
 private:
 
 	int Hp = 100;
