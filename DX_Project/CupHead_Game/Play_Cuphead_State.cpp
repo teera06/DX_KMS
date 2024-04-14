@@ -88,7 +88,7 @@ void APlay_Cuphead::DirCheck()
 	}
 }
 
-void APlay_Cuphead::MoveUpDate(float _DeltaTime, FVector _MovePos)
+void APlay_Cuphead::MoveUpDate(float _DeltaTime,const FVector& _MovePos)
 {
 	std::shared_ptr<UEngineTexture> Tex = UContentsHelper::MapTex;
 
@@ -99,7 +99,7 @@ void APlay_Cuphead::MoveUpDate(float _DeltaTime, FVector _MovePos)
 	}
 #endif
 
-
+	FVector PlayMove = _MovePos;
 
 	// 방향 별 픽셀 충돌 인식 범위
 	float4 Pos = GetActorLocation();
@@ -125,7 +125,7 @@ void APlay_Cuphead::MoveUpDate(float _DeltaTime, FVector _MovePos)
 		GravityVector = FVector::Zero; // 중력의 힘은 0으로
 	}
 
-	AddActorLocation(_MovePos+ GravityVector+(JumpVector* _DeltaTime));
+	AddActorLocation(PlayMove + GravityVector+(JumpVector* _DeltaTime));
 
 }
 

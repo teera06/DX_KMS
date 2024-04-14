@@ -24,7 +24,7 @@ protected:
 	void Tick(float _DeltaTime) override;
 
 	void DirCheck() override;
-	void MoveUpDate(float _DeltaTime, FVector _MovePos = FVector::Zero) override;
+	void MoveUpDate(float _DeltaTime,const FVector& _MovePos = FVector::Zero) override;
 
 	void DebugMessageFunction() override;
 private:

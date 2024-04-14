@@ -47,7 +47,7 @@ void AWorldPlayer::DirCheck()
 	}
 }
 
-void AWorldPlayer::MoveUpDate(float _DeltaTime, FVector _MovePos)
+void AWorldPlayer::MoveUpDate(float _DeltaTime,const FVector& _MovePos)
 {
 	std::shared_ptr<UEngineTexture> Tex = UContentsHelper::MapTex;
 
@@ -58,6 +58,7 @@ void AWorldPlayer::MoveUpDate(float _DeltaTime, FVector _MovePos)
 	}
 #endif
 
+	FVector PlayMove = _MovePos;
 	// 방향 별 픽셀 충돌 인식 범위
 	float4 Pos = GetActorLocation();
 
@@ -85,11 +86,11 @@ void AWorldPlayer::MoveUpDate(float _DeltaTime, FVector _MovePos)
 
 	if (Color == Color8Bit::Black)
 	{
-		_MovePos = FVector::Zero;
+		PlayMove = FVector::Zero;
 	}
 
-	GetWorld()->GetMainCamera()->AddActorLocation(_MovePos);
-	AddActorLocation(_MovePos);
+	GetWorld()->GetMainCamera()->AddActorLocation(PlayMove);
+	AddActorLocation(PlayMove);
 
 }
 

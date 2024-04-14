@@ -13,7 +13,7 @@ void APlayerCommon::DirCheck()
 {
 }
 
-void APlayerCommon::MoveUpDate(float _DeltaTime, FVector _MovePos)
+void APlayerCommon::MoveUpDate(float _DeltaTime,const FVector& _MovePos)
 {
 }
 
