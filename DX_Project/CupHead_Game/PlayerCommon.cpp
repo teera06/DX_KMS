@@ -16,3 +16,8 @@ void APlayerCommon::DirCheck()
 void APlayerCommon::MoveUpDate(float _DeltaTime, FVector _MovePos)
 {
 }
+
+void APlayerCommon::DebugMessageFunction()
+{
+
+}

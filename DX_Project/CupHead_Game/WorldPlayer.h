@@ -25,13 +25,14 @@ protected:
 
 	void DirCheck() override;
 	void MoveUpDate(float _DeltaTime, FVector _MovePos = FVector::Zero) override;
+
+	void DebugMessageFunction() override;
 private:
 	USpriteRenderer* WorldPlayerRenderer = nullptr;
 
 	float Speed = 300.0f;
 
 
-	void DebugMessageFunction();
 	///////////////////////// State
 	void StateInit();
 

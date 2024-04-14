@@ -3,6 +3,7 @@
 
 #include "ContentsHelper.h"
 #include <EngineCore/SpriteRenderer.h>
+#include <EngineCore/EngineDebugMsgWindow.h>
 #include <EngineCore/EngineEnums.h>
 //void Function(URenderer* Renderer)
 //{
@@ -124,6 +125,19 @@ void APlay_Cuphead::MoveUpDate(float _DeltaTime, FVector _MovePos)
 
 	AddActorLocation(_MovePos+ GravityVector+(JumpVector* _DeltaTime));
 
+}
+
+void APlay_Cuphead::DebugMessageFunction()
+{
+	{
+		std::string Msg = std::format("PlayerPos : {}\n", GetActorLocation().ToString());
+		UEngineDebugMsgWindow::PushMsg(Msg);
+	}
+
+	{
+		std::string Msg = std::format("MousePos : {}\n", GEngine->EngineWindow.GetScreenMousePos().ToString());
+		UEngineDebugMsgWindow::PushMsg(Msg);
+	}
 }
 
 

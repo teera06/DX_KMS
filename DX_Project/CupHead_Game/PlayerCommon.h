@@ -18,6 +18,7 @@ protected:
 	virtual void DirCheck();
 	virtual void MoveUpDate(float _DeltaTime, FVector _MovePos=FVector::Zero);
 
+	virtual void DebugMessageFunction();
 	EDir Dir = EDir::None;
 private:
 };
