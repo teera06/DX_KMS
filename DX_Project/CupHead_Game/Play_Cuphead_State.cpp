@@ -27,6 +27,7 @@ void APlay_Cuphead::CalLastMoveVector(float _DeltaTime, const FVector& _MovePos)
 	PlayerMoveY = FVector::Zero;
 
 	PlayerMoveY += GravityVector;
+	PlayerMoveY += JumpVector;
 
 	FVector CheckPos = GetActorLocation(); // Kirby
 
@@ -207,8 +208,8 @@ void APlay_Cuphead::Idle(float _DeltaTime)
 
 	if (true == IsDown('Z'))
 	{
-		JumpVector = JumpPower;
 		State.ChangeState("Jump");
+		JumpVector = JumpPower;
 		return;
 	}
 
@@ -241,6 +242,7 @@ void APlay_Cuphead::Run(float  _DeltaTime)
 	if (true == IsDown('Z'))
 	{
 		State.ChangeState("Jump");
+		JumpVector = JumpPower;
 		return;
 	}
 
@@ -364,17 +366,25 @@ void APlay_Cuphead::Jump(float _DeltaTime)
 {
 	DirCheck();
 
-	std::shared_ptr<UEngineTexture> Tex = UContentsHelper::MapTex;
-	Color8Bit Color = Tex->GetColor(GetActorLocation().iX(), GetActorLocation().iY(), Color8Bit::Black);
+	//std::shared_ptr<UEngineTexture> Tex = UContentsHelper::MapTex;
+	//Color8Bit Color = Tex->GetColor(GetActorLocation().iX(), GetActorLocation().iY(), Color8Bit::Black);
 
-	if (Color == Color8Bit::Black)
-	{
+	//if (Color == Color8Bit::Black)
+	//{
 		//JumpVector = FVector::Zero;
-	}
-	if (true == PlayCuphead->IsCurAnimationEnd())
+	//}
+	MoveUpDate(_DeltaTime); // 최종 움직임
+	if (GetActorLocation().iY() <= -250)
 	{
 		JumpVector = FVector::Zero;
 		State.ChangeState("Idle");
 		return;
 	}
+
+	//if (true == PlayCuphead->IsCurAnimationEnd())
+	//{
+		//JumpVector = FVector::Zero;
+		//State.ChangeState("Idle");
+		//return;
+	//}
 }
