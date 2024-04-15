@@ -32,8 +32,8 @@ void APlay_Cuphead::BeginPlay()
 	Super::BeginPlay();
 
 	//SetActorScale3D(FVector(60.0f, 100.0f, 100.0f));
-	SetActorLocation(FVector(0.0f, -250.0f, -50.0f));
-
+	SetActorLocation(FVector(-400.0f, -250.0f, -50.0f));
+	PlayCuphead->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 	//DelayCallBack(1.0f, std::bind(&ATitleLogo::RendererOff, this));
 	PlayCuphead->CreateAnimation("Idle", "Idle", 0.05f);
 

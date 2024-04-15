@@ -27,22 +27,25 @@ ABoss3Map::ABoss3Map()
 	back3Map->SetSprite("back3.png");
 	back3Map->SetSamplering(ETextureSampling::LINEAR);
 	back3Map->SetAutoSize(1.0f, true);
+	
 
 	crowd3->SetOrder(ERenderOrder::Boss1_crowd3);
 	crowd3->SetSprite("jazz_crowdA_0001.png");
 	crowd3->SetSamplering(ETextureSampling::LINEAR);
-
 	crowd3->SetAutoSize(0.97f, true);
+	crowd3->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 
 	Object1->SetOrder(ERenderOrder::Object1);
 	Object1->SetSprite("table.png");
 
 	Object1->SetAutoSize(2.1f, true);
+	Object1->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 
 	Object2->SetOrder(ERenderOrder::Object2);
 	Object2->SetSprite("C8.png");
 
 	Object2->SetAutoSize(1.3f, true);
+	Object2->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 }
 
 ABoss3Map::~ABoss3Map()

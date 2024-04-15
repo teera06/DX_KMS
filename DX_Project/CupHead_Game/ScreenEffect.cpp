@@ -11,12 +11,13 @@ AScreenEffect::AScreenEffect()
 	OldFilter = CreateDefaultSubObject<USpriteRenderer>("OldRenderer");
 
 	OldFilter->SetupAttachment(Root);
+	OldFilter->SetScale(FVector(1280.0f, 720.0f, 2.0f));
 
 	SetRoot(Root);
 
 	OldFilter->SetOrder(ERenderOrder::Filter);
 	OldFilter->SetSprite("cuphead_screen_fx_0000.png");
-	OldFilter->SetAutoSize(4.0f, true);
+	//OldFilter->SetAutoSize(1.0f, true);
 	OldFilter->SetSamplering(ETextureSampling::LINEAR);
 }
 

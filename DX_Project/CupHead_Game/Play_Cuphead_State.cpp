@@ -31,20 +31,19 @@ void APlay_Cuphead::CalLastMoveVector(float _DeltaTime, const FVector& _MovePos)
 	PlayerMoveY += GravityVector;
 
 	FVector CheckPos = GetActorLocation(); // Kirby
-	FVector CameraPos = GetWorld()->GetMainCamera()->GetActorLocation();
+
 	
 	FVector MovePos = _MovePos;
-	FVector CameraMove = _MovePos;
+	
 
 	switch (Dir)
 	{
 	case EDir::Left:
 		CheckPos.X -= 30.0f;
-		CameraPos.X -= 30.0f;
 		break;
 	case EDir::Right:
 		CheckPos.X += 30.0f;
-		CameraPos.X += 30.0f;
+		
 		break;
 	default:
 		break;
@@ -55,14 +54,10 @@ void APlay_Cuphead::CalLastMoveVector(float _DeltaTime, const FVector& _MovePos)
 		MovePos = FVector::Zero;
 	}
 
-	if (CheckPos.iX() <= -50 || CheckPos.iX() >= 50) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
-	{
-		CameraMove = FVector::Zero;
-	}
 
 
 	AddActorLocation(MovePos + (PlayerMoveY * _DeltaTime));
-	GetWorld()->GetMainCamera()->AddActorLocation(CameraMove);
+	GetWorld()->GetMainCamera()->AddActorLocation(MovePos* _DeltaTime*10.0f);
 }
 
 // 콜리전으로 충돌 하기
