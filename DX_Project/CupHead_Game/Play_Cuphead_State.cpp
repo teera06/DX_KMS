@@ -18,7 +18,18 @@
 void APlay_Cuphead::createBullet()
 {
 	std::shared_ptr<ABaseBullet> NewBullet = GetWorld()->SpawnActor<ABaseBullet>("BaseBullet");
-	NewBullet->SetActorLocation({ GetActorLocation().X,GetActorLocation().Y + 80.0f,0.0f });
+
+	if (false == shootY)
+	{
+		NewBullet->SetActorLocation({ GetActorLocation().X,GetActorLocation().Y + 80.0f,0.0f });
+		shootY = true;
+	}
+	else {
+		NewBullet->SetActorLocation({ GetActorLocation().X,GetActorLocation().Y + 90.0f,0.0f });
+		shootY = false;
+	
+	}
+
 	NewBullet->SetBulletDir(BulletDir);
 }
 

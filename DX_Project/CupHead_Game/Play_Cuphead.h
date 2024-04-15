@@ -58,6 +58,7 @@ private:
 
 	int ShootPos = 0;
 
+	bool shootY = false;
 	bool NoGravity = false;
 
 	void createBullet();

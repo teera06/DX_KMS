@@ -31,7 +31,7 @@ private:
 
 	FVector BulletDir = FVector::Zero;
 	FVector Move = FVector::Zero;
-	float Speed = 500.0f;
+	float Speed = 800.0f;
 
 	bool shoot = false;
 };
