@@ -207,7 +207,7 @@ void ABoss1_Monster1::phase2change2(float _DeltaTime)
 {
 	AddActorLocation(FVector::Left * 500.0f * _DeltaTime);
 
-	if (GetActorLocation().iX() <= -520)
+	if (GetActorLocation().iX() <= -580)
 	{
 		Phase2StateInit();
 		phasecheck = 2;

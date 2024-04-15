@@ -21,6 +21,8 @@ AMainTitleActor::AMainTitleActor()
 	//ChildRenderer->SetScale(FVector(100.0f, 100.0f, 100.0f));
 	CupRenderer->AddPosition({ 0.0f, -360.0f, 0.0f });
 	CupRenderer->SetPivot(EPivot::BOT);
+
+	CupRenderer->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 	SetRoot(Root);
 }
 

@@ -5,6 +5,7 @@
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/EngineDebugMsgWindow.h>
 #include <EngineCore/EngineEnums.h>
+#include <EngineCore/Camera.h>
 
 #include "Boss1Common.h"
 //void Function(URenderer* Renderer)
@@ -30,7 +31,7 @@ void APlay_Cuphead::CalLastMoveVector(float _DeltaTime, const FVector& _MovePos)
 	PlayerMoveY += GravityVector;
 
 	FVector CheckPos = GetActorLocation(); // Kirby
-
+	FVector CameraPos = GetWorld()->GetMainCamera()->GetActorLocation();
 	FVector MovePos = _MovePos;
 	switch (Dir)
 	{
@@ -44,7 +45,7 @@ void APlay_Cuphead::CalLastMoveVector(float _DeltaTime, const FVector& _MovePos)
 		break;
 	}
 
-	if (CheckPos.iX()<=-550 || CheckPos.iX()>=550) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
+	if (CheckPos.iX()<=-600 || CheckPos.iX()>=600) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
 	{
 		MovePos = FVector::Zero;
 	}
