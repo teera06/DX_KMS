@@ -1,6 +1,7 @@
 #pragma once
 #include <Enginecore/Actor.h>
-#include <EngineCore/SpriteRenderer.h>
+#include "ContentsENum.h"
+class USpriteRenderer;
 
 class ABoss2Map : public AActor
 {
@@ -23,5 +24,12 @@ private:
 	USpriteRenderer* back2Map = nullptr;
 	USpriteRenderer* crowd2 = nullptr;
 	USpriteRenderer* JazzGirls = nullptr;
+	USpriteRenderer* Waiter = nullptr;
+
+	FVector Dir = FVector::Left;
+
+	EDir checkLR = EDir::Left;
+
+	float speed = 300.0f;
 };
 

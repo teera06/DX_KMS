@@ -34,6 +34,7 @@ enum class ERenderOrder
 	Boss1_back1,
 	Boss1_back2,
 	Boss1_crowd2,
+	Boss1_Waiter,
 	Boss1_Back3,
 	Boss1_crowd3,
 	Monster1,
