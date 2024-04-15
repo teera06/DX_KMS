@@ -46,7 +46,6 @@ private:
 
 	float Speed = 500.0f;
 	float JumpSpeed = 300.0f;
-	float PressPower = 0.0f;
 
 	float DashSpeed = 1000.0f;
 
