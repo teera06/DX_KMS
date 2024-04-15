@@ -70,6 +70,7 @@ private:
 	void Shoot_Straight(float _DeltaTime);
 	void Duck_Shoot(float _DeltaTime);
 	void Jump(float _DeltaTime);
+	void DashAfterJump(float _DeltaTime);
 	//void Shoot_Straight(float _DeltaTime);
 };
 

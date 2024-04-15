@@ -74,6 +74,7 @@ void APlay_Cuphead::StateInit()
 	State.CreateState("Run_Shoot_Straight");
 	State.CreateState("Duck_Shoot");
 	State.CreateState("Jump");
+	State.CreateState("DashAfterJump");
 	
 
 	State.SetUpdateFunction("Idle", std::bind(&APlay_Cuphead::Idle, this, std::placeholders::_1));
@@ -102,6 +103,9 @@ void APlay_Cuphead::StateInit()
 
 	State.SetUpdateFunction("Jump", std::bind(&APlay_Cuphead::Jump, this, std::placeholders::_1));
 	State.SetStartFunction("Jump", [=] {PlayCuphead->ChangeAnimation("Jump"); });
+
+	State.SetUpdateFunction("DashAfterJump", std::bind(&APlay_Cuphead::DashAfterJump, this, std::placeholders::_1));
+	State.SetStartFunction("DashAfterJump", [=] {PlayCuphead->ChangeAnimation("Jump"); });
 
 	//State.SetUpdateFunction("Duck", std::bind(&APlay_Cuphead::Duck, this, std::placeholders::_1));
 	//State.SetStartFunction("Duck", [=] {PlayCuphead->ChangeAnimation("Duck"); });
@@ -202,6 +206,9 @@ void APlay_Cuphead::Idle(float _DeltaTime)
 	
 	if (true == IsDown(VK_SHIFT))
 	{
+
+		
+
 		State.ChangeState("Dash");
 		return;
 	}
@@ -327,18 +334,18 @@ void APlay_Cuphead::Run_Shoot_Straight(float  _DeltaTime)
 
 void APlay_Cuphead::Dash(float _DeltaTime)
 {
-	DirCheck();
-	FVector MovePos = FVector::Zero;
 	if (true == PlayCuphead->IsCurAnimationEnd())
 	{
 		State.ChangeState("Idle");
 		return;
 	}
 
+	FVector MovePos;
+
 	switch (Dir)
 	{
 	case EDir::Left:
-		MovePos+=FVector::Left * _DeltaTime * DashSpeed;
+		MovePos += FVector::Left * _DeltaTime * DashSpeed;
 		break;
 	case EDir::Right:
 		MovePos += FVector::Right * _DeltaTime * DashSpeed;
@@ -346,24 +353,24 @@ void APlay_Cuphead::Dash(float _DeltaTime)
 	default:
 		break;
 	}
+
 	MoveUpDate(_DeltaTime, MovePos);
 }
 
 void APlay_Cuphead::AirDash(float _DeltaTime)
 {
-	DirCheck();
 	FVector MovePos = FVector::Zero;
 	if (true == PlayCuphead->IsCurAnimationEnd())
 	{
 		NoGravity = false;
-		State.ChangeState("Jump");
+		State.ChangeState("DashAfterJump");
 		return;
 	}
 
 	switch (Dir)
 	{
 	case EDir::Left:
-		AddActorLocation( FVector::Left * _DeltaTime * DashSpeed);
+		MovePos += FVector::Left * _DeltaTime * DashSpeed;
 		break;
 	case EDir::Right:
 		MovePos += FVector::Right * _DeltaTime * DashSpeed;
@@ -399,6 +406,12 @@ void APlay_Cuphead::Shoot_Straight(float _DeltaTime)
 		return;
 	}
 
+	if (true == IsPress(VK_DOWN))
+	{
+		State.ChangeState("Duck_Shoot");
+		return;
+	}
+
 	if (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT))
 	{
 		State.ChangeState("Run_Shoot_Straight");
@@ -410,6 +423,12 @@ void APlay_Cuphead::Duck_Shoot(float _DeltaTime)
 {
 	DirCheck();
 	
+	if (true == IsFree(VK_DOWN))
+	{
+		State.ChangeState("Idle");
+		return;
+	}
+
 	if (true == IsFree('X'))
 	{
 		State.ChangeState("Duck");
@@ -434,6 +453,15 @@ void APlay_Cuphead::Jump(float _DeltaTime)
 		JumpVector = JumpPowerDown;
 	}
 
+	if (true == IsDown(VK_SHIFT))
+	{
+		NoGravity = true;
+		JumpVector = FVector::Zero;
+		State.ChangeState("AirDash");
+		return;
+	}
+
+
 	FVector MovePos;
 
 	// 점프 도중 X축 이동
@@ -447,13 +475,6 @@ void APlay_Cuphead::Jump(float _DeltaTime)
 		MovePos += FVector::Right * JumpSpeed * _DeltaTime;
 	}
 
-	if (true == IsDown(VK_SHIFT))
-	{
-		NoGravity = true;
-		JumpVector = FVector::Zero;
-		State.ChangeState("AirDash");
-		return;
-	}
 
 	MoveUpDate(_DeltaTime, MovePos); // 최종 움직임
 	if (GetActorLocation().iY() <= -250)
@@ -469,4 +490,15 @@ void APlay_Cuphead::Jump(float _DeltaTime)
 		//State.ChangeState("Idle");
 		//return;
 	//}
+}
+
+void APlay_Cuphead::DashAfterJump(float _DeltaTime)
+{
+	MoveUpDate(_DeltaTime); // 최종 움직임
+	if (GetActorLocation().iY() <= -250)
+	{
+		JumpVector = FVector::Zero;
+		State.ChangeState("Idle");
+		return;
+	}
 }
