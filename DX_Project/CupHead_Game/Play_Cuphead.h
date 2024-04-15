@@ -41,7 +41,7 @@ private:
 
 	// 점프력 제어
 	FVector JumpPowerDown = FVector::Up * 1200.0f; // 이동할때의 점프력
-	FVector JumpPowerPress = FVector::Up * 1400.0f; // 이동할때의 점프력
+	FVector JumpPowerPress = FVector::Up * 1350.0f; // 이동할때의 점프력
 	FVector JumpVector = FVector::Zero; // 최종 점프력
 
 	float Speed = 500.0f;

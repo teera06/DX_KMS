@@ -214,7 +214,7 @@ void APlay_Cuphead::Idle(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsPress('Z'))
+	if (true == IsDown('Z'))
 	{
 
 		JumpVector = JumpPowerPress;
@@ -255,7 +255,7 @@ void APlay_Cuphead::Run(float  _DeltaTime)
 		return;
 	}
 
-	if (true == IsPress('Z'))
+	if (true == IsDown('Z'))
 	{
 
 		JumpVector = JumpPowerPress;
