@@ -2,6 +2,7 @@
 #include "Boss1_Monster1.h"
 #include "ContentsENum.h"
 #include <EngineCore/SpriteRenderer.h>
+#include <EngineCore/Collision.h>
 #include <EngineCore/DefaultSceneComponent.h>
 
 ABoss1_Monster1::ABoss1_Monster1()
@@ -11,6 +12,11 @@ ABoss1_Monster1::ABoss1_Monster1()
 
 	SmallBoss1->SetupAttachment(Root);
 	SmallBoss1->SetPivot(EPivot::BOT);
+
+	smallBossCollision = CreateDefaultSubObject<UCollision>("SmallBoss");
+	smallBossCollision->SetupAttachment(Root);
+	smallBossCollision->SetCollisionGroup(ECollisionOrder::Monster);
+	smallBossCollision->SetCollisionType(ECollisionType::Rect);
 	SetRoot(Root);
 }
 

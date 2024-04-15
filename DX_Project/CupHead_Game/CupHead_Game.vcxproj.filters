@@ -64,6 +64,9 @@
     <Filter Include="PlayStage\Boss1\Monster">
       <UniqueIdentifier>{001c3676-f07e-4d7b-8d8f-7e49dd5951ed}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlayStage\Boss1\PlayActor\Bullet">
+      <UniqueIdentifier>{1bd7cc2c-99bc-4ef8-a3a4-3f252686a08c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game_Core.cpp">
@@ -128,6 +131,9 @@
     <ClCompile Include="Boss1Common.cpp">
       <Filter>PlayStage\Boss1\Monster</Filter>
     </ClCompile>
+    <ClCompile Include="BaseBullet.cpp">
+      <Filter>PlayStage\Boss1\PlayActor\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -186,6 +192,9 @@
     </ClInclude>
     <ClInclude Include="Boss1Common.h">
       <Filter>PlayStage\Boss1\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseBullet.h">
+      <Filter>PlayStage\Boss1\PlayActor\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -29,6 +29,7 @@ protected:
 private:
 
 	USpriteRenderer* SmallBoss1 = nullptr;
+	UCollision* smallBossCollision = nullptr;
 
 	float coolDownTime = 6.0f;
 

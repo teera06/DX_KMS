@@ -167,6 +167,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BaseBullet.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Boss1Common.h" />
     <ClInclude Include="Boss1Map.h">
       <SubType>
@@ -247,6 +251,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BaseBullet.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Boss1Common.cpp" />
     <ClCompile Include="Boss1Map.cpp">
       <SubType>

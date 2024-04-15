@@ -49,5 +49,6 @@ enum class ERenderOrder
 
 enum class ECollisionOrder
 {
-
+	Player,
+	Monster
 };

@@ -1,7 +1,9 @@
 #include "PreCompile.h"
 #include "Play_Cuphead.h"
 #include "ContentsENum.h"
-#include <EngineCore/Renderer.h>
+//#include <EngineCore/Renderer.h>
+
+#include <EngineCore/Collision.h>
 
 #include <EngineCore/DefaultSceneComponent.h>
 
@@ -13,6 +15,14 @@ APlay_Cuphead::APlay_Cuphead()
 
 	PlayCuphead->SetupAttachment(Root);
 	PlayCuphead->SetPivot(EPivot::BOT);
+
+	Collision = CreateDefaultSubObject<UCollision>("Collision");
+	Collision->SetupAttachment(Root);
+	Collision->SetScale(FVector(100.0f, 100.0f, 100.0f));
+	// 콜리전은 무조건 오더를 지정해줘야 한다.
+	Collision->SetCollisionGroup(ECollisionOrder::Player);
+	Collision->SetCollisionType(ECollisionType::Rect);
+
 
 	SetRoot(Root);
 	PlayCuphead->SetOrder(ERenderOrder::Cuphead);
