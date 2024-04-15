@@ -308,6 +308,14 @@ void APlay_Cuphead::Run_Shoot_Straight(float  _DeltaTime)
 		return;
 	}
 
+	if (true == IsDown('Z'))
+	{
+
+		JumpVector = JumpPowerPress;
+		State.ChangeState("Jump");
+		return;
+	}
+
 	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
 	{
 		State.ChangeState("Shoot_Straight");
