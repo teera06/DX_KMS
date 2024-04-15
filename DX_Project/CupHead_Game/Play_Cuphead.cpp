@@ -66,6 +66,42 @@ void APlay_Cuphead::Tick(float _DeltaTime)
 	// 위에 뭔가를 쳐야할때도 있다.
 	Super::Tick(_DeltaTime);
 	State.Update(_DeltaTime);
+
+
+	// 나는 APlayer 인데
+	// 	Collision->SetCollisionGroup(ECollisionOrder::Player);
+	// 상대 ECollisionOrder::Monster
+
+	//if (Collision->Collision(ECollisionOrder::Monster))
+	//{
+
+	//}
+
+
+	//Collision->CollisionStay(ECollisionOrder::Monster, [=](std::shared_ptr<UCollision> _Collison)
+	//	{
+	//		int a = 0;
+
+	//		// _Collison[0]->GetActor()->Destroy();
+	//	}
+	//);
+
+	Collision->CollisionEnter(ECollisionOrder::Monster, [=](std::shared_ptr<UCollision> _Collison)
+	{
+	
+	_Collison->GetActor()->Destroy();
+	});
+
+
+
+	//Collision->CollisionExit(ECollisionOrder::Monster, [=](std::shared_ptr<UCollision> _Collison)
+	//{
+		//int a = 0;
+
+		// _Collison[0]->GetActor()->Destroy();
+	//}
+	//);
+
 	DebugMessageFunction();
 }
 
