@@ -1,6 +1,11 @@
 #pragma once
-class ABaseBullet
+
+#include <Enginecore/Actor.h>
+
+class USpriteRenderer;
+class ABaseBullet : public AActor
 {
+	GENERATED_BODY(AActor)
 public:
 	// constrcuter destructer
 	ABaseBullet(); // 디폴트 생성자
@@ -13,7 +18,10 @@ public:
 	ABaseBullet& operator=(ABaseBullet&& _Other) noexcept = delete;
 
 protected:
-
+	void BeginPlay() override;
+	void Tick(float _DeltaTime) override;
 private:
+	USpriteRenderer* BulletRender = nullptr;
+	UCollision* BulletCollision = nullptr;
 };
 

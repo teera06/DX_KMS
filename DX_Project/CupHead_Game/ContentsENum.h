@@ -38,7 +38,7 @@ enum class ERenderOrder
 	Boss1_crowd3,
 	Monster1,
 	Monster2,
-	skill,
+	Bullet,
 	Cuphead,
 	Object1,
 	Object2,
@@ -50,5 +50,6 @@ enum class ERenderOrder
 enum class ECollisionOrder
 {
 	Player,
-	Monster
+	Monster, 
+	Bullet
 };
