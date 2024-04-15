@@ -46,3 +46,8 @@ enum class ERenderOrder
 	HPgauge,
 	Filter
 };
+
+enum class ECollisionOrder
+{
+
+};
