@@ -8,10 +8,19 @@
 #include <EngineCore/Camera.h>
 
 #include "Boss1Common.h"
+#include "BaseBullet.h"
+
 //void Function(URenderer* Renderer)
 //{
 //	Renderer->ChangeAnimation("Idle");
 //}
+
+void APlay_Cuphead::createBullet()
+{
+	std::shared_ptr<ABaseBullet> NewBullet = GetWorld()->SpawnActor<ABaseBullet>("BaseBullet");
+	NewBullet->SetActorLocation({ GetActorLocation().X,GetActorLocation().Y + 80.0f,0.0f });
+	NewBullet->SetBulletDir(BulletDir);
+}
 
 void APlay_Cuphead::CalGravityVector(float _DeltaTime)
 {
@@ -149,6 +158,7 @@ void APlay_Cuphead::DirCheck()
 		{
 		case EDir::Left:
 
+			BulletDir = FVector::Left;
 			if (ShootPos == 1)
 			{
 				BulletStart->SetPosition({ -70.0f,80.0f,0.0f });
@@ -159,6 +169,7 @@ void APlay_Cuphead::DirCheck()
 			}
 			break;
 		case EDir::Right:
+			BulletDir = FVector::Right;
 			if (ShootPos == 1)
 			{
 				BulletStart->SetPosition({ 70.0f,80.0f,0.0f });
@@ -254,7 +265,7 @@ void APlay_Cuphead::Idle(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsPress('X'))
+	if (true == IsDown('X'))
 	{
 		ShootPos = 1;
 		BulletStart->SetActive(true);
@@ -435,6 +446,14 @@ void APlay_Cuphead::Duck(float _DeltaTime)
 void APlay_Cuphead::Shoot_Straight(float _DeltaTime)
 {
 	DirCheck();
+	skillCoolTime -= _DeltaTime;
+	if (true == IsPress('X') && skillCoolTime<0.0f)
+	{
+		createBullet();
+		skillCoolTime = 0.3f;
+		return;
+	}
+
 	if (true == IsFree('X'))
 	{
 		BulletStart->SetActive(false);

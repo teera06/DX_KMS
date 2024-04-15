@@ -17,11 +17,22 @@ public:
 	ABaseBullet& operator=(const ABaseBullet& _Other) = delete; // 디폴트 대입 연산자
 	ABaseBullet& operator=(ABaseBullet&& _Other) noexcept = delete;
 
+	void SetBulletDir(const FVector& _BulletDir)
+	{
+		BulletDir = _BulletDir;
+	}
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 private:
 	USpriteRenderer* BulletRender = nullptr;
 	UCollision* BulletCollision = nullptr;
+
+	FVector BulletDir = FVector::Zero;
+	FVector Move = FVector::Zero;
+	float Speed = 500.0f;
+
+	bool shoot = false;
 };
 

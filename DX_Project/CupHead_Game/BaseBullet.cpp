@@ -39,9 +39,39 @@ void ABaseBullet::BeginPlay()
 	BulletRender->SetOrder(ERenderOrder::Cuphead);
 	BulletRender->SetSprite("cuphead_idle_0001.png");
 	BulletRender->SetSamplering(ETextureSampling::LINEAR);
+	BulletRender->SetAutoSize(1.0f,true);
+
+	BulletRender->CreateAnimation("Peashot_Spawn2", "Peashot_Spawn2", 0.05f);
+	BulletRender->CreateAnimation("Peashot_Loop", "Peashot_Loop", 0.05f);
+
+	BulletRender->ChangeAnimation("Peashot_Spawn2");
+
+	//Destroy();
 }
 
 void ABaseBullet::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+	if (BulletDir.iX() == 1)
+	{
+		BulletRender->SetDir(EEngineDir::Right);
+	}
+	else if (BulletDir.iX() == -1)
+	{
+		BulletRender->SetDir(EEngineDir::Left);
+	}
+
+	Move = BulletDir * Speed * _DeltaTime;
+
+	if (true == BulletRender->IsCurAnimationEnd())
+	{
+		shoot = true;
+		BulletRender->ChangeAnimation("Peashot_Loop");
+	}
+
+	if (true == shoot)
+	{
+		AddActorLocation(Move);
+	}
 }

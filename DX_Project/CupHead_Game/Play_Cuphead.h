@@ -45,6 +45,8 @@ private:
 	FVector JumpPowerPress = FVector::Up * 1350.0f; // 이동할때의 점프력
 	FVector JumpVector = FVector::Zero; // 최종 점프력
 
+	FVector BulletDir = FVector::Right; // 최종 점프력
+
 	float Speed = 500.0f;
 	float JumpSpeed = 300.0f;
 
@@ -52,9 +54,13 @@ private:
 
 	float Gravity = 3000.0f;
 
+	float skillCoolTime=-1.0f;
+
 	int ShootPos = 0;
 
 	bool NoGravity = false;
+
+	void createBullet();
 
 	// 이동함수
 	
