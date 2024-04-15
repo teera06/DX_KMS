@@ -132,12 +132,12 @@ void APlay_Cuphead::StateInit()
 void APlay_Cuphead::DirCheck()
 {
 
-	if (UEngineInput::IsPress(VK_LEFT))
+	if (true==IsPress(VK_LEFT))
 	{
 		PlayCuphead->SetDir(EEngineDir::Left);
 		Dir = EDir::Left;
 	}
-	if (UEngineInput::IsPress(VK_RIGHT))
+	if (true==IsPress(VK_RIGHT))
 	{
 		PlayCuphead->SetDir(EEngineDir::Right);
 		Dir = EDir::Right;

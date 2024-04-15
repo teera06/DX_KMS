@@ -58,6 +58,7 @@ void APlay_Cuphead::BeginPlay()
 
 	StateInit();
 	PlayCuphead->SetAutoSize(1.0f, true);
+	Dir = EDir::Right;
 	//PlayCuphead->ChangeAnimation("Idle");
 }
 
