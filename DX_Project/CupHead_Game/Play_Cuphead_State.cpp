@@ -142,6 +142,41 @@ void APlay_Cuphead::DirCheck()
 		PlayCuphead->SetDir(EEngineDir::Right);
 		Dir = EDir::Right;
 	}
+
+	if (true == BulletStart->IsActive())
+	{
+		switch (Dir)
+		{
+		case EDir::Left:
+
+			if (ShootPos == 1)
+			{
+				BulletStart->SetPosition({ -70.0f,80.0f,0.0f });
+			}
+			else if (ShootPos == 2)
+			{
+				BulletStart->SetPosition({ -65.0f,70.0f,0.0f });
+			}
+			break;
+		case EDir::Right:
+			if (ShootPos == 1)
+			{
+				BulletStart->SetPosition({ 70.0f,80.0f,0.0f });
+			}
+			else if (ShootPos == 2)
+			{
+				BulletStart->SetPosition({ 65.0f,70.0f,0.0f });
+			}
+			break;
+		case EDir::Up:
+			break;
+		case EDir::Down:
+			break;
+		default:
+			break;
+		}
+	}
+
 }
 
 void APlay_Cuphead::MoveUpDate(float _DeltaTime,const FVector& _MovePos)
@@ -221,6 +256,8 @@ void APlay_Cuphead::Idle(float _DeltaTime)
 
 	if (true == IsPress('X'))
 	{
+		ShootPos = 1;
+		BulletStart->SetActive(true);
 		State.ChangeState("Shoot_Straight");
 		return;
 	}
@@ -253,15 +290,10 @@ void APlay_Cuphead::Run(float  _DeltaTime)
 		return;
 	}
 
-	if(true == IsDoubleClick('X', 0.1f))
-	{
-		State.ChangeState("Run_Shoot_Straight");
-		return;
-	}
-	
-
 	if (true == IsPress('X'))
 	{
+		ShootPos = 2;
+		BulletStart->SetActive(true);
 		State.ChangeState("Run_Shoot_Straight");
 		return;
 	}
@@ -295,6 +327,7 @@ void APlay_Cuphead::Run_Shoot_Straight(float  _DeltaTime)
 	FVector MovePos = FVector::Zero;
 	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT) && true == IsFree('X'))
 	{
+		BulletStart->SetActive(false);
 		State.ChangeState("Idle");
 		return;
 	}
@@ -311,13 +344,14 @@ void APlay_Cuphead::Run_Shoot_Straight(float  _DeltaTime)
 
 	if (true == IsFree('X'))
 	{
+		BulletStart->SetActive(false);
 		State.ChangeState("Run");
 		return;
 	}
 
 	if (true == IsDown('Z'))
 	{
-
+		BulletStart->SetActive(false);
 		JumpVector = JumpPowerPress;
 		State.ChangeState("Jump");
 		return;
@@ -325,6 +359,7 @@ void APlay_Cuphead::Run_Shoot_Straight(float  _DeltaTime)
 
 	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
 	{
+		ShootPos = 1;
 		State.ChangeState("Shoot_Straight");
 		return;
 	}
@@ -402,6 +437,7 @@ void APlay_Cuphead::Shoot_Straight(float _DeltaTime)
 	DirCheck();
 	if (true == IsFree('X'))
 	{
+		BulletStart->SetActive(false);
 		State.ChangeState("Idle");
 		return;
 	}
@@ -414,6 +450,7 @@ void APlay_Cuphead::Shoot_Straight(float _DeltaTime)
 
 	if (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT))
 	{
+		ShootPos = 2;
 		State.ChangeState("Run_Shoot_Straight");
 		return;
 	}
@@ -425,12 +462,14 @@ void APlay_Cuphead::Duck_Shoot(float _DeltaTime)
 	
 	if (true == IsFree(VK_DOWN))
 	{
+		BulletStart->SetActive(false);
 		State.ChangeState("Idle");
 		return;
 	}
 
 	if (true == IsFree('X'))
 	{
+		BulletStart->SetActive(false);
 		State.ChangeState("Duck");
 		return;
 	}

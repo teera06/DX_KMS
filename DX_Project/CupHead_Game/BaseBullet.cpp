@@ -35,6 +35,10 @@ ABaseBullet::~ABaseBullet()
 void ABaseBullet::BeginPlay()
 {
 	Super::BeginPlay();
+
+	BulletRender->SetOrder(ERenderOrder::Cuphead);
+	BulletRender->SetSprite("cuphead_idle_0001.png");
+	BulletRender->SetSamplering(ETextureSampling::LINEAR);
 }
 
 void ABaseBullet::Tick(float _DeltaTime)

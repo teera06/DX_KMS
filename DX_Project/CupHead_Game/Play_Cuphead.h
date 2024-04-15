@@ -33,6 +33,7 @@ private:
 	//void StateAniChange(EActorState _State); // 커비의 움직임 상태에 맞는 애니메이션 실행
 	
 	USpriteRenderer* PlayCuphead= nullptr;
+	USpriteRenderer* BulletStart = nullptr;
 	UCollision* Collision=nullptr;
 
 	FVector PlayerMoveY = FVector::Zero;
@@ -50,6 +51,8 @@ private:
 	float DashSpeed = 1000.0f;
 
 	float Gravity = 3000.0f;
+
+	int ShootPos = 0;
 
 	bool NoGravity = false;
 

@@ -39,6 +39,7 @@ enum class ERenderOrder
 	Boss1_crowd3,
 	Monster1,
 	Monster2,
+	skilleffect,
 	Bullet,
 	Cuphead,
 	Object1,

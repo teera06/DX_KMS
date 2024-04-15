@@ -11,10 +11,14 @@ APlay_Cuphead::APlay_Cuphead()
 {
 	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("ScreenEffect");
 
-	PlayCuphead = CreateDefaultSubObject<USpriteRenderer>("WorldPlayer");
+	PlayCuphead = CreateDefaultSubObject<USpriteRenderer>("PlayCuphead");
 
 	PlayCuphead->SetupAttachment(Root);
 	PlayCuphead->SetPivot(EPivot::BOT);
+
+	BulletStart = CreateDefaultSubObject<USpriteRenderer>("BulletStart");
+
+	BulletStart->SetupAttachment(Root);
 
 	Collision = CreateDefaultSubObject<UCollision>("Collision");
 	Collision->SetupAttachment(Root);
@@ -28,6 +32,11 @@ APlay_Cuphead::APlay_Cuphead()
 	PlayCuphead->SetOrder(ERenderOrder::Cuphead);
 	PlayCuphead->SetSprite("cuphead_idle_0001.png");
 	PlayCuphead->SetSamplering(ETextureSampling::LINEAR);
+
+	BulletStart->SetOrder(ERenderOrder::skilleffect);
+	BulletStart->SetSprite("Spawn01.png");
+	BulletStart->SetSamplering(ETextureSampling::LINEAR);
+
 
 	InputOn();
 
@@ -43,6 +52,9 @@ void APlay_Cuphead::BeginPlay()
 
 	//SetActorScale3D(FVector(60.0f, 100.0f, 100.0f));
 	SetActorLocation(FVector(-400.0f, -250.0f, -50.0f));
+
+
+
 	PlayCuphead->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 	//DelayCallBack(1.0f, std::bind(&ATitleLogo::RendererOff, this));
 	PlayCuphead->CreateAnimation("Idle", "Idle", 0.05f);
@@ -56,9 +68,18 @@ void APlay_Cuphead::BeginPlay()
 	PlayCuphead->CreateAnimation("Jump", "Jump", 0.05f);
 	//PlayCuphead->CreateAnimation("Duck", "Duck", 0.05f, false);
 
+	BulletStart->CreateAnimation("Peashot_Spawn", "Peashot_Spawn", 0.05f);
+
+	BulletStart->ChangeAnimation("Peashot_Spawn");
+
+
 	StateInit();
 	PlayCuphead->SetAutoSize(1.0f, true);
+	BulletStart->SetAutoSize(1.0f, true);
 	Dir = EDir::Right;
+	
+	BulletStart->SetActive(false);
+
 	//PlayCuphead->ChangeAnimation("Idle");
 }
 
