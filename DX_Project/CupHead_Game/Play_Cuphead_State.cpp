@@ -214,11 +214,11 @@ void APlay_Cuphead::Idle(float _DeltaTime)
 		return;
 	}
 
-	
 	if (true == IsPress('Z'))
 	{
-		State.ChangeState("Jump");
+
 		JumpVector = JumpPowerPress;
+		State.ChangeState("Jump");
 		return;
 	}
 
@@ -257,8 +257,9 @@ void APlay_Cuphead::Run(float  _DeltaTime)
 
 	if (true == IsPress('Z'))
 	{
-		State.ChangeState("Jump");
+
 		JumpVector = JumpPowerPress;
+		State.ChangeState("Jump");
 		return;
 	}
 
@@ -391,15 +392,20 @@ void APlay_Cuphead::Jump(float _DeltaTime)
 		//JumpVector = FVector::Zero;
 	//}
 
+	if (true == IsUp('Z'))
+	{
+		JumpVector = JumpPowerDown;
+	}
+
 	FVector MovePos;
 
 	// 점프 도중 X축 이동
-	if (UEngineInput::IsPress(VK_LEFT))
+	if (true==IsPress(VK_LEFT))
 	{
 		MovePos += FVector::Left * JumpSpeed * _DeltaTime;
 	}
 
-	if (UEngineInput::IsPress(VK_RIGHT))
+	if (true==IsPress(VK_RIGHT))
 	{
 		MovePos += FVector::Right * JumpSpeed * _DeltaTime;
 	}
