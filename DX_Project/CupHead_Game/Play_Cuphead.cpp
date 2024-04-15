@@ -89,7 +89,7 @@ void APlay_Cuphead::Tick(float _DeltaTime)
 	Collision->CollisionEnter(ECollisionOrder::Monster, [=](std::shared_ptr<UCollision> _Collison)
 	{
 	
-	_Collison->GetActor()->Destroy();
+	//_Collison->GetActor()->Destroy();
 	});
 
 

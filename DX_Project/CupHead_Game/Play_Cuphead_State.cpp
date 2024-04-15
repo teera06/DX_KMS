@@ -17,7 +17,7 @@ void APlay_Cuphead::CalGravityVector(float _DeltaTime)
 {
 	GravityVector += (FVector::Down * Gravity * _DeltaTime); // 중력은 계속 가해진다.
 
-	if (GetActorLocation().iY() <= -250)
+	if (GetActorLocation().iY() <= -250 || true==NoGravity)
 	{
 		GravityVector = FVector::Zero;
 	}
@@ -68,6 +68,7 @@ void APlay_Cuphead::StateInit()
 	State.CreateState("Idle");
 	State.CreateState("Run");
 	State.CreateState("Dash");
+	State.CreateState("AirDash");
 	State.CreateState("Duck");
 	State.CreateState("Shoot_Straight");
 	State.CreateState("Run_Shoot_Straight");
@@ -83,6 +84,9 @@ void APlay_Cuphead::StateInit()
 
 	State.SetUpdateFunction("Dash", std::bind(&APlay_Cuphead::Dash, this, std::placeholders::_1));
 	State.SetStartFunction("Dash", [=] {PlayCuphead->ChangeAnimation("Dash"); });
+
+	State.SetUpdateFunction("AirDash", std::bind(&APlay_Cuphead::AirDash, this, std::placeholders::_1));
+	State.SetStartFunction("AirDash", [=] {PlayCuphead->ChangeAnimation("Dash"); });
 
 	State.SetUpdateFunction("Duck", std::bind(&APlay_Cuphead::Duck, this, std::placeholders::_1));
 	State.SetStartFunction("Duck", [=] {PlayCuphead->ChangeAnimation("Duck"); });
@@ -337,6 +341,31 @@ void APlay_Cuphead::Dash(float _DeltaTime)
 	MoveUpDate(_DeltaTime, MovePos);
 }
 
+void APlay_Cuphead::AirDash(float _DeltaTime)
+{
+	DirCheck();
+	FVector MovePos = FVector::Zero;
+	if (true == PlayCuphead->IsCurAnimationEnd())
+	{
+		NoGravity = false;
+		State.ChangeState("Jump");
+		return;
+	}
+
+	switch (Dir)
+	{
+	case EDir::Left:
+		AddActorLocation( FVector::Left * _DeltaTime * DashSpeed);
+		break;
+	case EDir::Right:
+		MovePos += FVector::Right * _DeltaTime * DashSpeed;
+		break;
+	default:
+		break;
+	}
+	MoveUpDate(_DeltaTime, MovePos);
+}
+
 void APlay_Cuphead::Duck(float _DeltaTime)
 {
 	DirCheck();
@@ -410,6 +439,13 @@ void APlay_Cuphead::Jump(float _DeltaTime)
 		MovePos += FVector::Right * JumpSpeed * _DeltaTime;
 	}
 
+	if (true == IsDown(VK_SHIFT))
+	{
+		NoGravity = true;
+		JumpVector = FVector::Zero;
+		State.ChangeState("AirDash");
+		return;
+	}
 
 	MoveUpDate(_DeltaTime, MovePos); // 최종 움직임
 	if (GetActorLocation().iY() <= -250)

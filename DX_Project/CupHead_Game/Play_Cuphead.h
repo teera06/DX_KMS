@@ -51,6 +51,7 @@ private:
 
 	float Gravity = 3000.0f;
 
+	bool NoGravity = false;
 
 	// 이동함수
 	
@@ -64,6 +65,7 @@ private:
 	void Run(float _DeltaTime);
 	void Run_Shoot_Straight(float _DeltaTime);
 	void Dash(float _DeltaTime);
+	void AirDash(float _DeltaTime);
 	void Duck(float _DeltaTime);
 	void Shoot_Straight(float _DeltaTime);
 	void Duck_Shoot(float _DeltaTime);
