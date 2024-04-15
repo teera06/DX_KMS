@@ -242,6 +242,13 @@ void APlay_Cuphead::Run(float  _DeltaTime)
 		return;
 	}
 
+	if(true == IsDoubleClick('X', 0.1f))
+	{
+		State.ChangeState("Run_Shoot_Straight");
+		return;
+	}
+	
+
 	if (true == IsPress('X'))
 	{
 		State.ChangeState("Run_Shoot_Straight");
