@@ -34,7 +34,7 @@ private:
 	
 	USpriteRenderer* PlayCuphead= nullptr;
 	USpriteRenderer* BulletStart = nullptr;
-	UCollision* Collision=nullptr;
+	UCollision* PlayerCollision=nullptr;
 
 	FVector PlayerMoveY = FVector::Zero;
 

@@ -37,6 +37,8 @@ private:
 	int phase2changecount = 0;
 	bool att = false;
 
+
+	void Collisiongather();
 	// ป๓ลย 
 
 	void smallIdle(float _DeltaTime);

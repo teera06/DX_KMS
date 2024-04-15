@@ -20,12 +20,12 @@ APlay_Cuphead::APlay_Cuphead()
 
 	BulletStart->SetupAttachment(Root);
 
-	Collision = CreateDefaultSubObject<UCollision>("Collision");
-	Collision->SetupAttachment(Root);
-	Collision->SetScale(FVector(100.0f, 100.0f, 100.0f));
-	// 콜리전은 무조건 오더를 지정해줘야 한다.
-	Collision->SetCollisionGroup(ECollisionOrder::Player);
-	Collision->SetCollisionType(ECollisionType::Rect);
+	PlayerCollision = CreateDefaultSubObject<UCollision>("Collision");
+	PlayerCollision->SetupAttachment(Root);
+	PlayerCollision->SetScale(FVector(100.0f, 100.0f, 100.0f));
+	//PlayerCollision은 무조건 오더를 지정해줘야 한다.
+	PlayerCollision->SetCollisionGroup(ECollisionOrder::Player);
+	PlayerCollision->SetCollisionType(ECollisionType::Rect);
 
 
 	SetRoot(Root);
@@ -108,7 +108,7 @@ void APlay_Cuphead::Tick(float _DeltaTime)
 	//	}
 	//);
 
-	Collision->CollisionEnter(ECollisionOrder::Monster, [=](std::shared_ptr<UCollision> _Collison)
+	PlayerCollision->CollisionEnter(ECollisionOrder::Monster, [=](std::shared_ptr<UCollision> _Collison)
 	{
 	
 	//_Collison->GetActor()->Destroy();

@@ -15,6 +15,7 @@ ABoss1_Monster1::ABoss1_Monster1()
 
 	smallBossCollision = CreateDefaultSubObject<UCollision>("SmallBoss");
 	smallBossCollision->SetupAttachment(Root);
+	smallBossCollision->SetScale(FVector(400.0f, 400.0f, 100.0f));
 	smallBossCollision->SetCollisionGroup(ECollisionOrder::Monster);
 	smallBossCollision->SetCollisionType(ECollisionType::Rect);
 	SetRoot(Root);
@@ -44,17 +45,20 @@ void ABoss1_Monster1::BeginPlay()
 void ABoss1_Monster1::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-
+	Collisiongather();
 	coolDownTime -= _DeltaTime;
 
 	if (1 == phasecheck)
 	{
+		Collisiongather();
 		Phase1.Update(_DeltaTime);
 	}
 	else {
+		Collisiongather();
 		Phase2.Update(_DeltaTime);
 	}
 
+	Collisiongather();
 }
 
 void ABoss1_Monster1::Phase1StateInit()
@@ -123,6 +127,14 @@ void ABoss1_Monster1::AniCreate()
 	SmallBoss1->CreateAnimation("smallatt2", "smallatt2", 0.1f);
 }
 
+void ABoss1_Monster1::Collisiongather()
+{
+	smallBossCollision->CollisionEnter(ECollisionOrder::Bullet, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		_Collison->GetActor()->Destroy();
+	});
+}
+
 void ABoss1_Monster1::smallIdle(float _DeltaTime)
 {
 
@@ -147,6 +159,7 @@ void ABoss1_Monster1::smallIdle(float _DeltaTime)
 
 void ABoss1_Monster1::smallattready(float _DeltaTime)
 {
+
 	if (true == SmallBoss1->IsCurAnimationEnd())
 	{
 
@@ -157,6 +170,8 @@ void ABoss1_Monster1::smallattready(float _DeltaTime)
 
 void ABoss1_Monster1::smallatt(float _DeltaTime)
 {
+
+
 	if (true == SmallBoss1->IsCurAnimationEnd())
 	{
 
@@ -174,9 +189,11 @@ void ABoss1_Monster1::smallatt(float _DeltaTime)
 
 void ABoss1_Monster1::phase2changeReady(float _DeltaTime)
 {
+
+
 	if (true == SmallBoss1->IsCurAnimationEnd())
 	{
-
+		
 		Phase1.ChangeState("phase2changeReady2");
 		return;
 	}
@@ -184,10 +201,11 @@ void ABoss1_Monster1::phase2changeReady(float _DeltaTime)
 
 void ABoss1_Monster1::phase2changeReady2(float _DeltaTime)
 {
+	
 
 	if (true == SmallBoss1->IsCurAnimationEnd())
 	{
-
+	
 		phase2changecount++;
 	}
 
@@ -202,6 +220,7 @@ void ABoss1_Monster1::phase2changeReady2(float _DeltaTime)
 
 void ABoss1_Monster1::phase2change1(float _DeltaTime)
 {
+	
 
 	if (true == SmallBoss1->IsCurAnimationEnd())
 	{
@@ -212,6 +231,9 @@ void ABoss1_Monster1::phase2change1(float _DeltaTime)
 
 void ABoss1_Monster1::phase2change2(float _DeltaTime)
 {
+
+	
+
 	AddActorLocation(FVector::Left * 500.0f * _DeltaTime);
 
 	if (GetActorLocation().iX() <= -580)
@@ -224,6 +246,8 @@ void ABoss1_Monster1::phase2change2(float _DeltaTime)
 
 void ABoss1_Monster1::phase2intro(float _DeltaTime)
 {
+	
+
 	SmallBoss1->SetDir(EEngineDir::Left);
 
 	if (true == SmallBoss1->IsCurAnimationEnd())
@@ -236,6 +260,7 @@ void ABoss1_Monster1::phase2intro(float _DeltaTime)
 
 void ABoss1_Monster1::smallatt2(float _DeltaTime)
 {
+	
 	if (true == SmallBoss1->IsCurAnimationEnd())
 	{
 		Phase2.ChangeState("smallIdle");

@@ -21,7 +21,7 @@ ABaseBullet::ABaseBullet()
 	BulletCollision->SetupAttachment(Root);
 	BulletCollision->SetScale(FVector(100.0f, 100.0f, 100.0f));
 	// 콜리전은 무조건 오더를 지정해줘야 한다.
-	BulletCollision->SetCollisionGroup(ECollisionOrder::Player);
+	BulletCollision->SetCollisionGroup(ECollisionOrder::Bullet);
 	BulletCollision->SetCollisionType(ECollisionType::Rect);
 
 
