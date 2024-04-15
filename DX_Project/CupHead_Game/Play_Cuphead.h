@@ -1,8 +1,10 @@
 #pragma once
 #include <Enginecore/Actor.h>
-#include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/StateManager.h>
 #include "PlayerCommon.h"
+
+class USpriteRenderer;
+
 class APlay_Cuphead : public AActor, public APlayerCommon
 {
 	GENERATED_BODY(AActor)

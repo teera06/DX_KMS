@@ -1,7 +1,7 @@
 #include "PreCompile.h"
 #include "Play_Cuphead.h"
 #include "ContentsENum.h"
-//#include <EngineCore/Renderer.h>
+#include <EngineCore/SpriteRenderer.h>
 
 #include <EngineCore/Collision.h>
 
