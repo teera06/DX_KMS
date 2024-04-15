@@ -206,10 +206,11 @@ void APlay_Cuphead::Idle(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsDown('Z'))
+	
+	if (true == IsPress('Z'))
 	{
 		State.ChangeState("Jump");
-		JumpVector = JumpPower;
+		JumpVector = JumpPowerPress;
 		return;
 	}
 
@@ -239,12 +240,13 @@ void APlay_Cuphead::Run(float  _DeltaTime)
 		return;
 	}
 
-	if (true == IsDown('Z'))
+	if (true == IsPress('Z'))
 	{
 		State.ChangeState("Jump");
-		JumpVector = JumpPower;
+		JumpVector = JumpPowerPress;
 		return;
 	}
+
 
 	if (true == IsPress(VK_LEFT))
 	{
@@ -386,6 +388,7 @@ void APlay_Cuphead::Jump(float _DeltaTime)
 	{
 		MovePos += FVector::Right * JumpSpeed * _DeltaTime;
 	}
+
 
 	MoveUpDate(_DeltaTime, MovePos); // 최종 움직임
 	if (GetActorLocation().iY() <= -250)

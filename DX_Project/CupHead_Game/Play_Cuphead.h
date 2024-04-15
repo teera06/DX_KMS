@@ -37,7 +37,8 @@ private:
 	FVector GravityVector = FVector::Zero; // 중력값 받기
 
 	// 점프력 제어
-	FVector JumpPower = FVector::Up * 600.0f; // 이동할때의 점프력
+	FVector JumpPowerDown = FVector::Up * 600.0f; // 이동할때의 점프력
+	FVector JumpPowerPress = FVector::Up * 800.0f; // 이동할때의 점프력
 	FVector JumpVector = FVector::Zero; // 최종 점프력
 
 	float Speed = 500.0f;
