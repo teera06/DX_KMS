@@ -15,7 +15,12 @@ APlay_Cuphead::APlay_Cuphead()
 	PlayCuphead->SetPivot(EPivot::BOT);
 
 	SetRoot(Root);
+	PlayCuphead->SetOrder(ERenderOrder::Cuphead);
+	PlayCuphead->SetSprite("cuphead_idle_0001.png");
+	PlayCuphead->SetSamplering(ETextureSampling::LINEAR);
+
 	InputOn();
+
 }
 
 APlay_Cuphead::~APlay_Cuphead()
@@ -30,9 +35,6 @@ void APlay_Cuphead::BeginPlay()
 	SetActorLocation(FVector(0.0f, -250.0f, -50.0f));
 
 	//DelayCallBack(1.0f, std::bind(&ATitleLogo::RendererOff, this));
-	PlayCuphead->SetOrder(ERenderOrder::Cuphead);
-	PlayCuphead->SetSprite("cuphead_idle_0001.png");
-	PlayCuphead->SetSamplering(ETextureSampling::LINEAR);
 	PlayCuphead->CreateAnimation("Idle", "Idle", 0.05f);
 
 	PlayCuphead->CreateAnimation("Run", "Run", 0.05f);

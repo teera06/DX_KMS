@@ -22,16 +22,7 @@ ABoss3Map::ABoss3Map()
 	Object2->AddPosition({ 0.0f, -380.0f, -90.0f });
 	crowd3->AddPosition({ 9.0f, -60.0f, 80.0f });
 	SetRoot(Root);
-}
 
-ABoss3Map::~ABoss3Map()
-{
-}
-
-void ABoss3Map::BeginPlay()
-{
-	Super::BeginPlay();
-	SetActorLocation(FVector(0.0f, 60.0f, 100.0f));
 	back3Map->SetOrder(ERenderOrder::Boss1_Back3);
 	back3Map->SetSprite("back3.png");
 	back3Map->SetSamplering(ETextureSampling::LINEAR);
@@ -40,8 +31,6 @@ void ABoss3Map::BeginPlay()
 	crowd3->SetOrder(ERenderOrder::Boss1_crowd3);
 	crowd3->SetSprite("jazz_crowdA_0001.png");
 	crowd3->SetSamplering(ETextureSampling::LINEAR);
-	crowd3->CreateAnimation("A", "A", 0.1f);
-	crowd3->ChangeAnimation("A");
 
 	crowd3->SetAutoSize(0.97f, true);
 
@@ -54,6 +43,18 @@ void ABoss3Map::BeginPlay()
 	Object2->SetSprite("C8.png");
 
 	Object2->SetAutoSize(1.3f, true);
+}
+
+ABoss3Map::~ABoss3Map()
+{
+}
+
+void ABoss3Map::BeginPlay()
+{
+	Super::BeginPlay();
+	SetActorLocation(FVector(0.0f, 60.0f, 100.0f));
+	crowd3->CreateAnimation("A", "A", 0.1f);
+	crowd3->ChangeAnimation("A");
 }
 
 void ABoss3Map::Tick(float _DeltaTime)
