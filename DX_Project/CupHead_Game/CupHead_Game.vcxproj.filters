@@ -67,6 +67,9 @@
     <Filter Include="PlayStage\Boss1\PlayActor\Bullet">
       <UniqueIdentifier>{1bd7cc2c-99bc-4ef8-a3a4-3f252686a08c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlayStage\Boss1\Monster\skill">
+      <UniqueIdentifier>{71d59fe9-0627-432c-b103-9e135c630561}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game_Core.cpp">
@@ -134,6 +137,9 @@
     <ClCompile Include="BaseBullet.cpp">
       <Filter>PlayStage\Boss1\PlayActor\Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="smallskill.cpp">
+      <Filter>PlayStage\Boss1\Monster\skill</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -195,6 +201,9 @@
     </ClInclude>
     <ClInclude Include="BaseBullet.h">
       <Filter>PlayStage\Boss1\PlayActor\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="smallskill.h">
+      <Filter>PlayStage\Boss1\Monster\skill</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
