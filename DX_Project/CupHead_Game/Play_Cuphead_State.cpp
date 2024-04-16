@@ -153,11 +153,11 @@ void APlay_Cuphead::DiagonalUpShoot()
 		NewBullet->SetActorRotation({ 0.0f,0.0f,45.0f });
 		if (false == shootY)
 		{
-			NewBullet->SetActorLocation({ GetActorLocation().X + shootXpos,GetActorLocation().Y - DuckShootYpos + 80.0f,0.0f });
+			NewBullet->SetActorLocation({ GetActorLocation().X + shootXpos,GetActorLocation().Y  + 80.0f,0.0f });
 			shootY = true;
 		}
 		else {
-			NewBullet->SetActorLocation({ GetActorLocation().X + shootXpos,GetActorLocation().Y - DuckShootYpos + 90.0f,0.0f });
+			NewBullet->SetActorLocation({ GetActorLocation().X + shootXpos,GetActorLocation().Y  + 90.0f,0.0f });
 			shootY = false;
 		}
 	}
@@ -166,11 +166,11 @@ void APlay_Cuphead::DiagonalUpShoot()
 		NewBullet->SetActorRotation({ 0.0f,0.0f,-45.0f });
 		if (false == shootY)
 		{
-			NewBullet->SetActorLocation({ GetActorLocation().X - shootXpos,GetActorLocation().Y - DuckShootYpos + 80.0f,0.0f });
+			NewBullet->SetActorLocation({ GetActorLocation().X - shootXpos,GetActorLocation().Y + 80.0f,0.0f });
 			shootY = true;
 		}
 		else {
-			NewBullet->SetActorLocation({ GetActorLocation().X - shootXpos,GetActorLocation().Y - DuckShootYpos + 90.0f,0.0f });
+			NewBullet->SetActorLocation({ GetActorLocation().X - shootXpos,GetActorLocation().Y + 90.0f,0.0f });
 			shootY = false;
 
 		}
@@ -357,7 +357,7 @@ void APlay_Cuphead::DirCheck()
 				break;
 			case EShootDir::DiagonalUpShoot:
 				BulletDir += FVector::Up;
-				BulletStart->SetPosition({ -70.0f,80.0f,0.0f });
+				BulletStart->SetPosition({ -60.0f,120.0f,0.0f });
 				break;
 			default:
 				break;
@@ -384,7 +384,7 @@ void APlay_Cuphead::DirCheck()
 				break;
 			case EShootDir::DiagonalUpShoot:
 				BulletDir += FVector::Up;
-				BulletStart->SetPosition({ 70.0f,80.0f,0.0f });
+				BulletStart->SetPosition({ 60.0f,120.0f,0.0f });
 				break;
 			default:
 				break;
