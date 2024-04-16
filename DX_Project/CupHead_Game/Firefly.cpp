@@ -31,8 +31,10 @@ AFirefly::~AFirefly()
 
 void AFirefly::BeginPlay()
 {
+	Super::BeginPlay();
 }
 
 void AFirefly::Tick(float _DeltaTime)
 {
+	Super::Tick(_DeltaTime);
 }

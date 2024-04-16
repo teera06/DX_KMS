@@ -98,7 +98,7 @@ void ABoss1_Monster2::bigatt(float _DeltaTime)
 		Bigattcount++;
 	}
 
-	if (Bigattcount > 3)
+	if (Bigattcount > 2)
 	{
 		Phase1.ChangeState("BigIdle");
 		coolDownTime = 6.0f;
