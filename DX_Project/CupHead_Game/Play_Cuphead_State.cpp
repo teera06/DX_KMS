@@ -48,6 +48,9 @@ void APlay_Cuphead::createBullet()
 	case EShootDir::DuckShoot:
 		DuckShoot();
 		break;
+	case EShootDir::DiagonalUpShoot:
+		DiagonalUpShoot();
+		break;
 	default:
 		break;
 	}
@@ -143,6 +146,37 @@ void APlay_Cuphead::DuckShoot()
 	}
 }
 
+void APlay_Cuphead::DiagonalUpShoot()
+{
+	if (BulletDir.iX() == 1)
+	{
+		NewBullet->SetActorRotation({ 0.0f,0.0f,45.0f });
+		if (false == shootY)
+		{
+			NewBullet->SetActorLocation({ GetActorLocation().X + shootXpos,GetActorLocation().Y - DuckShootYpos + 80.0f,0.0f });
+			shootY = true;
+		}
+		else {
+			NewBullet->SetActorLocation({ GetActorLocation().X + shootXpos,GetActorLocation().Y - DuckShootYpos + 90.0f,0.0f });
+			shootY = false;
+		}
+	}
+	else if (BulletDir.iX() == -1)
+	{
+		NewBullet->SetActorRotation({ 0.0f,0.0f,-45.0f });
+		if (false == shootY)
+		{
+			NewBullet->SetActorLocation({ GetActorLocation().X - shootXpos,GetActorLocation().Y - DuckShootYpos + 80.0f,0.0f });
+			shootY = true;
+		}
+		else {
+			NewBullet->SetActorLocation({ GetActorLocation().X - shootXpos,GetActorLocation().Y - DuckShootYpos + 90.0f,0.0f });
+			shootY = false;
+
+		}
+	}
+}
+
 void APlay_Cuphead::CalGravityVector(float _DeltaTime)
 {
 	GravityVector += (FVector::Down * Gravity * _DeltaTime); // 중력은 계속 가해진다.
@@ -203,6 +237,7 @@ void APlay_Cuphead::StateInit()
 	State.CreateState("Duck");
 	State.CreateState("Shoot_Straight");
 	State.CreateState("Run_Shoot_Straight");
+	State.CreateState("Run_Shoot_DiagonalUp");
 	State.CreateState("Duck_Shoot");
 	State.CreateState("Jump");
 	State.CreateState("JumpShoot");
@@ -231,6 +266,9 @@ void APlay_Cuphead::StateInit()
 
 	State.SetUpdateFunction("Run_Shoot_Straight", std::bind(&APlay_Cuphead::Run_Shoot_Straight, this, std::placeholders::_1));
 	State.SetStartFunction("Run_Shoot_Straight", [=] {PlayCuphead->ChangeAnimation("Run_Shoot_Straight"); });
+
+	State.SetUpdateFunction("Run_Shoot_DiagonalUp", std::bind(&APlay_Cuphead::Run_Shoot_DiagonalUp, this, std::placeholders::_1));
+	State.SetStartFunction("Run_Shoot_DiagonalUp", [=] {PlayCuphead->ChangeAnimation("Run_Shoot_DiagonalUp"); });
 
 	State.SetUpdateFunction("Duck_Shoot", std::bind(&APlay_Cuphead::Duck_Shoot, this, std::placeholders::_1));
 	State.SetStartFunction("Duck_Shoot", [=] {PlayCuphead->ChangeAnimation("Duck_Shoot"); });
@@ -317,6 +355,10 @@ void APlay_Cuphead::DirCheck()
 			case EShootDir::DuckShoot:
 				BulletStart->SetPosition({ -75.0f,40.0f,0.0f });
 				break;
+			case EShootDir::DiagonalUpShoot:
+				BulletDir += FVector::Up;
+				BulletStart->SetPosition({ -70.0f,80.0f,0.0f });
+				break;
 			default:
 				break;
 			}
@@ -339,6 +381,10 @@ void APlay_Cuphead::DirCheck()
 				break;
 			case EShootDir::DuckShoot:
 				BulletStart->SetPosition({70.0f,40.0f,0.0f });
+				break;
+			case EShootDir::DiagonalUpShoot:
+				BulletDir += FVector::Up;
+				BulletStart->SetPosition({ 70.0f,80.0f,0.0f });
 				break;
 			default:
 				break;
@@ -546,6 +592,76 @@ void APlay_Cuphead::Run_Shoot_Straight(float  _DeltaTime)
 	if (true == IsPress(VK_RIGHT))
 	{
 		MovePos += FVector::Right * _DeltaTime * Speed;
+	}
+
+	if (true == IsPress(VK_UP))
+	{
+		ShootStyle = EShootDir::DiagonalUpShoot;
+		State.ChangeState("Run_Shoot_DiagonalUp");
+		return;
+	}
+
+	if (true == IsFree('X'))
+	{
+		BulletStart->SetActive(false);
+		State.ChangeState("Run");
+		return;
+	}
+
+	if (true == IsDown('Z'))
+	{
+		//BulletStart->SetActive(false);
+		ShootStyle = EShootDir::IdleShoot;
+		JumpVector = JumpPowerPress;
+		State.ChangeState("JumpShoot");
+		return;
+	}
+
+	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
+	{
+		ShootStyle = EShootDir::IdleShoot;
+		State.ChangeState("Shoot_Straight");
+		return;
+	}
+
+	MoveUpDate(_DeltaTime, MovePos);
+}
+
+void APlay_Cuphead::Run_Shoot_DiagonalUp(float _DeltaTime)
+{
+	DirCheck();
+
+	skillCoolTime -= _DeltaTime;
+	if (true == IsPress('X') && skillCoolTime < 0.0f)
+	{
+		createBullet();
+		skillCoolTime = 0.3f;
+		return;
+	}
+
+	FVector MovePos = FVector::Zero;
+	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT) && true == IsFree('X'))
+	{
+		BulletStart->SetActive(false);
+		State.ChangeState("Idle");
+		return;
+	}
+
+	if (true == IsPress(VK_LEFT))
+	{
+		MovePos += FVector::Left * _DeltaTime * Speed;
+	}
+
+	if (true == IsPress(VK_RIGHT))
+	{
+		MovePos += FVector::Right * _DeltaTime * Speed;
+	}
+
+	if (true == IsFree(VK_UP))
+	{
+		ShootStyle = EShootDir::RunShoot;
+		State.ChangeState("Run_Shoot_Straight");
+		return;
 	}
 
 	if (true == IsFree('X'))

@@ -31,7 +31,8 @@ enum class EShootDir
 	RunShoot,
 	UpShoot,
 	DownShoot,
-	DuckShoot
+	DuckShoot,
+	DiagonalUpShoot
 };
 
 enum class ERenderOrder

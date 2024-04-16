@@ -72,6 +72,7 @@ private:
 	void IdleShoot();
 	void RunShoot();
 	void DuckShoot();
+	void DiagonalUpShoot();
 
 
 	// 이동함수
@@ -86,6 +87,7 @@ private:
 	void Idle(float _DeltaTime);
 	void Run(float _DeltaTime);
 	void Run_Shoot_Straight(float _DeltaTime);
+	void Run_Shoot_DiagonalUp(float _DeltaTime);
 	void Dash(float _DeltaTime);
 	void AirDash(float _DeltaTime);
 	void Duck(float _DeltaTime);
