@@ -82,6 +82,7 @@ private:
 	// true = Right
 	///////////////////////// State
 	void StateInit();
+	void Intro(float _DeltaTime);
 	void Idle(float _DeltaTime);
 	void Run(float _DeltaTime);
 	void Run_Shoot_Straight(float _DeltaTime);

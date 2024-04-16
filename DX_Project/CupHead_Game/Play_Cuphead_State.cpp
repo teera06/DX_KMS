@@ -195,6 +195,7 @@ void APlay_Cuphead::StateInit()
 {
 	// 스테이트 만들고
 	//State.CreateState("Die");
+	State.CreateState("Intro");
 	State.CreateState("Idle");
 	State.CreateState("Run");
 	State.CreateState("Dash");
@@ -207,6 +208,8 @@ void APlay_Cuphead::StateInit()
 	State.CreateState("JumpShoot");
 	State.CreateState("DashAfterJump");
 	
+	State.SetUpdateFunction("Intro", std::bind(&APlay_Cuphead::Intro, this, std::placeholders::_1));
+	State.SetStartFunction("Intro", [=] {PlayCuphead->ChangeAnimation("Intro"); });
 
 	State.SetUpdateFunction("Idle", std::bind(&APlay_Cuphead::Idle, this, std::placeholders::_1));
 	State.SetStartFunction("Idle", [=] {PlayCuphead->ChangeAnimation("Idle"); });
@@ -260,7 +263,19 @@ void APlay_Cuphead::StateInit()
 
 
 	// 체인지
-	State.ChangeState("Idle");
+	State.ChangeState("Intro");
+}
+
+void APlay_Cuphead::Intro(float _DeltaTime)
+{
+	DirCheck();
+	if (true == PlayCuphead->IsCurAnimationEnd())
+	{
+		State.ChangeState("Idle");
+		return;
+	}
+
+	MoveUpDate(_DeltaTime);
 }
 
 void APlay_Cuphead::DirCheck()
