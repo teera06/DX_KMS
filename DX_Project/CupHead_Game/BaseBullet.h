@@ -31,10 +31,11 @@ private:
 
 	FVector BulletDir = FVector::Zero;
 	FVector Move = FVector::Zero;
-	float Speed = 800.0f;
+	float Speed = 900.0f;
 
 	bool shoot = false;
 
+	void SkillDir();
 	void Collisiongather();
 };
 

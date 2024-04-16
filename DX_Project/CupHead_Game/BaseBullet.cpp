@@ -41,7 +41,7 @@ void ABaseBullet::BeginPlay()
 	BulletRender->SetSamplering(ETextureSampling::LINEAR);
 	BulletRender->SetAutoSize(1.0f,true);
 
-	BulletRender->CreateAnimation("Peashot_Spawn2", "Peashot_Spawn2", 0.05f);
+	BulletRender->CreateAnimation("Peashot_Spawn2", "Peashot_Spawn2", 0.02f);
 	BulletRender->CreateAnimation("Peashot_Loop", "Peashot_Loop", 0.05f);
 
 	BulletRender->ChangeAnimation("Peashot_Spawn2");
@@ -53,6 +53,28 @@ void ABaseBullet::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
+	if (BulletDir.iX() != 0)
+	{
+		SkillDir();
+		Move = BulletDir * Speed * _DeltaTime;
+
+		if (true == BulletRender->IsCurAnimationEnd())
+		{
+			shoot = true;
+			BulletRender->ChangeAnimation("Peashot_Loop");
+		}
+
+		if (true == shoot)
+		{
+			AddActorLocation(Move);
+		}
+
+		Collisiongather();
+	}
+}
+
+void ABaseBullet::SkillDir()
+{
 	if (BulletDir.iX() == 1)
 	{
 		BulletRender->SetDir(EEngineDir::Right);
@@ -61,21 +83,6 @@ void ABaseBullet::Tick(float _DeltaTime)
 	{
 		BulletRender->SetDir(EEngineDir::Left);
 	}
-
-	Move = BulletDir * Speed * _DeltaTime;
-
-	if (true == BulletRender->IsCurAnimationEnd())
-	{
-		shoot = true;
-		BulletRender->ChangeAnimation("Peashot_Loop");
-	}
-
-	if (true == shoot)
-	{
-		AddActorLocation(Move);
-	}
-
-	Collisiongather();
 }
 
 void ABaseBullet::Collisiongather()
@@ -85,4 +92,9 @@ void ABaseBullet::Collisiongather()
 		Destroy();
 		//_Collison->GetActor()->Destroy();
 	});
+
+	if (GetActorLocation().iX() <= -600 || GetActorLocation().iX() >= 600) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
+	{
+		Destroy();
+	}
 }
