@@ -1,6 +1,11 @@
 #pragma once
-class AFirefly
+#include <Enginecore/Actor.h>
+
+class USpriteRenderer;
+
+class AFirefly : public AActor
 {
+	GENERATED_BODY(AActor)
 public:
 	// constrcuter destructer
 	AFirefly(); // 디폴트 생성자
@@ -13,7 +18,10 @@ public:
 	AFirefly& operator=(AFirefly&& _Other) noexcept = delete;
 
 protected:
-
+	void BeginPlay() override;
+	void Tick(float _DeltaTime) override;
 private:
+	USpriteRenderer* FireflyRender = nullptr;
+	UCollision* FireflyCollision = nullptr;
 };
 

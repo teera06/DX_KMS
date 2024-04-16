@@ -15,7 +15,7 @@ Asmallskill::Asmallskill()
 
 	smallskillRender->SetupAttachment(Root);
 
-	smallskillCollision = CreateDefaultSubObject<UCollision>("BulletCollision");
+	smallskillCollision = CreateDefaultSubObject<UCollision>("smallskillCollision");
 	smallskillCollision->SetupAttachment(Root);
 	smallskillCollision->SetScale(FVector(100.0f, 100.0f, 100.0f));
 
