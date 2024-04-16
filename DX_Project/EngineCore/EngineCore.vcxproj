@@ -168,6 +168,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\GM\DX\DirectX\EngineCore\EngineDefines.h" />
+    <ClInclude Include="..\..\..\GM\DX\DirectX\EngineCore\RenderUnit.h" />
     <ClInclude Include="Actor.h">
       <SubType>
       </SubType>
@@ -330,6 +331,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\GM\DX\DirectX\EngineCore\RenderUnit.cpp" />
     <ClCompile Include="Actor.cpp">
       <SubType>
       </SubType>
