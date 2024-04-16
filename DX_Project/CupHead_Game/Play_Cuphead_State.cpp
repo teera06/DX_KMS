@@ -415,6 +415,17 @@ void APlay_Cuphead::Idle(float _DeltaTime)
 		return;
 	}
 
+
+	if (true == IsDown('Z') && true == IsPress('X'))
+	{
+		//BulletStart->SetActive(false);
+		ShootStyle = EShootDir::IdleShoot;
+		BulletStart->SetActive(true);
+		JumpVector = JumpPowerPress;
+		State.ChangeState("JumpShoot");
+		return;
+	}
+
 	if (true == IsDown('X'))
 	{
 		ShootStyle = EShootDir::IdleShoot;
@@ -637,6 +648,15 @@ void APlay_Cuphead::Shoot_Straight(float _DeltaTime)
 		return;
 	}
 
+	if (true == IsDown('Z'))
+	{
+		//BulletStart->SetActive(false);
+		ShootStyle = EShootDir::IdleShoot;
+		JumpVector = JumpPowerPress;
+		State.ChangeState("JumpShoot");
+		return;
+	}
+
 	MoveUpDate(_DeltaTime);
 }
 
@@ -734,6 +754,12 @@ void APlay_Cuphead::Jump(float _DeltaTime)
 void APlay_Cuphead::JumpShoot(float _DeltaTime)
 {
 	DirCheck();
+
+	if (true == IsUp('Z'))
+	{
+		JumpVector = JumpPowerDown;
+	}
+
 	skillCoolTime -= _DeltaTime;
 	if (true == IsPress('X') && skillCoolTime < 0.0f)
 	{
@@ -749,6 +775,8 @@ void APlay_Cuphead::JumpShoot(float _DeltaTime)
 		return;
 	}
 
+	MoveUpDate(_DeltaTime);
+
 	if (GetActorLocation().iY() <= -250)
 	{
 		BulletStart->SetActive(false);
@@ -757,7 +785,6 @@ void APlay_Cuphead::JumpShoot(float _DeltaTime)
 		return;
 	}
 
-	MoveUpDate(_DeltaTime);
 }
 
 void APlay_Cuphead::DashAfterJump(float _DeltaTime)
