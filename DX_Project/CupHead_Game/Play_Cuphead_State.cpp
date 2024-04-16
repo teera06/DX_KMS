@@ -835,6 +835,13 @@ void APlay_Cuphead::Shoot_Straight(float _DeltaTime)
 		return;
 	}
 
+	if (true == IsDown(VK_UP))
+	{
+		ShootStyle = EShootDir::UpShoot;
+		State.ChangeState("Shoot_Up");
+		return;
+	}
+
 	if (true == IsPress(VK_DOWN))
 	{
 		ShootStyle = EShootDir::DuckShoot;
@@ -920,6 +927,13 @@ void APlay_Cuphead::Shoot_Up(float _DeltaTime)
 	{
 		ShootStyle = EShootDir::IdleShoot;
 		State.ChangeState("Shoot_Straight");
+		return;
+	}
+
+	if (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT))
+	{
+		ShootStyle = EShootDir::RunShoot;
+		State.ChangeState("Run_Shoot_Straight");
 		return;
 	}
 
