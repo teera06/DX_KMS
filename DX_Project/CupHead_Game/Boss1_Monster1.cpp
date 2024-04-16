@@ -152,13 +152,13 @@ void ABoss1_Monster1::smallIdle(float _DeltaTime)
 		return;
 	}
 
-	if (coolDownTime < 0 && 1 == phasecheck)
+	if (coolDownTime < 0 && 1 == phasecheck && false==attOrder)
 	{
 		Phase1.ChangeState("smallattready");
 		return;
 	}
 
-	if (coolDownTime < 0 && 2 == phasecheck)
+	if (coolDownTime < 0 && 2 == phasecheck && false == attOrder)
 	{
 		Phase2.ChangeState("smallatt2");
 		return;
@@ -190,6 +190,7 @@ void ABoss1_Monster1::smallatt(float _DeltaTime)
 	{
 		Phase1.ChangeState("smallIdle");
 		coolDownTime = 6.0f;
+		attOrder = true;
 		smallattcount = 0;
 		return;
 	}

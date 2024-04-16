@@ -25,6 +25,8 @@ protected:
 private:
 	USpriteRenderer* BigBoss1 = nullptr;
 
+	int Bigattcount = 0;
+
 	void bigintro(float _DeltaTime);
 	void bigIdle(float _DeltaTime);
 	void bigatt(float _DeltaTime);
