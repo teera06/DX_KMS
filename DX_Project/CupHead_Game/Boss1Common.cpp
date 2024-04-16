@@ -3,6 +3,7 @@
 
 int ABoss1Common::phasecheck=1;
 float ABoss1Common::coolDownTime = 10.0f;
+bool ABoss1Common::attOrder=false;
 int ABoss1Common::Hp = 100;
 
 ABoss1Common::ABoss1Common()

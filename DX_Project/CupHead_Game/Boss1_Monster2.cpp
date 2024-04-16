@@ -42,6 +42,7 @@ void ABoss1_Monster2::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
+	coolDownTime -= _DeltaTime;
 	if (1 == phasecheck)
 	{
 		Phase1.Update(_DeltaTime);

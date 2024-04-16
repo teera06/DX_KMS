@@ -45,7 +45,6 @@ void ABoss1_Monster1::BeginPlay()
 void ABoss1_Monster1::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-	coolDownTime -= _DeltaTime;
 
 	if (1 == phasecheck)
 	{

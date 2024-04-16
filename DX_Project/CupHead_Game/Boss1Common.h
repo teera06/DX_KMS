@@ -29,6 +29,7 @@ public:
 
 	static int phasecheck;
 	static float coolDownTime;
+	static bool attOrder;
 protected:
 	virtual void Phase1StateInit();
 	virtual void Phase2StateInit();
