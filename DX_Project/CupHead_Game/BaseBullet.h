@@ -17,7 +17,7 @@ public:
 	ABaseBullet& operator=(const ABaseBullet& _Other) = delete; // 디폴트 대입 연산자
 	ABaseBullet& operator=(ABaseBullet&& _Other) noexcept = delete;
 
-	void SetBulletDir(const FVector& _BulletDir)
+	inline void SetBulletDir(const FVector& _BulletDir)
 	{
 		BulletDir = _BulletDir;
 	}

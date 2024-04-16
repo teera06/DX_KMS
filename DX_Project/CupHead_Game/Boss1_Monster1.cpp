@@ -5,6 +5,8 @@
 #include <EngineCore/Collision.h>
 #include <EngineCore/DefaultSceneComponent.h>
 
+#include "smallskill.h"
+
 ABoss1_Monster1::ABoss1_Monster1()
 {
 	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("Boss1");
@@ -126,6 +128,12 @@ void ABoss1_Monster1::AniCreate()
 	SmallBoss1->CreateAnimation("smallatt2", "smallatt2", 0.1f);
 }
 
+void ABoss1_Monster1::createSkill()
+{
+	NewSkill = GetWorld()->SpawnActor<Asmallskill>("BaseBullet");
+	NewSkill->SetSmallSkillDir(FVector::Left);
+}
+
 void ABoss1_Monster1::Collisiongather()
 {
 	smallBossCollision->CollisionEnter(ECollisionOrder::Bullet, [=](std::shared_ptr<UCollision> _Collison)
@@ -182,7 +190,7 @@ void ABoss1_Monster1::smallatt(float _DeltaTime)
 
 	if (true == SmallBoss1->IsCurAnimationEnd())
 	{
-
+		createSkill();
 		smallattcount++;
 	}
 

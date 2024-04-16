@@ -3,6 +3,8 @@
 
 #include "Boss1Common.h"
 class USpriteRenderer;
+class Asmallskill;
+
 class ABoss1_Monster1 : public AActor, public ABoss1Common
 {
 	GENERATED_BODY(AActor)
@@ -27,6 +29,7 @@ protected:
 
 	void AniCreate() override;
 private:
+	std::shared_ptr<Asmallskill> NewSkill = nullptr;
 
 	USpriteRenderer* SmallBoss1 = nullptr;
 	UCollision* smallBossCollision = nullptr;
@@ -36,6 +39,7 @@ private:
 	bool att = false;
 
 
+	void createSkill();
 	void Collisiongather();
 	// ป๓ลย 
 

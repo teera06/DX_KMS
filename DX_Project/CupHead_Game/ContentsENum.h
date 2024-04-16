@@ -64,5 +64,6 @@ enum class ECollisionOrder
 {
 	Player,
 	Monster, 
-	Bullet
+	Bullet,
+	MonsterSkill
 };
