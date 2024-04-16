@@ -39,6 +39,7 @@ private:
 	void Collisiongather();
 	// ป๓ลย 
 
+	void smallintro(float _DeltaTime);
 	void smallIdle(float _DeltaTime);
 	void smallattready(float _DeltaTime);
 	void smallatt(float _DeltaTime);

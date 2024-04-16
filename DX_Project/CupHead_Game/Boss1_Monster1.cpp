@@ -58,6 +58,7 @@ void ABoss1_Monster1::Tick(float _DeltaTime)
 
 void ABoss1_Monster1::Phase1StateInit()
 {
+	Phase1.CreateState("smallintro");
 	Phase1.CreateState("smallIdle");
 	Phase1.CreateState("smallattready");
 	Phase1.CreateState("smallatt");
@@ -65,6 +66,9 @@ void ABoss1_Monster1::Phase1StateInit()
 	Phase1.CreateState("phase2changeReady2");
 	Phase1.CreateState("phase2change1");
 	Phase1.CreateState("phase2change2");
+
+	Phase1.SetUpdateFunction("smallintro", std::bind(&ABoss1_Monster1::smallintro, this, std::placeholders::_1));
+	Phase1.SetStartFunction("smallintro", [=] {SmallBoss1->ChangeAnimation("smallintro"); });
 
 	Phase1.SetUpdateFunction("smallIdle", std::bind(&ABoss1_Monster1::smallIdle, this, std::placeholders::_1));
 	Phase1.SetStartFunction("smallIdle", [=] {SmallBoss1->ChangeAnimation("smallIdle"); });
@@ -87,7 +91,7 @@ void ABoss1_Monster1::Phase1StateInit()
 	Phase1.SetUpdateFunction("phase2change2", std::bind(&ABoss1_Monster1::phase2change2, this, std::placeholders::_1));
 	Phase1.SetStartFunction("phase2change2", [=] {SmallBoss1->ChangeAnimation("phase2change2"); });
 
-	Phase1.ChangeState("smallIdle");
+	Phase1.ChangeState("smallintro");
 }
 
 void ABoss1_Monster1::Phase2StateInit()
@@ -110,6 +114,7 @@ void ABoss1_Monster1::Phase2StateInit()
 
 void ABoss1_Monster1::AniCreate()
 {
+	SmallBoss1->CreateAnimation("smallintro", "smallintro", 0.2f);
 	SmallBoss1->CreateAnimation("smallIdle", "smallIdle", 0.1f);
 	SmallBoss1->CreateAnimation("smallattready", "smallattready", 0.1f);
 	SmallBoss1->CreateAnimation("smallatt", "smallatt", 0.1f);
@@ -128,6 +133,15 @@ void ABoss1_Monster1::Collisiongather()
 	{
 		_Collison->GetActor()->Destroy();
 	});
+}
+
+void ABoss1_Monster1::smallintro(float _DeltaTime)
+{
+	if (true == SmallBoss1->IsCurAnimationEnd())
+	{
+		Phase1.ChangeState("smallIdle");
+		return;
+	}
 }
 
 void ABoss1_Monster1::smallIdle(float _DeltaTime)
