@@ -45,20 +45,15 @@ void ABoss1_Monster1::BeginPlay()
 void ABoss1_Monster1::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-	Collisiongather();
 	coolDownTime -= _DeltaTime;
 
 	if (1 == phasecheck)
 	{
-		Collisiongather();
 		Phase1.Update(_DeltaTime);
 	}
 	else {
-		Collisiongather();
 		Phase2.Update(_DeltaTime);
 	}
-
-	Collisiongather();
 }
 
 void ABoss1_Monster1::Phase1StateInit()

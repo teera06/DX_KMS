@@ -34,5 +34,7 @@ private:
 	float Speed = 800.0f;
 
 	bool shoot = false;
+
+	void Collisiongather();
 };
 

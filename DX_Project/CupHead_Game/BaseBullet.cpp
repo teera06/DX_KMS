@@ -74,4 +74,15 @@ void ABaseBullet::Tick(float _DeltaTime)
 	{
 		AddActorLocation(Move);
 	}
+
+	Collisiongather();
+}
+
+void ABaseBullet::Collisiongather()
+{
+	BulletCollision->CollisionEnter(ECollisionOrder::Monster, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		Destroy();
+		//_Collison->GetActor()->Destroy();
+	});
 }
