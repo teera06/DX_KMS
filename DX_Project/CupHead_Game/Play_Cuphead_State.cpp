@@ -46,6 +46,7 @@ void APlay_Cuphead::createBullet()
 	case EShootDir::DownShoot:
 		break;
 	case EShootDir::DuckShoot:
+		DuckShoot();
 		break;
 	default:
 		break;
@@ -107,6 +108,35 @@ void APlay_Cuphead::RunShoot()
 		}
 		else {
 			NewBullet->SetActorLocation({ GetActorLocation().X - shootXpos,GetActorLocation().Y - RunShootYpos + 90.0f,0.0f });
+			shootY = false;
+
+		}
+	}
+}
+
+void APlay_Cuphead::DuckShoot()
+{
+	if (BulletDir.iX() == 1)
+	{
+		if (false == shootY)
+		{
+			NewBullet->SetActorLocation({ GetActorLocation().X + shootXpos,GetActorLocation().Y - DuckShootYpos + 80.0f,0.0f });
+			shootY = true;
+		}
+		else {
+			NewBullet->SetActorLocation({ GetActorLocation().X + shootXpos,GetActorLocation().Y - DuckShootYpos + 90.0f,0.0f });
+			shootY = false;
+		}
+	}
+	else if (BulletDir.iX() == -1)
+	{
+		if (false == shootY)
+		{
+			NewBullet->SetActorLocation({ GetActorLocation().X - shootXpos,GetActorLocation().Y - DuckShootYpos + 80.0f,0.0f });
+			shootY = true;
+		}
+		else {
+			NewBullet->SetActorLocation({ GetActorLocation().X - shootXpos,GetActorLocation().Y - DuckShootYpos + 90.0f,0.0f });
 			shootY = false;
 
 		}
@@ -266,6 +296,7 @@ void APlay_Cuphead::DirCheck()
 			case EShootDir::DownShoot:
 				break;
 			case EShootDir::DuckShoot:
+				BulletStart->SetPosition({ -75.0f,40.0f,0.0f });
 				break;
 			default:
 				break;
@@ -288,6 +319,7 @@ void APlay_Cuphead::DirCheck()
 			case EShootDir::DownShoot:
 				break;
 			case EShootDir::DuckShoot:
+				BulletStart->SetPosition({70.0f,40.0f,0.0f });
 				break;
 			default:
 				break;
@@ -560,6 +592,8 @@ void APlay_Cuphead::Duck(float _DeltaTime)
 
 	if (true == IsPress('X'))
 	{
+		ShootStyle = EShootDir::DuckShoot;
+		BulletStart->SetActive(true);
 		State.ChangeState("Duck_Shoot");
 		return;
 	}
@@ -585,6 +619,7 @@ void APlay_Cuphead::Shoot_Straight(float _DeltaTime)
 
 	if (true == IsPress(VK_DOWN))
 	{
+		ShootStyle = EShootDir::DuckShoot;
 		State.ChangeState("Duck_Shoot");
 		return;
 	}
@@ -600,11 +635,17 @@ void APlay_Cuphead::Shoot_Straight(float _DeltaTime)
 void APlay_Cuphead::Duck_Shoot(float _DeltaTime)
 {
 	DirCheck();
-	
+	skillCoolTime -= _DeltaTime;
+	if (true == IsPress('X') && skillCoolTime < 0.0f)
+	{
+		createBullet();
+		skillCoolTime = 0.3f;
+		return;
+	}
 	if (true == IsFree(VK_DOWN))
 	{
-		BulletStart->SetActive(false);
-		State.ChangeState("Idle");
+		ShootStyle = EShootDir::IdleShoot;
+		State.ChangeState("Shoot_Straight");
 		return;
 	}
 

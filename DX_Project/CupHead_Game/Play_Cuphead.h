@@ -63,6 +63,7 @@ private:
 
 	float shootXpos = 65.0f;
 	float RunShootYpos = 5.0f;
+	float DuckShootYpos = 35.0f;
 
 	bool shootY = false;
 	bool NoGravity = false;
@@ -70,6 +71,7 @@ private:
 	void createBullet();
 	void IdleShoot();
 	void RunShoot();
+	void DuckShoot();
 
 
 	// 이동함수
