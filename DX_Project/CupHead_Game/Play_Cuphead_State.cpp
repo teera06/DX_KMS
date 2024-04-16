@@ -528,6 +528,15 @@ void APlay_Cuphead::Idle(float _DeltaTime)
 		return;
 	}
 
+	if (true == IsDown('Z') && true == IsPress('X') && true == IsPress(VK_UP))
+	{
+		//BulletStart->SetActive(false);
+		ShootStyle = EShootDir::UpShoot;
+		BulletStart->SetActive(true);
+		JumpVector = JumpPowerPress;
+		State.ChangeState("JumpShoot");
+		return;
+	}
 
 	if (true == IsDown('Z') && true == IsPress('X'))
 	{
@@ -704,6 +713,14 @@ void APlay_Cuphead::Run_Shoot_DiagonalUp(float _DeltaTime)
 		State.ChangeState("Idle");
 		return;
 	}
+
+	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT) && true == IsPress(VK_UP))
+	{
+		BulletStart->SetActive(false);
+		State.ChangeState("Aim_Up");
+		return;
+	}
+
 
 	if (true == IsPress(VK_LEFT))
 	{
@@ -937,10 +954,19 @@ void APlay_Cuphead::Shoot_Up(float _DeltaTime)
 		return;
 	}
 
+	if (true == IsDown('Z'))
+	{
+		//BulletStart->SetActive(false);
+		ShootStyle = EShootDir::UpShoot;
+		JumpVector = JumpPowerPress;
+		State.ChangeState("JumpShoot");
+		return;
+	}
+
 	if (true == IsFree('X'))
 	{
 		BulletStart->SetActive(false);
-		State.ChangeState("Idle");
+		State.ChangeState("Aim_Up");
 		return;
 	}
 
