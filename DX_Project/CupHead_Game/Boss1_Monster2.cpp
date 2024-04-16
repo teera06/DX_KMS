@@ -29,9 +29,11 @@ void ABoss1_Monster2::BeginPlay()
 	BigBoss1->SetSprite("tallfrog_idle_0001.png");
 	BigBoss1->SetSamplering(ETextureSampling::LINEAR);
 	BigBoss1->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
+
+	BigBoss1->CreateAnimation("bigintro", "bigintro", 0.12f);
 	BigBoss1->CreateAnimation("bigIdle", "bigIdle", 0.1f);
 
-	BigBoss1->ChangeAnimation("bigIdle");
+	Phase1StateInit();
 
 	BigBoss1->SetAutoSize(1.0f, true);
 }
@@ -39,18 +41,37 @@ void ABoss1_Monster2::BeginPlay()
 void ABoss1_Monster2::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+	if (1 == phasecheck)
+	{
+		Phase1.Update(_DeltaTime);
+	}
 }
 
 void ABoss1_Monster2::Phase1StateInit()
 {
+
+	Phase1.CreateState("bigintro");
 	Phase1.CreateState("bigIdle");
 	
+
+	Phase1.SetUpdateFunction("bigintro", std::bind(&ABoss1_Monster2::bigintro, this, std::placeholders::_1));
+	Phase1.SetStartFunction("bigintro", [=] {BigBoss1->ChangeAnimation("bigintro"); });
 
 	Phase1.SetUpdateFunction("bigIdle", std::bind(&ABoss1_Monster2::bigIdle, this, std::placeholders::_1));
 	Phase1.SetStartFunction("bigIdle", [=] {BigBoss1->ChangeAnimation("bigIdle"); });
 
 	
-	Phase1.ChangeState("bigIdle");
+	Phase1.ChangeState("bigintro");
+}
+
+void ABoss1_Monster2::bigintro(float _DeltaTime)
+{
+	if (true == BigBoss1->IsCurAnimationEnd())
+	{
+		Phase1.ChangeState("bigIdle");
+		return;
+	}
 }
 
 void ABoss1_Monster2::bigIdle(float _DeltaTime)

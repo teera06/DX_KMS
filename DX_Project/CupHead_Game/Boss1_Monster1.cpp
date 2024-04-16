@@ -114,7 +114,7 @@ void ABoss1_Monster1::Phase2StateInit()
 
 void ABoss1_Monster1::AniCreate()
 {
-	SmallBoss1->CreateAnimation("smallintro", "smallintro", 0.2f);
+	SmallBoss1->CreateAnimation("smallintro", "smallintro", 0.15f);
 	SmallBoss1->CreateAnimation("smallIdle", "smallIdle", 0.1f);
 	SmallBoss1->CreateAnimation("smallattready", "smallattready", 0.1f);
 	SmallBoss1->CreateAnimation("smallatt", "smallatt", 0.1f);
