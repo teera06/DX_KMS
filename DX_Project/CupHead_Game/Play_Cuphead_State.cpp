@@ -346,6 +346,14 @@ void APlay_Cuphead::Run_Shoot_Straight(float  _DeltaTime)
 {
 	DirCheck();
 
+	skillCoolTime -= _DeltaTime;
+	if (true == IsPress('X') && skillCoolTime < 0.0f)
+	{
+		createBullet();
+		skillCoolTime = 0.3f;
+		return;
+	}
+
 	FVector MovePos = FVector::Zero;
 	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT) && true == IsFree('X'))
 	{
