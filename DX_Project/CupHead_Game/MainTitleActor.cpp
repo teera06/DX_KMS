@@ -1,7 +1,9 @@
 #include "PreCompile.h"
 #include "MainTitleActor.h"
-#include "ContentsENum.h"
+
 #include <EngineCore/DefaultSceneComponent.h>
+
+#include "ContentsENum.h"
 
 AMainTitleActor::AMainTitleActor()
 {

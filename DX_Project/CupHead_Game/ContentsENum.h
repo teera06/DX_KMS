@@ -56,6 +56,7 @@ enum class ERenderOrder
 	Object2,
 	HPBar,
 	HPgauge,
+	FilterEffect,
 	Filter
 };
 

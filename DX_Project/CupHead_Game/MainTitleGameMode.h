@@ -1,5 +1,7 @@
 #pragma once
 #include <EngineCore/GameMode.h>
+
+class AScreenEffect;
 class AMainTitleGameMode : public AGameMode
 {
 	GENERATED_BODY(AGameMode)
@@ -21,5 +23,7 @@ protected:
 	void LevelEnd(ULevel* _NextLevel);
 	void LevelStart(ULevel* _PrevLevel);
 private:
+
+	std::shared_ptr<AScreenEffect> NewScreenEffect = nullptr;
 };
 

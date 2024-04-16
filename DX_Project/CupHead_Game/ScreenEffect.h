@@ -16,10 +16,16 @@ public:
 	AScreenEffect& operator=(const AScreenEffect& _Other) = delete; // 디폴트 대입 연산자
 	AScreenEffect& operator=(AScreenEffect&& _Other) noexcept = delete;
 
+	USpriteRenderer* GetFilterEffect()
+	{
+		return FilterEffect;
+	}
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 private:
 	USpriteRenderer* OldFilter = nullptr;
+	USpriteRenderer* FilterEffect = nullptr;
 };
 

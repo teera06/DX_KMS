@@ -58,7 +58,7 @@ void AMainTitleGameMode::BeginPlay()
 	std::shared_ptr<UCamera> Camera = GetWorld()->GetMainCamera();
 	Camera->SetActorLocation(FVector(0.0f, 0.0f, -100.0f));
 	GetWorld()->SpawnActor<AMainTitleActor>("TitleLogo");
-	GetWorld()->SpawnActor<AScreenEffect>("ScreenEffect");
+	NewScreenEffect=GetWorld()->SpawnActor<AScreenEffect>("ScreenEffect");
 }
 
 void AMainTitleGameMode::Tick(float _DeltaTime)
@@ -67,8 +67,17 @@ void AMainTitleGameMode::Tick(float _DeltaTime)
 
 	if (true == UEngineInput::IsDown('Z'))
 	{
-		UContentsHelper::StageCount=1;
-		GEngine->ChangeLevel("Loading");
+		NewScreenEffect->GetFilterEffect()->SetActive(true);
+		NewScreenEffect->GetFilterEffect()->ChangeAnimation("Iris");
+	}
+
+	if (true == NewScreenEffect->GetFilterEffect()->IsActive())
+	{
+		if (true == NewScreenEffect->GetFilterEffect()->IsCurAnimationEnd())
+		{
+			UContentsHelper::StageCount = 1;
+			GEngine->ChangeLevel("Loading");
+		}
 	}
 }
 
