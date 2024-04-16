@@ -194,7 +194,7 @@ void ABoss1_Monster1::smallatt(float _DeltaTime)
 		smallattcount++;
 	}
 
-	if (smallattcount > 3)
+	if (smallattcount > 8)
 	{
 		Phase1.ChangeState("smallIdle");
 		coolDownTime = 6.0f;
