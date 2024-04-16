@@ -132,6 +132,23 @@ void ABoss1_Monster1::createSkill()
 {
 	NewSkill = GetWorld()->SpawnActor<Asmallskill>("BaseBullet");
 	NewSkill->SetSmallSkillDir(FVector::Left);
+	SkillYMove();
+}
+
+void ABoss1_Monster1::SkillYMove()
+{
+	if (smallattcount==0 || smallattcount == 4 || smallattcount == 8)
+	{
+		NewSkill->SetActorLocation({ GetActorLocation().X,-30.0f,0.0f });
+		
+	}
+	else if(smallattcount == 1 || smallattcount == 3 || smallattcount == 5 || smallattcount == 7){
+		NewSkill->SetActorLocation({ GetActorLocation().X,-110.0f,0.0f });
+	}
+	else if (smallattcount == 2 || smallattcount == 6)
+	{
+		NewSkill->SetActorLocation({ GetActorLocation().X,-190.0f,0.0f });
+	}
 }
 
 void ABoss1_Monster1::Collisiongather()

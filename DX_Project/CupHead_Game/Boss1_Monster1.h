@@ -40,6 +40,7 @@ private:
 
 
 	void createSkill();
+	void SkillYMove();
 	void Collisiongather();
 	// ป๓ลย 
 

@@ -64,6 +64,7 @@ void Asmallskill::Tick(float _DeltaTime)
 	}
 }
 
+
 void Asmallskill::Collisiongather()
 {
 	if (GetActorLocation().iX() <= -600 || GetActorLocation().iX() >= 600) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
