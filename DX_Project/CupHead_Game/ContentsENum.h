@@ -24,6 +24,16 @@ enum class EDir
 	Down
 };
 
+enum class EShootDir
+{
+	None,
+	IdleShoot,
+	RunShoot,
+	UpShoot,
+	DownShoot,
+	DuckShoot
+};
+
 enum class ERenderOrder
 {
 	background,

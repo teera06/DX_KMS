@@ -4,6 +4,7 @@
 #include "PlayerCommon.h"
 
 class USpriteRenderer;
+class ABaseBullet;
 
 class APlay_Cuphead : public AActor, public APlayerCommon
 {
@@ -36,6 +37,8 @@ private:
 	USpriteRenderer* BulletStart = nullptr;
 	UCollision* PlayerCollision=nullptr;
 
+	std::shared_ptr<ABaseBullet> NewBullet = nullptr;
+
 	FVector PlayerMoveY = FVector::Zero;
 
 	FVector GravityVector = FVector::Zero; // 중력값 받기
@@ -47,6 +50,8 @@ private:
 
 	FVector BulletDir = FVector::Right; // 최종 점프력
 
+	EShootDir ShootStyle = EShootDir::None;
+
 	float Speed = 500.0f;
 	float JumpSpeed = 300.0f;
 
@@ -56,12 +61,16 @@ private:
 
 	float skillCoolTime=-1.0f;
 
-	int ShootPos = 0;
+	float shootXpos = 65.0f;
+	float RunShootYpos = 5.0f;
 
 	bool shootY = false;
 	bool NoGravity = false;
 
 	void createBullet();
+	void IdleShoot();
+	void RunShoot();
+
 
 	// 이동함수
 	

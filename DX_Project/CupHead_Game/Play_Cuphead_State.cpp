@@ -18,22 +18,54 @@
 void APlay_Cuphead::createBullet()
 {
 
+
 	if (BulletDir.iX() == 0)
 	{
 		return;
 	}
 
-	std::shared_ptr<ABaseBullet> NewBullet = GetWorld()->SpawnActor<ABaseBullet>("BaseBullet");
+	NewBullet = GetWorld()->SpawnActor<ABaseBullet>("BaseBullet");
+
+	if (NewBullet == nullptr)
+	{
+		return;
+	}
+
+	switch (ShootStyle)
+	{
+	case EShootDir::None:
+		break;
+	case EShootDir::IdleShoot:
+		IdleShoot();
+		break;
+	case EShootDir::RunShoot:
+		RunShoot();
+		break;
+	case EShootDir::UpShoot:
+		break;
+	case EShootDir::DownShoot:
+		break;
+	case EShootDir::DuckShoot:
+		break;
+	default:
+		break;
+	}
+	
+	NewBullet->SetBulletDir(BulletDir);
+}
+
+void APlay_Cuphead::IdleShoot()
+{
 
 	if (BulletDir.iX() == 1)
 	{
 		if (false == shootY)
 		{
-			NewBullet->SetActorLocation({ GetActorLocation().X+65.0f,GetActorLocation().Y + 80.0f,0.0f });
+			NewBullet->SetActorLocation({ GetActorLocation().X + shootXpos,GetActorLocation().Y + 80.0f,0.0f });
 			shootY = true;
 		}
 		else {
-			NewBullet->SetActorLocation({ GetActorLocation().X+ 65.0f,GetActorLocation().Y + 90.0f,0.0f });
+			NewBullet->SetActorLocation({ GetActorLocation().X + shootXpos,GetActorLocation().Y + 90.0f,0.0f });
 			shootY = false;
 		}
 	}
@@ -41,18 +73,44 @@ void APlay_Cuphead::createBullet()
 	{
 		if (false == shootY)
 		{
-			NewBullet->SetActorLocation({ GetActorLocation().X- 65.0f,GetActorLocation().Y + 80.0f,0.0f });
+			NewBullet->SetActorLocation({ GetActorLocation().X - shootXpos,GetActorLocation().Y + 80.0f,0.0f });
 			shootY = true;
 		}
 		else {
-			NewBullet->SetActorLocation({ GetActorLocation().X- 65.0f,GetActorLocation().Y + 90.0f,0.0f });
+			NewBullet->SetActorLocation({ GetActorLocation().X - shootXpos,GetActorLocation().Y + 90.0f,0.0f });
 			shootY = false;
 
 		}
 	}
+}
 
+void APlay_Cuphead::RunShoot()
+{
+	if (BulletDir.iX() == 1)
+	{
+		if (false == shootY)
+		{
+			NewBullet->SetActorLocation({ GetActorLocation().X + shootXpos,GetActorLocation().Y-RunShootYpos + 80.0f,0.0f });
+			shootY = true;
+		}
+		else {
+			NewBullet->SetActorLocation({ GetActorLocation().X + shootXpos,GetActorLocation().Y - RunShootYpos + 90.0f,0.0f });
+			shootY = false;
+		}
+	}
+	else if (BulletDir.iX() == -1)
+	{
+		if (false == shootY)
+		{
+			NewBullet->SetActorLocation({ GetActorLocation().X - shootXpos,GetActorLocation().Y - RunShootYpos + 80.0f,0.0f });
+			shootY = true;
+		}
+		else {
+			NewBullet->SetActorLocation({ GetActorLocation().X - shootXpos,GetActorLocation().Y - RunShootYpos + 90.0f,0.0f });
+			shootY = false;
 
-	NewBullet->SetBulletDir(BulletDir);
+		}
+	}
 }
 
 void APlay_Cuphead::CalGravityVector(float _DeltaTime)
@@ -192,24 +250,47 @@ void APlay_Cuphead::DirCheck()
 		case EDir::Left:
 
 			BulletDir = FVector::Left;
-			if (ShootPos == 1)
+
+			switch (ShootStyle)
 			{
+			case EShootDir::None:
+				break;
+			case EShootDir::IdleShoot:
 				BulletStart->SetPosition({ -70.0f,80.0f,0.0f });
-			}
-			else if (ShootPos == 2)
-			{
+				break;
+			case EShootDir::RunShoot:
 				BulletStart->SetPosition({ -65.0f,70.0f,0.0f });
+				break;
+			case EShootDir::UpShoot:
+				break;
+			case EShootDir::DownShoot:
+				break;
+			case EShootDir::DuckShoot:
+				break;
+			default:
+				break;
 			}
 			break;
 		case EDir::Right:
 			BulletDir = FVector::Right;
-			if (ShootPos == 1)
+			switch (ShootStyle)
 			{
+			case EShootDir::None:
+				break;
+			case EShootDir::IdleShoot:
 				BulletStart->SetPosition({ 70.0f,80.0f,0.0f });
-			}
-			else if (ShootPos == 2)
-			{
+				break;
+			case EShootDir::RunShoot:
 				BulletStart->SetPosition({ 65.0f,70.0f,0.0f });
+				break;
+			case EShootDir::UpShoot:
+				break;
+			case EShootDir::DownShoot:
+				break;
+			case EShootDir::DuckShoot:
+				break;
+			default:
+				break;
 			}
 			break;
 		case EDir::Up:
@@ -300,7 +381,7 @@ void APlay_Cuphead::Idle(float _DeltaTime)
 
 	if (true == IsDown('X'))
 	{
-		ShootPos = 1;
+		ShootStyle = EShootDir::IdleShoot;
 		BulletStart->SetActive(true);
 		State.ChangeState("Shoot_Straight");
 		return;
@@ -336,7 +417,7 @@ void APlay_Cuphead::Run(float  _DeltaTime)
 
 	if (true == IsPress('X'))
 	{
-		ShootPos = 2;
+		ShootStyle = EShootDir::RunShoot;
 		BulletStart->SetActive(true);
 		State.ChangeState("Run_Shoot_Straight");
 		return;
@@ -411,7 +492,7 @@ void APlay_Cuphead::Run_Shoot_Straight(float  _DeltaTime)
 
 	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
 	{
-		ShootPos = 1;
+		ShootStyle = EShootDir::IdleShoot;
 		State.ChangeState("Shoot_Straight");
 		return;
 	}
@@ -510,7 +591,7 @@ void APlay_Cuphead::Shoot_Straight(float _DeltaTime)
 
 	if (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT))
 	{
-		ShootPos = 2;
+		ShootStyle = EShootDir::RunShoot;
 		State.ChangeState("Run_Shoot_Straight");
 		return;
 	}
