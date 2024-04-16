@@ -197,6 +197,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="ContentsENum.h" />
+    <ClInclude Include="Firefly.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Game_Core.h">
       <SubType>
       </SubType>
@@ -281,6 +285,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="BossStage1GameMode.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Firefly.cpp">
       <SubType>
       </SubType>
     </ClCompile>

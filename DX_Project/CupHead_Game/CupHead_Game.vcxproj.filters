@@ -140,6 +140,9 @@
     <ClCompile Include="smallskill.cpp">
       <Filter>PlayStage\Boss1\Monster\skill</Filter>
     </ClCompile>
+    <ClCompile Include="Firefly.cpp">
+      <Filter>PlayStage\Boss1\Monster\skill</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -203,6 +206,9 @@
       <Filter>PlayStage\Boss1\PlayActor\Bullet</Filter>
     </ClInclude>
     <ClInclude Include="smallskill.h">
+      <Filter>PlayStage\Boss1\Monster\skill</Filter>
+    </ClInclude>
+    <ClInclude Include="Firefly.h">
       <Filter>PlayStage\Boss1\Monster\skill</Filter>
     </ClInclude>
   </ItemGroup>
