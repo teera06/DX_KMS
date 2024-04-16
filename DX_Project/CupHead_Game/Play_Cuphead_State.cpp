@@ -42,6 +42,7 @@ void APlay_Cuphead::createBullet()
 		RunShoot();
 		break;
 	case EShootDir::UpShoot:
+		UpShoot();
 		break;
 	case EShootDir::DownShoot:
 		break;
@@ -177,6 +178,47 @@ void APlay_Cuphead::DiagonalUpShoot()
 	}
 }
 
+void APlay_Cuphead::UpShoot()
+{
+	BulletDir = FVector::Up;
+
+	NewBullet->SetActorRotation({ 0.0f,0.0f,90.0f });
+	switch (Dir)
+	{
+	case EDir::None:
+		break;
+	case EDir::Left:
+		if (BulletDir.iY() == 1)
+		{
+			NewBullet->SetActorLocation({ GetActorLocation().X - 80.0f + shootXpos,GetActorLocation().Y + 100.0f,0.0f });
+			if (false == shootY)
+			{
+				shootY = true;
+			}
+			else {
+				shootY = false;
+			}
+		}
+		break;
+	case EDir::Right:
+		if (BulletDir.iY() == 1)
+		{
+			NewBullet->SetActorLocation({ GetActorLocation().X - 35.0f + shootXpos,GetActorLocation().Y + 100.0f,0.0f });
+			if (false == shootY)
+			{
+				shootY = true;
+			}
+			else {
+
+				shootY = false;
+			}
+		}
+		break;
+	default:
+		break;
+	}
+}
+
 void APlay_Cuphead::CalGravityVector(float _DeltaTime)
 {
 	GravityVector += (FVector::Down * Gravity * _DeltaTime); // 중력은 계속 가해진다.
@@ -239,6 +281,8 @@ void APlay_Cuphead::StateInit()
 	State.CreateState("Run_Shoot_Straight");
 	State.CreateState("Run_Shoot_DiagonalUp");
 	State.CreateState("Duck_Shoot");
+	State.CreateState("Aim_Up");
+	State.CreateState("Shoot_Up");
 	State.CreateState("Jump");
 	State.CreateState("JumpShoot");
 	State.CreateState("DashAfterJump");
@@ -272,6 +316,12 @@ void APlay_Cuphead::StateInit()
 
 	State.SetUpdateFunction("Duck_Shoot", std::bind(&APlay_Cuphead::Duck_Shoot, this, std::placeholders::_1));
 	State.SetStartFunction("Duck_Shoot", [=] {PlayCuphead->ChangeAnimation("Duck_Shoot"); });
+
+	State.SetUpdateFunction("Aim_Up", std::bind(&APlay_Cuphead::Aim_Up, this, std::placeholders::_1));
+	State.SetStartFunction("Aim_Up", [=] {PlayCuphead->ChangeAnimation("Aim_Up"); });
+
+	State.SetUpdateFunction("Shoot_Up", std::bind(&APlay_Cuphead::Shoot_Up, this, std::placeholders::_1));
+	State.SetStartFunction("Shoot_Up", [=] {PlayCuphead->ChangeAnimation("Shoot_Up"); });
 
 	State.SetUpdateFunction("Jump", std::bind(&APlay_Cuphead::Jump, this, std::placeholders::_1));
 	State.SetStartFunction("Jump", [=] {PlayCuphead->ChangeAnimation("Jump"); });
@@ -349,6 +399,7 @@ void APlay_Cuphead::DirCheck()
 				BulletStart->SetPosition({ -65.0f,70.0f,0.0f });
 				break;
 			case EShootDir::UpShoot:
+				BulletStart->SetPosition({ -30.0f,155.0f,0.0f });
 				break;
 			case EShootDir::DownShoot:
 				break;
@@ -376,6 +427,7 @@ void APlay_Cuphead::DirCheck()
 				BulletStart->SetPosition({ 65.0f,70.0f,0.0f });
 				break;
 			case EShootDir::UpShoot:
+				BulletStart->SetPosition({ 30.0f,155.0f,0.0f });
 				break;
 			case EShootDir::DownShoot:
 				break;
@@ -492,6 +544,12 @@ void APlay_Cuphead::Idle(float _DeltaTime)
 		ShootStyle = EShootDir::IdleShoot;
 		BulletStart->SetActive(true);
 		State.ChangeState("Shoot_Straight");
+		return;
+	}
+
+	if (true == IsDown(VK_UP))
+	{
+		State.ChangeState("Aim_Up");
 		return;
 	}
 
@@ -829,6 +887,52 @@ void APlay_Cuphead::Duck_Shoot(float _DeltaTime)
 
 	MoveUpDate(_DeltaTime);
 }
+
+void APlay_Cuphead::Aim_Up(float _DeltaTime)
+{
+	if (true == IsFree(VK_UP))
+	{
+		State.ChangeState("Idle");
+		return;
+	}
+	
+
+	if (true == IsPress('X'))
+	{
+		ShootStyle = EShootDir::UpShoot;
+		BulletStart->SetActive(true);
+		State.ChangeState("Shoot_Up");
+		return;
+	}
+}
+
+void APlay_Cuphead::Shoot_Up(float _DeltaTime)
+{
+	DirCheck();
+	skillCoolTime -= _DeltaTime;
+	if (true == IsPress('X') && skillCoolTime < 0.0f)
+	{
+		createBullet();
+		skillCoolTime = 0.3f;
+		return;
+	}
+	if (true == IsFree(VK_UP))
+	{
+		ShootStyle = EShootDir::IdleShoot;
+		State.ChangeState("Shoot_Straight");
+		return;
+	}
+
+	if (true == IsFree('X'))
+	{
+		BulletStart->SetActive(false);
+		State.ChangeState("Idle");
+		return;
+	}
+
+	MoveUpDate(_DeltaTime);
+}
+
 
 void APlay_Cuphead::Jump(float _DeltaTime)
 {

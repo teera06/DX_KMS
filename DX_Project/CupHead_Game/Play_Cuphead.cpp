@@ -67,6 +67,8 @@ void APlay_Cuphead::BeginPlay()
 	PlayCuphead->CreateAnimation("Run_Shoot_Straight", "Run_Shoot_Straight", 0.05f);
 	PlayCuphead->CreateAnimation("Run_Shoot_DiagonalUp", "Run_Shoot_DiagonalUp", 0.05f);
 	PlayCuphead->CreateAnimation("Duck_Shoot", "Duck_Shoot", 0.05f);
+	PlayCuphead->CreateAnimation("Shoot_Up", "Shoot_Up", 0.05f);
+	PlayCuphead->CreateAnimation("Aim_Up", "Aim_Up", 0.05f);
 	PlayCuphead->CreateAnimation("Jump", "Jump", 0.05f);
 	//PlayCuphead->CreateAnimation("Duck", "Duck", 0.05f, false);
 

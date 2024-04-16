@@ -53,7 +53,7 @@ void ABaseBullet::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
-	if (BulletDir.iX() != 0)
+	if (BulletDir.iX() != 0 || BulletDir.iroundY() != 0)
 	{
 		SkillDir();
 		Move = BulletDir * Speed * _DeltaTime;
