@@ -31,8 +31,6 @@ private:
 	USpriteRenderer* SmallBoss1 = nullptr;
 	UCollision* smallBossCollision = nullptr;
 
-	float coolDownTime = 6.0f;
-
 	int smallattcount = 0;
 	int phase2changecount = 0;
 	bool att = false;
