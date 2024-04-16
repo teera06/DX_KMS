@@ -462,6 +462,17 @@ void APlay_Cuphead::Run(float  _DeltaTime)
 		return;
 	}
 
+
+	if (true == IsDown('Z') && true == IsPress('X'))
+	{
+		//BulletStart->SetActive(false);
+		ShootStyle = EShootDir::IdleShoot;
+		BulletStart->SetActive(true);
+		JumpVector = JumpPowerPress;
+		State.ChangeState("JumpShoot");
+		return;
+	}
+
 	if (true == IsPress('X'))
 	{
 		ShootStyle = EShootDir::RunShoot;
@@ -531,9 +542,10 @@ void APlay_Cuphead::Run_Shoot_Straight(float  _DeltaTime)
 
 	if (true == IsDown('Z'))
 	{
-		BulletStart->SetActive(false);
+		//BulletStart->SetActive(false);
+		ShootStyle = EShootDir::IdleShoot;
 		JumpVector = JumpPowerPress;
-		State.ChangeState("Jump");
+		State.ChangeState("JumpShoot");
 		return;
 	}
 
@@ -775,7 +787,22 @@ void APlay_Cuphead::JumpShoot(float _DeltaTime)
 		return;
 	}
 
-	MoveUpDate(_DeltaTime);
+
+	FVector MovePos;
+
+	// 점프 도중 X축 이동
+	if (true == IsPress(VK_LEFT))
+	{
+		MovePos += FVector::Left * JumpSpeed * _DeltaTime;
+	}
+
+	if (true == IsPress(VK_RIGHT))
+	{
+		MovePos += FVector::Right * JumpSpeed * _DeltaTime;
+	}
+
+
+	MoveUpDate(_DeltaTime, MovePos); // 최종 움직임
 
 	if (GetActorLocation().iY() <= -250)
 	{
