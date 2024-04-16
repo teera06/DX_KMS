@@ -204,6 +204,7 @@ void APlay_Cuphead::StateInit()
 	State.CreateState("Run_Shoot_Straight");
 	State.CreateState("Duck_Shoot");
 	State.CreateState("Jump");
+	State.CreateState("JumpShoot");
 	State.CreateState("DashAfterJump");
 	
 
@@ -233,6 +234,9 @@ void APlay_Cuphead::StateInit()
 
 	State.SetUpdateFunction("Jump", std::bind(&APlay_Cuphead::Jump, this, std::placeholders::_1));
 	State.SetStartFunction("Jump", [=] {PlayCuphead->ChangeAnimation("Jump"); });
+
+	State.SetUpdateFunction("JumpShoot", std::bind(&APlay_Cuphead::JumpShoot, this, std::placeholders::_1));
+	State.SetStartFunction("JumpShoot", [=] {PlayCuphead->ChangeAnimation("Jump"); });
 
 	State.SetUpdateFunction("DashAfterJump", std::bind(&APlay_Cuphead::DashAfterJump, this, std::placeholders::_1));
 	State.SetStartFunction("DashAfterJump", [=] {PlayCuphead->ChangeAnimation("Jump"); });
@@ -597,6 +601,8 @@ void APlay_Cuphead::Duck(float _DeltaTime)
 		State.ChangeState("Duck_Shoot");
 		return;
 	}
+
+	MoveUpDate(_DeltaTime);
 }
 
 void APlay_Cuphead::Shoot_Straight(float _DeltaTime)
@@ -630,6 +636,8 @@ void APlay_Cuphead::Shoot_Straight(float _DeltaTime)
 		State.ChangeState("Run_Shoot_Straight");
 		return;
 	}
+
+	MoveUpDate(_DeltaTime);
 }
 
 void APlay_Cuphead::Duck_Shoot(float _DeltaTime)
@@ -655,6 +663,8 @@ void APlay_Cuphead::Duck_Shoot(float _DeltaTime)
 		State.ChangeState("Duck");
 		return;
 	}
+
+	MoveUpDate(_DeltaTime);
 }
 
 void APlay_Cuphead::Jump(float _DeltaTime)
@@ -682,6 +692,13 @@ void APlay_Cuphead::Jump(float _DeltaTime)
 		return;
 	}
 
+	if (true == IsDown('X'))
+	{
+		ShootStyle = EShootDir::IdleShoot;
+		BulletStart->SetActive(true);
+		State.ChangeState("JumpShoot");
+		return;
+	}
 
 	FVector MovePos;
 
@@ -705,12 +722,42 @@ void APlay_Cuphead::Jump(float _DeltaTime)
 		return;
 	}
 
+
 	//if (true == PlayCuphead->IsCurAnimationEnd())
 	//{
 		//JumpVector = FVector::Zero;
 		//State.ChangeState("Idle");
 		//return;
 	//}
+}
+
+void APlay_Cuphead::JumpShoot(float _DeltaTime)
+{
+	DirCheck();
+	skillCoolTime -= _DeltaTime;
+	if (true == IsPress('X') && skillCoolTime < 0.0f)
+	{
+		createBullet();
+		skillCoolTime = 0.3f;
+		return;
+	}
+
+	if (true == IsFree('X'))
+	{
+		BulletStart->SetActive(false);
+		State.ChangeState("Jump");
+		return;
+	}
+
+	if (GetActorLocation().iY() <= -250)
+	{
+		BulletStart->SetActive(false);
+		JumpVector = FVector::Zero;
+		State.ChangeState("Idle");
+		return;
+	}
+
+	MoveUpDate(_DeltaTime);
 }
 
 void APlay_Cuphead::DashAfterJump(float _DeltaTime)
