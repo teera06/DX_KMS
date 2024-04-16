@@ -38,3 +38,16 @@ void AFirefly::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 }
+
+void AFirefly::patternStateInit()
+{
+	pattern.CreateState("smallintro");
+	
+
+	//pattern.SetUpdateFunction("smallintro", std::bind(&AFirefly::Intro, this, std::placeholders::_1));
+	//pattern.SetStartFunction("smallintro", [=] {SmallBoss1->ChangeAnimation("smallintro"); });
+}
+
+void AFirefly::Intro()
+{
+}

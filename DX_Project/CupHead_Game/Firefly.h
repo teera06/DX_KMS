@@ -1,5 +1,6 @@
 #pragma once
 #include <Enginecore/Actor.h>
+#include <EngineCore/StateManager.h>
 
 class USpriteRenderer;
 
@@ -17,11 +18,19 @@ public:
 	AFirefly& operator=(const AFirefly& _Other) = delete; // 디폴트 대입 연산자
 	AFirefly& operator=(AFirefly&& _Other) noexcept = delete;
 
+	UStateManager pattern;
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 private:
 	USpriteRenderer* FireflyRender = nullptr;
 	UCollision* FireflyCollision = nullptr;
+
+
+	// 상태
+	void patternStateInit();
+
+	void Intro();
 };
 
