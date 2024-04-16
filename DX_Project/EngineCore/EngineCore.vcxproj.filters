@@ -79,6 +79,12 @@
     <Filter Include="Object\Component\Collision">
       <UniqueIdentifier>{b9ec35c2-1031-47d2-a9f6-4fc6b8955f11}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Debug">
+      <UniqueIdentifier>{d8538f2b-0968-4ceb-9626-7781f7c93478}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Component\Rendering\Contents">
+      <UniqueIdentifier>{41aa0922-4a79-40db-b26d-5323d384daba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EngineCore.cpp">
@@ -216,11 +222,20 @@
     <ClCompile Include="Renderer.cpp">
       <Filter>Object\Component\Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="SpriteRenderer.cpp">
-      <Filter>Object\Component\Rendering</Filter>
-    </ClCompile>
     <ClCompile Include="Collision.cpp">
       <Filter>Object\Component\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineDebug3D.cpp">
+      <Filter>Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteRenderer.cpp">
+      <Filter>Object\Component\Rendering\Contents</Filter>
+    </ClCompile>
+    <ClCompile Include="TileRenderer.cpp">
+      <Filter>Object\Component\Rendering\Contents</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineStruct.cpp">
+      <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -365,14 +380,23 @@
     <ClInclude Include="..\..\..\GM\DX\DirectX\EngineCore\EngineDefines.h">
       <Filter>Core</Filter>
     </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>Object\Component\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineDebug3D.h">
+      <Filter>Debug</Filter>
+    </ClInclude>
     <ClInclude Include="Renderer.h">
       <Filter>Object\Component\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="SpriteRenderer.h">
-      <Filter>Object\Component\Rendering</Filter>
+      <Filter>Object\Component\Rendering\Contents</Filter>
     </ClInclude>
-    <ClInclude Include="Collision.h">
-      <Filter>Object\Component\Collision</Filter>
+    <ClInclude Include="TileRenderer.h">
+      <Filter>Object\Component\Rendering\Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineStruct.h">
+      <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

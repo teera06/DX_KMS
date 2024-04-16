@@ -205,6 +205,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="EngineDebug3D.h" />
     <ClInclude Include="EngineDebugMsgWindow.h">
       <SubType>
       </SubType>
@@ -267,6 +268,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="EngineStruct.h" />
     <ClInclude Include="EngineTexture.h">
       <SubType>
       </SubType>
@@ -321,6 +323,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="TileRenderer.h" />
     <ClInclude Include="WorldObject.h">
       <SubType>
       </SubType>
@@ -364,6 +367,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="EngineDebug3D.cpp" />
     <ClCompile Include="EngineDebugMsgWindow.cpp">
       <SubType>
       </SubType>
@@ -426,6 +430,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="EngineStruct.cpp" />
     <ClCompile Include="EngineTexture.cpp">
       <SubType>
       </SubType>
@@ -482,6 +487,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="TileRenderer.cpp" />
     <ClCompile Include="WorldObject.cpp">
       <SubType>
       </SubType>
