@@ -17,7 +17,8 @@ ABoss1_Monster1::ABoss1_Monster1()
 
 	smallBossCollision = CreateDefaultSubObject<UCollision>("SmallBoss");
 	smallBossCollision->SetupAttachment(Root);
-	smallBossCollision->SetScale(FVector(400.0f, 400.0f, 100.0f));
+	smallBossCollision->SetPosition(FVector(0.0f, 150.0f, 100.0f));
+	smallBossCollision->SetScale(FVector(200.0f, 200.0f, 100.0f));
 	smallBossCollision->SetCollisionGroup(ECollisionOrder::Monster);
 	smallBossCollision->SetCollisionType(ECollisionType::Rect);
 	SetRoot(Root);
