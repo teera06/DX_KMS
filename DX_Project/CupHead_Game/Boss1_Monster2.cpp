@@ -41,6 +41,7 @@ void ABoss1_Monster2::BeginPlay()
 	BigBoss1->CreateAnimation("bigatt2Ready", "bigatt2Ready", 0.1f);
 	BigBoss1->CreateAnimation("bigatt2Ready2", "bigatt2Ready2", 0.1f);
 	BigBoss1->CreateAnimation("bigatt2", "bigatt2", 0.1f);
+	BigBoss1->CreateAnimation("bigatt2end", "bigatt2end", 0.1f);
 
 
 	Phase1StateInit();
@@ -68,6 +69,7 @@ void ABoss1_Monster2::Phase1StateInit()
 	Phase1.CreateState("bigatt2Ready");
 	Phase1.CreateState("bigatt2Ready2");
 	Phase1.CreateState("bigatt2");
+	Phase1.CreateState("bigatt2end");
 	
 
 	Phase1.SetUpdateFunction("bigintro", std::bind(&ABoss1_Monster2::bigintro, this, std::placeholders::_1));
@@ -87,6 +89,9 @@ void ABoss1_Monster2::Phase1StateInit()
 
 	Phase1.SetUpdateFunction("bigatt2", std::bind(&ABoss1_Monster2::bigatt2, this, std::placeholders::_1));
 	Phase1.SetStartFunction("bigatt2", [=] {BigBoss1->ChangeAnimation("bigatt2"); });
+
+	Phase1.SetUpdateFunction("bigatt2end", std::bind(&ABoss1_Monster2::bigatt2end, this, std::placeholders::_1));
+	Phase1.SetStartFunction("bigatt2end", [=] {BigBoss1->ChangeAnimation("bigatt2end"); });
 
 	
 	Phase1.ChangeState("bigintro");
@@ -185,6 +190,15 @@ void ABoss1_Monster2::bigatt2(float _DeltaTime)
 	}
 
 	if (Bigattcount > 5)
+	{
+		Phase1.ChangeState("bigatt2end");
+		return;
+	}
+}
+
+void ABoss1_Monster2::bigatt2end(float _DeltaTime)
+{
+	if (true == BigBoss1->IsCurAnimationEnd())
 	{
 		Phase1.ChangeState("BigIdle");
 		coolDownTime = 6.0f;
