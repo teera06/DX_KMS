@@ -50,12 +50,11 @@ void AFirefly::BeginPlay()
 void AFirefly::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-	MoveCoolDonwTime -= _DeltaTime;
+	
 
-	if (MoveCoolDonwTime < 0)
-	{
-		pattern.Update(_DeltaTime);
-	}
+
+	pattern.Update(_DeltaTime);
+	
 }
 
 void AFirefly::patternStateInit()
