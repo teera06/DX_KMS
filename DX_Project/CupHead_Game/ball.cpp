@@ -64,7 +64,7 @@ void Aball::Collisiongather(float _DeltaTime)
 	}
 
 
-	if (GetActorLocation().iY() <= -360 || GetActorLocation().iY() >= 360)
+	if (GetActorLocation().iY() <= -350 || GetActorLocation().iY() >= 360)
 	{
 		StartPos.Y *= -1.0f;
 	}
