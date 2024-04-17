@@ -35,9 +35,11 @@ private:
 	UCollision* BigBossCollision = nullptr;
 	UCollision* WindCollision = nullptr;
 
-	int Bigattcount = 0;
 	float RandomSkillDelay = 0;
 
+
+	int Bigattcount = 0;
+	int phase3changecount = 0;
 
 	void createSkill();
 
@@ -50,6 +52,9 @@ private:
 	void bigatt2Ready2(float _DeltaTime);
 	void bigatt2(float _DeltaTime);
 	void bigatt2end(float _DeltaTime);
+
+	void phase3changeReady1(float _DeltaTime);
+	void phase3changeReady2(float _DeltaTime);
 
 };
 

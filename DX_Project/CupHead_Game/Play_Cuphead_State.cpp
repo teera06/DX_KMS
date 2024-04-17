@@ -503,7 +503,14 @@ void APlay_Cuphead::Idle(float _DeltaTime)
 
 	if (true == IsDown('1'))
 	{
-		ABoss1Common::SetHp(80);
+		if (100 == ABoss1Common::GetHp())
+		{
+			ABoss1Common::SetHp(80);
+		}
+		else if (80 == ABoss1Common::GetHp())
+		{
+			ABoss1Common::SetHp(50);
+		}
 		return;
 	}
 
