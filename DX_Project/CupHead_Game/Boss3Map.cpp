@@ -46,7 +46,7 @@ ABoss3Map::ABoss3Map()
 	Object2->SetSprite("C8.png");
 
 	Object2->SetAutoSize(1.3f, true);
-	Object2->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
+	//Object2->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 }
 
 ABoss3Map::~ABoss3Map()
