@@ -307,8 +307,7 @@ void ABoss1_Monster1::smallatt2(float _DeltaTime)
 	{
 		createSkill2();
 		Phase2.ChangeState("smallIdle");
-		coolDownTime = 6.0f;
-		attOrder = true;
+		attOrder = false;
 		return;
 	}
 }

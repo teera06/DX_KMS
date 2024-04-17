@@ -42,5 +42,7 @@ private:
 	void bigatt(float _DeltaTime);
 
 	void bigatt2Ready(float _DeltaTime);
+	void bigatt2Ready2(float _DeltaTime);
+	void bigatt2(float _DeltaTime);
 };
 
