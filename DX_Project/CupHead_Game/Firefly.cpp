@@ -32,22 +32,57 @@ AFirefly::~AFirefly()
 void AFirefly::BeginPlay()
 {
 	Super::BeginPlay();
+
+	FireflyRender->SetOrder(ERenderOrder::Monster2);
+	FireflyRender->SetSprite("tallfrog_firefly_left_0001.png");
+	FireflyRender->SetSamplering(ETextureSampling::LINEAR);
+	FireflyRender->SetAutoSize(1.0f, true);
+	
+	FireflyRender->SetDir(EEngineDir::Left);
+
+	FireflyRender->CreateAnimation("bigskillLRMove", "bigskillLRMove", 0.1f);
+	FireflyRender->CreateAnimation("bigSkillIdle", "bigSkillIdle", 0.1f);
+	//smallskillRender->CreateAnimation("Peashot_Loop", "Peashot_Loop", 0.05f);
+
+	patternStateInit();
+
 }
 
 void AFirefly::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+	pattern.Update(_DeltaTime);
 }
 
 void AFirefly::patternStateInit()
 {
-	pattern.CreateState("smallintro");
+	pattern.CreateState("Intro");
+	pattern.CreateState("bigSkillIdle");
+	pattern.CreateState("bigskillLRMove");
+
 	
 
-	//pattern.SetUpdateFunction("smallintro", std::bind(&AFirefly::Intro, this, std::placeholders::_1));
-	//pattern.SetStartFunction("smallintro", [=] {SmallBoss1->ChangeAnimation("smallintro"); });
+	pattern.SetUpdateFunction("smallattready", std::bind(&AFirefly::Intro, this, std::placeholders::_1));
+	pattern.SetStartFunction("smallintro", [=] {FireflyRender->ChangeAnimation("bigskillLRMove"); });
+
+	pattern.SetUpdateFunction("bigSkillIdle", std::bind(&AFirefly::bigSkillIdle, this, std::placeholders::_1));
+	pattern.SetStartFunction("bigSkillIdle", [=] {FireflyRender->ChangeAnimation("bigSkillIdle"); });
+
+	pattern.SetUpdateFunction("bigskillLRMove", std::bind(&AFirefly::bigskillLRMove, this, std::placeholders::_1));
+	pattern.SetStartFunction("bigskillLRMove", [=] {FireflyRender->ChangeAnimation("bigskillLRMove"); });
+
+	pattern.ChangeState("Intro");
 }
 
-void AFirefly::Intro()
+void AFirefly::Intro(float _DeltaTime)
+{
+
+}
+
+void AFirefly::bigSkillIdle(float _DeltaTime)
+{
+}
+
+void AFirefly::bigskillLRMove(float _DeltaTime)
 {
 }

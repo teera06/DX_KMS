@@ -31,6 +31,8 @@ private:
 	// ป๓ลย
 	void patternStateInit();
 
-	void Intro();
+	void Intro(float _DeltaTime);
+	void bigSkillIdle(float _DeltaTime);
+	void bigskillLRMove(float _DeltaTime);
 };
 
