@@ -10,6 +10,8 @@
 #include "Boss1_Monster2.h"
 #include "ContentsHelper.h"
 
+#include "ball.h"
+
 
 #include <EngineCore/Camera.h>
 
@@ -36,6 +38,8 @@ void ABossStage1GameMode::BeginPlay()
 	GetWorld()->SpawnActor<ABoss1_Monster1>("Boss1_Monster1");
 	GetWorld()->SpawnActor<ABoss1_Monster2>("Boss1_Monster2");
 	GetWorld()->SpawnActor<AScreenEffect>("ScreenEffect");
+
+	GetWorld()->SpawnActor<Aball>("ball");
 
 }
 
