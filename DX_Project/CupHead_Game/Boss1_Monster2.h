@@ -32,6 +32,9 @@ private:
 
 	USpriteRenderer* WindSkill = nullptr;
 
+	UCollision* BigBossCollision = nullptr;
+	UCollision* WindCollision = nullptr;
+
 	int Bigattcount = 0;
 	float RandomSkillDelay = 0;
 
