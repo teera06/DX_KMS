@@ -115,7 +115,7 @@ void APlay_Cuphead::Tick(float _DeltaTime)
 	//	}
 	//);
 
-	PlayerCollision->CollisionEnter(ECollisionOrder::Monster, [=](std::shared_ptr<UCollision> _Collison)
+	PlayerCollision->CollisionEnter(ECollisionOrder::Boss1Monster, [=](std::shared_ptr<UCollision> _Collison)
 	{
 	
 	//_Collison->GetActor()->Destroy();

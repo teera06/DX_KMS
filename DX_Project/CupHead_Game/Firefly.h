@@ -24,6 +24,11 @@ public:
 		SmallSkillDir = _SmallSkillDir;
 	}
 
+	void SetDie(bool _Die)
+	{
+		Die = _Die;
+	}
+
 	UStateManager pattern;
 
 protected:
@@ -40,6 +45,8 @@ private:
 
 	float Speed = 500.0f;
 
+	bool Die = false;
+
 	void CalDir(float _DeltaTime);
 
 	// ป๓ลย
@@ -48,5 +55,6 @@ private:
 	void Intro(float _DeltaTime);
 	void bigSkillIdle(float _DeltaTime);
 	void bigskillLRMove(float _DeltaTime);
+	void Death(float _DeltaTime);
 };
 

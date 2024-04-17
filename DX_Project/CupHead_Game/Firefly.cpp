@@ -19,7 +19,7 @@ AFirefly::AFirefly()
 	FireflyCollision->SetupAttachment(Root);
 	FireflyCollision->SetScale(FVector(100.0f, 100.0f, 100.0f));
 
-	FireflyCollision->SetCollisionGroup(ECollisionOrder::MonsterSkill);
+	FireflyCollision->SetCollisionGroup(ECollisionOrder::Boss1SkillMonster);
 	FireflyCollision->SetCollisionType(ECollisionType::CirCle);
 
 
@@ -45,6 +45,7 @@ void AFirefly::BeginPlay()
 
 	FireflyRender->CreateAnimation("bigskillLRMove", "bigskillLRMove", 0.1f);
 	FireflyRender->CreateAnimation("bigSkillIdle", "bigSkillIdle", 0.1f);
+	FireflyRender->CreateAnimation("BigSkillDeath", "BigSkillDeath", 0.1f);
 	//smallskillRender->CreateAnimation("Peashot_Loop", "Peashot_Loop", 0.05f);
 
 	patternStateInit();
@@ -55,7 +56,6 @@ void AFirefly::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 	
-
 	pattern.Update(_DeltaTime);
 	
 }
@@ -86,6 +86,7 @@ void AFirefly::patternStateInit()
 	pattern.CreateState("Intro");
 	pattern.CreateState("bigSkillIdle");
 	pattern.CreateState("bigskillLRMove");
+	pattern.CreateState("Death");
 
 	
 
@@ -98,6 +99,9 @@ void AFirefly::patternStateInit()
 	pattern.SetUpdateFunction("bigskillLRMove", std::bind(&AFirefly::bigskillLRMove, this, std::placeholders::_1));
 	pattern.SetStartFunction("bigskillLRMove", [=] {FireflyRender->ChangeAnimation("bigskillLRMove"); });
 
+	pattern.SetUpdateFunction("Death", std::bind(&AFirefly::Death, this, std::placeholders::_1));
+	pattern.SetStartFunction("Death", [=] {FireflyRender->ChangeAnimation("BigSkillDeath"); });
+
 	pattern.ChangeState("Intro");
 }
 
@@ -106,6 +110,12 @@ void AFirefly::Intro(float _DeltaTime)
 	Delay -= _DeltaTime;
 	AddActorLocation(FVector::Left * Speed * _DeltaTime);
 
+	if (true == Die)
+	{
+		pattern.ChangeState("Death");
+		return;
+	}
+
 	if (Delay < 0.0f)
 	{
 		Delay = 2.0f;
@@ -113,11 +123,20 @@ void AFirefly::Intro(float _DeltaTime)
 		pattern.ChangeState("bigSkillIdle");
 		return;
 	}
+
+
 }
 
 void AFirefly::bigSkillIdle(float _DeltaTime)
 {
 	Delay -= _DeltaTime;
+
+	if (true == Die)
+	{
+		pattern.ChangeState("Death");
+		return;
+	}
+
 	if (Delay < 0.0f)
 	{
 		Delay = 0.3f;
@@ -131,11 +150,26 @@ void AFirefly::bigskillLRMove(float _DeltaTime)
 {
 	CalDir(_DeltaTime);
 	Delay -= _DeltaTime;
+
+	if (true == Die)
+	{
+		pattern.ChangeState("Death");
+		return;
+	}
+
 	if (Delay < 0.0f)
 	{
 		Delay = 2.0f;
 		//MoveCoolDonwTime = 2.0f;
 		pattern.ChangeState("bigSkillIdle");
 		return;
+	}
+}
+
+void AFirefly::Death(float _DeltaTime)
+{
+	if (true == FireflyRender->IsCurAnimationEnd())
+	{
+		Destroy();
 	}
 }

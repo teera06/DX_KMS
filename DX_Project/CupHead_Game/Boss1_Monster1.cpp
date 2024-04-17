@@ -19,7 +19,7 @@ ABoss1_Monster1::ABoss1_Monster1()
 	smallBossCollision->SetupAttachment(Root);
 	smallBossCollision->SetPosition(FVector(0.0f, 150.0f, 100.0f));
 	smallBossCollision->SetScale(FVector(200.0f, 200.0f, 100.0f));
-	smallBossCollision->SetCollisionGroup(ECollisionOrder::Monster);
+	smallBossCollision->SetCollisionGroup(ECollisionOrder::Boss1Monster);
 	smallBossCollision->SetCollisionType(ECollisionType::Rect);
 	SetRoot(Root);
 }

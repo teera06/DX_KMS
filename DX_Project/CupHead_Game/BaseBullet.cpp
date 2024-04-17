@@ -9,6 +9,8 @@
 
 #include "ContentsENum.h"
 
+#include "Firefly.h"
+
 ABaseBullet::ABaseBullet()
 {
 	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("Bullet");
@@ -87,10 +89,18 @@ void ABaseBullet::SkillDir()
 
 void ABaseBullet::Collisiongather()
 {
-	BulletCollision->CollisionEnter(ECollisionOrder::Monster, [=](std::shared_ptr<UCollision> _Collison)
+	BulletCollision->CollisionEnter(ECollisionOrder::Boss1Monster, [=](std::shared_ptr<UCollision> _Collison)
 	{
 		Destroy();
 		//_Collison->GetActor()->Destroy();
+	});
+
+	BulletCollision->CollisionEnter(ECollisionOrder::Boss1SkillMonster, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		
+		AActor* Ptr = _Collison->GetActor();
+		AFirefly* Monster = dynamic_cast<AFirefly*>(Ptr);
+		Monster->SetDie(true);
 	});
 
 	if (GetActorLocation().iX() <= -600 || GetActorLocation().iX() >= 600 || GetActorLocation().iY()>=360) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
