@@ -19,10 +19,7 @@ public:
 	AFirefly& operator=(const AFirefly& _Other) = delete; // 디폴트 대입 연산자
 	AFirefly& operator=(AFirefly&& _Other) noexcept = delete;
 
-	inline void SetSmallSkillDir(const FVector& _SmallSkillDir)
-	{
-		SmallSkillDir = _SmallSkillDir;
-	}
+	
 
 	void SetDie(bool _Die)
 	{
