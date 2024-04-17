@@ -2,6 +2,8 @@
 #include <Enginecore/Actor.h>
 #include <EngineCore/StateManager.h>
 
+#include "Play_Cuphead.h"
+
 class USpriteRenderer;
 
 class AFirefly : public AActor
@@ -29,6 +31,8 @@ protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 private:
+	APlay_Cuphead* MainPlayer = APlay_Cuphead::GetMainPlayer();
+
 	USpriteRenderer* FireflyRender = nullptr;
 	UCollision* FireflyCollision = nullptr;
 
@@ -37,6 +41,9 @@ private:
 	float Delay = 1.0f;
 
 	float Speed = 500.0f;
+
+	void CalDir(float _DeltaTime);
+
 	// ป๓ลย
 	void patternStateInit();
 

@@ -39,6 +39,7 @@ void AFirefly::BeginPlay()
 {
 	Super::BeginPlay();
 
+	SetActorLocation({ GetActorLocation().X - 10.0f,270.0f,0.0f });
 	FireflyRender->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 
 	FireflyRender->CreateAnimation("bigskillLRMove", "bigskillLRMove", 0.1f);
@@ -57,6 +58,16 @@ void AFirefly::Tick(float _DeltaTime)
 
 	pattern.Update(_DeltaTime);
 	
+}
+
+void AFirefly::CalDir(float _DeltaTime)
+{
+	FVector PlayerPos = GetActorLocation();
+
+	FVector Move = PlayerPos;
+
+
+	AddActorLocation(Move * Speed * _DeltaTime);
 }
 
 void AFirefly::patternStateInit()
@@ -107,7 +118,7 @@ void AFirefly::bigSkillIdle(float _DeltaTime)
 
 void AFirefly::bigskillLRMove(float _DeltaTime)
 {
-	AddActorLocation(FVector::Down * Speed * _DeltaTime);
+	CalDir(_DeltaTime);
 	Delay -= _DeltaTime;
 	if (Delay < 0.0f)
 	{

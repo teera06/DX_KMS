@@ -79,7 +79,7 @@ void ABoss1_Monster2::createSkill()
 {
 	NewFirefly = GetWorld()->SpawnActor<AFirefly>("Firefly");
 	//NewFirefly->SetSmallSkillDir(FVector::Left);
-	NewFirefly->SetActorLocation({ GetActorLocation().X-10.0f,270.0f,0.0f });
+	//NewFirefly->SetActorLocation({ GetActorLocation().X-10.0f,270.0f,0.0f });
 	//SkillYMove();
 }
 
