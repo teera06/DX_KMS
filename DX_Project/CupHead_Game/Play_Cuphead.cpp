@@ -7,7 +7,7 @@
 
 #include <EngineCore/DefaultSceneComponent.h>
 
-APlay_Cuphead* APlay_Cuphead::MainPlayer = nullptr;
+FVector APlay_Cuphead::PlayerPos = FVector::Zero;
 
 APlay_Cuphead::APlay_Cuphead()
 {
@@ -49,15 +49,10 @@ APlay_Cuphead::~APlay_Cuphead()
 {
 }
 
-APlay_Cuphead* APlay_Cuphead::GetMainPlayer()
-{
-	return nullptr;
-}
 
 void APlay_Cuphead::BeginPlay()
 {
 	Super::BeginPlay();
-	MainPlayer = this;
 	//SetActorScale3D(FVector(60.0f, 100.0f, 100.0f));
 	SetActorLocation(FVector(-400.0f, -250.0f, -50.0f));
 
@@ -91,7 +86,6 @@ void APlay_Cuphead::BeginPlay()
 	Dir = EDir::Right;
 	
 	BulletStart->SetActive(false);
-
 	//PlayCuphead->ChangeAnimation("Idle");
 }
 
@@ -101,6 +95,7 @@ void APlay_Cuphead::Tick(float _DeltaTime)
 	Super::Tick(_DeltaTime);
 	State.Update(_DeltaTime);
 
+	PlayerPos = GetActorLocation();
 
 	// 나는 APlayer 인데
 	// 	Collision->SetCollisionGroup(ECollisionOrder::Player);

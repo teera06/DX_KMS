@@ -2,7 +2,6 @@
 #include <Enginecore/Actor.h>
 #include <EngineCore/StateManager.h>
 
-#include "Play_Cuphead.h"
 
 class USpriteRenderer;
 
@@ -31,7 +30,6 @@ protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 private:
-	APlay_Cuphead* MainPlayer = APlay_Cuphead::GetMainPlayer();
 
 	USpriteRenderer* FireflyRender = nullptr;
 	UCollision* FireflyCollision = nullptr;

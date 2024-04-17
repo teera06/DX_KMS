@@ -20,7 +20,12 @@ public:
 	APlay_Cuphead& operator=(const APlay_Cuphead& _Other) = delete; // 디폴트 대입 연산자
 	APlay_Cuphead& operator=(APlay_Cuphead&& _Other) noexcept = delete;
 
-	static APlay_Cuphead* GetMainPlayer(); // 몬스터나 상태창이 플레이어에 대한 정보를 알아야 할 때 사용
+	static FVector GetPlayerPos()
+	{
+		return PlayerPos;
+	}
+
+
 
 	UStateManager State;
 protected:
@@ -34,13 +39,15 @@ protected:
 private:
 	// 상태에 따른 조작, 애니메이션 업데이트
 	//void StateAniChange(EActorState _State); // 커비의 움직임 상태에 맞는 애니메이션 실행
-	static APlay_Cuphead* MainPlayer;
 
 	USpriteRenderer* PlayCuphead= nullptr;
 	USpriteRenderer* BulletStart = nullptr;
 	UCollision* PlayerCollision=nullptr;
 
 	std::shared_ptr<ABaseBullet> NewBullet = nullptr;
+
+
+	static FVector PlayerPos;
 
 	FVector PlayerMoveY = FVector::Zero;
 

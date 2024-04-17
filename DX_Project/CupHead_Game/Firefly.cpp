@@ -6,6 +6,7 @@
 #include <EngineCore/Collision.h>
 
 #include "ContentsENum.h"
+#include "Play_Cuphead.h"
 AFirefly::AFirefly()
 {
 	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("Firefly");
@@ -55,19 +56,19 @@ void AFirefly::Tick(float _DeltaTime)
 	Super::Tick(_DeltaTime);
 	
 
-
 	pattern.Update(_DeltaTime);
 	
 }
 
 void AFirefly::CalDir(float _DeltaTime)
 {
-	FVector PlayerPos = GetActorLocation();
+	FVector PlayerPos = APlay_Cuphead::GetPlayerPos();
+	FVector MonsterPos = GetActorLocation();
 
-	FVector Move = PlayerPos;
+	FVector Move = PlayerPos- MonsterPos;
 
 
-	AddActorLocation(Move * Speed * _DeltaTime);
+	AddActorLocation(Move.Normalize3DReturn() * Speed * _DeltaTime);
 }
 
 void AFirefly::patternStateInit()
