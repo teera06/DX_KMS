@@ -40,7 +40,7 @@ void AFirefly::BeginPlay()
 {
 	Super::BeginPlay();
 
-	SetActorLocation({ GetActorLocation().X - 10.0f,270.0f,0.0f });
+	SetActorLocation({300.0f,270.0f,0.0f });
 	FireflyRender->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 
 	FireflyRender->CreateAnimation("bigskillLRMove", "bigskillLRMove", 0.1f);
@@ -67,6 +67,16 @@ void AFirefly::CalDir(float _DeltaTime)
 
 	FVector Move = PlayerPos- MonsterPos;
 
+	FVector MoveNorMalize = Move.Normalize3DReturn();
+
+	if (MoveNorMalize.iroundX() == -1 || MoveNorMalize.iroundX() == 0)
+	{
+		FireflyRender->SetDir(EEngineDir::Right);
+	}
+	else if (MoveNorMalize.iroundX() == 1)
+	{
+		FireflyRender->SetDir(EEngineDir::Left);
+	}
 
 	AddActorLocation(Move.Normalize3DReturn() * Speed * _DeltaTime);
 }
