@@ -30,6 +30,7 @@ private:
 	USpriteRenderer* BigBoss1 = nullptr;
 
 	int Bigattcount = 0;
+	float RandomSkillDelay = 0;
 
 
 	void createSkill();

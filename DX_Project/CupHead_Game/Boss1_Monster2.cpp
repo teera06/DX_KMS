@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "Boss1_Monster2.h"
 
+#include <EngineBase\EngineRandom.h>
 
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/DefaultSceneComponent.h>
@@ -77,7 +78,12 @@ void ABoss1_Monster2::Phase1StateInit()
 
 void ABoss1_Monster2::createSkill()
 {
+	RandomSkillDelay = UEngineRandom::MainRandom.RandomFloat(0.3f, 1.5f);
+
+
 	NewFirefly = GetWorld()->SpawnActor<AFirefly>("Firefly");
+
+	NewFirefly->SetDelay(RandomSkillDelay);
 	//NewFirefly->SetSmallSkillDir(FVector::Left);
 	//NewFirefly->SetActorLocation({ GetActorLocation().X-10.0f,270.0f,0.0f });
 	//SkillYMove();
@@ -94,7 +100,7 @@ void ABoss1_Monster2::bigintro(float _DeltaTime)
 
 void ABoss1_Monster2::bigIdle(float _DeltaTime)
 {
-	if (coolDownTime < 0 && 1 == phasecheck && false == attOrder)
+	if (coolDownTime < 0 && 1 == phasecheck && true == attOrder)
 	{
 		Phase1.ChangeState("bigatt");
 		return;

@@ -26,6 +26,11 @@ public:
 		Die = _Die;
 	}
 
+	void SetDelay(float _Delay)
+	{
+		Delay = _Delay;
+	}
+
 	UStateManager pattern;
 
 protected:
@@ -38,7 +43,7 @@ private:
 
 	FVector SmallSkillDir = FVector::Zero;
 
-	float Delay = 1.0f;
+	float Delay = 0.0f;
 
 	float Speed = 500.0f;
 

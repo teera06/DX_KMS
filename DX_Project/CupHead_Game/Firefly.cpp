@@ -40,7 +40,7 @@ void AFirefly::BeginPlay()
 {
 	Super::BeginPlay();
 
-	SetActorLocation({300.0f,270.0f,0.0f });
+	SetActorLocation({290.0f,260.0f,0.0f });
 	FireflyRender->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 
 	FireflyRender->CreateAnimation("bigskillLRMove", "bigskillLRMove", 0.1f);
