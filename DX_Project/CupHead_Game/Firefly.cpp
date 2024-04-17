@@ -39,6 +39,8 @@ void AFirefly::BeginPlay()
 {
 	Super::BeginPlay();
 
+	FireflyRender->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
+
 	FireflyRender->CreateAnimation("bigskillLRMove", "bigskillLRMove", 0.1f);
 	FireflyRender->CreateAnimation("bigSkillIdle", "bigSkillIdle", 0.1f);
 	//smallskillRender->CreateAnimation("Peashot_Loop", "Peashot_Loop", 0.05f);
@@ -96,7 +98,7 @@ void AFirefly::bigSkillIdle(float _DeltaTime)
 	Delay -= _DeltaTime;
 	if (Delay < 0.0f)
 	{
-		Delay = 2.0f;
+		Delay = 0.3f;
 		//MoveCoolDonwTime = 2.0f;
 		pattern.ChangeState("bigskillLRMove");
 		return;
