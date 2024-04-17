@@ -207,7 +207,7 @@ void ABoss1_Monster2::bigatt2(float _DeltaTime)
 		Bigattcount++;
 	}
 
-	if (Bigattcount > 5)
+	if (Bigattcount > 20)
 	{
 		WindSkill->SetActive(false);
 		Phase1.ChangeState("bigatt2end");
