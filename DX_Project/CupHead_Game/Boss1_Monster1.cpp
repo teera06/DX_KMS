@@ -20,8 +20,8 @@ ABoss1_Monster1::ABoss1_Monster1()
 	smallBossCollision->SetupAttachment(Root);
 	smallBossCollision->SetPosition(FVector(0.0f, 150.0f, 100.0f));
 	smallBossCollision->SetScale(FVector(200.0f, 200.0f, 100.0f));
-	smallBossCollision->SetCollisionGroup(ECollisionOrder::Boss1Monster);
-	smallBossCollision->SetCollisionType(ECollisionType::Rect);
+	smallBossCollision->SetCollisionGroup(ECollisionOrder::Boss1Monster1);
+	smallBossCollision->SetCollisionType(ECollisionType::RotRect);
 	SetRoot(Root);
 }
 
@@ -272,15 +272,20 @@ void ABoss1_Monster1::phase2change1(float _DeltaTime)
 void ABoss1_Monster1::phase2change2(float _DeltaTime)
 {
 
-	
-
-	AddActorLocation(FVector::Left * 500.0f * _DeltaTime);
-
-	if (GetActorLocation().iX() <= -580)
+	if (phasecheck == 1)
 	{
-		Phase2StateInit();
-		phasecheck = 2;
-		return;
+		AddActorLocation(FVector::Left * 500.0f * _DeltaTime);
+
+		if (GetActorLocation().iX() <= -580)
+		{
+			Phase2StateInit();
+			phasecheck = 2;
+			return;
+		}
+	}
+	else if (phasecheck == 2)
+	{
+		AddActorLocation(FVector::Right * 500.0f * _DeltaTime);
 	}
 }
 

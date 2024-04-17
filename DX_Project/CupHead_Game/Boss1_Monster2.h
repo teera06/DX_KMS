@@ -41,8 +41,14 @@ private:
 	int Bigattcount = 0;
 	int phase3changecount = 0;
 
+
+	bool Change3 = false;
+
 	void createSkill();
 
+	void Collisioncheck();
+
+	// ป๓ลย
 	void bigintro(float _DeltaTime);
 	void bigIdle(float _DeltaTime);
 

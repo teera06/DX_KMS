@@ -28,7 +28,7 @@ APlay_Cuphead::APlay_Cuphead()
 	PlayerCollision->SetScale(FVector(100.0f, 100.0f, 100.0f));
 	//PlayerCollision은 무조건 오더를 지정해줘야 한다.
 	PlayerCollision->SetCollisionGroup(ECollisionOrder::Player);
-	PlayerCollision->SetCollisionType(ECollisionType::Rect);
+	PlayerCollision->SetCollisionType(ECollisionType::RotRect);
 
 
 	SetRoot(Root);
@@ -115,7 +115,7 @@ void APlay_Cuphead::Tick(float _DeltaTime)
 	//	}
 	//);
 
-	PlayerCollision->CollisionEnter(ECollisionOrder::Boss1Monster, [=](std::shared_ptr<UCollision> _Collison)
+	PlayerCollision->CollisionEnter(ECollisionOrder::Boss1Monster1, [=](std::shared_ptr<UCollision> _Collison)
 	{
 	
 	//_Collison->GetActor()->Destroy();

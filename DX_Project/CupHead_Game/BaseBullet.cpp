@@ -24,7 +24,7 @@ ABaseBullet::ABaseBullet()
 	BulletCollision->SetScale(FVector(100.0f, 100.0f, 100.0f));
 	// 콜리전은 무조건 오더를 지정해줘야 한다.
 	BulletCollision->SetCollisionGroup(ECollisionOrder::Bullet);
-	BulletCollision->SetCollisionType(ECollisionType::Rect);
+	BulletCollision->SetCollisionType(ECollisionType::RotRect);
 
 
 	SetRoot(Root);
@@ -89,7 +89,7 @@ void ABaseBullet::SkillDir()
 
 void ABaseBullet::Collisiongather()
 {
-	BulletCollision->CollisionEnter(ECollisionOrder::Boss1Monster, [=](std::shared_ptr<UCollision> _Collison)
+	BulletCollision->CollisionEnter(ECollisionOrder::Boss1Monster1, [=](std::shared_ptr<UCollision> _Collison)
 	{
 		Destroy();
 		//_Collison->GetActor()->Destroy();

@@ -4,10 +4,13 @@
 #include <EngineBase\EngineRandom.h>
 
 #include <EngineCore/SpriteRenderer.h>
+#include <EngineCore/Collision.h>
 #include <EngineCore/DefaultSceneComponent.h>
+
 
 #include "ContentsENum.h"
 #include "Firefly.h"
+#include "Boss1_Monster1.h"
 
 ABoss1_Monster2::ABoss1_Monster2()
 {
@@ -23,6 +26,14 @@ ABoss1_Monster2::ABoss1_Monster2()
 	WindSkill->AddPosition(FVector(-350.0f, 300.0f, 0.0f));
 
 	WindSkill->SetActive(false);
+
+	BigBossCollision = CreateDefaultSubObject<UCollision>("BigBossCollision");
+	BigBossCollision->SetupAttachment(Root);
+	BigBossCollision->SetPosition(FVector(0.0f, 150.0f, 100.0f));
+	BigBossCollision->SetScale(FVector(200.0f, 200.0f, 100.0f));
+	BigBossCollision->SetCollisionGroup(ECollisionOrder::Boss1Monster2);
+	BigBossCollision->SetCollisionType(ECollisionType::RotRect);
+
 	SetRoot(Root);
 }
 
@@ -145,6 +156,19 @@ void ABoss1_Monster2::createSkill()
 	//SkillYMove();
 }
 
+void ABoss1_Monster2::Collisioncheck()
+{
+	BigBossCollision->CollisionEnter(ECollisionOrder::Boss1Monster1, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		AActor* Ptr = _Collison->GetActor();
+		ABoss1_Monster1* Monster = dynamic_cast<ABoss1_Monster1*>(Ptr);
+		Monster->Destroy();
+
+		Change3 = true;
+		//_Collison->GetActor()->Destroy();
+	});
+}
+
 void ABoss1_Monster2::bigintro(float _DeltaTime)
 {
 	if (true == BigBoss1->IsCurAnimationEnd())
@@ -256,15 +280,16 @@ void ABoss1_Monster2::phase3changeReady1(float _DeltaTime)
 
 void ABoss1_Monster2::phase3changeReady2(float _DeltaTime)
 {
+	Collisioncheck();
 	if (true == BigBoss1->IsCurAnimationEnd())
 	{
-
-		phase3changecount++;
+		int a = 0;
+		//phase3changecount++;
 	}
 
 	if (phase3changecount > 3)
 	{
-		Phase1.ChangeState("BigIdle");
-		return;
+		//Phase1.ChangeState("BigIdle");
+		//return;
 	}
 }

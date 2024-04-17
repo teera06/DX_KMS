@@ -20,7 +20,7 @@ Asmallskill::Asmallskill()
 	smallskillCollision->SetScale(FVector(100.0f, 100.0f, 100.0f));
 
 	smallskillCollision->SetCollisionGroup(ECollisionOrder::MonsterSkill);
-	smallskillCollision->SetCollisionType(ECollisionType::CirCle);
+	smallskillCollision->SetCollisionType(ECollisionType::RotRect);
 
 
 	SetRoot(Root);

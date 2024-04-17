@@ -20,7 +20,7 @@ AFirefly::AFirefly()
 	FireflyCollision->SetScale(FVector(100.0f, 100.0f, 100.0f));
 
 	FireflyCollision->SetCollisionGroup(ECollisionOrder::Boss1SkillMonster);
-	FireflyCollision->SetCollisionType(ECollisionType::CirCle);
+	FireflyCollision->SetCollisionType(ECollisionType::RotRect);
 
 
 	SetRoot(Root);
