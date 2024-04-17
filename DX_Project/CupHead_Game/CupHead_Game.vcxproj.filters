@@ -146,6 +146,9 @@
     <ClCompile Include="ball.cpp">
       <Filter>PlayStage\Boss1\Monster\skill</Filter>
     </ClCompile>
+    <ClCompile Include="Wind.cpp">
+      <Filter>PlayStage\Boss1\Monster\skill</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -215,6 +218,9 @@
       <Filter>PlayStage\Boss1\Monster\skill</Filter>
     </ClInclude>
     <ClInclude Include="ball.h">
+      <Filter>PlayStage\Boss1\Monster\skill</Filter>
+    </ClInclude>
+    <ClInclude Include="Wind.h">
       <Filter>PlayStage\Boss1\Monster\skill</Filter>
     </ClInclude>
   </ItemGroup>
