@@ -6,8 +6,6 @@ float ABoss1Common::coolDownTime = 6.0f;
 bool ABoss1Common::attOrder=false;
 int ABoss1Common::Hp = 100;
 
-bool ABoss1Common::PhaseChange=false;
-
 ABoss1Common::ABoss1Common()
 {
 }

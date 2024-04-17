@@ -26,17 +26,6 @@ public:
 	{
 		Hp=_Hp;
 	}
-
-	static void SetPhaseChange(const bool& _PhaseChange)
-	{
-		PhaseChange = _PhaseChange;
-	}
-
-	static bool GetPhaseChange()
-	{
-		return PhaseChange;
-	}
-
 	static int phasecheck;
 	static float coolDownTime;
 	static bool attOrder;
@@ -48,7 +37,5 @@ protected:
 private:
 
 	static int Hp;
-
-	static bool PhaseChange;
 };
 

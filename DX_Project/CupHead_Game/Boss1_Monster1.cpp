@@ -281,7 +281,6 @@ void ABoss1_Monster1::phase2change2(float _DeltaTime)
 	if (GetActorLocation().iX() <= -580)
 	{
 		Phase2StateInit();
-		SetPhaseChange(true);
 		phasecheck = 2;
 		return;
 	}
