@@ -254,8 +254,6 @@ void ABoss1_Monster1::phase2changeReady2(float _DeltaTime)
 	if (phase2changecount > 3)
 	{
 		Phase1.ChangeState("phase2change1");
-		//coolDownTime = 6.0f;
-		//count = 0;
 		return;
 	}
 }
