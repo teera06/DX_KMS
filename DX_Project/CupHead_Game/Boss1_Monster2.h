@@ -3,6 +3,8 @@
 
 #include "Boss1Common.h"
 class USpriteRenderer;
+class AFirefly;
+
 class ABoss1_Monster2 : public AActor, public ABoss1Common
 {
 	GENERATED_BODY(AActor)
@@ -23,9 +25,14 @@ protected:
 
 	void Phase1StateInit() override;
 private:
+	std::shared_ptr<AFirefly> NewFirefly = nullptr;
+
 	USpriteRenderer* BigBoss1 = nullptr;
 
 	int Bigattcount = 0;
+
+
+	void createSkill();
 
 	void bigintro(float _DeltaTime);
 	void bigIdle(float _DeltaTime);

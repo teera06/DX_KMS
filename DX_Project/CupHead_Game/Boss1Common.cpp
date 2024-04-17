@@ -2,7 +2,7 @@
 #include "Boss1Common.h"
 
 int ABoss1Common::phasecheck=1;
-float ABoss1Common::coolDownTime = 10.0f;
+float ABoss1Common::coolDownTime = 6.0f;
 bool ABoss1Common::attOrder=false;
 int ABoss1Common::Hp = 100;
 

@@ -10,6 +10,7 @@
 #include "Boss1_Monster2.h"
 #include "ContentsHelper.h"
 
+
 #include <EngineCore/Camera.h>
 
 ABossStage1GameMode::ABossStage1GameMode()

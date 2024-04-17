@@ -18,6 +18,11 @@ public:
 	AFirefly& operator=(const AFirefly& _Other) = delete; // 디폴트 대입 연산자
 	AFirefly& operator=(AFirefly&& _Other) noexcept = delete;
 
+	inline void SetSmallSkillDir(const FVector& _SmallSkillDir)
+	{
+		SmallSkillDir = _SmallSkillDir;
+	}
+
 	UStateManager pattern;
 
 protected:
@@ -27,7 +32,12 @@ private:
 	USpriteRenderer* FireflyRender = nullptr;
 	UCollision* FireflyCollision = nullptr;
 
+	FVector SmallSkillDir = FVector::Zero;
 
+	float MoveCoolDonwTime = 0.0f;
+	float Delay = 3.0f;
+
+	float Speed = 600.0f;
 	// 상태
 	void patternStateInit();
 

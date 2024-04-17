@@ -8,10 +8,6 @@
 #include "ContentsENum.h"
 AFirefly::AFirefly()
 {
-}
-
-AFirefly::~AFirefly()
-{
 	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("Firefly");
 
 	FireflyRender = CreateDefaultSubObject<USpriteRenderer>("FireflyRender");
@@ -21,22 +17,30 @@ AFirefly::~AFirefly()
 	FireflyCollision = CreateDefaultSubObject<UCollision>("FireflyCollision");
 	FireflyCollision->SetupAttachment(Root);
 	FireflyCollision->SetScale(FVector(100.0f, 100.0f, 100.0f));
-	
+
 	FireflyCollision->SetCollisionGroup(ECollisionOrder::MonsterSkill);
 	FireflyCollision->SetCollisionType(ECollisionType::CirCle);
 
 
 	SetRoot(Root);
+
+	FireflyRender->SetOrder(ERenderOrder::skilleffect);
+	FireflyRender->SetSprite("tallfrog_firefly_left_0001.png");
+	FireflyRender->SetSamplering(ETextureSampling::LINEAR);
+	FireflyRender->SetAutoSize(1.0f, true);
+}
+
+AFirefly::~AFirefly()
+{
+
 }
 
 void AFirefly::BeginPlay()
 {
 	Super::BeginPlay();
 
-	FireflyRender->SetOrder(ERenderOrder::Monster2);
-	FireflyRender->SetSprite("tallfrog_firefly_left_0001.png");
-	FireflyRender->SetSamplering(ETextureSampling::LINEAR);
-	FireflyRender->SetAutoSize(1.0f, true);
+
+	SetActorLocation(FVector(-400.0f, -250.0f, -50.0f));
 	
 	FireflyRender->SetDir(EEngineDir::Left);
 
@@ -52,6 +56,12 @@ void AFirefly::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 	pattern.Update(_DeltaTime);
+	MoveCoolDonwTime -= _DeltaTime;
+
+	if (MoveCoolDonwTime < 0)
+	{
+		//pattern.Update(_DeltaTime);
+	}
 }
 
 void AFirefly::patternStateInit()
@@ -62,8 +72,8 @@ void AFirefly::patternStateInit()
 
 	
 
-	pattern.SetUpdateFunction("smallattready", std::bind(&AFirefly::Intro, this, std::placeholders::_1));
-	pattern.SetStartFunction("smallintro", [=] {FireflyRender->ChangeAnimation("bigskillLRMove"); });
+	pattern.SetUpdateFunction("Intro", std::bind(&AFirefly::Intro, this, std::placeholders::_1));
+	pattern.SetStartFunction("Intro", [=] {FireflyRender->ChangeAnimation("bigskillLRMove"); });
 
 	pattern.SetUpdateFunction("bigSkillIdle", std::bind(&AFirefly::bigSkillIdle, this, std::placeholders::_1));
 	pattern.SetStartFunction("bigSkillIdle", [=] {FireflyRender->ChangeAnimation("bigSkillIdle"); });
@@ -71,12 +81,19 @@ void AFirefly::patternStateInit()
 	pattern.SetUpdateFunction("bigskillLRMove", std::bind(&AFirefly::bigskillLRMove, this, std::placeholders::_1));
 	pattern.SetStartFunction("bigskillLRMove", [=] {FireflyRender->ChangeAnimation("bigskillLRMove"); });
 
-	pattern.ChangeState("Intro");
+	pattern.ChangeState("bigSkillIdle");
 }
 
 void AFirefly::Intro(float _DeltaTime)
 {
+	Delay -= _DeltaTime;
+	AddActorLocation(FVector::Left * Speed * _DeltaTime);
 
+	if (Delay < 0.0f)
+	{
+		pattern.ChangeState("bigSkillIdle");
+		return;
+	}
 }
 
 void AFirefly::bigSkillIdle(float _DeltaTime)

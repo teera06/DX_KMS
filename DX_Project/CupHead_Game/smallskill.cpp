@@ -34,7 +34,7 @@ void Asmallskill::BeginPlay()
 {
 	Super::BeginPlay();
 
-	smallskillRender->SetOrder(ERenderOrder::Cuphead);
+	smallskillRender->SetOrder(ERenderOrder::skilleffect);
 	smallskillRender->SetSprite("shortfrog_fist_0001.png");
 	smallskillRender->SetSamplering(ETextureSampling::LINEAR);
 	smallskillRender->SetAutoSize(1.0f, true);

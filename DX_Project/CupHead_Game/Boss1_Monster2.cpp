@@ -1,9 +1,12 @@
 #include "PreCompile.h"
 #include "Boss1_Monster2.h"
-#include "ContentsENum.h"
+
 
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/DefaultSceneComponent.h>
+
+#include "ContentsENum.h"
+#include "Firefly.h"
 
 ABoss1_Monster2::ABoss1_Monster2()
 {
@@ -72,6 +75,14 @@ void ABoss1_Monster2::Phase1StateInit()
 	Phase1.ChangeState("bigintro");
 }
 
+void ABoss1_Monster2::createSkill()
+{
+	NewFirefly = GetWorld()->SpawnActor<AFirefly>("Firefly");
+	//NewFirefly->SetSmallSkillDir(FVector::Left);
+	NewFirefly->SetActorLocation({ GetActorLocation().X,-30.0f,0.0f });
+	//SkillYMove();
+}
+
 void ABoss1_Monster2::bigintro(float _DeltaTime)
 {
 	if (true == BigBoss1->IsCurAnimationEnd())
@@ -83,7 +94,7 @@ void ABoss1_Monster2::bigintro(float _DeltaTime)
 
 void ABoss1_Monster2::bigIdle(float _DeltaTime)
 {
-	if (coolDownTime < 0 && 1 == phasecheck && true == attOrder)
+	if (coolDownTime < 0 && 1 == phasecheck && false == attOrder)
 	{
 		Phase1.ChangeState("bigatt");
 		return;
@@ -94,7 +105,7 @@ void ABoss1_Monster2::bigatt(float _DeltaTime)
 {
 	if (true == BigBoss1->IsCurAnimationEnd())
 	{
-
+		createSkill();
 		Bigattcount++;
 	}
 
