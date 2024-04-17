@@ -281,6 +281,7 @@ void ABoss1_Monster1::phase2change2(float _DeltaTime)
 	if (GetActorLocation().iX() <= -580)
 	{
 		Phase2StateInit();
+		SetPhaseChange(true);
 		phasecheck = 2;
 		return;
 	}
@@ -308,6 +309,7 @@ void ABoss1_Monster1::smallatt2(float _DeltaTime)
 		createSkill2();
 		Phase2.ChangeState("smallIdle");
 		coolDownTime = 6.0f;
+		attOrder = true;
 		return;
 	}
 }

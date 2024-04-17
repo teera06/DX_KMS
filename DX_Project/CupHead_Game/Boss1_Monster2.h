@@ -24,6 +24,7 @@ protected:
 	void Tick(float _DeltaTime) override;
 
 	void Phase1StateInit() override;
+	void Phase2StateInit() override;
 private:
 	std::shared_ptr<AFirefly> NewFirefly = nullptr;
 
@@ -37,6 +38,9 @@ private:
 
 	void bigintro(float _DeltaTime);
 	void bigIdle(float _DeltaTime);
+
 	void bigatt(float _DeltaTime);
+
+	void bigatt2Ready(float _DeltaTime);
 };
 
