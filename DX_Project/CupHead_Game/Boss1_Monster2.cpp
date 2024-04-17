@@ -16,6 +16,13 @@ ABoss1_Monster2::ABoss1_Monster2()
 
 	BigBoss1->SetupAttachment(Root);
 	BigBoss1->SetPivot(EPivot::BOT);
+
+	WindSkill = CreateDefaultSubObject<USpriteRenderer>("WindSkill");
+
+	WindSkill->SetupAttachment(Root);
+	WindSkill->AddPosition(FVector(-350.0f, 300.0f, 0.0f));
+
+	WindSkill->SetActive(false);
 	SetRoot(Root);
 }
 
@@ -44,9 +51,19 @@ void ABoss1_Monster2::BeginPlay()
 	BigBoss1->CreateAnimation("bigatt2end", "bigatt2end", 0.1f);
 
 
+	WindSkill->SetOrder(ERenderOrder::Monster1);
+	WindSkill->SetSprite("tallfrog_fan_wind_0001.png");
+	WindSkill->SetSamplering(ETextureSampling::LINEAR);
+	WindSkill->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
+
+	WindSkill->CreateAnimation("Wind", "Wind", 0.12f);
+
 	Phase1StateInit();
 
 	BigBoss1->SetAutoSize(1.0f, true);
+	WindSkill->SetAutoSize(1.0f, true);
+
+	WindSkill->ChangeAnimation("Wind");
 }
 
 void ABoss1_Monster2::Tick(float _DeltaTime)
@@ -176,6 +193,7 @@ void ABoss1_Monster2::bigatt2Ready2(float _DeltaTime)
 {
 	if (true == BigBoss1->IsCurAnimationEnd())
 	{
+		WindSkill->SetActive(true);
 		Phase1.ChangeState("bigatt2");
 		return;
 	}
@@ -191,6 +209,7 @@ void ABoss1_Monster2::bigatt2(float _DeltaTime)
 
 	if (Bigattcount > 5)
 	{
+		WindSkill->SetActive(false);
 		Phase1.ChangeState("bigatt2end");
 		return;
 	}

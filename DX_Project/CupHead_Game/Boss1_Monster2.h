@@ -30,6 +30,8 @@ private:
 
 	USpriteRenderer* BigBoss1 = nullptr;
 
+	USpriteRenderer* WindSkill = nullptr;
+
 	int Bigattcount = 0;
 	float RandomSkillDelay = 0;
 
