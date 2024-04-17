@@ -40,9 +40,9 @@ void AFirefly::BeginPlay()
 	Super::BeginPlay();
 
 
-	SetActorLocation(FVector(-400.0f, -250.0f, -50.0f));
+	//SetActorLocation(FVector(-400.0f, -250.0f, -50.0f));
 	
-	FireflyRender->SetDir(EEngineDir::Left);
+	//FireflyRender->SetDir(EEngineDir::Left);
 
 	FireflyRender->CreateAnimation("bigskillLRMove", "bigskillLRMove", 0.1f);
 	FireflyRender->CreateAnimation("bigSkillIdle", "bigSkillIdle", 0.1f);
@@ -55,12 +55,11 @@ void AFirefly::BeginPlay()
 void AFirefly::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-	pattern.Update(_DeltaTime);
 	MoveCoolDonwTime -= _DeltaTime;
 
 	if (MoveCoolDonwTime < 0)
 	{
-		//pattern.Update(_DeltaTime);
+		pattern.Update(_DeltaTime);
 	}
 }
 
@@ -81,7 +80,7 @@ void AFirefly::patternStateInit()
 	pattern.SetUpdateFunction("bigskillLRMove", std::bind(&AFirefly::bigskillLRMove, this, std::placeholders::_1));
 	pattern.SetStartFunction("bigskillLRMove", [=] {FireflyRender->ChangeAnimation("bigskillLRMove"); });
 
-	pattern.ChangeState("bigSkillIdle");
+	pattern.ChangeState("Intro");
 }
 
 void AFirefly::Intro(float _DeltaTime)

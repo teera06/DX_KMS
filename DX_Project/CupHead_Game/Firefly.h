@@ -35,9 +35,9 @@ private:
 	FVector SmallSkillDir = FVector::Zero;
 
 	float MoveCoolDonwTime = 0.0f;
-	float Delay = 3.0f;
+	float Delay = 1.0f;
 
-	float Speed = 600.0f;
+	float Speed = 500.0f;
 	// ป๓ลย
 	void patternStateInit();
 
