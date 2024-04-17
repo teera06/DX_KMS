@@ -249,10 +249,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Wind.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="WorldGameMode.h">
       <SubType>
       </SubType>
@@ -350,10 +346,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="smallskill.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Wind.cpp">
       <SubType>
       </SubType>
     </ClCompile>
