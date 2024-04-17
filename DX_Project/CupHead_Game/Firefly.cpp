@@ -39,11 +39,6 @@ void AFirefly::BeginPlay()
 {
 	Super::BeginPlay();
 
-
-	//SetActorLocation(FVector(-400.0f, -250.0f, -50.0f));
-	
-	//FireflyRender->SetDir(EEngineDir::Left);
-
 	FireflyRender->CreateAnimation("bigskillLRMove", "bigskillLRMove", 0.1f);
 	FireflyRender->CreateAnimation("bigSkillIdle", "bigSkillIdle", 0.1f);
 	//smallskillRender->CreateAnimation("Peashot_Loop", "Peashot_Loop", 0.05f);
@@ -90,6 +85,8 @@ void AFirefly::Intro(float _DeltaTime)
 
 	if (Delay < 0.0f)
 	{
+		Delay = 2.0f;
+		//MoveCoolDonwTime = 2.0f;
 		pattern.ChangeState("bigSkillIdle");
 		return;
 	}
@@ -97,8 +94,25 @@ void AFirefly::Intro(float _DeltaTime)
 
 void AFirefly::bigSkillIdle(float _DeltaTime)
 {
+	Delay -= _DeltaTime;
+	if (Delay < 0.0f)
+	{
+		Delay = 2.0f;
+		//MoveCoolDonwTime = 2.0f;
+		pattern.ChangeState("bigskillLRMove");
+		return;
+	}
 }
 
 void AFirefly::bigskillLRMove(float _DeltaTime)
 {
+	AddActorLocation(FVector::Down * Speed * _DeltaTime);
+	Delay -= _DeltaTime;
+	if (Delay < 0.0f)
+	{
+		Delay = 2.0f;
+		//MoveCoolDonwTime = 2.0f;
+		pattern.ChangeState("bigSkillIdle");
+		return;
+	}
 }
