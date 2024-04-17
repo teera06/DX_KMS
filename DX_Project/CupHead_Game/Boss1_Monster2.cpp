@@ -103,9 +103,11 @@ void ABoss1_Monster2::bigIdle(float _DeltaTime)
 
 void ABoss1_Monster2::bigatt(float _DeltaTime)
 {
+
+	BigBoss1->SetFrameCallback("bigatt", 14, [=] {createSkill(); });
 	if (true == BigBoss1->IsCurAnimationEnd())
 	{
-		createSkill();
+		//createSkill();
 		Bigattcount++;
 	}
 
