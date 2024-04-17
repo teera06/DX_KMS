@@ -40,7 +40,7 @@ void Aball::BeginPlay()
 	ballRender->SetOrder(ERenderOrder::skilleffect);
 	ballRender->SetSprite("shorfrog_clap_ball_0001.png");
 	ballRender->SetSamplering(ETextureSampling::LINEAR);
-	ballRender->SetAutoSize(2.0f, true);
+	ballRender->SetAutoSize(1.5f, true);
 	
 	ballRender->SetDir(EEngineDir::Left);
 	

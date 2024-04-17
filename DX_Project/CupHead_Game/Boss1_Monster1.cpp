@@ -6,6 +6,7 @@
 #include <EngineCore/DefaultSceneComponent.h>
 
 #include "smallskill.h"
+#include "ball.h"
 
 ABoss1_Monster1::ABoss1_Monster1()
 {
@@ -150,6 +151,12 @@ void ABoss1_Monster1::SkillYMove()
 	{
 		NewSkill->SetActorLocation({ GetActorLocation().X,-190.0f,0.0f });
 	}
+}
+
+void ABoss1_Monster1::createSkill2()
+{
+	NewBall = GetWorld()->SpawnActor<Aball>("ball");
+	//NewBall->SetSmallSkillDir(FVector::Left);
 }
 
 void ABoss1_Monster1::Collisiongather()
@@ -298,6 +305,7 @@ void ABoss1_Monster1::smallatt2(float _DeltaTime)
 	
 	if (true == SmallBoss1->IsCurAnimationEnd())
 	{
+		createSkill2();
 		Phase2.ChangeState("smallIdle");
 		coolDownTime = 6.0f;
 		return;

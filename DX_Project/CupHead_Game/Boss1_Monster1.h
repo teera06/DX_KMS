@@ -4,6 +4,7 @@
 #include "Boss1Common.h"
 class USpriteRenderer;
 class Asmallskill;
+class Aball;
 
 class ABoss1_Monster1 : public AActor, public ABoss1Common
 {
@@ -30,6 +31,7 @@ protected:
 	void AniCreate() override;
 private:
 	std::shared_ptr<Asmallskill> NewSkill = nullptr;
+	std::shared_ptr<Aball> NewBall = nullptr;
 
 	USpriteRenderer* SmallBoss1 = nullptr;
 	UCollision* smallBossCollision = nullptr;
@@ -41,6 +43,9 @@ private:
 
 	void createSkill();
 	void SkillYMove();
+
+	void createSkill2();
+
 	void Collisiongather();
 	// ป๓ลย 
 
