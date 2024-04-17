@@ -15,12 +15,13 @@ ABoss3Map::ABoss3Map()
 
 	back3Map->SetupAttachment(Root);
 	crowd3->SetupAttachment(Root);
+
 	Object1->SetupAttachment(Root);
 	Object2->SetupAttachment(Root);
 
 	Object1->AddPosition({ 0.0f, -355.0f, 50.0f });
 	Object2->AddPosition({ 0.0f, -380.0f, -90.0f });
-	crowd3->AddPosition({ 9.0f, -60.0f, 80.0f });
+	crowd3->AddPosition({ 5.0f, -70.0f, 80.0f });
 	SetRoot(Root);
 
 	back3Map->SetOrder(ERenderOrder::Boss1_Back3);
@@ -55,7 +56,7 @@ ABoss3Map::~ABoss3Map()
 void ABoss3Map::BeginPlay()
 {
 	Super::BeginPlay();
-	SetActorLocation(FVector(0.0f, 60.0f, 100.0f));
+	SetActorLocation(FVector(0.0f, 70.0f, 100.0f));
 	crowd3->CreateAnimation("A", "A", 0.1f);
 	crowd3->ChangeAnimation("A");
 }
