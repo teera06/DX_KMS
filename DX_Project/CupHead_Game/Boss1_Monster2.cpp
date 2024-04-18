@@ -63,6 +63,10 @@ void ABoss1_Monster2::BeginPlay()
 	BigBoss1->CreateAnimation("phase3changeReady1", "phase3changeReady1", 0.1f);
 	BigBoss1->CreateAnimation("phase3changeReady2", "phase3changeReady2", 0.1f);
 
+	BigBoss1->CreateAnimation("phase3Intro", "phase3Intro", 0.1f);
+	BigBoss1->CreateAnimation("phase3Idle", "phase3Idle", 0.1f);
+
+
 
 	WindSkill->SetOrder(ERenderOrder::Monster1);
 	WindSkill->SetSprite("tallfrog_fan_wind_0001.png");
@@ -87,6 +91,10 @@ void ABoss1_Monster2::Tick(float _DeltaTime)
 	if (1 == phasecheck || 2 == phasecheck)
 	{
 		Phase1.Update(_DeltaTime);
+	}
+	else if (3 == phasecheck)
+	{
+		Phase2.Update(_DeltaTime);
 	}
 }
 
@@ -138,10 +146,16 @@ void ABoss1_Monster2::Phase1StateInit()
 
 void ABoss1_Monster2::Phase2StateInit()
 {
-	Phase2.CreateState("SlotIntro");
+	Phase2.CreateState("phase3Intro");
+	Phase2.CreateState("phase3Idle");
 
-	Phase1.SetUpdateFunction("bigintro", std::bind(&ABoss1_Monster2::bigintro, this, std::placeholders::_1));
-	Phase1.SetStartFunction("bigintro", [=] {BigBoss1->ChangeAnimation("bigintro"); });
+	Phase2.SetUpdateFunction("phase3Intro", std::bind(&ABoss1_Monster2::phase3Intro, this, std::placeholders::_1));
+	Phase2.SetStartFunction("phase3Intro", [=] {BigBoss1->ChangeAnimation("phase3Intro"); });
+
+	Phase2.SetUpdateFunction("phase3Idle", std::bind(&ABoss1_Monster2::phase3Idle, this, std::placeholders::_1));
+	Phase2.SetStartFunction("phase3Idle", [=] {BigBoss1->ChangeAnimation("phase3Idle"); });
+
+	Phase2.ChangeState("phase3Intro");
 }
 
 
@@ -287,15 +301,22 @@ void ABoss1_Monster2::phase3changeReady2(float _DeltaTime)
 	
 	if (true == Change3)
 	{
-
+		phasecheck = 3;
+		Phase2StateInit();
+		return;
 	}
 }
 
-void ABoss1_Monster2::SlotIntro(float _DeltaTime)
+void ABoss1_Monster2::phase3Intro(float _DeltaTime)
 {
+	if (true == BigBoss1->IsCurAnimationEnd())
+	{
+		Phase2.ChangeState("phase3Idle");
+		return;
+	}
 }
 
-void ABoss1_Monster2::SlotIdle(float _DeltaTime)
+void ABoss1_Monster2::phase3Idle(float _DeltaTime)
 {
 
 }

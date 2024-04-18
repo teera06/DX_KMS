@@ -63,8 +63,8 @@ private:
 	void phase3changeReady2(float _DeltaTime);
 
 
-	void SlotIntro(float _DeltaTime);
-	void SlotIdle(float _DeltaTime);
+	void phase3Intro(float _DeltaTime);
+	void phase3Idle(float _DeltaTime);
 
 };
 
