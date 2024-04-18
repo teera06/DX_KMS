@@ -7,7 +7,7 @@
 
 #include "ContentsENum.h"
 
-MoveObject::MoveObject()
+AMoveObject::AMoveObject()
 {
 	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("smallskill");
 
@@ -17,14 +17,16 @@ MoveObject::MoveObject()
 
 	TopCollision = CreateDefaultSubObject<UCollision>("TopCollision ");
 	TopCollision->SetupAttachment(Root);
-	TopCollision->SetScale(FVector(100.0f, 100.0f, 100.0f));
+	TopCollision->AddPosition(FVector(0.0f, 30.0f, 0.0f));
+	TopCollision->SetScale(FVector(200.0f, 50.0f, 100.0f));
 	
 	TopCollision->SetCollisionGroup(ECollisionOrder::Boss1Top);
 	TopCollision->SetCollisionType(ECollisionType::RotRect);
 
 	LRCollision = CreateDefaultSubObject<UCollision>("LRCollision");
 	LRCollision->SetupAttachment(Root);
-	LRCollision->SetScale(FVector(100.0f, 100.0f, 100.0f));
+	LRCollision->AddPosition(FVector(0.0f, -10.0f, 0.0f));
+	LRCollision->SetScale(FVector(200.0f, 50.0f, 100.0f));
 	
 	LRCollision->SetCollisionGroup(ECollisionOrder::Boss1LR);
 	LRCollision->SetCollisionType(ECollisionType::RotRect);
@@ -33,33 +35,41 @@ MoveObject::MoveObject()
 	SetRoot(Root);
 }
 
-MoveObject::~MoveObject()
+AMoveObject::~AMoveObject()
 {
 }
 
-void MoveObject::BeginPlay()
+void AMoveObject::BeginPlay()
 {
 	Super::BeginPlay();
 
+	SetActorLocation(FVector(400.0f, -50.0f, 0.0f));
+
 	ObjectRender->SetOrder(ERenderOrder::skilleffect);
-	ObjectRender->SetSprite("shortfrog_fist_0001.png");
+	ObjectRender->SetSprite("tallfrog_slotman_platform_bison_0001.png");
 	ObjectRender->SetSamplering(ETextureSampling::LINEAR);
 	ObjectRender->SetAutoSize(1.0f, true);
 	
-	ObjectRender->SetDir(EEngineDir::Left);
 	
-	ObjectRender->CreateAnimation("smallskill", "smallskill", 0.1f);
+	ObjectRender->CreateAnimation("Object1", "Object1", 0.1f);
+	ObjectRender->CreateAnimation("Object2", "Object2", 0.1f);
+	ObjectRender->CreateAnimation("Object3", "Object3", 0.1f);
 	//smallskillRender->CreateAnimation("Peashot_Loop", "Peashot_Loop", 0.05f);
 
-	ObjectRender->ChangeAnimation("smallskill");
+	ObjectRender->ChangeAnimation("Object2");
 }
 
-void MoveObject::Tick(float _DeltaTime)
+void AMoveObject::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+	//AddActorLocation(FVector::Left * Speed * _DeltaTime);
+	Collisiongather(_DeltaTime);
 }
 
-void MoveObject::Collisiongather(float _DeltaTime)
+void AMoveObject::Collisiongather(float _DeltaTime)
 {
-
+	if (GetActorLocation().iX() <= -600 || GetActorLocation().iX() >= 600) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
+	{
+		Destroy();
+	}
 }

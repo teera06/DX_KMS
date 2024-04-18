@@ -2,19 +2,19 @@
 #include <Enginecore/Actor.h>
 
 class USpriteRenderer;
-class MoveObject : public AActor
+class AMoveObject : public AActor
 {
 	GENERATED_BODY(AActor)
 public:
 	// constrcuter destructer
-	MoveObject(); // 디폴트 생성자
-	~MoveObject(); // 디폴트 소멸자
+	AMoveObject(); // 디폴트 생성자
+	~AMoveObject(); // 디폴트 소멸자
 
 	// delete Function
-	MoveObject(const MoveObject& _Other) = delete; // 디폴트 복사 생성자
-	MoveObject(MoveObject&& _Other) noexcept = delete; 
-	MoveObject& operator=(const MoveObject& _Other) = delete; // 디폴트 대입 연산자
-	MoveObject& operator=(MoveObject&& _Other) noexcept = delete;
+	AMoveObject(const AMoveObject& _Other) = delete; // 디폴트 복사 생성자
+	AMoveObject(AMoveObject&& _Other) noexcept = delete; 
+	AMoveObject& operator=(const AMoveObject& _Other) = delete; // 디폴트 대입 연산자
+	AMoveObject& operator=(AMoveObject&& _Other) noexcept = delete;
 
 protected:
 	void BeginPlay() override;
