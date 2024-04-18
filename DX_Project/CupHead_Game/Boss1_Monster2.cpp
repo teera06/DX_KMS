@@ -334,3 +334,8 @@ void ABoss1_Monster2::phase3Idle(float _DeltaTime)
 {
 
 }
+
+void ABoss1_Monster2::CoinAtt(float _DeltaTime)
+{
+
+}

@@ -23,5 +23,10 @@ protected:
 private:
 	USpriteRenderer* CoinRender = nullptr;
 	UCollision* CoinCollision = nullptr;
+
+	FVector PlayerPos = FVector::Zero;
+
+	float Speed = 500.0f;
+	void CalDir(float _DeltaTime);
 };
 

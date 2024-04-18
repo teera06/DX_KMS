@@ -6,6 +6,7 @@
 #include <EngineCore/Collision.h>
 
 #include "ContentsENum.h"
+#include "Play_Cuphead.h"
 
 ACoin::ACoin()
 {
@@ -46,9 +47,23 @@ void ACoin::BeginPlay()
 	CoinRender->CreateAnimation("Coin", "Coin", 0.1f);
 
 	CoinRender->ChangeAnimation("Coin");
+
+	PlayerPos = APlay_Cuphead::GetPlayerPos();
 }
 
 void ACoin::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+	CalDir(_DeltaTime);
+}
+
+void ACoin::CalDir(float _DeltaTime)
+{
+	FVector CoinPos = GetActorLocation();
+
+	FVector Move = PlayerPos - CoinPos;
+
+	FVector MoveNorMalize = Move.Normalize3DReturn();
+
+	AddActorLocation(Move.Normalize3DReturn() * Speed * _DeltaTime);
 }
