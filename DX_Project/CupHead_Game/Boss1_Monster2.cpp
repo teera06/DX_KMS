@@ -138,7 +138,10 @@ void ABoss1_Monster2::Phase1StateInit()
 
 void ABoss1_Monster2::Phase2StateInit()
 {
+	Phase2.CreateState("SlotIntro");
 
+	Phase1.SetUpdateFunction("bigintro", std::bind(&ABoss1_Monster2::bigintro, this, std::placeholders::_1));
+	Phase1.SetStartFunction("bigintro", [=] {BigBoss1->ChangeAnimation("bigintro"); });
 }
 
 
@@ -281,15 +284,18 @@ void ABoss1_Monster2::phase3changeReady1(float _DeltaTime)
 void ABoss1_Monster2::phase3changeReady2(float _DeltaTime)
 {
 	Collisioncheck();
-	if (true == BigBoss1->IsCurAnimationEnd())
+	
+	if (true == Change3)
 	{
-		int a = 0;
-		//phase3changecount++;
-	}
 
-	if (phase3changecount > 3)
-	{
-		//Phase1.ChangeState("BigIdle");
-		//return;
 	}
+}
+
+void ABoss1_Monster2::SlotIntro(float _DeltaTime)
+{
+}
+
+void ABoss1_Monster2::SlotIdle(float _DeltaTime)
+{
+
 }

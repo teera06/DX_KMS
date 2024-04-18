@@ -192,6 +192,19 @@ void ALoadingGameMode::LevelStart(ULevel* _PrevLevel)
 					UEngineSprite::LoadFolder(Directorys[i].GetFullPath());
 				}
 			}
+
+			Dir.MoveParent();
+
+			{
+				Dir.Move("phase3");
+				// 로드폴더는 이렇게 한다고 칩시다.
+				std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory();
+				for (size_t i = 0; i < Directorys.size(); i++)
+				{
+					std::string Name = Directorys[i].GetFolderName();
+					UEngineSprite::LoadFolder(Directorys[i].GetFullPath());
+				}
+			}
 			// 특정 스프라이트나 
 			// 특정 텍스처를 찾아서
 			// 만약 스프라이트가 존재하지 않는다면
