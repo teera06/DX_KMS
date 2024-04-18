@@ -574,6 +574,14 @@ void ABoss1_Monster2::Phase3Att(float _DeltaTime)
 	if (true == BigBoss1->IsCurAnimationEnd())
 	{
 		createObject();
+		Bigattcount++;
+		return;
+	}
+
+	if (Bigattcount == 13)
+	{
+		Bigattcount = 0;
+		Phase2.ChangeState("phase3Idle");
 		return;
 	}
 }

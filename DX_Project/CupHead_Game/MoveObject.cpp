@@ -19,7 +19,7 @@ AMoveObject::AMoveObject()
 	TopCollision = CreateDefaultSubObject<UCollision>("TopCollision ");
 	TopCollision->SetupAttachment(Root);
 	TopCollision->AddPosition(FVector(0.0f, 110.0f, 0.0f));
-	TopCollision->SetScale(FVector(200.0f, 20.0f, 100.0f));
+	TopCollision->SetScale(FVector(160.0f, 20.0f, 100.0f));
 	
 	TopCollision->SetCollisionGroup(ECollisionOrder::Boss1Top);
 	TopCollision->SetCollisionType(ECollisionType::RotRect);
