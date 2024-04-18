@@ -51,6 +51,8 @@ private:
 
 	bool Change3 = false;
 
+	bool SlotTouch = false;
+
 	void createSkill();
 
 	void createCoinAtt();
@@ -76,6 +78,8 @@ private:
 	void phase3Intro2(float _DeltaTime);
 	void phase3Idle(float _DeltaTime);
 	void CoinAtt(float _DeltaTime);
+
+	void Phase3SlotReady(float _DeltaTime);
 
 };
 

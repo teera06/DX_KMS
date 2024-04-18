@@ -116,6 +116,8 @@ void ABoss1_Monster2::BeginPlay()
 	BigBoss1->CreateAnimation("phase3Intro", "phase3Intro", 0.1f);
 	BigBoss1->CreateAnimation("phase3Intro2", "phase3Intro2", 0.1f);
 	BigBoss1->CreateAnimation("phase3Idle", "phase3Idle", 0.1f);
+	BigBoss1->CreateAnimation("Phase3SlotReady", "Phase3SlotReady", 0.1f,false);
+
 	SlotMouse->CreateAnimation("CoinAtt", "CoinAtt", 0.1f);
 
 
@@ -206,6 +208,7 @@ void ABoss1_Monster2::Phase2StateInit()
 	Phase2.CreateState("phase3Intro2");
 	Phase2.CreateState("phase3Idle");
 	Phase2.CreateState("CoinAtt");
+	Phase2.CreateState("Phase3SlotReady");
 
 	Phase2.SetUpdateFunction("phase3Intro", std::bind(&ABoss1_Monster2::phase3Intro, this, std::placeholders::_1));
 	Phase2.SetStartFunction("phase3Intro", [=] {BigBoss1->ChangeAnimation("phase3Intro"); });
@@ -218,6 +221,9 @@ void ABoss1_Monster2::Phase2StateInit()
 
 	Phase2.SetUpdateFunction("CoinAtt", std::bind(&ABoss1_Monster2::CoinAtt, this, std::placeholders::_1));
 	Phase2.SetStartFunction("CoinAtt", [=] {SlotMouse->ChangeAnimation("CoinAtt"); });
+
+	Phase2.SetUpdateFunction("Phase3SlotReady", std::bind(&ABoss1_Monster2::Phase3SlotReady, this, std::placeholders::_1));
+	Phase2.SetStartFunction("Phase3SlotReady", [=] {BigBoss1->ChangeAnimation("Phase3SlotReady"); });
 
 	Phase2.ChangeState("phase3Intro");
 }
@@ -392,6 +398,7 @@ void ABoss1_Monster2::phase3Intro2(float _DeltaTime)
 	{
 		coolDownTime = 6.0f;
 		attOrder = false;
+		Bigattcount = 0;
 		Phase2.ChangeState("phase3Idle");
 		return;
 	}
@@ -409,12 +416,33 @@ void ABoss1_Monster2::phase3Idle(float _DeltaTime)
 
 void ABoss1_Monster2::CoinAtt(float _DeltaTime)
 {
+	if (Bigattcount == 1)
+	{
+		//coolDownTime = 6.0f;
+		//SlotMouse->SetActive(false);
+		Phase2.ChangeState("Phase3SlotReady");
+		BigBoss1->AddPosition(FVector(-100.0f, 0.0f, 0.0f));
+		//SlotMouse->AddPosition(FVector(-100.0f, 0.0f, 0.0f));
+		return;
+	}
+
 	if (true == SlotMouse->IsCurAnimationEnd())
 	{
+		//createSkill();
 		createCoinAtt();
-		Phase2.ChangeState("phase3Idle");
-		coolDownTime = 6.0f;
-		SlotMouse->SetActive(false);
-		return;
+		Bigattcount++;
+	}
+}
+
+void ABoss1_Monster2::Phase3SlotReady(float _DeltaTime)
+{
+	if (true == SlotMouse->IsCurAnimationEnd() && false==SlotTouch)
+	{
+		createCoinAtt();
+		Bigattcount++;
+	}
+
+	if (Bigattcount < 2)
+	{
 	}
 }
