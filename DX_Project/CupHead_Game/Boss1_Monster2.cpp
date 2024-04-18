@@ -26,7 +26,7 @@ ABoss1_Monster2::ABoss1_Monster2()
 
 	SlotMouse->SetupAttachment(Root);
 	SlotMouse->SetPivot(EPivot::BOT);
-	SlotMouse->AddPosition(FVector(-245.0f, 280.0f, 0.0f));
+	SlotMouse->AddPosition(FVector(-250.0f, 285.0f, 0.0f));
 
 	SlotMouse->SetActive(false);
 
