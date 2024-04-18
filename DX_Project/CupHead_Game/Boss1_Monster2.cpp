@@ -26,6 +26,9 @@ ABoss1_Monster2::ABoss1_Monster2()
 
 	SlotMouse->SetupAttachment(Root);
 	SlotMouse->SetPivot(EPivot::BOT);
+	SlotMouse->AddPosition(FVector(-50.0f, 350.0f, 0.0f));
+
+	SlotMouse->SetActive(false);
 
 	WindSkill = CreateDefaultSubObject<USpriteRenderer>("WindSkill");
 
@@ -361,6 +364,7 @@ void ABoss1_Monster2::phase3Idle(float _DeltaTime)
 	if (coolDownTime < 0 && 3 == phasecheck && false == attOrder)
 	{
 		Phase2.ChangeState("CoinAtt");
+		SlotMouse->SetActive(true);
 		return;
 	}
 }
@@ -371,6 +375,8 @@ void ABoss1_Monster2::CoinAtt(float _DeltaTime)
 	{
 		createCoinAtt();
 		Phase2.ChangeState("phase3Idle");
+		coolDownTime = 6.0f;
+		SlotMouse->SetActive(false);
 		return;
 	}
 }
