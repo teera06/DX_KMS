@@ -22,5 +22,10 @@ protected:
 private:
 	USpriteRenderer* ObjectRender = nullptr;
 	UCollision* TopCollision = nullptr;
+	UCollision* LRCollision = nullptr;
+
+	float Speed = 500.0f;
+
+	void Collisiongather(float _DeltaTime);
 };
 

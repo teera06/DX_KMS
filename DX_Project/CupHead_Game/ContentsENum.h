@@ -70,6 +70,8 @@ enum class ECollisionOrder
 	Boss1Monster1,
 	Boss1Monster2,
 	Boss1Monster2Hand,
+	Boss1Top,
+	Boss1LR,
 	Bullet,
 	Coin,
 	ball,
