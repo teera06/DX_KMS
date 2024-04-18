@@ -131,7 +131,7 @@ void ABoss1_Monster2::BeginPlay()
 	BigBoss1->CreateAnimation("Phase3SlotReady", "Phase3SlotReady", 0.1f,false);
 	BigBoss1->CreateAnimation("Phase3Slot", "Phase3Slot", 0.1f);
 
-	BigBoss1->CreateAnimation("Phase3SlotStart", "Phase3SlotReady",0.1f, false, 8, 0);
+	BigBoss1->CreateAnimation("Phase3SlotStart", "Phase3SlotReady", 0.1f, false, 0,8);
 
 	SlotMouse->CreateAnimation("CoinAtt", "CoinAtt", 0.1f);
 
@@ -436,7 +436,7 @@ void ABoss1_Monster2::phase3Intro2(float _DeltaTime)
 
 void ABoss1_Monster2::phase3Idle(float _DeltaTime)
 {
-	if (coolDownTime < 0 && 3 == phasecheck && false == attOrder)
+	if (coolDownTime < 0 && 3 == phasecheck && false == SlotTouch)
 	{
 		Phase2.ChangeState("CoinAtt");
 		SlotMouse->SetActive(true);
@@ -488,7 +488,7 @@ void ABoss1_Monster2::Phase3Slot(float _DeltaTime)
 
 	if (true == SlotTouch)
 	{
-		Phase2.ChangeState("Phase3SlotStart");
+		Phase2.ChangeState("phase3Idle");
 		return;
 	}
 
@@ -504,7 +504,7 @@ void ABoss1_Monster2::Phase3SlotCoinAtt(float _DeltaTime)
 {
 	if (true == SlotTouch)
 	{
-		Phase2.ChangeState("Phase3SlotStart");
+		Phase2.ChangeState("phase3Idle");
 		return;
 	}
 
