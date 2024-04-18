@@ -94,6 +94,7 @@ void ABoss1_Monster2::BeginPlay()
 	Phase1StateInit();
 
 	BigBoss1->SetAutoSize(1.0f, true);
+	SlotMouse->SetAutoSize(1.0f, true);
 	WindSkill->SetAutoSize(1.0f, true);
 
 	WindSkill->ChangeAnimation("Wind");
@@ -366,7 +367,7 @@ void ABoss1_Monster2::phase3Idle(float _DeltaTime)
 
 void ABoss1_Monster2::CoinAtt(float _DeltaTime)
 {
-	if (true == BigBoss1->IsCurAnimationEnd())
+	if (true == SlotMouse->IsCurAnimationEnd())
 	{
 		createCoinAtt();
 		Phase2.ChangeState("phase3Idle");
