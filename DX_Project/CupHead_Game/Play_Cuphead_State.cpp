@@ -11,6 +11,7 @@
 #include "Boss1Common.h"
 #include "BaseBullet.h"
 #include "Boss1_Monster2.h"
+#include "MoveObject.h"
 
 //void Function(URenderer* Renderer)
 //{
@@ -241,6 +242,16 @@ void APlay_Cuphead::CalGravityVector(float _DeltaTime)
 	{
 		GravityVector = FVector::Zero;
 	}
+
+	PlayerCollision->CollisionEnter(ECollisionOrder::Boss1Top, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		GravityVector = FVector::Zero;
+	});
+
+	PlayerCollision->CollisionStay(ECollisionOrder::Boss1Top, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		GravityVector = FVector::Zero;
+	});
 }
 
 void APlay_Cuphead::CalLastMoveVector(float _DeltaTime, const FVector& _MovePos)
@@ -1057,6 +1068,20 @@ void APlay_Cuphead::Jump(float _DeltaTime)
 		return;
 	}
 
+	PlayerCollision->CollisionEnter(ECollisionOrder::Boss1Top, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		JumpVector = FVector::Zero;
+		State.ChangeState("Idle");
+		return;
+	});
+
+	PlayerCollision->CollisionStay(ECollisionOrder::Boss1Top, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		JumpVector = FVector::Zero;
+		State.ChangeState("Idle");
+		return;
+	});
+
 
 	//if (true == PlayCuphead->IsCurAnimationEnd())
 	//{
@@ -1115,6 +1140,22 @@ void APlay_Cuphead::JumpShoot(float _DeltaTime)
 		return;
 	}
 
+	PlayerCollision->CollisionEnter(ECollisionOrder::Boss1Top, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		BulletStart->SetActive(false);
+		JumpVector = FVector::Zero;
+		State.ChangeState("Idle");
+		return;
+	});
+
+	PlayerCollision->CollisionStay(ECollisionOrder::Boss1Top, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		BulletStart->SetActive(false);
+		JumpVector = FVector::Zero;
+		State.ChangeState("Idle");
+		return;
+	});
+
 }
 
 void APlay_Cuphead::DashAfterJump(float _DeltaTime)
@@ -1126,6 +1167,20 @@ void APlay_Cuphead::DashAfterJump(float _DeltaTime)
 		State.ChangeState("Idle");
 		return;
 	}
+
+	PlayerCollision->CollisionEnter(ECollisionOrder::Boss1Top, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		JumpVector = FVector::Zero;
+		State.ChangeState("Idle");
+		return;
+	});
+
+	PlayerCollision->CollisionStay(ECollisionOrder::Boss1Top, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		JumpVector = FVector::Zero;
+		State.ChangeState("Idle");
+		return;
+	});
 }
 
 void APlay_Cuphead::Parry(float _DeltaTime)

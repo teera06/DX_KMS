@@ -15,17 +15,18 @@ AMoveObject::AMoveObject()
 
 	ObjectRender->SetupAttachment(Root);
 
+	ObjectRender->SetPivot(EPivot::BOT);
 	TopCollision = CreateDefaultSubObject<UCollision>("TopCollision ");
 	TopCollision->SetupAttachment(Root);
-	TopCollision->AddPosition(FVector(0.0f, 30.0f, 0.0f));
-	TopCollision->SetScale(FVector(200.0f, 50.0f, 100.0f));
+	TopCollision->AddPosition(FVector(0.0f, 110.0f, 0.0f));
+	TopCollision->SetScale(FVector(200.0f, 20.0f, 100.0f));
 	
 	TopCollision->SetCollisionGroup(ECollisionOrder::Boss1Top);
 	TopCollision->SetCollisionType(ECollisionType::RotRect);
 
 	LRCollision = CreateDefaultSubObject<UCollision>("LRCollision");
 	LRCollision->SetupAttachment(Root);
-	LRCollision->AddPosition(FVector(0.0f, -10.0f, 0.0f));
+	LRCollision->AddPosition(FVector(0.0f, 50.0f, 0.0f));
 	LRCollision->SetScale(FVector(200.0f, 50.0f, 100.0f));
 	
 	LRCollision->SetCollisionGroup(ECollisionOrder::Boss1LR);
@@ -43,7 +44,8 @@ void AMoveObject::BeginPlay()
 {
 	Super::BeginPlay();
 
-	SetActorLocation(FVector(400.0f, -50.0f, 0.0f));
+	//SetActorLocation(FVector(400.0f, -50.0f, 0.0f));
+	SetActorLocation(FVector(0.0f, -200.0f, 0.0f));
 
 	ObjectRender->SetOrder(ERenderOrder::skilleffect);
 	ObjectRender->SetSprite("tallfrog_slotman_platform_bison_0001.png");
