@@ -17,7 +17,16 @@ public:
 	AMoveObject3& operator=(AMoveObject3&& _Other) noexcept = delete;
 
 protected:
-
+	void BeginPlay() override;
+	void Tick(float _DeltaTime) override;
 private:
+
+	USpriteRenderer* ObjectRender = nullptr;
+	UCollision* TopCollision = nullptr;
+
+
+	float Speed = 500.0f;
+
+	void Collisiongather(float _DeltaTime);
 };
 
