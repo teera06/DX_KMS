@@ -53,7 +53,7 @@ void ABossStage1GameMode::BeginPlay()
 		Image->AddToViewPort();
 		Image->SetSprite("HP3.png");
 		Image->SetAutoSize(1.0f, true);
-		Image->SetPosition({ -570, -310 });
+		Image->SetPosition({ -570.0f, -310.0f });
 
 		
 
