@@ -41,7 +41,7 @@ void ABossStage1GameMode::BeginPlay()
 
 	{
 		// UI를 만들겠다.
-		std::shared_ptr<UImage> Image = CreateWidget<UImage>(GetWorld(), "HpBar");
+		UImage* Image = CreateWidget<UImage>(GetWorld(), "HpBar");
 
 		// 언리얼 따라한것
 		// 언리얼 안나옵니다.
