@@ -15,6 +15,7 @@
 
 #include "MoveObject.h"
 
+#include "ContentsENum.h"
 ABossStage1GameMode::ABossStage1GameMode()
 {
 }
@@ -48,7 +49,7 @@ void ABossStage1GameMode::BeginPlay()
 
 		// 언리얼 따라한것
 		// 언리얼 안나옵니다.
-		Image->AddToViewPort();
+		Image->AddToViewPort(ERenderOrder::HPBar);
 		Image->SetSprite("HP3.png");
 		Image->SetAutoSize(1.0f, true);
 		Image->SetPosition({ -570.0f, -310.0f });
