@@ -10,6 +10,8 @@
 
 #include "ContentsENum.h"
 #include "Firefly.h"
+#include "Coin.h"
+
 #include "Boss1_Monster1.h"
 
 ABoss1_Monster2::ABoss1_Monster2()
@@ -19,6 +21,11 @@ ABoss1_Monster2::ABoss1_Monster2()
 
 	BigBoss1->SetupAttachment(Root);
 	BigBoss1->SetPivot(EPivot::BOT);
+
+	SlotMouse = CreateDefaultSubObject<USpriteRenderer>("SlotMouse");
+
+	SlotMouse->SetupAttachment(Root);
+	SlotMouse->SetPivot(EPivot::BOT);
 
 	WindSkill = CreateDefaultSubObject<USpriteRenderer>("WindSkill");
 
@@ -52,6 +59,13 @@ void ABoss1_Monster2::BeginPlay()
 	BigBoss1->SetSamplering(ETextureSampling::LINEAR);
 	BigBoss1->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 
+	SlotMouse->SetOrder(ERenderOrder::SlotMouse);
+	SlotMouse->SetSprite("tallfrog_slotman_spit_0001.png");
+	SlotMouse->SetSamplering(ETextureSampling::LINEAR);
+	SlotMouse->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
+
+
+
 	BigBoss1->CreateAnimation("bigintro", "bigintro", 0.12f);
 	BigBoss1->CreateAnimation("bigIdle", "bigIdle", 0.1f);
 	BigBoss1->CreateAnimation("bigatt", "bigatt", 0.1f);
@@ -66,6 +80,7 @@ void ABoss1_Monster2::BeginPlay()
 	BigBoss1->CreateAnimation("phase3Intro", "phase3Intro", 0.1f);
 	BigBoss1->CreateAnimation("phase3Intro2", "phase3Intro2", 0.1f);
 	BigBoss1->CreateAnimation("phase3Idle", "phase3Idle", 0.1f);
+	SlotMouse->CreateAnimation("CoinAtt", "CoinAtt", 0.1f);
 
 
 
@@ -150,6 +165,7 @@ void ABoss1_Monster2::Phase2StateInit()
 	Phase2.CreateState("phase3Intro");
 	Phase2.CreateState("phase3Intro2");
 	Phase2.CreateState("phase3Idle");
+	Phase2.CreateState("CoinAtt");
 
 	Phase2.SetUpdateFunction("phase3Intro", std::bind(&ABoss1_Monster2::phase3Intro, this, std::placeholders::_1));
 	Phase2.SetStartFunction("phase3Intro", [=] {BigBoss1->ChangeAnimation("phase3Intro"); });
@@ -159,6 +175,9 @@ void ABoss1_Monster2::Phase2StateInit()
 
 	Phase2.SetUpdateFunction("phase3Idle", std::bind(&ABoss1_Monster2::phase3Idle, this, std::placeholders::_1));
 	Phase2.SetStartFunction("phase3Idle", [=] {BigBoss1->ChangeAnimation("phase3Idle"); });
+
+	Phase2.SetUpdateFunction("CoinAtt", std::bind(&ABoss1_Monster2::CoinAtt, this, std::placeholders::_1));
+	Phase2.SetStartFunction("CoinAtt", [=] {SlotMouse->ChangeAnimation("CoinAtt"); });
 
 	Phase2.ChangeState("phase3Intro");
 }
@@ -176,6 +195,11 @@ void ABoss1_Monster2::createSkill()
 	//NewFirefly->SetSmallSkillDir(FVector::Left);
 	//NewFirefly->SetActorLocation({ GetActorLocation().X-10.0f,270.0f,0.0f });
 	//SkillYMove();
+}
+
+void ABoss1_Monster2::createCoinAtt()
+{
+	NewCoin = GetWorld()->SpawnActor<ACoin>("Coin");
 }
 
 void ABoss1_Monster2::Collisioncheck()
@@ -307,6 +331,7 @@ void ABoss1_Monster2::phase3changeReady2(float _DeltaTime)
 	if (true == Change3)
 	{
 		phasecheck = 3;
+		coolDownTime = 6.0f;
 		Phase2StateInit();
 		return;
 	}
@@ -332,10 +357,19 @@ void ABoss1_Monster2::phase3Intro2(float _DeltaTime)
 
 void ABoss1_Monster2::phase3Idle(float _DeltaTime)
 {
-
+	if (coolDownTime < 0 && 3 == phasecheck && false == attOrder)
+	{
+		Phase2.ChangeState("CoinAtt");
+		return;
+	}
 }
 
 void ABoss1_Monster2::CoinAtt(float _DeltaTime)
 {
-
+	if (true == BigBoss1->IsCurAnimationEnd())
+	{
+		createCoinAtt();
+		Phase2.ChangeState("phase3Idle");
+		return;
+	}
 }

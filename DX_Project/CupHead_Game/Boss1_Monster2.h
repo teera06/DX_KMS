@@ -4,6 +4,7 @@
 #include "Boss1Common.h"
 class USpriteRenderer;
 class AFirefly;
+class ACoin;
 
 class ABoss1_Monster2 : public AActor, public ABoss1Common
 {
@@ -27,6 +28,7 @@ protected:
 	void Phase2StateInit() override;
 private:
 	std::shared_ptr<AFirefly> NewFirefly = nullptr;
+	std::shared_ptr<ACoin> NewCoin = nullptr;
 
 	USpriteRenderer* BigBoss1 = nullptr;
 	USpriteRenderer* SlotMouse = nullptr;
@@ -46,6 +48,8 @@ private:
 	bool Change3 = false;
 
 	void createSkill();
+
+	void createCoinAtt();
 
 	void Collisioncheck();
 
