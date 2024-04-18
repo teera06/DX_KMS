@@ -65,6 +65,7 @@ private:
 
 
 	void phase3Intro(float _DeltaTime);
+	void phase3Intro2(float _DeltaTime);
 	void phase3Idle(float _DeltaTime);
 
 };

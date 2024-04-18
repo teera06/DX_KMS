@@ -64,6 +64,7 @@ void ABoss1_Monster2::BeginPlay()
 	BigBoss1->CreateAnimation("phase3changeReady2", "phase3changeReady2", 0.1f);
 
 	BigBoss1->CreateAnimation("phase3Intro", "phase3Intro", 0.1f);
+	BigBoss1->CreateAnimation("phase3Intro2", "phase3Intro2", 0.1f);
 	BigBoss1->CreateAnimation("phase3Idle", "phase3Idle", 0.1f);
 
 
@@ -147,10 +148,14 @@ void ABoss1_Monster2::Phase1StateInit()
 void ABoss1_Monster2::Phase2StateInit()
 {
 	Phase2.CreateState("phase3Intro");
+	Phase2.CreateState("phase3Intro2");
 	Phase2.CreateState("phase3Idle");
 
 	Phase2.SetUpdateFunction("phase3Intro", std::bind(&ABoss1_Monster2::phase3Intro, this, std::placeholders::_1));
 	Phase2.SetStartFunction("phase3Intro", [=] {BigBoss1->ChangeAnimation("phase3Intro"); });
+
+	Phase2.SetUpdateFunction("phase3Intro2", std::bind(&ABoss1_Monster2::phase3Intro2, this, std::placeholders::_1));
+	Phase2.SetStartFunction("phase3Intro2", [=] {BigBoss1->ChangeAnimation("phase3Intro2"); });
 
 	Phase2.SetUpdateFunction("phase3Idle", std::bind(&ABoss1_Monster2::phase3Idle, this, std::placeholders::_1));
 	Phase2.SetStartFunction("phase3Idle", [=] {BigBoss1->ChangeAnimation("phase3Idle"); });
@@ -308,6 +313,15 @@ void ABoss1_Monster2::phase3changeReady2(float _DeltaTime)
 }
 
 void ABoss1_Monster2::phase3Intro(float _DeltaTime)
+{
+	if (true == BigBoss1->IsCurAnimationEnd())
+	{
+		Phase2.ChangeState("phase3Intro2");
+		return;
+	}
+}
+
+void ABoss1_Monster2::phase3Intro2(float _DeltaTime)
 {
 	if (true == BigBoss1->IsCurAnimationEnd())
 	{
