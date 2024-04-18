@@ -46,7 +46,6 @@ private:
 
 	void createSkill2();
 
-	void Collisiongather();
 	// ป๓ลย 
 
 	void smallintro(float _DeltaTime);
@@ -61,6 +60,11 @@ private:
 	void phase2change2(float _DeltaTime);
 
 	void phase2intro(float _DeltaTime);
+
+	void phase3changeReady(float _DeltaTime);
+	void phase3changeReady2(float _DeltaTime);
+	void phase3change1(float _DeltaTime);
+	void phase3change2(float _DeltaTime);
 
 
 	void smallatt2(float _DeltaTime);
