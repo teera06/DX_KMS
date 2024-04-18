@@ -13,10 +13,6 @@
 #include "Boss1_Monster2.h"
 #include "ContentsHelper.h"
 
-#include "Coin.h"
-
-
-
 
 ABossStage1GameMode::ABossStage1GameMode()
 {
@@ -42,7 +38,6 @@ void ABossStage1GameMode::BeginPlay()
 	GetWorld()->SpawnActor<ABoss1_Monster2>("Boss1_Monster2");
 	GetWorld()->SpawnActor<AScreenEffect>("ScreenEffect");
 
-	GetWorld()->SpawnActor<ACoin>("Coin");
 
 	{
 		// UI를 만들겠다.

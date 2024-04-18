@@ -33,6 +33,10 @@ private:
 	USpriteRenderer* BigBoss1 = nullptr;
 	USpriteRenderer* SlotMouse = nullptr;
 
+	USpriteRenderer* SlotImage1 = nullptr;
+	USpriteRenderer* SlotImage2 = nullptr;
+	USpriteRenderer* SlotImage3 = nullptr;
+
 	USpriteRenderer* WindSkill = nullptr;
 
 	UCollision* BigBossCollision = nullptr;

@@ -34,9 +34,6 @@
     <Filter Include="LoadingStage\Level">
       <UniqueIdentifier>{166c84c4-2b85-4c72-a118-d75049b9a8ab}</UniqueIdentifier>
     </Filter>
-    <Filter Include="LoadingStage\Actor">
-      <UniqueIdentifier>{36702449-37e1-420e-a1ab-aeb1829cd17f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="WorldStage\Actor\Map">
       <UniqueIdentifier>{7ba72f86-e36c-4da7-813d-2aa2f2ecb0f3}</UniqueIdentifier>
     </Filter>
@@ -70,6 +67,9 @@
     <Filter Include="PlayStage\Boss1\Monster\skill">
       <UniqueIdentifier>{71d59fe9-0627-432c-b103-9e135c630561}</UniqueIdentifier>
     </Filter>
+    <Filter Include="LoadingStage\Level\Actor">
+      <UniqueIdentifier>{36702449-37e1-420e-a1ab-aeb1829cd17f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game_Core.cpp">
@@ -94,7 +94,7 @@
       <Filter>LoadingStage\Level</Filter>
     </ClCompile>
     <ClCompile Include="LoadActor.cpp">
-      <Filter>LoadingStage\Actor</Filter>
+      <Filter>LoadingStage\Level\Actor</Filter>
     </ClCompile>
     <ClCompile Include="WorldMap.cpp">
       <Filter>WorldStage\Actor\Map</Filter>
@@ -174,7 +174,7 @@
       <Filter>LoadingStage\Level</Filter>
     </ClInclude>
     <ClInclude Include="LoadActor.h">
-      <Filter>LoadingStage\Actor</Filter>
+      <Filter>LoadingStage\Level\Actor</Filter>
     </ClInclude>
     <ClInclude Include="WorldMap.h">
       <Filter>WorldStage\Actor\Map</Filter>

@@ -48,6 +48,7 @@ enum class ERenderOrder
 	Boss1_Waiter,
 	Boss1_Back3,
 	Boss1_crowd3,
+	SlotImage,
 	Monster1,
 	Monster2,
 	SlotMouse,

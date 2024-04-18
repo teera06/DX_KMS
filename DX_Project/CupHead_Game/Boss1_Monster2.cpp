@@ -30,6 +30,26 @@ ABoss1_Monster2::ABoss1_Monster2()
 
 	SlotMouse->SetActive(false);
 
+	SlotImage1 = CreateDefaultSubObject<USpriteRenderer>("SlotImage1");
+	SlotImage1->SetupAttachment(Root);
+	SlotImage1->SetPivot(EPivot::BOT);
+	SlotImage1->AddPosition(FVector(-125.0f, 67.0f, 0.0f));
+	SlotImage1->AddRotationDeg(FVector(0.0f, 35.0f, 0.0f));
+
+	SlotImage2 = CreateDefaultSubObject<USpriteRenderer>("SlotImage2");
+	SlotImage2->SetupAttachment(Root);
+	SlotImage2->SetPivot(EPivot::BOT);
+	SlotImage2->AddPosition(FVector(-70.0f, 67.0f, 0.0f));
+	SlotImage2->AddRotationDeg(FVector(0.0f, 35.0f, 0.0f));
+
+	SlotImage3 = CreateDefaultSubObject<USpriteRenderer>("SlotImage3");
+	SlotImage3->SetupAttachment(Root);
+	SlotImage3->SetPivot(EPivot::BOT);
+	SlotImage3->AddPosition(FVector(-15.0f, 67.0f, 0.0f));
+	SlotImage3->AddRotationDeg(FVector(0.0f, 35.0f, 0.0f));
+	
+	//SlotImage->SetActive(false);
+
 	WindSkill = CreateDefaultSubObject<USpriteRenderer>("WindSkill");
 
 	WindSkill->SetupAttachment(Root);
@@ -67,7 +87,20 @@ void ABoss1_Monster2::BeginPlay()
 	SlotMouse->SetSamplering(ETextureSampling::LINEAR);
 	SlotMouse->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 
+	SlotImage1->SetOrder(ERenderOrder::SlotImage);
+	SlotImage1->SetSprite("tallfrog_slotman_slot_flash_TEMP.png");
+	SlotImage1->SetSamplering(ETextureSampling::LINEAR);
+	SlotImage1->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 
+	SlotImage2->SetOrder(ERenderOrder::SlotImage);
+	SlotImage2->SetSprite("tallfrog_slotman_slot_flash_TEMP.png");
+	SlotImage2->SetSamplering(ETextureSampling::LINEAR);
+	SlotImage2->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
+
+	SlotImage3->SetOrder(ERenderOrder::SlotImage);
+	SlotImage3->SetSprite("tallfrog_slotman_slot_flash_TEMP.png");
+	SlotImage3->SetSamplering(ETextureSampling::LINEAR);
+	SlotImage3->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 
 	BigBoss1->CreateAnimation("bigintro", "bigintro", 0.12f);
 	BigBoss1->CreateAnimation("bigIdle", "bigIdle", 0.1f);
@@ -98,6 +131,9 @@ void ABoss1_Monster2::BeginPlay()
 
 	BigBoss1->SetAutoSize(1.0f, true);
 	SlotMouse->SetAutoSize(1.0f, true);
+	SlotImage1->SetAutoSize(1.0f, true);
+	SlotImage2->SetAutoSize(1.0f, true);
+	SlotImage3->SetAutoSize(1.0f, true);
 	WindSkill->SetAutoSize(1.0f, true);
 
 	WindSkill->ChangeAnimation("Wind");
