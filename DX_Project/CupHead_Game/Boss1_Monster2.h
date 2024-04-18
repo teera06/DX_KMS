@@ -29,6 +29,7 @@ private:
 	std::shared_ptr<AFirefly> NewFirefly = nullptr;
 
 	USpriteRenderer* BigBoss1 = nullptr;
+	USpriteRenderer* SlotMouse = nullptr;
 
 	USpriteRenderer* WindSkill = nullptr;
 

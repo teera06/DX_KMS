@@ -68,5 +68,7 @@ enum class ECollisionOrder
 	Boss1Monster1,
 	Boss1Monster2,
 	Bullet,
+	Coin,
+	ball,
 	MonsterSkill
 };

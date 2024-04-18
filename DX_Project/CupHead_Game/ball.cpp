@@ -20,7 +20,7 @@ Aball::Aball()
 	ballCollision->SetupAttachment(Root);
 	ballCollision->SetScale(FVector(100.0f, 100.0f, 100.0f));
 
-	ballCollision->SetCollisionGroup(ECollisionOrder::MonsterSkill);
+	ballCollision->SetCollisionGroup(ECollisionOrder::ball);
 	ballCollision->SetCollisionType(ECollisionType::RotRect);
 
 
