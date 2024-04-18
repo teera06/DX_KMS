@@ -506,6 +506,7 @@ void ABoss1_Monster2::Phase3Slot(float _DeltaTime)
 
 	if (true == SlotTouch)
 	{
+		Bigattcount = 0;
 		coolDownTime = 3.0f;
 		BigBoss1->AddPosition(FVector(100.0f, 0.0f, 0.0f));
 		Phase2.ChangeState("phase3Idle");
@@ -524,6 +525,7 @@ void ABoss1_Monster2::Phase3SlotCoinAtt(float _DeltaTime)
 {
 	if (true == SlotTouch)
 	{
+		Bigattcount = 0;
 		coolDownTime = 3.0f;
 		BigBoss1->AddPosition(FVector(100.0f, 0.0f, 0.0f));
 		Phase2.ChangeState("phase3Idle");

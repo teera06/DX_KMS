@@ -149,6 +149,9 @@
     <ClCompile Include="Coin.cpp">
       <Filter>PlayStage\Boss1\Monster\skill</Filter>
     </ClCompile>
+    <ClCompile Include="MoveObject.cpp">
+      <Filter>PlayStage\Boss1\Monster\skill</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -221,6 +224,9 @@
       <Filter>PlayStage\Boss1\Monster\skill</Filter>
     </ClInclude>
     <ClInclude Include="Coin.h">
+      <Filter>PlayStage\Boss1\Monster\skill</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveObject.h">
       <Filter>PlayStage\Boss1\Monster\skill</Filter>
     </ClInclude>
   </ItemGroup>
