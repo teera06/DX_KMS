@@ -237,6 +237,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="MoveObject2.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="MoveObject3.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="PlayerCommon.h">
       <SubType>
       </SubType>
@@ -337,6 +345,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="MoveObject.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="MoveObject2.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="MoveObject3.cpp">
       <SubType>
       </SubType>
     </ClCompile>
