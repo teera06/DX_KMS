@@ -26,7 +26,7 @@ ABoss1_Monster2::ABoss1_Monster2()
 
 	SlotMouse->SetupAttachment(Root);
 	SlotMouse->SetPivot(EPivot::BOT);
-	SlotMouse->AddPosition(FVector(-50.0f, 350.0f, 0.0f));
+	SlotMouse->AddPosition(FVector(-245.0f, 280.0f, 0.0f));
 
 	SlotMouse->SetActive(false);
 
@@ -354,6 +354,8 @@ void ABoss1_Monster2::phase3Intro2(float _DeltaTime)
 {
 	if (true == BigBoss1->IsCurAnimationEnd())
 	{
+		coolDownTime = 6.0f;
+		attOrder = false;
 		Phase2.ChangeState("phase3Idle");
 		return;
 	}
