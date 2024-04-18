@@ -39,7 +39,7 @@ void ABossStage1GameMode::BeginPlay()
 	GetWorld()->SpawnActor<ABoss1_Monster2>("Boss1_Monster2");
 	GetWorld()->SpawnActor<AScreenEffect>("ScreenEffect");
 
-	GetWorld()->SpawnActor<AMoveObject>("AMoveObject");
+	//GetWorld()->SpawnActor<AMoveObject>("AMoveObject");
 
 
 	{

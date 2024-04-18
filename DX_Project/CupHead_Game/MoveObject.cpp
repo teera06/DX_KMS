@@ -44,8 +44,8 @@ void AMoveObject::BeginPlay()
 {
 	Super::BeginPlay();
 
-	//SetActorLocation(FVector(400.0f, -50.0f, 0.0f));
-	SetActorLocation(FVector(0.0f, -200.0f, 0.0f));
+	SetActorLocation(FVector(400.0f, -200.0f, 0.0f));
+	//SetActorLocation(FVector(0.0f, -200.0f, 0.0f));
 
 	ObjectRender->SetOrder(ERenderOrder::skilleffect);
 	ObjectRender->SetSprite("tallfrog_slotman_platform_bison_0001.png");
@@ -64,7 +64,7 @@ void AMoveObject::BeginPlay()
 void AMoveObject::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-	//AddActorLocation(FVector::Left * Speed * _DeltaTime);
+	AddActorLocation(FVector::Left * Speed * _DeltaTime);
 	Collisiongather(_DeltaTime);
 }
 

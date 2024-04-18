@@ -11,6 +11,8 @@
 #include "ContentsENum.h"
 #include "Firefly.h"
 #include "Coin.h"
+#include "MoveObject.h"
+
 
 #include "Boss1_Monster1.h"
 
@@ -285,6 +287,11 @@ void ABoss1_Monster2::createSkill()
 void ABoss1_Monster2::createCoinAtt()
 {
 	NewCoin = GetWorld()->SpawnActor<ACoin>("Coin");
+}
+
+void ABoss1_Monster2::createObject()
+{
+	NewMoveObject = GetWorld()->SpawnActor<AMoveObject>("MoveObject");
 }
 
 void ABoss1_Monster2::Collisioncheck()
@@ -564,4 +571,9 @@ void ABoss1_Monster2::Phase3AttReady(float _DeltaTime)
 
 void ABoss1_Monster2::Phase3Att(float _DeltaTime)
 {
+	if (true == BigBoss1->IsCurAnimationEnd())
+	{
+		createObject();
+		return;
+	}
 }

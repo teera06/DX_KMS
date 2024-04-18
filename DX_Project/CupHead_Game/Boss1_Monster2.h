@@ -5,6 +5,7 @@
 class USpriteRenderer;
 class AFirefly;
 class ACoin;
+class AMoveObject;
 
 class ABoss1_Monster2 : public AActor, public ABoss1Common
 {
@@ -34,6 +35,7 @@ protected:
 private:
 	std::shared_ptr<AFirefly> NewFirefly = nullptr;
 	std::shared_ptr<ACoin> NewCoin = nullptr;
+	std::shared_ptr<AMoveObject> NewMoveObject = nullptr;
 
 	USpriteRenderer* BigBoss1 = nullptr;
 	USpriteRenderer* SlotMouse = nullptr;
@@ -61,6 +63,8 @@ private:
 	void createSkill();
 
 	void createCoinAtt();
+
+	void createObject();
 
 	void Collisioncheck();
 
