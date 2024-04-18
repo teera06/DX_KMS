@@ -133,6 +133,9 @@ void ABoss1_Monster2::BeginPlay()
 
 	BigBoss1->CreateAnimation("Phase3SlotStart", "Phase3SlotReady", 0.1f, false, 0,8);
 
+	BigBoss1->CreateAnimation("Phase3AttReady", "Phase3AttReady", 0.1f);
+	BigBoss1->CreateAnimation("Phase3Att", "Phase3Att", 0.1f);
+
 	SlotMouse->CreateAnimation("CoinAtt", "CoinAtt", 0.1f);
 
 
@@ -213,6 +216,7 @@ void ABoss1_Monster2::Phase1StateInit()
 	Phase1.SetUpdateFunction("phase3changeReady2", std::bind(&ABoss1_Monster2::phase3changeReady2, this, std::placeholders::_1));
 	Phase1.SetStartFunction("phase3changeReady2", [=] {BigBoss1->ChangeAnimation("phase3changeReady2"); });
 
+
 	
 	Phase1.ChangeState("bigintro");
 }
@@ -227,6 +231,8 @@ void ABoss1_Monster2::Phase2StateInit()
 	Phase2.CreateState("Phase3Slot");
 	Phase2.CreateState("Phase3SlotCoinAtt");
 	Phase2.CreateState("Phase3SlotStart");
+	Phase2.CreateState("Phase3AttReady");
+	Phase2.CreateState("Phase3Att");
 
 	Phase2.SetUpdateFunction("phase3Intro", std::bind(&ABoss1_Monster2::phase3Intro, this, std::placeholders::_1));
 	Phase2.SetStartFunction("phase3Intro", [=] {BigBoss1->ChangeAnimation("phase3Intro"); });
@@ -251,6 +257,12 @@ void ABoss1_Monster2::Phase2StateInit()
 
 	Phase2.SetUpdateFunction("Phase3SlotStart", std::bind(&ABoss1_Monster2::Phase3SlotStart, this, std::placeholders::_1));
 	Phase2.SetStartFunction("Phase3SlotStart", [=] {SlotMouse->ChangeAnimation("Phase3SlotStart"); });
+
+	Phase2.SetUpdateFunction("Phase3AttReady", std::bind(&ABoss1_Monster2::Phase3AttReady, this, std::placeholders::_1));
+	Phase2.SetStartFunction("Phase3AttReady", [=] {BigBoss1->ChangeAnimation("Phase3AttReady"); });
+
+	Phase2.SetUpdateFunction("Phase3Att", std::bind(&ABoss1_Monster2::Phase3Att, this, std::placeholders::_1));
+	Phase2.SetStartFunction("Phase3Att", [=] {BigBoss1->ChangeAnimation("Phase3Att"); });
 
 	Phase2.ChangeState("phase3Intro");
 }
@@ -436,6 +448,12 @@ void ABoss1_Monster2::phase3Intro2(float _DeltaTime)
 
 void ABoss1_Monster2::phase3Idle(float _DeltaTime)
 {
+	if (coolDownTime < 0 && 3 == phasecheck && true == SlotTouch)
+	{
+		Phase2.ChangeState("Phase3AttReady");
+		return;
+	}
+
 	if (coolDownTime < 0 && 3 == phasecheck && false == SlotTouch)
 	{
 		Phase2.ChangeState("CoinAtt");
@@ -488,6 +506,8 @@ void ABoss1_Monster2::Phase3Slot(float _DeltaTime)
 
 	if (true == SlotTouch)
 	{
+		coolDownTime = 3.0f;
+		BigBoss1->AddPosition(FVector(100.0f, 0.0f, 0.0f));
 		Phase2.ChangeState("phase3Idle");
 		return;
 	}
@@ -504,6 +524,8 @@ void ABoss1_Monster2::Phase3SlotCoinAtt(float _DeltaTime)
 {
 	if (true == SlotTouch)
 	{
+		coolDownTime = 3.0f;
+		BigBoss1->AddPosition(FVector(100.0f, 0.0f, 0.0f));
 		Phase2.ChangeState("phase3Idle");
 		return;
 	}
@@ -527,4 +549,17 @@ void ABoss1_Monster2::Phase3SlotCoinAtt(float _DeltaTime)
 void ABoss1_Monster2::Phase3SlotStart(float _DeltaTime)
 {
 
+}
+
+void ABoss1_Monster2::Phase3AttReady(float _DeltaTime)
+{
+	if (true == SlotMouse->IsCurAnimationEnd())
+	{
+		Phase2.ChangeState("Phase3Att");
+		return;
+	}
+}
+
+void ABoss1_Monster2::Phase3Att(float _DeltaTime)
+{
 }

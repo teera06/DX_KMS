@@ -90,5 +90,8 @@ private:
 	void Phase3SlotCoinAtt(float _DeltaTime);
 	void Phase3SlotStart(float _DeltaTime);
 
+	void Phase3AttReady(float _DeltaTime);
+	void Phase3Att(float _DeltaTime);
+
 };
 
