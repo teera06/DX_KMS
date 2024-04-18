@@ -35,7 +35,7 @@ void ACoin::BeginPlay()
 {
 	Super::BeginPlay();
 
-	SetActorLocation(FVector(-300.0f, 0.0f, 0.0f));
+	SetActorLocation(FVector(500.0f,300.0f, 0.0f));
 
 	CoinRender->SetOrder(ERenderOrder::skilleffect);
 	CoinRender->SetSprite("tallfrog_slotman_coin_0001.png");
@@ -48,12 +48,18 @@ void ACoin::BeginPlay()
 
 	CoinRender->ChangeAnimation("Coin");
 
-	PlayerPos = APlay_Cuphead::GetPlayerPos();
 }
 
 void ACoin::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+	if (false == OneCheck)
+	{
+		PlayerPos = APlay_Cuphead::GetPlayerPos();
+		OneCheck = true;
+		return;
+	}
 	CalDir(_DeltaTime);
 }
 

@@ -27,6 +27,9 @@ private:
 	FVector PlayerPos = FVector::Zero;
 
 	float Speed = 500.0f;
+
+	bool OneCheck = false;
+
 	void CalDir(float _DeltaTime);
 };
 
