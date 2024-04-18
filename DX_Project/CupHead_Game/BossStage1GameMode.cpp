@@ -1,6 +1,9 @@
 #include "PreCompile.h"
 #include "BossStage1GameMode.h"
 
+#include <EngineCore/Camera.h>
+#include <EngineCore/Image.h>
+
 #include "Boss1Map.h"
 #include "Boss2Map.h"
 #include "Boss3Map.h"
@@ -13,7 +16,7 @@
 #include "Coin.h"
 
 
-#include <EngineCore/Camera.h>
+
 
 ABossStage1GameMode::ABossStage1GameMode()
 {
@@ -41,7 +44,26 @@ void ABossStage1GameMode::BeginPlay()
 
 	GetWorld()->SpawnActor<ACoin>("Coin");
 
+	{
+		// UI를 만들겠다.
+		std::shared_ptr<UImage> Image = CreateWidget<UImage>(GetWorld(), "HpBar");
 
+		// 언리얼 따라한것
+		// 언리얼 안나옵니다.
+		Image->AddToViewPort();
+		Image->SetSprite("HP3.png");
+		Image->SetAutoSize(1.0f, true);
+		Image->SetPosition({ -570, -310 });
+
+		
+
+		
+		// Image->SetScale({200, 200});
+
+		// 화면에 떠야 한다.
+		// Image->SetSprite("HPBar");
+		// Image->SetScale();
+	}
 }
 
 void ABossStage1GameMode::Tick(float _DeltaTime)
