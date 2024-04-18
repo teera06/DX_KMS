@@ -66,7 +66,17 @@ ABoss1_Monster2::ABoss1_Monster2()
 	BigBossCollision->SetCollisionGroup(ECollisionOrder::Boss1Monster2);
 	BigBossCollision->SetCollisionType(ECollisionType::RotRect);
 
+	HandCollision = CreateDefaultSubObject<UCollision>("HandCollision");
+	HandCollision->SetupAttachment(Root);
+	HandCollision->SetPosition(FVector(-350.0f, 280.0f, 100.0f));
+	HandCollision->SetScale(FVector(100.0f, 100.0f, 100.0f));
+	HandCollision->SetCollisionGroup(ECollisionOrder::Boss1Monster2Hand);
+	HandCollision->SetCollisionType(ECollisionType::RotRect);
+
+	HandCollision->SetActive(false);
 	SetRoot(Root);
+
+	
 }
 
 ABoss1_Monster2::~ABoss1_Monster2()
@@ -119,7 +129,9 @@ void ABoss1_Monster2::BeginPlay()
 	BigBoss1->CreateAnimation("phase3Intro2", "phase3Intro2", 0.1f);
 	BigBoss1->CreateAnimation("phase3Idle", "phase3Idle", 0.1f);
 	BigBoss1->CreateAnimation("Phase3SlotReady", "Phase3SlotReady", 0.1f,false);
-	BigBoss1->CreateAnimation("Phase3Slot", "Phase3Slot", 0.1f, false);
+	BigBoss1->CreateAnimation("Phase3Slot", "Phase3Slot", 0.1f);
+
+	BigBoss1->CreateAnimation("Phase3SlotStart", "Phase3SlotReady",0.1f, false, 8, 0);
 
 	SlotMouse->CreateAnimation("CoinAtt", "CoinAtt", 0.1f);
 
@@ -214,6 +226,7 @@ void ABoss1_Monster2::Phase2StateInit()
 	Phase2.CreateState("Phase3SlotReady");
 	Phase2.CreateState("Phase3Slot");
 	Phase2.CreateState("Phase3SlotCoinAtt");
+	Phase2.CreateState("Phase3SlotStart");
 
 	Phase2.SetUpdateFunction("phase3Intro", std::bind(&ABoss1_Monster2::phase3Intro, this, std::placeholders::_1));
 	Phase2.SetStartFunction("phase3Intro", [=] {BigBoss1->ChangeAnimation("phase3Intro"); });
@@ -235,6 +248,9 @@ void ABoss1_Monster2::Phase2StateInit()
 
 	Phase2.SetUpdateFunction("Phase3SlotCoinAtt", std::bind(&ABoss1_Monster2::Phase3SlotCoinAtt, this, std::placeholders::_1));
 	Phase2.SetStartFunction("Phase3SlotCoinAtt", [=] {SlotMouse->ChangeAnimation("CoinAtt"); });
+
+	Phase2.SetUpdateFunction("Phase3SlotStart", std::bind(&ABoss1_Monster2::Phase3SlotStart, this, std::placeholders::_1));
+	Phase2.SetStartFunction("Phase3SlotStart", [=] {SlotMouse->ChangeAnimation("Phase3SlotStart"); });
 
 	Phase2.ChangeState("phase3Intro");
 }
@@ -468,6 +484,14 @@ void ABoss1_Monster2::Phase3SlotReady(float _DeltaTime)
 
 void ABoss1_Monster2::Phase3Slot(float _DeltaTime)
 {
+	HandCollision->SetActive(true);
+
+	if (true == SlotTouch)
+	{
+		Phase2.ChangeState("Phase3SlotStart");
+		return;
+	}
+
 	if (coolDownTime < 0 && 3 == phasecheck && false == SlotTouch)
 	{
 		Phase2.ChangeState("Phase3SlotCoinAtt");
@@ -478,6 +502,12 @@ void ABoss1_Monster2::Phase3Slot(float _DeltaTime)
 
 void ABoss1_Monster2::Phase3SlotCoinAtt(float _DeltaTime)
 {
+	if (true == SlotTouch)
+	{
+		Phase2.ChangeState("Phase3SlotStart");
+		return;
+	}
+
 	if (Bigattcount == 2)
 	{
 		coolDownTime = 3.0f;
@@ -492,4 +522,9 @@ void ABoss1_Monster2::Phase3SlotCoinAtt(float _DeltaTime)
 		createCoinAtt();
 		Bigattcount++;
 	}
+}
+
+void ABoss1_Monster2::Phase3SlotStart(float _DeltaTime)
+{
+
 }

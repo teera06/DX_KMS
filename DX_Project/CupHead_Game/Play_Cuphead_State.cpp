@@ -3,17 +3,31 @@
 
 #include "ContentsHelper.h"
 #include <EngineCore/SpriteRenderer.h>
+#include <EngineCore/Collision.h>
 #include <EngineCore/EngineDebugMsgWindow.h>
 #include <EngineCore/EngineEnums.h>
 #include <EngineCore/Camera.h>
 
 #include "Boss1Common.h"
 #include "BaseBullet.h"
+#include "Boss1_Monster2.h"
 
 //void Function(URenderer* Renderer)
 //{
 //	Renderer->ChangeAnimation("Idle");
 //}
+
+void APlay_Cuphead::ParryCheck()
+{
+	PlayerCollision->CollisionEnter(ECollisionOrder::Boss1Monster2Hand, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		AActor* Ptr = _Collison->GetActor();
+		ABoss1_Monster2* Hand= dynamic_cast<ABoss1_Monster2*>(Ptr);
+
+		Hand->SetSlotTouch(true);
+
+	});
+}
 
 void APlay_Cuphead::createBullet()
 {
@@ -286,6 +300,7 @@ void APlay_Cuphead::StateInit()
 	State.CreateState("Jump");
 	State.CreateState("JumpShoot");
 	State.CreateState("DashAfterJump");
+	State.CreateState("Parry");
 	
 	State.SetUpdateFunction("Intro", std::bind(&APlay_Cuphead::Intro, this, std::placeholders::_1));
 	State.SetStartFunction("Intro", [=] {PlayCuphead->ChangeAnimation("Intro"); });
@@ -332,8 +347,8 @@ void APlay_Cuphead::StateInit()
 	State.SetUpdateFunction("DashAfterJump", std::bind(&APlay_Cuphead::DashAfterJump, this, std::placeholders::_1));
 	State.SetStartFunction("DashAfterJump", [=] {PlayCuphead->ChangeAnimation("Jump"); });
 
-	//State.SetUpdateFunction("Duck", std::bind(&APlay_Cuphead::Duck, this, std::placeholders::_1));
-	//State.SetStartFunction("Duck", [=] {PlayCuphead->ChangeAnimation("Duck"); });
+	State.SetUpdateFunction("Parry", std::bind(&APlay_Cuphead::Parry, this, std::placeholders::_1));
+	State.SetStartFunction("Parry", [=] {PlayCuphead->ChangeAnimation("Parry"); });
 	//State.SetUpdateFunction("Run", std::bind(&AWorldPlayer::Run, this, std::placeholders::_1));
 
 	//State.SetStartFunction("Run", std::bind(&AWorldPlayer::RunStart, this));
@@ -1014,6 +1029,12 @@ void APlay_Cuphead::Jump(float _DeltaTime)
 		return;
 	}
 
+	if (true == IsDown('Z'))
+	{
+		State.ChangeState("Parry");
+		return;
+	}
+
 	FVector MovePos;
 
 	// 점프 도중 X축 이동
@@ -1105,4 +1126,19 @@ void APlay_Cuphead::DashAfterJump(float _DeltaTime)
 		State.ChangeState("Idle");
 		return;
 	}
+}
+
+void APlay_Cuphead::Parry(float _DeltaTime)
+{
+	DirCheck();
+
+	ParryCheck();
+
+	if (true == PlayCuphead->IsCurAnimationEnd())
+	{
+		State.ChangeState("Jump");
+		return;
+	}
+
+	MoveUpDate(_DeltaTime); // 최종 움직임
 }

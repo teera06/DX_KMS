@@ -78,6 +78,10 @@ private:
 	bool shootY = false;
 	bool NoGravity = false;
 
+
+	void ParryCheck();
+
+	// 총알 관련 함수
 	void createBullet();
 	void IdleShoot();
 	void RunShoot();
@@ -109,6 +113,6 @@ private:
 	void Jump(float _DeltaTime);
 	void JumpShoot(float _DeltaTime);
 	void DashAfterJump(float _DeltaTime);
-	//void Shoot_Straight(float _DeltaTime);
+	void Parry(float _DeltaTime);
 };
 

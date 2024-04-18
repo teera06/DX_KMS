@@ -73,7 +73,7 @@ void APlay_Cuphead::BeginPlay()
 	PlayCuphead->CreateAnimation("Shoot_Up", "Shoot_Up", 0.05f);
 	PlayCuphead->CreateAnimation("Aim_Up", "Aim_Up", 0.05f);
 	PlayCuphead->CreateAnimation("Jump", "Jump", 0.05f);
-	//PlayCuphead->CreateAnimation("Duck", "Duck", 0.05f, false);
+	PlayCuphead->CreateAnimation("Parry", "Parry", 0.03f, false);
 
 	BulletStart->CreateAnimation("Peashot_Spawn", "Peashot_Spawn", 0.05f);
 

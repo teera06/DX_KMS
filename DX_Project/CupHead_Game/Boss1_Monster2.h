@@ -20,6 +20,11 @@ public:
 	ABoss1_Monster2& operator=(const ABoss1_Monster2& _Other) = delete; // 디폴트 대입 연산자
 	ABoss1_Monster2& operator=(ABoss1_Monster2&& _Other) noexcept = delete;
 
+	void SetSlotTouch(const bool& _SlotTouch)
+	{
+		SlotTouch = _SlotTouch;
+	}
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -40,13 +45,13 @@ private:
 	USpriteRenderer* WindSkill = nullptr;
 
 	UCollision* BigBossCollision = nullptr;
+	UCollision* HandCollision = nullptr;
 	UCollision* WindCollision = nullptr;
 
 	float RandomSkillDelay = 0;
 
 
 	int Bigattcount = 0;
-	int phase3changecount = 0;
 
 
 	bool Change3 = false;
@@ -83,6 +88,7 @@ private:
 
 	void Phase3Slot(float _DeltaTime);
 	void Phase3SlotCoinAtt(float _DeltaTime);
+	void Phase3SlotStart(float _DeltaTime);
 
 };
 
