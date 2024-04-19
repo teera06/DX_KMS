@@ -91,7 +91,7 @@ void ABoss1_Monster2::BeginPlay()
 	Super::BeginPlay();
 
 	//SetActorScale3D(FVector(324.0f, 350.0f, 0.0f));
-	SetActorLocation(FVector(450.0f, -250.0f, 0.0f));
+	SetActorLocation(FVector(420.0f, -300.0f, 0.0f));
 	BigBoss1->SetOrder(ERenderOrder::Monster1);
 	BigBoss1->SetSprite("tallfrog_idle_0001.png");
 	BigBoss1->SetSamplering(ETextureSampling::LINEAR);
@@ -530,7 +530,7 @@ void ABoss1_Monster2::Phase3Slot(float _DeltaTime)
 	{
 		Bigattcount = 0;
 		coolDownTime = 4.0f;
-		BigBoss1->AddPosition(FVector(100.0f, 0.0f, 0.0f));
+		//BigBoss1->AddPosition(FVector(100.0f, 0.0f, 0.0f));
 		Phase2.ChangeState("phase3Idle");
 		SlotMouse->SetActive(false);
 		return;
@@ -550,7 +550,7 @@ void ABoss1_Monster2::Phase3SlotCoinAtt(float _DeltaTime)
 	{
 		Bigattcount = 0;
 		coolDownTime = 3.0f;
-		BigBoss1->AddPosition(FVector(100.0f, 0.0f, 0.0f));
+		//BigBoss1->AddPosition(FVector(100.0f, 0.0f, 0.0f));
 		Phase2.ChangeState("phase3Idle");
 		return;
 	}
