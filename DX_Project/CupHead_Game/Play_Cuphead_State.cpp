@@ -21,7 +21,17 @@
 
 void APlay_Cuphead::ParryCheck()
 {
+
 	PlayerCollision->CollisionEnter(ECollisionOrder::Boss1Monster2Hand, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		AActor* Ptr = _Collison->GetActor();
+		ABoss1_Monster2* Hand = dynamic_cast<ABoss1_Monster2*>(Ptr);
+
+		Hand->SetSlotTouch(true);
+
+	});
+
+	PlayerCollision->CollisionStay(ECollisionOrder::Boss1Monster2Hand, [=](std::shared_ptr<UCollision> _Collison)
 	{
 		AActor* Ptr = _Collison->GetActor();
 		ABoss1_Monster2* Hand= dynamic_cast<ABoss1_Monster2*>(Ptr);

@@ -12,6 +12,7 @@
 #include "Firefly.h"
 #include "Coin.h"
 #include "MoveObject.h"
+#include "MoveObject2.h"
 
 
 #include "Boss1_Monster1.h"
@@ -458,6 +459,7 @@ void ABoss1_Monster2::phase3Idle(float _DeltaTime)
 	if (coolDownTime < 0 && 3 == phasecheck && true == SlotTouch)
 	{
 		Phase2.ChangeState("Phase3AttReady");
+		SlotMouse->SetActive(false);
 		return;
 	}
 
@@ -514,9 +516,10 @@ void ABoss1_Monster2::Phase3Slot(float _DeltaTime)
 	if (true == SlotTouch)
 	{
 		Bigattcount = 0;
-		coolDownTime = 3.0f;
+		coolDownTime = 4.0f;
 		BigBoss1->AddPosition(FVector(100.0f, 0.0f, 0.0f));
 		Phase2.ChangeState("phase3Idle");
+		SlotMouse->SetActive(false);
 		return;
 	}
 

@@ -41,9 +41,9 @@ void ABossStage1GameMode::BeginPlay()
 	GetWorld()->SpawnActor<ABoss1_Monster2>("Boss1_Monster2");
 	//GetWorld()->SpawnActor<AScreenEffect>("ScreenEffect");
 
-	GetWorld()->SpawnActor<AMoveObject>("AMoveObject");
-	GetWorld()->SpawnActor<AMoveObject2>("AMoveObject2");
-	GetWorld()->SpawnActor<AMoveObject3>("AMoveObject3");
+	//GetWorld()->SpawnActor<AMoveObject>("AMoveObject");
+	//GetWorld()->SpawnActor<AMoveObject2>("AMoveObject2");
+//	GetWorld()->SpawnActor<AMoveObject3>("AMoveObject3");
 
 	GetWorld()->GetLastTarget()->AddEffect<UBlurEffect>();
 	//GetWorld()->GetLastTarget()->AddEffect<UBlurEffect>();
