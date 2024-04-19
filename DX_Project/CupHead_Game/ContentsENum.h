@@ -56,6 +56,7 @@ enum class ERenderOrder
 	Bullet,
 	Cuphead,
 	Object1,
+	Fire,
 	Object2,
 	Object3,
 	Object3Ball,

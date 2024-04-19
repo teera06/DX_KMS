@@ -25,6 +25,7 @@ AMoveObject3::AMoveObject3()
 
 	ObjectRender->SetPivot(EPivot::BOT);
 	ObjectFront->SetPivot(EPivot::BOT);
+	Fire->AddPosition(FVector(0.0f, 100.0f, 0.0f));
 	ObjectFront->AddPosition(FVector(1.2f, 3.5f, 0.0f));
 	TopCollision = CreateDefaultSubObject<UCollision>("TopCollision ");
 	TopCollision->SetupAttachment(Root);
@@ -46,7 +47,7 @@ void AMoveObject3::BeginPlay()
 	Super::BeginPlay();
 
 	//SetActorLocation(FVector(400.0f, -200.0f, 0.0f));
-	SetActorLocation(FVector(100.0f, -200.0f, 0.0f));
+	SetActorLocation(FVector(400.0f, 0.0f, 0.0f));
 
 	ObjectRender->SetOrder(ERenderOrder::Object1);
 	ObjectRender->SetSprite("tallfrog_slotman_platform_bison_0001.png");
@@ -58,13 +59,13 @@ void AMoveObject3::BeginPlay()
 	ObjectFront->SetSamplering(ETextureSampling::LINEAR);
 	ObjectFront->SetAutoSize(1.0f, true);
 
-	Fire->SetOrder(ERenderOrder::ObjectFront);
-	Fire->SetSprite("tallfrog_slotman_platform_bison_top_0001.png");
+	Fire->SetOrder(ERenderOrder::Fire);
+	Fire->SetSprite("tallfrog_slotman_platform_bison_flame_sm_0001.png");
 	Fire->SetSamplering(ETextureSampling::LINEAR);
 	Fire->SetAutoSize(1.0f, true);
 
 
-	ObjectRender->CreateAnimation("Object1", "Object1", 0.1f);
+	ObjectRender->CreateAnimation("Object1", "Object1", 0.092f);
 	ObjectFront->CreateAnimation("Object1Front", "Object1Front", 0.1f);
 
 	Fire->CreateAnimation("Object1SmallFire", "Object1SmallFire", 0.1f);
@@ -73,15 +74,25 @@ void AMoveObject3::BeginPlay()
 	//smallskillRender->CreateAnimation("Peashot_Loop", "Peashot_Loop", 0.05f);
 	ObjectFront->ChangeAnimation("Object1Front");
 	ObjectRender->ChangeAnimation("Object1");
+	Fire->ChangeAnimation("Object1SmallFire");
 }
 
 void AMoveObject3::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-	//AddActorLocation(FVector::Left * Speed * _DeltaTime);
+	AddActorLocation(FVector::Left * Speed * _DeltaTime);
 	Collisiongather(_DeltaTime);
 }
 
 void AMoveObject3::Collisiongather(float _DeltaTime)
 {
+	if (GetActorLocation().iX() >= 0) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
+	{
+		Fire->ChangeAnimation("Object1BigFire");
+	}
+
+	if (GetActorLocation().iX() <= -600 || GetActorLocation().iX() >= 600) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
+	{
+		Destroy();
+	}
 }
