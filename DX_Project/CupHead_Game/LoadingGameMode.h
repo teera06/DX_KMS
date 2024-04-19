@@ -27,5 +27,8 @@ private:
 	float coolDowntime = 4.0f;
 
 	static std::map<std::string, bool> LoadMap;
+
+	static bool CreateLevelCheck1;
+	static bool CreateLevelCheck2;
 };
 

@@ -11,6 +11,9 @@
 
 std::map<std::string, bool> ALoadingGameMode::LoadMap;
 
+bool ALoadingGameMode::CreateLevelCheck1=false;
+bool ALoadingGameMode::CreateLevelCheck2=false;
+
 ALoadingGameMode::ALoadingGameMode()
 {
 }
@@ -107,7 +110,13 @@ void ALoadingGameMode::LevelStart(ULevel* _PrevLevel)
 			//UEngineSprite::
 			//UEngineSprite::CreateCutting("CharRun0.png", 0, 6);
 		}
-		GEngine->CreateLevel<AWorldGameMode>("WorldLevel");
+
+		if (false == CreateLevelCheck1)
+		{
+			GEngine->CreateLevel<AWorldGameMode>("WorldLevel");
+			CreateLevelCheck1 = true;
+		}
+
 	}else if (1 == UContentsHelper::StageCount)
 	{
 		{
@@ -274,7 +283,13 @@ void ALoadingGameMode::LevelStart(ULevel* _PrevLevel)
 			//UEngineSprite::
 			//UEngineSprite::CreateCutting("CharRun0.png", 0, 6);
 		}
-		GEngine->CreateLevel<ABossStage1GameMode>("BossStage1GameMode");
+
+		if (false == CreateLevelCheck2)
+		{
+			GEngine->CreateLevel<ABossStage1GameMode>("BossStage1GameMode");
+			CreateLevelCheck2 = true;
+		}
+
 	}
 
 
