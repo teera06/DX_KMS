@@ -50,4 +50,5 @@ void AWorldGameMode::LevelEnd(ULevel* _NextLevel)
 void AWorldGameMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
+	UContentsHelper::MapTex = UEngineTexture::FindRes("WorldMap_PixelCheck.png");
 }
