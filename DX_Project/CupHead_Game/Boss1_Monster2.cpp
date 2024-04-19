@@ -564,6 +564,7 @@ void ABoss1_Monster2::Phase3AttReady(float _DeltaTime)
 {
 	if (true == SlotMouse->IsCurAnimationEnd())
 	{
+		Bigattcount = 0;
 		Phase2.ChangeState("Phase3Att");
 		return;
 	}
@@ -580,7 +581,9 @@ void ABoss1_Monster2::Phase3Att(float _DeltaTime)
 
 	if (Bigattcount == 13)
 	{
+		coolDownTime = 4.0f;
 		Bigattcount = 0;
+		SlotTouch = false;
 		Phase2.ChangeState("phase3Idle");
 		return;
 	}
