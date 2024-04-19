@@ -70,6 +70,15 @@
     <Filter Include="LoadingStage\Level\Actor">
       <UniqueIdentifier>{36702449-37e1-420e-a1ab-aeb1829cd17f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MainMenu">
+      <UniqueIdentifier>{646a3fac-b05d-46d6-8561-1c51ab4cbc4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainMenu\Level">
+      <UniqueIdentifier>{2a3ba0fc-1d5d-4e5b-804e-63635ab17a0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MainMenu\Actor">
+      <UniqueIdentifier>{2613c706-cc0a-44b2-93b9-b7aec582bb5e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game_Core.cpp">
@@ -158,6 +167,12 @@
     <ClCompile Include="MoveObject3.cpp">
       <Filter>PlayStage\Boss1\Monster\skill</Filter>
     </ClCompile>
+    <ClCompile Include="MainMenuMode.cpp">
+      <Filter>MainMenu\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenuActor.cpp">
+      <Filter>MainMenu\Actor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -240,6 +255,12 @@
     </ClInclude>
     <ClInclude Include="MoveObject3.h">
       <Filter>PlayStage\Boss1\Monster\skill</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenuMode.h">
+      <Filter>MainMenu\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenuActor.h">
+      <Filter>MainMenu\Actor</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
