@@ -19,7 +19,7 @@ UGame_Core::~UGame_Core()
 void UGame_Core::Initialize()
 {
 
-	UEngineEditorGUI::CreateEditorWindow<UContentsDebugWindow>("zzzz");
+	UEngineEditorGUI::CreateEditorWindow<UContentsDebugWindow>("CupheadHelpMe");
 	{
 	}
 
