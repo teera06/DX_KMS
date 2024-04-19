@@ -22,6 +22,8 @@ protected:
 private:
 
 	USpriteRenderer* ObjectRender = nullptr;
+	USpriteRenderer* ObjectFront = nullptr;
+	USpriteRenderer* Fire = nullptr;
 	UCollision* TopCollision = nullptr;
 
 

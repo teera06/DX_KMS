@@ -43,7 +43,7 @@ void ABossStage1GameMode::BeginPlay()
 
 	//GetWorld()->SpawnActor<AMoveObject>("AMoveObject");
 	//GetWorld()->SpawnActor<AMoveObject2>("AMoveObject2");
-//	GetWorld()->SpawnActor<AMoveObject3>("AMoveObject3");
+	GetWorld()->SpawnActor<AMoveObject3>("AMoveObject3");
 
 	GetWorld()->GetLastTarget()->AddEffect<UBlurEffect>();
 	//GetWorld()->GetLastTarget()->AddEffect<UBlurEffect>();
