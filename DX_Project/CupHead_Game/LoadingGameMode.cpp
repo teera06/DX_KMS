@@ -272,6 +272,10 @@ void ALoadingGameMode::LevelStart(ULevel* _PrevLevel)
 					int a = 0;
 					LoadMap["phase3"] = true;
 				}
+
+				UEngineSprite::CreateCutting("TEMP1.png", 1, 3);
+				UEngineSprite::CreateCutting("TEMP2.png", 1, 5);
+				//UEngineSprite::CreateCutting("tallfrog_slotman_slot_flash_TEMP.png", 1, 3);
 			}
 			// 특정 스프라이트나 
 			// 특정 텍스처를 찾아서

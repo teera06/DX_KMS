@@ -38,24 +38,24 @@ ABoss1_Monster2::ABoss1_Monster2()
 	SlotImage1 = CreateDefaultSubObject<USpriteRenderer>("SlotImage1");
 	SlotImage1->SetupAttachment(Root);
 	SlotImage1->SetPivot(EPivot::BOT);
-	SlotImage1->AddPosition(FVector(-125.0f, 67.0f, 0.0f));
+	SlotImage1->AddPosition(FVector(-125.0f, 267.0f, 0.0f));
 	SlotImage1->AddRotationDeg(FVector(0.0f, 35.0f, 0.0f));
 
 	SlotImage2 = CreateDefaultSubObject<USpriteRenderer>("SlotImage2");
 	SlotImage2->SetupAttachment(Root);
 	SlotImage2->SetPivot(EPivot::BOT);
-	SlotImage2->AddPosition(FVector(-70.0f, 67.0f, 0.0f));
+	SlotImage2->AddPosition(FVector(-70.0f, 267.0f, 0.0f));
 	SlotImage2->AddRotationDeg(FVector(0.0f, 35.0f, 0.0f));
 
 	SlotImage3 = CreateDefaultSubObject<USpriteRenderer>("SlotImage3");
 	SlotImage3->SetupAttachment(Root);
 	SlotImage3->SetPivot(EPivot::BOT);
-	SlotImage3->AddPosition(FVector(-15.0f, 67.0f, 0.0f));
+	SlotImage3->AddPosition(FVector(-15.0f, 267.0f, 0.0f));
 	SlotImage3->AddRotationDeg(FVector(0.0f, 35.0f, 0.0f));
 	
-	SlotImage1->SetActive(false);
-	SlotImage2->SetActive(false);
-	SlotImage3->SetActive(false);
+	//SlotImage1->SetActive(false);
+	//SlotImage2->SetActive(false);
+	//SlotImage3->SetActive(false);
 
 	WindSkill = CreateDefaultSubObject<USpriteRenderer>("WindSkill");
 
@@ -105,17 +105,17 @@ void ABoss1_Monster2::BeginPlay()
 	SlotMouse->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 
 	SlotImage1->SetOrder(ERenderOrder::SlotImage);
-	SlotImage1->SetSprite("tallfrog_slotman_slot_flash_TEMP.png");
+	SlotImage1->SetSprite("TEMP1.png");
 	SlotImage1->SetSamplering(ETextureSampling::LINEAR);
 	SlotImage1->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 
 	SlotImage2->SetOrder(ERenderOrder::SlotImage);
-	SlotImage2->SetSprite("tallfrog_slotman_slot_flash_TEMP.png");
+	SlotImage2->SetSprite("TEMP1.png");
 	SlotImage2->SetSamplering(ETextureSampling::LINEAR);
 	SlotImage2->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 
 	SlotImage3->SetOrder(ERenderOrder::SlotImage);
-	SlotImage3->SetSprite("tallfrog_slotman_slot_flash_TEMP.png");
+	SlotImage3->SetSprite("TEMP1.png");
 	SlotImage3->SetSamplering(ETextureSampling::LINEAR);
 	SlotImage3->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 
@@ -143,7 +143,10 @@ void ABoss1_Monster2::BeginPlay()
 
 	SlotMouse->CreateAnimation("CoinAtt", "CoinAtt", 0.1f);
 
-
+	SlotImage1->CreateAnimation("slot1", "TEMP1.png", 0.1f);
+	SlotImage1->CreateAnimation("slotObject1", "TEMP2.png", 0.1f,0,0,false);
+	SlotImage1->CreateAnimation("slotObject2", "TEMP2.png", 0.1f, 1, 1, false);
+	SlotImage1->CreateAnimation("slotObject3", "TEMP2.png", 0.1f, 2, 2, false);
 
 	WindSkill->SetOrder(ERenderOrder::Monster1);
 	WindSkill->SetSprite("tallfrog_fan_wind_0001.png");
@@ -162,6 +165,7 @@ void ABoss1_Monster2::BeginPlay()
 	WindSkill->SetAutoSize(1.0f, true);
 
 	WindSkill->ChangeAnimation("Wind");
+	SlotImage1->ChangeAnimation("slotObject1");
 }
 
 void ABoss1_Monster2::Tick(float _DeltaTime)
