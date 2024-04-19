@@ -490,8 +490,7 @@ void ABoss1_Monster2::CoinAtt(float _DeltaTime)
 		//coolDownTime = 6.0f;
 		//SlotMouse->SetActive(false);
 		Phase2.ChangeState("Phase3SlotReady");
-		BigBoss1->AddPosition(FVector(-100.0f, 0.0f, 0.0f));
-		//SlotMouse->AddPosition(FVector(-100.0f, 0.0f, 0.0f));
+		AddActorLocation(FVector(-100.0f, 0.0f, 0.0f));
 		return;
 	}
 
@@ -517,6 +516,7 @@ void ABoss1_Monster2::Phase3SlotReady(float _DeltaTime)
 		SlotMouse->SetActive(false);
 		coolDownTime = 3.0f;
 		Bigattcount = 0;
+		AddActorLocation(FVector(100.0f, 0.0f, 0.0f));
 		Phase2.ChangeState("Phase3Slot");
 		return;
 	}
@@ -530,7 +530,6 @@ void ABoss1_Monster2::Phase3Slot(float _DeltaTime)
 	{
 		Bigattcount = 0;
 		coolDownTime = 4.0f;
-		//BigBoss1->AddPosition(FVector(100.0f, 0.0f, 0.0f));
 		Phase2.ChangeState("phase3Idle");
 		SlotMouse->SetActive(false);
 		return;
@@ -550,7 +549,6 @@ void ABoss1_Monster2::Phase3SlotCoinAtt(float _DeltaTime)
 	{
 		Bigattcount = 0;
 		coolDownTime = 3.0f;
-		//BigBoss1->AddPosition(FVector(100.0f, 0.0f, 0.0f));
 		Phase2.ChangeState("phase3Idle");
 		return;
 	}
@@ -578,7 +576,7 @@ void ABoss1_Monster2::Phase3SlotStart(float _DeltaTime)
 
 void ABoss1_Monster2::Phase3AttReady(float _DeltaTime)
 {
-	if (true == SlotMouse->IsCurAnimationEnd())
+	if (true == BigBoss1->IsCurAnimationEnd())
 	{
 		Bigattcount = 0;
 		Phase2.ChangeState("Phase3Att");
