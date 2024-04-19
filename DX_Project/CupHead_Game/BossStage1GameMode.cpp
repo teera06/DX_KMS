@@ -36,7 +36,7 @@ void ABossStage1GameMode::BeginPlay()
 	GetWorld()->SpawnActor<APlay_Cuphead>("Play_Cuphead");
 	GetWorld()->SpawnActor<ABoss1_Monster1>("Boss1_Monster1");
 	GetWorld()->SpawnActor<ABoss1_Monster2>("Boss1_Monster2");
-	GetWorld()->SpawnActor<AScreenEffect>("ScreenEffect");
+	//GetWorld()->SpawnActor<AScreenEffect>("ScreenEffect");
 
 	//GetWorld()->SpawnActor<AMoveObject>("AMoveObject");
 
@@ -55,6 +55,30 @@ void ABossStage1GameMode::BeginPlay()
 		
 
 		
+		// Image->SetScale({200, 200});
+
+		// 화면에 떠야 한다.
+		// Image->SetSprite("HPBar");
+		// Image->SetScale();
+	}
+
+	{
+		// UI를 만들겠다.
+		UImage* Image = CreateWidget<UImage>(GetWorld(), "OldFilter");
+
+		// 언리얼 따라한것
+		// 언리얼 안나옵니다.
+		Image->AddToViewPort(ERenderOrder::Filter);
+		Image->SetSprite("cuphead_screen_fx_0000.png");
+		Image->SetScale(FVector(1280.0f, 720.0f, 0.0f));
+		//Image->SetAutoSize(1.0f, true);
+
+		Image->CreateAnimation("OldFilmEffect", "OldFilmEffect", 0.05f);
+		//Image->SetPosition({ -570.0f, -310.0f });
+		Image->ChangeAnimation("OldFilmEffect");
+
+
+
 		// Image->SetScale({200, 200});
 
 		// 화면에 떠야 한다.
