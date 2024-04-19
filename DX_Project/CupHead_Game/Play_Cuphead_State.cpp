@@ -11,7 +11,7 @@
 #include "Boss1Common.h"
 #include "BaseBullet.h"
 #include "Boss1_Monster2.h"
-#include "MoveObject.h"
+#include "MoveObject2.h"
 
 
 //void Function(URenderer* Renderer)

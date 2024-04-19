@@ -13,7 +13,7 @@
 #include "Boss1_Monster2.h"
 #include "ContentsHelper.h"
 
-#include "MoveObject.h"
+#include "MoveObject1.h"
 #include "MoveObject2.h"
 #include "MoveObject3.h"
 
@@ -43,7 +43,7 @@ void ABossStage1GameMode::BeginPlay()
 
 	//GetWorld()->SpawnActor<AMoveObject>("AMoveObject");
 	//GetWorld()->SpawnActor<AMoveObject2>("AMoveObject2");
-	GetWorld()->SpawnActor<AMoveObject3>("AMoveObject3");
+	GetWorld()->SpawnActor<AMoveObject1>("AMoveObject1");
 
 	GetWorld()->GetLastTarget()->AddEffect<UBlurEffect>();
 	//GetWorld()->GetLastTarget()->AddEffect<UBlurEffect>();

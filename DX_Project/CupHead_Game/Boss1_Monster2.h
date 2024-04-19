@@ -5,8 +5,8 @@
 class USpriteRenderer;
 class AFirefly;
 class ACoin;
-class AMoveObject;
 class AMoveObject2;
+class AMoveObject3;
 
 class ABoss1_Monster2 : public AActor, public ABoss1Common
 {
@@ -36,8 +36,8 @@ protected:
 private:
 	std::shared_ptr<AFirefly> NewFirefly = nullptr;
 	std::shared_ptr<ACoin> NewCoin = nullptr;
-	std::shared_ptr<AMoveObject> NewMoveObject = nullptr;
-	std::shared_ptr<AMoveObject2> NewMoveObject2 = nullptr;
+	std::shared_ptr<AMoveObject2> NewMoveObject = nullptr;
+	std::shared_ptr<AMoveObject3> NewMoveObject2 = nullptr;
 
 	USpriteRenderer* BigBoss1 = nullptr;
 	USpriteRenderer* SlotMouse = nullptr;

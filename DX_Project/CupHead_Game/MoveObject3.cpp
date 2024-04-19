@@ -6,7 +6,6 @@
 #include <EngineCore/Collision.h>
 
 #include "ContentsENum.h"
-
 AMoveObject3::AMoveObject3()
 {
 	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("smallskill");
@@ -15,25 +14,25 @@ AMoveObject3::AMoveObject3()
 
 	ObjectRender->SetupAttachment(Root);
 
-	ObjectFront = CreateDefaultSubObject<USpriteRenderer>("ObjectRender");
+	ObjectFront = CreateDefaultSubObject<USpriteRenderer>("ObjectFront");
 
 	ObjectFront->SetupAttachment(Root);
 
-	Fire = CreateDefaultSubObject<USpriteRenderer>("Fire");
+	ObjectBallRender = CreateDefaultSubObject<USpriteRenderer>("ObjectBallRender");
 
-	Fire->SetupAttachment(Root);
+	ObjectBallRender->SetupAttachment(Root);
 
 	ObjectRender->SetPivot(EPivot::BOT);
 	ObjectFront->SetPivot(EPivot::BOT);
-	Fire->AddPosition(FVector(0.0f, 100.0f, 0.0f));
 	ObjectFront->AddPosition(FVector(1.2f, 3.5f, 0.0f));
-	TopCollision = CreateDefaultSubObject<UCollision>("TopCollision ");
-	TopCollision->SetupAttachment(Root);
-	TopCollision->AddPosition(FVector(0.0f, 110.0f, 0.0f));
-	TopCollision->SetScale(FVector(160.0f, 20.0f, 100.0f));
+	BoxCollision = CreateDefaultSubObject<UCollision>("BoxCollision ");
+	BoxCollision->SetupAttachment(Root);
+	BoxCollision->AddPosition(FVector(0.0f, 110.0f, 0.0f));
+	BoxCollision->SetScale(FVector(160.0f, 20.0f, 100.0f));
 
-	TopCollision->SetCollisionGroup(ECollisionOrder::Boss1Top);
-	TopCollision->SetCollisionType(ECollisionType::RotRect);
+	BoxCollision->SetCollisionGroup(ECollisionOrder::Boss1Object3);
+	BoxCollision->SetCollisionType(ECollisionType::RotRect);
+
 
 	SetRoot(Root);
 }
@@ -47,34 +46,31 @@ void AMoveObject3::BeginPlay()
 	Super::BeginPlay();
 
 	//SetActorLocation(FVector(400.0f, -200.0f, 0.0f));
-	SetActorLocation(FVector(400.0f, 0.0f, 0.0f));
+	SetActorLocation(FVector(400.0f, -300.0f, 0.0f));
 
-	ObjectRender->SetOrder(ERenderOrder::Object1);
+	ObjectRender->SetOrder(ERenderOrder::Object3);
 	ObjectRender->SetSprite("tallfrog_slotman_platform_bison_0001.png");
 	ObjectRender->SetSamplering(ETextureSampling::LINEAR);
 	ObjectRender->SetAutoSize(1.0f, true);
 
+	ObjectBallRender->SetOrder(ERenderOrder::Object3Ball);
+	ObjectBallRender->SetSprite("tallfrog_slotman_platform_tiger_bullet_0001.png");
+	ObjectBallRender->SetSamplering(ETextureSampling::LINEAR);
+	ObjectBallRender->SetAutoSize(1.0f, true);
+
 	ObjectFront->SetOrder(ERenderOrder::ObjectFront);
-	ObjectFront->SetSprite("tallfrog_slotman_platform_bison_top_0001.png");
+	ObjectFront->SetSprite("tallfrog_slotman_platform_tiger_top_0001.png");
 	ObjectFront->SetSamplering(ETextureSampling::LINEAR);
 	ObjectFront->SetAutoSize(1.0f, true);
-
-	Fire->SetOrder(ERenderOrder::Fire);
-	Fire->SetSprite("tallfrog_slotman_platform_bison_flame_sm_0001.png");
-	Fire->SetSamplering(ETextureSampling::LINEAR);
-	Fire->SetAutoSize(1.0f, true);
-
-
-	ObjectRender->CreateAnimation("Object1", "Object1", 0.092f);
-	ObjectFront->CreateAnimation("Object1Front", "Object1Front", 0.1f);
-
-	Fire->CreateAnimation("Object1SmallFire", "Object1SmallFire", 0.1f);
-	Fire->CreateAnimation("Object1BigFire", "Object1BigFire", 0.1f);
-
+	
+	ObjectRender->CreateAnimation("Object3", "Object3", 0.092f);
+	ObjectBallRender->CreateAnimation("Object3Ball", "Object3Ball", 0.1f);
+	ObjectFront->CreateAnimation("Object3Front", "Object3Front", 0.1f);
 	//smallskillRender->CreateAnimation("Peashot_Loop", "Peashot_Loop", 0.05f);
-	ObjectFront->ChangeAnimation("Object1Front");
-	ObjectRender->ChangeAnimation("Object1");
-	Fire->ChangeAnimation("Object1SmallFire");
+
+	ObjectBallRender->ChangeAnimation("Object3Ball");
+	ObjectRender->ChangeAnimation("Object3");
+	ObjectFront->ChangeAnimation("Object3Front");
 }
 
 void AMoveObject3::Tick(float _DeltaTime)
@@ -82,17 +78,24 @@ void AMoveObject3::Tick(float _DeltaTime)
 	Super::Tick(_DeltaTime);
 	AddActorLocation(FVector::Left * Speed * _DeltaTime);
 	Collisiongather(_DeltaTime);
+	BallMove(_DeltaTime);
 }
 
 void AMoveObject3::Collisiongather(float _DeltaTime)
 {
-	if (GetActorLocation().iX() >= 0) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
-	{
-		Fire->ChangeAnimation("Object1BigFire");
-	}
-
 	if (GetActorLocation().iX() <= -600 || GetActorLocation().iX() >= 600) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
 	{
 		Destroy();
 	}
+}
+
+void AMoveObject3::BallMove(float _DeltaTime)
+{
+	GravityVector += (FVector::Down * Gravity * _DeltaTime); // 중력은 계속 가해진다.
+
+	if (ObjectBallRender->GetWorldPosition().iY() <= -250)
+	{
+		GravityVector = FVector::Zero;
+	}
+	ObjectBallRender->AddPosition((JumpVector +GravityVector) * _DeltaTime);
 }

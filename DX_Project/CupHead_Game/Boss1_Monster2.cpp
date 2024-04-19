@@ -11,7 +11,7 @@
 #include "ContentsENum.h"
 #include "Firefly.h"
 #include "Coin.h"
-#include "MoveObject.h"
+#include "MoveObject3.h"
 #include "MoveObject2.h"
 
 
@@ -294,10 +294,10 @@ void ABoss1_Monster2::createObject()
 {
 	if (SlotAttCount == 0)
 	{
-		NewMoveObject = GetWorld()->SpawnActor<AMoveObject>("MoveObject");
+		NewMoveObject = GetWorld()->SpawnActor<AMoveObject2>("MoveObject");
 	}else if (SlotAttCount == 1)
 	{
-		NewMoveObject2 = GetWorld()->SpawnActor<AMoveObject2>("MoveObject2");
+		NewMoveObject2 = GetWorld()->SpawnActor<AMoveObject3>("MoveObject2");
 	}
 }
 

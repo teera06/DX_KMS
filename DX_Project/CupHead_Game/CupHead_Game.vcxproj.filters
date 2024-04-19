@@ -161,13 +161,13 @@
     <ClCompile Include="Coin.cpp">
       <Filter>PlayStage\Boss1\Monster\skill</Filter>
     </ClCompile>
-    <ClCompile Include="MoveObject.cpp">
-      <Filter>PlayStage\Boss1\Monster\skill</Filter>
-    </ClCompile>
     <ClCompile Include="MoveObject2.cpp">
       <Filter>PlayStage\Boss1\Monster\skill</Filter>
     </ClCompile>
     <ClCompile Include="MoveObject3.cpp">
+      <Filter>PlayStage\Boss1\Monster\skill</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveObject1.cpp">
       <Filter>PlayStage\Boss1\Monster\skill</Filter>
     </ClCompile>
     <ClCompile Include="MainMenuMode.cpp">
@@ -253,13 +253,13 @@
     <ClInclude Include="Coin.h">
       <Filter>PlayStage\Boss1\Monster\skill</Filter>
     </ClInclude>
-    <ClInclude Include="MoveObject.h">
-      <Filter>PlayStage\Boss1\Monster\skill</Filter>
-    </ClInclude>
     <ClInclude Include="MoveObject2.h">
       <Filter>PlayStage\Boss1\Monster\skill</Filter>
     </ClInclude>
     <ClInclude Include="MoveObject3.h">
+      <Filter>PlayStage\Boss1\Monster\skill</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveObject1.h">
       <Filter>PlayStage\Boss1\Monster\skill</Filter>
     </ClInclude>
     <ClInclude Include="MainMenuMode.h">
