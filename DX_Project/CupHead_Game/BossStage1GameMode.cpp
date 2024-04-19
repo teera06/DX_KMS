@@ -3,7 +3,7 @@
 
 #include <EngineCore/Camera.h>
 #include <EngineCore/Image.h>
-
+#include <EngineCore/BlurEffect.h>
 #include "Boss1Map.h"
 #include "Boss2Map.h"
 #include "Boss3Map.h"
@@ -45,7 +45,8 @@ void ABossStage1GameMode::BeginPlay()
 	GetWorld()->SpawnActor<AMoveObject2>("AMoveObject2");
 	GetWorld()->SpawnActor<AMoveObject3>("AMoveObject3");
 
-
+	GetWorld()->GetLastTarget()->AddEffect<UBlurEffect>();
+	//GetWorld()->GetLastTarget()->AddEffect<UBlurEffect>();
 	{
 		// UI를 만들겠다.
 		UImage* Image = CreateWidget<UImage>(GetWorld(), "HpBar");

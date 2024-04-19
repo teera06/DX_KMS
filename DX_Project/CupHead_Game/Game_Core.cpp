@@ -23,7 +23,6 @@ void UGame_Core::Initialize()
 	{
 	}
 
-
 	
 	{
 		// 파일의 헤더
