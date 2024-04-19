@@ -5,6 +5,7 @@
 
 #include "ContentsENum.h"
 
+
 AMainTitleActor::AMainTitleActor()
 {
 
@@ -61,4 +62,9 @@ void AMainTitleActor::Tick(float _DeltaTime)
 	Super::Tick(_DeltaTime);
 
 	int a = 0;
+}
+
+void AMainTitleActor::DebugMessageFunction()
+{
+
 }

@@ -1,6 +1,11 @@
 #pragma once
-class MainMenuActor
+#include <Enginecore/Actor.h>
+
+class USpriteRenderer;
+
+class MainMenuActor : public AActor
 {
+	GENERATED_BODY(AActor)
 public:
 	// constrcuter destructer
 	MainMenuActor(); // 디폴트 생성자
@@ -13,7 +18,8 @@ public:
 	MainMenuActor& operator=(MainMenuActor&& _Other) noexcept = delete;
 
 protected:
-
+	void BeginPlay() override;
+	void Tick(float _DeltaTime) override;
 private:
 };
 

@@ -4,6 +4,7 @@
 
 class AMainMenuMode : public AGameMode
 {
+	GENERATED_BODY(AGameMode)
 public:
 	// constrcuter destructer
 	AMainMenuMode(); // 디폴트 생성자

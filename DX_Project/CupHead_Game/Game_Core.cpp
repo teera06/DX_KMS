@@ -3,6 +3,11 @@
 #include "MainTitleGameMode.h"
 
 #include <EngineCore/EngineSprite.h>
+#include <EngineCore/EngineDebugMsgWindow.h>
+#include <EngineCore/EngineEditorGUI.h>
+
+#include "ContentsDebugWindow.h"
+
 UGame_Core::UGame_Core()
 {
 }
@@ -13,6 +18,13 @@ UGame_Core::~UGame_Core()
 
 void UGame_Core::Initialize()
 {
+
+	UEngineEditorGUI::CreateEditorWindow<UContentsDebugWindow>("zzzz");
+	{
+	}
+
+
+	
 	{
 		// 파일의 헤더
 		UEngineDirectory Dir;

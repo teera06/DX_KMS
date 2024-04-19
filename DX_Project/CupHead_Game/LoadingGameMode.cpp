@@ -8,12 +8,16 @@
 #include "WorldGameMode.h"
 #include "BossStage1GameMode.h"
 #include <EngineCore/Camera.h>
+
+std::map<std::string, bool> ALoadingGameMode::LoadMap;
+
 ALoadingGameMode::ALoadingGameMode()
 {
 }
 
 ALoadingGameMode::~ALoadingGameMode()
 {
+	LoadMap.clear();
 }
 
 void ALoadingGameMode::BeginPlay()
@@ -54,6 +58,7 @@ void ALoadingGameMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
 
+
 	if (2 == UContentsHelper::StageCount)
 	{
 		{
@@ -61,21 +66,35 @@ void ALoadingGameMode::LevelStart(ULevel* _PrevLevel)
 			Dir.MoveToSearchChild("GameResource");
 			Dir.Move("Image");
 			Dir.Move("World");
-			std::vector<UEngineFile> Files = Dir.GetAllFile({ ".png" }, true);
-			for (UEngineFile& File : Files)
+
+			if (false == LoadMap.contains("World"))
 			{
-				// CuttingTest.png texture로도 한장이 로드가 됐고
-				// 스프라이트로도 1장짜리로 로드가 된 상황이야.
-				UEngineSprite::Load(File.GetFullPath());
+				std::vector<UEngineFile> Files = Dir.GetAllFile({ ".png" }, true);
+				for (UEngineFile& File : Files)
+				{
+					// CuttingTest.png texture로도 한장이 로드가 됐고
+					// 스프라이트로도 1장짜리로 로드가 된 상황이야.
+					UEngineSprite::Load(File.GetFullPath());
+				}
+
+				LoadMap["World"] = true;
 			}
+
+
 
 			Dir.Move("Cuphead");
 			// 로드폴더는 이렇게 한다고 칩시다.
-			std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory();
-			for (size_t i = 0; i < Directorys.size(); i++)
+
+			if (false == LoadMap.contains("Cuphead"))
 			{
-				std::string Name = Directorys[i].GetFolderName();
-				UEngineSprite::LoadFolder(Directorys[i].GetFullPath());
+				std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory();
+				for (size_t i = 0; i < Directorys.size(); i++)
+				{
+					std::string Name = Directorys[i].GetFolderName();
+					UEngineSprite::LoadFolder(Directorys[i].GetFullPath());
+				}
+
+				LoadMap["Cuphead"] = true;
 			}
 
 			// 특정 스프라이트나 
@@ -97,25 +116,33 @@ void ALoadingGameMode::LevelStart(ULevel* _PrevLevel)
 			Dir.Move("Image");
 			Dir.Move("PlayCuphead");
 
-			std::vector<UEngineFile> Files = Dir.GetAllFile({ ".png" }, true);
-			for (UEngineFile& File : Files)
+			if (false == LoadMap.contains("PlayCuphead"))
 			{
-				// CuttingTest.png texture로도 한장이 로드가 됐고
-				// 스프라이트로도 1장짜리로 로드가 된 상황이야.
-				UEngineSprite::Load(File.GetFullPath());
-			}
-			// 로드폴더는 이렇게 한다고 칩시다.
-			{
-				std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory();
-				for (size_t i = 0; i < Directorys.size(); i++)
+				std::vector<UEngineFile> Files = Dir.GetAllFile({ ".png" }, true);
+				for (UEngineFile& File : Files)
 				{
-					std::string Name = Directorys[i].GetFolderName();
-					UEngineSprite::LoadFolder(Directorys[i].GetFullPath());
+					// CuttingTest.png texture로도 한장이 로드가 됐고
+					// 스프라이트로도 1장짜리로 로드가 된 상황이야.
+					UEngineSprite::Load(File.GetFullPath());
 				}
+				// 로드폴더는 이렇게 한다고 칩시다.
+				{
+					std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory();
+					for (size_t i = 0; i < Directorys.size(); i++)
+					{
+						std::string Name = Directorys[i].GetFolderName();
+						UEngineSprite::LoadFolder(Directorys[i].GetFullPath());
+					}
+				}
+
+				LoadMap["PlayCuphead"] = true;
 			}
+			
 
 			Dir.MoveParent();
 			Dir.Move("Bullet");
+
+			if (false == LoadMap.contains("Bullet"))
 			{
 				std::vector<UEngineFile> Files = Dir.GetAllFile({ ".png" }, true);
 				for (UEngineFile& File : Files)
@@ -131,6 +158,8 @@ void ALoadingGameMode::LevelStart(ULevel* _PrevLevel)
 					std::string Name = Directorys[i].GetFolderName();
 					UEngineSprite::LoadFolder(Directorys[i].GetFullPath());
 				}
+
+				LoadMap["Bullet"] = true;
 			}
 			// 특정 스프라이트나 
 			// 특정 텍스처를 찾아서
@@ -142,28 +171,40 @@ void ALoadingGameMode::LevelStart(ULevel* _PrevLevel)
 			//UEngineSprite::
 			//UEngineSprite::CreateCutting("CharRun0.png", 0, 6);
 		}
+
 		{
 			UEngineDirectory Dir;
 			Dir.MoveToSearchChild("GameResource");
 			Dir.Move("Image");
 			Dir.Move("boss1");
 
-			std::vector<UEngineFile> Files = Dir.GetAllFile({ ".png" }, true);
-			for (UEngineFile& File : Files)
+			if (false == LoadMap.contains("boss1"))
 			{
-				// CuttingTest.png texture로도 한장이 로드가 됐고
-				// 스프라이트로도 1장짜리로 로드가 된 상황이야.
-				UEngineSprite::Load(File.GetFullPath());
-			}
+				std::vector<UEngineFile> Files = Dir.GetAllFile({ ".png" }, true);
+				for (UEngineFile& File : Files)
+				{
+					// CuttingTest.png texture로도 한장이 로드가 됐고
+					// 스프라이트로도 1장짜리로 로드가 된 상황이야.
+					UEngineSprite::Load(File.GetFullPath());
+				}
 
+				LoadMap["boss1"] = true;
+			}
+		
 			{
 				Dir.Move("Crowd");
-				// 로드폴더는 이렇게 한다고 칩시다.
-				std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory();
-				for (size_t i = 0; i < Directorys.size(); i++)
+
+				if (false == LoadMap.contains("Crowd"))
 				{
-					std::string Name = Directorys[i].GetFolderName();
-					UEngineSprite::LoadFolder(Directorys[i].GetFullPath());
+					// 로드폴더는 이렇게 한다고 칩시다.
+					std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory();
+					for (size_t i = 0; i < Directorys.size(); i++)
+					{
+						std::string Name = Directorys[i].GetFolderName();
+						UEngineSprite::LoadFolder(Directorys[i].GetFullPath());
+					}
+
+					LoadMap["Crowd"] = true;
 				}
 			}
 
@@ -171,12 +212,18 @@ void ALoadingGameMode::LevelStart(ULevel* _PrevLevel)
 
 			{
 				Dir.Move("phase1");
-				// 로드폴더는 이렇게 한다고 칩시다.
-				std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory();
-				for (size_t i = 0; i < Directorys.size(); i++)
+
+				if (false == LoadMap.contains("phase1"))
 				{
-					std::string Name = Directorys[i].GetFolderName();
-					UEngineSprite::LoadFolder(Directorys[i].GetFullPath());
+					// 로드폴더는 이렇게 한다고 칩시다.
+					std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory();
+					for (size_t i = 0; i < Directorys.size(); i++)
+					{
+						std::string Name = Directorys[i].GetFolderName();
+						UEngineSprite::LoadFolder(Directorys[i].GetFullPath());
+					}
+
+					LoadMap["phase1"] = true;
 				}
 			}
 
@@ -185,11 +232,17 @@ void ALoadingGameMode::LevelStart(ULevel* _PrevLevel)
 			{
 				Dir.Move("phase2");
 				// 로드폴더는 이렇게 한다고 칩시다.
-				std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory();
-				for (size_t i = 0; i < Directorys.size(); i++)
+				if (false == LoadMap.contains("phase2"))
 				{
-					std::string Name = Directorys[i].GetFolderName();
-					UEngineSprite::LoadFolder(Directorys[i].GetFullPath());
+					// 로드폴더는 이렇게 한다고 칩시다.
+					std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory();
+					for (size_t i = 0; i < Directorys.size(); i++)
+					{
+						std::string Name = Directorys[i].GetFolderName();
+						UEngineSprite::LoadFolder(Directorys[i].GetFullPath());
+					}
+
+					LoadMap["phase2"] = true;
 				}
 			}
 
@@ -198,11 +251,17 @@ void ALoadingGameMode::LevelStart(ULevel* _PrevLevel)
 			{
 				Dir.Move("phase3");
 				// 로드폴더는 이렇게 한다고 칩시다.
-				std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory();
-				for (size_t i = 0; i < Directorys.size(); i++)
+				if (false == LoadMap.contains("phase3"))
 				{
-					std::string Name = Directorys[i].GetFolderName();
-					UEngineSprite::LoadFolder(Directorys[i].GetFullPath());
+					// 로드폴더는 이렇게 한다고 칩시다.
+					std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory();
+					for (size_t i = 0; i < Directorys.size(); i++)
+					{
+						std::string Name = Directorys[i].GetFolderName();
+						UEngineSprite::LoadFolder(Directorys[i].GetFullPath());
+					}
+					int a = 0;
+					LoadMap["phase3"] = true;
 				}
 			}
 			// 특정 스프라이트나 

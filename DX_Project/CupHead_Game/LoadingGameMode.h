@@ -1,5 +1,8 @@
 #pragma once
 #include <EngineCore/GameMode.h>
+#include <map>
+
+class UEngineDirectory;
 class ALoadingGameMode : public AGameMode
 {
 	GENERATED_BODY(AGameMode)
@@ -22,5 +25,7 @@ protected:
 	void LevelStart(ULevel* _PrevLevel);
 private:
 	float coolDowntime = 4.0f;
+
+	static std::map<std::string, bool> LoadMap;
 };
 

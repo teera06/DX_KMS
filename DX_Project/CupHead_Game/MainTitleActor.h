@@ -22,5 +22,7 @@ protected:
 private:
 	USpriteRenderer* titleRenderer = nullptr;
 	USpriteRenderer* CupRenderer = nullptr;
+
+	void DebugMessageFunction();
 };
 

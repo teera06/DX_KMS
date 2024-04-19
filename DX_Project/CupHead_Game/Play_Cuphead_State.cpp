@@ -13,6 +13,7 @@
 #include "Boss1_Monster2.h"
 #include "MoveObject.h"
 
+
 //void Function(URenderer* Renderer)
 //{
 //	Renderer->ChangeAnimation("Idle");
@@ -519,6 +520,7 @@ void APlay_Cuphead::DebugMessageFunction()
 		std::string Msg = std::format("MousePos : {}\n", GEngine->EngineWindow.GetScreenMousePos().ToString());
 		UEngineDebugMsgWindow::PushMsg(Msg);
 	}
+
 }
 
 

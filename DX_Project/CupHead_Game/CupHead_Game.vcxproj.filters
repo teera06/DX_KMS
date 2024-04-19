@@ -79,6 +79,9 @@
     <Filter Include="MainMenu\Actor">
       <UniqueIdentifier>{2613c706-cc0a-44b2-93b9-b7aec582bb5e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ContentsDebug">
+      <UniqueIdentifier>{63a9a676-b174-489e-8625-af1bfc8b86b2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game_Core.cpp">
@@ -173,6 +176,9 @@
     <ClCompile Include="MainMenuActor.cpp">
       <Filter>MainMenu\Actor</Filter>
     </ClCompile>
+    <ClCompile Include="ContentsDebugWindow.cpp">
+      <Filter>ContentsDebug</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -261,6 +267,9 @@
     </ClInclude>
     <ClInclude Include="MainMenuActor.h">
       <Filter>MainMenu\Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="ContentsDebugWindow.h">
+      <Filter>ContentsDebug</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
