@@ -14,6 +14,8 @@
 #include "ContentsHelper.h"
 
 #include "MoveObject.h"
+#include "MoveObject2.h"
+
 
 #include "ContentsENum.h"
 ABossStage1GameMode::ABossStage1GameMode()
@@ -38,7 +40,8 @@ void ABossStage1GameMode::BeginPlay()
 	GetWorld()->SpawnActor<ABoss1_Monster2>("Boss1_Monster2");
 	//GetWorld()->SpawnActor<AScreenEffect>("ScreenEffect");
 
-	//GetWorld()->SpawnActor<AMoveObject>("AMoveObject");
+	GetWorld()->SpawnActor<AMoveObject>("AMoveObject");
+	GetWorld()->SpawnActor<AMoveObject2>("AMoveObject2");
 
 
 	{

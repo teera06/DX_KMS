@@ -22,10 +22,19 @@ protected:
 private:
 
 	USpriteRenderer* ObjectRender = nullptr;
-	UCollision* TopCollision = nullptr;
+	USpriteRenderer* ObjectFront = nullptr;
+	USpriteRenderer* ObjectBallRender = nullptr;
+	UCollision* BoxCollision = nullptr;
+
+	FVector GravityVector = FVector::Zero; // 중력값 받기
+
+	FVector JumpVector = FVector::Up * 1600.0f; // 최종 점프력
 
 	float Speed = 500.0f;
 
+	float Gravity = 3000.0f;
+
 	void Collisiongather(float _DeltaTime);
+	void BallMove(float _DeltaTime);
 };
 
