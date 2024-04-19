@@ -15,6 +15,7 @@
 
 #include "MoveObject.h"
 #include "MoveObject2.h"
+#include "MoveObject3.h"
 
 
 #include "ContentsENum.h"
@@ -42,6 +43,7 @@ void ABossStage1GameMode::BeginPlay()
 
 	GetWorld()->SpawnActor<AMoveObject>("AMoveObject");
 	GetWorld()->SpawnActor<AMoveObject2>("AMoveObject2");
+	GetWorld()->SpawnActor<AMoveObject3>("AMoveObject3");
 
 
 	{

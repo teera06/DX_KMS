@@ -20,7 +20,7 @@ AMoveObject2::AMoveObject2()
 
 	ObjectBallRender = CreateDefaultSubObject<USpriteRenderer>("ObjectBallRender");
 
-	ObjectRender->SetupAttachment(Root);
+	ObjectBallRender->SetupAttachment(Root);
 
 	ObjectRender->SetPivot(EPivot::BOT);
 	ObjectFront->SetPivot(EPivot::BOT);
@@ -46,7 +46,7 @@ void AMoveObject2::BeginPlay()
 	Super::BeginPlay();
 
 	//SetActorLocation(FVector(400.0f, -200.0f, 0.0f));
-	SetActorLocation(FVector(0.0f, -200.0f, 0.0f));
+	SetActorLocation(FVector(0.0f, -300.0f, 0.0f));
 
 	ObjectRender->SetOrder(ERenderOrder::Object3);
 	ObjectRender->SetSprite("tallfrog_slotman_platform_bison_0001.png");
@@ -76,7 +76,7 @@ void AMoveObject2::BeginPlay()
 void AMoveObject2::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-	//AddActorLocation(FVector::Left * Speed * _DeltaTime);
+	AddActorLocation(FVector::Left * Speed * _DeltaTime);
 	Collisiongather(_DeltaTime);
 	BallMove(_DeltaTime);
 }
@@ -89,7 +89,7 @@ void AMoveObject2::BallMove(float _DeltaTime)
 {
 	GravityVector += (FVector::Down * Gravity * _DeltaTime); // 중력은 계속 가해진다.
 
-	if (ObjectBallRender->GetLocalPosition().iY() <= -250)
+	if (ObjectBallRender->GetWorldPosition().iY() <= -250)
 	{
 		GravityVector = FVector::Zero;
 	}

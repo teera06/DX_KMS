@@ -35,8 +35,8 @@ void AMoveObject3::BeginPlay()
 {
 	Super::BeginPlay();
 
-	SetActorLocation(FVector(400.0f, -200.0f, 0.0f));
-	//SetActorLocation(FVector(0.0f, -200.0f, 0.0f));
+	//SetActorLocation(FVector(400.0f, -200.0f, 0.0f));
+	SetActorLocation(FVector(100.0f, -200.0f, 0.0f));
 
 	ObjectRender->SetOrder(ERenderOrder::skilleffect);
 	ObjectRender->SetSprite("tallfrog_slotman_platform_bison_0001.png");
@@ -45,17 +45,16 @@ void AMoveObject3::BeginPlay()
 
 
 	ObjectRender->CreateAnimation("Object1", "Object1", 0.1f);
-	ObjectRender->CreateAnimation("Object2", "Object2", 0.1f);
-	ObjectRender->CreateAnimation("Object3", "Object3", 0.1f);
+
 	//smallskillRender->CreateAnimation("Peashot_Loop", "Peashot_Loop", 0.05f);
 
-	ObjectRender->ChangeAnimation("Object2");
+	ObjectRender->ChangeAnimation("Object1");
 }
 
 void AMoveObject3::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-	AddActorLocation(FVector::Left * Speed * _DeltaTime);
+	//AddActorLocation(FVector::Left * Speed * _DeltaTime);
 	Collisiongather(_DeltaTime);
 }
 
