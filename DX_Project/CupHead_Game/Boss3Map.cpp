@@ -36,13 +36,13 @@ ABoss3Map::ABoss3Map()
 	crowd3->SetAutoSize(0.97f, true);
 	crowd3->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 
-	Object1->SetOrder(ERenderOrder::Object1);
+	Object1->SetOrder(ERenderOrder::FrontGround1);
 	Object1->SetSprite("table.png");
 
 	Object1->SetAutoSize(2.1f, true);
 	Object1->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 
-	Object2->SetOrder(ERenderOrder::Object2);
+	Object2->SetOrder(ERenderOrder::FrontGround2);
 	Object2->SetSprite("C8.png");
 
 	Object2->SetAutoSize(1.3f, true);

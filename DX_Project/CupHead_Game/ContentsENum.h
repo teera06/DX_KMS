@@ -61,6 +61,8 @@ enum class ERenderOrder
 	Object3,
 	Object3Ball,
 	ObjectFront,
+	FrontGround1,
+	FrontGround2,
 	HPBar,
 	HPgauge,
 	FilterEffect,

@@ -128,7 +128,7 @@ void ABoss1_Monster2::BeginPlay()
 	BigBoss1->CreateAnimation("phase3changeReady1", "phase3changeReady1", 0.1f);
 	BigBoss1->CreateAnimation("phase3changeReady2", "phase3changeReady2", 0.1f);
 
-	BigBoss1->CreateAnimation("phase3Intro", "phase3Intro", 0.1f);
+	BigBoss1->CreateAnimation("phase3Intro", "phase3Intro", 0.12f);
 	BigBoss1->CreateAnimation("phase3Intro2", "phase3Intro2", 0.1f);
 	BigBoss1->CreateAnimation("phase3Idle", "phase3Idle", 0.1f);
 	BigBoss1->CreateAnimation("Phase3SlotReady", "Phase3SlotReady", 0.1f,false);
