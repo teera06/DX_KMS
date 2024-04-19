@@ -23,7 +23,9 @@ ABoss1_Monster2::ABoss1_Monster2()
 	BigBoss1 = CreateDefaultSubObject<USpriteRenderer>("Boss1_1");
 
 	BigBoss1->SetupAttachment(Root);
-	BigBoss1->SetPivot(EPivot::BOT);
+	BigBoss1->SetPivot(EPivot::RIGHTBOTTOM);
+
+	BigBoss1->AddPosition(FVector(270.0f, 0.0f, 0.0f));
 
 	SlotMouse = CreateDefaultSubObject<USpriteRenderer>("SlotMouse");
 
@@ -490,7 +492,7 @@ void ABoss1_Monster2::CoinAtt(float _DeltaTime)
 		//coolDownTime = 6.0f;
 		//SlotMouse->SetActive(false);
 		Phase2.ChangeState("Phase3SlotReady");
-		AddActorLocation(FVector(-100.0f, 0.0f, 0.0f));
+		//AddActorLocation(FVector(-100.0f, 0.0f, 0.0f));
 		return;
 	}
 
@@ -516,7 +518,7 @@ void ABoss1_Monster2::Phase3SlotReady(float _DeltaTime)
 		SlotMouse->SetActive(false);
 		coolDownTime = 3.0f;
 		Bigattcount = 0;
-		AddActorLocation(FVector(100.0f, 0.0f, 0.0f));
+		//AddActorLocation(FVector(100.0f, 0.0f, 0.0f));
 		Phase2.ChangeState("Phase3Slot");
 		return;
 	}
