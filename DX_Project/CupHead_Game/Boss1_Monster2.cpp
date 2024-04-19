@@ -292,7 +292,13 @@ void ABoss1_Monster2::createCoinAtt()
 
 void ABoss1_Monster2::createObject()
 {
-	NewMoveObject = GetWorld()->SpawnActor<AMoveObject>("MoveObject");
+	if (SlotAttCount == 0)
+	{
+		NewMoveObject = GetWorld()->SpawnActor<AMoveObject>("MoveObject");
+	}else if (SlotAttCount == 1)
+	{
+		NewMoveObject2 = GetWorld()->SpawnActor<AMoveObject2>("MoveObject2");
+	}
 }
 
 void ABoss1_Monster2::Collisioncheck()
@@ -456,6 +462,12 @@ void ABoss1_Monster2::phase3Intro2(float _DeltaTime)
 
 void ABoss1_Monster2::phase3Idle(float _DeltaTime)
 {
+
+	if (SlotAttCount == 2)
+	{
+		SlotAttCount = 0;
+	}
+
 	if (coolDownTime < 0 && 3 == phasecheck && true == SlotTouch)
 	{
 		Phase2.ChangeState("Phase3AttReady");
@@ -493,6 +505,7 @@ void ABoss1_Monster2::CoinAtt(float _DeltaTime)
 
 void ABoss1_Monster2::Phase3SlotReady(float _DeltaTime)
 {
+
 	if (true == SlotMouse->IsCurAnimationEnd() && false==SlotTouch)
 	{
 		createCoinAtt();
@@ -584,6 +597,7 @@ void ABoss1_Monster2::Phase3Att(float _DeltaTime)
 
 	if (Bigattcount == 13)
 	{
+		SlotAttCount++;
 		coolDownTime = 4.0f;
 		Bigattcount = 0;
 		SlotTouch = false;

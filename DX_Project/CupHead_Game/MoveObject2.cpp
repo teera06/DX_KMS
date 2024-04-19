@@ -46,7 +46,7 @@ void AMoveObject2::BeginPlay()
 	Super::BeginPlay();
 
 	//SetActorLocation(FVector(400.0f, -200.0f, 0.0f));
-	SetActorLocation(FVector(0.0f, -300.0f, 0.0f));
+	SetActorLocation(FVector(400.0f, -300.0f, 0.0f));
 
 	ObjectRender->SetOrder(ERenderOrder::Object3);
 	ObjectRender->SetSprite("tallfrog_slotman_platform_bison_0001.png");

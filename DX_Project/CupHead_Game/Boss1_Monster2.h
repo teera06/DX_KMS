@@ -6,6 +6,7 @@ class USpriteRenderer;
 class AFirefly;
 class ACoin;
 class AMoveObject;
+class AMoveObject2;
 
 class ABoss1_Monster2 : public AActor, public ABoss1Common
 {
@@ -36,6 +37,7 @@ private:
 	std::shared_ptr<AFirefly> NewFirefly = nullptr;
 	std::shared_ptr<ACoin> NewCoin = nullptr;
 	std::shared_ptr<AMoveObject> NewMoveObject = nullptr;
+	std::shared_ptr<AMoveObject2> NewMoveObject2 = nullptr;
 
 	USpriteRenderer* BigBoss1 = nullptr;
 	USpriteRenderer* SlotMouse = nullptr;
@@ -55,6 +57,7 @@ private:
 
 	int Bigattcount = 0;
 
+	int SlotAttCount = 0;
 
 	bool Change3 = false;
 

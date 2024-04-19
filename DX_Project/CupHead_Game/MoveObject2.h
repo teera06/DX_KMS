@@ -28,9 +28,9 @@ private:
 
 	FVector GravityVector = FVector::Zero; // 중력값 받기
 
-	FVector JumpVector = FVector::Up * 1600.0f; // 최종 점프력
+	FVector JumpVector = FVector::Up * 1800.0f; // 최종 점프력
 
-	float Speed = 100.0f;
+	float Speed = 500.0f;
 
 	float Gravity = 3000.0f;
 
