@@ -145,8 +145,12 @@ void ABoss1_Monster2::BeginPlay()
 
 	SlotImage1->CreateAnimation("slot1", "TEMP1.png", 0.1f);
 	SlotImage1->CreateAnimation("slotObject1", "TEMP2.png", 0.1f,0,0,false);
-	SlotImage1->CreateAnimation("slotObject2", "TEMP2.png", 0.1f, 1, 1, false);
-	SlotImage1->CreateAnimation("slotObject3", "TEMP2.png", 0.1f, 2, 2, false);
+
+
+	SlotImage2->CreateAnimation("slot1", "TEMP1.png", 0.1f);
+	
+
+	SlotImage3->CreateAnimation("slot1", "TEMP1.png", 0.1f);
 
 	WindSkill->SetOrder(ERenderOrder::Monster1);
 	WindSkill->SetSprite("tallfrog_fan_wind_0001.png");
@@ -165,7 +169,9 @@ void ABoss1_Monster2::BeginPlay()
 	WindSkill->SetAutoSize(1.0f, true);
 
 	WindSkill->ChangeAnimation("Wind");
-	SlotImage1->ChangeAnimation("slotObject1");
+	SlotImage1->ChangeAnimation("slot1");
+	SlotImage2->ChangeAnimation("slot1");
+	SlotImage3->ChangeAnimation("slot1");
 }
 
 void ABoss1_Monster2::Tick(float _DeltaTime)
