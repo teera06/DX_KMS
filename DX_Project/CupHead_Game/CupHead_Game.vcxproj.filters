@@ -179,9 +179,6 @@
     <ClCompile Include="ContentsDebugWindow.cpp">
       <Filter>ContentsDebug</Filter>
     </ClCompile>
-    <ClCompile Include="SlotBoss1.cpp">
-      <Filter>PlayStage\Boss1\Monster</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -273,9 +270,6 @@
     </ClInclude>
     <ClInclude Include="ContentsDebugWindow.h">
       <Filter>ContentsDebug</Filter>
-    </ClInclude>
-    <ClInclude Include="SlotBoss1.h">
-      <Filter>PlayStage\Boss1\Monster</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
