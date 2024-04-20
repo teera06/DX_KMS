@@ -246,9 +246,6 @@
     <ClCompile Include="EngineStruct.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\GM\DX\DirectX\EngineCore\RenderUnit.cpp">
-      <Filter>Object\Component\Rendering</Filter>
-    </ClCompile>
     <ClCompile Include="Widget.cpp">
       <Filter>UI</Filter>
     </ClCompile>
@@ -257,6 +254,9 @@
     </ClCompile>
     <ClCompile Include="BlurEffect.cpp">
       <Filter>Object\Rendering\Contents</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderUnit.cpp">
+      <Filter>Object\Component\Rendering</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -419,9 +419,6 @@
     <ClInclude Include="EngineStruct.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\GM\DX\DirectX\EngineCore\RenderUnit.h">
-      <Filter>Object\Component\Rendering</Filter>
-    </ClInclude>
     <ClInclude Include="Widget.h">
       <Filter>UI</Filter>
     </ClInclude>
@@ -430,6 +427,9 @@
     </ClInclude>
     <ClInclude Include="BlurEffect.h">
       <Filter>Object\Rendering\Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderUnit.h">
+      <Filter>Object\Component\Rendering</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
