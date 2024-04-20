@@ -161,11 +161,11 @@ void ABoss1_Monster1::SkillYMove()
 		
 	}
 	else if(smallattcount == 1 || smallattcount == 3 || smallattcount == 5 || smallattcount == 7){
-		NewSkill->SetActorLocation({ GetActorLocation().X- 35.0f,-120.0f,0.0f });
+		NewSkill->SetActorLocation({ GetActorLocation().X- 35.0f,-110.0f,0.0f });
 	}
 	else if (smallattcount == 2 || smallattcount == 6)
 	{
-		NewSkill->SetActorLocation({ GetActorLocation().X- 35.0f,-200.0f,0.0f });
+		NewSkill->SetActorLocation({ GetActorLocation().X- 35.0f,-210.0f,0.0f });
 	}
 }
 

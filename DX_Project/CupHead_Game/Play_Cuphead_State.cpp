@@ -249,7 +249,7 @@ void APlay_Cuphead::CalGravityVector(float _DeltaTime)
 {
 	GravityVector += (FVector::Down * Gravity * _DeltaTime); // 중력은 계속 가해진다.
 
-	if (GetActorLocation().iY() <= -250 || true==NoGravity)
+	if (GetActorLocation().iY() <= GrounYCheck || true==NoGravity)
 	{
 		GravityVector = FVector::Zero;
 	}
@@ -1073,7 +1073,7 @@ void APlay_Cuphead::Jump(float _DeltaTime)
 
 
 	MoveUpDate(_DeltaTime, MovePos); // 최종 움직임
-	if (GetActorLocation().iY() <= -250)
+	if (GetActorLocation().iY() <= GrounYCheck)
 	{
 		JumpVector = FVector::Zero;
 		State.ChangeState("Idle");
@@ -1144,7 +1144,7 @@ void APlay_Cuphead::JumpShoot(float _DeltaTime)
 
 	MoveUpDate(_DeltaTime, MovePos); // 최종 움직임
 
-	if (GetActorLocation().iY() <= -250)
+	if (GetActorLocation().iY() <= GrounYCheck)
 	{
 		BulletStart->SetActive(false);
 		JumpVector = FVector::Zero;
@@ -1173,7 +1173,7 @@ void APlay_Cuphead::JumpShoot(float _DeltaTime)
 void APlay_Cuphead::DashAfterJump(float _DeltaTime)
 {
 	MoveUpDate(_DeltaTime); // 최종 움직임
-	if (GetActorLocation().iY() <= -250)
+	if (GetActorLocation().iY() <= GrounYCheck)
 	{
 		JumpVector = FVector::Zero;
 		State.ChangeState("Idle");

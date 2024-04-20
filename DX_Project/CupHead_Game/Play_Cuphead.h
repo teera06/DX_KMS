@@ -75,6 +75,8 @@ private:
 	float RunShootYpos = 5.0f;
 	float DuckShootYpos = 35.0f;
 
+	int GrounYCheck = -270;
+
 	bool shootY = false;
 	bool NoGravity = false;
 
