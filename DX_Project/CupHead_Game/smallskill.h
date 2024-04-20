@@ -32,7 +32,7 @@ private:
 
 	FVector SmallSkillDir = FVector::Zero;
 	FVector Move = FVector::Zero;
-	float Speed = 500.0f;
+	float Speed = 700.0f;
 
 	void Collisiongather();
 };

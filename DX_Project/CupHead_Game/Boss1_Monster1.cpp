@@ -38,7 +38,7 @@ void ABoss1_Monster1::BeginPlay()
 	SmallBoss1->SetOrder(ERenderOrder::Monster2);
 	SmallBoss1->SetSprite("shortFrog_idle_0001.png");
 	SmallBoss1->SetSamplering(ETextureSampling::LINEAR);
-	SmallBoss1->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
+	SmallBoss1->SetPlusColor(FVector(0.15f, 0.15f, 0.15f));
 	AniCreate();
 
 	Phase1StateInit();
@@ -134,9 +134,9 @@ void ABoss1_Monster1::Phase2StateInit()
 void ABoss1_Monster1::AniCreate()
 {
 	SmallBoss1->CreateAnimation("smallintro", "smallintro", 0.15f);
-	SmallBoss1->CreateAnimation("smallIdle", "smallIdle", 0.1f);
+	SmallBoss1->CreateAnimation("smallIdle", "smallIdle", 0.075f);
 	SmallBoss1->CreateAnimation("smallattready", "smallattready", 0.1f);
-	SmallBoss1->CreateAnimation("smallatt", "smallatt", 0.1f);
+	SmallBoss1->CreateAnimation("smallatt", "smallatt", 0.065f);
 	SmallBoss1->CreateAnimation("phase2changeReady", "phase2changeReady", 0.1f);
 	SmallBoss1->CreateAnimation("phase2changeReady2", "phase2changeReady2", 0.1f);
 	SmallBoss1->CreateAnimation("phase2change1", "phase2change1", 0.1f);
@@ -157,15 +157,15 @@ void ABoss1_Monster1::SkillYMove()
 {
 	if (smallattcount==0 || smallattcount == 4 || smallattcount == 8)
 	{
-		NewSkill->SetActorLocation({ GetActorLocation().X,-30.0f,0.0f });
+		NewSkill->SetActorLocation({ GetActorLocation().X-35.0f,-20.0f,0.0f });
 		
 	}
 	else if(smallattcount == 1 || smallattcount == 3 || smallattcount == 5 || smallattcount == 7){
-		NewSkill->SetActorLocation({ GetActorLocation().X,-110.0f,0.0f });
+		NewSkill->SetActorLocation({ GetActorLocation().X- 35.0f,-120.0f,0.0f });
 	}
 	else if (smallattcount == 2 || smallattcount == 6)
 	{
-		NewSkill->SetActorLocation({ GetActorLocation().X,-190.0f,0.0f });
+		NewSkill->SetActorLocation({ GetActorLocation().X- 35.0f,-200.0f,0.0f });
 	}
 }
 
@@ -227,10 +227,10 @@ void ABoss1_Monster1::smallattready(float _DeltaTime)
 void ABoss1_Monster1::smallatt(float _DeltaTime)
 {
 
+	SmallBoss1->SetFrameCallback("smallatt", 8, [=] {createSkill(); });
 
 	if (true == SmallBoss1->IsCurAnimationEnd())
 	{
-		createSkill();
 		smallattcount++;
 	}
 

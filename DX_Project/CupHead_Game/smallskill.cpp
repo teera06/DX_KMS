@@ -41,7 +41,7 @@ void Asmallskill::BeginPlay()
 	
 	smallskillRender->SetDir(EEngineDir::Left);
 
-	smallskillRender->CreateAnimation("smallskill", "smallskill", 0.1f);
+	smallskillRender->CreateAnimation("smallskill", "smallskill", 0.075f);
 	//smallskillRender->CreateAnimation("Peashot_Loop", "Peashot_Loop", 0.05f);
 
 	smallskillRender->ChangeAnimation("smallskill");
