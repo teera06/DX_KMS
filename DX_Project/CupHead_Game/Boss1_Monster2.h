@@ -59,6 +59,7 @@ private:
 
 	int SlotAttCount = 0;
 
+
 	bool Change3 = false;
 
 	bool SlotTouch = false;

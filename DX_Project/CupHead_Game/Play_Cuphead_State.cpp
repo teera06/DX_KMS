@@ -1023,13 +1023,6 @@ void APlay_Cuphead::Jump(float _DeltaTime)
 {
 	DirCheck();
 
-	//std::shared_ptr<UEngineTexture> Tex = UContentsHelper::MapTex;
-	//Color8Bit Color = Tex->GetColor(GetActorLocation().iX(), GetActorLocation().iY(), Color8Bit::Black);
-
-	//if (Color == Color8Bit::Black)
-	//{
-		//JumpVector = FVector::Zero;
-	//}
 
 	if (true == IsUp('Z'))
 	{

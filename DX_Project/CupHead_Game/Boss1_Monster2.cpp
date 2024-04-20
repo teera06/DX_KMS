@@ -93,11 +93,11 @@ void ABoss1_Monster2::BeginPlay()
 	Super::BeginPlay();
 
 	//SetActorScale3D(FVector(324.0f, 350.0f, 0.0f));
-	SetActorLocation(FVector(420.0f, -300.0f, 0.0f));
+	SetActorLocation(FVector(380.0f, -270.0f, 0.0f));
 	BigBoss1->SetOrder(ERenderOrder::Monster1);
 	BigBoss1->SetSprite("tallfrog_idle_0001.png");
 	BigBoss1->SetSamplering(ETextureSampling::LINEAR);
-	BigBoss1->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
+	BigBoss1->SetPlusColor(FVector(0.15f, 0.15f, 0.15f));
 
 	SlotMouse->SetOrder(ERenderOrder::SlotMouse);
 	SlotMouse->SetSprite("tallfrog_slotman_spit_0001.png");
@@ -323,7 +323,6 @@ void ABoss1_Monster2::Collisioncheck()
 		Monster->Destroy();
 
 		Change3 = true;
-		//_Collison->GetActor()->Destroy();
 	});
 }
 
@@ -366,7 +365,6 @@ void ABoss1_Monster2::bigatt(float _DeltaTime)
 	BigBoss1->SetFrameCallback("bigatt", 22, [=] {createSkill(); });
 	if (true == BigBoss1->IsCurAnimationEnd())
 	{
-		//createSkill();
 		Bigattcount++;
 	}
 
@@ -401,6 +399,12 @@ void ABoss1_Monster2::bigatt2Ready2(float _DeltaTime)
 
 void ABoss1_Monster2::bigatt2(float _DeltaTime)
 {
+
+	if (GetActorLocation().iX() <= 430) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
+	{
+		AddActorLocation((FVector::Right*2.0f + FVector::Down) * 500.0f * _DeltaTime);
+	}
+
 	if (true == BigBoss1->IsCurAnimationEnd())
 	{
 		//createSkill();
@@ -500,16 +504,12 @@ void ABoss1_Monster2::CoinAtt(float _DeltaTime)
 {
 	if (Bigattcount == 1)
 	{
-		//coolDownTime = 6.0f;
-		//SlotMouse->SetActive(false);
 		Phase2.ChangeState("Phase3SlotReady");
-		//AddActorLocation(FVector(-100.0f, 0.0f, 0.0f));
 		return;
 	}
 
 	if (true == SlotMouse->IsCurAnimationEnd())
 	{
-		//createSkill();
 		createCoinAtt();
 		Bigattcount++;
 	}
@@ -529,7 +529,6 @@ void ABoss1_Monster2::Phase3SlotReady(float _DeltaTime)
 		SlotMouse->SetActive(false);
 		coolDownTime = 3.0f;
 		Bigattcount = 0;
-		//AddActorLocation(FVector(100.0f, 0.0f, 0.0f));
 		Phase2.ChangeState("Phase3Slot");
 		return;
 	}
