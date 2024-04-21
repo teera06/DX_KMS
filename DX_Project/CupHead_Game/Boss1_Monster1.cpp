@@ -140,7 +140,7 @@ void ABoss1_Monster1::AniCreate()
 {
 	SmallBoss1->CreateAnimation("smallintro", "smallintro", 0.15f);
 	SmallBoss1->CreateAnimation("smallIdle", "smallIdle", 0.075f);
-	SmallBoss1->CreateAnimation("smallattready", "smallattready", 0.1f);
+	SmallBoss1->CreateAnimation("smallattready", "smallattready", 0.12f);
 	SmallBoss1->CreateAnimation("smallatt", "smallatt", 0.065f);
 	SmallBoss1->CreateAnimation("smallattEnd", "smallattEnd", 0.075f);
 	SmallBoss1->CreateAnimation("phase2changeReady", "phase2changeReady", 0.1f);
