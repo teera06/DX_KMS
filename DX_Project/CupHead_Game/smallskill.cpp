@@ -54,7 +54,13 @@ void Asmallskill::Tick(float _DeltaTime)
 
 	if (false == FirstAniCheck && true == smallskillRender->IsCurAnimationEnd())
 	{
-		smallskillRender->ChangeAnimation("smallskill");
+		if (false == ParryCheck)
+		{
+			smallskillRender->ChangeAnimation("smallskill");
+		}
+		else {
+			smallskillRender->ChangeAnimation("smallskill2");
+		}
 		FirstAniCheck = true;
 		return;
 	}

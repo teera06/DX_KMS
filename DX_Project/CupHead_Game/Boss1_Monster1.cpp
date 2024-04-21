@@ -159,14 +159,27 @@ void ABoss1_Monster1::SkillYMove()
 {
 	if (smallattcount==0 || smallattcount == 4 || smallattcount == 8)
 	{
+		if (smallattcount == 8)
+		{
+			NewSkill->SetParryCheck(true);
+		}
 		NewSkill->SetActorLocation({ GetActorLocation().X-35.0f,-20.0f,0.0f });
 		
 	}
 	else if(smallattcount == 1 || smallattcount == 3 || smallattcount == 5 || smallattcount == 7){
+
+		if (smallattcount == 5)
+		{
+			NewSkill->SetParryCheck(true);
+		}
 		NewSkill->SetActorLocation({ GetActorLocation().X- 35.0f,-110.0f,0.0f });
 	}
 	else if (smallattcount == 2 || smallattcount == 6)
 	{
+		if (smallattcount == 2)
+		{
+			NewSkill->SetParryCheck(true);
+		}
 		NewSkill->SetActorLocation({ GetActorLocation().X- 35.0f,-210.0f,0.0f });
 	}
 }

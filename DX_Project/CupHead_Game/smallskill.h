@@ -23,6 +23,11 @@ public:
 		SmallSkillDir = _SmallSkillDir;
 	}
 
+	inline void SetParryCheck(const bool& _ParryCheck)
+	{
+		ParryCheck = _ParryCheck;
+	}
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -35,6 +40,8 @@ private:
 	float Speed = 700.0f;
 
 	bool FirstAniCheck = false;
+
+	bool ParryCheck = false;
 
 	void Collisiongather();
 };
