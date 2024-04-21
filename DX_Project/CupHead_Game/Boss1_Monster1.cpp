@@ -14,7 +14,7 @@ ABoss1_Monster1::ABoss1_Monster1()
 	SmallBoss1 = CreateDefaultSubObject<USpriteRenderer>("Boss1");
 
 	SmallBoss1->SetupAttachment(Root);
-	SmallBoss1->SetPivot(EPivot::BOT);
+	SmallBoss1->SetPivot(EPivot::RIGHTBOTTOM);
 
 	smallBossCollision = CreateDefaultSubObject<UCollision>("SmallBoss");
 	smallBossCollision->SetupAttachment(Root);
