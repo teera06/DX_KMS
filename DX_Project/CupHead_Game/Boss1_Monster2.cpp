@@ -97,7 +97,7 @@ void ABoss1_Monster2::BeginPlay()
 	BigBoss1->SetOrder(ERenderOrder::Monster1);
 	BigBoss1->SetSprite("tallfrog_idle_0001.png");
 	BigBoss1->SetSamplering(ETextureSampling::LINEAR);
-	BigBoss1->SetPlusColor(FVector(0.15f, 0.15f, 0.15f));
+	BigBoss1->SetPlusColor(FVector(0.18f, 0.18f, 0.13f));
 
 	SlotMouse->SetOrder(ERenderOrder::SlotMouse);
 	SlotMouse->SetSprite("tallfrog_slotman_spit_0001.png");
@@ -254,8 +254,8 @@ void ABoss1_Monster2::Phase2StateInit()
 void ABoss1_Monster2::AniCreate()
 {
 	BigBoss1->CreateAnimation("bigintro", "bigintro", 0.12f);
-	BigBoss1->CreateAnimation("bigIdle", "bigIdle", 0.1f);
-	BigBoss1->CreateAnimation("bigatt", "bigatt", 0.1f);
+	BigBoss1->CreateAnimation("bigIdle", "bigIdle", 0.075f);
+	BigBoss1->CreateAnimation("bigatt", "bigatt", 0.075f);
 
 	BigBoss1->CreateAnimation("bigatt2Ready", "bigatt2Ready", 0.1f);
 	BigBoss1->CreateAnimation("bigatt2Ready2", "bigatt2Ready2", 0.1f);
