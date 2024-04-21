@@ -14,8 +14,8 @@ ABoss1_Monster1::ABoss1_Monster1()
 	SmallBoss1 = CreateDefaultSubObject<USpriteRenderer>("Boss1");
 
 	SmallBoss1->SetupAttachment(Root);
-	SmallBoss1->SetPivot(EPivot::RIGHTBOTTOM);
-	SmallBoss1->AddPosition(FVector(200.0f, -10.0f, 0.0f));
+	SmallBoss1->SetPivot(EPivot::BOT);
+	//SmallBoss1->AddPosition(FVector(200.0f, -10.0f, 0.0f));
 
 	smallBossCollision = CreateDefaultSubObject<UCollision>("SmallBoss");
 	smallBossCollision->SetupAttachment(Root);
@@ -35,7 +35,7 @@ void ABoss1_Monster1::BeginPlay()
 	Super::BeginPlay();
 
 	//SetActorScale3D(FVector(324.0f, 350.0f, 0.0f));
-	SetActorLocation(FVector(300.0f, -280.0f, 0.0f));
+	SetActorLocation(FVector(330.0f, -295.0f, 0.0f));
 	SmallBoss1->SetOrder(ERenderOrder::Monster2);
 	SmallBoss1->SetSprite("shortFrog_idle_0001.png");
 	SmallBoss1->SetSamplering(ETextureSampling::LINEAR);
