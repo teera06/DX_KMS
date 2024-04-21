@@ -119,47 +119,15 @@ void ABoss1_Monster2::BeginPlay()
 	SlotImage3->SetSamplering(ETextureSampling::LINEAR);
 	SlotImage3->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 
-	BigBoss1->CreateAnimation("bigintro", "bigintro", 0.12f);
-	BigBoss1->CreateAnimation("bigIdle", "bigIdle", 0.1f);
-	BigBoss1->CreateAnimation("bigatt", "bigatt", 0.1f);
-
-	BigBoss1->CreateAnimation("bigatt2Ready", "bigatt2Ready", 0.1f);
-	BigBoss1->CreateAnimation("bigatt2Ready2", "bigatt2Ready2", 0.1f);
-	BigBoss1->CreateAnimation("bigatt2", "bigatt2", 0.1f);
-	BigBoss1->CreateAnimation("bigatt2end", "bigatt2end", 0.1f);
-	BigBoss1->CreateAnimation("phase3changeReady1", "phase3changeReady1", 0.1f);
-	BigBoss1->CreateAnimation("phase3changeReady2", "phase3changeReady2", 0.1f);
-
-	BigBoss1->CreateAnimation("phase3Intro", "phase3Intro", 0.12f);
-	BigBoss1->CreateAnimation("phase3Intro2", "phase3Intro2", 0.1f);
-	BigBoss1->CreateAnimation("phase3Idle", "phase3Idle", 0.1f);
-	BigBoss1->CreateAnimation("Phase3SlotReady", "Phase3SlotReady", 0.1f,false);
-	BigBoss1->CreateAnimation("Phase3Slot", "Phase3Slot", 0.1f);
-
-	BigBoss1->CreateAnimation("Phase3SlotStart", "Phase3SlotReady", 0.1f, false,8,0 );
-
-	BigBoss1->CreateAnimation("Phase3AttReady", "Phase3AttReady", 0.1f);
-	BigBoss1->CreateAnimation("Phase3Att", "Phase3Att", 0.1f);
-
-	SlotMouse->CreateAnimation("CoinAtt", "CoinAtt", 0.1f);
-
-	SlotImage1->CreateAnimation("slot1", "TEMP1.png", 0.1f,true);
-	SlotImage1->CreateAnimation("slotObject1", "TEMP2.png", 0.1f,false,0, 0);
-
-
-	SlotImage2->CreateAnimation("slot1", "TEMP1.png", 0.1f,true);
-	SlotImage2->CreateAnimation("slotObject1", "TEMP2.png", 0.1f, false, 0, 0);
-
-	SlotImage3->CreateAnimation("slot1", "TEMP1.png", 0.1f,true);
-	SlotImage3->CreateAnimation("slotObject1", "TEMP2.png", 0.1f, false, 0, 0);
+	
 
 	WindSkill->SetOrder(ERenderOrder::Monster1);
 	WindSkill->SetSprite("tallfrog_fan_wind_0001.png");
 	WindSkill->SetSamplering(ETextureSampling::LINEAR);
 	WindSkill->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 
-	WindSkill->CreateAnimation("Wind", "Wind", 0.12f);
 
+	AniCreate();
 	Phase1StateInit();
 
 	BigBoss1->SetAutoSize(1.0f, true);
@@ -281,6 +249,45 @@ void ABoss1_Monster2::Phase2StateInit()
 	Phase2.SetStartFunction("Phase3Att", [=] {BigBoss1->ChangeAnimation("Phase3Att"); });
 
 	Phase2.ChangeState("phase3Intro");
+}
+
+void ABoss1_Monster2::AniCreate()
+{
+	BigBoss1->CreateAnimation("bigintro", "bigintro", 0.12f);
+	BigBoss1->CreateAnimation("bigIdle", "bigIdle", 0.1f);
+	BigBoss1->CreateAnimation("bigatt", "bigatt", 0.1f);
+
+	BigBoss1->CreateAnimation("bigatt2Ready", "bigatt2Ready", 0.1f);
+	BigBoss1->CreateAnimation("bigatt2Ready2", "bigatt2Ready2", 0.1f);
+	BigBoss1->CreateAnimation("bigatt2", "bigatt2", 0.1f);
+	BigBoss1->CreateAnimation("bigatt2end", "bigatt2end", 0.1f);
+	BigBoss1->CreateAnimation("phase3changeReady1", "phase3changeReady1", 0.1f);
+	BigBoss1->CreateAnimation("phase3changeReady2", "phase3changeReady2", 0.1f);
+
+	BigBoss1->CreateAnimation("phase3Intro", "phase3Intro", 0.12f);
+	BigBoss1->CreateAnimation("phase3Intro2", "phase3Intro2", 0.1f);
+	BigBoss1->CreateAnimation("phase3Idle", "phase3Idle", 0.1f);
+	BigBoss1->CreateAnimation("Phase3SlotReady", "Phase3SlotReady", 0.1f, false);
+	BigBoss1->CreateAnimation("Phase3Slot", "Phase3Slot", 0.1f);
+
+	BigBoss1->CreateAnimation("Phase3SlotStart", "Phase3SlotReady", 0.1f, false, 8, 0);
+
+	BigBoss1->CreateAnimation("Phase3AttReady", "Phase3AttReady", 0.1f);
+	BigBoss1->CreateAnimation("Phase3Att", "Phase3Att", 0.1f);
+
+	SlotMouse->CreateAnimation("CoinAtt", "CoinAtt", 0.1f);
+
+	SlotImage1->CreateAnimation("slot1", "TEMP1.png", 0.1f, true);
+	SlotImage1->CreateAnimation("slotObject1", "TEMP2.png", 0.1f, false, 0, 0);
+
+
+	SlotImage2->CreateAnimation("slot1", "TEMP1.png", 0.1f, true);
+	SlotImage2->CreateAnimation("slotObject1", "TEMP2.png", 0.1f, false, 0, 0);
+
+	SlotImage3->CreateAnimation("slot1", "TEMP1.png", 0.1f, true);
+	SlotImage3->CreateAnimation("slotObject1", "TEMP2.png", 0.1f, false, 0, 0);
+
+	WindSkill->CreateAnimation("Wind", "Wind", 0.12f);
 }
 
 

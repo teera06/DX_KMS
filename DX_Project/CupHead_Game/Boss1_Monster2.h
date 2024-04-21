@@ -33,6 +33,7 @@ protected:
 
 	void Phase1StateInit() override;
 	void Phase2StateInit() override;
+	void AniCreate() override;
 private:
 	std::shared_ptr<AFirefly> NewFirefly = nullptr;
 	std::shared_ptr<ACoin> NewCoin = nullptr;

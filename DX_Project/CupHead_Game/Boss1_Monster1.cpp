@@ -15,6 +15,7 @@ ABoss1_Monster1::ABoss1_Monster1()
 
 	SmallBoss1->SetupAttachment(Root);
 	SmallBoss1->SetPivot(EPivot::RIGHTBOTTOM);
+	SmallBoss1->AddPosition(FVector(200.0f, -10.0f, 0.0f));
 
 	smallBossCollision = CreateDefaultSubObject<UCollision>("SmallBoss");
 	smallBossCollision->SetupAttachment(Root);
