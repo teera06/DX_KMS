@@ -108,7 +108,7 @@ void AFirefly::patternStateInit()
 void AFirefly::Intro(float _DeltaTime)
 {
 	Delay -= _DeltaTime;
-	AddActorLocation(FVector::Left * Speed * _DeltaTime);
+	AddActorLocation(Move * Speed * _DeltaTime);
 
 	if (true == Die)
 	{
@@ -119,7 +119,6 @@ void AFirefly::Intro(float _DeltaTime)
 	if (Delay < 0.0f)
 	{
 		Delay = 2.0f;
-		//MoveCoolDonwTime = 2.0f;
 		pattern.ChangeState("bigSkillIdle");
 		return;
 	}

@@ -21,14 +21,19 @@ public:
 
 	
 
-	void SetDie(bool _Die)
+	inline void SetDie(const bool& _Die)
 	{
 		Die = _Die;
 	}
 
-	void SetDelay(float _Delay)
+	inline void SetDelay(const float& _Delay)
 	{
 		Delay = _Delay;
+	}
+
+	inline void SetMove(const FVector& _Move)
+	{
+		Move = _Move;
 	}
 
 	UStateManager pattern;
@@ -42,6 +47,8 @@ private:
 	UCollision* FireflyCollision = nullptr;
 
 	FVector SmallSkillDir = FVector::Zero;
+
+	FVector Move = FVector::Zero;
 
 	float Delay = 0.0f;
 

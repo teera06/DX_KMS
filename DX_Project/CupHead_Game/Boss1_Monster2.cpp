@@ -268,7 +268,7 @@ void ABoss1_Monster2::AniCreate()
 	BigBoss1->CreateAnimation("bigintro", "bigintro", 0.12f);
 	BigBoss1->CreateAnimation("bigIdle", "bigIdle", 0.075f);
 	BigBoss1->CreateAnimation("bigattReady1", "bigattReady1", 0.075f);
-	BigBoss1->CreateAnimation("bigattReady2", "bigattReady1", 0.1f,false,9,10);
+	BigBoss1->CreateAnimation("bigattReady2", "bigattReady1", 0.1f,true,9,10);
 	BigBoss1->CreateAnimation("bigatt", "bigatt", 0.065f);
 	BigBoss1->CreateAnimation("bigattEnd", "bigattEnd", 0.035f);
 
@@ -315,6 +315,14 @@ void ABoss1_Monster2::createSkill()
 	NewFirefly = GetWorld()->SpawnActor<AFirefly>("Firefly");
 
 	NewFirefly->SetDelay(RandomSkillDelay);
+
+	if (Bigattcount == 1 || Bigattcount == 4 || Bigattcount == 6)
+	{
+		NewFirefly->SetMove(FVector::Left + (FVector::Up*0.2f));
+		return;
+	}
+
+	NewFirefly->SetMove(FVector::Left);
 }
 
 void ABoss1_Monster2::createCoinAtt()
@@ -405,14 +413,14 @@ void ABoss1_Monster2::bigatt(float _DeltaTime)
 	if (true == BigBoss1->IsCurAnimationEnd())
 	{
 		Bigattcount++;
-		if (Bigattcount == 2 || Bigattcount == 3)
+		if (Bigattcount == 2 || Bigattcount == 3 || Bigattcount == 5)
 		{
 			Phase1.ChangeState("bigattReady1");
 			return;
 		}
 	}
 
-	if (Bigattcount > 4)
+	if (Bigattcount > 6)
 	{
 		Phase1.ChangeState("bigattEnd");
 		return;
