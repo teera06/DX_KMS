@@ -163,6 +163,8 @@ void ABoss1_Monster2::Phase1StateInit()
 
 	Phase1.CreateState("bigintro");
 	Phase1.CreateState("bigIdle");
+	Phase1.CreateState("bigattReady1");
+	Phase1.CreateState("bigattReady2");
 	Phase1.CreateState("bigatt");
 	Phase1.CreateState("bigatt2Ready");
 	Phase1.CreateState("bigatt2Ready2");
@@ -178,6 +180,12 @@ void ABoss1_Monster2::Phase1StateInit()
 
 	Phase1.SetUpdateFunction("bigIdle", std::bind(&ABoss1_Monster2::bigIdle, this, std::placeholders::_1));
 	Phase1.SetStartFunction("bigIdle", [=] {BigBoss1->ChangeAnimation("bigIdle"); });
+
+	Phase1.SetUpdateFunction("bigattReady1", std::bind(&ABoss1_Monster2::bigattReady1, this, std::placeholders::_1));
+	Phase1.SetStartFunction("bigattReady1", [=] {BigBoss1->ChangeAnimation("bigattReady1"); });
+
+	Phase1.SetUpdateFunction("bigattReady2", std::bind(&ABoss1_Monster2::bigattReady2, this, std::placeholders::_1));
+	Phase1.SetStartFunction("bigattReady2", [=] {BigBoss1->ChangeAnimation("bigattReady2"); });
 
 	Phase1.SetUpdateFunction("bigatt", std::bind(&ABoss1_Monster2::bigatt, this, std::placeholders::_1));
 	Phase1.SetStartFunction("bigatt", [=] {BigBoss1->ChangeAnimation("bigatt"); });
@@ -255,6 +263,8 @@ void ABoss1_Monster2::AniCreate()
 {
 	BigBoss1->CreateAnimation("bigintro", "bigintro", 0.12f);
 	BigBoss1->CreateAnimation("bigIdle", "bigIdle", 0.075f);
+	BigBoss1->CreateAnimation("bigattReady1", "bigattReady1", 0.1f);
+	BigBoss1->CreateAnimation("bigattReady2", "bigattReady1", 0.1f,false,9,10);
 	BigBoss1->CreateAnimation("bigatt", "bigatt", 0.075f);
 
 	BigBoss1->CreateAnimation("bigatt2Ready", "bigatt2Ready", 0.1f);
@@ -353,7 +363,7 @@ void ABoss1_Monster2::bigIdle(float _DeltaTime)
 
 	if (coolDownTime < 0 && 1 == phasecheck && true == attOrder)
 	{
-		Phase1.ChangeState("bigatt");
+		Phase1.ChangeState("bigattReady1");
 		return;
 	}
 
@@ -363,6 +373,25 @@ void ABoss1_Monster2::bigIdle(float _DeltaTime)
 		return;
 	}
 
+}
+
+void ABoss1_Monster2::bigattReady1(float _DeltaTime)
+{
+	if (true == BigBoss1->IsCurAnimationEnd())
+	{
+		Phase1.ChangeState("bigattReady2");
+		return;
+	}
+}
+
+void ABoss1_Monster2::bigattReady2(float _DeltaTime)
+{
+
+	if (true == BigBoss1->IsCurAnimationEnd())
+	{
+		Phase1.ChangeState("bigatt");
+		return;
+	}
 }
 
 void ABoss1_Monster2::bigatt(float _DeltaTime)

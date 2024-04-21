@@ -77,6 +77,8 @@ private:
 	void bigintro(float _DeltaTime);
 	void bigIdle(float _DeltaTime);
 
+	void bigattReady1(float _DeltaTime);
+	void bigattReady2(float _DeltaTime);
 	void bigatt(float _DeltaTime);
 
 	void bigatt2Ready(float _DeltaTime);
