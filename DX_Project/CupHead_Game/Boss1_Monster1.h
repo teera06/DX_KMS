@@ -54,6 +54,7 @@ private:
 	void smallIdle(float _DeltaTime);
 	void smallattready(float _DeltaTime);
 	void smallatt(float _DeltaTime);
+	void smallattEnd(float _DeltaTime);
 
 
 	void phase2changeReady(float _DeltaTime);
