@@ -270,7 +270,7 @@ void ABoss1_Monster2::AniCreate()
 	BigBoss1->CreateAnimation("bigattReady1", "bigattReady1", 0.075f);
 	BigBoss1->CreateAnimation("bigattReady2", "bigattReady1", 0.1f,false,9,10);
 	BigBoss1->CreateAnimation("bigatt", "bigatt", 0.065f);
-	BigBoss1->CreateAnimation("bigattEnd", "bigattEnd", 0.075f);
+	BigBoss1->CreateAnimation("bigattEnd", "bigattEnd", 0.035f);
 
 	BigBoss1->CreateAnimation("bigatt2Ready", "bigatt2Ready", 0.1f);
 	BigBoss1->CreateAnimation("bigatt2Ready2", "bigatt2Ready2", 0.1f);
