@@ -55,6 +55,7 @@ private:
 
 	float RandomSkillDelay = 0;
 
+	float att1Delay = 0.4f;
 
 	int Bigattcount = 0;
 
@@ -80,6 +81,7 @@ private:
 	void bigattReady1(float _DeltaTime);
 	void bigattReady2(float _DeltaTime);
 	void bigatt(float _DeltaTime);
+	void bigattEnd(float _DeltaTime);
 
 	void bigatt2Ready(float _DeltaTime);
 	void bigatt2Ready2(float _DeltaTime);

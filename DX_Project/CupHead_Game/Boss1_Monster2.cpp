@@ -166,6 +166,7 @@ void ABoss1_Monster2::Phase1StateInit()
 	Phase1.CreateState("bigattReady1");
 	Phase1.CreateState("bigattReady2");
 	Phase1.CreateState("bigatt");
+	Phase1.CreateState("bigattEnd");
 	Phase1.CreateState("bigatt2Ready");
 	Phase1.CreateState("bigatt2Ready2");
 	Phase1.CreateState("bigatt2");
@@ -189,6 +190,9 @@ void ABoss1_Monster2::Phase1StateInit()
 
 	Phase1.SetUpdateFunction("bigatt", std::bind(&ABoss1_Monster2::bigatt, this, std::placeholders::_1));
 	Phase1.SetStartFunction("bigatt", [=] {BigBoss1->ChangeAnimation("bigatt"); });
+
+	Phase1.SetUpdateFunction("bigattEnd", std::bind(&ABoss1_Monster2::bigattEnd, this, std::placeholders::_1));
+	Phase1.SetStartFunction("bigattEnd", [=] {BigBoss1->ChangeAnimation("bigattEnd"); });
 
 	Phase1.SetUpdateFunction("bigatt2Ready", std::bind(&ABoss1_Monster2::bigatt2Ready, this, std::placeholders::_1));
 	Phase1.SetStartFunction("bigatt2Ready", [=] {BigBoss1->ChangeAnimation("bigatt2Ready"); });
@@ -263,9 +267,10 @@ void ABoss1_Monster2::AniCreate()
 {
 	BigBoss1->CreateAnimation("bigintro", "bigintro", 0.12f);
 	BigBoss1->CreateAnimation("bigIdle", "bigIdle", 0.075f);
-	BigBoss1->CreateAnimation("bigattReady1", "bigattReady1", 0.1f);
+	BigBoss1->CreateAnimation("bigattReady1", "bigattReady1", 0.075f);
 	BigBoss1->CreateAnimation("bigattReady2", "bigattReady1", 0.1f,false,9,10);
-	BigBoss1->CreateAnimation("bigatt", "bigatt", 0.075f);
+	BigBoss1->CreateAnimation("bigatt", "bigatt", 0.065f);
+	BigBoss1->CreateAnimation("bigattEnd", "bigattEnd", 0.075f);
 
 	BigBoss1->CreateAnimation("bigatt2Ready", "bigatt2Ready", 0.1f);
 	BigBoss1->CreateAnimation("bigatt2Ready2", "bigatt2Ready2", 0.1f);
@@ -310,9 +315,6 @@ void ABoss1_Monster2::createSkill()
 	NewFirefly = GetWorld()->SpawnActor<AFirefly>("Firefly");
 
 	NewFirefly->SetDelay(RandomSkillDelay);
-	//NewFirefly->SetSmallSkillDir(FVector::Left);
-	//NewFirefly->SetActorLocation({ GetActorLocation().X-10.0f,270.0f,0.0f });
-	//SkillYMove();
 }
 
 void ABoss1_Monster2::createCoinAtt()
@@ -386,9 +388,10 @@ void ABoss1_Monster2::bigattReady1(float _DeltaTime)
 
 void ABoss1_Monster2::bigattReady2(float _DeltaTime)
 {
-
-	if (true == BigBoss1->IsCurAnimationEnd())
+	att1Delay -= _DeltaTime;
+	if (att1Delay<0)
 	{
+		att1Delay = 0.4f;
 		Phase1.ChangeState("bigatt");
 		return;
 	}
@@ -397,19 +400,33 @@ void ABoss1_Monster2::bigattReady2(float _DeltaTime)
 void ABoss1_Monster2::bigatt(float _DeltaTime)
 {
 
-	BigBoss1->SetFrameCallback("bigatt", 14, [=] {createSkill(); });
-	BigBoss1->SetFrameCallback("bigatt", 22, [=] {createSkill(); });
+	BigBoss1->SetFrameCallback("bigatt", 4, [=] {createSkill(); });
+	
 	if (true == BigBoss1->IsCurAnimationEnd())
 	{
 		Bigattcount++;
+		if (Bigattcount == 2 || Bigattcount == 3)
+		{
+			Phase1.ChangeState("bigattReady1");
+			return;
+		}
 	}
 
-	if (Bigattcount > 2)
+	if (Bigattcount > 4)
 	{
-		Phase1.ChangeState("BigIdle");
+		Phase1.ChangeState("bigattEnd");
+		return;
+	}
+}
+
+void ABoss1_Monster2::bigattEnd(float _DeltaTime)
+{
+	if (true == BigBoss1->IsCurAnimationEnd())
+	{
 		coolDownTime = 6.0f;
 		attOrder = false;
 		Bigattcount = 0;
+		Phase1.ChangeState("BigIdle");
 		return;
 	}
 }
