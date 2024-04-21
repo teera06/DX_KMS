@@ -34,6 +34,8 @@ private:
 	FVector Move = FVector::Zero;
 	float Speed = 700.0f;
 
+	bool FirstAniCheck = false;
+
 	void Collisiongather();
 };
 

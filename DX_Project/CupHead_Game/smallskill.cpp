@@ -42,13 +42,23 @@ void Asmallskill::BeginPlay()
 	smallskillRender->SetDir(EEngineDir::Left);
 
 	smallskillRender->CreateAnimation("smallskill", "smallskill", 0.075f);
+	smallskillRender->CreateAnimation("smallskill2", "smallskill2", 0.075f);
+	smallskillRender->CreateAnimation("smallskilleffect", "smallskilleffect", 0.02f);
 	//smallskillRender->CreateAnimation("Peashot_Loop", "Peashot_Loop", 0.05f);
 
-	smallskillRender->ChangeAnimation("smallskill");
+	smallskillRender->ChangeAnimation("smallskilleffect");
 }
 
 void Asmallskill::Tick(float _DeltaTime)
 {
+
+	if (false == FirstAniCheck && true == smallskillRender->IsCurAnimationEnd())
+	{
+		smallskillRender->ChangeAnimation("smallskill");
+		FirstAniCheck = true;
+		return;
+	}
+
 	Super::Tick(_DeltaTime);
 
 	if (SmallSkillDir.iX() != 0)
