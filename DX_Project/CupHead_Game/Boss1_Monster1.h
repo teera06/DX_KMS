@@ -69,7 +69,7 @@ private:
 	void phase3change1(float _DeltaTime);
 	void phase3change2(float _DeltaTime);
 
-
+	void smallatt2Ready1(float _DeltaTime);
 	void smallatt2(float _DeltaTime);
 };
 
