@@ -146,6 +146,7 @@ void ABoss1_Monster1::AniCreate()
 	SmallBoss1->CreateAnimation("smallatt2", "smallatt2", 0.1f);
 }
 
+
 void ABoss1_Monster1::createSkill()
 {
 	NewSkill = GetWorld()->SpawnActor<Asmallskill>("BaseBullet");

@@ -41,6 +41,8 @@ private:
 	bool att = false;
 
 
+
+
 	void createSkill();
 	void SkillYMove();
 
