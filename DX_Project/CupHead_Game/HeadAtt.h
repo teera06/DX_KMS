@@ -33,5 +33,6 @@ private:
 
 	void DragonHeadAppear(float _DeltaTime);
 	void DragonHeadSmile(float _DeltaTime);
+	void DragonHeadDisappear(float _DeltaTime);
 };
 
