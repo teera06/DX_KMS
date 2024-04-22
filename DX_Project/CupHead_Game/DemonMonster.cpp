@@ -113,8 +113,9 @@ void ADemonMonster::DemonAttack1(float _DeltaTime)
 void ADemonMonster::DemonAttack2(float _DeltaTime)
 {
 	AddActorLocation(Move * speed * _DeltaTime);
-	if (GetActorLocation().iX() <= -700 || GetActorLocation().iX() >= 700) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
-	{
 
+	if (Move.iX()==1 && GetActorLocation().iX() >= 700) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
+	{
+		Destroy();
 	}
 }
