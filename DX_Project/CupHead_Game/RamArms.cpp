@@ -86,7 +86,7 @@ void ARamArms::RamArmsEnd(float _DeltaTime)
 
 		if (true == RamArms->IsCurAnimationEnd())
 		{
-			//SkillDestory = true;
+			SkillDestory = true;
 			Destroy();
 			return;
 		}
@@ -97,7 +97,7 @@ void ARamArms::RamArmsEnd(float _DeltaTime)
 
 		if (true == RamArms->IsCurAnimationEnd())
 		{
-			//SkillDestory = true;
+
 			Destroy();
 			return;
 		}

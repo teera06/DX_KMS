@@ -55,6 +55,7 @@ void ADevil1::Phase1StateInit()
 	Phase1.CreateState("DragonReverse");
 	Phase1.CreateState("RamTransform");
 	Phase1.CreateState("RamIdle");
+	Phase1.CreateState("RamReverse");
 
 	Phase1.SetUpdateFunction("Phase1Intro", std::bind(&ADevil1::Phase1Intro, this, std::placeholders::_1));
 	Phase1.SetStartFunction("Phase1Intro", [=] {Boss2->ChangeAnimation("Phase1Intro"); });
@@ -77,6 +78,9 @@ void ADevil1::Phase1StateInit()
 	Phase1.SetUpdateFunction("RamIdle", std::bind(&ADevil1::RamIdle, this, std::placeholders::_1));
 	Phase1.SetStartFunction("RamIdle", [=] {Boss2->ChangeAnimation("RamIdle"); });
 
+	Phase1.SetUpdateFunction("RamReverse", std::bind(&ADevil1::RamReverse, this, std::placeholders::_1));
+	Phase1.SetStartFunction("RamReverse", [=] {Boss2->ChangeAnimation("RamReverse"); });
+
 	Phase1.ChangeState("Phase1Intro");
 }
 
@@ -90,7 +94,7 @@ void ADevil1::AniCreate()
 
 	Boss2->CreateAnimation("RamTransform", "RamTransform", 0.075f);
 	Boss2->CreateAnimation("RamIdle", "RamIdle", 0.075f);
-	Boss2->CreateAnimation("RamReverse", "RamTransform", 0.055f, false, 30, 2);
+	Boss2->CreateAnimation("RamReverse", "RamTransform", 0.055f, true, 27, 2);
 }
 
 void ADevil1::CreateHeadAtt()
@@ -185,10 +189,21 @@ void ADevil1::RamTransform(float _DeltaTime)
 
 void ADevil1::RamIdle(float _DeltaTime)
 {
-
+	if (true == SkillDestory)
+	{
+		Phase1.ChangeState("RamReverse");
+		return;
+	}
 }
 
 void ADevil1::RamReverse(float _DeltaTime)
 {
-
+	if (true == Boss2->IsCurAnimationEnd())
+	{
+		coolDownTime = 6.0f;
+		attOrder = 2;
+		SkillDestory = false;
+		Phase1.ChangeState("Phase1Idle");
+		return;
+	}
 }

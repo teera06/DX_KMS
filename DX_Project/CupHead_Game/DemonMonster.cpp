@@ -21,6 +21,7 @@ ADemonMonster::ADemonMonster()
 	Demon->SetSprite("a1.png");
 	Demon->SetSamplering(ETextureSampling::LINEAR);
 	Demon->SetAutoSize(1.0f, true);
+	Demon->SetPlusColor(FVector(0.1f,0.1f, 0.1f));
 }
 
 ADemonMonster::~ADemonMonster()
