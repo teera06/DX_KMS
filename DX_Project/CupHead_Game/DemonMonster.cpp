@@ -17,7 +17,7 @@ ADemonMonster::ADemonMonster()
 
 	SetRoot(Root);
 
-	Demon->SetOrder(ERenderOrder::Boss1_back3);
+	Demon->SetOrder(ERenderOrder::BackMonster);
 	Demon->SetSprite("a1.png");
 	Demon->SetSamplering(ETextureSampling::LINEAR);
 	Demon->SetAutoSize(1.0f, true);

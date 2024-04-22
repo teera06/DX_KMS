@@ -25,7 +25,7 @@ ABossBackMap1::ABossBackMap1()
 	
 	Front->SetupAttachment(Root);
 
-	Front->SetOrder(ERenderOrder::Boss1_back2);
+	Front->SetOrder(ERenderOrder::Boss1_crowd2);
 	Front->SetSprite("BossDevil_Phase1BackgroundChair.png");
 	Front->SetSamplering(ETextureSampling::LINEAR);
 	Front->SetAutoSize(1.0f, true);
@@ -40,7 +40,7 @@ ABossBackMap1::~ABossBackMap1()
 void ABossBackMap1::BeginPlay()
 {
 	Super::BeginPlay();
-	Front->SetPosition(FVector(0.0f, 0.0f, -150.0f));
+	Front->SetPosition(FVector(0.0f, 60.0f, -150.0f));
 	//SetActorScale3D(FVector(1600.0f, 900.0f, 100.0f));
 	SetActorLocation(FVector(0.0f, 0.0f, 200.0f));
 }

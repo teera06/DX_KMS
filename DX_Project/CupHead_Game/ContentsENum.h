@@ -44,6 +44,7 @@ enum class ERenderOrder
 	WorldMap,
 	Boss1_back1,
 	Boss1_back2,
+	BackMonster,
 	Boss1_crowd2,
 	Boss1_Waiter,
 	Boss1_back3,
