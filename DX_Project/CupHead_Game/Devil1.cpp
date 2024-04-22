@@ -9,6 +9,7 @@
 
 #include "HeadAtt.h"
 #include "RamArms.h"
+#include "SpiderHead.h"
 
 ADevil1::ADevil1()
 {
@@ -132,6 +133,7 @@ void ADevil1::CreateRamArms()
 
 void ADevil1::CreateSpider()
 {
+	NewSpiderHead = GetWorld()->SpawnActor<ASpiderHead>("SpiderHead");
 }
 
 void ADevil1::Phase1Intro(float _DeltaTime)
@@ -234,6 +236,7 @@ void ADevil1::SpiderTransform(float _DeltaTime)
 {
 	if (true == Boss2->IsCurAnimationEnd())
 	{
+		CreateSpider();
 		Phase1.ChangeState("SpiderIdle");
 		return;
 	}

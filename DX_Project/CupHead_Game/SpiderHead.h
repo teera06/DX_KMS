@@ -30,11 +30,14 @@ private:
 	USpriteRenderer* SpiderHead = nullptr;
 
 	//FVector MoveLR = FVector::Zero;
+	FVector GravityVector = FVector::Zero; // 중력값 받기
 
 	float speed = 500.0f;
+	float Gravity = 3000.0f;
 
+	void GroundCheck(float _DeltaTime);
 
-	//void RamArmsStart(float _DeltaTime);
+	void SpiderHead_FallFromSky(float _DeltaTime);
 	//void RamArmsEnd(float _DeltaTime);
 };
 

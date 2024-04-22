@@ -6,6 +6,8 @@
 class USpriteRenderer;
 class AHeadAtt;
 class ARamArms;
+class ASpiderHead;
+
 class ADevil1 : public AActor, public ABoss2Common
 {
 	GENERATED_BODY(AActor)
@@ -32,6 +34,8 @@ private:
 	std::shared_ptr<AHeadAtt> NewHeadAtt = nullptr;
 	std::shared_ptr<ARamArms> NewRamArmsL = nullptr;
 	std::shared_ptr<ARamArms> NewRamArmsR = nullptr;
+	std::shared_ptr<ASpiderHead> NewSpiderHead = nullptr;
+
 	USpriteRenderer* Boss2 = nullptr;
 	USpriteRenderer* BossHead = nullptr;
 	USpriteRenderer* BossBody = nullptr;
