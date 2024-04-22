@@ -206,6 +206,9 @@
     <ClCompile Include="Devil1.cpp">
       <Filter>PlayStage2\Boss2\Monster</Filter>
     </ClCompile>
+    <ClCompile Include="Boss2Common.cpp">
+      <Filter>PlayStage2\Boss2\Monster</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -308,6 +311,9 @@
       <Filter>PlayStage2\Map</Filter>
     </ClInclude>
     <ClInclude Include="Devil1.h">
+      <Filter>PlayStage2\Boss2\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss2Common.h">
       <Filter>PlayStage2\Boss2\Monster</Filter>
     </ClInclude>
   </ItemGroup>

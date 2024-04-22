@@ -188,6 +188,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Boss2Common.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Boss2Map.h">
       <SubType>
       </SubType>
@@ -325,6 +329,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Boss1_Monster2.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Boss2Common.cpp">
       <SubType>
       </SubType>
     </ClCompile>

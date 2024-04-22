@@ -2,9 +2,10 @@
 
 #include <EngineCore/Actor.h>
 
+#include "Boss2Common.h"
 class USpriteRenderer;
 
-class ADevil1 : public AActor
+class ADevil1 : public AActor, public ABoss2Common
 {
 	GENERATED_BODY(AActor)
 
@@ -24,5 +25,7 @@ protected:
 	void Tick(float _DeltaTime) override;
 private:
 	USpriteRenderer* Boss2 = nullptr;
+	USpriteRenderer* BossHead = nullptr;
+	USpriteRenderer* BossBody = nullptr;
 };
 

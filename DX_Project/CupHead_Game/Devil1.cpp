@@ -16,7 +16,7 @@ ADevil1::ADevil1()
 	SetRoot(Root);
 
 	Boss2->SetOrder(ERenderOrder::Monster1);
-	Boss2->SetSprite("BossDevil_Phase1Background2.png");
+	Boss2->SetSprite("devil_ph1_intro_0004.png");
 	Boss2->SetSamplering(ETextureSampling::LINEAR);
 	Boss2->SetAutoSize(1.0f, true);
 }
