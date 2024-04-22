@@ -197,6 +197,9 @@
     <ClCompile Include="BossStage2GameMode.cpp">
       <Filter>PlayStage2\Boss2\Level</Filter>
     </ClCompile>
+    <ClCompile Include="BossBackMap1.cpp">
+      <Filter>PlayStage2\Map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -291,6 +294,9 @@
     </ClInclude>
     <ClInclude Include="BossStage2GameMode.h">
       <Filter>PlayStage2\Boss2\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="BossBackMap1.h">
+      <Filter>PlayStage2\Map</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

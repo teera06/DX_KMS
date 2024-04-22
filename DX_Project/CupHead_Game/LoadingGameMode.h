@@ -30,5 +30,10 @@ private:
 
 	static bool CreateLevelCheck1;
 	static bool CreateLevelCheck2;
+	static bool CreateLevelCheck3;
+
+	void WorldLoad();
+	void Boss1Load();
+	void Boss2Load();
 };
 

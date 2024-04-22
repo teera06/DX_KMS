@@ -1,30 +1,30 @@
 #include "PreCompile.h"
 #include "BossStage2GameMode.h"
 
-BossStage2GameMode::BossStage2GameMode()
+ABossStage2GameMode::ABossStage2GameMode()
 {
 }
 
-BossStage2GameMode::~BossStage2GameMode()
+ABossStage2GameMode::~ABossStage2GameMode()
 {
 }
 
-void BossStage2GameMode::BeginPlay()
+void ABossStage2GameMode::BeginPlay()
 {
 	Super::BeginPlay();
 }
 
-void BossStage2GameMode::Tick(float _DeltaTime)
+void ABossStage2GameMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 }
 
-void BossStage2GameMode::LevelEnd(ULevel* _NextLevel)
+void ABossStage2GameMode::LevelEnd(ULevel* _NextLevel)
 {
 	Super::LevelEnd(_NextLevel);
 }
 
-void BossStage2GameMode::LevelStart(ULevel* _PrevLevel)
+void ABossStage2GameMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
 }
