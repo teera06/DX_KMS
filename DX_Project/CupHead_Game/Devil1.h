@@ -51,5 +51,8 @@ private:
 	void RamIdle(float _DeltaTime);
 	void RamReverse(float _DeltaTime);
 
+	void SpiderTransform(float _DeltaTime);
+	void SpiderIdle(float _DeltaTime);
+
 };
 

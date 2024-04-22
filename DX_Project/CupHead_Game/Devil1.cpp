@@ -56,6 +56,8 @@ void ADevil1::Phase1StateInit()
 	Phase1.CreateState("RamTransform");
 	Phase1.CreateState("RamIdle");
 	Phase1.CreateState("RamReverse");
+	Phase1.CreateState("SpiderTransform");
+	Phase1.CreateState("SpiderIdle");
 
 	Phase1.SetUpdateFunction("Phase1Intro", std::bind(&ADevil1::Phase1Intro, this, std::placeholders::_1));
 	Phase1.SetStartFunction("Phase1Intro", [=] {Boss2->ChangeAnimation("Phase1Intro"); });
@@ -81,6 +83,12 @@ void ADevil1::Phase1StateInit()
 	Phase1.SetUpdateFunction("RamReverse", std::bind(&ADevil1::RamReverse, this, std::placeholders::_1));
 	Phase1.SetStartFunction("RamReverse", [=] {Boss2->ChangeAnimation("RamReverse"); });
 
+	Phase1.SetUpdateFunction("SpiderTransform", std::bind(&ADevil1::SpiderTransform, this, std::placeholders::_1));
+	Phase1.SetStartFunction("SpiderTransform", [=] {Boss2->ChangeAnimation("SpiderTransform"); });
+
+	Phase1.SetUpdateFunction("SpiderIdle", std::bind(&ADevil1::SpiderIdle, this, std::placeholders::_1));
+	Phase1.SetStartFunction("SpiderIdle", [=] {Boss2->ChangeAnimation("SpiderIdle"); });
+
 	Phase1.ChangeState("Phase1Intro");
 }
 
@@ -95,6 +103,9 @@ void ADevil1::AniCreate()
 	Boss2->CreateAnimation("RamTransform", "RamTransform", 0.075f);
 	Boss2->CreateAnimation("RamIdle", "RamIdle", 0.075f);
 	Boss2->CreateAnimation("RamReverse", "RamTransform", 0.055f, true, 27, 2);
+
+	Boss2->CreateAnimation("SpiderTransform", "SpiderTransform", 0.075f);
+	Boss2->CreateAnimation("SpiderIdle", "SpiderIdle", 0.075f);
 }
 
 void ADevil1::CreateHeadAtt()
@@ -133,13 +144,20 @@ void ADevil1::Phase1Intro(float _DeltaTime)
 
 void ADevil1::Phase1Idle(float _DeltaTime)
 {
+	if (coolDownTime < 0 && 1 == attOrder)
+	{
+		Boss2->SetPosition(FVector(-60.0f, 0.0f, 0.0f));
+		Phase1.ChangeState("SpiderTransform");
+		return;
+	}
+
 	if (coolDownTime < 0 && 2 == attOrder)
 	{
 		Phase1.ChangeState("DragonTransform");
 		return;
 	}
 
-	if (coolDownTime < 0 && 1== attOrder)
+	if (coolDownTime < 0 && 3== attOrder)
 	{
 		Phase1.ChangeState("RamTransform");
 		return;
@@ -206,4 +224,17 @@ void ADevil1::RamReverse(float _DeltaTime)
 		Phase1.ChangeState("Phase1Idle");
 		return;
 	}
+}
+
+void ADevil1::SpiderTransform(float _DeltaTime)
+{
+	if (true == Boss2->IsCurAnimationEnd())
+	{
+		Phase1.ChangeState("SpiderIdle");
+		return;
+	}
+}
+
+void ADevil1::SpiderIdle(float _DeltaTime)
+{
 }
