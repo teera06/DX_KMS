@@ -4,6 +4,7 @@
 
 #include "Boss2Common.h"
 class USpriteRenderer;
+class AHeadAtt;
 
 class ADevil1 : public AActor, public ABoss2Common
 {
@@ -28,6 +29,7 @@ protected:
 
 	void AniCreate() override;
 private:
+	std::shared_ptr<AHeadAtt> NewHeadAtt = nullptr;
 	USpriteRenderer* Boss2 = nullptr;
 	USpriteRenderer* BossHead = nullptr;
 	USpriteRenderer* BossBody = nullptr;

@@ -22,7 +22,16 @@ public:
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
+
+	void Phase1StateInit() override;
+
+	void AniCreate() override;
 private:
 	USpriteRenderer* headatt = nullptr;
+
+	float speed = 500.0f;
+
+	void DragonHeadAppear(float _DeltaTime);
+	void DragonHeadSmile(float _DeltaTime);
 };
 

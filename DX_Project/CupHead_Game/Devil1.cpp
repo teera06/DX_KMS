@@ -6,6 +6,8 @@
 #include <EngineCore/Collision.h>
 
 #include "ContentsENum.h"
+
+#include "HeadAtt.h"
 ADevil1::ADevil1()
 {
 	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("Boss2");
@@ -74,7 +76,9 @@ void ADevil1::AniCreate()
 
 void ADevil1::CreateHeadAtt()
 {
-
+	NewHeadAtt = GetWorld()->SpawnActor<AHeadAtt>("HeadAtt");
+	//NewHeadAtt->SetSmallSkillDir(FVector::Left);
+	//SkillYMove();
 }
 
 void ADevil1::Phase1Intro(float _DeltaTime)
@@ -102,6 +106,7 @@ void ADevil1::DragonTransform(float _DeltaTime)
 {
 	if (true == Boss2->IsCurAnimationEnd())
 	{
+		CreateHeadAtt();
 		Phase1.ChangeState("DragonIdle");
 		return;
 	}
