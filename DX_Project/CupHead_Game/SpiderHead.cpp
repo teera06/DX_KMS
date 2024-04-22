@@ -75,7 +75,7 @@ void ASpiderHead::SpiderHead_FallFromSky(float _DeltaTime)
 {
 	GravityVector += (FVector::Down * Gravity * _DeltaTime); // 중력은 계속 가해진다.
 
-	if (GetActorLocation().iY() <= 0)
+	if (GetActorLocation().iY() <= -10)
 	{
 		GravityVector = FVector::Zero;
 		Phase1.ChangeState("SpiderHead_FallToFloor");
@@ -87,12 +87,12 @@ void ASpiderHead::SpiderHead_FallFromSky(float _DeltaTime)
 
 void ASpiderHead::SpiderHead_FallToFloor(float _DeltaTime)
 {
-	Gravity = 100.0f;
+	Gravity = 2000.0f;
 	GravityVector += (FVector::Down * Gravity * _DeltaTime); // 중력은 계속 가해진다.
 
-	if (GetActorLocation().iY() <= -140)
+	if (GetActorLocation().iY() <= -160)
 	{
-		Gravity = 100.0f;
+		Gravity = 800.0f;
 		GravityVector = FVector::Zero;
 		Phase1.ChangeState("SpiderHead_FlyToSky");
 		return;
