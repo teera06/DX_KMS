@@ -1,5 +1,7 @@
 #include "PreCompile.h"
 #include "SpiderHead.h"
+#include <EngineBase\EngineRandom.h>
+
 
 #include <EngineCore/DefaultSceneComponent.h>
 #include <EngineCore/SpriteRenderer.h>
@@ -73,6 +75,21 @@ void ASpiderHead::AniCreate()
 
 void ASpiderHead::SpiderHead_FallFromSky(float _DeltaTime)
 {
+
+	if (Attcount == 4)
+	{
+		SkillDestory = true;
+		Destroy();
+		return;
+	}
+
+	if (false == XPos)
+	{
+		//RandomXpos = UEngineRandom::MainRandom.RandomFloat(200.0f, -200.0f);
+		SetActorLocation(FVector(0.0f, 450.0f, 0.0f));
+		Attcount++;
+		XPos = true;
+	}
 	GravityVector += (FVector::Down * Gravity * _DeltaTime); // 중력은 계속 가해진다.
 
 	if (GetActorLocation().iY() <= -10)
@@ -90,7 +107,7 @@ void ASpiderHead::SpiderHead_FallToFloor(float _DeltaTime)
 	Gravity = 2000.0f;
 	GravityVector += (FVector::Down * Gravity * _DeltaTime); // 중력은 계속 가해진다.
 
-	if (GetActorLocation().iY() <= -160)
+	if (GetActorLocation().iY() <= -100)
 	{
 		Gravity = 800.0f;
 		GravityVector = FVector::Zero;
@@ -103,7 +120,7 @@ void ASpiderHead::SpiderHead_FallToFloor(float _DeltaTime)
 void ASpiderHead::SpiderHead_FlyToSky(float _DeltaTime)
 {
 	
-	UpVector += (FVector::Up * Gravity * _DeltaTime); // 중력은 계속 가해진다.
+	UpVector += (FVector::Up * speed * _DeltaTime); // 중력은 계속 가해진다.
 
 	if (GetActorLocation().iY() >= 0)
 	{
@@ -117,12 +134,15 @@ void ASpiderHead::SpiderHead_FlyToSky(float _DeltaTime)
 
 void ASpiderHead::SpiderHead_FlyToSky2(float _DeltaTime)
 {
-	UpVector += (FVector::Up * Gravity * _DeltaTime); // 중력은 계속 가해진다.
+	speed = 2000;
+	UpVector += (FVector::Up * speed * _DeltaTime); // 중력은 계속 가해진다.
 
-	if (GetActorLocation().iY() >= 140)
+	if (GetActorLocation().iY() >= 600)
 	{
+		speed = 800;
 		UpVector = FVector::Zero;
-		//Phase1.ChangeState("SpiderHead_FallToFloor");
+		XPos = false;
+		Phase1.ChangeState("SpiderHead_FallFromSky");
 		return;
 	}
 

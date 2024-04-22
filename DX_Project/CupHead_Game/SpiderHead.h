@@ -33,9 +33,13 @@ private:
 	FVector GravityVector = FVector::Zero; // 중력값 받기
 	FVector UpVector = FVector::Zero; // 중력값 받기
 
-	float speed = 1000.0f;
+	float speed = 800.0f;
 	float Gravity =800.0f;
+	float RandomXpos = 0;
 
+	int Attcount = 0;
+
+	bool XPos = false;
 
 	void SpiderHead_FallFromSky(float _DeltaTime);
 	void SpiderHead_FallToFloor(float _DeltaTime);
