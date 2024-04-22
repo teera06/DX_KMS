@@ -12,6 +12,7 @@ ADevil1::ADevil1()
 	Boss2 = CreateDefaultSubObject<USpriteRenderer>("Boss2");
 
 	Boss2->SetupAttachment(Root);
+	//Boss2->SetPivot(EPivot::LEFTTOP);
 
 	SetRoot(Root);
 
@@ -28,7 +29,7 @@ ADevil1::~ADevil1()
 void ADevil1::BeginPlay()
 {
 	Super::BeginPlay();
-	SetActorLocation(FVector(-10.0f, 30.0f, 10.0f));
+	SetActorLocation(FVector(30.0f, 50.0f, 10.0f));
 	AniCreate();
 
 	Phase1StateInit();
@@ -63,8 +64,10 @@ void ADevil1::AniCreate()
 
 void ADevil1::Phase1Intro(float _DeltaTime)
 {
+	Boss2->SetPosition(FVector(-60.0f, 0.0f, 0.0f));
 	if (true == Boss2->IsCurAnimationEnd())
 	{
+		Boss2->SetPosition(FVector(0.0f, 0.0f, 0.0f));
 		Phase1.ChangeState("Phase1Idle");
 		return;
 	}
