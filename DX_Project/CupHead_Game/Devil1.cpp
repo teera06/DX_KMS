@@ -8,6 +8,17 @@
 #include "ContentsENum.h"
 ADevil1::ADevil1()
 {
+	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("Boss2");
+	Boss2 = CreateDefaultSubObject<USpriteRenderer>("Boss2");
+
+	Boss2->SetupAttachment(Root);
+
+	SetRoot(Root);
+
+	Boss2->SetOrder(ERenderOrder2::Boss2_back1);
+	Boss2->SetSprite("BossDevil_Phase1Background2.png");
+	Boss2->SetSamplering(ETextureSampling::LINEAR);
+	Boss2->SetAutoSize(1.0f, true);
 }
 
 ADevil1::~ADevil1()
