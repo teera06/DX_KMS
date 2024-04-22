@@ -31,13 +31,15 @@ private:
 
 	//FVector MoveLR = FVector::Zero;
 	FVector GravityVector = FVector::Zero; // 중력값 받기
+	FVector UpVector = FVector::Zero; // 중력값 받기
 
-	float speed = 500.0f;
-	float Gravity = 3000.0f;
+	float speed = 300.0f;
+	float Gravity =150.0f;
 
-	void GroundCheck(float _DeltaTime);
 
 	void SpiderHead_FallFromSky(float _DeltaTime);
-	//void RamArmsEnd(float _DeltaTime);
+	void SpiderHead_FallToFloor(float _DeltaTime);
+	void SpiderHead_FlyToSky(float _DeltaTime);
+	void SpiderHead_FlyToSky2(float _DeltaTime);
 };
 

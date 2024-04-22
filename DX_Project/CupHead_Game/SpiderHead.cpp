@@ -28,7 +28,7 @@ ASpiderHead::~ASpiderHead()
 void ASpiderHead::BeginPlay()
 {
 	Super::BeginPlay();
-	SetActorLocation(FVector(0.0f, 0.0f, 0.0f));
+	SetActorLocation(FVector(0.0f, 450.0f, 0.0f));
 	AniCreate();
 
 	Phase1StateInit();
@@ -43,9 +43,21 @@ void ASpiderHead::Tick(float _DeltaTime)
 void ASpiderHead::Phase1StateInit()
 {
 	Phase1.CreateState("SpiderHead_FallFromSky");
+	Phase1.CreateState("SpiderHead_FallToFloor");
+	Phase1.CreateState("SpiderHead_FlyToSky");
+	Phase1.CreateState("SpiderHead_FlyToSky2");
 	
 	Phase1.SetUpdateFunction("SpiderHead_FallFromSky", std::bind(&ASpiderHead::SpiderHead_FallFromSky, this, std::placeholders::_1));
 	Phase1.SetStartFunction("SpiderHead_FallFromSky", [=] {SpiderHead->ChangeAnimation("SpiderHead_FallFromSky"); });
+
+	Phase1.SetUpdateFunction("SpiderHead_FallToFloor", std::bind(&ASpiderHead::SpiderHead_FallToFloor, this, std::placeholders::_1));
+	Phase1.SetStartFunction("SpiderHead_FallToFloor", [=] {SpiderHead->ChangeAnimation("SpiderHead_FallToFloor"); });
+
+	Phase1.SetUpdateFunction("SpiderHead_FlyToSky", std::bind(&ASpiderHead::SpiderHead_FlyToSky, this, std::placeholders::_1));
+	Phase1.SetStartFunction("SpiderHead_FlyToSky", [=] {SpiderHead->ChangeAnimation("SpiderHead_FlyToSky"); });
+
+	Phase1.SetUpdateFunction("SpiderHead_FlyToSky2", std::bind(&ASpiderHead::SpiderHead_FlyToSky2, this, std::placeholders::_1));
+	Phase1.SetStartFunction("SpiderHead_FlyToSky2", [=] {SpiderHead->ChangeAnimation("SpiderHead_FlyToSky2"); });
 
 	Phase1.ChangeState("SpiderHead_FallFromSky");
 }
@@ -53,19 +65,66 @@ void ASpiderHead::Phase1StateInit()
 void ASpiderHead::AniCreate()
 {
 	SpiderHead->CreateAnimation("SpiderHead_FallFromSky", "SpiderHead_FallFromSky", 0.075f);
+	SpiderHead->CreateAnimation("SpiderHead_FallToFloor", "SpiderHead_FallToFloor", 0.085f,false);
+	SpiderHead->CreateAnimation("SpiderHead_FlyToSky", "SpiderHead_FlyToSky", 0.075f,false);
+	SpiderHead->CreateAnimation("SpiderHead_FlyToSky2", "SpiderHead_FlyToSky2", 0.075f);
 }
 
-void ASpiderHead::GroundCheck(float _DeltaTime)
-{
-	GravityVector += (FVector::Down * Gravity * _DeltaTime); // 중력은 계속 가해진다.
-
-	if (GetActorLocation().iY() <= -300)
-	{
-		GravityVector = FVector::Zero;
-	}
-}
 
 void ASpiderHead::SpiderHead_FallFromSky(float _DeltaTime)
 {
+	GravityVector += (FVector::Down * Gravity * _DeltaTime); // 중력은 계속 가해진다.
+
+	if (GetActorLocation().iY() <= 0)
+	{
+		GravityVector = FVector::Zero;
+		Phase1.ChangeState("SpiderHead_FallToFloor");
+		return;
+	}
+
+	AddActorLocation(GravityVector* _DeltaTime);
+}
+
+void ASpiderHead::SpiderHead_FallToFloor(float _DeltaTime)
+{
+	Gravity = 100.0f;
+	GravityVector += (FVector::Down * Gravity * _DeltaTime); // 중력은 계속 가해진다.
+
+	if (GetActorLocation().iY() <= -140)
+	{
+		Gravity = 100.0f;
+		GravityVector = FVector::Zero;
+		Phase1.ChangeState("SpiderHead_FlyToSky");
+		return;
+	}
+	AddActorLocation(GravityVector* _DeltaTime);
+}
+
+void ASpiderHead::SpiderHead_FlyToSky(float _DeltaTime)
+{
 	
+	UpVector += (FVector::Up * Gravity * _DeltaTime); // 중력은 계속 가해진다.
+
+	if (GetActorLocation().iY() >= 0)
+	{
+		UpVector = FVector::Zero;
+		Phase1.ChangeState("SpiderHead_FlyToSky2");
+		return;
+	}
+
+	AddActorLocation(UpVector * _DeltaTime);
+}
+
+void ASpiderHead::SpiderHead_FlyToSky2(float _DeltaTime)
+{
+	UpVector += (FVector::Up * Gravity * _DeltaTime); // 중력은 계속 가해진다.
+
+	if (GetActorLocation().iY() >= 140)
+	{
+		UpVector = FVector::Zero;
+		//Phase1.ChangeState("SpiderHead_FallToFloor");
+		return;
+	}
+
+	AddActorLocation(UpVector * _DeltaTime);
 }
