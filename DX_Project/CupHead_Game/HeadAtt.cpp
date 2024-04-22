@@ -72,7 +72,7 @@ void AHeadAtt::DragonHeadAppear(float _DeltaTime)
 {
 	AddActorLocation(FVector::Right * speed* _DeltaTime);
 
-	if (GetActorLocation().iX() >= -100)
+	if (GetActorLocation().iX() >= -200)
 	{
 		Phase1.ChangeState("DragonHeadSmile");
 		return;
@@ -97,6 +97,7 @@ void AHeadAtt::DragonHeadDisappear(float _DeltaTime)
 	
 		if (true == headatt->IsCurAnimationEnd())
 		{
+			SkillDestory = true;
 			Destroy();
 			return;
 		}

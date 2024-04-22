@@ -4,6 +4,8 @@
 int ABoss2Common::phasecheck = 1;
 float ABoss2Common::coolDownTime = 6.0f;
 bool ABoss2Common::attOrder = false;
+bool ABoss2Common::SkillDestory = false;
+
 
 ABoss2Common::ABoss2Common()
 {

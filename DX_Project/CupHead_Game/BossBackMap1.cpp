@@ -14,7 +14,7 @@ ABossBackMap1::ABossBackMap1()
 
 	SetRoot(Root);
 
-	BossBackMap1->SetOrder(ERenderOrder::Boss1_back1);
+	BossBackMap1->SetOrder(ERenderOrder::Boss1_back2);
 	BossBackMap1->SetSprite("BossDevil_Phase1Background2.png");
 	BossBackMap1->SetSamplering(ETextureSampling::LINEAR);
 	BossBackMap1->SetAutoSize(1.0f, true);

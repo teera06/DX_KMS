@@ -24,7 +24,7 @@ ABoss3Map::ABoss3Map()
 	crowd3->AddPosition({ 5.0f, -70.0f, 80.0f });
 	SetRoot(Root);
 
-	back3Map->SetOrder(ERenderOrder::Boss1_Back3);
+	back3Map->SetOrder(ERenderOrder::Boss1_back3);
 	back3Map->SetSprite("back3.png");
 	back3Map->SetSamplering(ETextureSampling::LINEAR);
 	back3Map->SetAutoSize(1.0f, true);
