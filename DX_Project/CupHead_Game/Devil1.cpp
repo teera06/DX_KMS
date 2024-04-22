@@ -57,7 +57,7 @@ void ADevil1::Phase1StateInit()
 
 void ADevil1::AniCreate()
 {
-	Boss2->CreateAnimation("Phase1Intro", "DevilIntro", 0.075f);
+	Boss2->CreateAnimation("Phase1Intro", "DevilIntro", 0.1f);
 	Boss2->CreateAnimation("Phase1Idle", "DevilIdle", 0.075f);
 }
 
