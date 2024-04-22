@@ -19,7 +19,7 @@ public:
 
 	static int phasecheck;
 	static float coolDownTime;
-	static bool attOrder;
+	static int attOrder;
 	static bool SkillDestory;
 protected:
 	virtual void Phase1StateInit();

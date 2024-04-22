@@ -51,6 +51,8 @@ void ADevil1::Phase1StateInit()
 	Phase1.CreateState("DragonTransform");
 	Phase1.CreateState("DragonIdle");
 	Phase1.CreateState("DragonReverse");
+	Phase1.CreateState("RamTransform");
+	Phase1.CreateState("RamIdle");
 
 	Phase1.SetUpdateFunction("Phase1Intro", std::bind(&ADevil1::Phase1Intro, this, std::placeholders::_1));
 	Phase1.SetStartFunction("Phase1Intro", [=] {Boss2->ChangeAnimation("Phase1Intro"); });
@@ -67,6 +69,12 @@ void ADevil1::Phase1StateInit()
 	Phase1.SetUpdateFunction("DragonReverse", std::bind(&ADevil1::DragonReverse, this, std::placeholders::_1));
 	Phase1.SetStartFunction("DragonReverse", [=] {Boss2->ChangeAnimation("DragonReverse"); });
 
+	Phase1.SetUpdateFunction("RamTransform", std::bind(&ADevil1::RamTransform, this, std::placeholders::_1));
+	Phase1.SetStartFunction("RamTransform", [=] {Boss2->ChangeAnimation("RamTransform"); });
+
+	Phase1.SetUpdateFunction("RamIdle", std::bind(&ADevil1::RamIdle, this, std::placeholders::_1));
+	Phase1.SetStartFunction("RamIdle", [=] {Boss2->ChangeAnimation("RamIdle"); });
+
 	Phase1.ChangeState("Phase1Intro");
 }
 
@@ -77,6 +85,9 @@ void ADevil1::AniCreate()
 	Boss2->CreateAnimation("DragonTransform", "DragonTransform", 0.075f);
 	Boss2->CreateAnimation("DragonIdle", "DragonIdle", 0.075f);
 	Boss2->CreateAnimation("DragonReverse", "DragonTransform", 0.055f,false,31,2);
+
+	Boss2->CreateAnimation("RamTransform", "RamTransform", 0.075f);
+	Boss2->CreateAnimation("RamIdle", "RamIdle", 0.075f);
 }
 
 void ADevil1::CreateHeadAtt()
@@ -100,9 +111,15 @@ void ADevil1::Phase1Intro(float _DeltaTime)
 
 void ADevil1::Phase1Idle(float _DeltaTime)
 {
-	if (coolDownTime < 0 && false == attOrder)
+	if (coolDownTime < 0 && 1 == attOrder)
 	{
 		Phase1.ChangeState("DragonTransform");
+		return;
+	}
+
+	if (coolDownTime < 0 && 2 == attOrder)
+	{
+		Phase1.ChangeState("RamTransform");
 		return;
 	}
 }
@@ -131,7 +148,22 @@ void ADevil1::DragonReverse(float _DeltaTime)
 	if (true == Boss2->IsCurAnimationEnd())
 	{
 		coolDownTime = 6.0f;
+		attOrder = 2;
 		Phase1.ChangeState("Phase1Idle");
 		return;
 	}
+}
+
+void ADevil1::RamTransform(float _DeltaTime)
+{
+	if (true == Boss2->IsCurAnimationEnd())
+	{
+		Phase1.ChangeState("RamIdle");
+		return;
+	}
+}
+
+void ADevil1::RamIdle(float _DeltaTime)
+{
+
 }

@@ -44,5 +44,8 @@ private:
 	void DragonIdle(float _DeltaTime);
 	void DragonReverse(float _DeltaTime);
 
+	void RamTransform(float _DeltaTime);
+	void RamIdle(float _DeltaTime);
+
 };
 

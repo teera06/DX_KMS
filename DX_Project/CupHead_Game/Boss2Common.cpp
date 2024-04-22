@@ -3,7 +3,7 @@
 
 int ABoss2Common::phasecheck = 1;
 float ABoss2Common::coolDownTime = 6.0f;
-bool ABoss2Common::attOrder = false;
+int ABoss2Common::attOrder = 1;
 bool ABoss2Common::SkillDestory = false;
 
 
