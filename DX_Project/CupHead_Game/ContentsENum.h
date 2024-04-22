@@ -70,6 +70,13 @@ enum class ERenderOrder
 	Filter
 };
 
+enum class ERenderOrder2
+{
+	background,
+	WorldCol,
+	Boss1_back1
+};
+
 enum class ECollisionOrder
 {
 	Player,

@@ -377,25 +377,6 @@ void ALoadingGameMode::Boss2Load()
 				LoadMap["boss2"] = true;
 			}
 
-			{
-				Dir.Move("background");
-
-				if (false == LoadMap.contains("background"))
-				{
-					// 로드폴더는 이렇게 한다고 칩시다.
-					std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory();
-					for (size_t i = 0; i < Directorys.size(); i++)
-					{
-						std::string Name = Directorys[i].GetFolderName();
-						UEngineSprite::LoadFolder(Directorys[i].GetFullPath());
-					}
-
-					LoadMap["background"] = true;
-				}
-			}
 		}
-
-
-
 	}
 }
