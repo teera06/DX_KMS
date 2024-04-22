@@ -42,8 +42,8 @@ void ARamArms::Tick(float _DeltaTime)
 
 void ARamArms::AniCreate()
 {
-	RamArms->CreateAnimation("RamArmsStart", "RamArmsStart", 0.075f);
-	RamArms->CreateAnimation("RamArmsEnd", "RamArmsEnd", 0.075f);
+	RamArms->CreateAnimation("RamArmsStart", "RamArmsStart", 0.075f,false);
+	RamArms->CreateAnimation("RamArmsEnd", "RamArmsEnd", 0.075f,false);
 }
 
 void ARamArms::Phase1StateInit()
@@ -64,13 +64,13 @@ void ARamArms::RamArmsStart(float _DeltaTime)
 {
 	AddActorLocation(MoveLR * speed * _DeltaTime);
 
-	if (GetActorLocation().iX() >= -430 && MoveLR.iX()==1)
+	if (GetActorLocation().iX() >= -460 && MoveLR.iX()==1)
 	{
 		Phase1.ChangeState("RamArmsEnd");
 		return;
 	}
 
-	if (GetActorLocation().iX() <= 430 && MoveLR.iX() == -1)
+	if (GetActorLocation().iX() <= 460 && MoveLR.iX() == -1)
 	{
 		Phase1.ChangeState("RamArmsEnd");
 		return;

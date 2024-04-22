@@ -104,12 +104,12 @@ void ADevil1::CreateRamArms()
 {
 	NewRamArmsL = GetWorld()->SpawnActor<ARamArms>("RamArmsL");
 
-	NewRamArmsL->SetActorLocation(FVector(-900.0f, -100.0f, 0.0f));
+	NewRamArmsL->SetActorLocation(FVector(-900.0f, -180.0f, 0.0f));
 	NewRamArmsL->GetRamArms()->SetDir(EEngineDir::Right);
 	NewRamArmsL->SetSmallSkillDir(FVector::Right);
 	
 	NewRamArmsR = GetWorld()->SpawnActor<ARamArms>("RamArmsR");
-	NewRamArmsR->SetActorLocation(FVector(900.0f, -100.0f, 0.0f));
+	NewRamArmsR->SetActorLocation(FVector(900.0f, -180.0f, 0.0f));
 	NewRamArmsR->GetRamArms()->SetDir(EEngineDir::Left);
 	NewRamArmsR->SetSmallSkillDir(FVector::Left);
 	//SkillYMove();
