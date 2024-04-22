@@ -35,6 +35,7 @@ private:
 
 	// 여기서부터는 상태 함수들 
 	void Phase1Intro(float _DeltaTime);
+	void Phase1Idle(float _DeltaTime);
 
 };
 
