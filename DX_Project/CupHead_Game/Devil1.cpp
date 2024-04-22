@@ -72,6 +72,11 @@ void ADevil1::AniCreate()
 	Boss2->CreateAnimation("DragonIdle", "DragonIdle", 0.075f);
 }
 
+void ADevil1::CreateHeadAtt()
+{
+
+}
+
 void ADevil1::Phase1Intro(float _DeltaTime)
 {
 	Boss2->SetPosition(FVector(-60.0f, 0.0f, 0.0f));

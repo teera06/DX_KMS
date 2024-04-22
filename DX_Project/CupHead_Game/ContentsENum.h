@@ -56,6 +56,7 @@ enum class ERenderOrder
 	skilleffect,
 	Bullet,
 	Cuphead,
+	FrontSkill,
 	Object1,
 	Fire,
 	Object2,
@@ -65,7 +66,6 @@ enum class ERenderOrder
 	FrontGround1,
 	FrontGround2,
 	HPBar,
-	HPgauge,
 	FilterEffect,
 	Filter
 };
