@@ -35,6 +35,28 @@ void ABossStage2GameMode::BeginPlay()
 
 	GetWorld()->GetLastTarget()->AddEffect<UBlurEffect>();
 
+
+	{
+		// UI를 만들겠다.
+		UImage* Image = CreateWidget<UImage>(GetWorld(), "HpBar");
+
+		// 언리얼 따라한것
+		// 언리얼 안나옵니다.
+		Image->AddToViewPort(ERenderOrder::HPBar);
+		Image->SetSprite("HP3.png");
+		Image->SetAutoSize(1.0f, true);
+		Image->SetPosition({ -570.0f, -310.0f });
+
+
+
+
+		// Image->SetScale({200, 200});
+
+		// 화면에 떠야 한다.
+		// Image->SetSprite("HPBar");
+		// Image->SetScale();
+	}
+
 	{
 		// UI를 만들겠다.
 		UImage* Image = CreateWidget<UImage>(GetWorld(), "OldFilter");
