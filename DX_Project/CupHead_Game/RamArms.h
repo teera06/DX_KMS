@@ -19,6 +19,15 @@ public:
 	ARamArms& operator=(const ARamArms& _Other) = delete; // 디폴트 대입 연산자
 	ARamArms& operator=(ARamArms&& _Other) noexcept = delete;
 
+	inline void SetSmallSkillDir(const FVector& _MoveLR)
+	{
+		MoveLR = _MoveLR;
+	}
+
+	USpriteRenderer* GetRamArms()
+	{
+		return RamArms;
+	}
 
 protected:
 	void BeginPlay() override;
@@ -30,7 +39,10 @@ protected:
 private:
 	USpriteRenderer* RamArms = nullptr;
 
+	FVector MoveLR = FVector::Zero;
+
 	float speed = 500.0f;
+
 
 	void RamArmsStart(float _DeltaTime);
 	void RamArmsEnd(float _DeltaTime);

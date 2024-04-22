@@ -105,8 +105,13 @@ void ADevil1::CreateRamArms()
 	NewRamArmsL = GetWorld()->SpawnActor<ARamArms>("RamArmsL");
 
 	NewRamArmsL->SetActorLocation(FVector(-900.0f, -100.0f, 0.0f));
-	//NewRamArmsR = GetWorld()->SpawnActor<ARamArms>("RamArmsR");
-	//NewHeadAtt->SetSmallSkillDir(FVector::Left);
+	NewRamArmsL->GetRamArms()->SetDir(EEngineDir::Right);
+	NewRamArmsL->SetSmallSkillDir(FVector::Right);
+	
+	NewRamArmsR = GetWorld()->SpawnActor<ARamArms>("RamArmsR");
+	NewRamArmsR->SetActorLocation(FVector(900.0f, -100.0f, 0.0f));
+	NewRamArmsR->GetRamArms()->SetDir(EEngineDir::Left);
+	NewRamArmsR->SetSmallSkillDir(FVector::Left);
 	//SkillYMove();
 }
 
@@ -124,13 +129,13 @@ void ADevil1::Phase1Intro(float _DeltaTime)
 
 void ADevil1::Phase1Idle(float _DeltaTime)
 {
-	if (coolDownTime < 0 && 1 == attOrder)
+	if (coolDownTime < 0 && 2 == attOrder)
 	{
 		Phase1.ChangeState("DragonTransform");
 		return;
 	}
 
-	if (coolDownTime < 0 && 2 == attOrder)
+	if (coolDownTime < 0 && 1== attOrder)
 	{
 		Phase1.ChangeState("RamTransform");
 		return;

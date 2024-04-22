@@ -62,9 +62,15 @@ void ARamArms::Phase1StateInit()
 
 void ARamArms::RamArmsStart(float _DeltaTime)
 {
-	AddActorLocation(FVector::Right * speed * _DeltaTime);
+	AddActorLocation(MoveLR * speed * _DeltaTime);
 
-	if (GetActorLocation().iX() >= 0)
+	if (GetActorLocation().iX() >= -430 && MoveLR.iX()==1)
+	{
+		Phase1.ChangeState("RamArmsEnd");
+		return;
+	}
+
+	if (GetActorLocation().iX() <= 430 && MoveLR.iX() == -1)
 	{
 		Phase1.ChangeState("RamArmsEnd");
 		return;
@@ -73,9 +79,20 @@ void ARamArms::RamArmsStart(float _DeltaTime)
 
 void ARamArms::RamArmsEnd(float _DeltaTime)
 {
-	AddActorLocation(FVector::Left * 900.0f * _DeltaTime);
+	AddActorLocation(MoveLR*-1.0f * 900.0f * _DeltaTime);
 
-	if (GetActorLocation().iX() <= -1000)
+	if (GetActorLocation().iX() <= -1000 && MoveLR.iX() == 1)
+	{
+
+		if (true == RamArms->IsCurAnimationEnd())
+		{
+			//SkillDestory = true;
+			Destroy();
+			return;
+		}
+	}
+
+	if (GetActorLocation().iX() >= 1000 && MoveLR.iX() == -1)
 	{
 
 		if (true == RamArms->IsCurAnimationEnd())
