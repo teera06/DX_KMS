@@ -18,6 +18,8 @@ public:
 	UStateManager Phase2;
 protected:
 	virtual void Phase1StateInit();
+
+	virtual void AniCreate();
 private:
 };
 

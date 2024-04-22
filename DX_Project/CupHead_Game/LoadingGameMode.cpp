@@ -414,7 +414,7 @@ void ALoadingGameMode::Boss2Load()
 					UEngineSprite::LoadFolder(Directorys[i].GetFullPath());
 				}
 
-				LoadMap["phase21"] = true;
+				LoadMap["2phase1"] = true;
 			}
 		}
 	}

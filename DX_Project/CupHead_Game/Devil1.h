@@ -25,6 +25,8 @@ protected:
 	void Tick(float _DeltaTime) override;
 	
 	void Phase1StateInit() override;
+
+	void AniCreate() override;
 private:
 	USpriteRenderer* Boss2 = nullptr;
 	USpriteRenderer* BossHead = nullptr;

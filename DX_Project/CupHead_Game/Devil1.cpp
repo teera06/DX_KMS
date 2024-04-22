@@ -28,6 +28,10 @@ ADevil1::~ADevil1()
 void ADevil1::BeginPlay()
 {
 	Super::BeginPlay();
+	SetActorLocation(FVector(-10.0f, 30.0f, 10.0f));
+	AniCreate();
+
+	Phase1StateInit();
 }
 
 void ADevil1::Tick(float _DeltaTime)
@@ -43,6 +47,13 @@ void ADevil1::Phase1StateInit()
 
 	Phase1.SetUpdateFunction("Phase1Intro", std::bind(&ADevil1::Phase1Intro, this, std::placeholders::_1));
 	Phase1.SetStartFunction("Phase1Intro", [=] {Boss2->ChangeAnimation("Phase1Intro"); });
+
+	Phase1.ChangeState("Phase1Intro");
+}
+
+void ADevil1::AniCreate()
+{
+	Boss2->CreateAnimation("Phase1Intro", "DevilIntro", 0.075f);
 }
 
 void ADevil1::Phase1Intro(float _DeltaTime)

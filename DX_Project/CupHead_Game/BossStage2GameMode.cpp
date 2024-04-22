@@ -9,6 +9,7 @@
 #include "BossBackMap1.h"
 #include "BossBackMap2.h"
 #include "Play_Cuphead.h"
+#include "Devil1.h"
 
 
 #include "ContentsENum.h"
@@ -30,6 +31,7 @@ void ABossStage2GameMode::BeginPlay()
 	GetWorld()->SpawnActor<ABossBackMap1>("BossBackMap1");
 	GetWorld()->SpawnActor<ABossBackMap2>("BossBackMap2");
 	GetWorld()->SpawnActor<APlay_Cuphead>("Play_Cuphead");
+	GetWorld()->SpawnActor<ADevil1>("Devil1");
 
 	GetWorld()->GetLastTarget()->AddEffect<UBlurEffect>();
 
