@@ -53,14 +53,14 @@ ABoss1_Monster2::ABoss1_Monster2()
 	SlotImage3->AddPosition(FVector(-15.0f, 297.0f, 0.0f));
 	SlotImage3->AddRotationDeg(FVector(0.0f, 35.0f, 0.0f));
 	
-	//SlotImage1->SetActive(false);
-	//SlotImage2->SetActive(false);
-	//SlotImage3->SetActive(false);
+	SlotImage1->SetActive(false);
+	SlotImage2->SetActive(false);
+	SlotImage3->SetActive(false);
 
 	WindSkill = CreateDefaultSubObject<USpriteRenderer>("WindSkill");
 
 	WindSkill->SetupAttachment(Root);
-	WindSkill->AddPosition(FVector(-350.0f, 300.0f, 0.0f));
+	WindSkill->AddPosition(FVector(-350.0f, 350.0f, 0.0f));
 
 	WindSkill->SetActive(false);
 
@@ -294,13 +294,19 @@ void ABoss1_Monster2::AniCreate()
 
 	SlotImage1->CreateAnimation("slot1", "TEMP1.png", 0.1f, true);
 	SlotImage1->CreateAnimation("slotObject1", "TEMP2.png", 0.1f, false, 0, 0);
+	SlotImage1->CreateAnimation("slotObject2", "TEMP2.png", 0.1f, false, 0, 1);
+	SlotImage1->CreateAnimation("slotObject3", "TEMP2.png", 0.1f, false, 1, 2);
 
 
 	SlotImage2->CreateAnimation("slot1", "TEMP1.png", 0.1f, true);
 	SlotImage2->CreateAnimation("slotObject1", "TEMP2.png", 0.1f, false, 0, 0);
+	SlotImage2->CreateAnimation("slotObject2", "TEMP2.png", 0.1f, false, 0, 1);
+	SlotImage2->CreateAnimation("slotObject3", "TEMP2.png", 0.1f, false, 1, 2);
 
 	SlotImage3->CreateAnimation("slot1", "TEMP1.png", 0.1f, true);
 	SlotImage3->CreateAnimation("slotObject1", "TEMP2.png", 0.1f, false, 0, 0);
+	SlotImage3->CreateAnimation("slotObject2", "TEMP2.png", 0.1f, false, 0, 1);
+	SlotImage3->CreateAnimation("slotObject3", "TEMP2.png", 0.1f, false, 1, 2);
 
 	WindSkill->CreateAnimation("Wind", "Wind", 0.12f);
 }
