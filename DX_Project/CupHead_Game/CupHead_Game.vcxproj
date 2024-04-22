@@ -221,6 +221,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="ContentsENum.h" />
+    <ClInclude Include="Devil1.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Firefly.h">
       <SubType>
       </SubType>
@@ -353,6 +357,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="ContentsDebugWindow.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Devil1.cpp">
       <SubType>
       </SubType>
     </ClCompile>
