@@ -49,6 +49,7 @@ private:
 
 	void RamTransform(float _DeltaTime);
 	void RamIdle(float _DeltaTime);
+	void RamReverse(float _DeltaTime);
 
 };
 

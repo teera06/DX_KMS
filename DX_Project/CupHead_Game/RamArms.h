@@ -1,11 +1,11 @@
 #pragma once
 #include <EngineCore/Actor.h>
 
-#include <EngineCore/StateManager.h>
+#include "Boss2Common.h"
 
 class USpriteRenderer;
 
-class ARamArms : public AActor
+class ARamArms : public AActor, public ABoss2Common
 {
 	GENERATED_BODY(AActor)
 public:
@@ -19,19 +19,18 @@ public:
 	ARamArms& operator=(const ARamArms& _Other) = delete; // 디폴트 대입 연산자
 	ARamArms& operator=(ARamArms&& _Other) noexcept = delete;
 
-	UStateManager State;
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
+	void Phase1StateInit() override;
+
+	void AniCreate() override;
 private:
 	USpriteRenderer* RamArms = nullptr;
 
 	float speed = 500.0f;
-
-	void AniCreate();
-
-	void StateInit();
 
 	void RamArmsStart(float _DeltaTime);
 	void RamArmsEnd(float _DeltaTime);

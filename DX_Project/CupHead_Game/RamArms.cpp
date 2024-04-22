@@ -30,14 +30,14 @@ void ARamArms::BeginPlay()
 	Super::BeginPlay();
 	AniCreate();
 
-	StateInit();
+	Phase1StateInit();
 }
 
 void ARamArms::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
-	State.Update(_DeltaTime);
+	Phase1.Update(_DeltaTime);
 }
 
 void ARamArms::AniCreate()
@@ -46,18 +46,18 @@ void ARamArms::AniCreate()
 	RamArms->CreateAnimation("RamArmsEnd", "RamArmsEnd", 0.075f);
 }
 
-void ARamArms::StateInit()
+void ARamArms::Phase1StateInit()
 {
-	State.CreateState("RamArmsStart");
-	State.CreateState("RamArmsEnd");
+	Phase1.CreateState("RamArmsStart");
+	Phase1.CreateState("RamArmsEnd");
 
-	State.SetUpdateFunction("RamArmsStart", std::bind(&ARamArms::RamArmsStart, this, std::placeholders::_1));
-	State.SetStartFunction("RamArmsStart", [=] {RamArms->ChangeAnimation("RamArmsStart"); });
+	Phase1.SetUpdateFunction("RamArmsStart", std::bind(&ARamArms::RamArmsStart, this, std::placeholders::_1));
+	Phase1.SetStartFunction("RamArmsStart", [=] {RamArms->ChangeAnimation("RamArmsStart"); });
 
-	State.SetUpdateFunction("RamArmsEnd", std::bind(&ARamArms::RamArmsEnd, this, std::placeholders::_1));
-	State.SetStartFunction("RamArmsEnd", [=] {RamArms->ChangeAnimation("RamArmsEnd"); });
+	Phase1.SetUpdateFunction("RamArmsEnd", std::bind(&ARamArms::RamArmsEnd, this, std::placeholders::_1));
+	Phase1.SetStartFunction("RamArmsEnd", [=] {RamArms->ChangeAnimation("RamArmsEnd"); });
 
-	State.ChangeState("RamArmsStart");
+	Phase1.ChangeState("RamArmsStart");
 }
 
 void ARamArms::RamArmsStart(float _DeltaTime)
@@ -66,7 +66,7 @@ void ARamArms::RamArmsStart(float _DeltaTime)
 
 	if (GetActorLocation().iX() >= 0)
 	{
-		State.ChangeState("RamArmsEnd");
+		Phase1.ChangeState("RamArmsEnd");
 		return;
 	}
 }

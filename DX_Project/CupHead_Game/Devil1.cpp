@@ -90,6 +90,7 @@ void ADevil1::AniCreate()
 
 	Boss2->CreateAnimation("RamTransform", "RamTransform", 0.075f);
 	Boss2->CreateAnimation("RamIdle", "RamIdle", 0.075f);
+	Boss2->CreateAnimation("RamReverse", "RamTransform", 0.055f, false, 30, 2);
 }
 
 void ADevil1::CreateHeadAtt()
@@ -178,6 +179,11 @@ void ADevil1::RamTransform(float _DeltaTime)
 }
 
 void ADevil1::RamIdle(float _DeltaTime)
+{
+
+}
+
+void ADevil1::RamReverse(float _DeltaTime)
 {
 
 }
