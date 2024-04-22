@@ -25,7 +25,10 @@ public:
 		return PlayerPos;
 	}
 
-
+	void SetGrounYCheck(const int& _GrounYCheck)
+	{
+		GrounYCheck = _GrounYCheck;
+	}
 
 	UStateManager State;
 protected:
@@ -75,7 +78,7 @@ private:
 	float RunShootYpos = 5.0f;
 	float DuckShootYpos = 35.0f;
 
-	int GrounYCheck = -270;
+	int GrounYCheck = 0;
 
 	bool shootY = false;
 	bool NoGravity = false;

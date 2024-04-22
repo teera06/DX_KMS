@@ -30,7 +30,7 @@ void ABossStage2GameMode::BeginPlay()
 	Camera->SetActorLocation(FVector(0.0f, 0.0f, -100.0f));
 	GetWorld()->SpawnActor<ABossBackMap1>("BossBackMap1");
 	GetWorld()->SpawnActor<ABossBackMap2>("BossBackMap2");
-	GetWorld()->SpawnActor<APlay_Cuphead>("Play_Cuphead");
+	GetWorld()->SpawnActor<APlay_Cuphead>("Play_Cuphead")->SetGrounYCheck(-300);
 	GetWorld()->SpawnActor<ADevil1>("Devil1");
 
 	GetWorld()->GetLastTarget()->AddEffect<UBlurEffect>();

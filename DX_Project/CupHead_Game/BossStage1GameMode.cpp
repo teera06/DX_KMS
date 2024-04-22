@@ -36,7 +36,7 @@ void ABossStage1GameMode::BeginPlay()
 	GetWorld()->SpawnActor<ABoss1Map>("Boss1Map");
 	GetWorld()->SpawnActor<ABoss2Map>("Boss2Map");
 	GetWorld()->SpawnActor<ABoss3Map>("Boss3Map");
-	GetWorld()->SpawnActor<APlay_Cuphead>("Play_Cuphead");
+	GetWorld()->SpawnActor<APlay_Cuphead>("Play_Cuphead")->SetGrounYCheck(-270);
 	GetWorld()->SpawnActor<ABoss1_Monster1>("Boss1_Monster1");
 	GetWorld()->SpawnActor<ABoss1_Monster2>("Boss1_Monster2");
 
