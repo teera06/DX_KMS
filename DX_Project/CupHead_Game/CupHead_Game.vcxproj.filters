@@ -97,7 +97,7 @@
     <Filter Include="PlayStage2\Boss2\Monster">
       <UniqueIdentifier>{33387a64-327b-4108-9a62-a51709998a29}</UniqueIdentifier>
     </Filter>
-    <Filter Include="PlayStage2\Boss2\Monster\skill">
+    <Filter Include="PlayStage2\Boss2\Monster\skill1">
       <UniqueIdentifier>{055e326f-6497-4eee-9115-d1cb94c56b31}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -213,10 +213,13 @@
       <Filter>PlayStage2\Boss2\Monster</Filter>
     </ClCompile>
     <ClCompile Include="HeadAtt.cpp">
-      <Filter>PlayStage2\Boss2\Monster\skill</Filter>
+      <Filter>PlayStage2\Boss2\Monster\skill1</Filter>
     </ClCompile>
     <ClCompile Include="DemonMonster.cpp">
-      <Filter>PlayStage2\Boss2\Monster\skill</Filter>
+      <Filter>PlayStage2\Boss2\Monster\skill1</Filter>
+    </ClCompile>
+    <ClCompile Include="RamArms.cpp">
+      <Filter>PlayStage2\Boss2\Monster\skill1</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -326,10 +329,13 @@
       <Filter>PlayStage2\Boss2\Monster</Filter>
     </ClInclude>
     <ClInclude Include="HeadAtt.h">
-      <Filter>PlayStage2\Boss2\Monster\skill</Filter>
+      <Filter>PlayStage2\Boss2\Monster\skill1</Filter>
     </ClInclude>
     <ClInclude Include="DemonMonster.h">
-      <Filter>PlayStage2\Boss2\Monster\skill</Filter>
+      <Filter>PlayStage2\Boss2\Monster\skill1</Filter>
+    </ClInclude>
+    <ClInclude Include="RamArms.h">
+      <Filter>PlayStage2\Boss2\Monster\skill1</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

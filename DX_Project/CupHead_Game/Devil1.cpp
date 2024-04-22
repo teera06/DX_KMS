@@ -8,6 +8,8 @@
 #include "ContentsENum.h"
 
 #include "HeadAtt.h"
+#include "RamArms.h"
+
 ADevil1::ADevil1()
 {
 	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("Boss2");
@@ -97,6 +99,16 @@ void ADevil1::CreateHeadAtt()
 	//SkillYMove();
 }
 
+void ADevil1::CreateRamArms()
+{
+	NewRamArmsL = GetWorld()->SpawnActor<ARamArms>("RamArmsL");
+
+	NewRamArmsL->SetActorLocation(FVector(-900.0f, -100.0f, 0.0f));
+	//NewRamArmsR = GetWorld()->SpawnActor<ARamArms>("RamArmsR");
+	//NewHeadAtt->SetSmallSkillDir(FVector::Left);
+	//SkillYMove();
+}
+
 void ADevil1::Phase1Intro(float _DeltaTime)
 {
 	Boss2->SetPosition(FVector(-60.0f, 0.0f, 0.0f));
@@ -149,6 +161,7 @@ void ADevil1::DragonReverse(float _DeltaTime)
 	{
 		coolDownTime = 6.0f;
 		attOrder = 2;
+		SkillDestory = false;
 		Phase1.ChangeState("Phase1Idle");
 		return;
 	}
@@ -158,6 +171,7 @@ void ADevil1::RamTransform(float _DeltaTime)
 {
 	if (true == Boss2->IsCurAnimationEnd())
 	{
+		CreateRamArms();
 		Phase1.ChangeState("RamIdle");
 		return;
 	}

@@ -5,7 +5,7 @@
 #include "Boss2Common.h"
 class USpriteRenderer;
 class AHeadAtt;
-
+class ARamArms;
 class ADevil1 : public AActor, public ABoss2Common
 {
 	GENERATED_BODY(AActor)
@@ -30,12 +30,15 @@ protected:
 	void AniCreate() override;
 private:
 	std::shared_ptr<AHeadAtt> NewHeadAtt = nullptr;
+	std::shared_ptr<ARamArms> NewRamArmsL = nullptr;
+	std::shared_ptr<ARamArms> NewRamArmsR = nullptr;
 	USpriteRenderer* Boss2 = nullptr;
 	USpriteRenderer* BossHead = nullptr;
 	USpriteRenderer* BossBody = nullptr;
 
 
 	void CreateHeadAtt();
+	void CreateRamArms();
 
 	// 여기서부터는 상태 함수들 
 	void Phase1Intro(float _DeltaTime);
