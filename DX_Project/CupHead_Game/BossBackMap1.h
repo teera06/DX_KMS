@@ -1,6 +1,10 @@
 #pragma once
-class ABossBackMap1
+#include <Enginecore/Actor.h>
+
+class USpriteRenderer;
+class ABossBackMap1 : public AActor
 {
+	GENERATED_BODY(AActor)
 public:
 	// constrcuter destructer
 	ABossBackMap1(); // 디폴트 생성자
@@ -13,7 +17,9 @@ public:
 	ABossBackMap1& operator=(ABossBackMap1&& _Other) noexcept = delete;
 
 protected:
-
+	void BeginPlay() override;
+	void Tick(float _DeltaTime) override;
 private:
+	USpriteRenderer* BossBackMap1 = nullptr;
 };
 

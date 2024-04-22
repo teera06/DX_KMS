@@ -358,25 +358,48 @@ void ALoadingGameMode::Boss2Load()
 			LoadMap["PlayCuphead"] = true;
 		}
 
+		Dir.MoveParent();
+		Dir.Move("Bullet");
+
+		if (false == LoadMap.contains("Bullet"))
 		{
-			UEngineDirectory Dir;
-			Dir.MoveToSearchChild("GameResource");
-			Dir.Move("Image");
-			Dir.Move("boss2");
-
-			if (false == LoadMap.contains("boss2"))
+			std::vector<UEngineFile> Files = Dir.GetAllFile({ ".png" }, true);
+			for (UEngineFile& File : Files)
 			{
-				std::vector<UEngineFile> Files = Dir.GetAllFile({ ".png" }, true);
-				for (UEngineFile& File : Files)
-				{
-					// CuttingTest.png texture로도 한장이 로드가 됐고
-					// 스프라이트로도 1장짜리로 로드가 된 상황이야.
-					UEngineSprite::Load(File.GetFullPath());
-				}
-
-				LoadMap["boss2"] = true;
+				// CuttingTest.png texture로도 한장이 로드가 됐고
+				// 스프라이트로도 1장짜리로 로드가 된 상황이야.
+				UEngineSprite::Load(File.GetFullPath());
 			}
 
+			std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory();
+			for (size_t i = 0; i < Directorys.size(); i++)
+			{
+				std::string Name = Directorys[i].GetFolderName();
+				UEngineSprite::LoadFolder(Directorys[i].GetFullPath());
+			}
+
+			LoadMap["Bullet"] = true;
 		}
+	}
+
+	{
+		UEngineDirectory Dir;
+		Dir.MoveToSearchChild("GameResource");
+		Dir.Move("Image");
+		Dir.Move("boss2");
+
+		if (false == LoadMap.contains("boss2"))
+		{
+			std::vector<UEngineFile> Files = Dir.GetAllFile({ ".png" }, true);
+			for (UEngineFile& File : Files)
+			{
+				// CuttingTest.png texture로도 한장이 로드가 됐고
+				// 스프라이트로도 1장짜리로 로드가 된 상황이야.
+				UEngineSprite::Load(File.GetFullPath());
+			}
+
+			LoadMap["boss2"] = true;
+		}
+
 	}
 }

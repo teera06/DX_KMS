@@ -74,7 +74,8 @@ enum class ERenderOrder2
 {
 	background,
 	WorldCol,
-	Boss1_back1
+	Boss2_back1,
+	Boss2_Front1
 };
 
 enum class ECollisionOrder
