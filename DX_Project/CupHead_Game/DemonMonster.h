@@ -25,6 +25,14 @@ protected:
 private:
 	USpriteRenderer* Demon = nullptr;
 
+	FVector Move = FVector::Left;
+
 	float speed = 500.0f;
+
+	void AniCreate();
+
+	void StateInit();
+	void DemonIntro1(float _DeltaTime);
+	void DemonJump(float _DeltaTime);
 };
 

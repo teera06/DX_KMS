@@ -5,6 +5,9 @@
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/Collision.h>
 
+#include "DemonMonster.h"
+
+
 ABossBackMap1::ABossBackMap1()
 {
 	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("BossBackMap1");
@@ -35,4 +38,10 @@ void ABossBackMap1::BeginPlay()
 void ABossBackMap1::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+	CoolDownTime -= _DeltaTime;
+	if (CoolDownTime<0)
+	{
+		GetWorld()->SpawnActor<ADemonMonster>("DemonMonster");
+		CoolDownTime = 6.0f;
+	}
 }
