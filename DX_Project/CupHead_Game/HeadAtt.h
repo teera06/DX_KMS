@@ -26,6 +26,7 @@ protected:
 	void Phase1StateInit() override;
 
 	void AniCreate() override;
+
 private:
 	USpriteRenderer* headatt = nullptr;
 

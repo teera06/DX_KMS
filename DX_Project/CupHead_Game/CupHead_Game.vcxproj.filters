@@ -215,6 +215,9 @@
     <ClCompile Include="HeadAtt.cpp">
       <Filter>PlayStage2\Boss2\Monster\skill</Filter>
     </ClCompile>
+    <ClCompile Include="DemonMonster.cpp">
+      <Filter>PlayStage2\Boss2\Monster\skill</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -323,6 +326,9 @@
       <Filter>PlayStage2\Boss2\Monster</Filter>
     </ClInclude>
     <ClInclude Include="HeadAtt.h">
+      <Filter>PlayStage2\Boss2\Monster\skill</Filter>
+    </ClInclude>
+    <ClInclude Include="DemonMonster.h">
       <Filter>PlayStage2\Boss2\Monster\skill</Filter>
     </ClInclude>
   </ItemGroup>
