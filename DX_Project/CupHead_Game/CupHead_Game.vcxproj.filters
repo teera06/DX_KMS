@@ -82,6 +82,21 @@
     <Filter Include="ContentsDebug">
       <UniqueIdentifier>{63a9a676-b174-489e-8625-af1bfc8b86b2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlayStage2">
+      <UniqueIdentifier>{c91a234c-1d73-496c-9d0a-8c1cca39a7ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayStage2\Boss2">
+      <UniqueIdentifier>{f3fcf631-6de6-4f00-8ebe-84ad0f15d37e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayStage2\Map">
+      <UniqueIdentifier>{838129f9-7d99-404e-83d9-3117d588e066}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayStage2\Boss2\Level">
+      <UniqueIdentifier>{bcb3b06b-b5ce-40c7-95cd-9c828ab2b141}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayStage2\Boss2\Monster">
+      <UniqueIdentifier>{33387a64-327b-4108-9a62-a51709998a29}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game_Core.cpp">
@@ -179,6 +194,9 @@
     <ClCompile Include="ContentsDebugWindow.cpp">
       <Filter>ContentsDebug</Filter>
     </ClCompile>
+    <ClCompile Include="BossStage2GameMode.cpp">
+      <Filter>PlayStage2\Boss2\Level</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -270,6 +288,9 @@
     </ClInclude>
     <ClInclude Include="ContentsDebugWindow.h">
       <Filter>ContentsDebug</Filter>
+    </ClInclude>
+    <ClInclude Include="BossStage2GameMode.h">
+      <Filter>PlayStage2\Boss2\Level</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
