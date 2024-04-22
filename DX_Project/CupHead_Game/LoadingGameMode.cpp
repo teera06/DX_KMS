@@ -1,6 +1,12 @@
 #include "PreCompile.h"
 #include "LoadingGameMode.h"
+
+#include <EngineCore/Camera.h>
+#include <EngineCore/Image.h>
+#include <EngineCore/BlurEffect.h>
+
 #include "ContentsHelper.h"
+#include "ContentsENum.h"
 
 #include "LoadActor.h"
 #include "ScreenEffect.h"
@@ -8,8 +14,6 @@
 #include "WorldGameMode.h"
 #include "BossStage1GameMode.h"
 #include "BossStage2GameMode.h"
-
-#include <EngineCore/Camera.h>
 
 std::map<std::string, bool> ALoadingGameMode::LoadMap;
 
@@ -34,7 +38,31 @@ void ALoadingGameMode::BeginPlay()
 	Camera->SetActorLocation(FVector(0.0f, 0.0f, -100.0f));
 	GetWorld()->SpawnActor<ALoadActor>("timmer");
 	//GetWorld()->SpawnActor<AScreenEffect>("ScreenEffect");
-	
+
+	{
+		// UI를 만들겠다.
+		UImage* Image = CreateWidget<UImage>(GetWorld(), "OldFilter");
+
+		// 언리얼 따라한것
+		// 언리얼 안나옵니다.
+		Image->AddToViewPort(ERenderOrder::Filter);
+		Image->SetSprite("cuphead_screen_fx_0000.png");
+		Image->SetScale(FVector(1280.0f, 720.0f, 0.0f));
+		//Image->SetAutoSize(1.0f, true);
+
+		Image->CreateAnimation("OldFilmEffect", "OldFilmEffect", 0.05f);
+		//Image->SetPosition({ -570.0f, -310.0f });
+		Image->ChangeAnimation("OldFilmEffect");
+
+
+
+		// Image->SetScale({200, 200});
+
+		// 화면에 떠야 한다.
+		// Image->SetSprite("HPBar");
+		// Image->SetScale();
+	}
+	GetWorld()->GetLastTarget()->AddEffect<UBlurEffect>();
 }
 
 void ALoadingGameMode::Tick(float _DeltaTime)
