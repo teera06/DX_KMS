@@ -54,7 +54,7 @@ void APlay_Cuphead::BeginPlay()
 {
 	Super::BeginPlay();
 	//SetActorScale3D(FVector(60.0f, 100.0f, 100.0f));
-	SetActorLocation(FVector(-400.0f, -250.0f, -50.0f));
+	SetActorLocation(FVector(-400.0f, -250.0f, 0.0f));
 
 
 

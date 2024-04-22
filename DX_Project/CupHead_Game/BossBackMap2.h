@@ -21,5 +21,6 @@ protected:
 	void Tick(float _DeltaTime) override;
 private:
 	USpriteRenderer* BossBackMap2 = nullptr;
+	USpriteRenderer* Boss2rontObject = nullptr;
 };
 
