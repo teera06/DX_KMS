@@ -15,12 +15,22 @@ ABossBackMap1::ABossBackMap1()
 
 	BossBackMap1->SetupAttachment(Root);
 
-	SetRoot(Root);
 
 	BossBackMap1->SetOrder(ERenderOrder::Boss1_back2);
 	BossBackMap1->SetSprite("BossDevil_Phase1Background2.png");
 	BossBackMap1->SetSamplering(ETextureSampling::LINEAR);
 	BossBackMap1->SetAutoSize(1.0f, true);
+
+	Front = CreateDefaultSubObject<USpriteRenderer>("Front");
+	
+	Front->SetupAttachment(Root);
+
+	Front->SetOrder(ERenderOrder::Boss1_back2);
+	Front->SetSprite("BossDevil_Phase1BackgroundChair.png");
+	Front->SetSamplering(ETextureSampling::LINEAR);
+	Front->SetAutoSize(1.0f, true);
+
+	SetRoot(Root);
 }
 
 ABossBackMap1::~ABossBackMap1()
@@ -30,6 +40,7 @@ ABossBackMap1::~ABossBackMap1()
 void ABossBackMap1::BeginPlay()
 {
 	Super::BeginPlay();
+	Front->SetPosition(FVector(0.0f, 0.0f, -150.0f));
 	//SetActorScale3D(FVector(1600.0f, 900.0f, 100.0f));
 	SetActorLocation(FVector(0.0f, 0.0f, 200.0f));
 }
