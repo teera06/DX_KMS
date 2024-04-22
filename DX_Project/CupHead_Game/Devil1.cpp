@@ -78,3 +78,7 @@ void ADevil1::Phase1Idle(float _DeltaTime)
 {
 
 }
+
+void ADevil1::DragonTransform(float _DeltaTime)
+{
+}

@@ -16,6 +16,9 @@ public:
 
 	UStateManager Phase1;
 	UStateManager Phase2;
+
+	static int phasecheck;
+	static float coolDownTime;
 protected:
 	virtual void Phase1StateInit();
 
