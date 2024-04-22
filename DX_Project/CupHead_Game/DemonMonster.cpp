@@ -31,7 +31,7 @@ void ADemonMonster::BeginPlay()
 {
 	Super::BeginPlay();
 	//SetActorScale3D(FVector(1600.0f, 900.0f, 100.0f));
-	SetActorLocation(FVector(-200.0f, -90.0f, 100.0f));
+	SetActorLocation(FVector(-188.0f, -90.0f, 100.0f));
 	AniCreate();
 	StateInit();
 }
@@ -103,8 +103,8 @@ void ADemonMonster::DemonAttack1(float _DeltaTime)
 	{
 		Demon->SetDir(EEngineDir::Left);
 		Move = FVector::Right;
-		AddActorLocation(FVector(0.0f, -180.0f, -100.0f));
-		Demon->SetOrder(ERenderOrder::BossSkillMonster);
+		AddActorLocation(FVector(0.0f, -140.0f, -100.0f));
+		Demon->SetOrder(ERenderOrder::FrontSkillMonster);
 		State.ChangeState("DemonAttack2");
 		return;
 	}

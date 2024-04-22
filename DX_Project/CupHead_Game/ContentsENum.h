@@ -53,6 +53,7 @@ enum class ERenderOrder
 	BossSkillMonster,
 	Monster1,
 	Monster2,
+	FrontSkillMonster,
 	SlotMouse,
 	skilleffect,
 	Bullet,
