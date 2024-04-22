@@ -130,6 +130,10 @@ void ADevil1::CreateRamArms()
 	//SkillYMove();
 }
 
+void ADevil1::CreateSpider()
+{
+}
+
 void ADevil1::Phase1Intro(float _DeltaTime)
 {
 	Boss2->SetPosition(FVector(-60.0f, 0.0f, 0.0f));

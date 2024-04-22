@@ -39,6 +39,7 @@ private:
 
 	void CreateHeadAtt();
 	void CreateRamArms();
+	void CreateSpider();
 
 	// 여기서부터는 상태 함수들 
 	void Phase1Intro(float _DeltaTime);
