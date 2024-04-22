@@ -3,6 +3,7 @@
 
 class BossStage2GameMode : public AGameMode
 {
+	GENERATED_BODY(AGameMode)
 public:
 	// constrcuter destructer
 	BossStage2GameMode(); // 디폴트 생성자
