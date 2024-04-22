@@ -23,9 +23,16 @@ public:
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
+	
+	void Phase1StateInit() override;
 private:
 	USpriteRenderer* Boss2 = nullptr;
 	USpriteRenderer* BossHead = nullptr;
 	USpriteRenderer* BossBody = nullptr;
+
+
+	// 여기서부터는 상태 함수들 
+	void Phase1Intro(float _DeltaTime);
+
 };
 

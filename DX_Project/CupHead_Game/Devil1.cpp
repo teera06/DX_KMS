@@ -33,4 +33,19 @@ void ADevil1::BeginPlay()
 void ADevil1::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+	Phase1.Update(_DeltaTime);
+}
+
+void ADevil1::Phase1StateInit()
+{
+	Phase1.CreateState("Phase1Intro");
+
+	Phase1.SetUpdateFunction("Phase1Intro", std::bind(&ADevil1::Phase1Intro, this, std::placeholders::_1));
+	Phase1.SetStartFunction("Phase1Intro", [=] {Boss2->ChangeAnimation("Phase1Intro"); });
+}
+
+void ADevil1::Phase1Intro(float _DeltaTime)
+{
+
 }
