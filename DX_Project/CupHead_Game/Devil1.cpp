@@ -15,7 +15,7 @@ ADevil1::ADevil1()
 
 	SetRoot(Root);
 
-	Boss2->SetOrder(ERenderOrder2::Boss2_back1);
+	Boss2->SetOrder(ERenderOrder::Monster1);
 	Boss2->SetSprite("BossDevil_Phase1Background2.png");
 	Boss2->SetSamplering(ETextureSampling::LINEAR);
 	Boss2->SetAutoSize(1.0f, true);
@@ -27,8 +27,10 @@ ADevil1::~ADevil1()
 
 void ADevil1::BeginPlay()
 {
+	Super::BeginPlay();
 }
 
 void ADevil1::Tick(float _DeltaTime)
 {
+	Super::Tick(_DeltaTime);
 }

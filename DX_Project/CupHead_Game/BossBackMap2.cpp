@@ -12,7 +12,7 @@ ABossBackMap2::ABossBackMap2()
 
 	BossBackMap2->SetupAttachment(Root);
 
-	BossBackMap2->SetOrder(ERenderOrder2::Boss2_Front1);
+	BossBackMap2->SetOrder(ERenderOrder::FrontGround1);
 	BossBackMap2->SetSprite("HallFront.png");
 	BossBackMap2->SetSamplering(ETextureSampling::LINEAR);
 	BossBackMap2->SetAutoSize(1.0f, true);
@@ -21,7 +21,7 @@ ABossBackMap2::ABossBackMap2()
 
 	Boss2rontObject->SetupAttachment(Root);
 
-	Boss2rontObject->SetOrder(ERenderOrder::FrontGround1);
+	Boss2rontObject->SetOrder(ERenderOrder::FrontGround2);
 	Boss2rontObject->SetSprite("BossDevil_Phase1FrontLayerBackground.png");
 	Boss2rontObject->SetSamplering(ETextureSampling::LINEAR);
 	Boss2rontObject->SetAutoSize(1.0f, true);
