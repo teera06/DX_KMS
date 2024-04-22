@@ -27,12 +27,14 @@ private:
 
 	FVector Move = FVector::Left;
 
-	float speed = 500.0f;
+	float speed = 300.0f;
 
 	void AniCreate();
 
 	void StateInit();
 	void DemonIntro1(float _DeltaTime);
 	void DemonJump(float _DeltaTime);
+	void DemonAttack1(float _DeltaTime);
+	void DemonAttack2(float _DeltaTime);
 };
 
