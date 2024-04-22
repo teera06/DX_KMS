@@ -37,5 +37,6 @@ private:
 	void Phase1Intro(float _DeltaTime);
 	void Phase1Idle(float _DeltaTime);
 	void DragonTransform(float _DeltaTime);
+	void DragonIdle(float _DeltaTime);
 };
 
