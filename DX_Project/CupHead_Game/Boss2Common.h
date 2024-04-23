@@ -21,10 +21,21 @@ public:
 	static float coolDownTime;
 	static int attOrder;
 	static bool SkillDestory;
+
+	static int GetHp()
+	{
+		return Hp;
+	}
+
+	static void SetHp(const int& _Hp)
+	{
+		Hp = _Hp;
+	}
 protected:
 	virtual void Phase1StateInit();
 
 	virtual void AniCreate();
 private:
+	static int Hp;
 };
 

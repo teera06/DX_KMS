@@ -6,6 +6,7 @@
 
 #include "ContentsHelper.h"
 #include "Boss1Common.h"
+#include "Boss2Common.h"
 
 UContentsDebugWindow::UContentsDebugWindow()
 {
@@ -41,7 +42,7 @@ void UContentsDebugWindow::OnGui(ULevel* Level, float _Delta)
 
 	if (UContentsHelper::StageCount == 2)
 	{
-		if (true == ImGui::Button("PhaseChange"))
+		if (true == ImGui::Button("Phase2Change"))
 		{
 			if (100 == ABoss1Common::GetHp())
 			{
@@ -50,6 +51,22 @@ void UContentsDebugWindow::OnGui(ULevel* Level, float _Delta)
 			else if (80 == ABoss1Common::GetHp())
 			{
 				ABoss1Common::SetHp(50);
+			}
+			return;
+		}
+	}
+
+	if (UContentsHelper::StageCount == 3)
+	{
+		if (true == ImGui::Button("Phase3Change"))
+		{
+			if (100 == ABoss2Common::GetHp())
+			{
+				ABoss2Common::SetHp(70);
+			}
+			else if (80 == ABoss2Common::GetHp())
+			{
+				//ABoss2Common::SetHp(50);
 			}
 			return;
 		}

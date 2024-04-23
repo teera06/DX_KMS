@@ -101,6 +101,7 @@ void ADevil1::Phase1StateInit()
 	Phase1.CreateState("CreateOrbsIntro");
 	Phase1.CreateState("CreateOrbsIntro2");
 	Phase1.CreateState("CreateOrbsReverse");
+	Phase1.CreateState("Phase1Death");
 
 	Phase1.SetUpdateFunction("Phase1Intro", std::bind(&ADevil1::Phase1Intro, this, std::placeholders::_1));
 	Phase1.SetStartFunction("Phase1Intro", [=] {Boss2->ChangeAnimation("Phase1Intro"); });
@@ -143,6 +144,9 @@ void ADevil1::Phase1StateInit()
 	Phase1.SetUpdateFunction("CreateOrbsReverse", std::bind(&ADevil1::CreateOrbsReverse, this, std::placeholders::_1));
 	Phase1.SetStartFunction("CreateOrbsReverse", [=] {Boss2->ChangeAnimation("CreateOrbsReverse"); });
 
+	Phase1.SetUpdateFunction("Phase1Death", std::bind(&ADevil1::Phase1Death, this, std::placeholders::_1));
+	Phase1.SetStartFunction("Phase1Death", [=] {Boss2->ChangeAnimation("Phase1Death"); });
+
 	Phase1.ChangeState("Phase1Intro");
 }
 
@@ -168,6 +172,8 @@ void ADevil1::AniCreate()
 	BossHead->CreateAnimation("CreateOrbsHead", "CreateOrbsHead", 0.075f);
 	BossBody->CreateAnimation("CreateOrbsBody", "CreateOrbsBody", 0.075f);
 	spear->CreateAnimation("CreateOrbsTrident", "CreateOrbsTrident", 0.075f);
+
+	Boss2->CreateAnimation("Phase1Death", "Phase1Death", 0.075f);
 }
 
 void ADevil1::CreateHeadAtt()
@@ -236,6 +242,11 @@ void ADevil1::Phase1Intro(float _DeltaTime)
 
 void ADevil1::Phase1Idle(float _DeltaTime)
 {
+	if (phasecheck == 1 && GetHp() <= 70)
+	{
+		Phase1.ChangeState("Phase1Death");
+		return;
+	}
 
 	if (coolDownTime < 0 && 1 == attOrder)
 	{
@@ -401,4 +412,9 @@ void ADevil1::CreateOrbsReverse(float _DeltaTime)
 		Phase1.ChangeState("Phase1Idle");
 		Boss2->SetPosition(FVector(0.0f, 0.0f, 0.0f));
 	}
+}
+
+void ADevil1::Phase1Death(float _DeltaTime)
+{
+
 }
