@@ -429,6 +429,8 @@ void ALoadingGameMode::Boss2Load()
 			LoadMap["boss2"] = true;
 		}
 
+		UEngineSprite::CreateCutting("BossDevil_Phase1ToPhase2Background.png", 1, 3);
+
 		{
 			Dir.Move("2phase1");
 
