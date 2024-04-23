@@ -32,7 +32,7 @@ ADevil1::ADevil1()
 	BossHead->SetSamplering(ETextureSampling::LINEAR);
 	BossHead->SetAutoSize(1.0f, true);
 
-	BossHead->AddPosition(FVector(-60.0f, 230.0f, 0.0f));
+	BossHead->AddPosition(FVector(-50.0f, 230.0f, 0.0f));
 
 	BossBody = CreateDefaultSubObject<USpriteRenderer>("BossBody");
 	
@@ -43,8 +43,22 @@ ADevil1::ADevil1()
 	BossBody->SetSamplering(ETextureSampling::LINEAR);
 	BossBody->SetAutoSize(1.0f, true);
 
-	BossBody->AddPosition(FVector(-60.0f, -75.0f, 0.0f));
+	BossBody->AddPosition(FVector(-50.0f, -75.0f, 0.0f));
+
+	spear = CreateDefaultSubObject<USpriteRenderer>("spear");
+	
+	spear->SetupAttachment(Root);
+
+	spear->SetOrder(ERenderOrder::backSkill);
+	spear->SetSprite("devil_ph1_trident_spin_attack_0001.png");
+	spear->SetSamplering(ETextureSampling::LINEAR);
+	spear->SetAutoSize(1.0f, true);
+	
+	spear->AddPosition(FVector(-50.0f, -22.0f, 0.0f));
 	SetRoot(Root);
+
+	
+
 }
 
 ADevil1::~ADevil1()
@@ -56,7 +70,8 @@ void ADevil1::BeginPlay()
 	Super::BeginPlay();
 	SetActorLocation(FVector(30.0f, 50.0f, 10.0f));
 	AniCreate();
-
+	BossHead->SetActive(false);
+	BossBody->SetActive(false);
 	Phase1StateInit();
 }
 
@@ -80,6 +95,8 @@ void ADevil1::Phase1StateInit()
 	Phase1.CreateState("SpiderTransform");
 	Phase1.CreateState("SpiderIdle");
 	Phase1.CreateState("SpiderReverse");
+	Phase1.CreateState("CreateOrbsIntro");
+	Phase1.CreateState("CreateOrbsIntro2");
 
 	Phase1.SetUpdateFunction("Phase1Intro", std::bind(&ADevil1::Phase1Intro, this, std::placeholders::_1));
 	Phase1.SetStartFunction("Phase1Intro", [=] {Boss2->ChangeAnimation("Phase1Intro"); });
@@ -114,6 +131,12 @@ void ADevil1::Phase1StateInit()
 	Phase1.SetUpdateFunction("SpiderReverse", std::bind(&ADevil1::SpiderReverse, this, std::placeholders::_1));
 	Phase1.SetStartFunction("SpiderReverse", [=] {Boss2->ChangeAnimation("SpiderReverse"); });
 
+	Phase1.SetUpdateFunction("CreateOrbsIntro", std::bind(&ADevil1::CreateOrbsIntro, this, std::placeholders::_1));
+	Phase1.SetStartFunction("CreateOrbsIntro", [=] {Boss2->ChangeAnimation("CreateOrbsIntro"); });
+
+	Phase1.SetUpdateFunction("CreateOrbsIntro2", std::bind(&ADevil1::CreateOrbsIntro2, this, std::placeholders::_1));
+	//Phase1.SetStartFunction("CreateOrbsIntro", [=] {Boss2->ChangeAnimation("CreateOrbsIntro"); });
+
 	Phase1.ChangeState("Phase1Intro");
 }
 
@@ -131,7 +154,13 @@ void ADevil1::AniCreate()
 
 	Boss2->CreateAnimation("SpiderTransform", "SpiderTransform", 0.075f);
 	Boss2->CreateAnimation("SpiderIdle", "SpiderIdle", 0.075f);
-	Boss2->CreateAnimation("SpiderReverse", "SpiderTransform", 0.055f,false,53,2);
+	Boss2->CreateAnimation("SpiderReverse", "SpiderTransform", 0.055f, false, 53, 2);
+
+	Boss2->CreateAnimation("CreateOrbsIntro", "CreateOrbsIntro", 0.075f);
+
+	BossHead->CreateAnimation("CreateOrbsHead", "CreateOrbsHead", 0.075f);
+	BossBody->CreateAnimation("CreateOrbsBody", "CreateOrbsBody", 0.075f);
+	spear->CreateAnimation("CreateOrbsTrident", "CreateOrbsTrident", 0.075f);
 }
 
 void ADevil1::CreateHeadAtt()
@@ -175,20 +204,28 @@ void ADevil1::Phase1Intro(float _DeltaTime)
 
 void ADevil1::Phase1Idle(float _DeltaTime)
 {
+
 	if (coolDownTime < 0 && 1 == attOrder)
+	{
+		//Boss2->SetPosition(FVector(-60.0f, 0.0f, 0.0f));
+		Phase1.ChangeState("CreateOrbsIntro");
+		return;
+	}
+
+	if (coolDownTime < 0 && 2 == attOrder)
 	{
 		Boss2->SetPosition(FVector(-60.0f, 0.0f, 0.0f));
 		Phase1.ChangeState("SpiderTransform");
 		return;
 	}
 
-	if (coolDownTime < 0 && 2 == attOrder)
+	if (coolDownTime < 0 && 3 == attOrder)
 	{
 		Phase1.ChangeState("DragonTransform");
 		return;
 	}
 
-	if (coolDownTime < 0 && 3== attOrder)
+	if (coolDownTime < 0 && 4== attOrder)
 	{
 		Phase1.ChangeState("RamTransform");
 		return;
@@ -291,5 +328,32 @@ void ADevil1::SpiderReverse(float _DeltaTime)
 
 void ADevil1::CreateOrbsIntro(float _DeltaTime)
 {
+	if (true == Boss2->IsCurAnimationEnd())
+	{
+		Boss2->SetActive(false);
+		BossHead->SetActive(true);
+		BossBody->SetActive(true);
+		
+		BossHead->ChangeAnimation("CreateOrbsHead");
+		BossBody->ChangeAnimation("CreateOrbsBody");
+		spear->ChangeAnimation("CreateOrbsTrident");
+		Phase1.ChangeState("CreateOrbsIntro2");
+		return;
+	}
+}
 
+void ADevil1::CreateOrbsIntro2(float _DeltaTime)
+{
+
+	if (true == spear->IsCurAnimationEnd())
+	{
+		coolDownTime = 6.0f;
+		attOrder = 2;
+		SkillDestory = false;
+		Phase1.ChangeState("Phase1Idle");
+		Boss2->SetActive(true);
+		BossHead->SetActive(false);
+		BossBody->SetActive(false);
+		return;
+	}
 }

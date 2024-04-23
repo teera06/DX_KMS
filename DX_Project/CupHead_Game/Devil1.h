@@ -39,6 +39,7 @@ private:
 	USpriteRenderer* Boss2 = nullptr;
 	USpriteRenderer* BossHead = nullptr;
 	USpriteRenderer* BossBody = nullptr;
+	USpriteRenderer* spear = nullptr;
 
 
 	void CreateHeadAtt();
@@ -61,6 +62,7 @@ private:
 	void SpiderReverse(float _DeltaTime);
 
 	void CreateOrbsIntro(float _DeltaTime);
+	void CreateOrbsIntro2(float _DeltaTime);
 
 };
 
