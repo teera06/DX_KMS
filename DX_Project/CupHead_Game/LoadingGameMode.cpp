@@ -447,5 +447,24 @@ void ALoadingGameMode::Boss2Load()
 				LoadMap["2phase1"] = true;
 			}
 		}
+
+		Dir.MoveParent();
+
+		{
+			Dir.Move("2phase2");
+
+			if (false == LoadMap.contains("2phase2"))
+			{
+				// 로드폴더는 이렇게 한다고 칩시다.
+				std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory();
+				for (size_t i = 0; i < Directorys.size(); i++)
+				{
+					std::string Name = Directorys[i].GetFolderName();
+					UEngineSprite::LoadFolder(Directorys[i].GetFullPath());
+				}
+
+				LoadMap["2phase2"] = true;
+			}
+		}
 	}
 }

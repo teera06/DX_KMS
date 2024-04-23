@@ -239,6 +239,9 @@
     <ClCompile Include="Boss2Phase2Map.cpp">
       <Filter>PlayStage2\Map</Filter>
     </ClCompile>
+    <ClCompile Include="Devil2.cpp">
+      <Filter>PlayStage2\Boss2\Monster</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -369,6 +372,9 @@
     </ClInclude>
     <ClInclude Include="Boss2Phase2Map.h">
       <Filter>PlayStage2\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Devil2.h">
+      <Filter>PlayStage2\Boss2\Monster</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
