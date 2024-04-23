@@ -63,6 +63,7 @@ private:
 
 	void CreateOrbsIntro(float _DeltaTime);
 	void CreateOrbsIntro2(float _DeltaTime);
+	void CreateOrbsReverse(float _DeltaTime);
 
 };
 

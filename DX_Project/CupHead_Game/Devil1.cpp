@@ -97,6 +97,7 @@ void ADevil1::Phase1StateInit()
 	Phase1.CreateState("SpiderReverse");
 	Phase1.CreateState("CreateOrbsIntro");
 	Phase1.CreateState("CreateOrbsIntro2");
+	Phase1.CreateState("CreateOrbsReverse");
 
 	Phase1.SetUpdateFunction("Phase1Intro", std::bind(&ADevil1::Phase1Intro, this, std::placeholders::_1));
 	Phase1.SetStartFunction("Phase1Intro", [=] {Boss2->ChangeAnimation("Phase1Intro"); });
@@ -135,7 +136,9 @@ void ADevil1::Phase1StateInit()
 	Phase1.SetStartFunction("CreateOrbsIntro", [=] {Boss2->ChangeAnimation("CreateOrbsIntro"); });
 
 	Phase1.SetUpdateFunction("CreateOrbsIntro2", std::bind(&ADevil1::CreateOrbsIntro2, this, std::placeholders::_1));
-	//Phase1.SetStartFunction("CreateOrbsIntro", [=] {Boss2->ChangeAnimation("CreateOrbsIntro"); });
+
+	Phase1.SetUpdateFunction("CreateOrbsReverse", std::bind(&ADevil1::CreateOrbsReverse, this, std::placeholders::_1));
+	Phase1.SetStartFunction("CreateOrbsReverse", [=] {Boss2->ChangeAnimation("CreateOrbsReverse"); });
 
 	Phase1.ChangeState("Phase1Intro");
 }
@@ -157,6 +160,7 @@ void ADevil1::AniCreate()
 	Boss2->CreateAnimation("SpiderReverse", "SpiderTransform", 0.055f, false, 53, 2);
 
 	Boss2->CreateAnimation("CreateOrbsIntro", "CreateOrbsIntro", 0.075f);
+	Boss2->CreateAnimation("CreateOrbsReverse", "CreateOrbsIntro", 0.055f,false,7,0);
 
 	BossHead->CreateAnimation("CreateOrbsHead", "CreateOrbsHead", 0.075f);
 	BossBody->CreateAnimation("CreateOrbsBody", "CreateOrbsBody", 0.075f);
@@ -347,13 +351,21 @@ void ADevil1::CreateOrbsIntro2(float _DeltaTime)
 
 	if (true == spear->IsCurAnimationEnd())
 	{
-		coolDownTime = 6.0f;
-		attOrder = 2;
-		SkillDestory = false;
-		Phase1.ChangeState("Phase1Idle");
+		Phase1.ChangeState("CreateOrbsReverse");
 		Boss2->SetActive(true);
 		BossHead->SetActive(false);
 		BossBody->SetActive(false);
 		return;
+	}
+}
+
+void ADevil1::CreateOrbsReverse(float _DeltaTime)
+{
+	if (true == Boss2->IsCurAnimationEnd())
+	{
+		coolDownTime = 6.0f;
+		attOrder = 2;
+		SkillDestory = false;
+		Phase1.ChangeState("Phase1Idle");
 	}
 }
