@@ -189,7 +189,6 @@ void ADevil1::DragonIdle(float _DeltaTime)
 {
 	if (true == SkillDestory)
 	{
-		SkillDestory = false;
 		Phase1.ChangeState("DragonReverse");
 		return;
 	}
@@ -200,7 +199,7 @@ void ADevil1::DragonReverse(float _DeltaTime)
 	if (true == Boss2->IsCurAnimationEnd())
 	{
 		coolDownTime = 6.0f;
-		attOrder = 2;
+		attOrder = 3;
 		SkillDestory = false;
 		Phase1.ChangeState("Phase1Idle");
 		return;
@@ -221,7 +220,6 @@ void ADevil1::RamIdle(float _DeltaTime)
 {
 	if (true == SkillDestory)
 	{
-		SkillDestory = false;
 		Phase1.ChangeState("RamReverse");
 		return;
 	}
@@ -232,7 +230,7 @@ void ADevil1::RamReverse(float _DeltaTime)
 	if (true == Boss2->IsCurAnimationEnd())
 	{
 		coolDownTime = 6.0f;
-		attOrder = 2;
+		attOrder = 1;
 		SkillDestory = false;
 		Phase1.ChangeState("Phase1Idle");
 		return;
@@ -253,7 +251,6 @@ void ADevil1::SpiderIdle(float _DeltaTime)
 {
 	if (true == SkillDestory)
 	{
-		SkillDestory = false;
 		Phase1.ChangeState("SpiderReverse");
 		return;
 	}
