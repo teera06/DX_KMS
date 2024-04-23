@@ -10,6 +10,8 @@
 #include "HeadAtt.h"
 #include "RamArms.h"
 #include "SpiderHead.h"
+#include "DevilBall.h"
+
 
 ADevil1::ADevil1()
 {
@@ -197,7 +199,10 @@ void ADevil1::CreateSpider()
 
 void ADevil1::CreateBall()
 {
-
+	NewDevilBall1 = GetWorld()->SpawnActor<ADevilBall>("DevilBall1");
+	NewDevilBall2 = GetWorld()->SpawnActor<ADevilBall>("DevilBall2");
+	NewDevilBall3 = GetWorld()->SpawnActor<ADevilBall>("DevilBall3");
+	NewDevilBall4 = GetWorld()->SpawnActor<ADevilBall>("DevilBall4");
 }
 
 void ADevil1::Phase1Intro(float _DeltaTime)
