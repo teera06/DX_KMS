@@ -6,6 +6,8 @@
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/Collision.h>
 
+#include "Boss2Phase2Map.h"
+
 
 APhaseChangeBack::APhaseChangeBack()
 {
@@ -39,6 +41,12 @@ void APhaseChangeBack::Tick(float _DeltaTime)
 
 	if (GetActorLocation().iY() >= 600)
 	{
+		if (false == OneCheck)
+		{
+			GetWorld()->SpawnActor<ABoss2Phase2Map>("Boss2Phase2Map");
+			OneCheck = true;
+
+		}
 		DelCheck = true;
 	}
 

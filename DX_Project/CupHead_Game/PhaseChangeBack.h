@@ -25,5 +25,7 @@ private:
 	USpriteRenderer* PhaseChangeBack = nullptr;
 
 	float Speed = 800.0f;
+
+	bool OneCheck = false;
 };
 
