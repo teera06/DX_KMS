@@ -73,6 +73,7 @@ private:
 	void CreateOrbsReverse(float _DeltaTime);
 
 	void Phase1Death(float _DeltaTime);
+	void Phase2Change(float _DeltaTime);
 
 };
 
