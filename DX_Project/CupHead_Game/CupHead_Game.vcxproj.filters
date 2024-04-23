@@ -233,6 +233,9 @@
     <ClCompile Include="Hole.cpp">
       <Filter>PlayStage2\Boss2\Monster\Object</Filter>
     </ClCompile>
+    <ClCompile Include="PhaseChangeBack.cpp">
+      <Filter>PlayStage2\Map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -357,6 +360,9 @@
     </ClInclude>
     <ClInclude Include="Hole.h">
       <Filter>PlayStage2\Boss2\Monster\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="PhaseChangeBack.h">
+      <Filter>PlayStage2\Map</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

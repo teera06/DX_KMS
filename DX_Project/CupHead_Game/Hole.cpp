@@ -35,6 +35,16 @@ AHole::AHole()
 	HoleSign->SetAutoSize(1.0f, true);
 
 	HoleSign->SetPosition(FVector(0.0f, 130.0f, 0.0f));
+
+	HoleCollision = CreateDefaultSubObject<UCollision>("HoleCollision");
+	HoleCollision->SetupAttachment(Root);
+	//HoleCollision->SetPosition(FVector(0.0f, 60.0f, 0.0f));
+	HoleCollision->SetScale(FVector(100.0f, 100.0f, 100.0f));
+	
+	HoleCollision->SetCollisionGroup(ECollisionOrder::Hole);
+	HoleCollision->SetCollisionType(ECollisionType::RotRect);
+
+
 	SetRoot(Root);
 }
 

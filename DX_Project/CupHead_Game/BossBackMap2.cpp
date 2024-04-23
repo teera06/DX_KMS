@@ -37,7 +37,7 @@ void ABossBackMap2::BeginPlay()
 {
 	Super::BeginPlay();
 	//SetActorScale3D(FVector(1600.0f, 900.0f, 100.0f));
-	SetActorLocation(FVector(0.0f, -44.0f, -80.0f));
+	SetActorLocation(FVector(0.0f, -44.0f, -50.0f));
 }
 
 void ABossBackMap2::Tick(float _DeltaTime)

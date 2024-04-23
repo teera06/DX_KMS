@@ -87,5 +87,6 @@ enum class ECollisionOrder
 	Bullet,
 	Coin,
 	ball,
-	MonsterSkill
+	MonsterSkill,
+	Hole
 };
