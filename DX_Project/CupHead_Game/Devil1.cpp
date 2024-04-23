@@ -249,6 +249,7 @@ void ADevil1::Phase1Idle(float _DeltaTime)
 {
 	if (phasecheck == 1 && GetHp() <= 70)
 	{
+		phasecheck = 2;
 		Phase1.ChangeState("Phase1Death");
 		return;
 	}
@@ -430,5 +431,9 @@ void ADevil1::Phase1Death(float _DeltaTime)
 
 void ADevil1::Phase2Change(float _DeltaTime)
 {
-
+	if (true == Boss2->IsCurAnimationEnd())
+	{
+		Destroy();
+		return;
+	}
 }
