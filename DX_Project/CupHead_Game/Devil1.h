@@ -60,5 +60,7 @@ private:
 	void SpiderIdle(float _DeltaTime);
 	void SpiderReverse(float _DeltaTime);
 
+	void CreateOrbsIntro(float _DeltaTime);
+
 };
 

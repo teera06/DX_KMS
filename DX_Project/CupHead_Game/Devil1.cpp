@@ -17,14 +17,34 @@ ADevil1::ADevil1()
 	Boss2 = CreateDefaultSubObject<USpriteRenderer>("Boss2");
 
 	Boss2->SetupAttachment(Root);
-	//Boss2->SetPivot(EPivot::LEFTTOP);
-
-	SetRoot(Root);
-
+	
 	Boss2->SetOrder(ERenderOrder::Monster1);
 	Boss2->SetSprite("devil_ph1_intro_0004.png");
 	Boss2->SetSamplering(ETextureSampling::LINEAR);
 	Boss2->SetAutoSize(1.0f, true);
+
+	BossHead= CreateDefaultSubObject<USpriteRenderer>("BossHead");
+
+	BossHead->SetupAttachment(Root);
+
+	BossHead->SetOrder(ERenderOrder::Monster2);
+	BossHead->SetSprite("devil_ph1_trident_spin_head_0001.png");
+	BossHead->SetSamplering(ETextureSampling::LINEAR);
+	BossHead->SetAutoSize(1.0f, true);
+
+	BossHead->AddPosition(FVector(-60.0f, 230.0f, 0.0f));
+
+	BossBody = CreateDefaultSubObject<USpriteRenderer>("BossBody");
+	
+	BossBody->SetupAttachment(Root);
+	
+	BossBody->SetOrder(ERenderOrder::Monster2);
+	BossBody->SetSprite("devil_ph1_trident_spin_body_0001.png");
+	BossBody->SetSamplering(ETextureSampling::LINEAR);
+	BossBody->SetAutoSize(1.0f, true);
+
+	BossBody->AddPosition(FVector(-60.0f, -75.0f, 0.0f));
+	SetRoot(Root);
 }
 
 ADevil1::~ADevil1()
@@ -267,4 +287,9 @@ void ADevil1::SpiderReverse(float _DeltaTime)
 		Phase1.ChangeState("Phase1Idle");
 		return;
 	}
+}
+
+void ADevil1::CreateOrbsIntro(float _DeltaTime)
+{
+
 }
