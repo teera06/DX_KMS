@@ -37,6 +37,7 @@ private:
 	UCollision* smallBossCollision = nullptr;
 
 	int smallattcount = 0;
+	int ballattcount = 0;
 	int phase2changecount = 0;
 	bool att = false;
 
@@ -70,6 +71,7 @@ private:
 	void phase3change2(float _DeltaTime);
 
 	void smallatt2Ready1(float _DeltaTime);
+	void smallatt2Delay(float _DeltaTime);
 	void smallatt2(float _DeltaTime);
 };
 
