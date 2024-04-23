@@ -100,6 +100,9 @@
     <Filter Include="PlayStage2\Boss2\Monster\skill1">
       <UniqueIdentifier>{055e326f-6497-4eee-9115-d1cb94c56b31}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlayStage2\Boss2\Monster\Object">
+      <UniqueIdentifier>{846098aa-c310-4eb6-a45d-016bc49f30cc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game_Core.cpp">
@@ -227,6 +230,9 @@
     <ClCompile Include="DevilBall.cpp">
       <Filter>PlayStage2\Boss2\Monster\skill1</Filter>
     </ClCompile>
+    <ClCompile Include="Hole.cpp">
+      <Filter>PlayStage2\Boss2\Monster\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -348,6 +354,9 @@
     </ClInclude>
     <ClInclude Include="DevilBall.h">
       <Filter>PlayStage2\Boss2\Monster\skill1</Filter>
+    </ClInclude>
+    <ClInclude Include="Hole.h">
+      <Filter>PlayStage2\Boss2\Monster\Object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

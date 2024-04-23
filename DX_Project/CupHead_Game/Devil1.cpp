@@ -11,6 +11,7 @@
 #include "RamArms.h"
 #include "SpiderHead.h"
 #include "DevilBall.h"
+#include "Hole.h"
 
 
 ADevil1::ADevil1()
@@ -433,6 +434,7 @@ void ADevil1::Phase2Change(float _DeltaTime)
 {
 	if (true == Boss2->IsCurAnimationEnd())
 	{
+		GetWorld()->SpawnActor<AHole>("Hole");
 		Destroy();
 		return;
 	}
