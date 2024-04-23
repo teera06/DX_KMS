@@ -37,7 +37,7 @@ private:
 
 	float Speed = 500.0f;
 
-	int WallHitCount = 6;
+	int WallHitCount = 0;
 
 	int HitCount = 0;
 

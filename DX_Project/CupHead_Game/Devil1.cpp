@@ -203,6 +203,21 @@ void ADevil1::CreateBall()
 	NewDevilBall2 = GetWorld()->SpawnActor<ADevilBall>("DevilBall2");
 	NewDevilBall3 = GetWorld()->SpawnActor<ADevilBall>("DevilBall3");
 	NewDevilBall4 = GetWorld()->SpawnActor<ADevilBall>("DevilBall4");
+
+	NewDevilBall1->SetActorLocation(FVector(200.0f, 180.0f, 10.0f));
+	NewDevilBall2->SetActorLocation(FVector(-200.0f, 200.0f, 10.0f));
+	NewDevilBall3->SetActorLocation(FVector(-200.0f, -180.0f, 10.0f));
+	NewDevilBall4->SetActorLocation(FVector(200.0f, -200.0f, 10.0f));
+
+	NewDevilBall1->SetStartPos(FVector::Up + FVector::Right);
+	NewDevilBall2->SetStartPos(FVector::Up + FVector::Left);
+	NewDevilBall3->SetStartPos(FVector::Down + FVector::Left);
+	NewDevilBall4->SetStartPos(FVector::Down + FVector::Right);
+
+	NewDevilBall1->SetWallHitCount(7);
+	NewDevilBall2->SetWallHitCount(6);
+	NewDevilBall3->SetWallHitCount(7);
+	NewDevilBall4->SetWallHitCount(6);
 }
 
 void ADevil1::Phase1Intro(float _DeltaTime)
@@ -364,6 +379,7 @@ void ADevil1::CreateOrbsIntro2(float _DeltaTime)
 
 	if (true == spear->IsCurAnimationEnd())
 	{
+		CreateBall();
 		Phase1.ChangeState("CreateOrbsReverse");
 		Boss2->SetActive(true);
 		BossHead->SetActive(false);

@@ -29,8 +29,6 @@ ADevilBall::~ADevilBall()
 void ADevilBall::BeginPlay()
 {
 	Super::BeginPlay();
-	SetActorLocation(FVector(200.0f, 200.0f, 10.0f));
-	
 }
 
 void ADevilBall::Tick(float _DeltaTime)

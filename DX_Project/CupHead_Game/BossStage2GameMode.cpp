@@ -11,10 +11,6 @@
 #include "Play_Cuphead.h"
 #include "Devil1.h"
 
-#include "DevilBall.h"
-
-
-
 #include "ContentsENum.h"
 
 ABossStage2GameMode::ABossStage2GameMode()
@@ -36,7 +32,6 @@ void ABossStage2GameMode::BeginPlay()
 	GetWorld()->SpawnActor<APlay_Cuphead>("Play_Cuphead")->SetGrounYCheck(-300);
 	GetWorld()->SpawnActor<ADevil1>("Devil1");
 
-	GetWorld()->SpawnActor<ADevilBall>("DevilBall")->SetStartPos(FVector::Up+FVector::Right);
 
 	GetWorld()->GetLastTarget()->AddEffect<UBlurEffect>();
 
