@@ -33,6 +33,10 @@ void ADevilBall::BeginPlay()
 	DevilBall->CreateAnimation("Orb_Bubble", "Orb_Bubble",0.05f);
 	DevilBall->CreateAnimation("Orb_Bubble_Parry", "Orb_Bubble_Parry", 0.05f);
 
+}
+
+void ADevilBall::Tick(float _DeltaTime)
+{
 	if (false == ParryCheck)
 	{
 		DevilBall->ChangeAnimation("Orb_Bubble");
@@ -41,10 +45,6 @@ void ADevilBall::BeginPlay()
 	{
 		DevilBall->ChangeAnimation("Orb_Bubble_Parry");
 	}
-}
-
-void ADevilBall::Tick(float _DeltaTime)
-{
 	Super::Tick(_DeltaTime);
 	Delay -= _DeltaTime;
 	if (Delay < 0)
