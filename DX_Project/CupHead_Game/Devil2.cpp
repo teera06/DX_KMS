@@ -7,6 +7,8 @@
 
 #include "ContentsENum.h"
 
+#include "BombBat.h"
+
 ADevil2::ADevil2()
 {
 	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("Boss2");
@@ -88,7 +90,7 @@ void ADevil2::AniCreate()
 
 void ADevil2::CreateBombBat()
 {
-
+	NewBombBat = GetWorld()->SpawnActor<ABombBat>("BombBat");
 }
 
 void ADevil2::DevilPhase2Idle(float _DeltaTime)
@@ -108,6 +110,8 @@ void ADevil2::DevilPhase2Idle(float _DeltaTime)
 
 void ADevil2::BombAttack(float _DeltaTime)
 {
+	Boss2->SetFrameCallback("BombAttack", 56, [=] {CreateBombBat(); });
+
 	if (true == Boss2->IsCurAnimationEnd())
 	{
 		attOrder = 2;

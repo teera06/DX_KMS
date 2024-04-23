@@ -4,6 +4,7 @@
 #include "Boss2Common.h"
 
 class USpriteRenderer;
+class ABombBat;
 class ADevil2 : public AActor, public ABoss2Common
 {
 	GENERATED_BODY(AActor)
@@ -27,6 +28,8 @@ protected:
 
 	void AniCreate() override;
 private:
+	std::shared_ptr<ABombBat> NewBombBat = nullptr;
+
 	USpriteRenderer* Boss2 = nullptr;
 	USpriteRenderer* DevilNeck = nullptr;
 
