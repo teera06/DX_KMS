@@ -41,6 +41,12 @@ void ADevilBall::Tick(float _DeltaTime)
 
 void ADevilBall::Collisiongather(float _DeltaTime)
 {
+
+	if (WallHitCount == HitCount)
+	{
+		Destroy();
+	}
+
 	if (GetActorLocation().iX() <= -640 ||GetActorLocation().iX() >= 640)
 	{
 		HitCount++;
