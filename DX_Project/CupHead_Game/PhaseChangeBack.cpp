@@ -10,6 +10,7 @@
 
 
 #include "Boss2Phase2Map.h"
+#include "Devil2.h"
 
 
 
@@ -48,6 +49,7 @@ void APhaseChangeBack::Tick(float _DeltaTime)
 		if (false == OneCheck)
 		{
 			GetWorld()->SpawnActor<ABoss2Phase2Map>("Boss2Phase2Map");
+			GetWorld()->SpawnActor<ADevil2>("Devil2");
 			OneCheck = true;
 
 		}

@@ -28,5 +28,8 @@ protected:
 	void AniCreate() override;
 private:
 	USpriteRenderer* Boss2 = nullptr;
+
+
+	void DevilPhase2Idle(float _DeltaTime);
 };
 
