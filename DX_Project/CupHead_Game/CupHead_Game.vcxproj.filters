@@ -103,6 +103,9 @@
     <Filter Include="PlayStage2\Boss2\Monster\Object">
       <UniqueIdentifier>{846098aa-c310-4eb6-a45d-016bc49f30cc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlayStage2\Boss2\Monster\skill2">
+      <UniqueIdentifier>{fb9d51e1-48f4-4b96-a8ec-ccfec4079e16}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game_Core.cpp">
@@ -245,6 +248,9 @@
     <ClCompile Include="DevilPlatform.cpp">
       <Filter>PlayStage2\Boss2\Monster\Object</Filter>
     </ClCompile>
+    <ClCompile Include="BombBat.cpp">
+      <Filter>PlayStage2\Boss2\Monster\skill2</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -381,6 +387,9 @@
     </ClInclude>
     <ClInclude Include="DevilPlatform.h">
       <Filter>PlayStage2\Boss2\Monster\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="BombBat.h">
+      <Filter>PlayStage2\Boss2\Monster\skill2</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
