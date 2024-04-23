@@ -36,4 +36,23 @@ void ADevilBall::BeginPlay()
 void ADevilBall::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+	Collisiongather(_DeltaTime);
+}
+
+void ADevilBall::Collisiongather(float _DeltaTime)
+{
+	if (GetActorLocation().iX() <= -640 ||GetActorLocation().iX() >= 640)
+	{
+		HitCount++;
+		StartPos.X *= -1.0f;
+	}
+
+
+	if (GetActorLocation().iY() <= -350 || GetActorLocation().iY() >= 360)
+	{
+		HitCount++;
+		StartPos.Y *= -1.0f;
+	}
+
+	AddActorLocation(StartPos * Speed * _DeltaTime);
 }

@@ -36,7 +36,7 @@ void ABossStage2GameMode::BeginPlay()
 	GetWorld()->SpawnActor<APlay_Cuphead>("Play_Cuphead")->SetGrounYCheck(-300);
 	GetWorld()->SpawnActor<ADevil1>("Devil1");
 
-	GetWorld()->SpawnActor<ADevilBall>("DevilBall");
+	GetWorld()->SpawnActor<ADevilBall>("DevilBall")->SetStartPos(FVector::Up+FVector::Right);
 
 	GetWorld()->GetLastTarget()->AddEffect<UBlurEffect>();
 

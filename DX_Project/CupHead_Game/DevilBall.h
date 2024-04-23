@@ -17,10 +17,30 @@ public:
 	ADevilBall& operator=(const ADevilBall& _Other) = delete; // 디폴트 대입 연산자
 	ADevilBall& operator=(ADevilBall&& _Other) noexcept = delete;
 
+	void SetStartPos(const FVector& _StartPos)
+	{
+		StartPos = _StartPos;
+	}
+
+	void SetWallHitCount(const int& _WallHitCount)
+	{
+		WallHitCount = _WallHitCount;
+	}
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 private:
 	USpriteRenderer* DevilBall = nullptr;
+
+	FVector StartPos = FVector::Zero;
+
+	float Speed = 500.0f;
+
+	int WallHitCount = 6;
+
+	int HitCount = 0;
+
+	void Collisiongather(float _DeltaTime);
 };
 
