@@ -8,6 +8,7 @@
 #include <EngineCore/Collision.h>
 
 #include "ContentsENum.h"
+#include "Play_Cuphead.h"
 
 ASpiderHead::ASpiderHead()
 {
@@ -30,7 +31,7 @@ ASpiderHead::~ASpiderHead()
 void ASpiderHead::BeginPlay()
 {
 	Super::BeginPlay();
-	SetActorLocation(FVector(0.0f, 450.0f, 0.0f));
+	//SetActorLocation(FVector(0.0f, 450.0f, 0.0f));
 	AniCreate();
 
 	Phase1StateInit();
@@ -73,8 +74,18 @@ void ASpiderHead::AniCreate()
 }
 
 
+void ASpiderHead::CalDir()
+{
+	FVector CoinPos = GetActorLocation();
+
+	FirstXPos = PlayerPos - CoinPos;
+
+	SetActorLocation(FVector(FirstXPos.X, 450.0f, 0.0f));
+}
+
 void ASpiderHead::SpiderHead_FallFromSky(float _DeltaTime)
 {
+
 
 	if (Attcount == 4)
 	{
@@ -85,11 +96,12 @@ void ASpiderHead::SpiderHead_FallFromSky(float _DeltaTime)
 
 	if (false == XPos)
 	{
-		//RandomXpos = UEngineRandom::MainRandom.RandomFloat(200.0f, -200.0f);
-		SetActorLocation(FVector(0.0f, 450.0f, 0.0f));
-		Attcount++;
+		PlayerPos = APlay_Cuphead::GetPlayerPos();
 		XPos = true;
+		Attcount++;
+		CalDir();
 	}
+
 	GravityVector += (FVector::Down * Gravity * _DeltaTime); // 중력은 계속 가해진다.
 
 	if (GetActorLocation().iY() <= -10)
