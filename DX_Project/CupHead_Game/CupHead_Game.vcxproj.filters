@@ -224,6 +224,9 @@
     <ClCompile Include="SpiderHead.cpp">
       <Filter>PlayStage2\Boss2\Monster\skill1</Filter>
     </ClCompile>
+    <ClCompile Include="DevilBall.cpp">
+      <Filter>PlayStage2\Boss2\Monster\skill1</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -341,6 +344,9 @@
       <Filter>PlayStage2\Boss2\Monster\skill1</Filter>
     </ClInclude>
     <ClInclude Include="SpiderHead.h">
+      <Filter>PlayStage2\Boss2\Monster\skill1</Filter>
+    </ClInclude>
+    <ClInclude Include="DevilBall.h">
       <Filter>PlayStage2\Boss2\Monster\skill1</Filter>
     </ClInclude>
   </ItemGroup>
