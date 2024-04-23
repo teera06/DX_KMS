@@ -54,7 +54,7 @@ ADevil1::ADevil1()
 	spear->SetSamplering(ETextureSampling::LINEAR);
 	spear->SetAutoSize(1.0f, true);
 	
-	spear->AddPosition(FVector(-50.0f, -22.0f, 0.0f));
+	spear->AddPosition(FVector(-40.0f, -22.0f, 0.0f));
 	SetRoot(Root);
 
 	
@@ -72,6 +72,7 @@ void ADevil1::BeginPlay()
 	AniCreate();
 	BossHead->SetActive(false);
 	BossBody->SetActive(false);
+	spear->SetActive(false);
 	Phase1StateInit();
 }
 
@@ -337,6 +338,7 @@ void ADevil1::CreateOrbsIntro(float _DeltaTime)
 		Boss2->SetActive(false);
 		BossHead->SetActive(true);
 		BossBody->SetActive(true);
+		spear->SetActive(true);
 		
 		BossHead->ChangeAnimation("CreateOrbsHead");
 		BossBody->ChangeAnimation("CreateOrbsBody");
@@ -355,6 +357,8 @@ void ADevil1::CreateOrbsIntro2(float _DeltaTime)
 		Boss2->SetActive(true);
 		BossHead->SetActive(false);
 		BossBody->SetActive(false);
+		spear->SetActive(false);
+
 		return;
 	}
 }
