@@ -56,4 +56,9 @@ void ABossBackMap1::Tick(float _DeltaTime)
 		GetWorld()->SpawnActor<ADemonMonster>("DemonMonster");
 		CoolDownTime = 6.0f;
 	}
+
+	if (true == DelCheck)
+	{
+		Destroy();
+	}
 }

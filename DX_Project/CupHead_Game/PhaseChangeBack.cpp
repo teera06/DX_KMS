@@ -37,6 +37,11 @@ void APhaseChangeBack::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
+	if (GetActorLocation().iY() >= 600)
+	{
+		DelCheck = true;
+	}
+
 	if (GetActorLocation().iY() >= 1200)
 	{
 		Destroy();

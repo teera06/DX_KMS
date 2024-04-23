@@ -13,6 +13,11 @@
 #include "Boss1_Monster2.h"
 #include "MoveObject2.h"
 
+#include "Hole.h"
+
+#include "PhaseChangeBack.h"
+
+
 
 //void Function(URenderer* Renderer)
 //{
@@ -37,6 +42,19 @@ void APlay_Cuphead::ParryCheck()
 		ABoss1_Monster2* Hand= dynamic_cast<ABoss1_Monster2*>(Ptr);
 
 		Hand->SetSlotTouch(true);
+
+	});
+}
+
+void APlay_Cuphead::EventCollision(float _DeltaTime)
+{
+	PlayerCollision->CollisionEnter(ECollisionOrder::Hole, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		//State.ChangeState("Jump");
+		//AddActorLocation(FVector::Down * 100.0f * _DeltaTime);
+
+		GetWorld()->SpawnActor<APhaseChangeBack>("PhaseChangeBack");
+		//DelayCallBack(0.2f, std::bind(&APlay_Cuphead::Destroy, this));
 
 	});
 }
@@ -673,6 +691,7 @@ void APlay_Cuphead::Run(float  _DeltaTime)
 		MovePos += FVector::Right * _DeltaTime * Speed;
 	}
 
+	EventCollision(_DeltaTime);
 	MoveUpDate(_DeltaTime, MovePos);
 }
 

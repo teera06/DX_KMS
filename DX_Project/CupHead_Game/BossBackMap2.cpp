@@ -43,4 +43,9 @@ void ABossBackMap2::BeginPlay()
 void ABossBackMap2::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+	if (true == DelCheck)
+	{
+		Destroy();
+	}
 }

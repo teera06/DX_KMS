@@ -85,6 +85,7 @@ private:
 
 
 	void ParryCheck();
+	void EventCollision(float _DeltaTime);
 
 	// 총알 관련 함수
 	void createBullet();
