@@ -5,6 +5,7 @@
 
 
 #include "ContentsHelper.h"
+#include "Boss1Common.h"
 
 UContentsDebugWindow::UContentsDebugWindow()
 {
@@ -36,5 +37,21 @@ void UContentsDebugWindow::OnGui(ULevel* Level, float _Delta)
 	{
 		UContentsHelper::StageCount = 1;
 		GEngine->ChangeLevel("Loading");
+	}
+
+	if (UContentsHelper::StageCount == 2)
+	{
+		if (true == ImGui::Button("PhaseChange"))
+		{
+			if (100 == ABoss1Common::GetHp())
+			{
+				ABoss1Common::SetHp(80);
+			}
+			else if (80 == ABoss1Common::GetHp())
+			{
+				ABoss1Common::SetHp(50);
+			}
+			return;
+		}
 	}
 }
