@@ -17,14 +17,19 @@ public:
 	ADevilBall& operator=(const ADevilBall& _Other) = delete; // 디폴트 대입 연산자
 	ADevilBall& operator=(ADevilBall&& _Other) noexcept = delete;
 
-	void SetStartPos(const FVector& _StartPos)
+	inline void SetStartPos(const FVector& _StartPos)
 	{
 		StartPos = _StartPos;
 	}
 
-	void SetWallHitCount(const int& _WallHitCount)
+	inline void SetWallHitCount(const int& _WallHitCount)
 	{
 		WallHitCount = _WallHitCount;
+	}
+
+	inline void SetParryCheck(const bool& _ParryCheck)
+	{
+		ParryCheck = _ParryCheck;
 	}
 
 protected:
@@ -41,6 +46,8 @@ private:
 	int WallHitCount = 0;
 
 	int HitCount = 0;
+
+	bool ParryCheck=false;
 
 	void Collisiongather(float _DeltaTime);
 };
