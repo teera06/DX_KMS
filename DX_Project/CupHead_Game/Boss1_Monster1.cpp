@@ -392,8 +392,16 @@ void ABoss1_Monster1::phase3change2(float _DeltaTime)
 
 void ABoss1_Monster1::smallatt2Ready1(float _DeltaTime)
 {
+
+
 	if (true == SmallBoss1->IsCurAnimationEnd())
 	{
+		Delay++;
+	}
+
+	if (Delay == 9)
+	{
+		Delay = 0;
 		Phase2.ChangeState("smallatt2");
 		return;
 	}

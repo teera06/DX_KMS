@@ -38,6 +38,7 @@ private:
 
 	int smallattcount = 0;
 	int ballattcount = 0;
+	int Delay = 0;
 	int phase2changecount = 0;
 	bool att = false;
 
