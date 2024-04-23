@@ -34,7 +34,11 @@ void ADevilBall::BeginPlay()
 void ADevilBall::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-	Collisiongather(_DeltaTime);
+	Delay -= _DeltaTime;
+	if (Delay < 0)
+	{
+		Collisiongather(_DeltaTime);
+	}
 }
 
 void ADevilBall::Collisiongather(float _DeltaTime)

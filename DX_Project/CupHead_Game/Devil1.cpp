@@ -204,14 +204,14 @@ void ADevil1::CreateBall()
 	NewDevilBall3 = GetWorld()->SpawnActor<ADevilBall>("DevilBall3");
 	NewDevilBall4 = GetWorld()->SpawnActor<ADevilBall>("DevilBall4");
 
-	NewDevilBall1->SetActorLocation(FVector(200.0f, 180.0f, 10.0f));
+	NewDevilBall1->SetActorLocation(FVector(200.0f, 150.0f, 10.0f));
 	NewDevilBall2->SetActorLocation(FVector(-200.0f, 200.0f, 10.0f));
-	NewDevilBall3->SetActorLocation(FVector(-200.0f, -180.0f, 10.0f));
+	NewDevilBall3->SetActorLocation(FVector(-200.0f, -150.0f, 10.0f));
 	NewDevilBall4->SetActorLocation(FVector(200.0f, -200.0f, 10.0f));
 
-	NewDevilBall1->SetStartPos(FVector::Up + FVector::Right);
+	NewDevilBall1->SetStartPos(FVector::Up*0.2f + FVector::Right);
 	NewDevilBall2->SetStartPos(FVector::Up + FVector::Left);
-	NewDevilBall3->SetStartPos(FVector::Down + FVector::Left);
+	NewDevilBall3->SetStartPos(FVector::Down*0.2f + FVector::Left);
 	NewDevilBall4->SetStartPos(FVector::Down + FVector::Right);
 
 	NewDevilBall1->SetWallHitCount(7);

@@ -36,6 +36,7 @@ private:
 	FVector StartPos = FVector::Zero;
 
 	float Speed = 500.0f;
+	float Delay = 2.0f;
 
 	int WallHitCount = 0;
 
