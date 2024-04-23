@@ -28,6 +28,8 @@ AHole::AHole()
 	HoleFront->SetSamplering(ETextureSampling::LINEAR);
 	HoleFront->SetAutoSize(1.0f, true);
 
+	HoleFront->SetPosition(FVector(0.0f, -5.0f, 0.0f));
+
 	HoleSign = CreateDefaultSubObject<USpriteRenderer>("HoleSign");
 	HoleSign->SetupAttachment(Root);
 	
@@ -41,7 +43,7 @@ AHole::AHole()
 	HoleCollision = CreateDefaultSubObject<UCollision>("HoleCollision");
 	HoleCollision->SetupAttachment(Root);
 	//HoleCollision->SetPosition(FVector(0.0f, 60.0f, 0.0f));
-	HoleCollision->SetScale(FVector(100.0f, 100.0f, 100.0f));
+	HoleCollision->SetScale(FVector(1.0f, 100.0f, 100.0f));
 	
 	HoleCollision->SetCollisionGroup(ECollisionOrder::Hole);
 	HoleCollision->SetCollisionType(ECollisionType::RotRect);

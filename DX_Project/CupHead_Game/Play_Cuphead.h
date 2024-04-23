@@ -120,5 +120,7 @@ private:
 	void JumpShoot(float _DeltaTime);
 	void DashAfterJump(float _DeltaTime);
 	void Parry(float _DeltaTime);
+
+	void Boss2PhaseChange(float _DeltaTime);
 };
 

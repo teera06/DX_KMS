@@ -50,12 +50,10 @@ void APlay_Cuphead::EventCollision(float _DeltaTime)
 {
 	PlayerCollision->CollisionEnter(ECollisionOrder::Hole, [=](std::shared_ptr<UCollision> _Collison)
 	{
-		//State.ChangeState("Jump");
-		//AddActorLocation(FVector::Down * 100.0f * _DeltaTime);
-
+	
 		GetWorld()->SpawnActor<APhaseChangeBack>("PhaseChangeBack");
-		//DelayCallBack(0.2f, std::bind(&APlay_Cuphead::Destroy, this));
-
+		State.ChangeState("Boss2PhaseChange");
+		return;
 	});
 }
 
@@ -341,6 +339,7 @@ void APlay_Cuphead::StateInit()
 	State.CreateState("JumpShoot");
 	State.CreateState("DashAfterJump");
 	State.CreateState("Parry");
+	State.CreateState("Boss2PhaseChange");
 	
 	State.SetUpdateFunction("Intro", std::bind(&APlay_Cuphead::Intro, this, std::placeholders::_1));
 	State.SetStartFunction("Intro", [=] {PlayCuphead->ChangeAnimation("Intro"); });
@@ -389,6 +388,9 @@ void APlay_Cuphead::StateInit()
 
 	State.SetUpdateFunction("Parry", std::bind(&APlay_Cuphead::Parry, this, std::placeholders::_1));
 	State.SetStartFunction("Parry", [=] {PlayCuphead->ChangeAnimation("Parry"); });
+
+	State.SetUpdateFunction("Boss2PhaseChange", std::bind(&APlay_Cuphead::Boss2PhaseChange, this, std::placeholders::_1));
+	State.SetStartFunction("Boss2PhaseChange", [=] {PlayCuphead->ChangeAnimation("Jump"); });
 	//State.SetUpdateFunction("Run", std::bind(&AWorldPlayer::Run, this, std::placeholders::_1));
 
 	//State.SetStartFunction("Run", std::bind(&AWorldPlayer::RunStart, this));
@@ -1220,4 +1222,22 @@ void APlay_Cuphead::Parry(float _DeltaTime)
 	}
 
 	MoveUpDate(_DeltaTime); // 최종 움직임
+}
+
+void APlay_Cuphead::Boss2PhaseChange(float _DeltaTime)
+{
+	AddActorLocation(FVector::Down * 200.0f * _DeltaTime);
+
+	if (GetActorLocation().iY() <= -320)
+	{
+		PlayCuphead->SetActive(false);
+	}
+
+	if (GetActorLocation().iY() <= -700)
+	{
+		PlayCuphead->SetActive(true);
+		SetActorLocation(FVector(-200.0f, 0.0f, 0.0f));
+		State.ChangeState("Idle");
+		return;
+	}
 }

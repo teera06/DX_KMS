@@ -23,7 +23,7 @@ APhaseChangeBack::APhaseChangeBack()
 	PhaseChangeBack->SetOrder(ERenderOrder::FilterEffect);
 	PhaseChangeBack->SetSprite("BossDevil_Phase1ToPhase2Background.png");
 	PhaseChangeBack->SetSamplering(ETextureSampling::LINEAR);
-	PhaseChangeBack->SetAutoSize(1.2f, true);
+	PhaseChangeBack->SetAutoSize(1.3f, true);
 
 	SetRoot(Root);
 }
@@ -54,7 +54,7 @@ void APhaseChangeBack::Tick(float _DeltaTime)
 		UContentsHelper::DelMapCheck= true;
 	}
 
-	if (GetActorLocation().iY() >= 1200)
+	if (GetActorLocation().iY() >= 2000)
 	{
 		Destroy();
 	}
