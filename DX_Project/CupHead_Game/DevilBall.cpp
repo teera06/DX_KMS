@@ -29,6 +29,18 @@ ADevilBall::~ADevilBall()
 void ADevilBall::BeginPlay()
 {
 	Super::BeginPlay();
+
+	DevilBall->CreateAnimation("Orb_Bubble", "Orb_Bubble",0.05f);
+	DevilBall->CreateAnimation("Orb_Bubble_Parry", "Orb_Bubble_Parry", 0.05f);
+
+	if (false == ParryCheck)
+	{
+		DevilBall->ChangeAnimation("Orb_Bubble");
+	}
+	else
+	{
+		DevilBall->ChangeAnimation("Orb_Bubble_Parry");
+	}
 }
 
 void ADevilBall::Tick(float _DeltaTime)

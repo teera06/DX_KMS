@@ -204,6 +204,8 @@ void ADevil1::CreateBall()
 	NewDevilBall3 = GetWorld()->SpawnActor<ADevilBall>("DevilBall3");
 	NewDevilBall4 = GetWorld()->SpawnActor<ADevilBall>("DevilBall4");
 
+	NewDevilBall1->SetParryCheck(true);
+
 	NewDevilBall1->SetActorLocation(FVector(200.0f, 150.0f, 10.0f));
 	NewDevilBall2->SetActorLocation(FVector(-200.0f, 200.0f, 10.0f));
 	NewDevilBall3->SetActorLocation(FVector(-200.0f, -150.0f, 10.0f));
