@@ -6,7 +6,11 @@
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/Collision.h>
 
+#include "ContentsHelper.h"
+
+
 #include "Boss2Phase2Map.h"
+
 
 
 APhaseChangeBack::APhaseChangeBack()
@@ -47,7 +51,7 @@ void APhaseChangeBack::Tick(float _DeltaTime)
 			OneCheck = true;
 
 		}
-		DelCheck = true;
+		UContentsHelper::DelMapCheck= true;
 	}
 
 	if (GetActorLocation().iY() >= 1200)

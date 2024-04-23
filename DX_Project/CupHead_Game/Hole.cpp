@@ -6,6 +6,8 @@
 #include <EngineCore/Collision.h>
 
 #include "ContentsENum.h"
+#include "ContentsHelper.h"
+
 
 AHole::AHole()
 {
@@ -70,4 +72,9 @@ void AHole::BeginPlay()
 void AHole::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+	if (true == UContentsHelper::DelMapCheck)
+	{
+		Destroy();
+	}
 }

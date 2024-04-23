@@ -1,10 +1,9 @@
 #pragma once
 #include <Enginecore/Actor.h>
-#include "Boss2MapCommon.h"
 
 class USpriteRenderer;
 
-class APhaseChangeBack : public AActor, public ABoss2MapCommon
+class APhaseChangeBack : public AActor
 {
 	GENERATED_BODY(AActor)
 public:

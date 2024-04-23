@@ -10,6 +10,8 @@ public:
 	// Stage 1 ¿ùµå¸Ê
 	// Stage 2 º¸½º ¸Ê 1
 	// Stage 3 º¸½º ¸Ê 2
+
+	static bool DelMapCheck;
 protected:
 private:
 };

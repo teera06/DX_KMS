@@ -236,9 +236,6 @@
     <ClCompile Include="PhaseChangeBack.cpp">
       <Filter>PlayStage2\Map</Filter>
     </ClCompile>
-    <ClCompile Include="Boss2MapCommon.cpp">
-      <Filter>PlayStage2\Map</Filter>
-    </ClCompile>
     <ClCompile Include="Boss2Phase2Map.cpp">
       <Filter>PlayStage2\Map</Filter>
     </ClCompile>
@@ -368,9 +365,6 @@
       <Filter>PlayStage2\Boss2\Monster\Object</Filter>
     </ClInclude>
     <ClInclude Include="PhaseChangeBack.h">
-      <Filter>PlayStage2\Map</Filter>
-    </ClInclude>
-    <ClInclude Include="Boss2MapCommon.h">
       <Filter>PlayStage2\Map</Filter>
     </ClInclude>
     <ClInclude Include="Boss2Phase2Map.h">

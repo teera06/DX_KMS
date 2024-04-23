@@ -7,6 +7,7 @@
 
 #include "DemonMonster.h"
 #include "Boss2Common.h"
+#include "ContentsHelper.h"
 
 
 ABossBackMap1::ABossBackMap1()
@@ -57,7 +58,7 @@ void ABossBackMap1::Tick(float _DeltaTime)
 		CoolDownTime = 6.0f;
 	}
 
-	if (true == DelCheck)
+	if (true == UContentsHelper::DelMapCheck)
 	{
 		Destroy();
 	}

@@ -5,6 +5,9 @@
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/Collision.h>
 
+
+#include "ContentsHelper.h"
+
 ABossBackMap2::ABossBackMap2()
 {
 	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("BossBackMap2");
@@ -44,7 +47,7 @@ void ABossBackMap2::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
-	if (true == DelCheck)
+	if (true == UContentsHelper::DelMapCheck)
 	{
 		Destroy();
 	}

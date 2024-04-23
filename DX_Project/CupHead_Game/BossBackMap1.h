@@ -1,9 +1,8 @@
 #pragma once
 #include <Enginecore/Actor.h>
-#include "Boss2MapCommon.h"
 
 class USpriteRenderer;
-class ABossBackMap1 : public AActor,public ABoss2MapCommon
+class ABossBackMap1 : public AActor
 {
 	GENERATED_BODY(AActor)
 public:

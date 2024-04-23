@@ -196,10 +196,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="Boss2MapCommon.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="Boss2Phase2Map.h">
       <SubType>
       </SubType>
@@ -373,10 +369,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Boss2Map.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="Boss2MapCommon.cpp">
       <SubType>
       </SubType>
     </ClCompile>
