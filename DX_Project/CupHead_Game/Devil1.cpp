@@ -239,7 +239,6 @@ void ADevil1::Phase1Idle(float _DeltaTime)
 
 	if (coolDownTime < 0 && 1 == attOrder)
 	{
-		//Boss2->SetPosition(FVector(-60.0f, 0.0f, 0.0f));
 		Phase1.ChangeState("CreateOrbsIntro");
 		return;
 	}
@@ -288,7 +287,7 @@ void ADevil1::DragonReverse(float _DeltaTime)
 	if (true == Boss2->IsCurAnimationEnd())
 	{
 		coolDownTime = 6.0f;
-		attOrder = 3;
+		attOrder = 4;
 		SkillDestory = false;
 		Phase1.ChangeState("Phase1Idle");
 		return;
@@ -350,7 +349,7 @@ void ADevil1::SpiderReverse(float _DeltaTime)
 	if (true == Boss2->IsCurAnimationEnd())
 	{
 		coolDownTime = 6.0f;
-		attOrder = 2;
+		attOrder = 3;
 		SkillDestory = false;
 		Boss2->SetPosition(FVector(0.0f, 0.0f, 0.0f));
 		Phase1.ChangeState("Phase1Idle");
