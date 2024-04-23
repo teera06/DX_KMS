@@ -195,6 +195,11 @@ void ADevil1::CreateSpider()
 	NewSpiderHead = GetWorld()->SpawnActor<ASpiderHead>("SpiderHead");
 }
 
+void ADevil1::CreateBall()
+{
+
+}
+
 void ADevil1::Phase1Intro(float _DeltaTime)
 {
 	Boss2->SetPosition(FVector(-60.0f, 0.0f, 0.0f));

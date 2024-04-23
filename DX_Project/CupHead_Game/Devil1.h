@@ -3,9 +3,11 @@
 #include <EngineCore/Actor.h>
 
 #include "Boss2Common.h"
+
 class USpriteRenderer;
 class AHeadAtt;
 class ARamArms;
+class ADevilBall;
 class ASpiderHead;
 
 class ADevil1 : public AActor, public ABoss2Common
@@ -35,6 +37,10 @@ private:
 	std::shared_ptr<ARamArms> NewRamArmsL = nullptr;
 	std::shared_ptr<ARamArms> NewRamArmsR = nullptr;
 	std::shared_ptr<ASpiderHead> NewSpiderHead = nullptr;
+	std::shared_ptr<ADevilBall> NewDevilBall1 = nullptr;
+	std::shared_ptr<ADevilBall> NewDevilBall2 = nullptr;
+	std::shared_ptr<ADevilBall> NewDevilBall3 = nullptr;
+	std::shared_ptr<ADevilBall> NewDevilBall4 = nullptr;
 
 	USpriteRenderer* Boss2 = nullptr;
 	USpriteRenderer* BossHead = nullptr;
@@ -45,6 +51,7 @@ private:
 	void CreateHeadAtt();
 	void CreateRamArms();
 	void CreateSpider();
+	void CreateBall();
 
 	// 여기서부터는 상태 함수들 
 	void Phase1Intro(float _DeltaTime);

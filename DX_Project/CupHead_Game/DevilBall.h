@@ -5,6 +5,7 @@ class USpriteRenderer;
 
 class ADevilBall : public AActor
 {
+	GENERATED_BODY(AActor)
 public:
 	// constrcuter destructer
 	ADevilBall(); // 디폴트 생성자
@@ -20,6 +21,6 @@ protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 private:
-	USpriteRenderer* headatt = nullptr;
+	USpriteRenderer* DevilBall = nullptr;
 };
 
