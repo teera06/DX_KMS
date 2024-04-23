@@ -30,7 +30,10 @@ private:
 	USpriteRenderer* Boss2 = nullptr;
 	USpriteRenderer* DevilNeck = nullptr;
 
+	void CreateBombBat();
 
 	void DevilPhase2Idle(float _DeltaTime);
+	void BombAttack(float _DeltaTime);
+	void SpiralAttack(float _DeltaTime);
 };
 

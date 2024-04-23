@@ -434,6 +434,8 @@ void ADevil1::Phase2Change(float _DeltaTime)
 {
 	if (true == Boss2->IsCurAnimationEnd())
 	{
+		attOrder = 1;
+		coolDownTime = 6.0f;
 		GetWorld()->SpawnActor<AHole>("Hole");
 		Destroy();
 		return;
