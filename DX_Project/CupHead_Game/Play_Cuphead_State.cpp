@@ -1237,7 +1237,7 @@ void APlay_Cuphead::Boss2PhaseChange(float _DeltaTime)
 		PlayCuphead->SetActive(false);
 	}
 
-	if (GetActorLocation().iY() <= -1240)
+	if (GetActorLocation().iY() <= -1200)
 	{
 		PlayCuphead->SetActive(true);
 		SetActorLocation(FVector(-200.0f, 0.0f, 0.0f));

@@ -14,12 +14,23 @@ ADevil2::ADevil2()
 
 	Boss2->SetupAttachment(Root);
 
-	Boss2->SetOrder(ERenderOrder::Monster1);
+	Boss2->SetOrder(ERenderOrder::Monster2);
 	Boss2->SetSprite("devil_ph3_idle_0001.png");
 	Boss2->SetSamplering(ETextureSampling::LINEAR);
 	Boss2->SetAutoSize(0.8f, true);
 
+	DevilNeck = CreateDefaultSubObject<USpriteRenderer>("DevilNeck");
+	
+	DevilNeck->SetupAttachment(Root);
+	
+	DevilNeck->SetOrder(ERenderOrder::Monster1);
+	DevilNeck->SetSprite("devil_ph3_neck_boil_0001.png");
+	DevilNeck->SetSamplering(ETextureSampling::LINEAR);
+	DevilNeck->SetAutoSize(0.8f, true);
+
 	SetRoot(Root);
+
+	DevilNeck->AddPosition(FVector(40.0f, -400.0f, 0.0f));
 }
 
 ADevil2::~ADevil2()
@@ -32,6 +43,7 @@ void ADevil2::BeginPlay()
 	SetActorLocation(FVector(0.0f, 90.0f, 10.0f));
 
 	AniCreate();
+	DevilNeck->ChangeAnimation("DevilNeck");
 	Phase1StateInit();
 }
 
@@ -55,6 +67,8 @@ void ADevil2::Phase1StateInit()
 void ADevil2::AniCreate()
 {
 	Boss2->CreateAnimation("DevilPhase2Idle", "DevilPhase2Idle", 0.075f);
+
+	DevilNeck->CreateAnimation("DevilNeck", "DevilNeck", 0.075f);
 }
 
 void ADevil2::DevilPhase2Idle(float _DeltaTime)
