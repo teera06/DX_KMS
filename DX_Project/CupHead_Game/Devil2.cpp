@@ -59,6 +59,7 @@ void ADevil2::Phase1StateInit()
 	Phase1.CreateState("DevilPhase2Idle");
 	Phase1.CreateState("BombAttack");
 	Phase1.CreateState("SpiralAttack");
+	Phase1.CreateState("SpiralAttackEnd");
 
 	Phase1.SetUpdateFunction("DevilPhase2Idle", std::bind(&ADevil2::DevilPhase2Idle, this, std::placeholders::_1));
 	Phase1.SetStartFunction("DevilPhase2Idle", [=] {Boss2->ChangeAnimation("DevilPhase2Idle"); });
@@ -69,6 +70,9 @@ void ADevil2::Phase1StateInit()
 	Phase1.SetUpdateFunction("SpiralAttack", std::bind(&ADevil2::SpiralAttack, this, std::placeholders::_1));
 	Phase1.SetStartFunction("SpiralAttack", [=] {Boss2->ChangeAnimation("SpiralAttack"); });
 
+	Phase1.SetUpdateFunction("SpiralAttackEnd", std::bind(&ADevil2::SpiralAttackEnd, this, std::placeholders::_1));
+	Phase1.SetStartFunction("SpiralAttackEnd", [=] {Boss2->ChangeAnimation("SpiralAttackEnd"); });
+
 	Phase1.ChangeState("DevilPhase2Idle");
 }
 
@@ -77,6 +81,7 @@ void ADevil2::AniCreate()
 	Boss2->CreateAnimation("DevilPhase2Idle", "DevilPhase2Idle", 0.075f);
 	Boss2->CreateAnimation("BombAttack", "BombAttack", 0.075f);
 	Boss2->CreateAnimation("SpiralAttack", "SpiralAttack", 0.075f);
+	Boss2->CreateAnimation("SpiralAttackEnd", "SpiralAttackEnd", 0.075f);
 
 	DevilNeck->CreateAnimation("DevilNeck", "DevilNeck", 0.075f);
 }
@@ -113,6 +118,15 @@ void ADevil2::BombAttack(float _DeltaTime)
 }
 
 void ADevil2::SpiralAttack(float _DeltaTime)
+{
+	if (true == Boss2->IsCurAnimationEnd())
+	{
+		Phase1.ChangeState("SpiralAttackEnd");
+		return;
+	}
+}
+
+void ADevil2::SpiralAttackEnd(float _DeltaTime)
 {
 	if (true == Boss2->IsCurAnimationEnd())
 	{

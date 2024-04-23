@@ -35,5 +35,6 @@ private:
 	void DevilPhase2Idle(float _DeltaTime);
 	void BombAttack(float _DeltaTime);
 	void SpiralAttack(float _DeltaTime);
+	void SpiralAttackEnd(float _DeltaTime);
 };
 
