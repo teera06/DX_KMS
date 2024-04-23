@@ -59,6 +59,7 @@ void ADevil1::Phase1StateInit()
 	Phase1.CreateState("RamReverse");
 	Phase1.CreateState("SpiderTransform");
 	Phase1.CreateState("SpiderIdle");
+	Phase1.CreateState("SpiderReverse");
 
 	Phase1.SetUpdateFunction("Phase1Intro", std::bind(&ADevil1::Phase1Intro, this, std::placeholders::_1));
 	Phase1.SetStartFunction("Phase1Intro", [=] {Boss2->ChangeAnimation("Phase1Intro"); });
@@ -90,6 +91,9 @@ void ADevil1::Phase1StateInit()
 	Phase1.SetUpdateFunction("SpiderIdle", std::bind(&ADevil1::SpiderIdle, this, std::placeholders::_1));
 	Phase1.SetStartFunction("SpiderIdle", [=] {Boss2->ChangeAnimation("SpiderIdle"); });
 
+	Phase1.SetUpdateFunction("SpiderReverse", std::bind(&ADevil1::SpiderReverse, this, std::placeholders::_1));
+	Phase1.SetStartFunction("SpiderReverse", [=] {Boss2->ChangeAnimation("SpiderReverse"); });
+
 	Phase1.ChangeState("Phase1Intro");
 }
 
@@ -107,6 +111,7 @@ void ADevil1::AniCreate()
 
 	Boss2->CreateAnimation("SpiderTransform", "SpiderTransform", 0.075f);
 	Boss2->CreateAnimation("SpiderIdle", "SpiderIdle", 0.075f);
+	Boss2->CreateAnimation("SpiderReverse", "SpiderTransform", 0.055f,false,53,2);
 }
 
 void ADevil1::CreateHeadAtt()
@@ -184,6 +189,7 @@ void ADevil1::DragonIdle(float _DeltaTime)
 {
 	if (true == SkillDestory)
 	{
+		SkillDestory = false;
 		Phase1.ChangeState("DragonReverse");
 		return;
 	}
@@ -215,6 +221,7 @@ void ADevil1::RamIdle(float _DeltaTime)
 {
 	if (true == SkillDestory)
 	{
+		SkillDestory = false;
 		Phase1.ChangeState("RamReverse");
 		return;
 	}
@@ -244,4 +251,23 @@ void ADevil1::SpiderTransform(float _DeltaTime)
 
 void ADevil1::SpiderIdle(float _DeltaTime)
 {
+	if (true == SkillDestory)
+	{
+		SkillDestory = false;
+		Phase1.ChangeState("SpiderReverse");
+		return;
+	}
+}
+
+void ADevil1::SpiderReverse(float _DeltaTime)
+{
+	if (true == Boss2->IsCurAnimationEnd())
+	{
+		coolDownTime = 6.0f;
+		attOrder = 2;
+		SkillDestory = false;
+		Boss2->SetPosition(FVector(0.0f, 0.0f, 0.0f));
+		Phase1.ChangeState("Phase1Idle");
+		return;
+	}
 }

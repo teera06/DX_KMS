@@ -58,6 +58,7 @@ private:
 
 	void SpiderTransform(float _DeltaTime);
 	void SpiderIdle(float _DeltaTime);
+	void SpiderReverse(float _DeltaTime);
 
 };
 
