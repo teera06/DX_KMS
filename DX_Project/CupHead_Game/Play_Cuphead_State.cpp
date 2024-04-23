@@ -340,6 +340,7 @@ void APlay_Cuphead::StateInit()
 	State.CreateState("DashAfterJump");
 	State.CreateState("Parry");
 	State.CreateState("Boss2PhaseChange");
+	State.CreateState("Scared");
 	
 	State.SetUpdateFunction("Intro", std::bind(&APlay_Cuphead::Intro, this, std::placeholders::_1));
 	State.SetStartFunction("Intro", [=] {PlayCuphead->ChangeAnimation("Intro"); });
@@ -391,6 +392,9 @@ void APlay_Cuphead::StateInit()
 
 	State.SetUpdateFunction("Boss2PhaseChange", std::bind(&APlay_Cuphead::Boss2PhaseChange, this, std::placeholders::_1));
 	State.SetStartFunction("Boss2PhaseChange", [=] {PlayCuphead->ChangeAnimation("Jump"); });
+
+	State.SetUpdateFunction("Scared", std::bind(&APlay_Cuphead::Scared, this, std::placeholders::_1));
+	State.SetStartFunction("Scared", [=] {PlayCuphead->ChangeAnimation("Scared"); });
 	//State.SetUpdateFunction("Run", std::bind(&AWorldPlayer::Run, this, std::placeholders::_1));
 
 	//State.SetStartFunction("Run", std::bind(&AWorldPlayer::RunStart, this));
@@ -1233,11 +1237,21 @@ void APlay_Cuphead::Boss2PhaseChange(float _DeltaTime)
 		PlayCuphead->SetActive(false);
 	}
 
-	if (GetActorLocation().iY() <= -700)
+	if (GetActorLocation().iY() <= -1240)
 	{
 		PlayCuphead->SetActive(true);
 		SetActorLocation(FVector(-200.0f, 0.0f, 0.0f));
+		State.ChangeState("Scared");
+		return;
+	}
+}
+
+void APlay_Cuphead::Scared(float _DeltaTime)
+{
+	if (true == PlayCuphead->IsCurAnimationEnd())
+	{
 		State.ChangeState("Idle");
 		return;
+
 	}
 }

@@ -122,5 +122,6 @@ private:
 	void Parry(float _DeltaTime);
 
 	void Boss2PhaseChange(float _DeltaTime);
+	void Scared(float _DeltaTime);
 };
 
