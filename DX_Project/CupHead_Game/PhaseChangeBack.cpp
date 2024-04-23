@@ -11,6 +11,7 @@
 
 #include "Boss2Phase2Map.h"
 #include "Devil2.h"
+#include "DevilPlatform.h"
 
 
 
@@ -48,8 +49,7 @@ void APhaseChangeBack::Tick(float _DeltaTime)
 	{
 		if (false == OneCheck)
 		{
-			GetWorld()->SpawnActor<ABoss2Phase2Map>("Boss2Phase2Map");
-			GetWorld()->SpawnActor<ADevil2>("Devil2");
+			CreateActor();
 			OneCheck = true;
 
 		}
@@ -61,4 +61,16 @@ void APhaseChangeBack::Tick(float _DeltaTime)
 		Destroy();
 	}
 	AddActorLocation(FVector::Up * Speed * _DeltaTime);
+}
+
+void APhaseChangeBack::CreateActor()
+{
+	GetWorld()->SpawnActor<ABoss2Phase2Map>("Boss2Phase2Map");
+	GetWorld()->SpawnActor<ADevil2>("Devil2");
+	GetWorld()->SpawnActor<ADevilPlatform>("DevilPlatform1")->SetActorLocation(FVector(-250.0f,-180.0f,10.0f));
+	GetWorld()->SpawnActor<ADevilPlatform>("DevilPlatform2")->SetActorLocation(FVector(-500.0f, -200.0f, 10.0f));
+	GetWorld()->SpawnActor<ADevilPlatform>("DevilPlatform3")->SetActorLocation(FVector(0.0f, -220.0f, 10.0f));
+	GetWorld()->SpawnActor<ADevilPlatform>("DevilPlatform4")->SetActorLocation(FVector(250.0f, -200.0f, 10.0f));
+	GetWorld()->SpawnActor<ADevilPlatform>("DevilPlatform5")->SetActorLocation(FVector(500.0f, -180.0f, 10.0f));
+
 }

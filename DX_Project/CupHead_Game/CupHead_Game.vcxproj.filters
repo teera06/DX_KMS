@@ -242,6 +242,9 @@
     <ClCompile Include="Devil2.cpp">
       <Filter>PlayStage2\Boss2\Monster</Filter>
     </ClCompile>
+    <ClCompile Include="DevilPlatform.cpp">
+      <Filter>PlayStage2\Boss2\Monster\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -375,6 +378,9 @@
     </ClInclude>
     <ClInclude Include="Devil2.h">
       <Filter>PlayStage2\Boss2\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="DevilPlatform.h">
+      <Filter>PlayStage2\Boss2\Monster\Object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

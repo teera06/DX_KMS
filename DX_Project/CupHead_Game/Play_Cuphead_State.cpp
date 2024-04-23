@@ -46,6 +46,37 @@ void APlay_Cuphead::ParryCheck()
 	});
 }
 
+void APlay_Cuphead::GroundObject()
+{
+	PlayerCollision->CollisionEnter(ECollisionOrder::Boss1Top, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		JumpVector = FVector::Zero;
+		State.ChangeState("Idle");
+		return;
+	});
+
+	PlayerCollision->CollisionStay(ECollisionOrder::Boss1Top, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		JumpVector = FVector::Zero;
+		State.ChangeState("Idle");
+		return;
+	});
+
+	PlayerCollision->CollisionEnter(ECollisionOrder::Boss2Object1, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		JumpVector = FVector::Zero;
+		State.ChangeState("Idle");
+		return;
+	});
+
+	PlayerCollision->CollisionStay(ECollisionOrder::Boss2Object1, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		JumpVector = FVector::Zero;
+		State.ChangeState("Idle");
+		return;
+	});
+}
+
 void APlay_Cuphead::EventCollision(float _DeltaTime)
 {
 	PlayerCollision->CollisionEnter(ECollisionOrder::Hole, [=](std::shared_ptr<UCollision> _Collison)
@@ -276,6 +307,11 @@ void APlay_Cuphead::CalGravityVector(float _DeltaTime)
 	});
 
 	PlayerCollision->CollisionStay(ECollisionOrder::Boss1Top, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		GravityVector = FVector::Zero;
+	});
+
+	PlayerCollision->CollisionStay(ECollisionOrder::Boss2Object1, [=](std::shared_ptr<UCollision> _Collison)
 	{
 		GravityVector = FVector::Zero;
 	});
@@ -1098,19 +1134,7 @@ void APlay_Cuphead::Jump(float _DeltaTime)
 		return;
 	}
 
-	PlayerCollision->CollisionEnter(ECollisionOrder::Boss1Top, [=](std::shared_ptr<UCollision> _Collison)
-	{
-		JumpVector = FVector::Zero;
-		State.ChangeState("Idle");
-		return;
-	});
-
-	PlayerCollision->CollisionStay(ECollisionOrder::Boss1Top, [=](std::shared_ptr<UCollision> _Collison)
-	{
-		JumpVector = FVector::Zero;
-		State.ChangeState("Idle");
-		return;
-	});
+	GroundObject();
 
 
 	//if (true == PlayCuphead->IsCurAnimationEnd())
@@ -1170,21 +1194,7 @@ void APlay_Cuphead::JumpShoot(float _DeltaTime)
 		return;
 	}
 
-	PlayerCollision->CollisionEnter(ECollisionOrder::Boss1Top, [=](std::shared_ptr<UCollision> _Collison)
-	{
-		BulletStart->SetActive(false);
-		JumpVector = FVector::Zero;
-		State.ChangeState("Idle");
-		return;
-	});
-
-	PlayerCollision->CollisionStay(ECollisionOrder::Boss1Top, [=](std::shared_ptr<UCollision> _Collison)
-	{
-		BulletStart->SetActive(false);
-		JumpVector = FVector::Zero;
-		State.ChangeState("Idle");
-		return;
-	});
+	GroundObject();
 
 }
 
@@ -1198,19 +1208,7 @@ void APlay_Cuphead::DashAfterJump(float _DeltaTime)
 		return;
 	}
 
-	PlayerCollision->CollisionEnter(ECollisionOrder::Boss1Top, [=](std::shared_ptr<UCollision> _Collison)
-	{
-		JumpVector = FVector::Zero;
-		State.ChangeState("Idle");
-		return;
-	});
-
-	PlayerCollision->CollisionStay(ECollisionOrder::Boss1Top, [=](std::shared_ptr<UCollision> _Collison)
-	{
-		JumpVector = FVector::Zero;
-		State.ChangeState("Idle");
-		return;
-	});
+	GroundObject();
 }
 
 void APlay_Cuphead::Parry(float _DeltaTime)

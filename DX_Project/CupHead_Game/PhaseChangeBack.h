@@ -26,5 +26,7 @@ private:
 	float Speed = 800.0f;
 
 	bool OneCheck = false;
+
+	void CreateActor();
 };
 
