@@ -85,14 +85,14 @@
     <Filter Include="Object\Component\Rendering\Contents">
       <UniqueIdentifier>{41aa0922-4a79-40db-b26d-5323d384daba}</UniqueIdentifier>
     </Filter>
-    <Filter Include="UI">
-      <UniqueIdentifier>{ca0375be-cf90-4b68-b024-f5c8aa088983}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="UI\Contents">
-      <UniqueIdentifier>{b4d4fc7b-dfaf-4049-ba03-193d68f28aab}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Object\Rendering\Contents">
       <UniqueIdentifier>{6fe80a12-2b80-46f6-ad81-4bef43514d67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\UI">
+      <UniqueIdentifier>{ca0375be-cf90-4b68-b024-f5c8aa088983}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\UI\Contents">
+      <UniqueIdentifier>{b4d4fc7b-dfaf-4049-ba03-193d68f28aab}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -247,16 +247,25 @@
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="Widget.cpp">
-      <Filter>UI</Filter>
+      <Filter>Object\UI</Filter>
     </ClCompile>
     <ClCompile Include="Image.cpp">
-      <Filter>UI\Contents</Filter>
+      <Filter>Object\UI\Contents</Filter>
     </ClCompile>
     <ClCompile Include="BlurEffect.cpp">
       <Filter>Object\Rendering\Contents</Filter>
     </ClCompile>
     <ClCompile Include="RenderUnit.cpp">
       <Filter>Object\Component\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineStructuredBuffer.cpp">
+      <Filter>Resources\ShaderResources</Filter>
+    </ClCompile>
+    <ClCompile Include="InstancingRender.cpp">
+      <Filter>Object\Component\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteInstancingRender.cpp">
+      <Filter>Object\Component\Rendering\Contents</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -420,16 +429,25 @@
       <Filter>Core</Filter>
     </ClInclude>
     <ClInclude Include="Widget.h">
-      <Filter>UI</Filter>
+      <Filter>Object\UI</Filter>
     </ClInclude>
     <ClInclude Include="Image.h">
-      <Filter>UI\Contents</Filter>
+      <Filter>Object\UI\Contents</Filter>
     </ClInclude>
     <ClInclude Include="BlurEffect.h">
       <Filter>Object\Rendering\Contents</Filter>
     </ClInclude>
     <ClInclude Include="RenderUnit.h">
       <Filter>Object\Component\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineStructuredBuffer.h">
+      <Filter>Resources\ShaderResources</Filter>
+    </ClInclude>
+    <ClInclude Include="InstancingRender.h">
+      <Filter>Object\Component\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteInstancingRender.h">
+      <Filter>Object\Component\Rendering\Contents</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

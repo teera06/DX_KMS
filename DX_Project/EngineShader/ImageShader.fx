@@ -80,15 +80,6 @@ ImageVSOutPut ImageShader_VS(FEngineVertex _Input)
     Out.POSITION = mul(Out.POSITION, View);
     Out.POSITION = mul(Out.POSITION, Projection);
     
-    // Out.POSITION = mul(_Input.POSITION, WVP);
-    // Out.TEXCOORD = _Input.TEXCOORD;
-
-    
-    // 00,    1. 0
-    
-    
-    // 01,   1 1
-    
     Out.TEXCOORD.x = (_Input.TEXCOORD.x * CuttingSize.x) + CuttingPosition.x;
     Out.TEXCOORD.y = (_Input.TEXCOORD.y * CuttingSize.y) + CuttingPosition.y;
     
@@ -150,8 +141,7 @@ ImagePSOutPut ImageShader_PS(ImageVSOutPut _Input)
     // 01,    11
     Out.COLOR = Sampling(Image, _Input.TEXCOORD);
     Out.COLOR.xyz += PlusColor.xyz;
-    //Out.COLOR.xyz *= MulColor.xyz;
-    //Out.COLOR.a = AlphaColor.a;
+    Out.COLOR.xyzw *= MulColor.xyzw;
     // #define Sampling(Name, TEXCOORD) Name##.Sample(##Name##_Sampler, TEXCOORD.xy);
     // Image.Sample(Image_Sampler, _Input.TEXCOORD.xy);
     
