@@ -333,6 +333,7 @@ void ADevil1::SpiderReverse(float _DeltaTime)
 
 void ADevil1::CreateOrbsIntro(float _DeltaTime)
 {
+	Boss2->SetPosition(FVector(-50.0f, 20.0f, 0.0f));
 	if (true == Boss2->IsCurAnimationEnd())
 	{
 		Boss2->SetActive(false);
@@ -371,5 +372,6 @@ void ADevil1::CreateOrbsReverse(float _DeltaTime)
 		attOrder = 2;
 		SkillDestory = false;
 		Phase1.ChangeState("Phase1Idle");
+		Boss2->SetPosition(FVector(0.0f, 0.0f, 0.0f));
 	}
 }
