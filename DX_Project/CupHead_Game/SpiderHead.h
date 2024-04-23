@@ -45,8 +45,6 @@ private:
 
 	bool XPos = false;
 
-	void CalDir();
-
 	void SpiderHead_FallFromSky(float _DeltaTime);
 	void SpiderHead_FallToFloor(float _DeltaTime);
 	void SpiderHead_FlyToSky(float _DeltaTime);

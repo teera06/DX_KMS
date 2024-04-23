@@ -73,16 +73,6 @@ void ASpiderHead::AniCreate()
 	SpiderHead->CreateAnimation("SpiderHead_FlyToSky2", "SpiderHead_FlyToSky2", 0.075f);
 }
 
-
-void ASpiderHead::CalDir()
-{
-	FVector CoinPos = GetActorLocation();
-
-	FirstXPos = PlayerPos - CoinPos;
-
-	SetActorLocation(FVector(FirstXPos.X, 450.0f, 0.0f));
-}
-
 void ASpiderHead::SpiderHead_FallFromSky(float _DeltaTime)
 {
 
@@ -99,7 +89,7 @@ void ASpiderHead::SpiderHead_FallFromSky(float _DeltaTime)
 		PlayerPos = APlay_Cuphead::GetPlayerPos();
 		XPos = true;
 		Attcount++;
-		CalDir();
+		SetActorLocation(FVector(PlayerPos.X, 450.0f, 0.0f));
 	}
 
 	GravityVector += (FVector::Down * Gravity * _DeltaTime); // 중력은 계속 가해진다.
