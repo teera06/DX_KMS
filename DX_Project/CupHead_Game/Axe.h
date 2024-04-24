@@ -29,7 +29,7 @@ private:
 	float RotSpeed = 6000.0f;
 	float MoveSpeed =200.0f;
 
-	float Delay = 2.0f;
+	float Delay = 1.0f;
 
 	void CalDir(float _DeltaTime);
 

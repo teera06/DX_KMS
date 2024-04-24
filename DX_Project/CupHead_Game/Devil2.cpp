@@ -8,6 +8,8 @@
 #include "ContentsENum.h"
 
 #include "BombBat.h"
+#include "Axe.h"
+
 
 ADevil2::ADevil2()
 {
@@ -93,6 +95,11 @@ void ADevil2::CreateBombBat()
 	NewBombBat = GetWorld()->SpawnActor<ABombBat>("BombBat");
 }
 
+void ADevil2::CreateAxe()
+{
+	NewAxe = GetWorld()->SpawnActor<AAxe>("Axe");
+}
+
 void ADevil2::DevilPhase2Idle(float _DeltaTime)
 {
 	if (coolDownTime < 0 && 1 == attOrder)
@@ -125,6 +132,7 @@ void ADevil2::SpiralAttack(float _DeltaTime)
 {
 	if (true == Boss2->IsCurAnimationEnd())
 	{
+		CreateAxe();
 		Phase1.ChangeState("SpiralAttackEnd");
 		return;
 	}

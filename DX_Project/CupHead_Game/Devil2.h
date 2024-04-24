@@ -5,6 +5,7 @@
 
 class USpriteRenderer;
 class ABombBat;
+class AAxe;
 class ADevil2 : public AActor, public ABoss2Common
 {
 	GENERATED_BODY(AActor)
@@ -29,11 +30,13 @@ protected:
 	void AniCreate() override;
 private:
 	std::shared_ptr<ABombBat> NewBombBat = nullptr;
+	std::shared_ptr<AAxe> NewAxe = nullptr;
 
 	USpriteRenderer* Boss2 = nullptr;
 	USpriteRenderer* DevilNeck = nullptr;
 
 	void CreateBombBat();
+	void CreateAxe();
 
 	void DevilPhase2Idle(float _DeltaTime);
 	void BombAttack(float _DeltaTime);
