@@ -32,6 +32,8 @@ private:
 	float Speed = 200.0f;
 	float Delay = 3.0f;
 
+	void CreateSkill();
+
 	void patternInit();
 	void FatDemonIdle(float _DeltaTime);
 	void FatDemonAttack(float _DeltaTime);

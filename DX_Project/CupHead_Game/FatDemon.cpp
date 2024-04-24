@@ -7,7 +7,7 @@
 #include <EngineCore/Collision.h>
 
 #include "ContentsENum.h"
-
+#include "FatDemonSkill.h"
 
 
 AFatDemon::AFatDemon()
@@ -52,6 +52,11 @@ void AFatDemon::Tick(float _DeltaTime)
 	pattern.Update(_DeltaTime);
 }
 
+void AFatDemon::CreateSkill()
+{
+	GetWorld()->SpawnActor<AFatDemonSkill>("FatDemonSkill")->SetActorLocation(GetActorLocation());
+}
+
 void AFatDemon::patternInit()
 {
 	pattern.CreateState("FatDemonIdle");
@@ -89,7 +94,8 @@ void AFatDemon::FatDemonAttack(float _DeltaTime)
 {
 	if (true == FatDemon->IsCurAnimationEnd())
 	{
-		Delay = 3.0;
+		Delay = 3.0f;
+		CreateSkill();
 		pattern.ChangeState("FatDemonIdle");
 		return;
 	}
