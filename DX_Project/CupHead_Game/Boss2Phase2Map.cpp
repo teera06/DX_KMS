@@ -1,10 +1,13 @@
 #include "PreCompile.h"
 #include "Boss2Phase2Map.h"
-
-#include "ContentsENum.h"
 #include <EngineCore/DefaultSceneComponent.h>
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/Collision.h>
+
+
+#include "ContentsENum.h"
+
+#include "PokerChip.h"
 
 ABoss2Phase2Map::ABoss2Phase2Map()
 {

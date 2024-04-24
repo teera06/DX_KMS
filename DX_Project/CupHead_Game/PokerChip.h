@@ -20,7 +20,9 @@ protected:
 	void Tick(float _DeltaTime) override;
 private:
 	USpriteRenderer* PokerChip = nullptr;
+	USpriteRenderer* Effect = nullptr;
 	UCollision* PokerChipCollision = nullptr;
+	
 
 	FVector GravityVector = FVector::Zero;
 
