@@ -13,7 +13,8 @@
 #include "Play_Cuphead.h"
 #include "Devil1.h"
 
-#include "FatDemon.h"
+#include "DevilTear.h"
+
 
 
 #include "ContentsENum.h"
@@ -36,7 +37,7 @@ void ABossStage2GameMode::BeginPlay()
 	GetWorld()->SpawnActor<ABossBackMap2>("BossBackMap2");
 	GetWorld()->SpawnActor<APlay_Cuphead>("Play_Cuphead")->SetGrounYCheck(-300);
 	GetWorld()->SpawnActor<ADevil1>("Devil1");
-	//GetWorld()->SpawnActor<AFatDemon>("aaaa");
+	GetWorld()->SpawnActor<ADevilTear>("aaaa");
 	//GetWorld()->SpawnActor<APhaseChangeBack>("PhaseChangeBack");
 
 

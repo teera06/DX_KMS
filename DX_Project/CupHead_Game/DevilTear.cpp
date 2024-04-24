@@ -31,13 +31,27 @@ void ADevilTear::BeginPlay()
 {
 	Super::BeginPlay();
 
-	SetActorLocation(FVector(-400.0f, 200.0f, 5.0f));
+	SetActorLocation(FVector(0.0f, 500.0f, 5.0f));
 
-	//FatDemon->CreateAnimation("FatDemonIdle", "FatDemonIdle", 0.075f);
-	//FatDemon->CreateAnimation("FatDemonAttack", "FatDemonAttack", 0.075f);
+	Tear->CreateAnimation("DevilTear1", "DevilTear1", 0.075f);
+	
+	Tear->ChangeAnimation("DevilTear1");
 }
 
 void ADevilTear::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+	GroundCheck(_DeltaTime);
+}
+
+void ADevilTear::GroundCheck(float _DeltaTime)
+{
+	GravityVector += FVector::Down * Speed * _DeltaTime;
+
+	AddActorLocation(GravityVector * _DeltaTime);
+
+	if (GetActorLocation().iY() <= -300)
+	{
+		Destroy();
+	}
 }

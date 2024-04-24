@@ -24,5 +24,13 @@ protected:
 
 private:
 	USpriteRenderer* Tear = nullptr;
+
+	FVector GravityVector = FVector::Zero;
+
+	float Speed = 200.0f;
+
+	bool DestoryCheck = false;
+
+	void GroundCheck(float _DeltaTime);
 };
 
