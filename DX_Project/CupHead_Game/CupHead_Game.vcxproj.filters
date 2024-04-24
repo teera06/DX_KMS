@@ -109,6 +109,9 @@
     <Filter Include="PlayStage2\Boss2\Monster\skill3">
       <UniqueIdentifier>{f7205bb5-aefb-4589-99e9-8ba92437be43}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlayStage2\Boss2\Monster\skill4">
+      <UniqueIdentifier>{f536cc29-c893-40b1-8364-623cbcafe746}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game_Core.cpp">
@@ -269,6 +272,9 @@
     <ClCompile Include="FatDemonSkill.cpp">
       <Filter>PlayStage2\Boss2\Monster\skill3</Filter>
     </ClCompile>
+    <ClCompile Include="DevilTear.cpp">
+      <Filter>PlayStage2\Boss2\Monster\skill4</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -423,6 +429,9 @@
     </ClInclude>
     <ClInclude Include="FatDemonSkill.h">
       <Filter>PlayStage2\Boss2\Monster\skill3</Filter>
+    </ClInclude>
+    <ClInclude Include="DevilTear.h">
+      <Filter>PlayStage2\Boss2\Monster\skill4</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
