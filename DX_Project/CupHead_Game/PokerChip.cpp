@@ -47,8 +47,6 @@ void APokerChip::BeginPlay()
 {
 	Super::BeginPlay();
 
-	//SetActorLocation(FVector(0.0f, 500.0f, 5.0f));
-
 	PokerChip->CreateAnimation("PokerChip", "PokerChip", 0.075f);
 	Effect->CreateAnimation("BurningChip", "BurningChip", 0.075f);
 	
@@ -73,9 +71,9 @@ void APokerChip::GroundCheck(float _DeltaTime)
 		Destroy();
 	}
 
-	PokerChipCollision->CollisionEnter(ECollisionOrder::Boss2Object1, [=](std::shared_ptr<UCollision> _Collison)
-	{
-		Destroy();
-	});
+	//PokerChipCollision->CollisionStay(ECollisionOrder::Boss2Object1, [=](std::shared_ptr<UCollision> _Collison)
+	//{
+		//Destroy();
+	//});
 
 }

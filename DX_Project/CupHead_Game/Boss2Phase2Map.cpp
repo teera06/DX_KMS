@@ -45,4 +45,36 @@ void ABoss2Phase2Map::BeginPlay()
 void ABoss2Phase2Map::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+	Delay -= _DeltaTime;
+
+	if (Delay < 0)
+	{
+		if (order == 1)
+		{
+			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(580.0f, 500.0f, 10.0f));
+		}
+		else if (order == 2)
+		{
+			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(290.0f, 500.0f, 10.0f));
+		}
+		else if (order == 3)
+		{
+			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(0.0f, 500.0f, 10.0f));
+		}
+		else if (order == 4)
+		{
+			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(-290.0f, 500.0f, 10.0f));
+		}
+		else if (order == 5)
+		{
+			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(-580.0f, 500.0f, 10.0f));
+		}
+		else if(order==6 || order==0){
+			Add *= -1;
+		}
+
+		order += Add;
+		Delay = 4.0f;
+	}
+	
 }

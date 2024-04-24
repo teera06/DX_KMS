@@ -21,5 +21,10 @@ protected:
 	void Tick(float _DeltaTime) override;
 private:
 	USpriteRenderer* Boss2Phase2Map = nullptr;
+
+	float Delay = 4.0f;
+
+	int order = 1;
+	int Add = 1;
 };
 
