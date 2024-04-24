@@ -13,6 +13,9 @@
 #include "Play_Cuphead.h"
 #include "Devil1.h"
 
+#include "Axe.h"
+
+
 #include "ContentsENum.h"
 
 ABossStage2GameMode::ABossStage2GameMode()
@@ -33,6 +36,7 @@ void ABossStage2GameMode::BeginPlay()
 	GetWorld()->SpawnActor<ABossBackMap2>("BossBackMap2");
 	GetWorld()->SpawnActor<APlay_Cuphead>("Play_Cuphead")->SetGrounYCheck(-300);
 	GetWorld()->SpawnActor<ADevil1>("Devil1");
+	GetWorld()->SpawnActor<AAxe>("Axe");
 	//GetWorld()->SpawnActor<APhaseChangeBack>("PhaseChangeBack");
 
 
