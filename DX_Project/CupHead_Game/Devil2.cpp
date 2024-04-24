@@ -32,9 +32,19 @@ ADevil2::ADevil2()
 	DevilNeck->SetSprite("devil_ph3_neck_boil_0001.png");
 	DevilNeck->SetSamplering(ETextureSampling::LINEAR);
 	DevilNeck->SetAutoSize(0.8f, true);
+	
+	Hand = CreateDefaultSubObject<USpriteRenderer>("Hand");
+
+	Hand->SetupAttachment(Root);
+
+	Hand->SetOrder(ERenderOrder::FrontSkillMonster);
+	Hand->SetSprite("devil_ph3_demon_hand_0001.png");
+	Hand->SetSamplering(ETextureSampling::LINEAR);
+	Hand->SetAutoSize(0.8f, true);
 
 	SetRoot(Root);
 
+	Hand->SetActive(false);
 	DevilNeck->AddPosition(FVector(40.0f, -400.0f, 0.0f));
 }
 
@@ -106,6 +116,8 @@ void ADevil2::AniCreate()
 	Boss2->CreateAnimation("DevilSummonImpIdle", "DevilSummonImpIdle", 0.075f);
 
 	DevilNeck->CreateAnimation("DevilNeck", "DevilNeck", 0.075f);
+
+	Hand->CreateAnimation("FatDemonIntro", "FatDemonIntro", 0.075f);
 }
 
 void ADevil2::CreateBombBat()
@@ -197,6 +209,7 @@ void ADevil2::Phase2StateInit()
 {
 	Phase2.CreateState("Phase3Idle");
 	Phase2.CreateState("DevilSummonImpIdle");
+	Phase2.CreateState("FatDemonIntro");
 	
 	Phase2.SetUpdateFunction("Phase3Idle", std::bind(&ADevil2::Phase3Idle, this, std::placeholders::_1));
 	Phase2.SetStartFunction("Phase3Idle", [=] {Boss2->ChangeAnimation("Phase3Idle"); });
@@ -204,12 +217,33 @@ void ADevil2::Phase2StateInit()
 	Phase2.SetUpdateFunction("DevilSummonImpIdle", std::bind(&ADevil2::DevilSummonImpIdle, this, std::placeholders::_1));
 	Phase2.SetStartFunction("DevilSummonImpIdle", [=] {Boss2->ChangeAnimation("DevilSummonImpIdle"); });
 
+	Phase2.SetUpdateFunction("FatDemonIntro", std::bind(&ADevil2::FatDemonIntro, this, std::placeholders::_1));
+	Phase2.SetStartFunction("FatDemonIntro", [=] {Hand->ChangeAnimation("FatDemonIntro"); });
+
 	Phase2.ChangeState("Phase3Idle");
 }
 
 void ADevil2::Phase3Idle(float _DeltaTime)
 {
 	if (coolDownTime < 0 && 1 == attOrder)
+	{
+		if (false == LRHand)
+		{
+			LRHand = true;
+			Hand->SetPosition(FVector(-550.0f, -400.0f, 0.0f));
+			Hand->SetDir(EEngineDir::Right);
+		}
+		else {
+			LRHand = false;
+			Hand->SetPosition(FVector(550.0f, -400.0f, 0.0f));
+			Hand->SetDir(EEngineDir::Left);
+		}
+		Hand->SetActive(true);
+		Phase2.ChangeState("FatDemonIntro");
+		return;
+	}
+
+	if (coolDownTime < 0 && 2 == attOrder)
 	{
 		Phase2.ChangeState("DevilSummonImpIdle");
 		return;
@@ -222,6 +256,19 @@ void ADevil2::DevilSummonImpIdle(float _DeltaTime)
 	{
 		CreateImp();
 		attOrder = 1;
+		coolDownTime = 6.0f;
+		Phase2.ChangeState("Phase3Idle");
+		return;
+	}
+}
+
+void ADevil2::FatDemonIntro(float _DeltaTime)
+{
+	Hand->AddPosition(FVector(FVector::Up * 200.0f * _DeltaTime));
+
+	if (Hand->GetWorldPosition().iY() >= 500)
+	{
+		Hand->SetActive(false);
 		coolDownTime = 6.0f;
 		Phase2.ChangeState("Phase3Idle");
 		return;

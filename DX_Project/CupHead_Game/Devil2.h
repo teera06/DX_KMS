@@ -37,7 +37,11 @@ private:
 	USpriteRenderer* Boss2 = nullptr;
 	USpriteRenderer* DevilNeck = nullptr;
 
+	USpriteRenderer* Hand = nullptr;
 
+	bool LRHand = false;
+	// false-> Left
+	// true-> Right
 
 	void CreateBombBat();
 	void CreateAxe();
@@ -55,5 +59,6 @@ private:
 
 	void Phase3Idle(float _DeltaTime);
 	void DevilSummonImpIdle(float _DeltaTime);
+	void FatDemonIntro(float _DeltaTime);
 };
 
