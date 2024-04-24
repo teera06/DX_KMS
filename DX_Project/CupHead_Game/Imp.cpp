@@ -31,7 +31,7 @@ void AImp::BeginPlay()
 {
 	Super::BeginPlay();
 
-	SetActorLocation(FVector(200.0f, 200.0f, 5.0f));
+	//SetActorLocation(FVector(200.0f, 200.0f, 5.0f));
 
 	Imp->CreateAnimation("ImpFlyingUp", "ImpFlyingUp", 0.075f);
 	Imp->CreateAnimation("ImpFlying", "ImpFlying", 0.075f);

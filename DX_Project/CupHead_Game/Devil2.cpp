@@ -9,6 +9,7 @@
 
 #include "BombBat.h"
 #include "Axe.h"
+#include "Imp.h"
 
 
 ADevil2::ADevil2()
@@ -120,6 +121,9 @@ void ADevil2::CreateAxe()
 void ADevil2::CreateImp()
 {
 
+	GetWorld()->SpawnActor<AImp>("Imp1")->SetActorLocation(FVector(200.0f, 300.0f, 5.0f));
+	GetWorld()->SpawnActor<AImp>("Imp2")->SetActorLocation(FVector(50.0f, 300.0f, 5.0f));
+	GetWorld()->SpawnActor<AImp>("Imp3")->SetActorLocation(FVector(-200.0f, 300.0f, 5.0f));
 }
 
 void ADevil2::DevilPhase2Idle(float _DeltaTime)
@@ -207,12 +211,19 @@ void ADevil2::Phase3Idle(float _DeltaTime)
 {
 	if (coolDownTime < 0 && 1 == attOrder)
 	{
-		Phase1.ChangeState("DevilSummonImpIdle");
+		Phase2.ChangeState("DevilSummonImpIdle");
 		return;
 	}
 }
 
 void ADevil2::DevilSummonImpIdle(float _DeltaTime)
 {
-
+	if (true == Boss2->IsCurAnimationEnd())
+	{
+		CreateImp();
+		attOrder = 1;
+		coolDownTime = 6.0f;
+		Phase2.ChangeState("Phase3Idle");
+		return;
+	}
 }

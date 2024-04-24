@@ -30,8 +30,8 @@ private:
 
 	FVector MoveNorMalize = FVector::Zero;
 
-	float Speed = 300.0f;
-	float Delay = 1.0f;
+	float Speed = 200.0f;
+	float Delay = 0.8f;
 
 	void CalDir(float _DeltaTime);
 
