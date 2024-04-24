@@ -106,6 +106,9 @@
     <Filter Include="PlayStage2\Boss2\Monster\skill2">
       <UniqueIdentifier>{fb9d51e1-48f4-4b96-a8ec-ccfec4079e16}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlayStage2\Boss2\Monster\skill3">
+      <UniqueIdentifier>{f7205bb5-aefb-4589-99e9-8ba92437be43}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game_Core.cpp">
@@ -257,6 +260,9 @@
     <ClCompile Include="PokerChip.cpp">
       <Filter>PlayStage2\Boss2\Monster\skill2</Filter>
     </ClCompile>
+    <ClCompile Include="Imp.cpp">
+      <Filter>PlayStage2\Boss2\Monster\skill3</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -402,6 +408,9 @@
     </ClInclude>
     <ClInclude Include="PokerChip.h">
       <Filter>PlayStage2\Boss2\Monster\skill2</Filter>
+    </ClInclude>
+    <ClInclude Include="Imp.h">
+      <Filter>PlayStage2\Boss2\Monster\skill3</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

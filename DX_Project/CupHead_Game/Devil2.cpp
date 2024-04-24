@@ -102,6 +102,7 @@ void ADevil2::AniCreate()
 
 	Boss2->CreateAnimation("Phase2ToPhase3", "Phase2ToPhase3", 0.075f);
 	Boss2->CreateAnimation("Phase3Idle", "Phase3Idle", 0.075f);
+	Boss2->CreateAnimation("DevilSummonImpIdle", "DevilSummonImpIdle", 0.075f);
 
 	DevilNeck->CreateAnimation("DevilNeck", "DevilNeck", 0.075f);
 }
@@ -114,6 +115,11 @@ void ADevil2::CreateBombBat()
 void ADevil2::CreateAxe()
 {
 	NewAxe = GetWorld()->SpawnActor<AAxe>("Axe");
+}
+
+void ADevil2::CreateImp()
+{
+
 }
 
 void ADevil2::DevilPhase2Idle(float _DeltaTime)
@@ -186,14 +192,27 @@ void ADevil2::Phase2ToPhase3(float _DeltaTime)
 void ADevil2::Phase2StateInit()
 {
 	Phase2.CreateState("Phase3Idle");
+	Phase2.CreateState("DevilSummonImpIdle");
 	
 	Phase2.SetUpdateFunction("Phase3Idle", std::bind(&ADevil2::Phase3Idle, this, std::placeholders::_1));
 	Phase2.SetStartFunction("Phase3Idle", [=] {Boss2->ChangeAnimation("Phase3Idle"); });
+
+	Phase2.SetUpdateFunction("DevilSummonImpIdle", std::bind(&ADevil2::DevilSummonImpIdle, this, std::placeholders::_1));
+	Phase2.SetStartFunction("DevilSummonImpIdle", [=] {Boss2->ChangeAnimation("DevilSummonImpIdle"); });
 
 	Phase2.ChangeState("Phase3Idle");
 }
 
 void ADevil2::Phase3Idle(float _DeltaTime)
+{
+	if (coolDownTime < 0 && 1 == attOrder)
+	{
+		Phase1.ChangeState("DevilSummonImpIdle");
+		return;
+	}
+}
+
+void ADevil2::DevilSummonImpIdle(float _DeltaTime)
 {
 
 }

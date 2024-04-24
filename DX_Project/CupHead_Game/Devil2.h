@@ -31,7 +31,6 @@ protected:
 private:
 	std::shared_ptr<ABombBat> NewBombBat = nullptr;
 	std::shared_ptr<AAxe> NewAxe = nullptr;
-
 	USpriteRenderer* Boss2 = nullptr;
 	USpriteRenderer* DevilNeck = nullptr;
 
@@ -39,6 +38,8 @@ private:
 
 	void CreateBombBat();
 	void CreateAxe();
+
+	void CreateImp();
 
 	void DevilPhase2Idle(float _DeltaTime);
 	void BombAttack(float _DeltaTime);
@@ -50,5 +51,6 @@ private:
 	void Phase2StateInit();
 
 	void Phase3Idle(float _DeltaTime);
+	void DevilSummonImpIdle(float _DeltaTime);
 };
 
