@@ -1,6 +1,8 @@
 #pragma once
 #include <EngineCore/Actor.h>
 
+#include <EngineCore/StateManager.h>
+
 class USpriteRenderer;
 
 class AAxe: public AActor
@@ -17,15 +19,23 @@ public:
 	AAxe& operator=(const AAxe& _Other) = delete; // 디폴트 대입 연산자
 	AAxe& operator=(AAxe&& _Other) noexcept = delete;
 
+	UStateManager pattern;
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 private:
 	USpriteRenderer* Axe= nullptr;
 	UCollision* AxeCollision = nullptr;
-	float OneSpeed = 6000.0f;
+	float RotSpeed = 6000.0f;
 	float MoveSpeed =200.0f;
 
-	float Delay = 1.0f;
+	float Delay = 2.0f;
+
+	void CalDir(float _DeltaTime);
+
+	void patternInit();
+	void Start(float _DeltaTime);
+	void StartMove(float _DeltaTime);
+	void AttMove(float _DeltaTime);
 };
 
