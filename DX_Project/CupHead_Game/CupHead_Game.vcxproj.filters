@@ -263,6 +263,9 @@
     <ClCompile Include="Imp.cpp">
       <Filter>PlayStage2\Boss2\Monster\skill3</Filter>
     </ClCompile>
+    <ClCompile Include="FatDemon.cpp">
+      <Filter>PlayStage2\Boss2\Monster\skill3</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -410,6 +413,9 @@
       <Filter>PlayStage2\Boss2\Monster\skill2</Filter>
     </ClInclude>
     <ClInclude Include="Imp.h">
+      <Filter>PlayStage2\Boss2\Monster\skill3</Filter>
+    </ClInclude>
+    <ClInclude Include="FatDemon.h">
       <Filter>PlayStage2\Boss2\Monster\skill3</Filter>
     </ClInclude>
   </ItemGroup>
