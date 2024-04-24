@@ -116,6 +116,9 @@ void ADevil2::AniCreate()
 	Boss2->CreateAnimation("Phase3Idle", "Phase3Idle", 0.075f);
 	Boss2->CreateAnimation("DevilSummonImpIdle", "DevilSummonImpIdle", 0.075f);
 
+	Boss2->CreateAnimation("DevilStartCrying", "DevilStartCrying", 0.075f);
+	Boss2->CreateAnimation("DevilCrying", "DevilCrying", 0.075f);
+
 	DevilNeck->CreateAnimation("DevilNeck", "DevilNeck", 0.075f);
 
 	Hand->CreateAnimation("FatDemonIntro", "FatDemonIntro", 0.075f);
@@ -226,6 +229,8 @@ void ADevil2::Phase2StateInit()
 	Phase2.CreateState("Phase3Idle");
 	Phase2.CreateState("DevilSummonImpIdle");
 	Phase2.CreateState("FatDemonIntro");
+	Phase2.CreateState("DevilStartCrying");
+	Phase2.CreateState("DevilCrying");
 	
 	Phase2.SetUpdateFunction("Phase3Idle", std::bind(&ADevil2::Phase3Idle, this, std::placeholders::_1));
 	Phase2.SetStartFunction("Phase3Idle", [=] {Boss2->ChangeAnimation("Phase3Idle"); });
@@ -236,11 +241,23 @@ void ADevil2::Phase2StateInit()
 	Phase2.SetUpdateFunction("FatDemonIntro", std::bind(&ADevil2::FatDemonIntro, this, std::placeholders::_1));
 	Phase2.SetStartFunction("FatDemonIntro", [=] {Hand->ChangeAnimation("FatDemonIntro"); });
 
+	Phase2.SetUpdateFunction("DevilStartCrying", std::bind(&ADevil2::DevilStartCrying, this, std::placeholders::_1));
+	Phase2.SetStartFunction("DevilStartCrying", [=] {Boss2->ChangeAnimation("DevilStartCrying"); });
+
+	Phase2.SetUpdateFunction("DevilCrying", std::bind(&ADevil2::DevilCrying, this, std::placeholders::_1));
+	Phase2.SetStartFunction("DevilCrying", [=] {Boss2->ChangeAnimation("DevilCrying"); });
+
 	Phase2.ChangeState("Phase3Idle");
 }
 
 void ADevil2::Phase3Idle(float _DeltaTime)
 {
+	if (phasecheck == 3 && GetHp() <= 10)
+	{
+		Phase2.ChangeState("DevilStartCrying");
+		return;
+	}
+
 	if (coolDownTime < 0 && 1 == attOrder)
 	{
 		if (false == LRHand)
@@ -290,4 +307,18 @@ void ADevil2::FatDemonIntro(float _DeltaTime)
 		Phase2.ChangeState("Phase3Idle");
 		return;
 	}
+}
+
+void ADevil2::DevilStartCrying(float _DeltaTime)
+{
+	if (true == Boss2->IsCurAnimationEnd())
+	{
+		Phase2.ChangeState("DevilCrying");
+		return;
+	}
+}
+
+void ADevil2::DevilCrying(float _DeltaTime)
+{
+
 }

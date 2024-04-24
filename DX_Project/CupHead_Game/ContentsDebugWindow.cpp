@@ -68,6 +68,10 @@ void UContentsDebugWindow::OnGui(ULevel* Level, float _Delta)
 			{
 				ABoss2Common::SetHp(40);
 			}
+			else if (40 == ABoss2Common::GetHp())
+			{
+				ABoss2Common::SetHp(10);
+			}
 			return;
 		}
 	}

@@ -63,5 +63,8 @@ private:
 	void Phase3Idle(float _DeltaTime);
 	void DevilSummonImpIdle(float _DeltaTime);
 	void FatDemonIntro(float _DeltaTime);
+
+	void DevilStartCrying(float _DeltaTime);
+	void DevilCrying(float _DeltaTime);
 };
 
