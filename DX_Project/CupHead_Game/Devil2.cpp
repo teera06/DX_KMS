@@ -55,7 +55,16 @@ void ADevil2::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 	coolDownTime -= _DeltaTime;
-	Phase1.Update(_DeltaTime);
+
+	if (phasecheck == 2)
+	{
+		Phase1.Update(_DeltaTime);
+	}
+	else if (phasecheck == 3)
+	{
+		Phase2.Update(_DeltaTime);
+	}
+	
 }
 
 void ADevil2::Phase1StateInit()
@@ -64,6 +73,7 @@ void ADevil2::Phase1StateInit()
 	Phase1.CreateState("BombAttack");
 	Phase1.CreateState("SpiralAttack");
 	Phase1.CreateState("SpiralAttackEnd");
+	Phase1.CreateState("Phase2ToPhase3");
 
 	Phase1.SetUpdateFunction("DevilPhase2Idle", std::bind(&ADevil2::DevilPhase2Idle, this, std::placeholders::_1));
 	Phase1.SetStartFunction("DevilPhase2Idle", [=] {Boss2->ChangeAnimation("DevilPhase2Idle"); });
@@ -77,6 +87,9 @@ void ADevil2::Phase1StateInit()
 	Phase1.SetUpdateFunction("SpiralAttackEnd", std::bind(&ADevil2::SpiralAttackEnd, this, std::placeholders::_1));
 	Phase1.SetStartFunction("SpiralAttackEnd", [=] {Boss2->ChangeAnimation("SpiralAttackEnd"); });
 
+	Phase1.SetUpdateFunction("Phase2ToPhase3", std::bind(&ADevil2::Phase2ToPhase3, this, std::placeholders::_1));
+	Phase1.SetStartFunction("Phase2ToPhase3", [=] {Boss2->ChangeAnimation("Phase2ToPhase3"); });
+
 	Phase1.ChangeState("DevilPhase2Idle");
 }
 
@@ -86,6 +99,9 @@ void ADevil2::AniCreate()
 	Boss2->CreateAnimation("BombAttack", "BombAttack", 0.075f);
 	Boss2->CreateAnimation("SpiralAttack", "SpiralAttack", 0.075f);
 	Boss2->CreateAnimation("SpiralAttackEnd", "SpiralAttackEnd", 0.075f);
+
+	Boss2->CreateAnimation("Phase2ToPhase3", "Phase2ToPhase3", 0.075f);
+	Boss2->CreateAnimation("Phase3Idle", "Phase3Idle", 0.075f);
 
 	DevilNeck->CreateAnimation("DevilNeck", "DevilNeck", 0.075f);
 }
@@ -102,6 +118,12 @@ void ADevil2::CreateAxe()
 
 void ADevil2::DevilPhase2Idle(float _DeltaTime)
 {
+	if (phasecheck == 2 && GetHp() <= 40)
+	{
+		Phase1.ChangeState("Phase2ToPhase3");
+		return;
+	}
+
 	if (coolDownTime < 0 && 1 == attOrder)
 	{
 		Phase1.ChangeState("BombAttack");
@@ -147,4 +169,31 @@ void ADevil2::SpiralAttackEnd(float _DeltaTime)
 		Phase1.ChangeState("DevilPhase2Idle");
 		return;
 	}
+}
+
+void ADevil2::Phase2ToPhase3(float _DeltaTime)
+{
+	if (true == Boss2->IsCurAnimationEnd())
+	{
+		attOrder = 1;
+		coolDownTime = 6.0f;
+		phasecheck = 3;
+		Phase2StateInit();
+		return;
+	}
+}
+
+void ADevil2::Phase2StateInit()
+{
+	Phase2.CreateState("Phase3Idle");
+	
+	Phase2.SetUpdateFunction("Phase3Idle", std::bind(&ADevil2::Phase3Idle, this, std::placeholders::_1));
+	Phase2.SetStartFunction("Phase3Idle", [=] {Boss2->ChangeAnimation("Phase3Idle"); });
+
+	Phase2.ChangeState("Phase3Idle");
+}
+
+void ADevil2::Phase3Idle(float _DeltaTime)
+{
+
 }
