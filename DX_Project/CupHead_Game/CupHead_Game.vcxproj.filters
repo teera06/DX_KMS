@@ -254,6 +254,9 @@
     <ClCompile Include="Axe.cpp">
       <Filter>PlayStage2\Boss2\Monster\skill2</Filter>
     </ClCompile>
+    <ClCompile Include="PokerChip.cpp">
+      <Filter>PlayStage2\Boss2\Monster\skill2</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -395,6 +398,9 @@
       <Filter>PlayStage2\Boss2\Monster\skill2</Filter>
     </ClInclude>
     <ClInclude Include="Axe.h">
+      <Filter>PlayStage2\Boss2\Monster\skill2</Filter>
+    </ClInclude>
+    <ClInclude Include="PokerChip.h">
       <Filter>PlayStage2\Boss2\Monster\skill2</Filter>
     </ClInclude>
   </ItemGroup>

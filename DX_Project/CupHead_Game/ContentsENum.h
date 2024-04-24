@@ -91,5 +91,6 @@ enum class ECollisionOrder
 	ball,
 	MonsterSkill,
 	Hole,
-	Axe
+	Axe,
+	Chip
 };

@@ -25,7 +25,7 @@ APlay_Cuphead::APlay_Cuphead()
 	PlayerCollision = CreateDefaultSubObject<UCollision>("Collision");
 	PlayerCollision->SetupAttachment(Root);
 	PlayerCollision->SetPosition(FVector(0.0f, 60.0f, 0.0f));
-	PlayerCollision->SetScale(FVector(70.0f, 70.0f, 100.0f));
+	PlayerCollision->SetScale(FVector(70.0f, 100.0f, 100.0f));
 	//PlayerCollision은 무조건 오더를 지정해줘야 한다.
 	PlayerCollision->SetCollisionGroup(ECollisionOrder::Player);
 	PlayerCollision->SetCollisionType(ECollisionType::RotRect);

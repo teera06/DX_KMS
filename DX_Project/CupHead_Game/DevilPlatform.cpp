@@ -18,7 +18,7 @@ ADevilPlatform::ADevilPlatform()
 	DevilPlatform->SetOrder(ERenderOrder::MidObject);
 	DevilPlatform->SetSprite("devil_platforms_rocks_004.png");
 	DevilPlatform->SetSamplering(ETextureSampling::LINEAR);
-	DevilPlatform->SetAutoSize(1.0f, true);
+	DevilPlatform->SetAutoSize(0.85f, true);
 
 	GroundCollision = CreateDefaultSubObject<UCollision>("GroundCollision");
 	GroundCollision->SetupAttachment(Root);
