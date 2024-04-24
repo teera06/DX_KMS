@@ -1,5 +1,6 @@
 #pragma once
 #include <EngineCore/Actor.h>
+#include <EngineCore/StateManager.h>
 
 class USpriteRenderer;
 
@@ -17,10 +18,22 @@ public:
 	ABombBat& operator=(const ABombBat& _Other) = delete; // 디폴트 대입 연산자
 	ABombBat& operator=(ABombBat&& _Other) noexcept = delete;
 
+	UStateManager pattern;
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 private:
 	USpriteRenderer* BombBat = nullptr;
+
+
+	float BoomTime = 8.0f;
+
+	float speed = 500.0f;
+	void patternInit();
+	void LeftMove(float _DeltaTime);
+	void UpMove(float _DeltaTime);
+	void RightMove(float _DeltaTime);
+
+	void BombExplosion(float _DeltaTime);
 };
 
