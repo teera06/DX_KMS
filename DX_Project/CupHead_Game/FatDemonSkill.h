@@ -26,5 +26,9 @@ protected:
 	
 private:
 	USpriteRenderer* Skill = nullptr;
+
+	FVector Move = FVector::Zero;
+
+	bool DirOneChek = false;
 };
 

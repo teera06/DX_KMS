@@ -19,6 +19,11 @@ public:
 	AFatDemon& operator=(const AFatDemon& _Other) = delete; // 디폴트 대입 연산자
 	AFatDemon& operator=(AFatDemon&& _Other) noexcept = delete;
 
+	USpriteRenderer* GetRender()
+	{
+		return FatDemon;
+	}
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;

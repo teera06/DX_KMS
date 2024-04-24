@@ -42,9 +42,21 @@ void AFatDemonSkill::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
-	AddActorLocation(FVector::Right * 200.0f * _DeltaTime);
+	if (false == DirOneChek)
+	{
+		if (GetActorLocation().iX() > 0)
+		{
+			Move = FVector::Left;
+		}
+		else {
+			Move = FVector::Right;
+		}
+		DirOneChek = true;
+	}
 
-	if (GetActorLocation().iX() >= 720)
+	AddActorLocation(Move * 200.0f * _DeltaTime);
+
+	if (GetActorLocation().iX() >= 720 || GetActorLocation().iX()<=-720)
 	{
 		Destroy();
 	}

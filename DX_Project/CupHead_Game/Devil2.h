@@ -7,6 +7,7 @@ class USpriteRenderer;
 class ABombBat;
 class AAxe;
 class AImp;
+class AFatDemon;
 
 class ADevil2 : public AActor, public ABoss2Common
 {
@@ -33,6 +34,7 @@ protected:
 private:
 	std::shared_ptr<ABombBat> NewBombBat = nullptr;
 	std::shared_ptr<AAxe> NewAxe = nullptr;
+	std::shared_ptr<AFatDemon> NewFatDemon = nullptr;
 
 	USpriteRenderer* Boss2 = nullptr;
 	USpriteRenderer* DevilNeck = nullptr;
@@ -47,6 +49,7 @@ private:
 	void CreateAxe();
 
 	void CreateImp();
+	void CreateFatDemon();
 
 	void DevilPhase2Idle(float _DeltaTime);
 	void BombAttack(float _DeltaTime);

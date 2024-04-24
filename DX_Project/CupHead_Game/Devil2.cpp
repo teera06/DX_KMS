@@ -10,6 +10,7 @@
 #include "BombBat.h"
 #include "Axe.h"
 #include "Imp.h"
+#include "FatDemon.h"
 
 
 ADevil2::ADevil2()
@@ -136,6 +137,21 @@ void ADevil2::CreateImp()
 	GetWorld()->SpawnActor<AImp>("Imp1")->SetActorLocation(FVector(200.0f, 300.0f, 5.0f));
 	GetWorld()->SpawnActor<AImp>("Imp2")->SetActorLocation(FVector(50.0f, 300.0f, 5.0f));
 	GetWorld()->SpawnActor<AImp>("Imp3")->SetActorLocation(FVector(-200.0f, 300.0f, 5.0f));
+}
+
+void ADevil2::CreateFatDemon()
+{
+	NewFatDemon = GetWorld()->SpawnActor<AFatDemon>("FatDemon");
+	NewFatDemon->SetActorLocation(FVector(Hand->GetWorldPosition().X
+		, Hand->GetWorldPosition().Y-400.0f, Hand->GetWorldPosition().Z));
+	if (true == LRHand)
+	{
+		NewFatDemon->GetRender()->SetDir(EEngineDir::Right);
+	}
+	else
+	{
+		NewFatDemon->GetRender()->SetDir(EEngineDir::Left);
+	}
 }
 
 void ADevil2::DevilPhase2Idle(float _DeltaTime)
@@ -268,6 +284,7 @@ void ADevil2::FatDemonIntro(float _DeltaTime)
 
 	if (Hand->GetWorldPosition().iY() >= 500)
 	{
+		CreateFatDemon();
 		Hand->SetActive(false);
 		coolDownTime = 6.0f;
 		Phase2.ChangeState("Phase3Idle");
