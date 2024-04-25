@@ -607,14 +607,7 @@ void ABoss1_Monster2::CoinAtt(float _DeltaTime)
 
 void ABoss1_Monster2::Phase3SlotReady(float _DeltaTime)
 {
-
-	if (true == SlotMouse->IsCurAnimationEnd() && false==SlotTouch)
-	{
-		createCoinAtt();
-		Bigattcount++;
-	}
-
-	if (Bigattcount > 2)
+	if (true == BigBoss1->IsCurAnimationEnd())
 	{
 		SlotMouse->SetActive(false);
 		coolDownTime = 3.0f;
@@ -622,6 +615,7 @@ void ABoss1_Monster2::Phase3SlotReady(float _DeltaTime)
 		Phase2.ChangeState("Phase3Slot");
 		return;
 	}
+
 }
 
 void ABoss1_Monster2::Phase3Slot(float _DeltaTime)
