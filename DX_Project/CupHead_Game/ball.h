@@ -24,9 +24,11 @@ private:
 	USpriteRenderer* ballRender = nullptr;
 	UCollision* ballCollision = nullptr;
 
-	float Speed =200.0f;
+	float Speed =480.0f;
 
 	FVector StartPos = FVector::Right + (FVector::Up*2.0f);
+
+	FVector RenderRot = FVector(0.0f, 0.0f, 35.0f);
 
 	float XPos = 0.0f;
 	float YPos = 0.0f;

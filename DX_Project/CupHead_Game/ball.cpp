@@ -42,6 +42,8 @@ void Aball::BeginPlay()
 	ballRender->SetSamplering(ETextureSampling::LINEAR);
 	ballRender->SetAutoSize(1.0f, true);
 	
+	ballRender->SetRotationDeg(FVector(0.0f, 0.0f, 35.0f));
+
 	ballRender->SetDir(EEngineDir::Left);
 	
 	ballRender->CreateAnimation("Ball", "Ball", 0.1f);
@@ -67,7 +69,9 @@ void Aball::Collisiongather(float _DeltaTime)
 	if (GetActorLocation().iY() <= -350 || GetActorLocation().iY() >= 360)
 	{
 		StartPos.Y *= -1.0f;
+		RenderRot *= -1.0f;
 	}
 
+	ballRender->SetRotationDeg(RenderRot);
 	AddActorLocation(StartPos *Speed*_DeltaTime);
 }
