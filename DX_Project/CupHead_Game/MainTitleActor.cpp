@@ -15,13 +15,24 @@ AMainTitleActor::AMainTitleActor()
 
 	CupRenderer = CreateDefaultSubObject<USpriteRenderer>("CupRenderer");
 
+	button = CreateDefaultSubObject<USpriteRenderer>("button");
+
 	//Renderer->SetScale(FVector(100.0f, 100.0f, 100.0f));
 	titleRenderer->SetupAttachment(Root);
+	
 	CupRenderer->SetupAttachment(Root);
+
+	button->SetupAttachment(Root);
 
 	CupRenderer->AddPosition({ 0.0f, -360.0f, 0.0f });
 	CupRenderer->SetPivot(EPivot::BOT);
-	CupRenderer->SetPlusColor(FVector(0.05f, 0.05f, 0.05f));
+	CupRenderer->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
+
+	button->AddPosition({ 0.0f, -320.0f, 0.0f });
+	button->SetPivot(EPivot::BOT);
+
+	button->SetMulColor(FVector(0.9f, 0.9f, 0.9f));
+	
 	SetRoot(Root);
 
 	titleRenderer->SetOrder(ERenderOrder::background);
@@ -34,6 +45,11 @@ AMainTitleActor::AMainTitleActor()
 	CupRenderer->SetAutoSize(1.0f, true);
 	//CupRenderer->Get
 	CupRenderer->SetSamplering(ETextureSampling::LINEAR);
+
+	button->SetOrder(ERenderOrder::Log);
+	button->SetSprite("TitleButton.png");
+	button->SetAutoSize(0.8f, true);
+	button->SetSamplering(ETextureSampling::LINEAR);
 }
 
 AMainTitleActor::~AMainTitleActor()
@@ -52,6 +68,20 @@ void AMainTitleActor::BeginPlay()
 void AMainTitleActor::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+	if (true == CupRenderer->IsCurAnimationEnd())
+	{
+		if (true == OnOff)
+		{
+			OnOff = false;
+		}
+		else
+		{
+			OnOff = true;
+		}
+
+		button->SetActive(OnOff);
+	}
 }
 
 void AMainTitleActor::DebugMessageFunction()

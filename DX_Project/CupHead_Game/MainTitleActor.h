@@ -22,6 +22,9 @@ protected:
 private:
 	USpriteRenderer* titleRenderer = nullptr;
 	USpriteRenderer* CupRenderer = nullptr;
+	USpriteRenderer* button = nullptr;
+
+	bool OnOff = true;
 
 	void DebugMessageFunction();
 };
