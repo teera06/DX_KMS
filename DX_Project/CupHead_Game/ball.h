@@ -22,9 +22,11 @@ protected:
 	void Tick(float _DeltaTime) override;
 private:
 	USpriteRenderer* ballRender = nullptr;
+	USpriteRenderer* FxRender = nullptr;
 	UCollision* ballCollision = nullptr;
 
-	float Speed =480.0f;
+
+	float Speed =450.0f;
 
 	FVector StartPos = FVector::Right + (FVector::Up*2.0f);
 

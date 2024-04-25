@@ -16,6 +16,10 @@ Aball::Aball()
 
 	ballRender->SetupAttachment(Root);
 
+	FxRender = CreateDefaultSubObject<USpriteRenderer>("FxRender");
+	
+	FxRender->SetupAttachment(Root);
+
 	ballCollision = CreateDefaultSubObject<UCollision>("ballCollision");
 	ballCollision->SetupAttachment(Root);
 	ballCollision->SetScale(FVector(100.0f, 100.0f, 100.0f));
@@ -50,6 +54,21 @@ void Aball::BeginPlay()
 	
 	ballRender->ChangeAnimation("Ball");
 
+	FxRender->SetOrder(ERenderOrder::skilleffect);
+	FxRender->SetSprite("shorfrog_clap_fx_0001.png");
+	FxRender->SetSamplering(ETextureSampling::LINEAR);
+	FxRender->SetAutoSize(1.0f, true);
+	
+	FxRender->SetPosition(FVector(0.0f, 70.0f, 0.0f));
+	FxRender->SetRotationDeg(FVector(0.0f, 0.0f, 35.0f));
+	
+
+	FxRender->CreateAnimation("FX", "FX", 0.045f,true);
+	
+	FxRender->ChangeAnimation("FX");
+
+	FxRender->SetActive(false);
+
 }
 
 void Aball::Tick(float _DeltaTime)
@@ -66,12 +85,20 @@ void Aball::Collisiongather(float _DeltaTime)
 	}
 
 
-	if (GetActorLocation().iY() <= -350 || GetActorLocation().iY() >= 360)
+	if (GetActorLocation().iY() <= -300 || GetActorLocation().iY() >= 360)
 	{
+		FxRender->SetActive(true);
+		FxRender->ChangeAnimation("FX");
 		StartPos.Y *= -1.0f;
 		RenderRot *= -1.0f;
 	}
+	
+	if (true == FxRender->IsCurAnimationEnd())
+	{
+		FxRender->SetActive(false);
+	}
 
+	FxRender->SetRotationDeg(RenderRot*-1.0f);
 	ballRender->SetRotationDeg(RenderRot);
 	AddActorLocation(StartPos *Speed*_DeltaTime);
 }
