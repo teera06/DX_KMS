@@ -37,6 +37,14 @@ ABoss1_Monster2::ABoss1_Monster2()
 
 	SlotMouse->SetActive(false);
 
+	FrontSlot = CreateDefaultSubObject<USpriteRenderer>("FrontSlot");
+	
+	FrontSlot->SetupAttachment(Root);
+	FrontSlot->SetPivot(EPivot::BOT);
+	FrontSlot->AddPosition(FVector(270.0f, 285.0f, 0.0f));
+
+	FrontSlot->SetActive(false);
+
 	SlotImage1 = CreateDefaultSubObject<USpriteRenderer>("SlotImage1");
 	SlotImage1->SetupAttachment(Root);
 	SlotImage1->SetPivot(EPivot::BOT);
@@ -128,6 +136,12 @@ void ABoss1_Monster2::BeginPlay()
 	SlotImage3->SetSprite("TEMP1.png");
 	SlotImage3->SetSamplering(ETextureSampling::LINEAR);
 	SlotImage3->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
+
+	FrontSlot->SetOrder(ERenderOrder::FrontGround1);
+	FrontSlot->SetSprite("tallfrog_slotman_attack_top_0001.png");
+	FrontSlot->SetSamplering(ETextureSampling::LINEAR);
+	FrontSlot->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
+
 
 	
 
@@ -319,6 +333,8 @@ void ABoss1_Monster2::AniCreate()
 	SlotImage3->CreateAnimation("slotObject3", "TEMP2.png", 0.1f, false, 1, 2);
 
 	WindSkill->CreateAnimation("Wind", "Wind", 0.12f);
+
+	FrontSlot->CreateAnimation("SlotFront", "SlotFront", 0.075f);
 }
 
 
@@ -557,6 +573,7 @@ void ABoss1_Monster2::phase3Intro2(float _DeltaTime)
 	SlotImage1->SetActive(true);
 	SlotImage2->SetActive(true);
 	SlotImage3->SetActive(true);
+	FrontSlot->SetActive(true);
 	if (true == BigBoss1->IsCurAnimationEnd())
 	{
 		coolDownTime = 6.0f;
@@ -645,6 +662,7 @@ void ABoss1_Monster2::Phase3SlotCoinAtt(float _DeltaTime)
 	{
 		Bigattcount = 0;
 		coolDownTime = 3.0f;
+		SlotMouse->SetActive(false);
 		Phase2.ChangeState("Phase3SlotStart");
 		return;
 	}

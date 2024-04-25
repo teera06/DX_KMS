@@ -42,6 +42,7 @@ private:
 
 	USpriteRenderer* BigBoss1 = nullptr;
 	USpriteRenderer* SlotMouse = nullptr;
+	USpriteRenderer* FrontSlot = nullptr;
 
 	USpriteRenderer* SlotImage1 = nullptr;
 	USpriteRenderer* SlotImage2 = nullptr;
