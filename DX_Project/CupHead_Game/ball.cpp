@@ -88,12 +88,11 @@ void Aball::Collisiongather(float _DeltaTime)
 	if (GetActorLocation().iY() <= -300 || GetActorLocation().iY() >= 360)
 	{
 		FxRender->SetActive(true);
-		FxRender->ChangeAnimation("FX");
 		StartPos.Y *= -1.0f;
 		RenderRot *= -1.0f;
 	}
 	
-	if (true == FxRender->IsCurAnimationEnd())
+	if (true== FxRender->IsActive() && true == FxRender->IsCurAnimationEnd())
 	{
 		FxRender->SetActive(false);
 	}
