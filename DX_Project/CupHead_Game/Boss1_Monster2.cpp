@@ -392,7 +392,7 @@ void ABoss1_Monster2::bigIdle(float _DeltaTime)
 {
 	if (GetHp() <= 50 && 2 == phasecheck)
 	{
-		attOrder = true;
+		attOrder = false;
 		Phase1.ChangeState("phase3changeReady1");
 		return;
 	}
@@ -403,7 +403,7 @@ void ABoss1_Monster2::bigIdle(float _DeltaTime)
 		return;
 	}
 
-	if (coolDownTime < 0 && 2 == phasecheck && false == attOrder)
+	if (coolDownTime < 1.0f && 2 == phasecheck && false == attOrder)
 	{
 		Phase1.ChangeState("bigatt2Ready");
 		return;
@@ -469,6 +469,7 @@ void ABoss1_Monster2::bigatt2Ready(float _DeltaTime)
 {
 	if (true == BigBoss1->IsCurAnimationEnd())
 	{
+		attOrder = true;
 		Phase1.ChangeState("bigatt2Ready2");
 		return;
 	}
@@ -500,7 +501,7 @@ void ABoss1_Monster2::bigatt2(float _DeltaTime)
 		Bigattcount++;
 	}
 
-	if (Bigattcount > 30)
+	if (Bigattcount > 24)
 	{
 		WindSkill->SetActive(false);
 		WindCollision->SetActive(false);
@@ -514,8 +515,7 @@ void ABoss1_Monster2::bigatt2end(float _DeltaTime)
 	if (true == BigBoss1->IsCurAnimationEnd())
 	{
 		Phase1.ChangeState("BigIdle");
-		coolDownTime = 6.0f;
-		attOrder = false;
+		coolDownTime = 7.0f;
 		Bigattcount = 0;
 		return;
 	}

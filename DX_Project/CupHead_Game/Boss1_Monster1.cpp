@@ -215,6 +215,7 @@ void ABoss1_Monster1::smallIdle(float _DeltaTime)
 
 	if (GetHp() <= 80 && 1 == phasecheck)
 	{
+		attOrder = false;
 		Phase1.ChangeState("phase2changeReady");
 		return;
 	}
@@ -231,7 +232,7 @@ void ABoss1_Monster1::smallIdle(float _DeltaTime)
 		return;
 	}
 
-	if (coolDownTime < 0 && 2 == phasecheck && false == attOrder)
+	if (coolDownTime < 0 && 2 == phasecheck && true == attOrder)
 	{
 		Phase2.ChangeState("smallatt2ready1");
 		return;
@@ -417,7 +418,6 @@ void ABoss1_Monster1::smallatt2(float _DeltaTime)
 	{
 		ballattcount = 0;
 		attOrder = false;
-		coolDownTime = 6.0f;
 		Phase2.ChangeState("smallIdle");
 		return;
 	}
