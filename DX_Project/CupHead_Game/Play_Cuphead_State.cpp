@@ -139,11 +139,11 @@ void APlay_Cuphead::IdleShoot()
 	{
 		if (false == shootY)
 		{
-			NewBullet->SetActorLocation({ GetActorLocation().X + shootXpos,GetActorLocation().Y + 80.0f,0.0f });
+			NewBullet->SetActorLocation({ GetActorLocation().X + shootXpos,GetActorLocation().Y + bulletY1,0.0f });
 			shootY = true;
 		}
 		else {
-			NewBullet->SetActorLocation({ GetActorLocation().X + shootXpos,GetActorLocation().Y + 90.0f,0.0f });
+			NewBullet->SetActorLocation({ GetActorLocation().X + shootXpos,GetActorLocation().Y + bulletY2,0.0f });
 			shootY = false;
 		}
 	}
@@ -151,11 +151,11 @@ void APlay_Cuphead::IdleShoot()
 	{
 		if (false == shootY)
 		{
-			NewBullet->SetActorLocation({ GetActorLocation().X - shootXpos,GetActorLocation().Y + 80.0f,0.0f });
+			NewBullet->SetActorLocation({ GetActorLocation().X - shootXpos,GetActorLocation().Y + bulletY1,0.0f });
 			shootY = true;
 		}
 		else {
-			NewBullet->SetActorLocation({ GetActorLocation().X - shootXpos,GetActorLocation().Y + 90.0f,0.0f });
+			NewBullet->SetActorLocation({ GetActorLocation().X - shootXpos,GetActorLocation().Y + bulletY2,0.0f });
 			shootY = false;
 
 		}
@@ -168,11 +168,11 @@ void APlay_Cuphead::RunShoot()
 	{
 		if (false == shootY)
 		{
-			NewBullet->SetActorLocation({ GetActorLocation().X + shootXpos,GetActorLocation().Y-RunShootYpos + 80.0f,0.0f });
+			NewBullet->SetActorLocation({ GetActorLocation().X + shootXpos,GetActorLocation().Y-RunShootYpos + bulletY1,0.0f });
 			shootY = true;
 		}
 		else {
-			NewBullet->SetActorLocation({ GetActorLocation().X + shootXpos,GetActorLocation().Y - RunShootYpos + 90.0f,0.0f });
+			NewBullet->SetActorLocation({ GetActorLocation().X + shootXpos,GetActorLocation().Y - RunShootYpos + bulletY2,0.0f });
 			shootY = false;
 		}
 	}
@@ -180,11 +180,11 @@ void APlay_Cuphead::RunShoot()
 	{
 		if (false == shootY)
 		{
-			NewBullet->SetActorLocation({ GetActorLocation().X - shootXpos,GetActorLocation().Y - RunShootYpos + 80.0f,0.0f });
+			NewBullet->SetActorLocation({ GetActorLocation().X - shootXpos,GetActorLocation().Y - RunShootYpos + bulletY1,0.0f });
 			shootY = true;
 		}
 		else {
-			NewBullet->SetActorLocation({ GetActorLocation().X - shootXpos,GetActorLocation().Y - RunShootYpos + 90.0f,0.0f });
+			NewBullet->SetActorLocation({ GetActorLocation().X - shootXpos,GetActorLocation().Y - RunShootYpos + bulletY2,0.0f });
 			shootY = false;
 
 		}
@@ -197,11 +197,11 @@ void APlay_Cuphead::DuckShoot()
 	{
 		if (false == shootY)
 		{
-			NewBullet->SetActorLocation({ GetActorLocation().X + shootXpos,GetActorLocation().Y - DuckShootYpos + 80.0f,0.0f });
+			NewBullet->SetActorLocation({ GetActorLocation().X + shootXpos,GetActorLocation().Y - DuckShootYpos + bulletY1,0.0f });
 			shootY = true;
 		}
 		else {
-			NewBullet->SetActorLocation({ GetActorLocation().X + shootXpos,GetActorLocation().Y - DuckShootYpos + 90.0f,0.0f });
+			NewBullet->SetActorLocation({ GetActorLocation().X + shootXpos,GetActorLocation().Y - DuckShootYpos + bulletY2,0.0f });
 			shootY = false;
 		}
 	}
@@ -209,11 +209,11 @@ void APlay_Cuphead::DuckShoot()
 	{
 		if (false == shootY)
 		{
-			NewBullet->SetActorLocation({ GetActorLocation().X - shootXpos,GetActorLocation().Y - DuckShootYpos + 80.0f,0.0f });
+			NewBullet->SetActorLocation({ GetActorLocation().X - shootXpos,GetActorLocation().Y - DuckShootYpos + bulletY1,0.0f });
 			shootY = true;
 		}
 		else {
-			NewBullet->SetActorLocation({ GetActorLocation().X - shootXpos,GetActorLocation().Y - DuckShootYpos + 90.0f,0.0f });
+			NewBullet->SetActorLocation({ GetActorLocation().X - shootXpos,GetActorLocation().Y - DuckShootYpos + bulletY2,0.0f });
 			shootY = false;
 
 		}
@@ -227,11 +227,11 @@ void APlay_Cuphead::DiagonalUpShoot()
 		NewBullet->SetActorRotation({ 0.0f,0.0f,45.0f });
 		if (false == shootY)
 		{
-			NewBullet->SetActorLocation({ GetActorLocation().X + shootXpos,GetActorLocation().Y  + 80.0f,0.0f });
+			NewBullet->SetActorLocation({ GetActorLocation().X + shootXpos,GetActorLocation().Y  + bulletY1,0.0f });
 			shootY = true;
 		}
 		else {
-			NewBullet->SetActorLocation({ GetActorLocation().X + shootXpos,GetActorLocation().Y  + 90.0f,0.0f });
+			NewBullet->SetActorLocation({ GetActorLocation().X + shootXpos,GetActorLocation().Y  + bulletY2,0.0f });
 			shootY = false;
 		}
 	}
@@ -240,11 +240,11 @@ void APlay_Cuphead::DiagonalUpShoot()
 		NewBullet->SetActorRotation({ 0.0f,0.0f,-45.0f });
 		if (false == shootY)
 		{
-			NewBullet->SetActorLocation({ GetActorLocation().X - shootXpos,GetActorLocation().Y + 80.0f,0.0f });
+			NewBullet->SetActorLocation({ GetActorLocation().X - shootXpos,GetActorLocation().Y + bulletY1,0.0f });
 			shootY = true;
 		}
 		else {
-			NewBullet->SetActorLocation({ GetActorLocation().X - shootXpos,GetActorLocation().Y + 90.0f,0.0f });
+			NewBullet->SetActorLocation({ GetActorLocation().X - shootXpos,GetActorLocation().Y + bulletY2,0.0f });
 			shootY = false;
 
 		}
