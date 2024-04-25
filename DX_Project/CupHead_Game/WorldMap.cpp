@@ -16,6 +16,10 @@ AWorldMap::AWorldMap()
 
 	MapRenderer->SetupAttachment(Root);
 
+	FrontRenderer = CreateDefaultSubObject<USpriteRenderer>("FrontRenderer");
+	
+	FrontRenderer->SetupAttachment(Root);
+
 	SetRoot(Root);
 	InputOn();
 }
@@ -46,9 +50,15 @@ void AWorldMap::Tick(float _DeltaTime)
 
 void AWorldMap::SetMapImage()
 {
-	SetActorLocation(FVector(0.0f, 0.0f, 50.0f));
 	MapRenderer->SetOrder(ERenderOrder::WorldMap);
 	MapRenderer->SetSprite("WorldMap.png");
 	MapRenderer->SetSamplering(ETextureSampling::LINEAR);
 	MapRenderer->SetAutoSize(1.0f, true);
+
+	FrontRenderer->SetOrder(ERenderOrder::FrontGround1);
+	FrontRenderer->SetSprite("WorldMap_Layer.png");
+	FrontRenderer->SetSamplering(ETextureSampling::LINEAR);
+	FrontRenderer->SetAutoSize(1.0f, true);
+
+	FrontRenderer->SetPosition(FVector(0.0f, 0.0f, -50.0f));
 }

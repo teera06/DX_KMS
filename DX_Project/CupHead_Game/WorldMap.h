@@ -24,5 +24,7 @@ protected:
 private:
 	USpriteRenderer* MapRenderer = nullptr;
 	USpriteRenderer* ColRenderer = nullptr;
+
+	USpriteRenderer* FrontRenderer = nullptr;
 };
 

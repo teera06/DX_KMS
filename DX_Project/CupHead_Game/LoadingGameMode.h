@@ -24,7 +24,7 @@ protected:
 	void LevelEnd(ULevel* _NextLevel);
 	void LevelStart(ULevel* _PrevLevel);
 private:
-	float coolDowntime = 10.0f;
+	float coolDowntime = 12.0f;
 
 	static std::map<std::string, bool> LoadMap;
 

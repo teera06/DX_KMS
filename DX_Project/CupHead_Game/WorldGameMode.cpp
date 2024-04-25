@@ -33,7 +33,6 @@ void AWorldGameMode::BeginPlay()
 		float4 TexScale = UContentsHelper::MapTexScale;
 		float4 ImageScale = { TexScale.X, TexScale.Y, 0.0f };
 
-		//Front->SetActorScale3D(ImageScale);
 		Front->SetActorLocation({ ImageScale.hX(), -ImageScale.hY(), 100.0f});
 		//GetWorld()->SpawnActor<AScreenEffect>("ScreenEffect")->SetActorLocation({ ImageScale.hX(), -ImageScale.hY(), 0.0f });
 	}
