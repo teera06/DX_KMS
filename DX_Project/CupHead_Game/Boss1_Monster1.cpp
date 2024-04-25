@@ -401,7 +401,7 @@ void ABoss1_Monster1::smallatt2Ready1(float _DeltaTime)
 		Delay++;
 	}
 
-	if (Delay == 15)
+	if (Delay == 9)
 	{
 		Delay = 0;
 		Phase2.ChangeState("smallatt2");

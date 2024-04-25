@@ -30,6 +30,11 @@ public:
 		GrounYCheck = _GrounYCheck;
 	}
 
+	void AddCollisionMove(const FVector& _CollisionMove)
+	{
+		CollisionMove += _CollisionMove;
+	}
+
 	UStateManager State;
 protected:
 	void BeginPlay() override;
@@ -55,6 +60,8 @@ private:
 	FVector PlayerMoveY = FVector::Zero;
 
 	FVector GravityVector = FVector::Zero; // 중력값 받기
+
+	FVector CollisionMove = FVector::Zero;
 
 	// 점프력 제어
 	FVector JumpPowerDown = FVector::Up * 1200.0f; // 이동할때의 점프력

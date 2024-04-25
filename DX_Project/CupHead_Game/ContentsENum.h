@@ -92,7 +92,8 @@ enum class ECollisionOrder
 	MonsterSkill,
 	Hole,
 	Axe,
-	Chip
+	Chip,
+	Wind
 };
 
 enum class EScreenEffect

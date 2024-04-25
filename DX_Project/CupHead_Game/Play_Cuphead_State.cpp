@@ -348,10 +348,15 @@ void APlay_Cuphead::CalLastMoveVector(float _DeltaTime, const FVector& _MovePos)
 		MovePos = FVector::Zero;
 	}
 
+	AddActorLocation(MovePos + (PlayerMoveY * _DeltaTime)+ CollisionMove);
+	GetWorld()->GetMainCamera()->AddActorLocation((MovePos* _DeltaTime*10.0f));
 
+	if (CollisionMove.iX() != 0)
+	{
+		GetWorld()->GetMainCamera()->SetActorLocation(FVector(0.0f, 0.0f, -100.0f));
+	}
 
-	AddActorLocation(MovePos + (PlayerMoveY * _DeltaTime));
-	GetWorld()->GetMainCamera()->AddActorLocation(MovePos* _DeltaTime*10.0f);
+	CollisionMove = FVector::Zero;
 }
 
 // 콜리전으로 충돌 하기

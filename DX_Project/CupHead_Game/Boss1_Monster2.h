@@ -57,6 +57,8 @@ private:
 
 	float att1Delay = 0.4f;
 
+	float WindSpeed = 350.0f;
+
 	int Bigattcount = 0;
 
 	int SlotAttCount = 0;
@@ -72,7 +74,8 @@ private:
 
 	void createObject();
 
-	void Collisioncheck();
+	void WindCollisioncheck(float _DeltaTime);
+	void Phase3Collisioncheck();
 
 	// ป๓ลย
 	void bigintro(float _DeltaTime);

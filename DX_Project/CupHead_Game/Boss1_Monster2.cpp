@@ -14,8 +14,10 @@
 #include "MoveObject3.h"
 #include "MoveObject2.h"
 
-
 #include "Boss1_Monster1.h"
+
+#include "Play_Cuphead.h"
+
 
 ABoss1_Monster2::ABoss1_Monster2()
 {
@@ -60,7 +62,7 @@ ABoss1_Monster2::ABoss1_Monster2()
 	WindSkill = CreateDefaultSubObject<USpriteRenderer>("WindSkill");
 
 	WindSkill->SetupAttachment(Root);
-	WindSkill->AddPosition(FVector(-350.0f, 350.0f, 0.0f));
+	WindSkill->AddPosition(FVector(-450.0f, 350.0f, 0.0f));
 
 	WindSkill->SetActive(false);
 
@@ -71,6 +73,13 @@ ABoss1_Monster2::ABoss1_Monster2()
 	BigBossCollision->SetCollisionGroup(ECollisionOrder::Boss1Monster2);
 	BigBossCollision->SetCollisionType(ECollisionType::RotRect);
 
+	WindCollision = CreateDefaultSubObject<UCollision>("WindCollision");
+	WindCollision->SetupAttachment(Root);
+	WindCollision->SetPosition(FVector( -300.0f,220.0f, 0.0f));
+	WindCollision->SetScale(FVector(1100.0f, 500.0f, 100.0f));
+	WindCollision->SetCollisionGroup(ECollisionOrder::Wind);
+	WindCollision->SetCollisionType(ECollisionType::RotRect);
+
 	HandCollision = CreateDefaultSubObject<UCollision>("HandCollision");
 	HandCollision->SetupAttachment(Root);
 	HandCollision->SetPosition(FVector(-350.0f, 280.0f, 100.0f));
@@ -78,6 +87,7 @@ ABoss1_Monster2::ABoss1_Monster2()
 	HandCollision->SetCollisionGroup(ECollisionOrder::Boss1Monster2Hand);
 	HandCollision->SetCollisionType(ECollisionType::RotRect);
 
+	WindCollision->SetActive(false);
 	HandCollision->SetActive(false);
 	SetRoot(Root);
 
@@ -347,7 +357,17 @@ void ABoss1_Monster2::createObject()
 	}
 }
 
-void ABoss1_Monster2::Collisioncheck()
+void ABoss1_Monster2::WindCollisioncheck(float _DeltaTime)
+{
+	WindCollision->CollisionStay(ECollisionOrder::Player, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		AActor* Ptr = _Collison->GetActor();
+		APlay_Cuphead* Player = dynamic_cast<APlay_Cuphead*>(Ptr);
+		Player->AddCollisionMove(FVector::Left * WindSpeed*_DeltaTime);
+	});
+}
+
+void ABoss1_Monster2::Phase3Collisioncheck()
 {
 	BigBossCollision->CollisionEnter(ECollisionOrder::Boss1Monster1, [=](std::shared_ptr<UCollision> _Collison)
 	{
@@ -459,6 +479,7 @@ void ABoss1_Monster2::bigatt2Ready2(float _DeltaTime)
 	if (true == BigBoss1->IsCurAnimationEnd())
 	{
 		WindSkill->SetActive(true);
+		WindCollision->SetActive(true);
 		Phase1.ChangeState("bigatt2");
 		return;
 	}
@@ -467,6 +488,7 @@ void ABoss1_Monster2::bigatt2Ready2(float _DeltaTime)
 void ABoss1_Monster2::bigatt2(float _DeltaTime)
 {
 
+	WindCollisioncheck(_DeltaTime);
 	if (GetActorLocation().iX() <= 430) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
 	{
 		AddActorLocation((FVector::Right*2.0f + FVector::Down) * 500.0f * _DeltaTime);
@@ -478,9 +500,10 @@ void ABoss1_Monster2::bigatt2(float _DeltaTime)
 		Bigattcount++;
 	}
 
-	if (Bigattcount > 20)
+	if (Bigattcount > 30)
 	{
 		WindSkill->SetActive(false);
+		WindCollision->SetActive(false);
 		Phase1.ChangeState("bigatt2end");
 		return;
 	}
@@ -509,7 +532,7 @@ void ABoss1_Monster2::phase3changeReady1(float _DeltaTime)
 
 void ABoss1_Monster2::phase3changeReady2(float _DeltaTime)
 {
-	Collisioncheck();
+	Phase3Collisioncheck();
 	
 	if (true == Change3)
 	{
