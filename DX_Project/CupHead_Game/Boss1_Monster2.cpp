@@ -592,7 +592,7 @@ void ABoss1_Monster2::phase3Idle(float _DeltaTime)
 
 void ABoss1_Monster2::CoinAtt(float _DeltaTime)
 {
-	if (Bigattcount == 1)
+	if (Bigattcount == 2)
 	{
 		Phase2.ChangeState("Phase3SlotReady");
 		return;
