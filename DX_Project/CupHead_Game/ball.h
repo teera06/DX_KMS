@@ -17,6 +17,11 @@ public:
 	Aball& operator=(const Aball& _Other) = delete; // 디폴트 대입 연산자
 	Aball& operator=(Aball&& _Other) noexcept = delete;
 
+	void SetStartPos(const FVector& _StartPos)
+	{
+		StartPos = _StartPos;
+	}
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -28,7 +33,7 @@ private:
 
 	float Speed =450.0f;
 
-	FVector StartPos = FVector::Right + (FVector::Up*2.0f);
+	FVector StartPos = FVector::Zero;
 
 	FVector RenderRot = FVector(0.0f, 0.0f, 35.0f);
 	FVector Renderpox = FVector(0.0f, 70.0f, 0.0f);

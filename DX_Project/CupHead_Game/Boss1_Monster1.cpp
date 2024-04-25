@@ -197,6 +197,15 @@ void ABoss1_Monster1::SkillYMove()
 void ABoss1_Monster1::createSkill2()
 {
 	NewBall = GetWorld()->SpawnActor<Aball>("ball");
+	
+	if (false == ballatt)
+	{
+		NewBall->SetStartPos(FVector::Right + (FVector::Up * 2.0f));
+	}
+	else
+	{
+		NewBall->SetStartPos(FVector::Right + (FVector::Down * 2.0f));
+	}
 	//NewBall->SetSmallSkillDir(FVector::Left);
 }
 
@@ -234,6 +243,14 @@ void ABoss1_Monster1::smallIdle(float _DeltaTime)
 
 	if (coolDownTime < 0 && 2 == phasecheck && true == attOrder)
 	{
+		if (false == ballatt)
+		{
+			ballatt = true;
+		}
+		else
+		{
+			ballatt = false;
+		}
 		Phase2.ChangeState("smallatt2ready1");
 		return;
 	}
