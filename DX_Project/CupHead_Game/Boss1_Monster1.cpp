@@ -107,7 +107,6 @@ void ABoss1_Monster1::Phase2StateInit()
 	Phase2.CreateState("phase2intro");
 	Phase2.CreateState("smallIdle");
 	Phase2.CreateState("smallatt2Ready1");
-	Phase2.CreateState("smallatt2Delay");
 	Phase2.CreateState("smallatt2");
 	Phase2.CreateState("phase3changeReady");
 	Phase2.CreateState("phase3changeReady2");
@@ -122,9 +121,6 @@ void ABoss1_Monster1::Phase2StateInit()
 
 	Phase2.SetUpdateFunction("smallatt2Ready1", std::bind(&ABoss1_Monster1::smallatt2Ready1, this, std::placeholders::_1));
 	Phase2.SetStartFunction("smallatt2Ready1", [=] {SmallBoss1->ChangeAnimation("smallatt2Ready1"); });
-
-	Phase2.SetUpdateFunction("smallatt2Delay", std::bind(&ABoss1_Monster1::smallatt2Delay, this, std::placeholders::_1));
-	Phase2.SetStartFunction("smallatt2Delay", [=] {SmallBoss1->ChangeAnimation("smallatt2Delay"); });
 
 	Phase2.SetUpdateFunction("smallatt2", std::bind(&ABoss1_Monster1::smallatt2, this, std::placeholders::_1));
 	Phase2.SetStartFunction("smallatt2", [=] {SmallBoss1->ChangeAnimation("smallatt2"); });
@@ -157,8 +153,7 @@ void ABoss1_Monster1::AniCreate()
 	SmallBoss1->CreateAnimation("phase2change2", "phase2change2", 0.1f);
 
 	SmallBoss1->CreateAnimation("phase2intro", "phase2intro", 0.1f);
-	SmallBoss1->CreateAnimation("smallatt2Ready1", "smallatt2Ready1", 0.075f);
-	SmallBoss1->CreateAnimation("smallatt2Delay", "smallatt2", 0.075f,true,0,2);
+	SmallBoss1->CreateAnimation("smallatt2Ready1", "smallatt2Ready1", 0.075f,false);
 	SmallBoss1->CreateAnimation("smallatt2", "smallatt2", 0.075f);
 }
 
@@ -392,14 +387,21 @@ void ABoss1_Monster1::phase3change2(float _DeltaTime)
 
 void ABoss1_Monster1::smallatt2Ready1(float _DeltaTime)
 {
-
+	if (ballattcount == 3)
+	{
+		ballattcount = 0;
+		attOrder = false;
+		coolDownTime = 6.0f;
+		Phase2.ChangeState("smallIdle");
+		return;
+	}
 
 	if (true == SmallBoss1->IsCurAnimationEnd())
 	{
 		Delay++;
 	}
 
-	if (Delay == 9)
+	if (Delay == 15)
 	{
 		Delay = 0;
 		Phase2.ChangeState("smallatt2");
@@ -407,31 +409,24 @@ void ABoss1_Monster1::smallatt2Ready1(float _DeltaTime)
 	}
 }
 
-void ABoss1_Monster1::smallatt2Delay(float _DeltaTime)
-{
-	if(ballattcount==2)
-	{
-		ballattcount = 0;
-		attOrder = false;
-		Phase2.ChangeState("smallIdle");
-		return;
-	}
-
-	if (true == SmallBoss1->IsCurAnimationEnd())
-	{
-		Phase2.ChangeState("smallatt2");
-		return;
-	}
-}
 
 void ABoss1_Monster1::smallatt2(float _DeltaTime)
 {
+
+	if (ballattcount == 3)
+	{
+		ballattcount = 0;
+		attOrder = false;
+		coolDownTime = 6.0f;
+		Phase2.ChangeState("smallIdle");
+		return;
+	}
 	
 	if (true == SmallBoss1->IsCurAnimationEnd())
 	{
 		createSkill2();
 		ballattcount++;
-		Phase2.ChangeState("smallatt2Delay");
+		Phase2.ChangeState("smallatt2Ready1");
 		return;
 	}
 }
