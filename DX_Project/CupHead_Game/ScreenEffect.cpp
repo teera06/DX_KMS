@@ -34,7 +34,8 @@ void AScreenEffect::BeginPlay()
 	SetActorLocation(FVector(0.0f, 0.0f, -50.0f));
 	
 	FilterEffect->CreateAnimation("Iris", "Iris", 0.05f,false);
-	FilterEffect->CreateAnimation("IrisRe", "Iris", 0.05f, false);
+	FilterEffect->CreateAnimation("IrisRe", "Iris", 0.05f, false,16,1);
+	FilterEffect->CreateAnimation("ReadyWALLOP!", "ReadyWALLOP!", 0.05f, false);
 
 }
 
@@ -52,12 +53,20 @@ void AScreenEffect::Tick(float _DeltaTime)
 	case EScreenEffect::IrisRe:
 		FilterEffect->ChangeAnimation("IrisRe");
 		break;
+	case EScreenEffect::ReadyWALLOP:
+		FilterEffect->ChangeAnimation("ReadyWALLOP!");
+
+		if (true == FilterEffect->IsCurAnimationEnd())
+		{
+			Destroy();
+		}
+		break;
 	default:
 		break;
 	}
 
-	if (Effect!= EScreenEffect::None &&true == FilterEffect->IsCurAnimationEnd())
+	if (Effect == EScreenEffect::Iris && true == FilterEffect->IsCurAnimationEnd())
 	{
-		Destroy();
+		Effect = EScreenEffect::ReadyWALLOP;
 	}
 }

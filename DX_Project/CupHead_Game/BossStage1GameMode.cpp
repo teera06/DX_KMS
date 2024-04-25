@@ -39,6 +39,7 @@ void ABossStage1GameMode::BeginPlay()
 	GetWorld()->SpawnActor<APlay_Cuphead>("Play_Cuphead")->SetGrounYCheck(-270);
 	GetWorld()->SpawnActor<ABoss1_Monster1>("Boss1_Monster1");
 	GetWorld()->SpawnActor<ABoss1_Monster2>("Boss1_Monster2");
+	GetWorld()->SpawnActor<AScreenEffect>("ScreenEffect")->SetScreenEffect(EScreenEffect::Iris);
 
 	//GetWorld()->SpawnActor<AMoveObject>("AMoveObject");
 	//GetWorld()->SpawnActor<AMoveObject2>("AMoveObject2");
