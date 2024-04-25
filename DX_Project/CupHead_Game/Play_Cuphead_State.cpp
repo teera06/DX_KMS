@@ -745,7 +745,7 @@ void APlay_Cuphead::Run_Shoot_Straight(float  _DeltaTime)
 	if (true == IsPress('X') && skillCoolTime < 0.0f)
 	{
 		createBullet();
-		skillCoolTime = 0.3f;
+		skillCoolTime = SaveSkilltime;
 		return;
 	}
 
@@ -808,7 +808,7 @@ void APlay_Cuphead::Run_Shoot_DiagonalUp(float _DeltaTime)
 	if (true == IsPress('X') && skillCoolTime < 0.0f)
 	{
 		createBullet();
-		skillCoolTime = 0.3f;
+		skillCoolTime = SaveSkilltime;
 		return;
 	}
 
@@ -947,7 +947,7 @@ void APlay_Cuphead::Shoot_Straight(float _DeltaTime)
 	if (true == IsPress('X') && skillCoolTime<0.0f)
 	{
 		createBullet();
-		skillCoolTime = 0.3f;
+		skillCoolTime = SaveSkilltime;
 		return;
 	}
 
@@ -998,7 +998,7 @@ void APlay_Cuphead::Duck_Shoot(float _DeltaTime)
 	if (true == IsPress('X') && skillCoolTime < 0.0f)
 	{
 		createBullet();
-		skillCoolTime = 0.3f;
+		skillCoolTime = SaveSkilltime;
 		return;
 	}
 	if (true == IsFree(VK_DOWN))
@@ -1043,7 +1043,7 @@ void APlay_Cuphead::Shoot_Up(float _DeltaTime)
 	if (true == IsPress('X') && skillCoolTime < 0.0f)
 	{
 		createBullet();
-		skillCoolTime = 0.3f;
+		skillCoolTime = SaveSkilltime;
 		return;
 	}
 	if (true == IsFree(VK_UP))
@@ -1158,7 +1158,7 @@ void APlay_Cuphead::JumpShoot(float _DeltaTime)
 	if (true == IsPress('X') && skillCoolTime < 0.0f)
 	{
 		createBullet();
-		skillCoolTime = 0.3f;
+		skillCoolTime = SaveSkilltime;
 		return;
 	}
 

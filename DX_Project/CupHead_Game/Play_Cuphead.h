@@ -74,6 +74,8 @@ private:
 
 	float skillCoolTime=-1.0f;
 
+	float SaveSkilltime = 0.25;
+
 	float shootXpos = 65.0f;
 	float RunShootYpos = 5.0f;
 	float DuckShootYpos = 35.0f;
