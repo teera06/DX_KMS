@@ -19,13 +19,9 @@ AMainTitleActor::AMainTitleActor()
 	titleRenderer->SetupAttachment(Root);
 	CupRenderer->SetupAttachment(Root);
 
-	//USpriteRenderer* ChildRenderer = CreateDefaultSubObject<USpriteRenderer>("Renderer");
-	//ChildRenderer->SetupAttachment(Root);
-	//ChildRenderer->SetScale(FVector(100.0f, 100.0f, 100.0f));
 	CupRenderer->AddPosition({ 0.0f, -360.0f, 0.0f });
 	CupRenderer->SetPivot(EPivot::BOT);
-	titleRenderer->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
-	CupRenderer->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
+	CupRenderer->SetPlusColor(FVector(0.05f, 0.05f, 0.05f));
 	SetRoot(Root);
 
 	titleRenderer->SetOrder(ERenderOrder::background);
@@ -47,11 +43,7 @@ AMainTitleActor::~AMainTitleActor()
 void AMainTitleActor::BeginPlay()
 {
 	Super::BeginPlay();
-	//SetActorLocation(FVector(0.0f, 0.0f, 50.0f));
-	//SetActorScale3D(FVector(1100.0f, 620.0f, 0.0f));
-
-
-	CupRenderer->CreateAnimation("CupDence", "CupDence", 0.05f);
+	CupRenderer->CreateAnimation("CupDence", "CupDence", 0.042f);
 
 	CupRenderer->ChangeAnimation("CupDence");
 
@@ -60,8 +52,6 @@ void AMainTitleActor::BeginPlay()
 void AMainTitleActor::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-
-	int a = 0;
 }
 
 void AMainTitleActor::DebugMessageFunction()

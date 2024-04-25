@@ -42,6 +42,7 @@ void AScreenEffect::BeginPlay()
 
 	FilterEffect->SetActive(false);
 	OldFilter->ChangeAnimation("OldFilmEffect");
+	OldFilter->SetActive(false);
 }
 
 void AScreenEffect::Tick(float _DeltaTime)
