@@ -63,7 +63,7 @@ void Aball::BeginPlay()
 	FxRender->SetRotationDeg(FVector(0.0f, 0.0f, 35.0f));
 	
 
-	FxRender->CreateAnimation("FX", "FX", 0.045f,true);
+	FxRender->CreateAnimation("FX", "FX", 0.035f,true);
 	
 	FxRender->ChangeAnimation("FX");
 
@@ -88,15 +88,20 @@ void Aball::Collisiongather(float _DeltaTime)
 	if (GetActorLocation().iY() <= -300 || GetActorLocation().iY() >= 360)
 	{
 		FxRender->SetActive(true);
+		FxRender->ChangeAnimation("FX");
 		StartPos.Y *= -1.0f;
 		RenderRot *= -1.0f;
+		Renderpox *= -1.0f;
 	}
-	
-	if (true== FxRender->IsActive() && true == FxRender->IsCurAnimationEnd())
+	else
 	{
-		FxRender->SetActive(false);
+		if (true == FxRender->IsActive() && true == FxRender->IsCurAnimationEnd())
+		{
+			FxRender->SetActive(false);
+		}
 	}
 
+	FxRender->SetPosition(Renderpox*-1.0f);
 	FxRender->SetRotationDeg(RenderRot*-1.0f);
 	ballRender->SetRotationDeg(RenderRot);
 	AddActorLocation(StartPos *Speed*_DeltaTime);

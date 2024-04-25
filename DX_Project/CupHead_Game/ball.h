@@ -31,6 +31,7 @@ private:
 	FVector StartPos = FVector::Right + (FVector::Up*2.0f);
 
 	FVector RenderRot = FVector(0.0f, 0.0f, 35.0f);
+	FVector Renderpox = FVector(0.0f, 70.0f, 0.0f);
 
 	float XPos = 0.0f;
 	float YPos = 0.0f;
