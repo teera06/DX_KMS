@@ -94,3 +94,11 @@ enum class ECollisionOrder
 	Axe,
 	Chip
 };
+
+enum class EScreenEffect
+{
+	None,
+	Iris,
+	IrisRe,
+
+};

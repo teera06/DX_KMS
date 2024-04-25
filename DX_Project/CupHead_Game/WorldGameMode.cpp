@@ -5,7 +5,7 @@
 #include "WorldMap.h"
 #include "WorldPlayer.h"
 #include "ContentsHelper.h"
-
+#include "ContentsENum.h"
 
 #include <EngineCore/Camera.h>
 #include <EngineCore/Image.h>

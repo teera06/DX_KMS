@@ -1,7 +1,8 @@
 #pragma once
 #include <Enginecore/Actor.h>
-#include <EngineCore/SpriteRenderer.h>
 
+#include "ContentsENum.h"
+class USpriteRenderer;
 class AScreenEffect : public AActor
 {
 	GENERATED_BODY(AActor)
@@ -21,11 +22,17 @@ public:
 		return FilterEffect;
 	}
 
+	void SetScreenEffect(const EScreenEffect& _Effect)
+	{
+		Effect = _Effect;
+	}
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 private:
-	USpriteRenderer* OldFilter = nullptr;
 	USpriteRenderer* FilterEffect = nullptr;
+
+	EScreenEffect Effect = EScreenEffect::None;
 };
 
