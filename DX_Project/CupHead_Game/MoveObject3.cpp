@@ -46,7 +46,7 @@ void AMoveObject3::BeginPlay()
 	Super::BeginPlay();
 
 	//SetActorLocation(FVector(400.0f, -200.0f, 0.0f));
-	SetActorLocation(FVector(400.0f, -300.0f, 0.0f));
+	SetActorLocation(FVector(400.0f, -200.0f, 0.0f));
 
 	ObjectRender->SetOrder(ERenderOrder::Object3);
 	ObjectRender->SetSprite("tallfrog_slotman_platform_bison_0001.png");
@@ -87,6 +87,15 @@ void AMoveObject3::Collisiongather(float _DeltaTime)
 	{
 		Destroy();
 	}
+
+	DownPower = FVector::Down * 500.0f;
+
+	if (GetActorLocation().iY() <= -300)
+	{
+		DownPower = FVector::Zero;
+	}
+
+	AddActorLocation(DownPower * _DeltaTime);
 }
 
 void AMoveObject3::BallMove(float _DeltaTime)

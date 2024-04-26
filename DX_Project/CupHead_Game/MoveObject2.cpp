@@ -6,6 +6,7 @@
 #include <EngineCore/Collision.h>
 
 #include "ContentsENum.h"
+#include "Play_Cuphead.h"
 
 AMoveObject2::AMoveObject2()
 {
@@ -67,6 +68,7 @@ void AMoveObject2::Tick(float _DeltaTime)
 	Collisiongather(_DeltaTime);
 }
 
+
 void AMoveObject2::Collisiongather(float _DeltaTime)
 {
 	if (GetActorLocation().iX() <= -600 || GetActorLocation().iX() >= 600) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
@@ -74,7 +76,7 @@ void AMoveObject2::Collisiongather(float _DeltaTime)
 		Destroy();
 	}
 
-	DownPower = FVector::Down * 200.0f;
+	DownPower = FVector::Down * 500.0f;
 
 	if (GetActorLocation().iY() <= -300)
 	{

@@ -30,6 +30,8 @@ private:
 
 	FVector JumpVector = FVector::Up * 1800.0f; // 최종 점프력
 
+	FVector DownPower = FVector::Zero;
+
 	float Speed = 500.0f;
 
 	float Gravity = 3000.0f;

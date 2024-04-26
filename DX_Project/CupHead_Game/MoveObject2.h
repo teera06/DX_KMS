@@ -30,6 +30,7 @@ private:
 	FVector DownPower = FVector::Zero;
 
 	float Speed = 400.0f;
+	float PlayerMoveSpeed = 200.0f;
 
 	void Collisiongather(float _DeltaTime);
 };
