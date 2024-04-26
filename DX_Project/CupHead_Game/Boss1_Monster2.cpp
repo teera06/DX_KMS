@@ -13,6 +13,7 @@
 #include "Coin.h"
 #include "MoveObject3.h"
 #include "MoveObject2.h"
+#include "MoveObject1.h"
 
 #include "Boss1_Monster1.h"
 
@@ -48,20 +49,20 @@ ABoss1_Monster2::ABoss1_Monster2()
 	SlotImage1 = CreateDefaultSubObject<USpriteRenderer>("SlotImage1");
 	SlotImage1->SetupAttachment(Root);
 	SlotImage1->SetPivot(EPivot::BOT);
-	SlotImage1->AddPosition(FVector(-125.0f, 180.0f, 0.0f));
+	SlotImage1->AddPosition(FVector(-125.0f, 170.0f, 0.0f));
 	SlotImage1->AddRotationDeg(FVector(0.0f, 35.0f, 0.0f));
 	SlotImage1->SetPlusColor(FVector(0.0f, 0.1f, 0.0f));
 
 	SlotImage2 = CreateDefaultSubObject<USpriteRenderer>("SlotImage2");
 	SlotImage2->SetupAttachment(Root);
 	SlotImage2->SetPivot(EPivot::BOT);
-	SlotImage2->AddPosition(FVector(-70.0f, 180.0f, 0.0f));
+	SlotImage2->AddPosition(FVector(-70.0f, 170.0f, 0.0f));
 	SlotImage2->AddRotationDeg(FVector(0.0f, 35.0f, 0.0f));
 
 	SlotImage3 = CreateDefaultSubObject<USpriteRenderer>("SlotImage3");
 	SlotImage3->SetupAttachment(Root);
 	SlotImage3->SetPivot(EPivot::BOT);
-	SlotImage3->AddPosition(FVector(-15.0f, 180.0f, 0.0f));
+	SlotImage3->AddPosition(FVector(-15.0f, 170.0f, 0.0f));
 	SlotImage3->AddRotationDeg(FVector(0.0f, 35.0f, 0.0f));
 	
 	SlotImage1->SetActive(false);
@@ -364,10 +365,14 @@ void ABoss1_Monster2::createObject()
 {
 	if (SlotAttCount == 0)
 	{
-		NewMoveObject = GetWorld()->SpawnActor<AMoveObject2>("MoveObject");
+		NewMoveObject2 = GetWorld()->SpawnActor<AMoveObject2>("MoveObject2");
 	}else if (SlotAttCount == 1)
 	{
-		NewMoveObject2 = GetWorld()->SpawnActor<AMoveObject3>("MoveObject2");
+		NewMoveObject3 = GetWorld()->SpawnActor<AMoveObject3>("MoveObject3");
+	}
+	else if (SlotAttCount == 2)
+	{
+		NewMoveObject1 = GetWorld()->SpawnActor<AMoveObject1>("MoveObject1");
 	}
 }
 
@@ -593,7 +598,7 @@ void ABoss1_Monster2::phase3Intro2(float _DeltaTime)
 void ABoss1_Monster2::phase3Idle(float _DeltaTime)
 {
 
-	if (SlotAttCount == 2)
+	if (SlotAttCount == 3)
 	{
 		SlotAttCount = 0;
 	}

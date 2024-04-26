@@ -26,6 +26,7 @@ private:
 	USpriteRenderer* Fire = nullptr;
 	UCollision* TopCollision = nullptr;
 
+	FVector UpPower = FVector::Zero;
 
 	float Speed = 100.0f;
 

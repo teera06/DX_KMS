@@ -47,7 +47,7 @@ void AMoveObject1::BeginPlay()
 	Super::BeginPlay();
 
 	//SetActorLocation(FVector(400.0f, -200.0f, 0.0f));
-	SetActorLocation(FVector(400.0f, 0.0f, 0.0f));
+	SetActorLocation(FVector(400.0f, -200.0f, 0.0f));
 
 	ObjectRender->SetOrder(ERenderOrder::Object1);
 	ObjectRender->SetSprite("tallfrog_slotman_platform_bison_0001.png");
@@ -69,7 +69,7 @@ void AMoveObject1::BeginPlay()
 	ObjectFront->CreateAnimation("Object1Front", "Object1Front", 0.1f);
 
 	Fire->CreateAnimation("Object1SmallFire", "Object1SmallFire", 0.1f);
-	Fire->CreateAnimation("Object1BigFire", "Object1BigFire", 0.1f);
+	Fire->CreateAnimation("Object1BigFire", "Object1BigFire", 0.1f,false);
 
 	//smallskillRender->CreateAnimation("Peashot_Loop", "Peashot_Loop", 0.05f);
 	ObjectFront->ChangeAnimation("Object1Front");
@@ -95,4 +95,13 @@ void AMoveObject1::Collisiongather(float _DeltaTime)
 	{
 		Destroy();
 	}
+
+	UpPower = FVector::Up * 500.0f;
+
+	if (GetActorLocation().iY() >= 10)
+	{
+		UpPower = FVector::Zero;
+	}
+
+	AddActorLocation(UpPower * _DeltaTime);
 }
