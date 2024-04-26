@@ -340,7 +340,7 @@ void ALoadingGameMode::Boss1Load()
 				LoadMap["phase3"] = true;
 			}
 
-			UEngineSprite::CreateCutting("TEMP1.png", 1, 3);
+			//UEngineSprite::CreateCutting("TEMP1.png", 1, 3);
 			UEngineSprite::CreateCutting("TEMP2.png", 1, 5);
 			//UEngineSprite::CreateCutting("tallfrog_slotman_slot_flash_TEMP.png", 1, 3);
 		}

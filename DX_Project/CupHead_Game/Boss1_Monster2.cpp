@@ -163,9 +163,6 @@ void ABoss1_Monster2::BeginPlay()
 	FrontSlot->SetAutoSize(1.0f, true);
 
 	WindSkill->ChangeAnimation("Wind");
-	SlotImage1->ChangeAnimation("slotObject1");
-	SlotImage2->ChangeAnimation("slotObject1");
-	SlotImage3->ChangeAnimation("slotObject1");
 	FrontSlot->ChangeAnimation("SlotFront");
 }
 
@@ -318,18 +315,15 @@ void ABoss1_Monster2::AniCreate()
 
 	SlotMouse->CreateAnimation("CoinAtt", "CoinAtt", 0.1f);
 
-	SlotImage1->CreateAnimation("slot1", "TEMP1.png", 0.1f, true);
+	
 	SlotImage1->CreateAnimation("slotObject1", "TEMP2.png", 0.1f, false, 0, 0);
 	SlotImage1->CreateAnimation("slotObject2", "TEMP2.png", 0.1f, false, 0, 1);
 	SlotImage1->CreateAnimation("slotObject3", "TEMP2.png", 0.1f, false, 1, 2);
 
-
-	SlotImage2->CreateAnimation("slot1", "TEMP1.png", 0.1f, true);
 	SlotImage2->CreateAnimation("slotObject1", "TEMP2.png", 0.1f, false, 0, 0);
 	SlotImage2->CreateAnimation("slotObject2", "TEMP2.png", 0.1f, false, 0, 1);
 	SlotImage2->CreateAnimation("slotObject3", "TEMP2.png", 0.1f, false, 1, 2);
 
-	SlotImage3->CreateAnimation("slot1", "TEMP1.png", 0.1f, true);
 	SlotImage3->CreateAnimation("slotObject1", "TEMP2.png", 0.1f, false, 0, 0);
 	SlotImage3->CreateAnimation("slotObject2", "TEMP2.png", 0.1f, false, 0, 1);
 	SlotImage3->CreateAnimation("slotObject3", "TEMP2.png", 0.1f, false, 1, 2);
@@ -337,6 +331,7 @@ void ABoss1_Monster2::AniCreate()
 	WindSkill->CreateAnimation("Wind", "Wind", 0.12f);
 
 	FrontSlot->CreateAnimation("SlotFront", "SlotFront", 0.09f);
+
 }
 
 
@@ -395,6 +390,15 @@ void ABoss1_Monster2::Phase3Collisioncheck()
 
 		Change3 = true;
 	});
+}
+
+void ABoss1_Monster2::SlotStartImage(float _DeltaTime)
+{
+	VertexY.Y -= (_DeltaTime* SlotSpped);
+
+	SlotImage1->SetVertexUVPlus(VertexY);
+	SlotImage2->SetVertexUVPlus(VertexY);
+	SlotImage3->SetVertexUVPlus(VertexY);
 }
 
 void ABoss1_Monster2::bigintro(float _DeltaTime)
@@ -670,6 +674,7 @@ void ABoss1_Monster2::Phase3SlotCoinAtt(float _DeltaTime)
 {
 	if (true == SlotTouch)
 	{
+		SlotStartImage(_DeltaTime);
 		Bigattcount = 0;
 		coolDownTime = 3.0f;
 		SlotMouse->SetActive(false);
@@ -704,10 +709,8 @@ void ABoss1_Monster2::Phase3SlotCoinAtt(float _DeltaTime)
 
 void ABoss1_Monster2::Phase3SlotStart(float _DeltaTime)
 {
-	
-	SlotImage1->ChangeAnimation("slot1");
-	SlotImage2->ChangeAnimation("slot1");
-	SlotImage3->ChangeAnimation("slot1");
+
+	SlotStartImage(_DeltaTime);
 	FrontSlot->ChangeAnimation("SlotFront");
 
 	if (true == BigBoss1->IsCurAnimationEnd())

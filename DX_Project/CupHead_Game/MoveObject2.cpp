@@ -65,7 +65,7 @@ void AMoveObject2::Tick(float _DeltaTime)
 	Super::Tick(_DeltaTime);
 	AddActorLocation(FVector::Left * Speed * _DeltaTime);
 	Collisiongather(_DeltaTime);
-	Speed += 5.0f;
+	Speed += 0.5f;
 }
 
 void AMoveObject2::Collisiongather(float _DeltaTime)
