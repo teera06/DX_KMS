@@ -366,6 +366,15 @@ void ABoss1_Monster2::createObject()
 	if (SlotAttCount == 0)
 	{
 		NewMoveObject1 = GetWorld()->SpawnActor<AMoveObject1>("MoveObject1");
+
+		if (0 == Bigattcount % 5)
+		{
+			NewMoveObject1->SetUpDownSet(FVector::Down);
+		}
+		else {
+			NewMoveObject1->SetUpDownSet(FVector::Up);
+		}
+
 	}else if (SlotAttCount == 1)
 	{
 		NewMoveObject3 = GetWorld()->SpawnActor<AMoveObject3>("MoveObject3");

@@ -16,6 +16,11 @@ public:
 	AMoveObject1& operator=(const AMoveObject1& _Other) = delete; // 디폴트 대입 연산자
 	AMoveObject1& operator=(AMoveObject1&& _Other) noexcept = delete;
 
+	void SetUpDownSet(const FVector& _UpDownSet)
+	{
+		UpDownSet = _UpDownSet;
+	}
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -28,7 +33,12 @@ private:
 
 	FVector UpPower = FVector::Zero;
 
+	FVector UpDownSet = FVector::Zero;
+
+
 	float Speed = 400.0f;
+
+	
 
 	bool changeFire = false;
 

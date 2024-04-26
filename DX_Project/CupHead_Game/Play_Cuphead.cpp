@@ -58,6 +58,7 @@ void APlay_Cuphead::BeginPlay()
 
 
 
+
 	PlayCuphead->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 	//DelayCallBack(1.0f, std::bind(&ATitleLogo::RendererOff, this));
 	PlayCuphead->CreateAnimation("Intro", "Intro", 0.05f);

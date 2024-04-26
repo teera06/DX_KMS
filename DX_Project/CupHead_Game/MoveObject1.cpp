@@ -75,10 +75,19 @@ void AMoveObject1::BeginPlay()
 	ObjectFront->ChangeAnimation("Object1Front");
 	ObjectRender->ChangeAnimation("Object1");
 	Fire->ChangeAnimation("Object1SmallFire");
+
+	ObjectRender->SetDir(EEngineDir::Down);
+	Fire->SetDir(EEngineDir::Down);
+	ObjectFront->SetDir(EEngineDir::Down);
 }
 
 void AMoveObject1::Tick(float _DeltaTime)
 {
+	if (UpDownSet.iY() > 0)
+	{
+
+	}
+
 	Super::Tick(_DeltaTime);
 	AddActorLocation(FVector::Left * Speed * _DeltaTime);
 	Collisiongather(_DeltaTime);
