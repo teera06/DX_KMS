@@ -24,7 +24,7 @@ private:
 	UCollision* TopCollision = nullptr;
 	UCollision* LRCollision = nullptr;
 
-	float Speed = 500.0f;
+	float Speed = 200.0f;
 
 	void Collisiongather(float _DeltaTime);
 };

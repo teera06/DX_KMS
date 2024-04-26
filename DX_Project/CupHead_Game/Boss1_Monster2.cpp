@@ -41,9 +41,9 @@ ABoss1_Monster2::ABoss1_Monster2()
 	
 	FrontSlot->SetupAttachment(Root);
 	FrontSlot->SetPivot(EPivot::BOT);
-	FrontSlot->AddPosition(FVector(120.0f, 100.0f, 0.0f));
+	FrontSlot->AddPosition(FVector(125.0f, 100.0f, 0.0f));
 
-	FrontSlot->SetActive(true);
+	FrontSlot->SetActive(false);
 
 	SlotImage1 = CreateDefaultSubObject<USpriteRenderer>("SlotImage1");
 	SlotImage1->SetupAttachment(Root);
@@ -336,7 +336,7 @@ void ABoss1_Monster2::AniCreate()
 
 	WindSkill->CreateAnimation("Wind", "Wind", 0.12f);
 
-	FrontSlot->CreateAnimation("SlotFront", "SlotFront", 0.075f);
+	FrontSlot->CreateAnimation("SlotFront", "SlotFront", 0.09f);
 }
 
 
@@ -575,7 +575,6 @@ void ABoss1_Monster2::phase3Intro2(float _DeltaTime)
 	SlotImage1->SetActive(true);
 	SlotImage2->SetActive(true);
 	SlotImage3->SetActive(true);
-	FrontSlot->SetActive(true);
 	if (true == BigBoss1->IsCurAnimationEnd())
 	{
 		coolDownTime = 6.0f;
@@ -724,6 +723,7 @@ void ABoss1_Monster2::Phase3AttReady(float _DeltaTime)
 	if (true == BigBoss1->IsCurAnimationEnd())
 	{
 		Bigattcount = 0;
+		FrontSlot->SetActive(true);
 		Phase2.ChangeState("Phase3Att");
 		return;
 	}
@@ -744,6 +744,7 @@ void ABoss1_Monster2::Phase3Att(float _DeltaTime)
 		coolDownTime = 4.0f;
 		Bigattcount = 0;
 		SlotTouch = false;
+		FrontSlot->SetActive(false);
 		Phase2.ChangeState("phase3Idle");
 		return;
 	}
