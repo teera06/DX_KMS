@@ -26,6 +26,9 @@ private:
 	UCollision* TopCollision = nullptr;
 	UCollision* LRCollision = nullptr;
 
+
+	FVector DownPower = FVector::Zero;
+
 	float Speed = 400.0f;
 
 	void Collisiongather(float _DeltaTime);

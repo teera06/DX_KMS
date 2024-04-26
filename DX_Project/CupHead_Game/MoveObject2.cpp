@@ -73,4 +73,13 @@ void AMoveObject2::Collisiongather(float _DeltaTime)
 	{
 		Destroy();
 	}
+
+	DownPower = FVector::Down * 200.0f;
+
+	if (GetActorLocation().iY() <= -300)
+	{
+		DownPower = FVector::Zero;
+	}
+
+	AddActorLocation(DownPower * _DeltaTime);
 }
