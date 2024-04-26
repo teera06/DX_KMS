@@ -38,10 +38,12 @@ private:
 
 	float Speed = 400.0f;
 
-	
+	bool OneCheck = false;
 
 	bool changeFire = false;
 
 	void Collisiongather(float _DeltaTime);
+
+	void ChangeFirePos();
 };
 

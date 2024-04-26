@@ -25,8 +25,7 @@ AMoveObject1::AMoveObject1()
 
 	ObjectRender->SetPivot(EPivot::BOT);
 	ObjectFront->SetPivot(EPivot::BOT);
-	Fire->AddPosition(FVector(0.0f, 150.0f, 0.0f));
-	ObjectFront->AddPosition(FVector(1.2f, 3.5f, 0.0f));
+	ObjectFront->AddPosition(FVector(1.2f, 0.0f, 0.0f));
 	TopCollision = CreateDefaultSubObject<UCollision>("TopCollision ");
 	TopCollision->SetupAttachment(Root);
 	TopCollision->AddPosition(FVector(0.0f, 110.0f, 0.0f));
@@ -53,16 +52,19 @@ void AMoveObject1::BeginPlay()
 	ObjectRender->SetSprite("tallfrog_slotman_platform_bison_0001.png");
 	ObjectRender->SetSamplering(ETextureSampling::LINEAR);
 	ObjectRender->SetAutoSize(1.0f, true);
+	ObjectRender->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 
 	ObjectFront->SetOrder(ERenderOrder::ObjectFront);
 	ObjectFront->SetSprite("tallfrog_slotman_platform_bison_top_0001.png");
 	ObjectFront->SetSamplering(ETextureSampling::LINEAR);
 	ObjectFront->SetAutoSize(1.0f, true);
+	ObjectFront->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 
 	Fire->SetOrder(ERenderOrder::Fire);
 	Fire->SetSprite("tallfrog_slotman_platform_bison_flame_sm_0001.png");
 	Fire->SetSamplering(ETextureSampling::LINEAR);
 	Fire->SetAutoSize(1.0f, true);
+	Fire->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 
 
 	ObjectRender->CreateAnimation("Object1", "Object1", 0.092f);
@@ -75,18 +77,30 @@ void AMoveObject1::BeginPlay()
 	ObjectFront->ChangeAnimation("Object1Front");
 	ObjectRender->ChangeAnimation("Object1");
 	Fire->ChangeAnimation("Object1SmallFire");
-
-	ObjectRender->SetDir(EEngineDir::Down);
-	Fire->SetDir(EEngineDir::Down);
-	ObjectFront->SetDir(EEngineDir::Down);
 }
 
 void AMoveObject1::Tick(float _DeltaTime)
 {
-	if (UpDownSet.iY() > 0)
+	if (false == OneCheck)
 	{
+		if (UpDownSet.iY() > 0)
+		{
+			ObjectRender->SetDir(EEngineDir::Up);
+			Fire->SetDir(EEngineDir::Up);
+			ObjectFront->SetDir(EEngineDir::Up);
+			Fire->SetPosition(FVector(0.0f, 150.0f, 0.0f));
+		}
+		else
+		{
+			ObjectRender->SetDir(EEngineDir::Down);
+			Fire->SetDir(EEngineDir::Down);
+			ObjectFront->SetDir(EEngineDir::Down);
+			Fire->SetPosition(FVector(0.0f, -0.0f, 0.0f));
+		}
 
+		OneCheck = true;
 	}
+
 
 	Super::Tick(_DeltaTime);
 	AddActorLocation(FVector::Left * Speed * _DeltaTime);
@@ -98,7 +112,8 @@ void AMoveObject1::Collisiongather(float _DeltaTime)
 	if (GetActorLocation().iX() <= -50 && false==changeFire)
 	{
 		Fire->ChangeAnimation("Object1BigFire");
-		Fire->AddPosition(FVector(0.0f, 280.0f, 0.0f));
+
+		Fire->SetFrameCallback("Object1BigFire", 2, [=] {ChangeFirePos(); });
 		changeFire = true;
 	}
 
@@ -115,4 +130,16 @@ void AMoveObject1::Collisiongather(float _DeltaTime)
 	}
 
 	AddActorLocation(UpPower * _DeltaTime);
+}
+
+void AMoveObject1::ChangeFirePos()
+{
+	if (UpDownSet.iY() > 0)
+	{
+		Fire->AddPosition(FVector(0.0f, 300.0f, 0.0f));
+	}
+	else
+	{
+		Fire->AddPosition(FVector(0.0f, -300.0f, 0.0f));
+	}
 }
