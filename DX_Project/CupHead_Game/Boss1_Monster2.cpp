@@ -48,19 +48,19 @@ ABoss1_Monster2::ABoss1_Monster2()
 	SlotImage1 = CreateDefaultSubObject<USpriteRenderer>("SlotImage1");
 	SlotImage1->SetupAttachment(Root);
 	SlotImage1->SetPivot(EPivot::BOT);
-	SlotImage1->AddPosition(FVector(-125.0f, 297.0f, 0.0f));
+	SlotImage1->AddPosition(FVector(-125.0f, 160.0f, 0.0f));
 	SlotImage1->AddRotationDeg(FVector(0.0f, 35.0f, 0.0f));
 
 	SlotImage2 = CreateDefaultSubObject<USpriteRenderer>("SlotImage2");
 	SlotImage2->SetupAttachment(Root);
 	SlotImage2->SetPivot(EPivot::BOT);
-	SlotImage2->AddPosition(FVector(-70.0f, 297.0f, 0.0f));
+	SlotImage2->AddPosition(FVector(-70.0f, 160.0f, 0.0f));
 	SlotImage2->AddRotationDeg(FVector(0.0f, 35.0f, 0.0f));
 
 	SlotImage3 = CreateDefaultSubObject<USpriteRenderer>("SlotImage3");
 	SlotImage3->SetupAttachment(Root);
 	SlotImage3->SetPivot(EPivot::BOT);
-	SlotImage3->AddPosition(FVector(-15.0f, 297.0f, 0.0f));
+	SlotImage3->AddPosition(FVector(-15.0f, 160.0f, 0.0f));
 	SlotImage3->AddRotationDeg(FVector(0.0f, 35.0f, 0.0f));
 	
 	SlotImage1->SetActive(false);

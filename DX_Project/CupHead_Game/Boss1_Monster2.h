@@ -62,7 +62,7 @@ private:
 
 	float WindSpeed = 350.0f;
 
-	float SlotSpped = 10.0f;
+	float SlotSpped = 2.0f;
 
 	int Bigattcount = 0;
 
