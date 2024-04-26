@@ -25,10 +25,9 @@ AMoveObject1::AMoveObject1()
 
 	ObjectRender->SetPivot(EPivot::BOT);
 	ObjectFront->SetPivot(EPivot::BOT);
-	ObjectFront->AddPosition(FVector(1.2f, 0.0f, 0.0f));
 	TopCollision = CreateDefaultSubObject<UCollision>("TopCollision ");
 	TopCollision->SetupAttachment(Root);
-	TopCollision->AddPosition(FVector(0.0f, 110.0f, 0.0f));
+	TopCollision->AddPosition(FVector(0.0f, 130.0f, 0.0f));
 	TopCollision->SetScale(FVector(160.0f, 20.0f, 100.0f));
 
 	TopCollision->SetCollisionGroup(ECollisionOrder::Boss1Top);
@@ -85,13 +84,16 @@ void AMoveObject1::Tick(float _DeltaTime)
 	{
 		if (UpDownSet.iY() > 0)
 		{
+			ObjectFront->AddPosition(FVector(1.2f, 3.5f, 0.0f));
 			ObjectRender->SetDir(EEngineDir::Up);
 			Fire->SetDir(EEngineDir::Up);
 			ObjectFront->SetDir(EEngineDir::Up);
 			Fire->SetPosition(FVector(0.0f, 150.0f, 0.0f));
+			TopCollision->SetActive(false);
 		}
 		else
 		{
+			ObjectFront->AddPosition(FVector(1.2f, 14.5f, 0.0f));
 			ObjectRender->SetDir(EEngineDir::Down);
 			Fire->SetDir(EEngineDir::Down);
 			ObjectFront->SetDir(EEngineDir::Down);
@@ -124,7 +126,7 @@ void AMoveObject1::Collisiongather(float _DeltaTime)
 
 	UpPower = FVector::Up * 500.0f;
 
-	if (GetActorLocation().iY() >= -80)
+	if (GetActorLocation().iY() >= -110)
 	{
 		UpPower = FVector::Zero;
 	}
@@ -136,10 +138,10 @@ void AMoveObject1::ChangeFirePos()
 {
 	if (UpDownSet.iY() > 0)
 	{
-		Fire->AddPosition(FVector(0.0f, 300.0f, 0.0f));
+		Fire->AddPosition(FVector(0.0f, 310.0f, 0.0f));
 	}
 	else
 	{
-		Fire->AddPosition(FVector(0.0f, -300.0f, 0.0f));
+		Fire->AddPosition(FVector(0.0f, -310.0f, 0.0f));
 	}
 }

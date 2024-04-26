@@ -72,4 +72,18 @@ void ACoin::CalDir(float _DeltaTime)
 	FVector MoveNorMalize = Move.Normalize3DReturn();
 
 	AddActorLocation(Move.Normalize3DReturn() * Speed * _DeltaTime);
+	CollisionCheck();
+}
+
+void ACoin::CollisionCheck()
+{
+	if (GetActorLocation().iY() <= -350)
+	{
+		Destroy();
+	}
+
+	CoinCollision->CollisionEnter(ECollisionOrder::Player, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		Destroy();
+	});
 }

@@ -31,5 +31,6 @@ private:
 	bool OneCheck = false;
 
 	void CalDir(float _DeltaTime);
+	void CollisionCheck();
 };
 
