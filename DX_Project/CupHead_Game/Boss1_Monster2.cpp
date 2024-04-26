@@ -737,12 +737,16 @@ void ABoss1_Monster2::Phase3Att(float _DeltaTime)
 {
 	if (true == BigBoss1->IsCurAnimationEnd())
 	{
-		createObject();
+		if (0 != Bigattcount % 2)
+		{
+			createObject();
+		}
 		Bigattcount++;
 		return;
 	}
 
-	if (Bigattcount == 13)
+
+	if (Bigattcount == 26)
 	{
 		SlotAttCount++;
 		coolDownTime = 4.0f;
