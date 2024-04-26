@@ -365,14 +365,14 @@ void ABoss1_Monster2::createObject()
 {
 	if (SlotAttCount == 0)
 	{
-		NewMoveObject2 = GetWorld()->SpawnActor<AMoveObject2>("MoveObject2");
+		NewMoveObject1 = GetWorld()->SpawnActor<AMoveObject1>("MoveObject1");
 	}else if (SlotAttCount == 1)
 	{
 		NewMoveObject3 = GetWorld()->SpawnActor<AMoveObject3>("MoveObject3");
 	}
 	else if (SlotAttCount == 2)
 	{
-		NewMoveObject1 = GetWorld()->SpawnActor<AMoveObject1>("MoveObject1");
+		NewMoveObject2 = GetWorld()->SpawnActor<AMoveObject2>("MoveObject2");
 	}
 }
 

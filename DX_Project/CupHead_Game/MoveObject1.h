@@ -28,7 +28,9 @@ private:
 
 	FVector UpPower = FVector::Zero;
 
-	float Speed = 100.0f;
+	float Speed = 400.0f;
+
+	bool changeFire = false;
 
 	void Collisiongather(float _DeltaTime);
 };

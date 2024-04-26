@@ -25,7 +25,7 @@ AMoveObject1::AMoveObject1()
 
 	ObjectRender->SetPivot(EPivot::BOT);
 	ObjectFront->SetPivot(EPivot::BOT);
-	Fire->AddPosition(FVector(0.0f, 100.0f, 0.0f));
+	Fire->AddPosition(FVector(0.0f, 150.0f, 0.0f));
 	ObjectFront->AddPosition(FVector(1.2f, 3.5f, 0.0f));
 	TopCollision = CreateDefaultSubObject<UCollision>("TopCollision ");
 	TopCollision->SetupAttachment(Root);
@@ -86,9 +86,11 @@ void AMoveObject1::Tick(float _DeltaTime)
 
 void AMoveObject1::Collisiongather(float _DeltaTime)
 {
-	if (GetActorLocation().iX() >= 0) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
+	if (GetActorLocation().iX() <= -50 && false==changeFire)
 	{
 		Fire->ChangeAnimation("Object1BigFire");
+		Fire->AddPosition(FVector(0.0f, 280.0f, 0.0f));
+		changeFire = true;
 	}
 
 	if (GetActorLocation().iX() <= -600 || GetActorLocation().iX() >= 600) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
@@ -98,7 +100,7 @@ void AMoveObject1::Collisiongather(float _DeltaTime)
 
 	UpPower = FVector::Up * 500.0f;
 
-	if (GetActorLocation().iY() >= 10)
+	if (GetActorLocation().iY() >= -80)
 	{
 		UpPower = FVector::Zero;
 	}
