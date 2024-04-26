@@ -16,6 +16,8 @@ public:
 	AMoveObject2& operator=(const AMoveObject2& _Other) = delete; // 디폴트 대입 연산자
 	AMoveObject2& operator=(AMoveObject2&& _Other) noexcept = delete;
 
+
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -24,7 +26,7 @@ private:
 	UCollision* TopCollision = nullptr;
 	UCollision* LRCollision = nullptr;
 
-	float Speed = 200.0f;
+	float Speed = 400.0f;
 
 	void Collisiongather(float _DeltaTime);
 };

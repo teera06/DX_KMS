@@ -41,7 +41,7 @@ ABoss1_Monster2::ABoss1_Monster2()
 	
 	FrontSlot->SetupAttachment(Root);
 	FrontSlot->SetPivot(EPivot::BOT);
-	FrontSlot->AddPosition(FVector(125.0f, 100.0f, 0.0f));
+	FrontSlot->AddPosition(FVector(122.0f, 100.0f, 0.0f));
 
 	FrontSlot->SetActive(false);
 
@@ -50,6 +50,7 @@ ABoss1_Monster2::ABoss1_Monster2()
 	SlotImage1->SetPivot(EPivot::BOT);
 	SlotImage1->AddPosition(FVector(-125.0f, 160.0f, 0.0f));
 	SlotImage1->AddRotationDeg(FVector(0.0f, 35.0f, 0.0f));
+	SlotImage1->SetPlusColor(FVector(0.0f, 0.1f, 0.0f));
 
 	SlotImage2 = CreateDefaultSubObject<USpriteRenderer>("SlotImage2");
 	SlotImage2->SetupAttachment(Root);
@@ -311,7 +312,7 @@ void ABoss1_Monster2::AniCreate()
 	BigBoss1->CreateAnimation("Phase3SlotStart", "Phase3SlotReady", 0.1f, false, 8, 0);
 
 	BigBoss1->CreateAnimation("Phase3AttReady", "Phase3AttReady", 0.075f);
-	BigBoss1->CreateAnimation("Phase3Att", "Phase3Att", 0.075f);
+	BigBoss1->CreateAnimation("Phase3Att", "Phase3Att", 0.1f);
 
 	SlotMouse->CreateAnimation("CoinAtt", "CoinAtt", 0.1f);
 
@@ -330,7 +331,7 @@ void ABoss1_Monster2::AniCreate()
 
 	WindSkill->CreateAnimation("Wind", "Wind", 0.12f);
 
-	FrontSlot->CreateAnimation("SlotFront", "SlotFront", 0.09f);
+	FrontSlot->CreateAnimation("SlotFront", "SlotFront", 0.1f);
 
 }
 
