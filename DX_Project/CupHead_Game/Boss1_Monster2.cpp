@@ -41,9 +41,9 @@ ABoss1_Monster2::ABoss1_Monster2()
 	
 	FrontSlot->SetupAttachment(Root);
 	FrontSlot->SetPivot(EPivot::BOT);
-	FrontSlot->AddPosition(FVector(270.0f, 285.0f, 0.0f));
+	FrontSlot->AddPosition(FVector(120.0f, 100.0f, 0.0f));
 
-	FrontSlot->SetActive(false);
+	FrontSlot->SetActive(true);
 
 	SlotImage1 = CreateDefaultSubObject<USpriteRenderer>("SlotImage1");
 	SlotImage1->SetupAttachment(Root);
@@ -137,7 +137,7 @@ void ABoss1_Monster2::BeginPlay()
 	SlotImage3->SetSamplering(ETextureSampling::LINEAR);
 	SlotImage3->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 
-	FrontSlot->SetOrder(ERenderOrder::FrontGround1);
+	FrontSlot->SetOrder(ERenderOrder::ObjectFront2);
 	FrontSlot->SetSprite("tallfrog_slotman_attack_top_0001.png");
 	FrontSlot->SetSamplering(ETextureSampling::LINEAR);
 	FrontSlot->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
@@ -160,11 +160,13 @@ void ABoss1_Monster2::BeginPlay()
 	SlotImage2->SetAutoSize(1.0f, true);
 	SlotImage3->SetAutoSize(1.0f, true);
 	WindSkill->SetAutoSize(1.0f, true);
+	FrontSlot->SetAutoSize(1.0f, true);
 
 	WindSkill->ChangeAnimation("Wind");
 	SlotImage1->ChangeAnimation("slotObject1");
 	SlotImage2->ChangeAnimation("slotObject1");
 	SlotImage3->ChangeAnimation("slotObject1");
+	FrontSlot->ChangeAnimation("SlotFront");
 }
 
 void ABoss1_Monster2::Tick(float _DeltaTime)
@@ -303,16 +305,16 @@ void ABoss1_Monster2::AniCreate()
 	BigBoss1->CreateAnimation("phase3changeReady1", "phase3changeReady1", 0.1f);
 	BigBoss1->CreateAnimation("phase3changeReady2", "phase3changeReady2", 0.1f);
 
-	BigBoss1->CreateAnimation("phase3Intro", "phase3Intro", 0.12f);
-	BigBoss1->CreateAnimation("phase3Intro2", "phase3Intro2", 0.1f);
+	BigBoss1->CreateAnimation("phase3Intro", "phase3Intro", 0.075f);
+	BigBoss1->CreateAnimation("phase3Intro2", "phase3Intro2", 0.075f);
 	BigBoss1->CreateAnimation("phase3Idle", "phase3SlotIdle", 0.1f);
 	BigBoss1->CreateAnimation("Phase3SlotReady", "Phase3SlotReady", 0.1f, false);
-	BigBoss1->CreateAnimation("Phase3Slot", "Phase3Slot", 0.1f);
+	BigBoss1->CreateAnimation("Phase3Slot", "Phase3Slot", 0.075f);
 
 	BigBoss1->CreateAnimation("Phase3SlotStart", "Phase3SlotReady", 0.1f, false, 8, 0);
 
-	BigBoss1->CreateAnimation("Phase3AttReady", "Phase3AttReady", 0.1f);
-	BigBoss1->CreateAnimation("Phase3Att", "Phase3Att", 0.1f);
+	BigBoss1->CreateAnimation("Phase3AttReady", "Phase3AttReady", 0.075f);
+	BigBoss1->CreateAnimation("Phase3Att", "Phase3Att", 0.075f);
 
 	SlotMouse->CreateAnimation("CoinAtt", "CoinAtt", 0.1f);
 
@@ -703,10 +705,11 @@ void ABoss1_Monster2::Phase3SlotCoinAtt(float _DeltaTime)
 
 void ABoss1_Monster2::Phase3SlotStart(float _DeltaTime)
 {
-
+	
 	SlotImage1->ChangeAnimation("slot1");
 	SlotImage2->ChangeAnimation("slot1");
 	SlotImage3->ChangeAnimation("slot1");
+	FrontSlot->ChangeAnimation("SlotFront");
 
 	if (true == BigBoss1->IsCurAnimationEnd())
 	{

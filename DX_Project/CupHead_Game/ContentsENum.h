@@ -67,6 +67,7 @@ enum class ERenderOrder
 	Object3,
 	Object3Ball,
 	ObjectFront,
+	ObjectFront2,
 	FrontGround1,
 	FrontGround2,
 	HPBar,
