@@ -33,20 +33,25 @@ void AMainTitleGameMode::BeginPlay()
 		Dir.Move("Image");
 		Dir.Move("Screen");
 		std::vector<UEngineFile> Files = Dir.GetAllFile({ ".png" }, true);
+		LoadingCount1 = static_cast<int>(Files.size());
 		for (UEngineFile& File : Files)
 		{
 			// CuttingTest.png texture로도 한장이 로드가 됐고
 			// 스프라이트로도 1장짜리로 로드가 된 상황이야.
-			UEngineSprite::Load(File.GetFullPath());
+			std::string FileName = File.GetFileName();
+
+			GEngine->JobWorker.Work([=]()
+			{
+
+				UEngineSprite::ThreadSafeLoad(File.GetFullPath());
+
+				--LoadingCount1;
+			});
 		}
 
+
 		// 로드폴더는 이렇게 한다고 칩시다.
-		std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory();
-		for (size_t i = 0; i < Directorys.size(); i++)
-		{
-			std::string Name = Directorys[i].GetFolderName();
-			UEngineSprite::LoadFolder(Directorys[i].GetFullPath());
-		}
+
 
 		// 특정 스프라이트나 
 		// 특정 텍스처를 찾아서
@@ -58,6 +63,73 @@ void AMainTitleGameMode::BeginPlay()
 		//UEngineSprite::
 		//UEngineSprite::CreateCutting("CharRun0.png", 0, 6);
 	}
+}
+
+void AMainTitleGameMode::Tick(float _DeltaTime)
+{
+	Super::Tick(_DeltaTime);
+
+	if (false == onecheck)
+	{
+		UEngineDirectory Dir;
+		Dir.MoveToSearchChild("GameResource");
+		Dir.Move("Image");
+		Dir.Move("Screen");
+		std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory();
+		LoadingCount2 = static_cast<int>(Directorys.size());
+		onecheck = true;
+	}
+
+	if (LoadingCount1 == 0)
+	{
+		UEngineDirectory Dir;
+		Dir.MoveToSearchChild("GameResource");
+		Dir.Move("Image");
+		Dir.Move("Screen");
+		LoadingCount1 = 100;
+		std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory();
+
+		for (size_t i = 0; i < Directorys.size(); i++)
+		{
+			std::string Name = Directorys[i].GetFolderName();
+
+			int a = LoadingCount2;
+			GEngine->JobWorker.Work([=]()
+			{
+				UEngineSprite::ThreadSafeLoadFolder(Directorys[i].GetFullPath());
+
+				--LoadingCount2;
+			});
+		}
+	}
+
+	if (0 == LoadingCount2)
+	{
+		CreateActor();
+		GEngine->CreateLevel<ALoadingGameMode>("Loading");
+		LoadingCount2 = 2000;
+	}
+
+	if (true == UEngineInput::IsDown('Z'))
+	{
+		UContentsHelper::StageCount = 1;
+		//GEngine->ChangeLevel("Loading");
+	}
+}
+
+void AMainTitleGameMode::LevelEnd(ULevel* _NextLevel)
+{
+	Super::LevelEnd(_NextLevel);
+}
+
+void AMainTitleGameMode::LevelStart(ULevel* _PrevLevel)
+{
+	Super::LevelStart(_PrevLevel);
+	//GEngine->CreateLevel<ALoadingGameMode>("Loading");
+}
+
+void AMainTitleGameMode::CreateActor()
+{
 	std::shared_ptr<UCamera> Camera = GetWorld()->GetMainCamera();
 	Camera->SetActorLocation(FVector(0.0f, 0.0f, -100.0f));
 	GetWorld()->SpawnActor<AMainTitleActor>("TitleLogo");
@@ -87,26 +159,4 @@ void AMainTitleGameMode::BeginPlay()
 	}
 
 	GetWorld()->GetLastTarget()->AddEffect<UBlurEffect>();
-}
-
-void AMainTitleGameMode::Tick(float _DeltaTime)
-{
-	Super::Tick(_DeltaTime);
-
-	if (true == UEngineInput::IsDown('Z'))
-	{
-		UContentsHelper::StageCount = 1;
-		GEngine->ChangeLevel("Loading");
-	}
-}
-
-void AMainTitleGameMode::LevelEnd(ULevel* _NextLevel)
-{
-	Super::LevelEnd(_NextLevel);
-}
-
-void AMainTitleGameMode::LevelStart(ULevel* _PrevLevel)
-{
-	Super::LevelStart(_PrevLevel);
-	GEngine->CreateLevel<ALoadingGameMode>("Loading");
 }
