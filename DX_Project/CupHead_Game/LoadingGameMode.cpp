@@ -17,6 +17,7 @@
 
 std::map<std::string, bool> ALoadingGameMode::LoadMap;
 
+bool ALoadingGameMode::CreatePlayer = false;
 bool ALoadingGameMode::CreateLevelCheck1=false;
 bool ALoadingGameMode::CreateLevelCheck2=false;
 bool ALoadingGameMode::CreateLevelCheck3 = false;
@@ -69,13 +70,26 @@ void ALoadingGameMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
+	LastPlayerLoad();
+
+	if (false == CreateLevelCheck1)
+	{
+		LastWorldLoad();
+	}
+
+	if (false == CreateLevelCheck2)
+	{
+		LastBoss1Load();
+	}
+	
+
 	coolDowntime -= _DeltaTime;
-	if (0 > coolDowntime && 1 == UContentsHelper::StageCount)
+	if (true== CreateLevelCheck1 && 1 == UContentsHelper::StageCount)
 	{
 		GEngine->ChangeLevel("WorldLevel");
 		coolDowntime = 4.0f;
 		UContentsHelper::StageCount = 2;
-	}else if (0 > coolDowntime && 2 == UContentsHelper::StageCount)
+	}else if (true == CreateLevelCheck2 && 2 == UContentsHelper::StageCount)
 	{
 		GEngine->ChangeLevel("BossStage1GameMode");
 		coolDowntime = 4.0f;
@@ -98,27 +112,18 @@ void ALoadingGameMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
 
-
-	if (1 == UContentsHelper::StageCount)
+	if (false == CreatePlayer)
 	{
-		WorldLoad();
+		MainPlayerLoad();
+	}
 
-		if (false == CreateLevelCheck1)
-		{
-			GEngine->CreateLevel<AWorldGameMode>("WorldLevel");
-			CreateLevelCheck1 = true;
-		}
-
-	}else if (2 == UContentsHelper::StageCount)
+	if (1 == UContentsHelper::StageCount && false == CreateLevelCheck1)
 	{
-		Boss1Load();
+		MainWorldLoad();
 
-		if (false == CreateLevelCheck2)
-		{
-			GEngine->CreateLevel<ABossStage1GameMode>("BossStage1GameMode");
-			CreateLevelCheck2 = true;
-		}
-
+	}else if (2 == UContentsHelper::StageCount && false == CreateLevelCheck2)
+	{
+		MainBoss1Load();
 	}
 	else if (3 == UContentsHelper::StageCount)
 	{
@@ -134,53 +139,351 @@ void ALoadingGameMode::LevelStart(ULevel* _PrevLevel)
 
 }
 
-void ALoadingGameMode::WorldLoad()
+void ALoadingGameMode::MainPlayerLoad()
 {
 	{
 		UEngineDirectory Dir;
 		Dir.MoveToSearchChild("GameResource");
 		Dir.Move("Image");
-		Dir.Move("World");
-
-		if (false == LoadMap.contains("World"))
+		Dir.Move("PlayCuphead");
 		{
-			std::vector<UEngineFile> Files = Dir.GetAllFile({ ".png" }, true);
-			for (UEngineFile& File : Files)
+			if (false == LoadMap.contains("PlayCuphead"))
 			{
-				// CuttingTest.png texture로도 한장이 로드가 됐고
-				// 스프라이트로도 1장짜리로 로드가 된 상황이야.
-				UEngineSprite::Load(File.GetFullPath());
-			}
+				std::vector<UEngineFile> Files = Dir.GetAllFile({ ".png" }, true);
+				CommonCount1 = static_cast<int>(Files.size());
+				for (UEngineFile& File : Files)
+				{
+					GEngine->JobWorker.Work([=]()
+						{
 
-			LoadMap["World"] = true;
+							UEngineSprite::ThreadSafeLoad(File.GetFullPath());
+
+							--CommonCount1;
+						});
+				}
+
+				LoadMap["PlayCuphead"] = true;
+			}
 		}
 
+		Dir.MoveParent();
+		Dir.Move("Bullet");
 
+		{
+			if (false == LoadMap.contains("Bullet"))
+			{
+				std::vector<UEngineFile> Files = Dir.GetAllFile({ ".png" }, true);
+				CommonCount2 = static_cast<int>(Files.size());
+				for (UEngineFile& File : Files)
+				{
+					GEngine->JobWorker.Work([=]()
+						{
 
-		Dir.Move("Cuphead");
-		// 로드폴더는 이렇게 한다고 칩시다.
+							UEngineSprite::ThreadSafeLoad(File.GetFullPath());
 
-		if (false == LoadMap.contains("Cuphead"))
+							--CommonCount2;
+						});
+				}
+				LoadMap["Bullet"] = true;
+			}
+		}
+	}
+}
+
+void ALoadingGameMode::PlayerFolderLoad()
+{
+	UEngineDirectory Dir;
+	Dir.MoveToSearchChild("GameResource");
+	Dir.Move("Image");
+	Dir.Move("PlayCuphead");
+	{
+		if (true == LoadMap.contains("PlayCuphead"))
 		{
 			std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory();
+			CommonSubLoad1 = static_cast<int>(Directorys.size());
 			for (size_t i = 0; i < Directorys.size(); i++)
 			{
-				std::string Name = Directorys[i].GetFolderName();
-				UEngineSprite::LoadFolder(Directorys[i].GetFullPath());
-			}
+				GEngine->JobWorker.Work([=]()
+					{
+						UEngineSprite::ThreadSafeLoadFolder(Directorys[i].GetFullPath());
 
-			LoadMap["Cuphead"] = true;
+						--CommonSubLoad1;
+					});
+			}
+		}
+	}
+
+	Dir.MoveParent();
+	Dir.Move("Bullet");
+
+	{
+		if (true == LoadMap.contains("Bullet"))
+		{
+			std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory();
+			CommonSubLoad2 = static_cast<int>(Directorys.size());
+			for (size_t i = 0; i < Directorys.size(); i++)
+			{
+				GEngine->JobWorker.Work([=]()
+					{
+						UEngineSprite::ThreadSafeLoadFolder(Directorys[i].GetFullPath());
+
+						--CommonSubLoad2;
+					});
+			}
+		}
+	}
+}
+
+void ALoadingGameMode::MainWorldLoad()
+{
+	UEngineDirectory Dir;
+	Dir.MoveToSearchChild("GameResource");
+	Dir.Move("Image");
+	Dir.Move("World");
+
+	if (false == LoadMap.contains("World"))
+	{
+		std::vector<UEngineFile> Files = Dir.GetAllFile({ ".png" }, true);
+		MainLoadCount2= static_cast<int>(Files.size());
+		for (UEngineFile& File : Files)
+		{
+			// CuttingTest.png texture로도 한장이 로드가 됐고
+			// 스프라이트로도 1장짜리로 로드가 된 상황이야.
+			GEngine->JobWorker.Work([=]()
+				{
+
+					UEngineSprite::ThreadSafeLoad(File.GetFullPath());
+
+					--MainLoadCount2;
+				});
 		}
 
-		// 특정 스프라이트나 
-		// 특정 텍스처를 찾아서
-		// 만약 스프라이트가 존재하지 않는다면
-		// 이걸 사용하는 순간 만들어내고 자른다.
-		// 이미 이 이름을 가진 스프라이트가 존재한다.
-		// 그러면 기존의 스프라이트 데이터는 날려버리고
-		// 자른 스프라이트 데이터 변경한다.
-		//UEngineSprite::
-		//UEngineSprite::CreateCutting("CharRun0.png", 0, 6);
+		LoadMap["World"] = true;
+	}
+}
+
+void ALoadingGameMode::FolderWorldLoad()
+{
+	UEngineDirectory Dir;
+	Dir.MoveToSearchChild("GameResource");
+	Dir.Move("Image");
+	Dir.Move("World");
+	Dir.Move("Cuphead");
+
+	// 로드폴더는 이렇게 한다고 칩시다.
+
+	if (false == LoadMap.contains("Cuphead"))
+	{
+		std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory();
+		SubFolderCount5= static_cast<int>(Directorys.size());
+		for (size_t i = 0; i < Directorys.size(); i++)
+		{
+			GEngine->JobWorker.Work([=]()
+				{
+					UEngineSprite::ThreadSafeLoadFolder(Directorys[i].GetFullPath());
+
+					--SubFolderCount5;
+				});
+		}
+
+		LoadMap["Cuphead"] = true;
+	}
+
+}
+
+void ALoadingGameMode::MainBoss1Load()
+{
+
+	{
+		UEngineDirectory Dir;
+		Dir.MoveToSearchChild("GameResource");
+		Dir.Move("Image");
+		Dir.Move("boss1");
+
+		if (false == LoadMap.contains("boss1"))
+		{
+			std::vector<UEngineFile> Files = Dir.GetAllFile({ ".png" }, true);
+			MainLoadCount = static_cast<int>(Files.size());
+			for (UEngineFile& File : Files)
+			{
+				GEngine->JobWorker.Work([=]()
+					{
+
+						UEngineSprite::ThreadSafeLoad(File.GetFullPath());
+
+						--MainLoadCount;
+					});
+			}
+
+			LoadMap["boss1"] = true;
+		}
+	}
+
+
+}
+
+void ALoadingGameMode::FolderBoss1Load()
+{
+	UEngineDirectory Dir;
+	Dir.MoveToSearchChild("GameResource");
+	Dir.Move("Image");
+	Dir.Move("boss1");
+
+	{
+		Dir.Move("Crowd");
+
+		if (false == LoadMap.contains("Crowd"))
+		{
+			// 로드폴더는 이렇게 한다고 칩시다.
+			std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory();
+			SubFolderCount = static_cast<int>(Directorys.size());
+			for (size_t i = 0; i < Directorys.size(); i++)
+			{
+				GEngine->JobWorker.Work([=]()
+					{
+						UEngineSprite::ThreadSafeLoadFolder(Directorys[i].GetFullPath());
+
+						--SubFolderCount;
+					});
+			}
+
+			LoadMap["Crowd"] = true;
+		}
+	}
+
+	Dir.MoveParent();
+
+	{
+		Dir.Move("phase1");
+
+		if (false == LoadMap.contains("phase1"))
+		{
+			// 로드폴더는 이렇게 한다고 칩시다.
+			std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory();
+			SubFolderCount2 = static_cast<int>(Directorys.size());
+			for (size_t i = 0; i < Directorys.size(); i++)
+			{
+				GEngine->JobWorker.Work([=]()
+					{
+						UEngineSprite::ThreadSafeLoadFolder(Directorys[i].GetFullPath());
+
+						--SubFolderCount2;
+					});
+			}
+
+			LoadMap["phase1"] = true;
+		}
+	}
+
+	Dir.MoveParent();
+
+	{
+		Dir.Move("phase2");
+		// 로드폴더는 이렇게 한다고 칩시다.
+		if (false == LoadMap.contains("phase2"))
+		{
+			// 로드폴더는 이렇게 한다고 칩시다.
+			std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory();
+			SubFolderCount3 = static_cast<int>(Directorys.size());
+			for (size_t i = 0; i < Directorys.size(); i++)
+			{
+				GEngine->JobWorker.Work([=]()
+					{
+						UEngineSprite::ThreadSafeLoadFolder(Directorys[i].GetFullPath());
+
+						--SubFolderCount3;
+					});
+			}
+
+			LoadMap["phase2"] = true;
+		}
+	}
+
+	Dir.MoveParent();
+
+	{
+		Dir.Move("phase3");
+		// 로드폴더는 이렇게 한다고 칩시다.
+		if (false == LoadMap.contains("phase3"))
+		{
+			// 로드폴더는 이렇게 한다고 칩시다.
+			std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory();
+			SubFolderCount4 = static_cast<int>(Directorys.size());
+			for (size_t i = 0; i < Directorys.size(); i++)
+			{
+				GEngine->JobWorker.Work([=]()
+					{
+						UEngineSprite::ThreadSafeLoadFolder(Directorys[i].GetFullPath());
+
+						--SubFolderCount4;
+					});
+			}
+			LoadMap["phase3"] = true;
+		}
+
+		//UEngineSprite::CreateCutting("TEMP1.png", 1, 3);
+		UEngineSprite::CreateCutting("TEMP2.png", 1, 5);
+		//UEngineSprite::CreateCutting("tallfrog_slotman_slot_flash_TEMP.png", 1, 3);
+	}
+}
+
+
+
+void ALoadingGameMode::Folder1Help2()
+{
+
+}
+
+
+void ALoadingGameMode::LastWorldLoad()
+{
+	if (0 == MainLoadCount2 && false == CreateLevelCheck1)
+	{
+		MainLoadCount2 = -1;
+		FolderWorldLoad();
+	}
+
+	if (0==SubFolderCount5 && false == CreateLevelCheck1)
+	{
+		SubFolderCount5 = -1;
+		GEngine->CreateLevel<AWorldGameMode>("WorldLevel");
+		CreateLevelCheck1 = true;
+	}
+}
+
+void ALoadingGameMode::LastBoss1Load()
+{
+	if (0 == MainLoadCount && false == CreateLevelCheck2)
+	{
+		MainLoadCount = -1;
+		FolderBoss1Load();
+	}
+
+	if (SubFolderCount == 0 && SubFolderCount2 == 0 && SubFolderCount3 == 0 && SubFolderCount4 == 0 && false == CreateLevelCheck2)
+	{
+		SubFolderCount = -1;
+		SubFolderCount2 = -1;
+		SubFolderCount3 = -1;
+		SubFolderCount4 = -1;
+		GEngine->CreateLevel<ABossStage1GameMode>("BossStage1GameMode");
+		CreateLevelCheck2 = true;
+	}
+}
+
+void ALoadingGameMode::LastPlayerLoad()
+{
+	if (0 == CommonCount1 && 0 == CommonCount2 && false == CreatePlayer)
+	{
+		CommonCount1 = -1;
+		CommonCount2 = -1;
+		PlayerFolderLoad();
+	}
+
+	if (CommonSubLoad1 == 0 && CommonSubLoad2==0 && false == CreatePlayer)
+	{
+		CommonSubLoad1 = -1;
+		CommonSubLoad2 = -1;
+		CreatePlayer = true;
 	}
 }
 
