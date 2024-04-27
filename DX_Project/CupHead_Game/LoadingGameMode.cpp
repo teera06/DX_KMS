@@ -88,7 +88,7 @@ void ALoadingGameMode::Tick(float _DeltaTime)
 	{
 		GEngine->ChangeLevel("WorldLevel");
 		coolDowntime = 4.0f;
-		UContentsHelper::StageCount = 2;
+		//UContentsHelper::StageCount = 2;
 	}else if (true == CreateLevelCheck2 && 2 == UContentsHelper::StageCount)
 	{
 		GEngine->ChangeLevel("BossStage1GameMode");
@@ -275,14 +275,14 @@ void ALoadingGameMode::FolderWorldLoad()
 	if (false == LoadMap.contains("Cuphead"))
 	{
 		std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory();
-		SubFolderCount5= static_cast<int>(Directorys.size());
+		SubWorldCount= static_cast<int>(Directorys.size());
 		for (size_t i = 0; i < Directorys.size(); i++)
 		{
 			GEngine->JobWorker.Work([=]()
 				{
 					UEngineSprite::ThreadSafeLoadFolder(Directorys[i].GetFullPath());
 
-					--SubFolderCount5;
+					--SubWorldCount;
 				});
 		}
 
@@ -443,9 +443,9 @@ void ALoadingGameMode::LastWorldLoad()
 		FolderWorldLoad();
 	}
 
-	if (0==SubFolderCount5 && false == CreateLevelCheck1)
+	if (0==SubWorldCount && false == CreateLevelCheck1)
 	{
-		SubFolderCount5 = -1;
+		SubWorldCount = -1;
 		GEngine->CreateLevel<AWorldGameMode>("WorldLevel");
 		CreateLevelCheck1 = true;
 	}

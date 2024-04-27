@@ -38,12 +38,14 @@ private:
 
 	std::atomic_int MainLoadCount=-1;
 	std::atomic_int MainLoadCount2 = -1;
+	std::atomic_int MainLoadCount3 = -1;
+
+	std::atomic_int SubWorldCount = -1;
 
 	std::atomic_int SubFolderCount=-1;
 	std::atomic_int SubFolderCount2 = -1;
 	std::atomic_int SubFolderCount3 = -1;
 	std::atomic_int SubFolderCount4 = -1;
-	std::atomic_int SubFolderCount5 = -1;
 
 	static bool CreatePlayer;
 	static bool CreateLevelCheck1;
