@@ -42,10 +42,16 @@ private:
 
 	std::atomic_int SubWorldCount = -1;
 
+	// Boss1
 	std::atomic_int SubFolderCount=-1;
 	std::atomic_int SubFolderCount2 = -1;
 	std::atomic_int SubFolderCount3 = -1;
 	std::atomic_int SubFolderCount4 = -1;
+
+	// Boss2
+	std::atomic_int SubFolder2Count = -1;
+	std::atomic_int SubFolder2Count2 = -1;
+	std::atomic_int SubFolder2Count3 = -1;
 
 	static bool CreatePlayer;
 	static bool CreateLevelCheck1;
@@ -64,13 +70,14 @@ private:
 	void MainBoss1Load();
 	void FolderBoss1Load();
 	
-	void Folder1Help2();
+	// Boss2 Load
+	void MainBoss2Load();
+	void FolderBoss2Load();
 
 	void LastPlayerLoad();
 	void LastWorldLoad();
 	void LastBoss1Load();
+	void LastBoss2Load();
 
-	void Boss1Load();
-	void Boss2Load();
 };
 
