@@ -20,10 +20,7 @@ void UGame_Core::Initialize()
 {
 
 	UEngineEditorGUI::CreateEditorWindow<UContentsDebugWindow>("CupheadHelpMe");
-	{
-	}
 
-	
 	{
 		// 파일의 헤더
 		UEngineDirectory Dir;
@@ -55,7 +52,6 @@ void UGame_Core::Initialize()
 		//UEngineSprite::
 		//UEngineSprite::CreateCutting("CharRun0.png", 0, 6);
 	}
-
 
 	{
 		//UEngineDirectory Dir;

@@ -26,8 +26,6 @@ private:
 
 	std::shared_ptr<AScreenEffect> NewScreenEffect = nullptr;
 
-	std::atomic_int LoadingCount1;
-	std::atomic_int LoadingCount2;
 
 	bool onecheck = false;
 	void CreateActor();
