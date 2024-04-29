@@ -9,6 +9,7 @@
 #include <EngineCore/Camera.h>
 
 #include "Boss1Common.h"
+#include "Devil1.h"
 #include "BaseBullet.h"
 #include "BaseSSBullet.h"
 
@@ -87,6 +88,15 @@ void APlay_Cuphead::EventCollision(float _DeltaTime)
 		GetWorld()->SpawnActor<APhaseChangeBack>("PhaseChangeBack");
 		State.ChangeState("Boss2PhaseChange");
 		return;
+	});
+
+	PlayerCollision->CollisionEnter(ECollisionOrder::Devil1, [=](std::shared_ptr<UCollision> _Collison)
+	{
+
+		AActor* Ptr = _Collison->GetActor();
+		ADevil1* Monster = dynamic_cast<ADevil1*>(Ptr);
+		Monster->SetDieTime(3.0f);
+
 	});
 }
 

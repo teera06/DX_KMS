@@ -95,7 +95,8 @@ enum class ECollisionOrder
 	Hole,
 	Axe,
 	Chip,
-	Wind
+	Wind,
+	Devil1,
 };
 
 enum class EScreenEffect

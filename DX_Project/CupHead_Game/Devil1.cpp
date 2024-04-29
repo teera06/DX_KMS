@@ -29,6 +29,15 @@ ADevil1::ADevil1()
 	IntroAni->SetAutoSize(0.8f, true);
 	IntroAni->SetPosition(FVector(-130.0f, -150.0f, 0.0f));
 
+	PhaseChange2 = CreateDefaultSubObject<USpriteRenderer>("PhaseChange2");
+	
+	PhaseChange2->SetupAttachment(Root);
+
+	PhaseChange2->SetOrder(ERenderOrder::BossSkillMonster);
+	PhaseChange2->SetSprite("devil_intro_pupil_0002.png");
+	PhaseChange2->SetSamplering(ETextureSampling::LINEAR);
+	PhaseChange2->SetAutoSize(1.0f, true);
+
 	Boss2 = CreateDefaultSubObject<USpriteRenderer>("Boss2");
 
 	Boss2->SetupAttachment(Root);
@@ -70,6 +79,16 @@ ADevil1::ADevil1()
 	spear->SetAutoSize(1.0f, true);
 	
 	spear->AddPosition(FVector(-40.0f, -22.0f, 0.0f));
+
+
+	Boss2Phase2 = CreateDefaultSubObject<UCollision>("Boss2Phase2");
+	Boss2Phase2->SetupAttachment(Root);
+	Boss2Phase2->SetPosition(FVector(-30.0f, -350.0f, 0.0f));
+	Boss2Phase2->SetScale(FVector(1.0f, 100.0f, 100.0f));
+	Boss2Phase2->SetCollisionGroup(ECollisionOrder::Devil1);
+	Boss2Phase2->SetCollisionType(ECollisionType::RotRect);
+
+
 	SetRoot(Root);
 
 	
@@ -89,6 +108,8 @@ void ADevil1::BeginPlay()
 	BossBody->SetActive(false);
 	spear->SetActive(false);
 	Phase1StateInit();
+
+	PhaseChange2->SetActive(false);
 
 	//IntroAni->ChangeAnimation("PupilIntro");
 }
@@ -192,6 +213,7 @@ void ADevil1::AniCreate()
 	BossBody->CreateAnimation("CreateOrbsBody", "CreateOrbsBody", 0.075f);
 	spear->CreateAnimation("CreateOrbsTrident", "CreateOrbsTrident", 0.075f);
 	IntroAni->CreateAnimation("PupilIntro", "PupilIntro", 0.055f);
+	PhaseChange2->CreateAnimation("Phase1Death", "Phase1Death", 0.075f,false);
 
 	Boss2->CreateAnimation("Phase1Death", "Phase1Death", 0.075f);
 	Boss2->CreateAnimation("Phase2Change", "Phase2Change", 0.075f);
@@ -283,6 +305,8 @@ void ADevil1::Phase1Idle(float _DeltaTime)
 	if (phasecheck == 1 && GetHp() <= 70)
 	{
 		phasecheck = 2;
+		PhaseChange2->SetActive(true);
+		PhaseChange2->ChangeAnimation("Phase1Death");
 		Phase1.ChangeState("Phase1Death");
 		return;
 	}
@@ -464,12 +488,21 @@ void ADevil1::Phase1Death(float _DeltaTime)
 
 void ADevil1::Phase2Change(float _DeltaTime)
 {
-	if (true == Boss2->IsCurAnimationEnd())
+	if (true == Boss2->IsCurAnimationEnd() && false==Die)
 	{
 		attOrder = 1;
 		coolDownTime = 6.0f;
 		GetWorld()->SpawnActor<AHole>("Hole");
-		Destroy();
-		return;
+		Boss2->SetActive(false);
+		Die = true;
+	}
+
+	if (true == Die && DieTime > -1.0f)
+	{
+		DieTime -= _DeltaTime;
+		if (DieTime < 0)
+		{
+			Destroy();
+		}
 	}
 }

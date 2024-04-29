@@ -30,6 +30,12 @@ public:
 		return IntroAni;
 	}
 
+	void SetDieTime(const float& _DieTime)
+	{
+		DieTime = _DieTime;
+	}
+	
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -48,14 +54,18 @@ private:
 	std::shared_ptr<ADevilBall> NewDevilBall4 = nullptr;
 
 	USpriteRenderer* IntroAni = nullptr;
+	USpriteRenderer* PhaseChange2 = nullptr;
 	USpriteRenderer* Boss2 = nullptr;
 	USpriteRenderer* BossHead = nullptr;
 	USpriteRenderer* BossBody = nullptr;
 	USpriteRenderer* spear = nullptr;
 
-	
-	bool OneCheck = false;
+	UCollision* Boss2Phase2 = nullptr;
 
+	float DieTime = -2.0f;
+
+	bool OneCheck = false;
+	bool Die=false;
 
 	void CreateHeadAtt();
 	void CreateRamArms();

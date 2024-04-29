@@ -99,6 +99,9 @@ private:
 	bool NoGravity = false;
 
 	bool PowerShoot = false;
+
+
+	bool DevilDieCheck = false;
 	// false -> 기본 공격
 	// true -> 게이지 공격
 
