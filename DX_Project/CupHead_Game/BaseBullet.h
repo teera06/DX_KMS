@@ -22,6 +22,11 @@ public:
 		BulletDir = _BulletDir;
 	}
 
+	inline void SetMinMaxShoot(const bool& _MinMaxShoot)
+	{
+		MinMaxShoot = _MinMaxShoot;
+	}
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -34,6 +39,10 @@ private:
 	float Speed = 2000.0f;
 
 	bool shoot = false;
+
+	bool MinMaxShoot = false;
+	bool OneChceck = false;
+	bool DestroyCheck = false;
 
 	void SkillDir();
 	void Collisiongather();

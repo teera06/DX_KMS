@@ -95,13 +95,16 @@ private:
 	bool shootY = false;
 	bool NoGravity = false;
 
+	bool ShootMinMax = false;
+	// false -> 기본 공격
+	// true -> 게이지 공격
 
 	void ParryCheck();
 	void GroundObject();
 	void EventCollision(float _DeltaTime);
 
 	// 총알 관련 함수
-	void createBullet();
+	void createBullet(const bool _ShootMinMax);
 	void IdleShoot();
 	void RunShoot();
 	void DuckShoot();

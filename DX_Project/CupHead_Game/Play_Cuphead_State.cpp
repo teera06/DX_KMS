@@ -88,7 +88,7 @@ void APlay_Cuphead::EventCollision(float _DeltaTime)
 	});
 }
 
-void APlay_Cuphead::createBullet()
+void APlay_Cuphead::createBullet(const bool _ShootMinMax)
 {
 
 
@@ -98,6 +98,7 @@ void APlay_Cuphead::createBullet()
 	}
 
 	NewBullet = GetWorld()->SpawnActor<ABaseBullet>("BaseBullet");
+	NewBullet->SetMinMaxShoot(_ShootMinMax);
 
 	if (NewBullet == nullptr)
 	{
@@ -750,7 +751,7 @@ void APlay_Cuphead::Run_Shoot_Straight(float  _DeltaTime)
 	skillCoolTime -= _DeltaTime;
 	if (true == IsPress('X') && skillCoolTime < 0.0f)
 	{
-		createBullet();
+		createBullet(false);
 		skillCoolTime = SaveSkilltime;
 		return;
 	}
@@ -813,7 +814,7 @@ void APlay_Cuphead::Run_Shoot_DiagonalUp(float _DeltaTime)
 	skillCoolTime -= _DeltaTime;
 	if (true == IsPress('X') && skillCoolTime < 0.0f)
 	{
-		createBullet();
+		createBullet(false);
 		skillCoolTime = SaveSkilltime;
 		return;
 	}
@@ -952,7 +953,7 @@ void APlay_Cuphead::Shoot_Straight(float _DeltaTime)
 	skillCoolTime -= _DeltaTime;
 	if (true == IsPress('X') && skillCoolTime<0.0f)
 	{
-		createBullet();
+		createBullet(false);
 		skillCoolTime = SaveSkilltime;
 		return;
 	}
@@ -1003,7 +1004,7 @@ void APlay_Cuphead::Duck_Shoot(float _DeltaTime)
 	skillCoolTime -= _DeltaTime;
 	if (true == IsPress('X') && skillCoolTime < 0.0f)
 	{
-		createBullet();
+		createBullet(false);
 		skillCoolTime = SaveSkilltime;
 		return;
 	}
@@ -1048,7 +1049,7 @@ void APlay_Cuphead::Shoot_Up(float _DeltaTime)
 	skillCoolTime -= _DeltaTime;
 	if (true == IsPress('X') && skillCoolTime < 0.0f)
 	{
-		createBullet();
+		createBullet(false);
 		skillCoolTime = SaveSkilltime;
 		return;
 	}
@@ -1163,7 +1164,7 @@ void APlay_Cuphead::JumpShoot(float _DeltaTime)
 	skillCoolTime -= _DeltaTime;
 	if (true == IsPress('X') && skillCoolTime < 0.0f)
 	{
-		createBullet();
+		createBullet(false);
 		skillCoolTime = SaveSkilltime;
 		return;
 	}
