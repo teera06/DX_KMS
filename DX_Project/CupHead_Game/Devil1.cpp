@@ -110,7 +110,7 @@ void ADevil1::BeginPlay()
 	Phase1StateInit();
 
 	PhaseChange2->SetActive(false);
-
+	Boss2Phase2->SetActive(false);
 	//IntroAni->ChangeAnimation("PupilIntro");
 }
 
@@ -494,6 +494,7 @@ void ADevil1::Phase2Change(float _DeltaTime)
 		coolDownTime = 6.0f;
 		GetWorld()->SpawnActor<AHole>("Hole");
 		Boss2->SetActive(false);
+		Boss2Phase2->SetActive(true);
 		Die = true;
 	}
 
