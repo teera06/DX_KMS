@@ -269,7 +269,7 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="DushDust.h">
+    <ClInclude Include="DashDust.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -500,7 +500,7 @@
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="DushDust.cpp">
+    <ClCompile Include="DashDust.cpp">
       <SubType>
       </SubType>
     </ClCompile>

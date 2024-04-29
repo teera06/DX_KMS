@@ -1,5 +1,5 @@
 #include "PreCompile.h"
-#include "DushDust.h"
+#include "DashDust.h"
 
 #include <EngineCore/DefaultSceneComponent.h>
 #include <EngineCore/SpriteRenderer.h>
@@ -9,7 +9,7 @@
 
 #include "Play_Cuphead.h"
 
-ADushDust::ADushDust()
+ADashDust::ADashDust()
 {
 	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("Dusy");
 
@@ -26,25 +26,34 @@ ADushDust::ADushDust()
 	Effect->SetSamplering(ETextureSampling::LINEAR);
 }
 
-ADushDust::~ADushDust()
+ADashDust::~ADashDust()
 {
 }
 
-void ADushDust::BeginPlay()
+void ADashDust::BeginPlay()
 {
 	Super::BeginPlay();
 	PlayerPos = APlay_Cuphead::GetPlayerPos();
 
 	SetActorLocation(PlayerPos + FVector::Up * 100.0f);
 
-	Effect->CreateAnimation("DashDust", "DashDust", 0.05f);
+	Effect->CreateAnimation("DashDust", "DashDust", 0.075f);
 
 	Effect->ChangeAnimation("DashDust");
 }
 
-void ADushDust::Tick(float _DeltaTime)
+void ADashDust::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+	if (DushDir.iX() == 1)
+	{
+		Effect->SetDir(EEngineDir::Right);
+	}
+	else if (DushDir.iX() == -1)
+	{
+		Effect->SetDir(EEngineDir::Left);
+	}
 
 	if (true == Effect->IsCurAnimationEnd())
 	{

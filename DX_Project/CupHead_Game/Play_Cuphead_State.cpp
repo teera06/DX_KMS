@@ -9,7 +9,7 @@
 #include <EngineCore/Camera.h>
 
 #include "RunDust.h"
-#include "DushDust.h"
+#include "DashDust.h"
 
 #include "Boss1Common.h"
 #include "Devil1.h"
@@ -819,7 +819,7 @@ void APlay_Cuphead::Idle(float _DeltaTime)
 	{
 
 		
-
+		GetWorld()->SpawnActor<ADashDust>("DashDust")->SetDushDir(BulletDir);
 		State.ChangeState("Dash");
 		return;
 	}
@@ -904,6 +904,9 @@ void APlay_Cuphead::Run(float  _DeltaTime)
 
 	if (true == IsDown(VK_SHIFT))
 	{
+		
+
+		GetWorld()->SpawnActor<ADashDust>("DashDust")->SetDushDir(BulletDir);
 		State.ChangeState("Dash");
 		return;
 	}
@@ -1110,6 +1113,7 @@ void APlay_Cuphead::Run_Shoot_DiagonalUp(float _DeltaTime)
 
 void APlay_Cuphead::Dash(float _DeltaTime)
 {
+
 	if (true == PlayCuphead->IsCurAnimationEnd())
 	{
 		State.ChangeState("Idle");

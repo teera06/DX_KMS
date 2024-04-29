@@ -290,7 +290,7 @@
     <ClCompile Include="RunDust.cpp">
       <Filter>Dust</Filter>
     </ClCompile>
-    <ClCompile Include="DushDust.cpp">
+    <ClCompile Include="DashDust.cpp">
       <Filter>Dust</Filter>
     </ClCompile>
   </ItemGroup>
@@ -463,7 +463,7 @@
     <ClInclude Include="RunDust.h">
       <Filter>Dust</Filter>
     </ClInclude>
-    <ClInclude Include="DushDust.h">
+    <ClInclude Include="DashDust.h">
       <Filter>Dust</Filter>
     </ClInclude>
   </ItemGroup>
