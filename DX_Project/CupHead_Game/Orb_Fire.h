@@ -23,7 +23,7 @@ public:
 		StartPos = _StartPos;
 	}
 
-	inline static void Setatt(const int& _AttOrder)
+	inline void Setatt(const int& _AttOrder)
 	{
 		AttOrder = _AttOrder;
 	}
@@ -43,8 +43,8 @@ private:
 	FVector PlayerPos = FVector::Zero;
 	FVector MoveNorMalize = FVector::Zero;
 
-	static int AttOrder;
-	int DelayCount = 6;
+	static int DelayCount;
+	int AttOrder = 0;
 
 	float Speed = 250.0f;
 

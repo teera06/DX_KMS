@@ -9,7 +9,7 @@
 #include "ContentsENum.h"
 #include "Play_Cuphead.h"
 
-int AOrb_Fire::AttOrder = 0;
+int AOrb_Fire::DelayCount = 6;
 
 AOrb_Fire::AOrb_Fire()
 {
@@ -53,7 +53,7 @@ void AOrb_Fire::Tick(float _DeltaTime)
 		Delay = 1.5f;
 	}
 
-	if (DelayCount < AttOrder)
+	if (DelayCount <= AttOrder)
 	{
 		if (false == OneCheck)
 		{
