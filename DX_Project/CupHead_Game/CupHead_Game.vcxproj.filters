@@ -281,6 +281,9 @@
     <ClCompile Include="BulletCommon.cpp">
       <Filter>PlayStage\Boss1\PlayActor\Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="Orb_Fire.cpp">
+      <Filter>PlayStage2\Boss2\Monster\skill1</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -444,6 +447,9 @@
     </ClInclude>
     <ClInclude Include="BulletCommon.h">
       <Filter>PlayStage\Boss1\PlayActor\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Orb_Fire.h">
+      <Filter>PlayStage2\Boss2\Monster\skill1</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
