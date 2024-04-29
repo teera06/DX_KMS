@@ -12,7 +12,7 @@ ACoin::ACoin()
 {
 	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("ball");
 
-	CoinRender = CreateDefaultSubObject<USpriteRenderer>("ballRender");
+	CoinRender = CreateDefaultSubObject<USpriteRenderer>("coin");
 
 	CoinRender->SetupAttachment(Root);
 

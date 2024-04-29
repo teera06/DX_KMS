@@ -112,6 +112,8 @@ void ADevil1::BeginPlay()
 	PhaseChange2->SetActive(false);
 	Boss2Phase2->SetActive(false);
 	//IntroAni->ChangeAnimation("PupilIntro");
+
+	NewFireS.resize(6);
 }
 
 void ADevil1::Tick(float _DeltaTime)

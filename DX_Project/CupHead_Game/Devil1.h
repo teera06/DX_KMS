@@ -9,7 +9,7 @@ class AHeadAtt;
 class ARamArms;
 class ADevilBall;
 class ASpiderHead;
-
+class AOrb_Fire;
 class ADevil1 : public AActor, public ABoss2Common
 {
 	GENERATED_BODY(AActor)
@@ -24,11 +24,6 @@ public:
 	ADevil1(ADevil1&& _Other) noexcept = delete; 
 	ADevil1& operator=(const ADevil1& _Other) = delete; // 디폴트 대입 연산자
 	ADevil1& operator=(ADevil1&& _Other) noexcept = delete;
-
-	USpriteRenderer* GetIntroAni()
-	{
-		return IntroAni;
-	}
 
 	void SetDieTime(const float& _DieTime)
 	{
@@ -52,6 +47,8 @@ private:
 	std::shared_ptr<ADevilBall> NewDevilBall2 = nullptr;
 	std::shared_ptr<ADevilBall> NewDevilBall3 = nullptr;
 	std::shared_ptr<ADevilBall> NewDevilBall4 = nullptr;
+
+	std::vector<std::shared_ptr<AOrb_Fire>> NewFireS;
 
 	USpriteRenderer* IntroAni = nullptr;
 	USpriteRenderer* PhaseChange2 = nullptr;
