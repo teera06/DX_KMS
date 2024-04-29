@@ -306,6 +306,20 @@ void APlay_Cuphead::SSIdleShoot()
 	}
 }
 
+void APlay_Cuphead::SSDiagonalUpShoot()
+{
+	if (BulletDir.iX() == 1)
+	{
+		NewSSBullet->SetActorRotation({ 0.0f,0.0f,45.0f });
+		NewSSBullet->SetActorLocation({ GetActorLocation().X + shootXpos,GetActorLocation().Y + bulletY2,0.0f });
+	}
+	else if (BulletDir.iX() == -1)
+	{
+		NewSSBullet->SetActorRotation({ 0.0f,0.0f,-45.0f });
+		NewSSBullet->SetActorLocation({ GetActorLocation().X - shootXpos,GetActorLocation().Y + bulletY2,0.0f });
+	}
+}
+
 void APlay_Cuphead::SSUpShoot()
 {
 	BulletDir = FVector::Up;
@@ -360,7 +374,7 @@ void APlay_Cuphead::createSSBullet()
 	case EShootDir::DownShoot:
 		break;
 	case EShootDir::DiagonalUpShoot:
-		DiagonalUpShoot();
+		SSDiagonalUpShoot();
 		break;
 	default:
 		break;
@@ -661,9 +675,25 @@ void APlay_Cuphead::DirCheck()
 			break;
 		case EDir::Left:
 			BulletDir = FVector::Left;
+			switch (ShootStyle)
+			{
+			case EShootDir::DiagonalUpShoot:
+				BulletDir += FVector::Up;
+				break;
+			default:
+				break;
+			}
 			break;
 		case EDir::Right:
 			BulletDir = FVector::Right;
+			switch (ShootStyle)
+			{
+			case EShootDir::DiagonalUpShoot:
+				BulletDir += FVector::Up;
+				break;
+			default:
+				break;
+			}
 			break;
 		case EDir::Up:
 			break;
@@ -943,6 +973,13 @@ void APlay_Cuphead::Run_Shoot_DiagonalUp(float _DeltaTime)
 	{
 		createBullet();
 		skillCoolTime = SaveSkilltime;
+		return;
+	}
+
+	if (true == IsDown('V'))
+	{
+		ShootStyle = EShootDir::DiagonalUpShoot;
+		State.ChangeState("SSGround_DiagonalUp");
 		return;
 	}
 
@@ -1394,6 +1431,20 @@ void APlay_Cuphead::SSGround_Down(float _DeltaTime)
 
 void APlay_Cuphead::SSGround_DiagonalUp(float _DeltaTime)
 {
+	if (false == PowerShoot)
+	{
+		PowerShoot = true;
+		createSSBullet();
+	}
+
+	if (true == PlayCuphead->IsCurAnimationEnd())
+	{
+		PowerShoot = false;
+		State.ChangeState("Run_Shoot_DiagonalUp");
+		return;
+	}
+
+	MoveUpDate(_DeltaTime); // 최종 움직임
 }
 
 void APlay_Cuphead::SSGround_DiagonalDown(float _DeltaTime)
