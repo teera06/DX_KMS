@@ -40,7 +40,7 @@ void ABossStage2GameMode::BeginPlay()
 	GetWorld()->SpawnActor<APlay_Cuphead>("Play_Cuphead")->SetGrounYCheck(-300);
 	NewDevil1=GetWorld()->SpawnActor<ADevil1>("Devil1");
 	GetWorld()->SpawnActor<ADevilTear>("aaaa");
-	GetWorld()->SpawnActor<AOrb_Fire>("PhaseChangeBack");
+	//GetWorld()->SpawnActor<AOrb_Fire>("PhaseChangeBack");
 
 	GetWorld()->SpawnActor<AScreenEffect>("ScreenEffect")->SetScreenEffect(EScreenEffect::Iris2);
 	GetWorld()->GetLastTarget()->AddEffect<UBlurEffect>();

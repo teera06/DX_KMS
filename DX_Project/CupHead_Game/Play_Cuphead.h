@@ -93,7 +93,7 @@ private:
 	float bulletY1 = 110.0f;
 	float bulletY2 = 80.0f;
 
-	float DustTime = 0.5f;
+	float DustTime = 0.45f;
 
 	int GrounYCheck = 0;
 

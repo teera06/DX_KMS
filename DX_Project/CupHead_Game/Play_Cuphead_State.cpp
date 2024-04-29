@@ -891,7 +891,7 @@ void APlay_Cuphead::Run(float  _DeltaTime)
 	if(DustTime<0)
 	{
 		GetWorld()->SpawnActor<ARunDust>("RunDust");
-		DustTime = 0.5f;
+		DustTime = 0.45f;
 	}
 	
 

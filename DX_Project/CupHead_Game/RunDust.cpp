@@ -21,7 +21,7 @@ ARunDust::ARunDust()
 	SetRoot(Root);
 
 
-	Effect->SetOrder(ERenderOrder::FilterEffect);
+	Effect->SetOrder(ERenderOrder::FrontSkill);
 	Effect->SetSprite("irisA_0000.png");
 	Effect->SetSamplering(ETextureSampling::LINEAR);
 }
@@ -47,10 +47,10 @@ void ARunDust::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
-	
-
 	if (true == Effect->IsCurAnimationEnd())
 	{
 		Destroy();
 	}
+
+	AddActorLocation(FVector::Up * 70.0f * _DeltaTime);
 }
