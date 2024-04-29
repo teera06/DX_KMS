@@ -7,6 +7,7 @@
 
 #include "ContentsENum.h"
 
+#include "ScreenEffect.h"
 #include "HeadAtt.h"
 #include "RamArms.h"
 #include "SpiderHead.h"
@@ -17,6 +18,17 @@
 ADevil1::ADevil1()
 {
 	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("Boss2");
+
+	IntroAni = CreateDefaultSubObject<USpriteRenderer>("IntroAni");
+	
+	IntroAni->SetupAttachment(Root);
+
+	IntroAni->SetOrder(ERenderOrder::Monster2);
+	IntroAni->SetSprite("devil_intro_pupil_0002.png");
+	IntroAni->SetSamplering(ETextureSampling::LINEAR);
+	IntroAni->SetAutoSize(0.8f, true);
+	IntroAni->SetPosition(FVector(-130.0f, -150.0f, 0.0f));
+
 	Boss2 = CreateDefaultSubObject<USpriteRenderer>("Boss2");
 
 	Boss2->SetupAttachment(Root);
@@ -77,6 +89,8 @@ void ADevil1::BeginPlay()
 	BossBody->SetActive(false);
 	spear->SetActive(false);
 	Phase1StateInit();
+
+	//IntroAni->ChangeAnimation("PupilIntro");
 }
 
 void ADevil1::Tick(float _DeltaTime)
@@ -106,7 +120,7 @@ void ADevil1::Phase1StateInit()
 	Phase1.CreateState("Phase2Change");
 
 	Phase1.SetUpdateFunction("Phase1Intro", std::bind(&ADevil1::Phase1Intro, this, std::placeholders::_1));
-	Phase1.SetStartFunction("Phase1Intro", [=] {Boss2->ChangeAnimation("Phase1Intro"); });
+	Phase1.SetStartFunction("Phase1Intro", [=] {IntroAni->ChangeAnimation("PupilIntro"); });
 
 	Phase1.SetUpdateFunction("Phase1Idle", std::bind(&ADevil1::Phase1Idle, this, std::placeholders::_1));
 	Phase1.SetStartFunction("Phase1Idle", [=] {Boss2->ChangeAnimation("Phase1Idle"); });
@@ -177,9 +191,11 @@ void ADevil1::AniCreate()
 	BossHead->CreateAnimation("CreateOrbsHead", "CreateOrbsHead", 0.075f);
 	BossBody->CreateAnimation("CreateOrbsBody", "CreateOrbsBody", 0.075f);
 	spear->CreateAnimation("CreateOrbsTrident", "CreateOrbsTrident", 0.075f);
+	IntroAni->CreateAnimation("PupilIntro", "PupilIntro", 0.055f);
 
 	Boss2->CreateAnimation("Phase1Death", "Phase1Death", 0.075f);
 	Boss2->CreateAnimation("Phase2Change", "Phase2Change", 0.075f);
+
 }
 
 void ADevil1::CreateHeadAtt()
@@ -236,14 +252,30 @@ void ADevil1::CreateBall()
 
 void ADevil1::Phase1Intro(float _DeltaTime)
 {
+
 	Boss2->SetPosition(FVector(-60.0f, 0.0f, 0.0f));
-	if (true == Boss2->IsCurAnimationEnd())
+
+	if (true == IntroAni->IsCurAnimationEnd())
 	{
-		Boss2->SetPosition(FVector(0.0f, 0.0f, 0.0f));
-		Phase1.ChangeState("Phase1Idle");
-		return;
+		Boss2->ChangeAnimation("Phase1Intro");
+		IntroAni->SetActive(false);
 	}
 
+	if (false == IntroAni->IsActive())
+	{
+		if (false == OneCheck)
+		{
+			OneCheck = true;
+			GetWorld()->SpawnActor<AScreenEffect>("ScreenEffect")->SetScreenEffect(EScreenEffect::ReadyWALLOP);
+		}
+
+		if (true == Boss2->IsCurAnimationEnd())
+		{
+			Boss2->SetPosition(FVector(0.0f, 0.0f, 0.0f));
+			Phase1.ChangeState("Phase1Idle");
+			return;
+		}
+	}
 }
 
 void ADevil1::Phase1Idle(float _DeltaTime)

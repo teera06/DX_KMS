@@ -1,6 +1,7 @@
 #pragma once
 #include <EngineCore/GameMode.h>
 
+class ADevil1;
 class ABossStage2GameMode : public AGameMode
 {
 	GENERATED_BODY(AGameMode)
@@ -16,6 +17,8 @@ public:
 	ABossStage2GameMode& operator=(ABossStage2GameMode&& _Other) noexcept = delete;
 
 protected:
+	std::shared_ptr<ADevil1> NewDevil1 = nullptr;
+
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 

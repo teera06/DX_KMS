@@ -102,6 +102,7 @@ enum class EScreenEffect
 {
 	None,
 	Iris,
+	Iris2,
 	IrisRe,
 	ReadyWALLOP
 

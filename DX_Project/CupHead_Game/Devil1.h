@@ -25,6 +25,11 @@ public:
 	ADevil1& operator=(const ADevil1& _Other) = delete; // 디폴트 대입 연산자
 	ADevil1& operator=(ADevil1&& _Other) noexcept = delete;
 
+	USpriteRenderer* GetIntroAni()
+	{
+		return IntroAni;
+	}
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -42,10 +47,14 @@ private:
 	std::shared_ptr<ADevilBall> NewDevilBall3 = nullptr;
 	std::shared_ptr<ADevilBall> NewDevilBall4 = nullptr;
 
+	USpriteRenderer* IntroAni = nullptr;
 	USpriteRenderer* Boss2 = nullptr;
 	USpriteRenderer* BossHead = nullptr;
 	USpriteRenderer* BossBody = nullptr;
 	USpriteRenderer* spear = nullptr;
+
+	
+	bool OneCheck = false;
 
 
 	void CreateHeadAtt();

@@ -36,7 +36,7 @@ void ABossStage2GameMode::BeginPlay()
 	GetWorld()->SpawnActor<ABossBackMap1>("BossBackMap1");
 	GetWorld()->SpawnActor<ABossBackMap2>("BossBackMap2");
 	GetWorld()->SpawnActor<APlay_Cuphead>("Play_Cuphead")->SetGrounYCheck(-300);
-	GetWorld()->SpawnActor<ADevil1>("Devil1");
+	NewDevil1=GetWorld()->SpawnActor<ADevil1>("Devil1");
 	GetWorld()->SpawnActor<ADevilTear>("aaaa");
 	//GetWorld()->SpawnActor<APhaseChangeBack>("PhaseChangeBack");
 
