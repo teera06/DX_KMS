@@ -17,11 +17,16 @@ public:
 	AOrb_Fire(AOrb_Fire&& _Other) noexcept = delete; 
 	AOrb_Fire& operator=(const AOrb_Fire& _Other) = delete; // 디폴트 대입 연산자
 	AOrb_Fire& operator=(AOrb_Fire&& _Other) noexcept = delete;
-inline void SetStartPos(const FVector& _StartPos)
+    
+	inline void SetStartPos(const FVector& _StartPos)
 	{
 		StartPos = _StartPos;
 	}
 
+	inline void Setatt(const bool& _att)
+	{
+		att = _att;
+	}
 
 	inline void SetParryCheck(const bool& _ParryCheck)
 	{
@@ -38,6 +43,8 @@ private:
 	FVector PlayerPos = FVector::Zero;
 	FVector MoveNorMalize = FVector::Zero;
 
+	static int AttOrder;
+
 	float Speed = 500.0f;
 
 	float Delay = 1.5f;
@@ -46,7 +53,9 @@ private:
 	bool ParryCheck=false;
 	bool OneCheck = false;
 	bool OneCheck2 = false;
+	bool att = false;
 
-	void Collisiongather(float _DeltaTime);
+	void CalDir(float _DeltaTime);
+	void Collisiongather();
 };
 
