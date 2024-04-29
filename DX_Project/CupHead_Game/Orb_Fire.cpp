@@ -75,5 +75,8 @@ void AOrb_Fire::CalDir(float _DeltaTime)
 
 void AOrb_Fire::Collisiongather()
 {
-
+	if (GetActorLocation().iX() <= -600 || GetActorLocation().iX() >= 600 || GetActorLocation().iY() >= 360 || GetActorLocation().iX() <= -360) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
+	{
+		Destroy();
+	}
 }

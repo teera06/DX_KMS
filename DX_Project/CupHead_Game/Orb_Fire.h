@@ -45,7 +45,7 @@ private:
 
 	static int AttOrder;
 
-	float Speed = 500.0f;
+	float Speed = 250.0f;
 
 	float Delay = 1.5f;
 
