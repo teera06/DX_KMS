@@ -112,6 +112,9 @@
     <Filter Include="PlayStage2\Boss2\Monster\skill4">
       <UniqueIdentifier>{f536cc29-c893-40b1-8364-623cbcafe746}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Dust">
+      <UniqueIdentifier>{d5cff12f-f61a-43c8-ba17-ebf2840d0e56}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game_Core.cpp">
