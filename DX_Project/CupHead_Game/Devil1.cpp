@@ -13,6 +13,7 @@
 #include "SpiderHead.h"
 #include "DevilBall.h"
 #include "Hole.h"
+#include "Orb_Fire.h"
 
 
 ADevil1::ADevil1()
@@ -97,6 +98,7 @@ ADevil1::ADevil1()
 
 ADevil1::~ADevil1()
 {
+	NewFireS.clear();
 }
 
 void ADevil1::BeginPlay()
@@ -272,6 +274,18 @@ void ADevil1::CreateBall()
 	NewDevilBall2->SetWallHitCount(6);
 	NewDevilBall3->SetWallHitCount(7);
 	NewDevilBall4->SetWallHitCount(6);
+}
+
+void ADevil1::CreateFire()
+{
+	
+	for (int i = 0; i < NewFireS.size(); i++)
+	{
+		NewFireS[i]= GetWorld()->SpawnActor<AOrb_Fire>("Orb_Fire");
+	}
+
+
+
 }
 
 void ADevil1::Phase1Intro(float _DeltaTime)
@@ -458,7 +472,16 @@ void ADevil1::CreateOrbsIntro2(float _DeltaTime)
 
 	if (true == spear->IsCurAnimationEnd())
 	{
-		CreateBall();
+		if (1 == OrbOrder)
+		{
+			CreateFire();
+			OrbOrder++;
+		}
+		else if (2 == OrbOrder)
+		{
+			CreateBall();
+			OrbOrder = 1;
+		}
 		Phase1.ChangeState("CreateOrbsReverse");
 		Boss2->SetActive(true);
 		BossHead->SetActive(false);

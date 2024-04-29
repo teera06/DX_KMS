@@ -61,6 +61,9 @@ private:
 
 	float DieTime = -2.0f;
 
+	int OrbOrder = 1;
+	int attcount = 0;
+
 	bool OneCheck = false;
 	bool Die=false;
 
@@ -68,6 +71,7 @@ private:
 	void CreateRamArms();
 	void CreateSpider();
 	void CreateBall();
+	void CreateFire();
 
 	// 여기서부터는 상태 함수들 
 	void Phase1Intro(float _DeltaTime);
