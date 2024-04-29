@@ -332,6 +332,7 @@ void ADevil1::Phase1Idle(float _DeltaTime)
 
 	if (coolDownTime < 0 && 4== attOrder)
 	{
+		Boss2->SetPosition(FVector(-45.0f, 0.0f, 0.0f));
 		Phase1.ChangeState("RamTransform");
 		return;
 	}
@@ -394,6 +395,7 @@ void ADevil1::RamReverse(float _DeltaTime)
 		coolDownTime = 6.0f;
 		attOrder = 1;
 		SkillDestory = false;
+		Boss2->SetPosition(FVector(0.0f, 0.0f, 0.0f));
 		Phase1.ChangeState("Phase1Idle");
 		return;
 	}

@@ -2,10 +2,10 @@
 
 #include "Orb_Fire.h"
 
-Orb_Fire::Orb_Fire()
+AOrb_Fire::AOrb_Fire()
 {
 }
 
-Orb_Fire::~Orb_Fire()
+AOrb_Fire::~AOrb_Fire()
 {
 }
