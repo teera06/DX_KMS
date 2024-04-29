@@ -1428,6 +1428,21 @@ void APlay_Cuphead::SSGround_Straight(float _DeltaTime)
 
 void APlay_Cuphead::SSGround_Down(float _DeltaTime)
 {
+	if (false == PowerShoot)
+	{
+		PowerShoot = true;
+		createSSBullet();
+	}
+
+	if (true == PlayCuphead->IsCurAnimationEnd())
+	{
+		PowerShoot = false;
+		BulletStart->SetActive(true);
+		State.ChangeState("Duck");
+		return;
+	}
+
+	MoveUpDate(_DeltaTime); // 최종 움직임
 }
 
 void APlay_Cuphead::SSGround_DiagonalUp(float _DeltaTime)
@@ -1441,6 +1456,7 @@ void APlay_Cuphead::SSGround_DiagonalUp(float _DeltaTime)
 	if (true == PlayCuphead->IsCurAnimationEnd())
 	{
 		PowerShoot = false;
+		BulletStart->SetActive(true);
 		State.ChangeState("Run_Shoot_DiagonalUp");
 		return;
 	}
