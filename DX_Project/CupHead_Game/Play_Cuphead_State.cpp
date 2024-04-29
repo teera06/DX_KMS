@@ -10,6 +10,7 @@
 
 #include "RunDust.h"
 #include "DashDust.h"
+#include "SSDust.h"
 
 #include "Boss1Common.h"
 #include "Devil1.h"
@@ -1486,9 +1487,9 @@ void APlay_Cuphead::Parry(float _DeltaTime)
 void APlay_Cuphead::SSGround_Straight(float _DeltaTime)
 {
 	//DirCheck();
-
 	if (false == PowerShoot)
 	{
+		GetWorld()->SpawnActor<ASSDust>("SSDust")->SetDushDir(BulletDir);
 		PowerShoot = true;
 		createSSBullet();
 	}

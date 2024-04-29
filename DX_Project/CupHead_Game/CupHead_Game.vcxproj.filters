@@ -293,6 +293,9 @@
     <ClCompile Include="DashDust.cpp">
       <Filter>Dust</Filter>
     </ClCompile>
+    <ClCompile Include="SSDust.cpp">
+      <Filter>Dust</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -464,6 +467,9 @@
       <Filter>Dust</Filter>
     </ClInclude>
     <ClInclude Include="DashDust.h">
+      <Filter>Dust</Filter>
+    </ClInclude>
+    <ClInclude Include="SSDust.h">
       <Filter>Dust</Filter>
     </ClInclude>
   </ItemGroup>
