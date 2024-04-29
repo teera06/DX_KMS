@@ -9,7 +9,7 @@
 #include <EngineCore/Camera.h>
 
 #include "RunDust.h"
-
+#include "DushDust.h"
 
 #include "Boss1Common.h"
 #include "Devil1.h"
@@ -954,6 +954,14 @@ void APlay_Cuphead::Run_Shoot_Straight(float  _DeltaTime)
 {
 	DirCheck();
 
+	DustTime -= _DeltaTime;
+
+	if (DustTime < 0)
+	{
+		GetWorld()->SpawnActor<ARunDust>("RunDust");
+		DustTime = 0.45f;
+	}
+
 	skillCoolTime -= _DeltaTime;
 	if (true == IsPress('X') && skillCoolTime < 0.0f)
 	{
@@ -1016,6 +1024,14 @@ void APlay_Cuphead::Run_Shoot_Straight(float  _DeltaTime)
 void APlay_Cuphead::Run_Shoot_DiagonalUp(float _DeltaTime)
 {
 	DirCheck();
+
+	DustTime -= _DeltaTime;
+
+	if (DustTime < 0)
+	{
+		GetWorld()->SpawnActor<ARunDust>("RunDust");
+		DustTime = 0.45f;
+	}
 
 	skillCoolTime -= _DeltaTime;
 	if (true == IsPress('X') && skillCoolTime < 0.0f)

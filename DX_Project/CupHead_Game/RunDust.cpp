@@ -22,7 +22,7 @@ ARunDust::ARunDust()
 
 
 	Effect->SetOrder(ERenderOrder::FrontSkill);
-	Effect->SetSprite("irisA_0000.png");
+	Effect->SetSprite("playerDustA_0001.png");
 	Effect->SetSamplering(ETextureSampling::LINEAR);
 }
 
