@@ -61,6 +61,14 @@ void AScreenEffect::Tick(float _DeltaTime)
 			Destroy();
 		}
 		break;
+	case EScreenEffect::Iris2:
+		FilterEffect->ChangeAnimation("Iris");
+
+		if (true == FilterEffect->IsCurAnimationEnd())
+		{
+			Destroy();
+		}
+		break;
 	default:
 		break;
 	}

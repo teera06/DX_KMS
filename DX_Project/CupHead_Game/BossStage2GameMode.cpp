@@ -6,6 +6,7 @@
 #include <EngineCore/Image.h>
 #include <EngineCore/BlurEffect.h>
 
+#include "ScreenEffect.h"
 #include "BossBackMap1.h"
 #include "BossBackMap2.h"
 #include "PhaseChangeBack.h"
@@ -40,7 +41,7 @@ void ABossStage2GameMode::BeginPlay()
 	GetWorld()->SpawnActor<ADevilTear>("aaaa");
 	//GetWorld()->SpawnActor<APhaseChangeBack>("PhaseChangeBack");
 
-
+	GetWorld()->SpawnActor<AScreenEffect>("ScreenEffect")->SetScreenEffect(EScreenEffect::Iris2);
 	GetWorld()->GetLastTarget()->AddEffect<UBlurEffect>();
 
 
