@@ -8,6 +8,9 @@
 #include <EngineCore/EngineEnums.h>
 #include <EngineCore/Camera.h>
 
+#include "RunDust.h"
+
+
 #include "Boss1Common.h"
 #include "Devil1.h"
 #include "BaseBullet.h"
@@ -882,6 +885,15 @@ void APlay_Cuphead::Idle(float _DeltaTime)
 void APlay_Cuphead::Run(float  _DeltaTime)
 {
 	DirCheck();
+
+	DustTime -= _DeltaTime;
+	
+	if(DustTime<0)
+	{
+		GetWorld()->SpawnActor<ARunDust>("RunDust");
+		DustTime = 0.5f;
+	}
+	
 
 	FVector MovePos = FVector::Zero;
 	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
