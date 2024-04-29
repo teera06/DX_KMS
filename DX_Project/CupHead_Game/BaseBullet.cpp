@@ -99,6 +99,8 @@ void ABaseBullet::Collisiongather()
 		AActor* Ptr = _Collison->GetActor();
 		AFirefly* Monster = dynamic_cast<AFirefly*>(Ptr);
 		Monster->SetDie(true);
+		DestroyCheck = true;
+		BulletRender->ChangeAnimation("Peashot_Death");
 	});
 
 	if (GetActorLocation().iX() <= -600 || GetActorLocation().iX() >= 600 || GetActorLocation().iY() >= 360) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0

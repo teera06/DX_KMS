@@ -1168,6 +1168,14 @@ void APlay_Cuphead::Aim_Up(float _DeltaTime)
 		State.ChangeState("Shoot_Up");
 		return;
 	}
+
+	if (true == IsPress('V'))
+	{
+		ShootStyle = EShootDir::UpShoot;
+
+		State.ChangeState("SSGround_Up");
+		return;
+	}
 }
 
 void APlay_Cuphead::Shoot_Up(float _DeltaTime)
@@ -1394,6 +1402,22 @@ void APlay_Cuphead::SSGround_DiagonalDown(float _DeltaTime)
 
 void APlay_Cuphead::SSGround_Up(float _DeltaTime)
 {
+	//DirCheck();
+
+	if (false == PowerShoot)
+	{
+		PowerShoot = true;
+		createSSBullet();
+	}
+
+	if (true == PlayCuphead->IsCurAnimationEnd())
+	{
+		PowerShoot = false;
+		State.ChangeState("Aim_Up");
+		return;
+	}
+
+	MoveUpDate(_DeltaTime); // 최종 움직임
 }
 
 void APlay_Cuphead::Boss2PhaseChange(float _DeltaTime)
