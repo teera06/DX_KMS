@@ -282,6 +282,7 @@ void ADevil1::CreateFire()
 	for (int i = 0; i < NewFireS.size(); i++)
 	{
 		NewFireS[i]= GetWorld()->SpawnActor<AOrb_Fire>("Orb_Fire");
+		NewFireS[i]->Setatt(i);
 	}
 
 	NewFireS[0]->SetActorLocation(FVector(200.0f, 150.0f, 10.0f));
@@ -290,7 +291,6 @@ void ADevil1::CreateFire()
 	NewFireS[3]->SetActorLocation(FVector(200.0f, -200.0f, 10.0f));
 	NewFireS[4]->SetActorLocation(FVector(0.0f, 200.0f, 10.0f));
 	NewFireS[5]->SetActorLocation(FVector(0.0f, -200.0f, 10.0f));
-
 
 }
 

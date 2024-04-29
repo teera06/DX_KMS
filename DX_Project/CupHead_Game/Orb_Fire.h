@@ -23,9 +23,9 @@ public:
 		StartPos = _StartPos;
 	}
 
-	inline void Setatt(const bool& _att)
+	inline static void Setatt(const int& _AttOrder)
 	{
-		att = _att;
+		AttOrder = _AttOrder;
 	}
 
 	inline void SetParryCheck(const bool& _ParryCheck)
@@ -44,6 +44,7 @@ private:
 	FVector MoveNorMalize = FVector::Zero;
 
 	static int AttOrder;
+	int DelayCount = 6;
 
 	float Speed = 250.0f;
 

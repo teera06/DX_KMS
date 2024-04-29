@@ -46,13 +46,24 @@ void AOrb_Fire::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
-	if (false == OneCheck)
+	Delay -= _DeltaTime;
+	if (Delay < 0)
 	{
-		PlayerPos = APlay_Cuphead::GetPlayerPos();
-		OneCheck = true;
-		return;
+		DelayCount--;
+		Delay = 1.5f;
 	}
-	CalDir(_DeltaTime);
+
+	if (DelayCount < AttOrder)
+	{
+		if (false == OneCheck)
+		{
+			PlayerPos = APlay_Cuphead::GetPlayerPos();
+			OneCheck = true;
+			return;
+		}
+
+		CalDir(_DeltaTime);
+	}
 }
 
 void AOrb_Fire::CalDir(float _DeltaTime)
