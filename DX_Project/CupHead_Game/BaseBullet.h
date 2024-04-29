@@ -2,8 +2,9 @@
 
 #include <Enginecore/Actor.h>
 
-class USpriteRenderer;
-class ABaseBullet : public AActor
+#include "BulletCommon.h"
+
+class ABaseBullet : public AActor, public ABulletCommon
 {
 	GENERATED_BODY(AActor)
 public:
@@ -17,27 +18,14 @@ public:
 	ABaseBullet& operator=(const ABaseBullet& _Other) = delete; // 디폴트 대입 연산자
 	ABaseBullet& operator=(ABaseBullet&& _Other) noexcept = delete;
 
-	inline void SetBulletDir(const FVector& _BulletDir)
-	{
-		BulletDir = _BulletDir;
-	}
-
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
-private:
-	USpriteRenderer* BulletRender = nullptr;
-	UCollision* BulletCollision = nullptr;
 
-	FVector BulletDir = FVector::Zero;
-	FVector Move = FVector::Zero;
+	void Collisiongather() override;
+private:
+	
 	float Speed = 2000.0f;
 
-	bool shoot = false;
-
-	bool DestroyCheck = false;
-
-	void SkillDir();
-	void Collisiongather();
 };
 

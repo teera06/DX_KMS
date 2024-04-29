@@ -51,4 +51,56 @@ void ABaseSSBullet::BeginPlay()
 
 void ABaseSSBullet::Tick(float _DeltaTime)
 {
+	Super::Tick(_DeltaTime);
+
+	if (true == BulletRender->IsCurAnimationEnd() && true == DestroyCheck)
+	{
+		Destroy();
+	}
+
+
+	if (BulletDir.iX() != 0 || BulletDir.iroundY() != 0)
+	{
+		SkillDir();
+		Move = BulletDir * Speed * _DeltaTime;
+
+		if (true == BulletRender->IsCurAnimationEnd())
+		{
+			shoot = true;
+			BulletRender->ChangeAnimation("PeaEX_Loop");
+		}
+
+		if (true == shoot)
+		{
+			AddActorLocation(Move);
+		}
+
+		Collisiongather();
+
+	}
+
+}
+
+void ABaseSSBullet::Collisiongather()
+{
+	BulletCollision->CollisionEnter(ECollisionOrder::Boss1Monster1, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		DestroyCheck = true;
+		BulletRender->ChangeAnimation("PeaEX_Death");
+		//Destroy();
+		//_Collison->GetActor()->Destroy();
+	});
+
+	BulletCollision->CollisionEnter(ECollisionOrder::Boss1SkillMonster, [=](std::shared_ptr<UCollision> _Collison)
+	{
+
+		AActor* Ptr = _Collison->GetActor();
+		AFirefly* Monster = dynamic_cast<AFirefly*>(Ptr);
+		Monster->SetDie(true);
+	});
+
+	if (GetActorLocation().iX() <= -600 || GetActorLocation().iX() >= 600 || GetActorLocation().iY() >= 360) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
+	{
+		Destroy();
+	}
 }

@@ -278,6 +278,9 @@
     <ClCompile Include="BaseSSBullet.cpp">
       <Filter>PlayStage\Boss1\PlayActor\Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="BulletCommon.cpp">
+      <Filter>PlayStage\Boss1\PlayActor\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -437,6 +440,9 @@
       <Filter>PlayStage2\Boss2\Monster\skill4</Filter>
     </ClInclude>
     <ClInclude Include="BaseSSBullet.h">
+      <Filter>PlayStage\Boss1\PlayActor\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletCommon.h">
       <Filter>PlayStage\Boss1\PlayActor\Bullet</Filter>
     </ClInclude>
   </ItemGroup>

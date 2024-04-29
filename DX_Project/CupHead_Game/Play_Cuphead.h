@@ -5,6 +5,8 @@
 
 class USpriteRenderer;
 class ABaseBullet;
+class ABaseSSBullet;
+
 
 class APlay_Cuphead : public AActor, public APlayerCommon
 {
@@ -53,6 +55,7 @@ private:
 	UCollision* PlayerCollision=nullptr;
 
 	std::shared_ptr<ABaseBullet> NewBullet = nullptr;
+	std::shared_ptr<ABaseSSBullet> NewSSBullet = nullptr;
 
 
 	static FVector PlayerPos;
@@ -95,8 +98,6 @@ private:
 	bool shootY = false;
 	bool NoGravity = false;
 
-	bool ShootMinMax = false;
-
 	bool PowerShoot = false;
 	// false -> 기본 공격
 	// true -> 게이지 공격
@@ -113,6 +114,13 @@ private:
 	void DiagonalUpShoot();
 	void UpShoot();
 
+	void SSIdleShoot();
+	void SSRunShoot();
+	void SSDuckShoot();
+	void SSDiagonalUpShoot();
+	void SSUpShoot();
+
+	void createSSBullet();
 
 	// 이동함수
 	

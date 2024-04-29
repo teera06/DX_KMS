@@ -83,18 +83,6 @@ void ABaseBullet::Tick(float _DeltaTime)
 	}
 }
 
-void ABaseBullet::SkillDir()
-{
-	if (BulletDir.iX() == 1)
-	{
-		BulletRender->SetDir(EEngineDir::Right);
-	}
-	else if (BulletDir.iX() == -1)
-	{
-		BulletRender->SetDir(EEngineDir::Left);
-	}
-}
-
 void ABaseBullet::Collisiongather()
 {
 	BulletCollision->CollisionEnter(ECollisionOrder::Boss1Monster1, [=](std::shared_ptr<UCollision> _Collison)
@@ -107,13 +95,13 @@ void ABaseBullet::Collisiongather()
 
 	BulletCollision->CollisionEnter(ECollisionOrder::Boss1SkillMonster, [=](std::shared_ptr<UCollision> _Collison)
 	{
-		
+
 		AActor* Ptr = _Collison->GetActor();
 		AFirefly* Monster = dynamic_cast<AFirefly*>(Ptr);
 		Monster->SetDie(true);
 	});
 
-	if (GetActorLocation().iX() <= -600 || GetActorLocation().iX() >= 600 || GetActorLocation().iY()>=360) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
+	if (GetActorLocation().iX() <= -600 || GetActorLocation().iX() >= 600 || GetActorLocation().iY() >= 360) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
 	{
 		Destroy();
 	}

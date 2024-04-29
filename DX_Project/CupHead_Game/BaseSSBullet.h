@@ -1,8 +1,9 @@
 #pragma once
 #include <Enginecore/Actor.h>
 
-class USpriteRenderer;
-class ABaseSSBullet : public AActor
+#include "BulletCommon.h"
+
+class ABaseSSBullet : public AActor, public ABulletCommon
 {
 	GENERATED_BODY(AActor)
 public:
@@ -19,8 +20,10 @@ public:
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
+
+	void Collisiongather() override;
 private:
-	USpriteRenderer* BulletRender = nullptr;
-	UCollision* BulletCollision = nullptr;
+
+	float Speed = 500.0f;
 };
 

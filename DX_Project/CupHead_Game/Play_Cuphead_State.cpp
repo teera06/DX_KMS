@@ -10,6 +10,8 @@
 
 #include "Boss1Common.h"
 #include "BaseBullet.h"
+#include "BaseSSBullet.h"
+
 #include "Boss1_Monster2.h"
 #include "MoveObject2.h"
 
@@ -290,6 +292,81 @@ void APlay_Cuphead::UpShoot()
 	default:
 		break;
 	}
+}
+
+void APlay_Cuphead::SSIdleShoot()
+{
+	if (BulletDir.iX() == 1)
+	{
+		NewSSBullet->SetActorLocation({ GetActorLocation().X + shootXpos,GetActorLocation().Y + bulletY2,0.0f });
+	}
+	else if (BulletDir.iX() == -1)
+	{
+		NewSSBullet->SetActorLocation({ GetActorLocation().X - shootXpos,GetActorLocation().Y + bulletY2,0.0f });
+	}
+}
+
+void APlay_Cuphead::SSUpShoot()
+{
+	BulletDir = FVector::Up;
+
+	NewSSBullet->SetActorRotation({ 0.0f,0.0f,90.0f });
+	switch (Dir)
+	{
+	case EDir::None:
+		break;
+	case EDir::Left:
+		if (BulletDir.iY() == 1)
+		{
+			NewSSBullet->SetActorLocation({ GetActorLocation().X - 80.0f + shootXpos,GetActorLocation().Y + 100.0f,0.0f });
+		}
+		break;
+	case EDir::Right:
+		if (BulletDir.iY() == 1)
+		{
+			NewSSBullet->SetActorLocation({ GetActorLocation().X - 35.0f + shootXpos,GetActorLocation().Y + 100.0f,0.0f });
+		}
+		break;
+	default:
+		break;
+	}
+}
+
+
+void APlay_Cuphead::createSSBullet()
+{
+	if (BulletDir.iX() == 0)
+	{
+		return;
+	}
+
+	NewSSBullet = GetWorld()->SpawnActor<ABaseSSBullet>("BaseSSBullet");
+
+	if (NewSSBullet == nullptr)
+	{
+		return;
+	}
+
+	switch (ShootStyle)
+	{
+	case EShootDir::None:
+		break;
+	case EShootDir::IdleShoot:
+		SSIdleShoot();
+		break;
+	case EShootDir::UpShoot:
+		SSUpShoot();
+		break;
+	case EShootDir::DownShoot:
+		break;
+	case EShootDir::DiagonalUpShoot:
+		DiagonalUpShoot();
+		break;
+	default:
+		break;
+	}
+
+	NewSSBullet->SetBulletDir(BulletDir);
 }
 
 void APlay_Cuphead::CalGravityVector(float _DeltaTime)
@@ -576,6 +653,27 @@ void APlay_Cuphead::DirCheck()
 			break;
 		}
 	}
+	else
+	{
+		switch (Dir)
+		{
+		case EDir::None:
+			break;
+		case EDir::Left:
+			BulletDir = FVector::Left;
+			break;
+		case EDir::Right:
+			BulletDir = FVector::Right;
+			break;
+		case EDir::Up:
+			break;
+		case EDir::Down:
+			break;
+		default:
+			break;
+		}
+	}
+
 
 }
 
@@ -1264,12 +1362,12 @@ void APlay_Cuphead::Parry(float _DeltaTime)
 
 void APlay_Cuphead::SSGround_Straight(float _DeltaTime)
 {
-	DirCheck();
+	//DirCheck();
 
 	if (false == PowerShoot)
 	{
 		PowerShoot = true;
-		createBullet();
+		createSSBullet();
 	}
 
 	if (true == PlayCuphead->IsCurAnimationEnd())
@@ -1279,6 +1377,7 @@ void APlay_Cuphead::SSGround_Straight(float _DeltaTime)
 		return;
 	}
 
+	MoveUpDate(_DeltaTime); // 최종 움직임
 }
 
 void APlay_Cuphead::SSGround_Down(float _DeltaTime)
