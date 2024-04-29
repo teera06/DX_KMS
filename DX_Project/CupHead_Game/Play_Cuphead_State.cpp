@@ -306,6 +306,36 @@ void APlay_Cuphead::SSIdleShoot()
 	}
 }
 
+void APlay_Cuphead::SSDuckShoot()
+{
+	BulletDir = FVector::Down;
+
+	NewSSBullet->SetActorRotation({ 0.0f,0.0f,-90.0f });
+
+	
+	switch (Dir)
+	{
+	case EDir::None:
+		break;
+	case EDir::Left:
+		if (BulletDir.iY() == -1)
+		{
+			
+			NewSSBullet->SetActorLocation({ GetActorLocation().X - 80.0f + shootXpos,GetActorLocation().Y,0.0f });
+		}
+		break;
+	case EDir::Right:
+		if (BulletDir.iY() == -1)
+		{
+			
+			NewSSBullet->SetActorLocation({ GetActorLocation().X - 35.0f + shootXpos,GetActorLocation().Y,0.0f });
+		}
+		break;
+	default:
+		break;
+	}
+}
+
 void APlay_Cuphead::SSDiagonalUpShoot()
 {
 	if (BulletDir.iX() == 1)
@@ -349,10 +379,6 @@ void APlay_Cuphead::SSUpShoot()
 
 void APlay_Cuphead::createSSBullet()
 {
-	if (BulletDir.iX() == 0)
-	{
-		return;
-	}
 
 	NewSSBullet = GetWorld()->SpawnActor<ABaseSSBullet>("BaseSSBullet");
 
@@ -372,6 +398,7 @@ void APlay_Cuphead::createSSBullet()
 		SSUpShoot();
 		break;
 	case EShootDir::DownShoot:
+		SSDuckShoot();
 		break;
 	case EShootDir::DiagonalUpShoot:
 		SSDiagonalUpShoot();
@@ -1109,6 +1136,14 @@ void APlay_Cuphead::Duck(float _DeltaTime)
 		return;
 	}
 
+	if (true == IsPress('V'))
+	{
+		ShootStyle = EShootDir::DownShoot;
+		//BulletStart->SetActive(true);
+		State.ChangeState("SSGround_Down");
+		return;
+	}
+
 	MoveUpDate(_DeltaTime);
 }
 
@@ -1437,7 +1472,6 @@ void APlay_Cuphead::SSGround_Down(float _DeltaTime)
 	if (true == PlayCuphead->IsCurAnimationEnd())
 	{
 		PowerShoot = false;
-		BulletStart->SetActive(true);
 		State.ChangeState("Duck");
 		return;
 	}

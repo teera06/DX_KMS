@@ -99,7 +99,7 @@ void ABaseSSBullet::Collisiongather()
 		Monster->SetDie(true);
 	});
 
-	if (GetActorLocation().iX() <= -600 || GetActorLocation().iX() >= 600 || GetActorLocation().iY() >= 360) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
+	if (GetActorLocation().iX() <= -600 || GetActorLocation().iX() >= 600 || GetActorLocation().iY() >= 360 || GetActorLocation().iY() <= -500  ) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
 	{
 		Destroy();
 	}

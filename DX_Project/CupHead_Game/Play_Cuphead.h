@@ -115,7 +115,6 @@ private:
 	void UpShoot();
 
 	void SSIdleShoot();
-	void SSRunShoot();
 	void SSDuckShoot();
 	void SSDiagonalUpShoot();
 	void SSUpShoot();
