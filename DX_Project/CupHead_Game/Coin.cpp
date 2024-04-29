@@ -65,13 +65,20 @@ void ACoin::Tick(float _DeltaTime)
 
 void ACoin::CalDir(float _DeltaTime)
 {
-	FVector CoinPos = GetActorLocation();
 
-	FVector Move = PlayerPos - CoinPos;
+	if (false == OneCheck2)
+	{
+		FVector CoinPos = GetActorLocation();
 
-	FVector MoveNorMalize = Move.Normalize3DReturn();
+		FVector Move = PlayerPos - CoinPos;
 
-	AddActorLocation(Move.Normalize3DReturn() * Speed * _DeltaTime);
+		MoveNorMalize = Move.Normalize3DReturn();
+
+		OneCheck2 = true;
+	}
+	
+
+	AddActorLocation(MoveNorMalize * Speed * _DeltaTime);
 	CollisionCheck();
 }
 

@@ -25,10 +25,12 @@ private:
 	UCollision* CoinCollision = nullptr;
 
 	FVector PlayerPos = FVector::Zero;
+	FVector MoveNorMalize = FVector::Zero;
 
 	float Speed = 500.0f;
 
 	bool OneCheck = false;
+	bool OneCheck2 = false;
 
 	void CalDir(float _DeltaTime);
 	void CollisionCheck();
