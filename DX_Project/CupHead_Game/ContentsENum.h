@@ -88,6 +88,7 @@ enum class ECollisionOrder
 	Boss1Ball,
 	Boss2Object1,
 	Bullet,
+	SuperBullet,
 	Coin,
 	ball,
 	MonsterSkill,

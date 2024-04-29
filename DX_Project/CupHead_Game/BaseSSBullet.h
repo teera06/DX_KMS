@@ -1,0 +1,26 @@
+#pragma once
+#include <Enginecore/Actor.h>
+
+class USpriteRenderer;
+class ABaseSSBullet : public AActor
+{
+	GENERATED_BODY(AActor)
+public:
+	// constrcuter destructer
+	ABaseSSBullet(); // 디폴트 생성자
+	~ABaseSSBullet(); // 디폴트 소멸자
+
+	// delete Function
+	ABaseSSBullet(const ABaseSSBullet& _Other) = delete; // 디폴트 복사 생성자
+	ABaseSSBullet(ABaseSSBullet&& _Other) noexcept = delete; 
+	ABaseSSBullet& operator=(const ABaseSSBullet& _Other) = delete; // 디폴트 대입 연산자
+	ABaseSSBullet& operator=(ABaseSSBullet&& _Other) noexcept = delete;
+
+protected:
+	void BeginPlay() override;
+	void Tick(float _DeltaTime) override;
+private:
+	USpriteRenderer* BulletRender = nullptr;
+	UCollision* BulletCollision = nullptr;
+};
+

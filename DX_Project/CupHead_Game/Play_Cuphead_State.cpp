@@ -88,7 +88,7 @@ void APlay_Cuphead::EventCollision(float _DeltaTime)
 	});
 }
 
-void APlay_Cuphead::createBullet(const bool _ShootMinMax)
+void APlay_Cuphead::createBullet()
 {
 
 
@@ -98,7 +98,6 @@ void APlay_Cuphead::createBullet(const bool _ShootMinMax)
 	}
 
 	NewBullet = GetWorld()->SpawnActor<ABaseBullet>("BaseBullet");
-	NewBullet->SetMinMaxShoot(_ShootMinMax);
 
 	if (NewBullet == nullptr)
 	{
@@ -384,6 +383,12 @@ void APlay_Cuphead::StateInit()
 	State.CreateState("Parry");
 	State.CreateState("Boss2PhaseChange");
 	State.CreateState("Scared");
+
+	State.CreateState("SSGround_Straight");
+	State.CreateState("SSGround_Down");
+	State.CreateState("SSGround_DiagonalUp");
+	State.CreateState("SSGround_DiagonalDown");
+	State.CreateState("SSGround_Up");
 	
 	State.SetUpdateFunction("Intro", std::bind(&APlay_Cuphead::Intro, this, std::placeholders::_1));
 	State.SetStartFunction("Intro", [=] {PlayCuphead->ChangeAnimation("Intro"); });
@@ -438,6 +443,23 @@ void APlay_Cuphead::StateInit()
 
 	State.SetUpdateFunction("Scared", std::bind(&APlay_Cuphead::Scared, this, std::placeholders::_1));
 	State.SetStartFunction("Scared", [=] {PlayCuphead->ChangeAnimation("Scared"); });
+
+	State.SetUpdateFunction("SSGround_Straight", std::bind(&APlay_Cuphead::SSGround_Straight, this, std::placeholders::_1));
+	State.SetStartFunction("SSGround_Straight", [=] {PlayCuphead->ChangeAnimation("SSGround_Straight"); });
+
+	State.SetUpdateFunction("SSGround_Down", std::bind(&APlay_Cuphead::SSGround_Down, this, std::placeholders::_1));
+	State.SetStartFunction("SSGround_Down", [=] {PlayCuphead->ChangeAnimation("SSGround_Down"); });
+
+	State.SetUpdateFunction("SSGround_DiagonalUp", std::bind(&APlay_Cuphead::SSGround_DiagonalUp, this, std::placeholders::_1));
+	State.SetStartFunction("SSGround_DiagonalUp", [=] {PlayCuphead->ChangeAnimation("SSGround_DiagonalUp"); });
+
+	State.SetUpdateFunction("SSGround_DiagonalDown", std::bind(&APlay_Cuphead::SSGround_DiagonalDown, this, std::placeholders::_1));
+	State.SetStartFunction("SSGround_DiagonalDown", [=] {PlayCuphead->ChangeAnimation("SSGround_DiagonalDown"); });
+
+	State.SetUpdateFunction("SSGround_Up", std::bind(&APlay_Cuphead::SSGround_Up, this, std::placeholders::_1));
+	State.SetStartFunction("SSGround_Up", [=] {PlayCuphead->ChangeAnimation("SSGround_Up"); });
+
+
 	//State.SetUpdateFunction("Run", std::bind(&AWorldPlayer::Run, this, std::placeholders::_1));
 
 	//State.SetStartFunction("Run", std::bind(&AWorldPlayer::RunStart, this));
@@ -668,6 +690,13 @@ void APlay_Cuphead::Idle(float _DeltaTime)
 		return;
 	}
 
+	if (true == IsDown('V'))
+	{
+		ShootStyle = EShootDir::IdleShoot;
+		State.ChangeState("SSGround_Straight");
+		return;
+	}
+
 	if (true == IsDown(VK_UP))
 	{
 		State.ChangeState("Aim_Up");
@@ -751,7 +780,7 @@ void APlay_Cuphead::Run_Shoot_Straight(float  _DeltaTime)
 	skillCoolTime -= _DeltaTime;
 	if (true == IsPress('X') && skillCoolTime < 0.0f)
 	{
-		createBullet(false);
+		createBullet();
 		skillCoolTime = SaveSkilltime;
 		return;
 	}
@@ -814,7 +843,7 @@ void APlay_Cuphead::Run_Shoot_DiagonalUp(float _DeltaTime)
 	skillCoolTime -= _DeltaTime;
 	if (true == IsPress('X') && skillCoolTime < 0.0f)
 	{
-		createBullet(false);
+		createBullet();
 		skillCoolTime = SaveSkilltime;
 		return;
 	}
@@ -953,7 +982,7 @@ void APlay_Cuphead::Shoot_Straight(float _DeltaTime)
 	skillCoolTime -= _DeltaTime;
 	if (true == IsPress('X') && skillCoolTime<0.0f)
 	{
-		createBullet(false);
+		createBullet();
 		skillCoolTime = SaveSkilltime;
 		return;
 	}
@@ -1004,7 +1033,7 @@ void APlay_Cuphead::Duck_Shoot(float _DeltaTime)
 	skillCoolTime -= _DeltaTime;
 	if (true == IsPress('X') && skillCoolTime < 0.0f)
 	{
-		createBullet(false);
+		createBullet();
 		skillCoolTime = SaveSkilltime;
 		return;
 	}
@@ -1049,7 +1078,7 @@ void APlay_Cuphead::Shoot_Up(float _DeltaTime)
 	skillCoolTime -= _DeltaTime;
 	if (true == IsPress('X') && skillCoolTime < 0.0f)
 	{
-		createBullet(false);
+		createBullet();
 		skillCoolTime = SaveSkilltime;
 		return;
 	}
@@ -1164,7 +1193,7 @@ void APlay_Cuphead::JumpShoot(float _DeltaTime)
 	skillCoolTime -= _DeltaTime;
 	if (true == IsPress('X') && skillCoolTime < 0.0f)
 	{
-		createBullet(false);
+		createBullet();
 		skillCoolTime = SaveSkilltime;
 		return;
 	}
@@ -1231,6 +1260,41 @@ void APlay_Cuphead::Parry(float _DeltaTime)
 	}
 
 	MoveUpDate(_DeltaTime); // 최종 움직임
+}
+
+void APlay_Cuphead::SSGround_Straight(float _DeltaTime)
+{
+	DirCheck();
+
+	if (false == PowerShoot)
+	{
+		PowerShoot = true;
+		createBullet();
+	}
+
+	if (true == PlayCuphead->IsCurAnimationEnd())
+	{
+		PowerShoot = false;
+		State.ChangeState("Idle");
+		return;
+	}
+
+}
+
+void APlay_Cuphead::SSGround_Down(float _DeltaTime)
+{
+}
+
+void APlay_Cuphead::SSGround_DiagonalUp(float _DeltaTime)
+{
+}
+
+void APlay_Cuphead::SSGround_DiagonalDown(float _DeltaTime)
+{
+}
+
+void APlay_Cuphead::SSGround_Up(float _DeltaTime)
+{
 }
 
 void APlay_Cuphead::Boss2PhaseChange(float _DeltaTime)

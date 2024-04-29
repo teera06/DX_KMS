@@ -275,6 +275,9 @@
     <ClCompile Include="DevilTear.cpp">
       <Filter>PlayStage2\Boss2\Monster\skill4</Filter>
     </ClCompile>
+    <ClCompile Include="BaseSSBullet.cpp">
+      <Filter>PlayStage\Boss1\PlayActor\Bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -432,6 +435,9 @@
     </ClInclude>
     <ClInclude Include="DevilTear.h">
       <Filter>PlayStage2\Boss2\Monster\skill4</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseSSBullet.h">
+      <Filter>PlayStage\Boss1\PlayActor\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

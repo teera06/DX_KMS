@@ -96,6 +96,8 @@ private:
 	bool NoGravity = false;
 
 	bool ShootMinMax = false;
+
+	bool PowerShoot = false;
 	// false -> 기본 공격
 	// true -> 게이지 공격
 
@@ -104,7 +106,7 @@ private:
 	void EventCollision(float _DeltaTime);
 
 	// 총알 관련 함수
-	void createBullet(const bool _ShootMinMax);
+	void createBullet();
 	void IdleShoot();
 	void RunShoot();
 	void DuckShoot();
@@ -136,6 +138,12 @@ private:
 	void JumpShoot(float _DeltaTime);
 	void DashAfterJump(float _DeltaTime);
 	void Parry(float _DeltaTime);
+
+	void SSGround_Straight(float _DeltaTime);
+	void SSGround_Down(float _DeltaTime);
+	void SSGround_DiagonalUp(float _DeltaTime);
+	void SSGround_DiagonalDown(float _DeltaTime);
+	void SSGround_Up(float _DeltaTime);
 
 	void Boss2PhaseChange(float _DeltaTime);
 	void Scared(float _DeltaTime);

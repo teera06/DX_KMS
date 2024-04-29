@@ -76,6 +76,12 @@ void APlay_Cuphead::BeginPlay()
 	PlayCuphead->CreateAnimation("Jump", "Jump", 0.05f);
 	PlayCuphead->CreateAnimation("Parry", "Parry", 0.03f, false);
 	PlayCuphead->CreateAnimation("Scared", "Scared", 0.075f, false);
+	PlayCuphead->CreateAnimation("SSGround_Straight", "SSGround_Straight", 0.05f);
+	PlayCuphead->CreateAnimation("SSGround_Down", "SSGround_Down", 0.05f);
+	PlayCuphead->CreateAnimation("SSGround_DiagonalUp", "SSGround_DiagonalUp", 0.05f);
+	PlayCuphead->CreateAnimation("SSGround_DiagonalDown", "SSGround_DiagonalDown", 0.05f);
+	PlayCuphead->CreateAnimation("SSGround_Up", "SSGround_Up", 0.05f);
+
 
 	BulletStart->CreateAnimation("Peashot_Spawn", "Peashot_Spawn", 0.05f);
 
@@ -99,39 +105,12 @@ void APlay_Cuphead::Tick(float _DeltaTime)
 
 	PlayerPos = GetActorLocation();
 
-	// 나는 APlayer 인데
-	// 	Collision->SetCollisionGroup(ECollisionOrder::Player);
-	// 상대 ECollisionOrder::Monster
-
-	//if (Collision->Collision(ECollisionOrder::Monster))
-	//{
-
-	//}
-
-
-	//Collision->CollisionStay(ECollisionOrder::Monster, [=](std::shared_ptr<UCollision> _Collison)
-	//	{
-	//		int a = 0;
-
-	//		// _Collison[0]->GetActor()->Destroy();
-	//	}
-	//);
-
 	PlayerCollision->CollisionEnter(ECollisionOrder::Boss1Monster1, [=](std::shared_ptr<UCollision> _Collison)
 	{
 	
 	//_Collison->GetActor()->Destroy();
 	});
 
-
-
-	//Collision->CollisionExit(ECollisionOrder::Monster, [=](std::shared_ptr<UCollision> _Collison)
-	//{
-		//int a = 0;
-
-		// _Collison[0]->GetActor()->Destroy();
-	//}
-	//);
 
 	DebugMessageFunction();
 }
