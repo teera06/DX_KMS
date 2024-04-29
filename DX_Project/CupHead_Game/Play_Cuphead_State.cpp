@@ -978,6 +978,7 @@ void APlay_Cuphead::Run_Shoot_DiagonalUp(float _DeltaTime)
 
 	if (true == IsDown('V'))
 	{
+		BulletStart->SetActive(false);
 		ShootStyle = EShootDir::DiagonalUpShoot;
 		State.ChangeState("SSGround_DiagonalUp");
 		return;
@@ -1208,8 +1209,8 @@ void APlay_Cuphead::Aim_Up(float _DeltaTime)
 
 	if (true == IsPress('V'))
 	{
+		BulletStart->SetActive(false);
 		ShootStyle = EShootDir::UpShoot;
-
 		State.ChangeState("SSGround_Up");
 		return;
 	}
