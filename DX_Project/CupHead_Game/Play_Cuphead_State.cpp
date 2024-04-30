@@ -370,12 +370,12 @@ void APlay_Cuphead::SSDiagonalDownShoot()
 	if (BulletDir.iX() == 1)
 	{
 		NewSSBullet->SetActorRotation({ 0.0f,0.0f,315.0f }   );
-		NewSSBullet->SetActorLocation({ GetActorLocation().X + shootXpos,GetActorLocation().Y + bulletY2,0.0f });
+		NewSSBullet->SetActorLocation({ GetActorLocation().X + shootXpos,GetActorLocation().Y - 15.0f,0.0f });
 	}
 	else if (BulletDir.iX() == -1)
 	{
 		NewSSBullet->SetActorRotation({ 0.0f,0.0f,-315.0f });
-		NewSSBullet->SetActorLocation({ GetActorLocation().X - shootXpos,GetActorLocation().Y + bulletY2,0.0f });
+		NewSSBullet->SetActorLocation({ GetActorLocation().X - shootXpos,GetActorLocation().Y - 15.0f,0.0f });
 	}
 }
 
