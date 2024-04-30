@@ -220,6 +220,7 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="EngineEnums.h" />
+    <ClInclude Include="EngineFont.h" />
     <ClInclude Include="EngineGraphicDevice.h">
       <SubType>
       </SubType>
@@ -324,7 +325,9 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="TextWidget.h" />
     <ClInclude Include="ThirdParty\DirectxTex\inc\DirectXTex.h" />
+    <ClInclude Include="ThirdParty\FW1FontWrapper\inc\FW1FontWrapper.h" />
     <ClInclude Include="TickObject.h">
       <SubType>
       </SubType>
@@ -388,6 +391,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="EngineFont.cpp" />
     <ClCompile Include="EngineGraphicDevice.cpp">
       <SubType>
       </SubType>
@@ -496,6 +500,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="TextWidget.cpp" />
     <ClCompile Include="TickObject.cpp">
       <SubType>
       </SubType>
@@ -548,6 +553,13 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </CopyFileToFolders>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ThirdParty\FW1FontWrapper\Release\FW1FontWrapper.dll" />
+    <None Include="ThirdParty\FW1FontWrapper\Release\FW1FontWrapper.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="ThirdParty\FW1FontWrapper\Release\FW1FontWrapper.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
