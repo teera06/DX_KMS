@@ -73,6 +73,8 @@ private:
 
 	FVector BulletDir = FVector::Right; // 최종 점프력
 
+	FVector SSDustRot = FVector::Zero;
+
 	EShootDir ShootStyle = EShootDir::None;
 
 	float Speed = 500.0f;
