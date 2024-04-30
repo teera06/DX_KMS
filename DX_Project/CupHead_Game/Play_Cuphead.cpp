@@ -74,6 +74,7 @@ void APlay_Cuphead::BeginPlay()
 	PlayCuphead->CreateAnimation("Shoot_Up", "Shoot_Up", 0.05f);
 	PlayCuphead->CreateAnimation("Aim_Up", "Aim_Up", 0.05f);
 	PlayCuphead->CreateAnimation("Jump", "Jump", 0.05f);
+	PlayCuphead->CreateAnimation("hit", "Hit_Ground", 0.03f, false);
 	PlayCuphead->CreateAnimation("Parry", "Parry", 0.03f, false);
 	PlayCuphead->CreateAnimation("Scared", "Scared", 0.075f, false);
 	PlayCuphead->CreateAnimation("SSGround_Straight", "SSGround_Straight", 0.05f);

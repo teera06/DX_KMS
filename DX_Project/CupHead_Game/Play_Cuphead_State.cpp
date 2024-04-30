@@ -529,7 +529,9 @@ void APlay_Cuphead::StateInit()
 	State.CreateState("Jump");
 	State.CreateState("JumpShoot");
 	State.CreateState("DashAfterJump");
+	State.CreateState("hit");
 	State.CreateState("Parry");
+
 	State.CreateState("Boss2PhaseChange");
 	State.CreateState("Scared");
 
@@ -583,6 +585,10 @@ void APlay_Cuphead::StateInit()
 
 	State.SetUpdateFunction("DashAfterJump", std::bind(&APlay_Cuphead::DashAfterJump, this, std::placeholders::_1));
 	State.SetStartFunction("DashAfterJump", [=] {PlayCuphead->ChangeAnimation("Jump"); });
+
+	State.SetUpdateFunction("hit", std::bind(&APlay_Cuphead::hit, this, std::placeholders::_1));
+	State.SetStartFunction("hit", [=] {PlayCuphead->ChangeAnimation("hit"); });
+
 
 	State.SetUpdateFunction("Parry", std::bind(&APlay_Cuphead::Parry, this, std::placeholders::_1));
 	State.SetStartFunction("Parry", [=] {PlayCuphead->ChangeAnimation("Parry"); });
@@ -1517,6 +1523,11 @@ void APlay_Cuphead::DashAfterJump(float _DeltaTime)
 	}
 
 	GroundObject();
+}
+
+void APlay_Cuphead::hit(float _DeltaTime)
+{
+
 }
 
 void APlay_Cuphead::Parry(float _DeltaTime)

@@ -37,6 +37,12 @@ public:
 		CollisionMove += _CollisionMove;
 	}
 
+	int AddHp(const int& _Hp)
+	{
+		Hp -= _Hp;
+	}
+
+
 	UStateManager State;
 protected:
 	void BeginPlay() override;
@@ -98,6 +104,7 @@ private:
 	float DustTime = 0.45f;
 
 	int GrounYCheck = 0;
+	int Hp = 3;
 
 	bool shootY = false;
 	bool NoGravity = false;
@@ -152,6 +159,7 @@ private:
 	void Jump(float _DeltaTime);
 	void JumpShoot(float _DeltaTime);
 	void DashAfterJump(float _DeltaTime);
+	void hit(float _DeltaTime);
 	void Parry(float _DeltaTime);
 
 	void SSGround_Straight(float _DeltaTime);
