@@ -27,8 +27,8 @@ AMoveObject1::AMoveObject1()
 	ObjectFront->SetPivot(EPivot::BOT);
 	TopCollision = CreateDefaultSubObject<UCollision>("TopCollision ");
 	TopCollision->SetupAttachment(Root);
-	TopCollision->AddPosition(FVector(0.0f, 130.0f, 0.0f));
-	TopCollision->SetScale(FVector(160.0f, 20.0f, 100.0f));
+	TopCollision->AddPosition(FVector(0.0f, 110.0f, 0.0f));
+	TopCollision->SetScale(FVector(160.0f, 5.0f, 100.0f));
 
 	TopCollision->SetCollisionGroup(ECollisionOrder::Boss1Top);
 	TopCollision->SetCollisionType(ECollisionType::RotRect);
@@ -47,13 +47,13 @@ void AMoveObject1::BeginPlay()
 	//SetActorLocation(FVector(400.0f, -200.0f, 0.0f));
 	SetActorLocation(FVector(400.0f, -200.0f, 0.0f));
 
-	ObjectRender->SetOrder(ERenderOrder::Object1);
+	ObjectRender->SetOrder(ERenderOrder::Object1Back);
 	ObjectRender->SetSprite("tallfrog_slotman_platform_bison_0001.png");
 	ObjectRender->SetSamplering(ETextureSampling::LINEAR);
 	ObjectRender->SetAutoSize(1.0f, true);
 	ObjectRender->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 
-	ObjectFront->SetOrder(ERenderOrder::ObjectFront);
+	ObjectFront->SetOrder(ERenderOrder::MidObject);
 	ObjectFront->SetSprite("tallfrog_slotman_platform_bison_top_0001.png");
 	ObjectFront->SetSamplering(ETextureSampling::LINEAR);
 	ObjectFront->SetAutoSize(1.0f, true);
