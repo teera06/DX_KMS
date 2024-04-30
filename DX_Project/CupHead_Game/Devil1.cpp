@@ -14,6 +14,7 @@
 #include "DevilBall.h"
 #include "Hole.h"
 #include "Orb_Fire.h"
+#include "Orb_Fire2.h"
 
 
 ADevil1::ADevil1()
@@ -294,6 +295,14 @@ void ADevil1::CreateFire()
 
 }
 
+void ADevil1::CreateFire2()
+{
+
+	
+	NewFire2 = GetWorld()->SpawnActor<AOrb_Fire2>("Orb_Fire2");
+	
+}
+
 void ADevil1::Phase1Intro(float _DeltaTime)
 {
 
@@ -478,15 +487,20 @@ void ADevil1::CreateOrbsIntro2(float _DeltaTime)
 
 	if (true == spear->IsCurAnimationEnd())
 	{
-		if (1 == OrbOrder)
+		if (2 == OrbOrder)
 		{
 			CreateFire();
 			OrbOrder++;
 		}
-		else if (2 == OrbOrder)
+		else if (1 == OrbOrder)
+		{
+			CreateFire2();
+			OrbOrder++;
+		}
+		else if (3 == OrbOrder)
 		{
 			CreateBall();
-			OrbOrder = 1;
+			OrbOrder++;
 		}
 		Phase1.ChangeState("CreateOrbsReverse");
 		Boss2->SetActive(true);
@@ -503,7 +517,12 @@ void ADevil1::CreateOrbsReverse(float _DeltaTime)
 	if (true == Boss2->IsCurAnimationEnd())
 	{
 		coolDownTime = 6.0f;
-		attOrder = 2;
+
+		if (4 == OrbOrder)
+		{
+			OrbOrder = 1;
+			attOrder = 2;
+		}
 		SkillDestory = false;
 		Phase1.ChangeState("Phase1Idle");
 		Boss2->SetPosition(FVector(0.0f, 0.0f, 0.0f));

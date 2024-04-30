@@ -98,6 +98,8 @@ enum class ECollisionOrder
 	Chip,
 	Wind,
 	Devil1,
+	Orb_Fire1,
+	Orb_Fire2
 };
 
 enum class EScreenEffect

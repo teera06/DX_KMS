@@ -10,6 +10,8 @@ class ARamArms;
 class ADevilBall;
 class ASpiderHead;
 class AOrb_Fire;
+class AOrb_Fire2;
+
 class ADevil1 : public AActor, public ABoss2Common
 {
 	GENERATED_BODY(AActor)
@@ -49,6 +51,7 @@ private:
 	std::shared_ptr<ADevilBall> NewDevilBall4 = nullptr;
 
 	std::vector<std::shared_ptr<AOrb_Fire>> NewFireS;
+	std::shared_ptr<AOrb_Fire2> NewFire2;
 
 	USpriteRenderer* IntroAni = nullptr;
 	USpriteRenderer* PhaseChange2 = nullptr;
@@ -72,6 +75,7 @@ private:
 	void CreateSpider();
 	void CreateBall();
 	void CreateFire();
+	void CreateFire2();
 
 	// 여기서부터는 상태 함수들 
 	void Phase1Intro(float _DeltaTime);
