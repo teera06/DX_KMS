@@ -296,6 +296,9 @@
     <ClCompile Include="SSDust.cpp">
       <Filter>Dust</Filter>
     </ClCompile>
+    <ClCompile Include="Orb_Fire2.cpp">
+      <Filter>PlayStage2\Boss2\Monster\skill1</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -471,6 +474,9 @@
     </ClInclude>
     <ClInclude Include="SSDust.h">
       <Filter>Dust</Filter>
+    </ClInclude>
+    <ClInclude Include="Orb_Fire2.h">
+      <Filter>PlayStage2\Boss2\Monster\skill1</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
