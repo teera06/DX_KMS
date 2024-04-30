@@ -32,6 +32,7 @@ private:
 	float Speed = 400.0f;
 	float PlayerMoveSpeed = 200.0f;
 
+	void PlayerCollision();
 	void Collisiongather(float _DeltaTime);
 };
 

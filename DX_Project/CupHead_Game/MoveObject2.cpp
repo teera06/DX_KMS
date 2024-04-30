@@ -20,15 +20,15 @@ AMoveObject2::AMoveObject2()
 	TopCollision = CreateDefaultSubObject<UCollision>("TopCollision ");
 	TopCollision->SetupAttachment(Root);
 	TopCollision->AddPosition(FVector(0.0f, 110.0f, 0.0f));
-	TopCollision->SetScale(FVector(160.0f, 20.0f, 100.0f));
+	TopCollision->SetScale(FVector(130.0f, 5.0f, 100.0f));
 	
 	TopCollision->SetCollisionGroup(ECollisionOrder::Boss1Top);
 	TopCollision->SetCollisionType(ECollisionType::RotRect);
 
 	LRCollision = CreateDefaultSubObject<UCollision>("LRCollision");
 	LRCollision->SetupAttachment(Root);
-	LRCollision->AddPosition(FVector(0.0f, 50.0f, 0.0f));
-	LRCollision->SetScale(FVector(200.0f, 50.0f, 100.0f));
+	LRCollision->AddPosition(FVector(0.0f, 60.0f, 0.0f));
+	LRCollision->SetScale(FVector(160.0f, 100.0f, 100.0f));
 	
 	LRCollision->SetCollisionGroup(ECollisionOrder::Boss1LR);
 	LRCollision->SetCollisionType(ECollisionType::RotRect);
@@ -64,10 +64,22 @@ void AMoveObject2::BeginPlay()
 void AMoveObject2::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+	PlayerCollision();
 	AddActorLocation(FVector::Left * Speed * _DeltaTime);
 	Collisiongather(_DeltaTime);
 }
 
+
+void AMoveObject2::PlayerCollision()
+{
+	LRCollision->CollisionEnter(ECollisionOrder::Player, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		AActor* Ptr = _Collison->GetActor();
+		APlay_Cuphead* Player = dynamic_cast<APlay_Cuphead*>(Ptr);
+
+		Player->State.ChangeState("hit");
+	});
+}
 
 void AMoveObject2::Collisiongather(float _DeltaTime)
 {
