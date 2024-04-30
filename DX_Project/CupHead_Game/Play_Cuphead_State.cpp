@@ -495,6 +495,7 @@ void APlay_Cuphead::CalLastMoveVector(float _DeltaTime, const FVector& _MovePos)
 	if (CheckPos.iX()<=-600 || CheckPos.iX()>=600) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
 	{
 		MovePos = FVector::Zero;
+		CollisionMove = FVector::Zero;
 	}
 
 	AddActorLocation(MovePos + (PlayerMoveY * _DeltaTime)+ CollisionMove);
