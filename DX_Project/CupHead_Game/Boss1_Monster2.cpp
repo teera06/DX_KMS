@@ -51,7 +51,7 @@ ABoss1_Monster2::ABoss1_Monster2()
 	SlotImage1->SetPivot(EPivot::BOT);
 	SlotImage1->AddPosition(FVector(-125.0f, 170.0f, 0.0f));
 	SlotImage1->AddRotationDeg(FVector(0.0f, 35.0f, 0.0f));
-	SlotImage1->SetPlusColor(FVector(0.0f, 0.1f, 0.0f));
+	//SlotImage1->SetPlusColor(FVector(0.0f, 0.5f, 0.0f));
 
 	SlotImage2 = CreateDefaultSubObject<USpriteRenderer>("SlotImage2");
 	SlotImage2->SetupAttachment(Root);
@@ -65,9 +65,9 @@ ABoss1_Monster2::ABoss1_Monster2()
 	SlotImage3->AddPosition(FVector(-15.0f, 170.0f, 0.0f));
 	SlotImage3->AddRotationDeg(FVector(0.0f, 35.0f, 0.0f));
 	
-	SlotImage1->SetActive(false);
-	SlotImage2->SetActive(false);
-	SlotImage3->SetActive(false);
+	//SlotImage1->SetActive(false);
+	//SlotImage2->SetActive(false);
+	//SlotImage3->SetActive(false);
 
 	WindSkill = CreateDefaultSubObject<USpriteRenderer>("WindSkill");
 
