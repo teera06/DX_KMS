@@ -365,6 +365,20 @@ void APlay_Cuphead::SSDiagonalUpShoot()
 	}
 }
 
+void APlay_Cuphead::SSDiagonalDownShoot()
+{
+	if (BulletDir.iX() == 1)
+	{
+		NewSSBullet->SetActorRotation({ 0.0f,0.0f,315.0f }   );
+		NewSSBullet->SetActorLocation({ GetActorLocation().X + shootXpos,GetActorLocation().Y + bulletY2,0.0f });
+	}
+	else if (BulletDir.iX() == -1)
+	{
+		NewSSBullet->SetActorRotation({ 0.0f,0.0f,-315.0f });
+		NewSSBullet->SetActorLocation({ GetActorLocation().X - shootXpos,GetActorLocation().Y + bulletY2,0.0f });
+	}
+}
+
 void APlay_Cuphead::SSUpShoot()
 {
 	BulletDir = FVector::Up;
@@ -417,6 +431,9 @@ void APlay_Cuphead::createSSBullet()
 		break;
 	case EShootDir::DiagonalUpShoot:
 		SSDiagonalUpShoot();
+		break;
+	case EShootDir::DiagonalDownShoot:
+		SSDiagonalDownShoot();
 		break;
 	default:
 		break;
@@ -725,6 +742,9 @@ void APlay_Cuphead::DirCheck()
 			case EShootDir::DiagonalUpShoot:
 				BulletDir += FVector::Up;
 				break;
+			case EShootDir::DiagonalDownShoot:
+				BulletDir += FVector::Down;
+				break;
 			default:
 				break;
 			}
@@ -738,6 +758,9 @@ void APlay_Cuphead::DirCheck()
 				break;
 			case EShootDir::DiagonalUpShoot:
 				BulletDir += FVector::Up;
+				break;
+			case EShootDir::DiagonalDownShoot:
+				BulletDir += FVector::Down;
 				break;
 			default:
 				break;
@@ -898,6 +921,13 @@ void APlay_Cuphead::Run(float  _DeltaTime)
 	{
 		ShootStyle = EShootDir::DiagonalUpShoot;
 		State.ChangeState("SSGround_DiagonalUp");
+		return;
+	}
+
+	if (true == IsDown('V') && true == IsPress(VK_DOWN))
+	{
+		ShootStyle = EShootDir::DiagonalDownShoot;
+		State.ChangeState("SSGround_DiagonalDown");
 		return;
 	}
 
@@ -1569,6 +1599,22 @@ void APlay_Cuphead::SSGround_DiagonalUp(float _DeltaTime)
 
 void APlay_Cuphead::SSGround_DiagonalDown(float _DeltaTime)
 {
+	DirCheck();
+
+	if (false == PowerShoot)
+	{
+		PowerShoot = true;
+		createSSBullet();
+	}
+
+	if (true == PlayCuphead->IsCurAnimationEnd())
+	{
+		PowerShoot = false;
+		State.ChangeState("Duck");
+		return;
+	}
+
+	MoveUpDate(_DeltaTime); // 최종 움직임
 }
 
 void APlay_Cuphead::SSGround_Up(float _DeltaTime)

@@ -122,6 +122,7 @@ private:
 	void SSIdleShoot();
 	void SSDuckShoot();
 	void SSDiagonalUpShoot();
+	void SSDiagonalDownShoot();
 	void SSUpShoot();
 
 	void createSSBullet();
