@@ -11,6 +11,7 @@
 #include "RunDust.h"
 #include "DashDust.h"
 #include "SSDust.h"
+#include "GroundDust.h"
 
 #include "Boss1Common.h"
 #include "Devil1.h"
@@ -1443,6 +1444,7 @@ void APlay_Cuphead::Jump(float _DeltaTime)
 	MoveUpDate(_DeltaTime, MovePos); // 최종 움직임
 	if (GetActorLocation().iY() <= GrounYCheck)
 	{
+		GetWorld()->SpawnActor<AGroundDust>("AGroundDust");
 		JumpVector = FVector::Zero;
 		State.ChangeState("Idle");
 		return;
@@ -1502,6 +1504,7 @@ void APlay_Cuphead::JumpShoot(float _DeltaTime)
 
 	if (GetActorLocation().iY() <= GrounYCheck)
 	{
+		GetWorld()->SpawnActor<AGroundDust>("AGroundDust");
 		BulletStart->SetActive(false);
 		JumpVector = FVector::Zero;
 		State.ChangeState("Idle");
@@ -1517,6 +1520,7 @@ void APlay_Cuphead::DashAfterJump(float _DeltaTime)
 	MoveUpDate(_DeltaTime); // 최종 움직임
 	if (GetActorLocation().iY() <= GrounYCheck)
 	{
+		GetWorld()->SpawnActor<AGroundDust>("AGroundDust");
 		JumpVector = FVector::Zero;
 		State.ChangeState("Idle");
 		return;
