@@ -46,11 +46,11 @@ private:
 
 	
 
-	float Speed = 250.0f;
+	float Speed = 350.0f;
 
 	float Delay = 1.5f;
 
-
+	bool EndAni = false;
 	bool ParryCheck=false;
 	bool OneCheck = false;
 	bool OneCheck2 = false;

@@ -37,30 +37,40 @@ void AOrb_Fire::BeginPlay()
 	Orb_Fire->CreateAnimation("OrbsSpawn_Fire", "OrbsSpawn_Fire", 0.1f);
 	Orb_Fire->CreateAnimation("Orb_Fire", "Orb_Fire", 0.1f);
 	
-	Orb_Fire->ChangeAnimation("Orb_Fire");
+	Orb_Fire->ChangeAnimation("OrbsSpawn_Fire");
 }
 
 void AOrb_Fire::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
-	Delay -= _DeltaTime;
-	if (Delay < 0 && false==att)
+	if (true == Orb_Fire->IsCurAnimationEnd())
 	{
-		att = true;
+		EndAni = true;
+		Orb_Fire->ChangeAnimation("Orb_Fire");
 	}
 
-	if (true==att)
+	if (true == EndAni)
 	{
-		if (false == OneCheck)
+		Delay -= _DeltaTime;
+		if (Delay < 0 && false == att)
 		{
-			PlayerPos = APlay_Cuphead::GetPlayerPos();
-			OneCheck = true;
-			return;
+			att = true;
 		}
 
-		CalDir(_DeltaTime);
+		if (true == att)
+		{
+			if (false == OneCheck)
+			{
+				PlayerPos = APlay_Cuphead::GetPlayerPos();
+				OneCheck = true;
+				return;
+			}
+
+			CalDir(_DeltaTime);
+		}
 	}
+	
 }
 
 void AOrb_Fire::CalDir(float _DeltaTime)
