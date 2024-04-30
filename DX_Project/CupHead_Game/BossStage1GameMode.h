@@ -25,5 +25,6 @@ protected:
 	void LevelStart(ULevel* _PrevLevel);
 private:
 	UImage* HpImage = nullptr;
+
 };
 
