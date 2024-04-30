@@ -1540,7 +1540,7 @@ void APlay_Cuphead::SSGround_Straight(float _DeltaTime)
 	{
 		std::shared_ptr<ASSDust> NewSSDust = GetWorld()->SpawnActor<ASSDust>("SSDust");
 		NewSSDust->SetDushDir(BulletDir);
-		NewSSDust->AddActorRotation(FVector::Zero);
+		NewSSDust->SetActorRotation(FVector::Zero);
 		PowerShoot = true;
 		createSSBullet();
 	}
@@ -1563,7 +1563,7 @@ void APlay_Cuphead::SSGround_Down(float _DeltaTime)
 	{
 		std::shared_ptr<ASSDust> NewSSDust = GetWorld()->SpawnActor<ASSDust>("SSDust");
 		NewSSDust->SetDushDir(BulletDir);
-		NewSSDust->AddActorRotation({ 0.0f,0.0f,-90.0f });
+		NewSSDust->SetActorRotation({ 0.0f,0.0f,270.0f });
 		PowerShoot = true;
 		createSSBullet();
 	}
@@ -1589,11 +1589,11 @@ void APlay_Cuphead::SSGround_DiagonalUp(float _DeltaTime)
 
 		if (BulletDir.iX() == 1)
 		{
-			NewSSDust->AddActorRotation({ 0.0f,0.0f,45.0f });
+			NewSSDust->SetActorRotation({ 0.0f,0.0f,45.0f });
 		}
 		else if (BulletDir.iX() == -1)
 		{
-			NewSSDust->AddActorRotation({ 0.0f,0.0f,-45.0f });
+			NewSSDust->SetActorRotation({ 0.0f,0.0f,-45.0f });
 		}
 		PowerShoot = true;
 		createSSBullet();
@@ -1620,11 +1620,11 @@ void APlay_Cuphead::SSGround_DiagonalDown(float _DeltaTime)
 		NewSSDust->SetDushDir(BulletDir);
 		if (BulletDir.iX() == 1)
 		{
-			NewSSDust->AddActorRotation({ 0.0f,0.0f,315.0f });
+			NewSSDust->SetActorRotation({ 0.0f,0.0f,315.0f });
 		}
 		else if (BulletDir.iX() == -1)
 		{
-			NewSSDust->AddActorRotation({ 0.0f,0.0f,-315.0f });
+			NewSSDust->SetActorRotation({ 0.0f,0.0f,-315.0f });
 		}
 		PowerShoot = true;
 		createSSBullet();
@@ -1648,7 +1648,7 @@ void APlay_Cuphead::SSGround_Up(float _DeltaTime)
 	{
 		std::shared_ptr<ASSDust> NewSSDust = GetWorld()->SpawnActor<ASSDust>("SSDust");
 		NewSSDust->SetDushDir(BulletDir);
-		NewSSDust->AddActorRotation({ 0.0f,0.0f,90.0f });
+		NewSSDust->SetActorRotation({ 0.0f,0.0f,90.0f });
 		PowerShoot = true;
 		createSSBullet();
 	}
