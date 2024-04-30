@@ -9,8 +9,6 @@
 #include "ContentsENum.h"
 #include "Play_Cuphead.h"
 
-int AOrb_Fire::DelayCount = 6;
-
 AOrb_Fire::AOrb_Fire()
 {
 	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("Orb_Fire");
@@ -47,13 +45,12 @@ void AOrb_Fire::Tick(float _DeltaTime)
 	Super::Tick(_DeltaTime);
 
 	Delay -= _DeltaTime;
-	if (Delay < 0)
+	if (Delay < 0 && false==att)
 	{
-		DelayCount--;
-		Delay = 1.5f;
+		att = true;
 	}
 
-	if (DelayCount <= AttOrder)
+	if (true==att)
 	{
 		if (false == OneCheck)
 		{

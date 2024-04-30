@@ -23,9 +23,10 @@ public:
 		StartPos = _StartPos;
 	}
 
-	inline void Setatt(const int& _AttOrder)
+	
+	inline void SetDelay(const float& _Delay)
 	{
-		AttOrder = _AttOrder;
+		Delay = _Delay;
 	}
 
 	inline void SetParryCheck(const bool& _ParryCheck)
@@ -43,8 +44,7 @@ private:
 	FVector PlayerPos = FVector::Zero;
 	FVector MoveNorMalize = FVector::Zero;
 
-	static int DelayCount;
-	int AttOrder = 0;
+	
 
 	float Speed = 250.0f;
 
