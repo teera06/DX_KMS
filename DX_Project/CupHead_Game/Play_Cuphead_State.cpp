@@ -310,6 +310,7 @@ void APlay_Cuphead::UpShoot()
 
 void APlay_Cuphead::SSIdleShoot()
 {
+
 	if (BulletDir.iX() == 1)
 	{
 		NewSSBullet->SetActorLocation({ GetActorLocation().X + shootXpos,GetActorLocation().Y + bulletY2,0.0f });
@@ -718,6 +719,9 @@ void APlay_Cuphead::DirCheck()
 			BulletDir = FVector::Left;
 			switch (ShootStyle)
 			{
+			case EShootDir::IdleShoot:
+				BulletDir = FVector::Left;
+				break;
 			case EShootDir::DiagonalUpShoot:
 				BulletDir += FVector::Up;
 				break;
@@ -729,6 +733,9 @@ void APlay_Cuphead::DirCheck()
 			BulletDir = FVector::Right;
 			switch (ShootStyle)
 			{
+			case EShootDir::IdleShoot:
+				BulletDir = FVector::Right;
+				break;
 			case EShootDir::DiagonalUpShoot:
 				BulletDir += FVector::Up;
 				break;
@@ -886,6 +893,20 @@ void APlay_Cuphead::Idle(float _DeltaTime)
 void APlay_Cuphead::Run(float  _DeltaTime)
 {
 	DirCheck();
+
+	if (true == IsDown('V') && true == IsPress(VK_UP))
+	{
+		ShootStyle = EShootDir::DiagonalUpShoot;
+		State.ChangeState("SSGround_DiagonalUp");
+		return;
+	}
+
+	if (true == IsDown('V'))
+	{
+		ShootStyle = EShootDir::IdleShoot;
+		State.ChangeState("SSGround_DiagonalUp");
+		return;
+	}
 
 	DustTime -= _DeltaTime;
 	
@@ -1487,7 +1508,7 @@ void APlay_Cuphead::Parry(float _DeltaTime)
 
 void APlay_Cuphead::SSGround_Straight(float _DeltaTime)
 {
-	//DirCheck();
+	DirCheck();
 	if (false == PowerShoot)
 	{
 		GetWorld()->SpawnActor<ASSDust>("SSDust")->SetDushDir(BulletDir);
@@ -1507,6 +1528,8 @@ void APlay_Cuphead::SSGround_Straight(float _DeltaTime)
 
 void APlay_Cuphead::SSGround_Down(float _DeltaTime)
 {
+	DirCheck();
+
 	if (false == PowerShoot)
 	{
 		PowerShoot = true;
@@ -1525,6 +1548,8 @@ void APlay_Cuphead::SSGround_Down(float _DeltaTime)
 
 void APlay_Cuphead::SSGround_DiagonalUp(float _DeltaTime)
 {
+	DirCheck();
+
 	if (false == PowerShoot)
 	{
 		PowerShoot = true;
@@ -1548,7 +1573,7 @@ void APlay_Cuphead::SSGround_DiagonalDown(float _DeltaTime)
 
 void APlay_Cuphead::SSGround_Up(float _DeltaTime)
 {
-	//DirCheck();
+	DirCheck();
 
 	if (false == PowerShoot)
 	{
