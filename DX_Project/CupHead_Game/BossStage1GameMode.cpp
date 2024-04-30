@@ -59,6 +59,7 @@ void ABossStage1GameMode::BeginPlay()
 		HpImage->SetPosition({ -570.0f, -310.0f });
 
 		HpImage ->CreateAnimation("HP1", "HP1", 0.05f);
+		HpImage->CreateAnimation("HP0", "HP0", 0.05f);
 		
 
 		
@@ -101,7 +102,7 @@ void ABossStage1GameMode::Tick(float _DeltaTime)
 	}
 	else if (APlay_Cuphead::GetHp() <= 0)
 	{
-		HpImage->SetSprite("HPDead.png");
+		HpImage->ChangeAnimation("HP0");
 	}
 }
 
