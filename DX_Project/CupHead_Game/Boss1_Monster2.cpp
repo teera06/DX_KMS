@@ -751,7 +751,14 @@ void ABoss1_Monster2::Phase3Att(float _DeltaTime)
 {
 	if (true == BigBoss1->IsCurAnimationEnd())
 	{
-		if (0 != Bigattcount % 2)
+		int n = 2;
+
+		if (SlotAttCount == 0)
+		{
+			n = 3;
+		}
+		
+		if (0 == Bigattcount % n)
 		{
 			createObject();
 		}
@@ -759,15 +766,30 @@ void ABoss1_Monster2::Phase3Att(float _DeltaTime)
 		return;
 	}
 
-
-	if (Bigattcount == 26)
+	if (SlotAttCount == 0)
 	{
-		SlotAttCount++;
-		coolDownTime = 4.0f;
-		Bigattcount = 0;
-		SlotTouch = false;
-		FrontSlot->SetActive(false);
-		Phase2.ChangeState("phase3Idle");
-		return;
+		if (Bigattcount == 39)
+		{
+			SlotAttCount++;
+			coolDownTime = 4.0f;
+			Bigattcount = 0;
+			SlotTouch = false;
+			FrontSlot->SetActive(false);
+			Phase2.ChangeState("phase3Idle");
+			return;
+		}
+	}
+	else
+	{
+		if (Bigattcount == 26)
+		{
+			SlotAttCount++;
+			coolDownTime = 4.0f;
+			Bigattcount = 0;
+			SlotTouch = false;
+			FrontSlot->SetActive(false);
+			Phase2.ChangeState("phase3Idle");
+			return;
+		}
 	}
 }
