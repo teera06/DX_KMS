@@ -73,7 +73,7 @@ private:
 
 	FVector BulletDir = FVector::Right; // 최종 점프력
 
-	FVector SSDustRot = FVector::Zero;
+
 
 	EShootDir ShootStyle = EShootDir::None;
 
@@ -122,7 +122,7 @@ private:
 	void UpShoot();
 
 	void SSIdleShoot();
-	void SSDuckShoot();
+	void SSDownShoot();
 	void SSDiagonalUpShoot();
 	void SSDiagonalDownShoot();
 	void SSUpShoot();
