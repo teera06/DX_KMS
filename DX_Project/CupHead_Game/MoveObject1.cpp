@@ -126,6 +126,7 @@ void AMoveObject1::PlayerCollision()
 		AActor* Ptr = _Collison->GetActor();
 		APlay_Cuphead* Player = dynamic_cast<APlay_Cuphead*>(Ptr);
 		
+		Player->AddActorLocation(FVector::Up * 100.0f);
 		Player->State.ChangeState("hit");
 	});
 }
