@@ -33,6 +33,14 @@ AMoveObject1::AMoveObject1()
 	TopCollision->SetCollisionGroup(ECollisionOrder::Boss1Top);
 	TopCollision->SetCollisionType(ECollisionType::RotRect);
 
+	BodyCollision = CreateDefaultSubObject<UCollision>("TopCollision ");
+	BodyCollision->SetupAttachment(Root);
+	BodyCollision->AddPosition(FVector(0.0f, 60.0f, 0.0f));
+	BodyCollision->SetScale(FVector(160.0f, 100.0f, 100.0f));
+	BodyCollision->SetCollisionGroup(ECollisionOrder::Boss1LR);
+	BodyCollision->SetCollisionType(ECollisionType::RotRect);
+
+
 	SetRoot(Root);
 }
 
@@ -97,7 +105,7 @@ void AMoveObject1::Tick(float _DeltaTime)
 			
 			Fire->SetDir(EEngineDir::Down);
 			
-			Fire->SetPosition(FVector(0.0f, -0.0f, 0.0f));
+			Fire->SetPosition(FVector(0.0f, -10.0f, 0.0f));
 		}
 
 		OneCheck = true;
@@ -138,10 +146,10 @@ void AMoveObject1::ChangeFirePos()
 {
 	if (UpDownSet.iY() > 0)
 	{
-		Fire->AddPosition(FVector(0.0f, 310.0f, 0.0f));
+		Fire->AddPosition(FVector(0.0f, 320.0f, 0.0f));
 	}
 	else
 	{
-		Fire->AddPosition(FVector(0.0f, -310.0f, 0.0f));
+		Fire->AddPosition(FVector(0.0f, -320.0f, 0.0f));
 	}
 }

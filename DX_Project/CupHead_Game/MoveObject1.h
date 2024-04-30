@@ -30,6 +30,7 @@ private:
 	USpriteRenderer* ObjectFront = nullptr;
 	USpriteRenderer* Fire = nullptr;
 	UCollision* TopCollision = nullptr;
+	UCollision* BodyCollision = nullptr;
 
 	FVector UpPower = FVector::Zero;
 
