@@ -1,5 +1,7 @@
 #pragma once
 #include <EngineCore/GameMode.h>
+#include <EngineCore/Image.h>
+
 
 class ABossStage1GameMode : public AGameMode
 {
@@ -22,5 +24,6 @@ protected:
 	void LevelEnd(ULevel* _NextLevel);
 	void LevelStart(ULevel* _PrevLevel);
 private:
+	UImage* HpImage = nullptr;
 };
 

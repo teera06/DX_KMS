@@ -44,6 +44,7 @@ private:
 
 	bool changeFire = false;
 
+	void PlayerCollision();
 	void Collisiongather(float _DeltaTime);
 
 	void ChangeFirePos();

@@ -91,6 +91,10 @@ void ACoin::CollisionCheck()
 
 	CoinCollision->CollisionEnter(ECollisionOrder::Player, [=](std::shared_ptr<UCollision> _Collison)
 	{
+		AActor* Ptr = _Collison->GetActor();
+		APlay_Cuphead* Player = dynamic_cast<APlay_Cuphead*>(Ptr);
+
+		Player->State.ChangeState("hit");
 		Destroy();
 	});
 }

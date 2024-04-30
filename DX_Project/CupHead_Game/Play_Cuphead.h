@@ -37,9 +37,9 @@ public:
 		CollisionMove += _CollisionMove;
 	}
 
-	int AddHp(const int& _Hp)
+	static int GetHp() 
 	{
-		Hp -= _Hp;
+		return Hp;
 	}
 
 
@@ -104,7 +104,7 @@ private:
 	float DustTime = 0.45f;
 
 	int GrounYCheck = 0;
-	int Hp = 3;
+	static int Hp;
 
 	bool shootY = false;
 	bool NoGravity = false;

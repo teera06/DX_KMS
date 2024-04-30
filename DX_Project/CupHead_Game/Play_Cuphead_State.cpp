@@ -1527,7 +1527,16 @@ void APlay_Cuphead::DashAfterJump(float _DeltaTime)
 
 void APlay_Cuphead::hit(float _DeltaTime)
 {
+	PlayerCollision->SetActive(false);
 
+	if (true == PlayCuphead->IsCurAnimationEnd())
+	{
+		Hp -= 1;
+		JumpVector = FVector::Zero;
+		PlayerCollision->SetActive(true);
+		State.ChangeState("Idle");
+		return;
+	}
 }
 
 void APlay_Cuphead::Parry(float _DeltaTime)

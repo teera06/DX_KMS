@@ -6,6 +6,7 @@
 #include <EngineCore/Collision.h>
 
 #include "ContentsENum.h"
+#include "Play_Cuphead.h"
 
 AMoveObject1::AMoveObject1()
 {
@@ -113,9 +114,20 @@ void AMoveObject1::Tick(float _DeltaTime)
 
 
 	Super::Tick(_DeltaTime);
-
+	PlayerCollision();
 	AddActorLocation(FVector::Left * Speed * _DeltaTime);
 	Collisiongather(_DeltaTime);
+}
+
+void AMoveObject1::PlayerCollision()
+{
+	BodyCollision->CollisionEnter(ECollisionOrder::Player, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		AActor* Ptr = _Collison->GetActor();
+		APlay_Cuphead* Player = dynamic_cast<APlay_Cuphead*>(Ptr);
+		
+		Player->State.ChangeState("hit");
+	});
 }
 
 void AMoveObject1::Collisiongather(float _DeltaTime)
