@@ -110,7 +110,7 @@ private:
 	bool NoGravity = false;
 
 	bool PowerShoot = false;
-
+	bool IsHitEffect = false;
 
 	bool DevilDieCheck = false;
 	// false -> 기본 공격

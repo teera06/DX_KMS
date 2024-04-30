@@ -1,5 +1,5 @@
 #include "PreCompile.h"
-#include "DashDust.h"
+#include "hitEffect.h"
 
 #include <EngineCore/DefaultSceneComponent.h>
 #include <EngineCore/SpriteRenderer.h>
@@ -7,12 +7,14 @@
 
 #include "Play_Cuphead.h"
 
-ADashDust::ADashDust()
+
+
+AhitEffect::AhitEffect()
 {
-	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("Dusy");
+	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("hit");
 
 
-	Effect = CreateDefaultSubObject<USpriteRenderer>("Dust");
+	Effect = CreateDefaultSubObject<USpriteRenderer>("hit");
 	Effect->SetupAttachment(Root);
 	Effect->SetAutoSize(1.0f, true);
 
@@ -20,35 +22,36 @@ ADashDust::ADashDust()
 
 
 	Effect->SetOrder(ERenderOrder::FrontSkill);
-	Effect->SetSprite("DashDust01.png");
+	Effect->SetSprite("player_hitFXa_0001.png");
 	Effect->SetSamplering(ETextureSampling::LINEAR);
 }
 
-ADashDust::~ADashDust()
+AhitEffect::~AhitEffect()
 {
 }
 
-void ADashDust::BeginPlay()
+void AhitEffect::BeginPlay()
 {
 	Super::BeginPlay();
 	PlayerPos = APlay_Cuphead::GetPlayerPos();
 
-	SetActorLocation(PlayerPos + FVector::Up * 100.0f);
+	SetActorLocation(PlayerPos + FVector::Up * 50.0f);
 
-	Effect->CreateAnimation("DashDust", "DashDust", 0.075f);
+	Effect->CreateAnimation("HitFX01", "HitFX01", 0.075f);
 
-	Effect->ChangeAnimation("DashDust");
+	Effect->ChangeAnimation("HitFX01");
 }
 
-void ADashDust::Tick(float _DeltaTime)
+
+void AhitEffect::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
-	if (DushDir.iX() == 1)
+	if (hitDir.iX() == 1)
 	{
 		Effect->SetDir(EEngineDir::Right);
 	}
-	else if (DushDir.iX() == -1)
+	else if (hitDir.iX() == -1)
 	{
 		Effect->SetDir(EEngineDir::Left);
 	}

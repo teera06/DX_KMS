@@ -12,6 +12,7 @@
 #include "DashDust.h"
 #include "SSDust.h"
 #include "GroundDust.h"
+#include "hitEffect.h"
 
 #include "Boss1Common.h"
 #include "Devil1.h"
@@ -1531,13 +1532,23 @@ void APlay_Cuphead::DashAfterJump(float _DeltaTime)
 
 void APlay_Cuphead::hit(float _DeltaTime)
 {
+
+	
+
 	PlayerCollision->SetActive(false);
+
+	if (false == IsHitEffect)
+	{
+		IsHitEffect = true;
+		GetWorld()->SpawnActor<AhitEffect>("DashDust")->SethitDir(BulletDir);
+	}
 
 	if (true == PlayCuphead->IsCurAnimationEnd())
 	{
 		Hp -= 1;
 		JumpVector = FVector::Zero;
 		PlayerCollision->SetActive(true);
+		IsHitEffect = false;
 		State.ChangeState("Idle");
 		return;
 	}
