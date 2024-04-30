@@ -85,18 +85,18 @@ void AMoveObject1::Tick(float _DeltaTime)
 		if (UpDownSet.iY() > 0)
 		{
 			ObjectFront->AddPosition(FVector(1.2f, 3.5f, 0.0f));
-			ObjectRender->SetDir(EEngineDir::Up);
+			
 			Fire->SetDir(EEngineDir::Up);
-			ObjectFront->SetDir(EEngineDir::Up);
+		
 			Fire->SetPosition(FVector(0.0f, 150.0f, 0.0f));
 			TopCollision->SetActive(false);
 		}
 		else
 		{
-			ObjectFront->AddPosition(FVector(1.2f, 14.5f, 0.0f));
-			ObjectRender->SetDir(EEngineDir::Down);
+			ObjectFront->AddPosition(FVector(1.2f, 3.5f, 0.0f));
+			
 			Fire->SetDir(EEngineDir::Down);
-			ObjectFront->SetDir(EEngineDir::Down);
+			
 			Fire->SetPosition(FVector(0.0f, -0.0f, 0.0f));
 		}
 
@@ -126,7 +126,7 @@ void AMoveObject1::Collisiongather(float _DeltaTime)
 
 	UpPower = FVector::Up * 500.0f;
 
-	if (GetActorLocation().iY() >= -110)
+	if (GetActorLocation().iY() >= -140)
 	{
 		UpPower = FVector::Zero;
 	}
