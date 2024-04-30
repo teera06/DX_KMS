@@ -1350,6 +1350,7 @@ void APlay_Cuphead::Jump(float _DeltaTime)
 
 	if (true == IsDown(VK_SHIFT))
 	{
+		GetWorld()->SpawnActor<ADashDust>("DashDust")->SetDushDir(BulletDir);
 		NoGravity = true;
 		JumpVector = FVector::Zero;
 		State.ChangeState("AirDash");
