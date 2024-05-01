@@ -54,7 +54,15 @@ void ABossBackMap1::Tick(float _DeltaTime)
 	CoolDownTime -= _DeltaTime;
 	if (CoolDownTime<0 && ABoss2Common::phasecheck==1)
 	{
-		GetWorld()->SpawnActor<ADemonMonster>("DemonMonster");
+		GetWorld()->SpawnActor<ADemonMonster>("DemonMonster")->SetLRStart(LRCheck);
+		if (false == LRCheck)
+		{
+			LRCheck = true;
+		}
+		else
+		{
+			LRCheck = false;
+		}
 		CoolDownTime = 6.0f;
 	}
 

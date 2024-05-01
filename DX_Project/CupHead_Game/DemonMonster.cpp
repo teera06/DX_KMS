@@ -32,21 +32,43 @@ void ADemonMonster::BeginPlay()
 {
 	Super::BeginPlay();
 	//SetActorScale3D(FVector(1600.0f, 900.0f, 100.0f));
-	SetActorLocation(FVector(-188.0f, -90.0f, 100.0f));
+	//SetActorLocation(FVector(-188.0f, -90.0f, 100.0f));
 	AniCreate();
-	StateInit();
 }
 
 void ADemonMonster::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
-	State.Update(_DeltaTime);
+	if (false == OneCheck)
+	{
+		OneCheck = true;
+		if (false == LRStart)
+		{
+			SetActorLocation(FVector(-188.0f, -90.0f, 100.0f));
+			StateInit();
+		}
+		else
+		{
+			SetActorLocation(FVector(188.0f, -90.0f, 100.0f));
+			StateInit2();
+		}
+	}
+
+	if (false == LRStart)
+	{
+		State.Update(_DeltaTime);
+	}
+	else
+	{
+		State2.Update(_DeltaTime);
+	}
 }
 
 void ADemonMonster::AniCreate()
 {
 	Demon->CreateAnimation("DemonIntro1", "DemonIntro1", 0.075f);
+	Demon->CreateAnimation("DemonIntro2", "DemonIntro2", 0.075f);
 	Demon->CreateAnimation("DemonJump", "DemonJump", 0.075f);
 	Demon->CreateAnimation("DemonAttack", "DemonAttack", 0.075f);
 	
@@ -140,7 +162,9 @@ void ADemonMonster::StateInit2()
 	State2.SetUpdateFunction("Demon2Attack2", std::bind(&ADemonMonster::Demon2Attack2, this, std::placeholders::_1));
 	State2.SetStartFunction("Demon2Attack2", [=] {Demon->ChangeAnimation("DemonAttack"); });
 
-	State2.ChangeState("DemonIntro1");
+	Demon->SetDir(EEngineDir::Left);
+	State2.ChangeState("DemonIntro2");
+
 }
 
 void ADemonMonster::DemonIntro2(float _DeltaTime)
@@ -156,19 +180,35 @@ void ADemonMonster::DemonIntro2(float _DeltaTime)
 
 void ADemonMonster::Demon2Jump(float _DeltaTime)
 {
-	AddActorLocation((MoveL + (FVector::Up * 0.05f)) * speed * _DeltaTime);
+	AddActorLocation((MoveR + (FVector::Up * 0.05f)) * speed * _DeltaTime);
 
 	if (true == Demon->IsCurAnimationEnd())
 	{
-		State2.ChangeState("DemonAttack1");
+		State2.ChangeState("Demon2Attack1");
 		return;
 	}
 }
 
 void ADemonMonster::Demon2Attack1(float _DeltaTime)
 {
+	AddActorLocation(MoveR * speed * _DeltaTime);
+	if (GetActorLocation().iX() <= -700 || GetActorLocation().iX() >= 700) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
+	{
+		Demon->SetDir(EEngineDir::Right);
+		MoveR = FVector::Left;
+		AddActorLocation(FVector(0.0f, -140.0f, -100.0f));
+		Demon->SetOrder(ERenderOrder::FrontSkillMonster);
+		State2.ChangeState("Demon2Attack2");
+		return;
+	}
 }
 
 void ADemonMonster::Demon2Attack2(float _DeltaTime)
 {
+	AddActorLocation(MoveR * speed * _DeltaTime);
+
+	if (MoveR.iX() == -1 && GetActorLocation().iX() <= -700) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
+	{
+		Destroy();
+	}
 }

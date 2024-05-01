@@ -24,5 +24,7 @@ private:
 	USpriteRenderer* Front = nullptr;
 
 	float CoolDownTime = 3.0f;
+
+	bool LRCheck = false;
 };
 

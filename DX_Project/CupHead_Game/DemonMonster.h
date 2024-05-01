@@ -33,11 +33,14 @@ private:
 	USpriteRenderer* Demon = nullptr;
 
 	FVector MoveL = FVector::Left;
+	FVector MoveR = FVector::Right;
 
 	float speed = 300.0f;
 
 	bool OneCheck = false;
 	bool LRStart = false;
+	// false -> 왼쪽 1
+	// true -> 오른쪽 2
 
 	void AniCreate();
 
