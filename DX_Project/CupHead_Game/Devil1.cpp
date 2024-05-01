@@ -100,6 +100,7 @@ ADevil1::ADevil1()
 ADevil1::~ADevil1()
 {
 	NewFireS.clear();
+	NewDevilBalls.clear();
 }
 
 void ADevil1::BeginPlay()
@@ -117,6 +118,7 @@ void ADevil1::BeginPlay()
 	//IntroAni->ChangeAnimation("PupilIntro");
 
 	NewFireS.resize(6);
+	NewDevilBalls.resize(4);
 }
 
 void ADevil1::Tick(float _DeltaTime)
@@ -254,27 +256,29 @@ void ADevil1::CreateSpider()
 
 void ADevil1::CreateBall()
 {
-	NewDevilBall1 = GetWorld()->SpawnActor<ADevilBall>("DevilBall1");
-	NewDevilBall2 = GetWorld()->SpawnActor<ADevilBall>("DevilBall2");
-	NewDevilBall3 = GetWorld()->SpawnActor<ADevilBall>("DevilBall3");
-	NewDevilBall4 = GetWorld()->SpawnActor<ADevilBall>("DevilBall4");
+	
+	for (int i = 0; i < NewDevilBalls.size(); i++)
+	{
+		NewDevilBalls[i]= GetWorld()->SpawnActor<ADevilBall>("DevilBall1");
+	}
 
-	NewDevilBall1->SetParryCheck(true);
 
-	NewDevilBall1->SetActorLocation(FVector(200.0f, 150.0f, 10.0f));
-	NewDevilBall2->SetActorLocation(FVector(-200.0f, 200.0f, 10.0f));
-	NewDevilBall3->SetActorLocation(FVector(-200.0f, -150.0f, 10.0f));
-	NewDevilBall4->SetActorLocation(FVector(200.0f, -200.0f, 10.0f));
+	NewDevilBalls[0]->SetParryCheck(true);
 
-	NewDevilBall1->SetStartPos(FVector::Up*0.2f + FVector::Right);
-	NewDevilBall2->SetStartPos(FVector::Up + FVector::Left);
-	NewDevilBall3->SetStartPos(FVector::Down*0.2f + FVector::Left);
-	NewDevilBall4->SetStartPos(FVector::Down + FVector::Right);
+	NewDevilBalls[0]->SetActorLocation(FVector(200.0f, 150.0f, 10.0f));
+	NewDevilBalls[1]->SetActorLocation(FVector(-200.0f, 200.0f, 10.0f));
+	NewDevilBalls[2]->SetActorLocation(FVector(-200.0f, -150.0f, 10.0f));
+	NewDevilBalls[3]->SetActorLocation(FVector(200.0f, -200.0f, 10.0f));
 
-	NewDevilBall1->SetWallHitCount(7);
-	NewDevilBall2->SetWallHitCount(6);
-	NewDevilBall3->SetWallHitCount(7);
-	NewDevilBall4->SetWallHitCount(6);
+	NewDevilBalls[0]->SetStartPos(FVector::Up*0.2f + FVector::Right);
+	NewDevilBalls[1]->SetStartPos(FVector::Up + FVector::Left);
+	NewDevilBalls[2]->SetStartPos(FVector::Down*0.2f + FVector::Left);
+	NewDevilBalls[3]->SetStartPos(FVector::Down + FVector::Right);
+
+	NewDevilBalls[0]->SetWallHitCount(7);
+	NewDevilBalls[1]->SetWallHitCount(6);
+	NewDevilBalls[2]->SetWallHitCount(7);
+	NewDevilBalls[3]->SetWallHitCount(6);
 }
 
 void ADevil1::CreateFire()
@@ -286,12 +290,12 @@ void ADevil1::CreateFire()
 		NewFireS[i]->SetDelay(static_cast<float>(i + 1));
 	}
 
-	NewFireS[0]->SetActorLocation(FVector(200.0f, 150.0f, 10.0f));
-	NewFireS[1]->SetActorLocation(FVector(-200.0f, 200.0f, 10.0f));
-	NewFireS[2]->SetActorLocation(FVector(-200.0f, -150.0f, 10.0f));
-	NewFireS[3]->SetActorLocation(FVector(200.0f, -200.0f, 10.0f));
-	NewFireS[4]->SetActorLocation(FVector(0.0f, 200.0f, 10.0f));
-	NewFireS[5]->SetActorLocation(FVector(0.0f, -200.0f, 10.0f));
+	NewFireS[0]->SetActorLocation(FVector(-250.0f, 150.0f, 10.0f));
+	NewFireS[1]->SetActorLocation(FVector(0.0f, 250.0f, 10.0f));
+	NewFireS[2]->SetActorLocation(FVector(250.0f, 150.0f, 10.0f));
+	NewFireS[3]->SetActorLocation(FVector(250.0f, -150.0f, 10.0f));
+	NewFireS[4]->SetActorLocation(FVector(0.0f, -250.0f, 10.0f));
+	NewFireS[5]->SetActorLocation(FVector(-250.0f, -150.0f, 10.0f));
 
 }
 

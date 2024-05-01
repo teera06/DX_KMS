@@ -45,12 +45,10 @@ private:
 	std::shared_ptr<ARamArms> NewRamArmsL = nullptr;
 	std::shared_ptr<ARamArms> NewRamArmsR = nullptr;
 	std::shared_ptr<ASpiderHead> NewSpiderHead = nullptr;
-	std::shared_ptr<ADevilBall> NewDevilBall1 = nullptr;
-	std::shared_ptr<ADevilBall> NewDevilBall2 = nullptr;
-	std::shared_ptr<ADevilBall> NewDevilBall3 = nullptr;
-	std::shared_ptr<ADevilBall> NewDevilBall4 = nullptr;
 
+	std::vector<std::shared_ptr<ADevilBall>>  NewDevilBalls;
 	std::vector<std::shared_ptr<AOrb_Fire>> NewFireS;
+
 	std::shared_ptr<AOrb_Fire2> NewFire2;
 
 	USpriteRenderer* IntroAni = nullptr;
