@@ -31,7 +31,7 @@ ADevilPlatform::ADevilPlatform()
 
 	LRCollision = CreateDefaultSubObject<UCollision>("LRCollision2");
 	LRCollision->SetupAttachment(Root);
-	LRCollision->AddPosition(FVector(0.0f, -30.0f, 0.0f));
+	LRCollision->AddPosition(FVector(0.0f, -20.0f, 0.0f));
 	LRCollision->SetScale(FVector(180.0f, 90.0f, 100.0f));
 
 	LRCollision->SetCollisionGroup(ECollisionOrder::Boss1LR);

@@ -1781,5 +1781,4 @@ void APlay_Cuphead::Scared(float _DeltaTime)
 		return;
 	}
 	GroundObject();
-	MoveUpDate(_DeltaTime);
 }
