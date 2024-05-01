@@ -17,6 +17,12 @@ AOrb_Fire::AOrb_Fire()
 
 	Orb_Fire->SetupAttachment(Root);
 
+	Fire1Collision = CreateDefaultSubObject<UCollision>("Fire1Collision");
+	Fire1Collision->SetupAttachment(Root);
+	Fire1Collision->SetScale(FVector(70.0f, 70.0f, 100.0f));
+	Fire1Collision->SetCollisionGroup(ECollisionOrder::Orb_Fire1);
+	Fire1Collision->SetCollisionType(ECollisionType::RotRect);
+
 
 	SetRoot(Root);
 }
@@ -36,18 +42,47 @@ void AOrb_Fire::BeginPlay()
 	
 	Orb_Fire->CreateAnimation("OrbsSpawn_Fire", "OrbsSpawn_Fire", 0.1f);
 	Orb_Fire->CreateAnimation("Orb_Fire", "Orb_Fire", 0.1f);
+
+	Orb_Fire->CreateAnimation("OrbsSpawn_Fire_Parry", "OrbsSpawn_Fire_Parry", 0.1f);
+	Orb_Fire->CreateAnimation("Orb_Fire_Parry", "Orb_Fire_Parry", 0.1f);
 	
-	Orb_Fire->ChangeAnimation("OrbsSpawn_Fire");
+	//Orb_Fire->ChangeAnimation("OrbsSpawn_Fire");
 }
 
 void AOrb_Fire::Tick(float _DeltaTime)
 {
+
+	if (false == StartAni)
+	{
+		StartAni = true;
+		if (false == ParryCheck)
+		{
+			Orb_Fire->ChangeAnimation("OrbsSpawn_Fire");
+		}
+		else
+		{
+			Orb_Fire->ChangeAnimation("OrbsSpawn_Fire_Parry");
+		}
+
+	}
+
+
 	Super::Tick(_DeltaTime);
 
-	if (true == Orb_Fire->IsCurAnimationEnd())
+	
+
+	if (true == Orb_Fire->IsCurAnimationEnd() && true==StartAni)
 	{
 		EndAni = true;
-		Orb_Fire->ChangeAnimation("Orb_Fire");
+
+		if (false == ParryCheck)
+		{
+			Orb_Fire->ChangeAnimation("Orb_Fire");
+		}
+		else
+		{
+			Orb_Fire->ChangeAnimation("Orb_Fire_Parry");
+		}
 	}
 
 	if (true == EndAni)
@@ -93,7 +128,18 @@ void AOrb_Fire::CalDir(float _DeltaTime)
 
 void AOrb_Fire::Collisiongather()
 {
-	if (GetActorLocation().iX() <= -600 || GetActorLocation().iX() >= 600 || GetActorLocation().iY() >= 360 || GetActorLocation().iX() <= -360) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
+	Fire1Collision->CollisionEnter(ECollisionOrder::Player, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		AActor* Ptr = _Collison->GetActor();
+		APlay_Cuphead* Player = dynamic_cast<APlay_Cuphead*>(Ptr);
+
+		Player->AddActorLocation(FVector::Up * 100.0f);
+		Player->State.ChangeState("hit");
+
+		Destroy();
+	});
+
+	if (GetActorLocation().iX() <= -720 || GetActorLocation().iX() >= 720 || GetActorLocation().iY() >= 400 || GetActorLocation().iX() <= -400) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
 	{
 		Destroy();
 	}

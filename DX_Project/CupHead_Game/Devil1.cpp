@@ -290,6 +290,8 @@ void ADevil1::CreateFire()
 		NewFireS[i]->SetDelay(static_cast<float>(i + 1));
 	}
 
+	NewFireS[1]->SetParryCheck(true);
+
 	NewFireS[0]->SetActorLocation(FVector(-250.0f, 150.0f, 10.0f));
 	NewFireS[1]->SetActorLocation(FVector(0.0f, 250.0f, 10.0f));
 	NewFireS[2]->SetActorLocation(FVector(250.0f, 150.0f, 10.0f));

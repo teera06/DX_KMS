@@ -39,6 +39,7 @@ protected:
 	void Tick(float _DeltaTime) override;
 private:
 	USpriteRenderer* Orb_Fire = nullptr;
+	UCollision* Fire1Collision = nullptr;
 
 	FVector StartPos = FVector::Zero;
 	FVector PlayerPos = FVector::Zero;
@@ -50,6 +51,7 @@ private:
 
 	float Delay = 1.5f;
 
+	bool StartAni = false;
 	bool EndAni = false;
 	bool ParryCheck=false;
 	bool OneCheck = false;
