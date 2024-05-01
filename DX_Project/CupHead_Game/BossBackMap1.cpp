@@ -63,7 +63,7 @@ void ABossBackMap1::Tick(float _DeltaTime)
 		{
 			LRCheck = false;
 		}
-		CoolDownTime = 6.0f;
+		CoolDownTime = 8.0f;
 	}
 
 	if (true == UContentsHelper::DelMapCheck)
