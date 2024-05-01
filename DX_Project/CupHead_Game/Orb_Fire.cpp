@@ -139,7 +139,7 @@ void AOrb_Fire::Collisiongather()
 		Destroy();
 	});
 
-	if (GetActorLocation().iX() <= -720 || GetActorLocation().iX() >= 720 || GetActorLocation().iY() >= 400 || GetActorLocation().iX() <= -400) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
+	if (GetActorLocation().iX() <= -800 || GetActorLocation().iX() >= 800 || GetActorLocation().iY() >= 500 || GetActorLocation().iX() <= -500) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
 	{
 		Destroy();
 	}
