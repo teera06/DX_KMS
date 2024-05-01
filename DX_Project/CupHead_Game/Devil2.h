@@ -41,6 +41,8 @@ private:
 
 	USpriteRenderer* Hand = nullptr;
 
+	float UpdateDelay = 5.0f;
+
 	bool LRHand = false;
 	// false-> Left
 	// true-> Right

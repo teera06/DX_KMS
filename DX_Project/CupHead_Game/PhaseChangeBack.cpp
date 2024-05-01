@@ -45,22 +45,27 @@ void APhaseChangeBack::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
-	if (GetActorLocation().iY() >= 600)
+	Delay -= _DeltaTime;
+
+	if (Delay < 0)
 	{
-		if (false == OneCheck)
+		if (GetActorLocation().iY() >= 600)
 		{
-			CreateActor();
-			OneCheck = true;
+			if (false == OneCheck)
+			{
+				CreateActor();
+				OneCheck = true;
 
+			}
+			UContentsHelper::DelMapCheck = true;
 		}
-		UContentsHelper::DelMapCheck= true;
-	}
 
-	if (GetActorLocation().iY() >= 2000)
-	{
-		Destroy();
+		if (GetActorLocation().iY() >= 2000)
+		{
+			Destroy();
+		}
+		AddActorLocation(FVector::Up * Speed * _DeltaTime);
 	}
-	AddActorLocation(FVector::Up * Speed * _DeltaTime);
 }
 
 void APhaseChangeBack::CreateActor()

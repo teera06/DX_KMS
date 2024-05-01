@@ -341,6 +341,7 @@ void ADevil1::Phase1Idle(float _DeltaTime)
 {
 	if (phasecheck == 1 && GetHp() <= 70)
 	{
+		AddActorLocation(FVector(5.0f, 0.0f, 0.0f));
 		phasecheck = 2;
 		PhaseChange2->SetActive(true);
 		PhaseChange2->ChangeAnimation("Phase1Death");

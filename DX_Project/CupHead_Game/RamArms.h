@@ -41,7 +41,7 @@ private:
 
 	FVector MoveLR = FVector::Zero;
 
-	float speed = 500.0f;
+	float speed = 800.0f;
 
 
 	void RamArmsStart(float _DeltaTime);

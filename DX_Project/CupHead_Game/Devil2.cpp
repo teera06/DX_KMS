@@ -67,8 +67,8 @@ void ADevil2::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 	coolDownTime -= _DeltaTime;
-
-	if (phasecheck == 2)
+	UpdateDelay -= _DeltaTime;
+	if (phasecheck == 2 && UpdateDelay<0)
 	{
 		Phase1.Update(_DeltaTime);
 	}

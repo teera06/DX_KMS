@@ -116,7 +116,7 @@ void APlay_Cuphead::GroundObject()
 
 	PlayerCollision->CollisionEnter(ECollisionOrder::Boss2Object1, [=](std::shared_ptr<UCollision> _Collison)
 	{
-		JumpVector = FVector::Zero;
+		JumpVector = FVector::Down * 200.0f;
 		State.ChangeState("Idle");
 		return;
 	});
