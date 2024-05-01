@@ -6,6 +6,7 @@
 #include <EngineCore/Collision.h>
 
 #include "ContentsENum.h"
+#include "PokerChip.h"
 #include "Play_Cuphead.h"
 
 
@@ -71,11 +72,48 @@ void ADevilPlatform::Tick(float _DeltaTime)
 		CheckYUP = GetActorLocation().iY() + 180;
 	}
 
+	CreateChip(_DeltaTime);
+
 	PlayerCollision();
 
 	if (count == GroundOrder)
 	{
 		pattern.Update(_DeltaTime);
+	}
+}
+
+void ADevilPlatform::CreateChip(float _DeltaTime)
+{
+	Delay -= _DeltaTime;
+
+	if (Delay < 0)
+	{
+		if (order == 1)
+		{
+			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(580.0f, 500.0f, 10.0f));
+		}
+		else if (order == 2)
+		{
+			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(290.0f, 500.0f, 10.0f));
+		}
+		else if (order == 3)
+		{
+			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(0.0f, 500.0f, 10.0f));
+		}
+		else if (order == 4)
+		{
+			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(-290.0f, 500.0f, 10.0f));
+		}
+		else if (order == 5)
+		{
+			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(-580.0f, 500.0f, 10.0f));
+		}
+		else if (order == 6 || order == 0) {
+			Add *= -1;
+		}
+
+		order += Add;
+		Delay = 4.0f;
 	}
 }
 

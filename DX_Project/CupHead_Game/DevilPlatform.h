@@ -33,6 +33,12 @@ private:
 	UCollision* GroundCollision = nullptr;
 	UCollision* LRCollision = nullptr;
 
+
+	float Delay = 4.0f;
+
+	int order = 1;
+	int Add = 1;
+
 	int CheckYUP = 0;
 	int CheckYDown = 0;
 
@@ -43,6 +49,8 @@ private:
 
 
 	bool OneCheck = false;
+
+	void CreateChip(float _DeltaTime);
 
 	void PlayerCollision();
 
