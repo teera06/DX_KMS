@@ -22,6 +22,8 @@
 #include "Boss1_Monster2.h"
 #include "MoveObject2.h"
 
+#include "Orb_Fire.h"
+
 #include "Hole.h"
 
 #include "PhaseChangeBack.h"
@@ -61,6 +63,37 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 
 		//AddActorLocation(FVector::Up * 1000.0f * _DeltaTime);
 		GravityVector = FVector::Down*250.0f;
+	});
+
+	PlayerCollision->CollisionEnter(ECollisionOrder::Orb_Fire1, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		AActor* Ptr = _Collison->GetActor();
+		AOrb_Fire* Fire1 = dynamic_cast<AOrb_Fire*>(Ptr);
+
+		if (true == Fire1->GetParryCheck())
+		{
+			Effect->SetActive(true);
+			GEngine->SetGlobalTimeScale(0.6f);
+			GravityVector = FVector::Down * 250.0f;
+
+			Fire1->Destroy();
+		}
+
+	});
+
+	PlayerCollision->CollisionStay(ECollisionOrder::Orb_Fire1, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		AActor* Ptr = _Collison->GetActor();
+		AOrb_Fire* Fire1 = dynamic_cast<AOrb_Fire*>(Ptr);
+
+		if (true == Fire1->GetParryCheck())
+		{
+			Effect->SetActive(true);
+			GEngine->SetGlobalTimeScale(0.6f);
+			GravityVector = FVector::Down * 250.0f;
+
+			Fire1->Destroy();
+		}
 	});
 
 }

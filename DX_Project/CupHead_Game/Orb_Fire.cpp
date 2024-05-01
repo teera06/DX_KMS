@@ -130,13 +130,16 @@ void AOrb_Fire::Collisiongather()
 {
 	Fire1Collision->CollisionEnter(ECollisionOrder::Player, [=](std::shared_ptr<UCollision> _Collison)
 	{
-		AActor* Ptr = _Collison->GetActor();
-		APlay_Cuphead* Player = dynamic_cast<APlay_Cuphead*>(Ptr);
+		if (false == ParryCheck)
+		{
+			AActor* Ptr = _Collison->GetActor();
+			APlay_Cuphead* Player = dynamic_cast<APlay_Cuphead*>(Ptr);
 
-		Player->AddActorLocation(FVector::Up * 100.0f);
-		Player->State.ChangeState("hit");
+			Player->AddActorLocation(FVector::Up * 100.0f);
+			Player->State.ChangeState("hit");
 
-		Destroy();
+			Destroy();
+		}
 	});
 
 	if (GetActorLocation().iX() <= -800 || GetActorLocation().iX() >= 800 || GetActorLocation().iY() >= 500 || GetActorLocation().iX() <= -500) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
