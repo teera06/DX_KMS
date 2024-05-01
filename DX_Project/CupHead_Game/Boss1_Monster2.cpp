@@ -65,9 +65,9 @@ ABoss1_Monster2::ABoss1_Monster2()
 	SlotImage3->AddPosition(FVector(-15.0f, 135.0f, 0.0f));
 	SlotImage3->AddRotationDeg(FVector(0.0f, 35.0f, 0.0f));
 	
-	//SlotImage1->SetActive(false);
-	//SlotImage2->SetActive(false);
-	//SlotImage3->SetActive(false);
+	SlotImage1->SetActive(false);
+	SlotImage2->SetActive(false);
+	SlotImage3->SetActive(false);
 
 	WindSkill = CreateDefaultSubObject<USpriteRenderer>("WindSkill");
 
