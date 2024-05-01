@@ -86,8 +86,8 @@ ADevil1::ADevil1()
 	Boss2Phase2 = CreateDefaultSubObject<UCollision>("Boss2Phase2");
 	Boss2Phase2->SetupAttachment(Root);
 	Boss2Phase2->SetPosition(FVector(-30.0f, -350.0f, 0.0f));
-	Boss2Phase2->SetScale(FVector(1.0f, 100.0f, 100.0f));
-	Boss2Phase2->SetCollisionGroup(ECollisionOrder::Devil1);
+	Boss2Phase2->SetScale(FVector(5.0f, 100.0f, 100.0f));
+	Boss2Phase2->SetCollisionGroup(ECollisionOrder::Devil1Change);
 	Boss2Phase2->SetCollisionType(ECollisionType::RotRect);
 
 
@@ -341,7 +341,8 @@ void ADevil1::Phase1Idle(float _DeltaTime)
 {
 	if (phasecheck == 1 && GetHp() <= 70)
 	{
-		AddActorLocation(FVector(5.0f, 0.0f, 0.0f));
+		AddActorLocation(FVector(25.0f, 0.0f, 0.0f));
+		Boss2Phase2->AddPosition(FVector(-25.0f, 0.0f, 0.0f));
 		phasecheck = 2;
 		PhaseChange2->SetActive(true);
 		PhaseChange2->ChangeAnimation("Phase1Death");

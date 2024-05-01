@@ -102,7 +102,7 @@ void APlay_Cuphead::GroundObject()
 {
 	PlayerCollision->CollisionEnter(ECollisionOrder::Boss1Top, [=](std::shared_ptr<UCollision> _Collison)
 	{
-		JumpVector = FVector::Down * 200.0f;
+		JumpVector = FVector::Zero;
 		State.ChangeState("Idle");
 		return;
 	});
@@ -116,7 +116,7 @@ void APlay_Cuphead::GroundObject()
 
 	PlayerCollision->CollisionEnter(ECollisionOrder::Boss2Object1, [=](std::shared_ptr<UCollision> _Collison)
 	{
-		JumpVector = FVector::Down * 200.0f;
+		JumpVector = FVector::Zero;
 		State.ChangeState("Idle");
 		return;
 	});
@@ -139,7 +139,7 @@ void APlay_Cuphead::EventCollision(float _DeltaTime)
 		return;
 	});
 
-	PlayerCollision->CollisionEnter(ECollisionOrder::Devil1, [=](std::shared_ptr<UCollision> _Collison)
+	PlayerCollision->CollisionEnter(ECollisionOrder::Devil1Change, [=](std::shared_ptr<UCollision> _Collison)
 	{
 
 		AActor* Ptr = _Collison->GetActor();
