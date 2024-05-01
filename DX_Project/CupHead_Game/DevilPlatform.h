@@ -18,6 +18,11 @@ public:
 	ADevilPlatform& operator=(const ADevilPlatform& _Other) = delete; // 디폴트 대입 연산자
 	ADevilPlatform& operator=(ADevilPlatform&& _Other) noexcept = delete;
 
+	inline void SetGroundOrder(const int& _GroundOrder)
+	{
+		GroundOrder = _GroundOrder;
+	}
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -25,6 +30,8 @@ private:
 	USpriteRenderer* DevilPlatform = nullptr;
 	UCollision* GroundCollision = nullptr;
 	UCollision* LRCollision = nullptr;
+
+	int GroundOrder = 0;
 
 	void PlayerCollision();
 };

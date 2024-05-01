@@ -21,6 +21,8 @@ protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 private:
+
+
 	USpriteRenderer* PhaseChangeBack = nullptr;
 
 	float Speed = 800.0f;

@@ -72,10 +72,24 @@ void APhaseChangeBack::CreateActor()
 {
 	GetWorld()->SpawnActor<ABoss2Phase2Map>("Boss2Phase2Map");
 	GetWorld()->SpawnActor<ADevil2>("Devil2");
-	GetWorld()->SpawnActor<ADevilPlatform>("DevilPlatform1")->SetActorLocation(FVector(-580.0f,-180.0f,10.0f));
-	GetWorld()->SpawnActor<ADevilPlatform>("DevilPlatform2")->SetActorLocation(FVector(-290.0f, -220.0f, 10.0f));
-	GetWorld()->SpawnActor<ADevilPlatform>("DevilPlatform3")->SetActorLocation(FVector(0.0f, -250.0f, 10.0f));
-	GetWorld()->SpawnActor<ADevilPlatform>("DevilPlatform4")->SetActorLocation(FVector(290.0f, -220.0f, 10.0f));
-	GetWorld()->SpawnActor<ADevilPlatform>("DevilPlatform5")->SetActorLocation(FVector(580.0f, -180.0f, 10.0f));
+	std::shared_ptr<ADevilPlatform> NewGround1 = GetWorld()->SpawnActor<ADevilPlatform>("DevilPlatform1");
+	NewGround1->SetActorLocation(FVector(-580.0f,-180.0f,10.0f));
+	NewGround1->SetGroundOrder(1);
+
+	std::shared_ptr<ADevilPlatform> NewGround2 = GetWorld()->SpawnActor<ADevilPlatform>("DevilPlatform2");
+	NewGround2->SetActorLocation(FVector(-290.0f, -220.0f, 10.0f));
+	NewGround2->SetGroundOrder(2);
+
+	std::shared_ptr<ADevilPlatform> NewGround3 = GetWorld()->SpawnActor<ADevilPlatform>("DevilPlatform3");
+	NewGround3->SetActorLocation(FVector(0.0f, -250.0f, 10.0f));
+	NewGround3->SetGroundOrder(3);
+
+	std::shared_ptr<ADevilPlatform> NewGround4 = GetWorld()->SpawnActor<ADevilPlatform>("DevilPlatform4");
+	NewGround4->SetActorLocation(FVector(290.0f, -220.0f, 10.0f));
+	NewGround4->SetGroundOrder(4);
+
+	std::shared_ptr<ADevilPlatform> NewGround5 = GetWorld()->SpawnActor<ADevilPlatform>("DevilPlatform5");
+	NewGround5-> SetActorLocation(FVector(580.0f, -180.0f, 10.0f));
+	NewGround5->SetGroundOrder(5);
 
 }
