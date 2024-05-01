@@ -116,6 +116,7 @@ void APlay_Cuphead::GroundObject()
 
 	PlayerCollision->CollisionEnter(ECollisionOrder::Boss2Object1, [=](std::shared_ptr<UCollision> _Collison)
 	{
+		Devil2GrounCheck = true;
 		JumpVector = FVector::Zero;
 		State.ChangeState("Idle");
 		return;
@@ -123,6 +124,7 @@ void APlay_Cuphead::GroundObject()
 
 	PlayerCollision->CollisionStay(ECollisionOrder::Boss2Object1, [=](std::shared_ptr<UCollision> _Collison)
 	{
+		Devil2GrounCheck = true;
 		JumpVector = FVector::Zero;
 		State.ChangeState("Idle");
 		return;
@@ -488,6 +490,14 @@ void APlay_Cuphead::createSSBullet()
 void APlay_Cuphead::CalGravityVector(float _DeltaTime)
 {
 	GravityVector += (FVector::Down * Gravity * _DeltaTime); // 중력은 계속 가해진다.
+
+	if (true == Devil2GrounCheck && GetActorLocation().iY() <= -270)
+	{
+		GravityVector = FVector::Zero;
+		AddActorLocation(FVector::Up * 200.0f);
+		State.ChangeState("hit");
+		return;
+	}
 
 	if (GetActorLocation().iY() <= GrounYCheck || true==NoGravity)
 	{

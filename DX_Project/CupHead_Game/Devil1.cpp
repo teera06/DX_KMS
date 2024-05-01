@@ -539,6 +539,7 @@ void ADevil1::Phase1Death(float _DeltaTime)
 {
 	if (true == Boss2->IsCurAnimationEnd())
 	{
+		Boss2->SetPosition(FVector(-42.0f, -22.0f, 10.0f));
 		Phase1.ChangeState("Phase2Change");
 		return;
 	}

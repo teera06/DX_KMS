@@ -37,6 +37,7 @@ public:
 		CollisionMove += _CollisionMove;
 	}
 
+
 	static int GetHp() 
 	{
 		return Hp;
@@ -114,6 +115,8 @@ private:
 	bool IsHitEffect = false;
 
 	bool DevilDieCheck = false;
+
+	bool Devil2GrounCheck = false;
 	// false -> 기본 공격
 	// true -> 게이지 공격
 
