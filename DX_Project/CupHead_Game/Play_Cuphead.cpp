@@ -52,7 +52,7 @@ APlay_Cuphead::APlay_Cuphead()
 	Effect->SetOrder(ERenderOrder::FrontSkill);
 	Effect->SetSprite("parryeffect_01.png");
 	Effect->SetSamplering(ETextureSampling::LINEAR);
-	Effect->SetPosition(FVector(0.0f, -10.0f, 0.0f));
+	Effect->SetPosition(FVector(0.0f, -20.0f, 0.0f));
 
 	InputOn();
 

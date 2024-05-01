@@ -42,9 +42,11 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 
 		Hand->SetSlotTouch(true);
 
-		GEngine->SetGlobalTimeScale(0.5f);
+		GEngine->SetGlobalTimeScale(0.6f);
 
-		AddActorLocation(FVector::Up * 1000.0f* _DeltaTime);
+		//AddActorLocation(FVector::Up * 1000.0f* _DeltaTime);
+
+		GravityVector = FVector::Down * 250.0f;
 	});
 
 	PlayerCollision->CollisionStay(ECollisionOrder::Boss1Monster2Hand, [=](std::shared_ptr<UCollision> _Collison)
@@ -55,9 +57,10 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 
 		Hand->SetSlotTouch(true);
 
-		GEngine->SetGlobalTimeScale(0.5f);
+		GEngine->SetGlobalTimeScale(0.6f);
 
-		AddActorLocation(FVector::Up * 1000.0f * _DeltaTime);
+		//AddActorLocation(FVector::Up * 1000.0f * _DeltaTime);
+		GravityVector = FVector::Down*250.0f;
 	});
 
 }
@@ -66,7 +69,7 @@ void APlay_Cuphead::GroundObject()
 {
 	PlayerCollision->CollisionEnter(ECollisionOrder::Boss1Top, [=](std::shared_ptr<UCollision> _Collison)
 	{
-		JumpVector = FVector::Zero;
+		JumpVector = FVector::Down * 200.0f;
 		State.ChangeState("Idle");
 		return;
 	});
