@@ -33,6 +33,7 @@ private:
 	UCollision* GroundCollision = nullptr;
 	UCollision* LRCollision = nullptr;
 
+	static std::vector<int> num;
 
 	float Delay = 4.0f;
 
@@ -58,6 +59,7 @@ private:
 	void patternInit();
 	void UP(float _DeltaTime);
 	void Down(float _DeltaTime);
+	void DownDie(float _DeltaTime);
 
 };
 

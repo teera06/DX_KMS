@@ -7,10 +7,14 @@
 
 #include "ContentsENum.h"
 #include "PokerChip.h"
+
+#include "Boss2Common.h"
 #include "Play_Cuphead.h"
 
 
 int ADevilPlatform::count=1;
+std::vector<int> ADevilPlatform::num;
+
 ADevilPlatform::ADevilPlatform()
 {
 	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("DevilPlatform");
@@ -44,6 +48,7 @@ ADevilPlatform::ADevilPlatform()
 
 ADevilPlatform::~ADevilPlatform()
 {
+	num.clear();
 }
 
 void ADevilPlatform::BeginPlay()
@@ -58,6 +63,8 @@ void ADevilPlatform::BeginPlay()
 	DevilPlatform->ChangeAnimation("DevilPlatform1");
 
 	patternInit();
+
+	num.resize(4);
 }
 
 void ADevilPlatform::Tick(float _DeltaTime)
@@ -76,6 +83,35 @@ void ADevilPlatform::Tick(float _DeltaTime)
 
 	PlayerCollision();
 
+	if (40 == ABoss2Common::GetHp())
+	{
+		if (GroundOrder == 1)
+		{
+			DownDie(_DeltaTime);
+		}
+	
+		if (GroundOrder == 5)
+		{
+			DownDie(_DeltaTime);
+		}
+		count = 3;
+		return;
+	}
+	else if (10 == ABoss2Common::GetHp())
+	{
+		if (GroundOrder == 2)
+		{
+			DownDie(_DeltaTime);
+		}
+
+		if (GroundOrder == 4)
+		{
+			DownDie(_DeltaTime);
+		}
+		count = 3;
+		return;
+	}
+
 	if (count == GroundOrder)
 	{
 		pattern.Update(_DeltaTime);
@@ -90,22 +126,63 @@ void ADevilPlatform::CreateChip(float _DeltaTime)
 	{
 		if (order == 1)
 		{
+			for (int i = 0; i < num.size(); i++)
+			{
+				if (0 == order - num[i])
+				{
+					order += Add;
+					return;
+				}
+			}
+
 			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(580.0f, 500.0f, 10.0f));
 		}
 		else if (order == 2)
 		{
+			for (int i = 0; i < num.size(); i++)
+			{
+				if (0 == order - num[i])
+				{
+					order += Add;
+					return;
+				}
+			}
 			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(290.0f, 500.0f, 10.0f));
 		}
 		else if (order == 3)
 		{
+			for (int i = 0; i < num.size(); i++)
+			{
+				if (0 == order - num[i])
+				{
+					order += Add;
+					return;
+				}
+			}
 			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(0.0f, 500.0f, 10.0f));
 		}
 		else if (order == 4)
 		{
+			for (int i = 0; i < num.size(); i++)
+			{
+				if (0 == order - num[i])
+				{
+					order += Add;
+					return;
+				}
+			}
 			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(-290.0f, 500.0f, 10.0f));
 		}
 		else if (order == 5)
 		{
+			for (int i = 0; i < num.size(); i++)
+			{
+				if (0 == order - num[i])
+				{
+					order += Add;
+					return;
+				}
+			}
 			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(-580.0f, 500.0f, 10.0f));
 		}
 		else if (order == 6 || order == 0) {
@@ -132,11 +209,14 @@ void ADevilPlatform::patternInit()
 {
 	pattern.CreateState("UP");
 	pattern.CreateState("DOWN");
+	pattern.CreateState("DownDie");
 
 	pattern.SetUpdateFunction("UP", std::bind(&ADevilPlatform::UP, this, std::placeholders::_1));
 	
 
 	pattern.SetUpdateFunction("DOWN", std::bind(&ADevilPlatform::Down, this, std::placeholders::_1));
+
+	pattern.SetUpdateFunction("DownDie", std::bind(&ADevilPlatform::DownDie, this, std::placeholders::_1));
 	
 	pattern.ChangeState("UP");
 }
@@ -160,6 +240,7 @@ void ADevilPlatform::UP(float _DeltaTime)
 
 void ADevilPlatform::Down(float _DeltaTime)
 {
+
 	if (GetActorLocation().iY() == CheckYDown)
 	{
 
@@ -184,4 +265,16 @@ void ADevilPlatform::Down(float _DeltaTime)
 		APlay_Cuphead* Player = dynamic_cast<APlay_Cuphead*>(Ptr);
 		Player->AddActorLocation(FVector::Down * Speed * _DeltaTime);
 	});
+}
+
+void ADevilPlatform::DownDie(float _DeltaTime)
+{
+	if (GetActorLocation().iY() <=-400)
+	{
+		num.push_back(GroundOrder);
+		Destroy();
+		return;
+	}
+
+	AddActorLocation(FVector::Down * Speed * _DeltaTime);
 }
