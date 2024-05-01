@@ -6,6 +6,7 @@
 #include <EngineCore/Collision.h>
 
 #include "ContentsENum.h"
+#include "Play_Cuphead.h"
 
 
 ADevilPlatform::ADevilPlatform()
@@ -23,10 +24,18 @@ ADevilPlatform::ADevilPlatform()
 	GroundCollision = CreateDefaultSubObject<UCollision>("GroundCollision");
 	GroundCollision->SetupAttachment(Root);
 	GroundCollision->AddPosition(FVector(0.0f, 35.0f, 0.0f));
-	GroundCollision->SetScale(FVector(180.0f, 10.0f, 100.0f));
+	GroundCollision->SetScale(FVector(160.0f, 10.0f, 100.0f));
 
 	GroundCollision->SetCollisionGroup(ECollisionOrder::Boss2Object1);
 	GroundCollision->SetCollisionType(ECollisionType::RotRect);
+
+	LRCollision = CreateDefaultSubObject<UCollision>("LRCollision2");
+	LRCollision->SetupAttachment(Root);
+	LRCollision->AddPosition(FVector(0.0f, -30.0f, 0.0f));
+	LRCollision->SetScale(FVector(180.0f, 90.0f, 100.0f));
+
+	LRCollision->SetCollisionGroup(ECollisionOrder::Boss1LR);
+	LRCollision->SetCollisionType(ECollisionType::RotRect);
 
 	SetRoot(Root);
 }
@@ -50,4 +59,16 @@ void ADevilPlatform::BeginPlay()
 void ADevilPlatform::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+	PlayerCollision();
+}
+
+void ADevilPlatform::PlayerCollision()
+{
+	LRCollision->CollisionEnter(ECollisionOrder::Player, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		AActor* Ptr = _Collison->GetActor();
+		APlay_Cuphead* Player = dynamic_cast<APlay_Cuphead*>(Ptr);
+		Player->AddActorLocation(FVector::Up * 100.0f);
+		Player->State.ChangeState("hit");
+	});
 }

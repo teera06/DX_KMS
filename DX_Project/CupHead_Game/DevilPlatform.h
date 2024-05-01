@@ -24,5 +24,8 @@ protected:
 private:
 	USpriteRenderer* DevilPlatform = nullptr;
 	UCollision* GroundCollision = nullptr;
+	UCollision* LRCollision = nullptr;
+
+	void PlayerCollision();
 };
 
