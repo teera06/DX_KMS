@@ -22,8 +22,8 @@ ADevilPlatform::ADevilPlatform()
 
 	GroundCollision = CreateDefaultSubObject<UCollision>("GroundCollision");
 	GroundCollision->SetupAttachment(Root);
-
-	GroundCollision->SetScale(FVector(150.0f, 80.0f, 100.0f));
+	GroundCollision->AddPosition(FVector(0.0f, 35.0f, 0.0f));
+	GroundCollision->SetScale(FVector(180.0f, 10.0f, 100.0f));
 
 	GroundCollision->SetCollisionGroup(ECollisionOrder::Boss2Object1);
 	GroundCollision->SetCollisionType(ECollisionType::RotRect);

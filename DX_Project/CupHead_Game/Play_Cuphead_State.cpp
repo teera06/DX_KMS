@@ -887,6 +887,8 @@ void APlay_Cuphead::Idle(float _DeltaTime)
 
 	DirCheck();
 
+	GroundObject();
+
 	if (true == IsDown('1'))
 	{
 		if (100 == ABoss1Common::GetHp())
@@ -1775,10 +1777,11 @@ void APlay_Cuphead::Boss2PhaseChange(float _DeltaTime)
 
 void APlay_Cuphead::Scared(float _DeltaTime)
 {
+	GroundObject();
+
 	if (true == PlayCuphead->IsCurAnimationEnd())
 	{
 		State.ChangeState("Idle");
 		return;
-
 	}
 }
