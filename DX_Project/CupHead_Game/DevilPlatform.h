@@ -1,5 +1,6 @@
 #pragma once
 #include <EngineCore/Actor.h>
+#include <EngineCore/StateManager.h>
 
 class USpriteRenderer;
 
@@ -23,6 +24,7 @@ public:
 		GroundOrder = _GroundOrder;
 	}
 
+	UStateManager pattern;
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -31,8 +33,23 @@ private:
 	UCollision* GroundCollision = nullptr;
 	UCollision* LRCollision = nullptr;
 
+	int CheckYUP = 0;
+	int CheckYDown = 0;
+
 	int GroundOrder = 0;
 
+	static int count;
+	float Speed = 250.0f;
+
+
+	bool OneCheck = false;
+
 	void PlayerCollision();
+
+	// ป๓ลย
+	void patternInit();
+	void UP(float _DeltaTime);
+	void Down(float _DeltaTime);
+
 };
 

@@ -9,6 +9,7 @@
 #include "Play_Cuphead.h"
 
 
+int ADevilPlatform::count=1;
 ADevilPlatform::ADevilPlatform()
 {
 	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("DevilPlatform");
@@ -54,12 +55,28 @@ void ADevilPlatform::BeginPlay()
 	DevilPlatform->CreateAnimation("DevilPlatform4", "DevilPlatform4", 0.075f);
 
 	DevilPlatform->ChangeAnimation("DevilPlatform1");
+
+	patternInit();
 }
 
 void ADevilPlatform::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+	if (false == OneCheck)
+	{
+		OneCheck = true;
+
+		CheckYDown = GetActorLocation().iY();
+		CheckYUP = GetActorLocation().iY() + 180;
+	}
+
 	PlayerCollision();
+
+	if (count == GroundOrder)
+	{
+		pattern.Update(_DeltaTime);
+	}
 }
 
 void ADevilPlatform::PlayerCollision()
@@ -70,5 +87,63 @@ void ADevilPlatform::PlayerCollision()
 		APlay_Cuphead* Player = dynamic_cast<APlay_Cuphead*>(Ptr);
 		Player->AddActorLocation(FVector::Up * 100.0f);
 		Player->State.ChangeState("hit");
+	});
+}
+
+void ADevilPlatform::patternInit()
+{
+	pattern.CreateState("UP");
+	pattern.CreateState("DOWN");
+
+	pattern.SetUpdateFunction("UP", std::bind(&ADevilPlatform::UP, this, std::placeholders::_1));
+	
+
+	pattern.SetUpdateFunction("DOWN", std::bind(&ADevilPlatform::Down, this, std::placeholders::_1));
+	
+	pattern.ChangeState("UP");
+}
+
+void ADevilPlatform::UP(float _DeltaTime)
+{
+	if (GetActorLocation().iY() == CheckYUP)
+	{
+		pattern.ChangeState("DOWN");
+		return;
+	}
+	
+	AddActorLocation(FVector::Up*Speed*_DeltaTime);
+	GroundCollision->CollisionStay(ECollisionOrder::Player, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		AActor* Ptr = _Collison->GetActor();
+		APlay_Cuphead* Player = dynamic_cast<APlay_Cuphead*>(Ptr);
+		Player->AddActorLocation(FVector::Up * Speed * _DeltaTime);
+	});
+}
+
+void ADevilPlatform::Down(float _DeltaTime)
+{
+	if (GetActorLocation().iY() == CheckYDown)
+	{
+
+		if (count == 5)
+		{
+			count = 1;
+			pattern.ChangeState("UP");
+			return;
+		}
+		
+		++count;
+		pattern.ChangeState("UP");
+		return;
+	}
+
+
+	AddActorLocation(FVector::Down * Speed * _DeltaTime);
+
+	GroundCollision->CollisionStay(ECollisionOrder::Player, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		AActor* Ptr = _Collison->GetActor();
+		APlay_Cuphead* Player = dynamic_cast<APlay_Cuphead*>(Ptr);
+		Player->AddActorLocation(FVector::Down * Speed * _DeltaTime);
 	});
 }
