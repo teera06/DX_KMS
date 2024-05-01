@@ -86,7 +86,7 @@ void ADemonMonster::DemonIntro1(float _DeltaTime)
 
 void ADemonMonster::DemonJump(float _DeltaTime)
 {
-	AddActorLocation((Move+(FVector::Up*0.05f)) * speed * _DeltaTime);
+	AddActorLocation((MoveL+(FVector::Up*0.05f)) * speed * _DeltaTime);
 
 	if (true == Demon->IsCurAnimationEnd())
 	{
@@ -99,11 +99,11 @@ void ADemonMonster::DemonJump(float _DeltaTime)
 void ADemonMonster::DemonAttack1(float _DeltaTime)
 {
 
-	AddActorLocation(Move * speed * _DeltaTime);
+	AddActorLocation(MoveL * speed * _DeltaTime);
 	if (GetActorLocation().iX() <= -700 || GetActorLocation().iX() >= 700) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
 	{
 		Demon->SetDir(EEngineDir::Left);
-		Move = FVector::Right;
+		MoveL = FVector::Right;
 		AddActorLocation(FVector(0.0f, -140.0f, -100.0f));
 		Demon->SetOrder(ERenderOrder::FrontSkillMonster);
 		State.ChangeState("DemonAttack2");
@@ -113,14 +113,62 @@ void ADemonMonster::DemonAttack1(float _DeltaTime)
 
 void ADemonMonster::DemonAttack2(float _DeltaTime)
 {
-	AddActorLocation(Move * speed * _DeltaTime);
+	AddActorLocation(MoveL * speed * _DeltaTime);
 
-	if (Move.iX()==1 && GetActorLocation().iX() >= 700) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
+	if (MoveL.iX()==1 && GetActorLocation().iX() >= 700) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
 	{
 		Destroy();
 	}
 }
 
 void ADemonMonster::StateInit2()
+{
+	State2.CreateState("DemonIntro2");
+	State2.CreateState("Demon2Jump");
+	State2.CreateState("Demon2Attack1");
+	State2.CreateState("Demon2Attack2");
+
+	State2.SetUpdateFunction("DemonIntro2", std::bind(&ADemonMonster::DemonIntro2, this, std::placeholders::_1));
+	State2.SetStartFunction("DemonIntro2", [=] {Demon->ChangeAnimation("DemonIntro2"); });
+
+	State2.SetUpdateFunction("Demon2Jump", std::bind(&ADemonMonster::Demon2Jump, this, std::placeholders::_1));
+	State2.SetStartFunction("Demon2Jump", [=] {Demon->ChangeAnimation("DemonJump"); });
+
+	State2.SetUpdateFunction("Demon2Attack1", std::bind(&ADemonMonster::Demon2Attack1, this, std::placeholders::_1));
+	State2.SetStartFunction("Demon2Attack1", [=] {Demon->ChangeAnimation("DemonAttack"); });
+
+	State2.SetUpdateFunction("Demon2Attack2", std::bind(&ADemonMonster::Demon2Attack2, this, std::placeholders::_1));
+	State2.SetStartFunction("Demon2Attack2", [=] {Demon->ChangeAnimation("DemonAttack"); });
+
+	State2.ChangeState("DemonIntro1");
+}
+
+void ADemonMonster::DemonIntro2(float _DeltaTime)
+{
+	if (true == Demon->IsCurAnimationEnd())
+	{
+		State2.ChangeState("Demon2Jump");
+		return;
+	}
+}
+
+
+
+void ADemonMonster::Demon2Jump(float _DeltaTime)
+{
+	AddActorLocation((MoveL + (FVector::Up * 0.05f)) * speed * _DeltaTime);
+
+	if (true == Demon->IsCurAnimationEnd())
+	{
+		State2.ChangeState("DemonAttack1");
+		return;
+	}
+}
+
+void ADemonMonster::Demon2Attack1(float _DeltaTime)
+{
+}
+
+void ADemonMonster::Demon2Attack2(float _DeltaTime)
 {
 }

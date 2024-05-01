@@ -32,7 +32,7 @@ protected:
 private:
 	USpriteRenderer* Demon = nullptr;
 
-	FVector Move = FVector::Left;
+	FVector MoveL = FVector::Left;
 
 	float speed = 300.0f;
 
