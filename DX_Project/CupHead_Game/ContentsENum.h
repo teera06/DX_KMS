@@ -100,7 +100,8 @@ enum class ECollisionOrder
 	Wind,
 	Devil1,
 	Orb_Fire1,
-	Orb_Fire2
+	Orb_Fire2,
+	Demon
 };
 
 enum class EScreenEffect

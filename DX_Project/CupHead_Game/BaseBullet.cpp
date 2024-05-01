@@ -10,6 +10,7 @@
 #include "ContentsENum.h"
 
 #include "Firefly.h"
+#include "DemonMonster.h"
 
 ABaseBullet::ABaseBullet()
 {
@@ -99,6 +100,16 @@ void ABaseBullet::Collisiongather()
 		AActor* Ptr = _Collison->GetActor();
 		AFirefly* Monster = dynamic_cast<AFirefly*>(Ptr);
 		Monster->SetDie(true);
+		DestroyCheck = true;
+		BulletRender->ChangeAnimation("Peashot_Death");
+	});
+
+	BulletCollision->CollisionEnter(ECollisionOrder::Demon, [=](std::shared_ptr<UCollision> _Collison)
+	{
+
+		AActor* Ptr = _Collison->GetActor();
+		ADemonMonster* Monster = dynamic_cast<ADemonMonster*>(Ptr);
+		Monster->IsDieCheck(true);
 		DestroyCheck = true;
 		BulletRender->ChangeAnimation("Peashot_Death");
 	});

@@ -4,6 +4,7 @@
 #include <EngineCore/DefaultSceneComponent.h>
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/Collision.h>
+#include <Functional>
 
 #include "ContentsENum.h"
 
@@ -15,6 +16,14 @@ ADemonMonster::ADemonMonster()
 	Demon->SetupAttachment(Root);
 	//Boss2->SetPivot(EPivot::LEFTTOP);
 
+
+	MonsterCollision = CreateDefaultSubObject<UCollision>("MonsterCollision");
+	MonsterCollision->SetupAttachment(Root);
+	MonsterCollision->SetScale(FVector(70.0f, 70.0f, 100.0f));
+	MonsterCollision->SetCollisionGroup(ECollisionOrder::Demon);
+	MonsterCollision->SetCollisionType(ECollisionType::RotRect);
+
+
 	SetRoot(Root);
 
 	Demon->SetOrder(ERenderOrder::BackMonster);
@@ -22,6 +31,8 @@ ADemonMonster::ADemonMonster()
 	Demon->SetSamplering(ETextureSampling::LINEAR);
 	Demon->SetAutoSize(1.0f, true);
 	Demon->SetPlusColor(FVector(0.1f,0.1f, 0.1f));
+	MonsterCollision->SetActive(false);
+
 }
 
 ADemonMonster::~ADemonMonster()
@@ -71,6 +82,7 @@ void ADemonMonster::AniCreate()
 	Demon->CreateAnimation("DemonIntro2", "DemonIntro2", 0.075f);
 	Demon->CreateAnimation("DemonJump", "DemonJump", 0.075f);
 	Demon->CreateAnimation("DemonAttack", "DemonAttack", 0.075f);
+	Demon->CreateAnimation("Explosion", "Explosion", 0.075f);
 	
 }
 
@@ -80,6 +92,7 @@ void ADemonMonster::StateInit()
 	State.CreateState("DemonJump");
 	State.CreateState("DemonAttack1");
 	State.CreateState("DemonAttack2");
+	State.CreateState("Die");
 	
 	State.SetUpdateFunction("DemonIntro1", std::bind(&ADemonMonster::DemonIntro1, this, std::placeholders::_1));
 	State.SetStartFunction("DemonIntro1", [=] {Demon->ChangeAnimation("DemonIntro1"); });
@@ -92,6 +105,10 @@ void ADemonMonster::StateInit()
 
 	State.SetUpdateFunction("DemonAttack2", std::bind(&ADemonMonster::DemonAttack2, this, std::placeholders::_1));
 	State.SetStartFunction("DemonAttack2", [=] {Demon->ChangeAnimation("DemonAttack"); });
+
+	State.SetUpdateFunction("Die", std::bind(&ADemonMonster::RealDie, this, std::placeholders::_1));
+	State.SetStartFunction("Die", [=] {Demon->ChangeAnimation("Explosion"); });
+
 	
 	State.ChangeState("DemonIntro1");
 }
@@ -128,6 +145,7 @@ void ADemonMonster::DemonAttack1(float _DeltaTime)
 		MoveL = FVector::Right;
 		AddActorLocation(FVector(0.0f, -140.0f, -100.0f));
 		Demon->SetOrder(ERenderOrder::FrontSkillMonster);
+		MonsterCollision->SetActive(true);
 		State.ChangeState("DemonAttack2");
 		return;
 	}
@@ -141,6 +159,12 @@ void ADemonMonster::DemonAttack2(float _DeltaTime)
 	{
 		Destroy();
 	}
+
+	if (true == DieCheck)
+	{
+		State.ChangeState("Die");
+		return;
+	}
 }
 
 void ADemonMonster::StateInit2()
@@ -149,6 +173,7 @@ void ADemonMonster::StateInit2()
 	State2.CreateState("Demon2Jump");
 	State2.CreateState("Demon2Attack1");
 	State2.CreateState("Demon2Attack2");
+	State2.CreateState("Die");
 
 	State2.SetUpdateFunction("DemonIntro2", std::bind(&ADemonMonster::DemonIntro2, this, std::placeholders::_1));
 	State2.SetStartFunction("DemonIntro2", [=] {Demon->ChangeAnimation("DemonIntro2"); });
@@ -161,6 +186,11 @@ void ADemonMonster::StateInit2()
 
 	State2.SetUpdateFunction("Demon2Attack2", std::bind(&ADemonMonster::Demon2Attack2, this, std::placeholders::_1));
 	State2.SetStartFunction("Demon2Attack2", [=] {Demon->ChangeAnimation("DemonAttack"); });
+
+	State2.SetUpdateFunction("Die", std::bind(&ADemonMonster::RealDie, this, std::placeholders::_1));
+	State2.SetStartFunction("Die", [=] {Demon->ChangeAnimation("Explosion"); });
+
+	
 
 	Demon->SetDir(EEngineDir::Left);
 	State2.ChangeState("DemonIntro2");
@@ -198,6 +228,7 @@ void ADemonMonster::Demon2Attack1(float _DeltaTime)
 		MoveR = FVector::Left;
 		AddActorLocation(FVector(0.0f, -140.0f, -100.0f));
 		Demon->SetOrder(ERenderOrder::FrontSkillMonster);
+		MonsterCollision->SetActive(true);
 		State2.ChangeState("Demon2Attack2");
 		return;
 	}
@@ -211,4 +242,25 @@ void ADemonMonster::Demon2Attack2(float _DeltaTime)
 	{
 		Destroy();
 	}
+
+	if (true == DieCheck)
+	{
+		State2.ChangeState("Die");
+		return;
+	}
 }
+
+void ADemonMonster::RealDie(float _DeltaTime)
+{
+	if (true == Demon->IsCurAnimationEnd())
+	{
+		Destroy();
+		return;
+	}
+}
+
+
+
+
+
+
