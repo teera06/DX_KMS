@@ -120,3 +120,7 @@ void ADemonMonster::DemonAttack2(float _DeltaTime)
 		Destroy();
 	}
 }
+
+void ADemonMonster::StateInit2()
+{
+}
