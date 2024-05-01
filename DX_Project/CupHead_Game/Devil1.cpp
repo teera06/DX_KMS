@@ -230,8 +230,6 @@ void ADevil1::AniCreate()
 void ADevil1::CreateHeadAtt()
 {
 	NewHeadAtt = GetWorld()->SpawnActor<AHeadAtt>("HeadAtt");
-	//NewHeadAtt->SetSmallSkillDir(FVector::Left);
-	//SkillYMove();
 }
 
 void ADevil1::CreateRamArms()
@@ -341,8 +339,8 @@ void ADevil1::Phase1Idle(float _DeltaTime)
 {
 	if (phasecheck == 1 && GetHp() <= 70)
 	{
-		AddActorLocation(FVector(25.0f, 0.0f, 0.0f));
-		Boss2Phase2->AddPosition(FVector(-25.0f, 0.0f, 0.0f));
+		AddActorLocation(FVector(45.0f, 20.0f, 0.0f));
+		Boss2Phase2->AddPosition(FVector(-45.0f, -20.0f, 0.0f));
 		phasecheck = 2;
 		PhaseChange2->SetActive(true);
 		PhaseChange2->ChangeAnimation("Phase1Death");
