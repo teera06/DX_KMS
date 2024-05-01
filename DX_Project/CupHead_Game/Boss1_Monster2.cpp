@@ -49,20 +49,20 @@ ABoss1_Monster2::ABoss1_Monster2()
 	SlotImage1 = CreateDefaultSubObject<USpriteRenderer>("SlotImage1");
 	SlotImage1->SetupAttachment(Root);
 	SlotImage1->SetPivot(EPivot::BOT);
-	SlotImage1->AddPosition(FVector(-125.0f, 170.0f, 0.0f));
+	SlotImage1->AddPosition(FVector(-125.0f, 135.0f, 0.0f));
 	SlotImage1->AddRotationDeg(FVector(0.0f, 35.0f, 0.0f));
 	//SlotImage1->SetPlusColor(FVector(0.0f, 0.5f, 0.0f));
 
 	SlotImage2 = CreateDefaultSubObject<USpriteRenderer>("SlotImage2");
 	SlotImage2->SetupAttachment(Root);
 	SlotImage2->SetPivot(EPivot::BOT);
-	SlotImage2->AddPosition(FVector(-70.0f, 170.0f, 0.0f));
+	SlotImage2->AddPosition(FVector(-70.0f, 135.0f, 0.0f));
 	SlotImage2->AddRotationDeg(FVector(0.0f, 35.0f, 0.0f));
 
 	SlotImage3 = CreateDefaultSubObject<USpriteRenderer>("SlotImage3");
 	SlotImage3->SetupAttachment(Root);
 	SlotImage3->SetPivot(EPivot::BOT);
-	SlotImage3->AddPosition(FVector(-15.0f, 170.0f, 0.0f));
+	SlotImage3->AddPosition(FVector(-15.0f, 135.0f, 0.0f));
 	SlotImage3->AddRotationDeg(FVector(0.0f, 35.0f, 0.0f));
 	
 	//SlotImage1->SetActive(false);
@@ -127,17 +127,14 @@ void ABoss1_Monster2::BeginPlay()
 	SlotImage1->SetOrder(ERenderOrder::SlotImage);
 	SlotImage1->SetSprite("TEMP1.png");
 	SlotImage1->SetSamplering(ETextureSampling::LINEAR);
-	SlotImage1->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 
 	SlotImage2->SetOrder(ERenderOrder::SlotImage);
 	SlotImage2->SetSprite("TEMP1.png");
 	SlotImage2->SetSamplering(ETextureSampling::LINEAR);
-	SlotImage2->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 
 	SlotImage3->SetOrder(ERenderOrder::SlotImage);
 	SlotImage3->SetSprite("TEMP1.png");
 	SlotImage3->SetSamplering(ETextureSampling::LINEAR);
-	SlotImage3->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 
 	FrontSlot->SetOrder(ERenderOrder::ObjectFront2);
 	FrontSlot->SetSprite("tallfrog_slotman_attack_top_0001.png");
@@ -409,7 +406,18 @@ void ABoss1_Monster2::Phase3Collisioncheck()
 
 void ABoss1_Monster2::SlotStartImage(float _DeltaTime)
 {
-	VertexY.Y -= (_DeltaTime* SlotSpped);
+
+	if (true==ISSlotSpeed)
+	{
+		SlotSpeed = 2.89f;
+	}
+
+	if (false==ISSlotSpeed)
+	{
+		SlotSpeed = 3.0f;
+	}
+
+	VertexY.Y -= (_DeltaTime* SlotSpeed);
 
 	SlotImage1->SetVertexUVPlus(VertexY);
 	SlotImage2->SetVertexUVPlus(VertexY);
@@ -609,7 +617,13 @@ void ABoss1_Monster2::phase3Idle(float _DeltaTime)
 
 	if (SlotAttCount == 3)
 	{
+		ISSlotSpeed = false;
 		SlotAttCount = 0;
+	}
+
+	if (SlotAttCount == 2)
+	{
+		ISSlotSpeed = true;
 	}
 
 	if (coolDownTime < 0 && 3 == phasecheck && true == SlotTouch)
@@ -724,7 +738,6 @@ void ABoss1_Monster2::Phase3SlotCoinAtt(float _DeltaTime)
 
 void ABoss1_Monster2::Phase3SlotStart(float _DeltaTime)
 {
-
 	SlotStartImage(_DeltaTime);
 	FrontSlot->ChangeAnimation("SlotFront");
 

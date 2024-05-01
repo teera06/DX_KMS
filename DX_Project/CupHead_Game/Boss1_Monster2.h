@@ -57,6 +57,8 @@ private:
 	UCollision* WindCollision = nullptr;
 
 	float4 VertexY = float4::Zero;
+	float4 VertexY1 = float4::Zero;
+	float4 VertexY2 = float4::Zero;
 
 	float RandomSkillDelay = 0;
 
@@ -64,11 +66,14 @@ private:
 
 	float WindSpeed = 350.0f;
 
-	float SlotSpped = 2.0f;
+	float SlotSpeed = 3.0f;
+	float SlotSpeed2 = 6.0f;
+	float SlotSpeed3 = 9.0f;
 
 	int Bigattcount = 0;
 
 	int SlotAttCount = 0;
+	bool ISSlotSpeed = 0;
 
 
 	bool Change3 = false;
