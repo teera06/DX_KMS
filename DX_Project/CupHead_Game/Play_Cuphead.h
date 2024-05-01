@@ -58,6 +58,7 @@ private:
 
 	USpriteRenderer* PlayCuphead= nullptr;
 	USpriteRenderer* BulletStart = nullptr;
+	USpriteRenderer* Effect = nullptr;
 	UCollision* PlayerCollision=nullptr;
 
 	std::shared_ptr<ABaseBullet> NewBullet = nullptr;
@@ -116,7 +117,7 @@ private:
 	// false -> 기본 공격
 	// true -> 게이지 공격
 
-	void ParryCheck();
+	void ParryCheck(float _DeltaTime);
 	void GroundObject();
 	void EventCollision(float _DeltaTime);
 

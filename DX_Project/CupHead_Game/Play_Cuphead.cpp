@@ -23,6 +23,12 @@ APlay_Cuphead::APlay_Cuphead()
 
 	BulletStart->SetupAttachment(Root);
 
+	Effect = CreateDefaultSubObject<USpriteRenderer>("Parry");
+
+	Effect->SetupAttachment(Root);
+
+	Effect->SetPivot(EPivot::BOT);
+
 	PlayerCollision = CreateDefaultSubObject<UCollision>("Collision");
 	PlayerCollision->SetupAttachment(Root);
 	PlayerCollision->SetPosition(FVector(0.0f, 60.0f, 0.0f));
@@ -33,6 +39,8 @@ APlay_Cuphead::APlay_Cuphead()
 
 
 	SetRoot(Root);
+
+
 	PlayCuphead->SetOrder(ERenderOrder::Cuphead);
 	PlayCuphead->SetSprite("cuphead_idle_0001.png");
 	PlayCuphead->SetSamplering(ETextureSampling::LINEAR);
@@ -41,6 +49,10 @@ APlay_Cuphead::APlay_Cuphead()
 	BulletStart->SetSprite("Spawn01.png");
 	BulletStart->SetSamplering(ETextureSampling::LINEAR);
 
+	Effect->SetOrder(ERenderOrder::FrontSkill);
+	Effect->SetSprite("parryeffect_01.png");
+	Effect->SetSamplering(ETextureSampling::LINEAR);
+	Effect->SetPosition(FVector(0.0f, -10.0f, 0.0f));
 
 	InputOn();
 
@@ -85,6 +97,9 @@ void APlay_Cuphead::BeginPlay()
 	PlayCuphead->CreateAnimation("SSGround_Up", "SSGround_Up", 0.05f);
 
 
+	Effect->CreateAnimation("ParryEffect", "ParryEffect", 0.055f);
+	Effect->ChangeAnimation("ParryEffect");
+
 	BulletStart->CreateAnimation("Peashot_Spawn", "Peashot_Spawn", 0.05f);
 
 	BulletStart->ChangeAnimation("Peashot_Spawn");
@@ -93,9 +108,11 @@ void APlay_Cuphead::BeginPlay()
 	StateInit();
 	PlayCuphead->SetAutoSize(1.0f, true);
 	BulletStart->SetAutoSize(1.0f, true);
+	Effect->SetAutoSize(1.0f, true);
 	Dir = EDir::Right;
 	
 	BulletStart->SetActive(false);
+	Effect->SetActive(false);
 	//PlayCuphead->ChangeAnimation("Idle");
 }
 

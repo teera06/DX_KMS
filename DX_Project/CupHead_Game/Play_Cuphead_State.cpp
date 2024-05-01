@@ -27,32 +27,39 @@
 #include "PhaseChangeBack.h"
 
 
-
 //void Function(URenderer* Renderer)
 //{
 //	Renderer->ChangeAnimation("Idle");
 //}
 
-void APlay_Cuphead::ParryCheck()
+void APlay_Cuphead::ParryCheck(float _DeltaTime)
 {
-
 	PlayerCollision->CollisionEnter(ECollisionOrder::Boss1Monster2Hand, [=](std::shared_ptr<UCollision> _Collison)
 	{
+		Effect->SetActive(true);
 		AActor* Ptr = _Collison->GetActor();
 		ABoss1_Monster2* Hand = dynamic_cast<ABoss1_Monster2*>(Ptr);
 
 		Hand->SetSlotTouch(true);
 
+		GEngine->SetGlobalTimeScale(0.5f);
+
+		AddActorLocation(FVector::Up * 1000.0f* _DeltaTime);
 	});
 
 	PlayerCollision->CollisionStay(ECollisionOrder::Boss1Monster2Hand, [=](std::shared_ptr<UCollision> _Collison)
 	{
+		Effect->SetActive(true);
 		AActor* Ptr = _Collison->GetActor();
-		ABoss1_Monster2* Hand= dynamic_cast<ABoss1_Monster2*>(Ptr);
+		ABoss1_Monster2* Hand = dynamic_cast<ABoss1_Monster2*>(Ptr);
 
 		Hand->SetSlotTouch(true);
 
+		GEngine->SetGlobalTimeScale(0.5f);
+
+		AddActorLocation(FVector::Up * 1000.0f * _DeltaTime);
 	});
+
 }
 
 void APlay_Cuphead::GroundObject()
@@ -1558,10 +1565,13 @@ void APlay_Cuphead::Parry(float _DeltaTime)
 {
 	DirCheck();
 
-	ParryCheck();
+
+	ParryCheck(_DeltaTime);
 
 	if (true == PlayCuphead->IsCurAnimationEnd())
 	{
+		Effect->SetActive(false);
+		GEngine->SetGlobalTimeScale(1.0f);
 		State.ChangeState("Jump");
 		return;
 	}
