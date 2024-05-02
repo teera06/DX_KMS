@@ -28,7 +28,7 @@ private:
 	int Add = 1;
 
 	bool OneCheck1 = false;
-	bool OneCheck2 = false;
+	
 
 	void CreateChip1(float _DeltaTime);
 	void CreateChip2(float _DeltaTime);
