@@ -74,10 +74,32 @@ void Aball::BeginPlay()
 void Aball::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-	Collisiongather(_DeltaTime);
+
+	if (false == OneCheck)
+	{
+		OneCheck = true;
+		if (StartPos.Y > 0)
+		{
+			UpDown = false;
+		}
+		else
+		{
+			UpDown = true;
+		}
+	}
+
+	if (false==UpDown)
+	{
+		CollisiongatherUp(_DeltaTime);
+	}
+	else
+	{
+		CollisiongatherDown(_DeltaTime);
+	}
+	
 }
 
-void Aball::Collisiongather(float _DeltaTime)
+void Aball::CollisiongatherUp(float _DeltaTime)
 {
 	if (GetActorLocation().iX() >= 640)
 	{
@@ -105,4 +127,34 @@ void Aball::Collisiongather(float _DeltaTime)
 	FxRender->SetRotationDeg(RenderRot*-1.0f);
 	ballRender->SetRotationDeg(RenderRot);
 	AddActorLocation(StartPos *Speed*_DeltaTime);
+}
+
+void Aball::CollisiongatherDown(float _DeltaTime)
+{
+	if (GetActorLocation().iX() >= 640)
+	{
+		Destroy();
+	}
+
+
+	if (GetActorLocation().iY() <= -300 || GetActorLocation().iY() >= 360)
+	{
+		FxRender->SetActive(true);
+		FxRender->ChangeAnimation("FX");
+		StartPos.Y *= -1.0f;
+		RenderRot *= -1.0f;
+		Renderpox *= -1.0f;
+	}
+	else
+	{
+		if (true == FxRender->IsActive() && true == FxRender->IsCurAnimationEnd())
+		{
+			FxRender->SetActive(false);
+		}
+	}
+
+	FxRender->SetPosition(Renderpox * 1.0f);
+	FxRender->SetRotationDeg(RenderRot * 1.0f);
+	ballRender->SetRotationDeg(RenderRot*-1.0f);
+	AddActorLocation(StartPos * Speed * _DeltaTime);
 }

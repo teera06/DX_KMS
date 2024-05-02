@@ -46,6 +46,12 @@ private:
 	float VectorX = -0.1f;
 	float VectorY = 0.36f;
 
-	void Collisiongather(float _DeltaTime);
+	bool OneCheck = false;
+	bool UpDown = false;
+	// false== Up
+	// true==Donw
+
+	void CollisiongatherUp(float _DeltaTime);
+	void CollisiongatherDown(float _DeltaTime);
 };
 
