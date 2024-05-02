@@ -103,7 +103,8 @@ enum class ECollisionOrder
 	Orb_Fire1,
 	Orb_Fire2,
 	Demon,
-	imp
+	imp,
+	FatDemon
 };
 
 enum class EScreenEffect

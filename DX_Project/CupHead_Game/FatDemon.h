@@ -24,6 +24,11 @@ public:
 		return FatDemon;
 	}
 
+	void AddHp(const int& _Hp)
+	{
+		Hp -= _Hp;
+	}
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -32,15 +37,22 @@ protected:
 private:
 	USpriteRenderer* FatDemon = nullptr;
 
+	UCollision* MonsterCollision = nullptr;
+
 	FVector MoveVector = FVector::Up;
 
 	float Speed = 200.0f;
 	float Delay = 3.0f;
 
+	int Hp = 3;
+
 	void CreateSkill();
 
 	void patternInit();
+	void FatDemonIntro(float _DeltaTime);
 	void FatDemonIdle(float _DeltaTime);
 	void FatDemonAttack(float _DeltaTime);
+	void FatDemonDeath(float _DeltaTime);
+	void FatDemonDeathIdle(float _DeltaTime);
 };
 

@@ -12,6 +12,8 @@
 #include "Firefly.h"
 #include "DemonMonster.h"
 #include "Imp.h"
+#include "FatDemon.h"
+
 
 
 ABaseBullet::ABaseBullet()
@@ -122,6 +124,16 @@ void ABaseBullet::Collisiongather()
 		AActor* Ptr = _Collison->GetActor();
 		AImp* Monster = dynamic_cast<AImp*>(Ptr);
 		Monster->IsDieCheck(true);
+		DestroyCheck = true;
+		BulletRender->ChangeAnimation("Peashot_Death");
+	});
+
+	BulletCollision->CollisionEnter(ECollisionOrder::FatDemon, [=](std::shared_ptr<UCollision> _Collison)
+	{
+
+		AActor* Ptr = _Collison->GetActor();
+		AFatDemon* Monster = dynamic_cast<AFatDemon*>(Ptr);
+		Monster->AddHp(1);
 		DestroyCheck = true;
 		BulletRender->ChangeAnimation("Peashot_Death");
 	});
