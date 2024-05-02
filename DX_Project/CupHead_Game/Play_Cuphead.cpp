@@ -141,22 +141,40 @@ void APlay_Cuphead::BeginPlay()
 	HpBar->SetAutoSize(1.0f, true);
 
 	HpBar->SetPosition({ -570.0f, -310.0f });
-	//PlayCuphead->ChangeAnimation("Idle");
+
+	HpBar->CreateAnimation("HP3", "HP3", 0.75f);
+	HpBar->CreateAnimation("HP2", "HP2", 0.75f);
+	HpBar->CreateAnimation("HP1", "HP1", 0.75f);
+	HpBar->CreateAnimation("HP0", "HP0", 0.75f);
+
+	HpBar->ChangeAnimation("HP3");
 }
 
 void APlay_Cuphead::Tick(float _DeltaTime)
 {
 	// 위에 뭔가를 쳐야할때도 있다.
 	Super::Tick(_DeltaTime);
+	
+	
 	State.Update(_DeltaTime);
+
+	if (Hp == 2)
+	{
+		HpBar->ChangeAnimation("HP2");
+	}
+	else if (Hp == 1)
+	{
+		HpBar->ChangeAnimation("HP1");
+	}
+	else if (Hp <= 0)
+	{
+		HpBar->ChangeAnimation("HP0");
+	}
+
 
 	PlayerPos = GetActorLocation();
 
-	PlayerCollision->CollisionEnter(ECollisionOrder::Boss1Monster1, [=](std::shared_ptr<UCollision> _Collison)
-	{
 	
-	//_Collison->GetActor()->Destroy();
-	});
 
 
 	DebugMessageFunction();
