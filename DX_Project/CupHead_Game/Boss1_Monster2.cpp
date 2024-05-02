@@ -18,7 +18,7 @@
 #include "Boss1_Monster1.h"
 
 #include "Play_Cuphead.h"
-
+#include "ScreenEffect.h"
 
 ABoss1_Monster2::ABoss1_Monster2()
 {
@@ -284,6 +284,12 @@ void ABoss1_Monster2::Phase2StateInit()
 
 	Phase2.SetUpdateFunction("Phase3Att", std::bind(&ABoss1_Monster2::Phase3Att, this, std::placeholders::_1));
 	Phase2.SetStartFunction("Phase3Att", [=] {BigBoss1->ChangeAnimation("Phase3Att"); });
+
+	Phase2.SetUpdateFunction("DieTransition", std::bind(&ABoss1_Monster2::DieTransition, this, std::placeholders::_1));
+	Phase2.SetStartFunction("DieTransition", [=] {BigBoss1->ChangeAnimation("DieTransition"); });
+
+	Phase2.SetUpdateFunction("LastDie", std::bind(&ABoss1_Monster2::LastDie, this, std::placeholders::_1));
+	Phase2.SetStartFunction("LastDie", [=] {BigBoss1->ChangeAnimation("LastDie"); });
 
 	Phase2.ChangeState("phase3Intro");
 }
@@ -620,6 +626,11 @@ void ABoss1_Monster2::phase3Intro2(float _DeltaTime)
 
 void ABoss1_Monster2::phase3Idle(float _DeltaTime)
 {
+	if (GetHp() <= 0)
+	{
+		Phase2.ChangeState("DieTransition");
+		return;
+	}
 
 	if (SlotAttCount == 3)
 	{
@@ -649,6 +660,12 @@ void ABoss1_Monster2::phase3Idle(float _DeltaTime)
 
 void ABoss1_Monster2::CoinAtt(float _DeltaTime)
 {
+	if (GetHp() <= 0)
+	{
+		Phase2.ChangeState("DieTransition");
+		return;
+	}
+
 	if (Bigattcount == 1)
 	{
 		coolDownTime = 1.0f;
@@ -687,6 +704,11 @@ void ABoss1_Monster2::Phase3SlotReady(float _DeltaTime)
 void ABoss1_Monster2::Phase3Slot(float _DeltaTime)
 {
 	HandCollision->SetActive(true);
+	if (GetHp() <= 0)
+	{
+		Phase2.ChangeState("DieTransition");
+		return;
+	}
 
 	if (true == SlotTouch)
 	{
@@ -707,6 +729,12 @@ void ABoss1_Monster2::Phase3Slot(float _DeltaTime)
 
 void ABoss1_Monster2::Phase3SlotCoinAtt(float _DeltaTime)
 {
+	if (GetHp() <= 0)
+	{
+		Phase2.ChangeState("DieTransition");
+		return;
+	}
+
 	if (true == SlotTouch)
 	{
 		SlotStartImage(_DeltaTime);
@@ -744,6 +772,12 @@ void ABoss1_Monster2::Phase3SlotCoinAtt(float _DeltaTime)
 
 void ABoss1_Monster2::Phase3SlotStart(float _DeltaTime)
 {
+	if (GetHp() <= 0)
+	{
+		Phase2.ChangeState("DieTransition");
+		return;
+	}
+
 	SlotStartImage(_DeltaTime);
 	FrontSlot->ChangeAnimation("SlotFront");
 
@@ -757,6 +791,12 @@ void ABoss1_Monster2::Phase3SlotStart(float _DeltaTime)
 
 void ABoss1_Monster2::Phase3AttReady(float _DeltaTime)
 {
+	if (GetHp() <= 0)
+	{
+		Phase2.ChangeState("DieTransition");
+		return;
+	}
+
 	if (true == BigBoss1->IsCurAnimationEnd())
 	{
 		Bigattcount = 0;
@@ -768,6 +808,12 @@ void ABoss1_Monster2::Phase3AttReady(float _DeltaTime)
 
 void ABoss1_Monster2::Phase3Att(float _DeltaTime)
 {
+	if (GetHp() <= 0)
+	{
+		Phase2.ChangeState("DieTransition");
+		return;
+	}
+
 	if (true == BigBoss1->IsCurAnimationEnd())
 	{
 		int n = 2;
@@ -811,4 +857,19 @@ void ABoss1_Monster2::Phase3Att(float _DeltaTime)
 			return;
 		}
 	}
+}
+
+void ABoss1_Monster2::DieTransition(float _DeltaTime)
+{
+	if (true == BigBoss1->IsCurAnimationEnd())
+	{
+		GetWorld()->SpawnActor<AScreenEffect>("Knockout")->SetScreenEffect(EScreenEffect::Knockout);
+		Phase2.ChangeState("LastDie");
+		return;
+	}
+}
+
+void ABoss1_Monster2::LastDie(float _DeltaTime)
+{
+
 }

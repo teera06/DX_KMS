@@ -123,5 +123,8 @@ private:
 	void Phase3AttReady(float _DeltaTime);
 	void Phase3Att(float _DeltaTime);
 
+	void DieTransition(float _DeltaTime);
+	void LastDie(float _DeltaTime);
+
 };
 
