@@ -148,7 +148,7 @@ void ADevilPlatform::Tick(float _DeltaTime)
 	}
 	else if (PhaseCount == 3 && count == GroundOrder)
 	{
-		return;
+		LastPos(_DeltaTime);
 	}
 }
 
@@ -299,6 +299,23 @@ void ADevilPlatform::Down(float _DeltaTime)
 		}
 	}
 
+
+	AddActorLocation(FVector::Down * Speed * _DeltaTime);
+
+	GroundCollision->CollisionStay(ECollisionOrder::Player, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		AActor* Ptr = _Collison->GetActor();
+		APlay_Cuphead* Player = dynamic_cast<APlay_Cuphead*>(Ptr);
+		Player->AddActorLocation(FVector::Down * Speed * _DeltaTime);
+	});
+}
+
+void ADevilPlatform::LastPos(float _DeltaTime)
+{
+	if (GetActorLocation().iY() == CheckYDown)
+	{
+		return;
+	}
 
 	AddActorLocation(FVector::Down * Speed * _DeltaTime);
 

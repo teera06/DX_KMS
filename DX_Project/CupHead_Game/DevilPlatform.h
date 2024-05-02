@@ -73,5 +73,6 @@ private:
 
 	void DownDie(float _DeltaTime);
 
+	void LastPos(float _DeltaTime);
 };
 
