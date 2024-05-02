@@ -63,7 +63,14 @@ void AFatDemon::Tick(float _DeltaTime)
 
 void AFatDemon::CreateSkill()
 {
-	GetWorld()->SpawnActor<AFatDemonSkill>("FatDemonSkill")->SetActorLocation(GetActorLocation());
+	if (GetActorLocation().X < 0)
+	{
+		GetWorld()->SpawnActor<AFatDemonSkill>("FatDemonSkill")->SetActorLocation(GetActorLocation() + FVector::Right * 100.0f);
+	}
+	else
+	{
+		GetWorld()->SpawnActor<AFatDemonSkill>("FatDemonSkill")->SetActorLocation(GetActorLocation()+FVector::Left*100.0f);
+	}
 }
 
 void AFatDemon::patternInit()
