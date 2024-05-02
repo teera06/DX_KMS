@@ -1,6 +1,8 @@
 #include "PreCompile.h"
 #include "Imp.h"
 
+#include <EngineBase\EngineRandom.h>
+
 #include <EngineCore/DefaultSceneComponent.h>
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/Collision.h>
@@ -20,6 +22,12 @@ AImp::AImp()
 	Imp->SetSamplering(ETextureSampling::LINEAR);
 	Imp->SetAutoSize(1.0f, true);
 
+	MonsterCollision = CreateDefaultSubObject<UCollision>("MonsterCollision2");
+	MonsterCollision->SetupAttachment(Root);
+	MonsterCollision->SetScale(FVector(70.0f, 70.0f, 100.0f));
+	MonsterCollision->SetCollisionGroup(ECollisionOrder::imp);
+	MonsterCollision->SetCollisionType(ECollisionType::RotRect);
+
 	SetRoot(Root);
 }
 
@@ -37,9 +45,10 @@ void AImp::BeginPlay()
 	Imp->CreateAnimation("ImpFlying", "ImpFlying", 0.075f);
 	Imp->CreateAnimation("ImpAttack", "ImpAttack", 0.075f);
 	Imp->CreateAnimation("ImpAttackEnd", "ImpAttackEnd", 0.075f);
+	Imp->CreateAnimation("Explosion", "Explosion", 0.075f);
 
 	//BombBat->ChangeAnimation("BombBat");
-
+	RandomMove = UEngineRandom::MainRandom.RandomInt(1, 4);
 	patternInit();
 }
 
@@ -60,12 +69,12 @@ void AImp::CalDir(float _DeltaTime)
 
 	MoveNorMalize = Move.Normalize3DReturn();
 
-	if (MoveNorMalize.iX() <= 0)
+	if (MoveNorMalize.iX() ==-1)
 	{
-		Imp->SetDir(EEngineDir::Right);
+		Imp->SetDir(EEngineDir::Left);
 	}
 	else {
-		Imp->SetDir(EEngineDir::Left);
+		Imp->SetDir(EEngineDir::Right);
 	}
 }
 
@@ -74,7 +83,9 @@ void AImp::patternInit()
 	pattern.CreateState("Start");
 	pattern.CreateState("ImpFlying");
 	pattern.CreateState("ImpAttack");
+	pattern.CreateState("ImpRandomMove");
 	pattern.CreateState("ImpAttackEnd");
+	pattern.CreateState("Die");
 
 
 	pattern.SetUpdateFunction("Start", std::bind(&AImp::Start, this, std::placeholders::_1));
@@ -86,8 +97,14 @@ void AImp::patternInit()
 	pattern.SetUpdateFunction("ImpAttack", std::bind(&AImp::ImpAttack, this, std::placeholders::_1));
 	pattern.SetStartFunction("ImpAttack", [=] {Imp->ChangeAnimation("ImpAttack"); });
 
+	pattern.SetUpdateFunction("ImpRandomMove", std::bind(&AImp::ImpRandomMove, this, std::placeholders::_1));
+	pattern.SetStartFunction("ImpRandomMove", [=] {Imp->ChangeAnimation("ImpAttack"); });
+
 	pattern.SetUpdateFunction("ImpAttackEnd", std::bind(&AImp::ImpAttackEnd, this, std::placeholders::_1));
 	pattern.SetStartFunction("ImpAttackEnd", [=] {Imp->ChangeAnimation("ImpAttackEnd"); });
+
+	pattern.SetUpdateFunction("Die", std::bind(&AImp::RealDie, this, std::placeholders::_1));
+	pattern.SetStartFunction("Die", [=] {Imp->ChangeAnimation("Explosion"); });
 
 
 	pattern.ChangeState("Start");
@@ -99,7 +116,7 @@ void AImp::Start(float _DeltaTime)
 	AddActorLocation(FVector::Up * Speed * _DeltaTime);
 	if (Delay < 0)
 	{
-		Delay = 1.5;
+		Delay = 2.5f;
 		pattern.ChangeState("ImpFlying");
 		return;
 	}
@@ -107,18 +124,37 @@ void AImp::Start(float _DeltaTime)
 
 void AImp::ImpFlying(float _DeltaTime)
 {
-	if (GetActorLocation().iX() >= 0)
+
+	CalDir(_DeltaTime);
+
+	if (RandomMove == 1)
 	{
-		AddActorLocation((FVector::Down+FVector::Left) * Speed * _DeltaTime);
+		AddActorLocation((FVector::Down + FVector::Right * 0.2f) * Speed * _DeltaTime);
 	}
-	else {
+	else if (RandomMove == 2)
+	{
 		AddActorLocation((FVector::Down + FVector::Right) * Speed * _DeltaTime);
 	}
+	else if (RandomMove == 3)
+	{
+		AddActorLocation((FVector::Down + FVector::Left * 0.2f) * Speed * _DeltaTime);
+	}
+	else if (RandomMove == 4)
+	{
+		AddActorLocation((FVector::Down + FVector::Left) * Speed * _DeltaTime);
+	}
+
 
 	if (Delay < 0)
 	{
-		Delay = 3.0;
+		Delay = 3.0f;
 		pattern.ChangeState("ImpAttack");
+		return;
+	}
+
+	if (true == DieCheck)
+	{
+		pattern.ChangeState("Die");
 		return;
 	}
 }
@@ -131,18 +167,76 @@ void AImp::ImpAttack(float _DeltaTime)
 
 	if (Delay < 0)
 	{
-		//Delay = 3.0;
+		Delay = 2.0f;
+		RandomMove = UEngineRandom::MainRandom.RandomInt(1, 4);
+		pattern.ChangeState("ImpRandomMove");
+		return;
+	}
+
+	if (true == DieCheck)
+	{
+		pattern.ChangeState("Die");
+		return;
+	}
+}
+
+void AImp::ImpRandomMove(float _DeltaTime)
+{
+	CalDir(_DeltaTime);
+
+	if (RandomMove == 1)
+	{
+		AddActorLocation((FVector::Up + FVector::Right * 0.2f) * Speed * _DeltaTime);
+	}
+	else if (RandomMove == 2)
+	{
+		AddActorLocation((FVector::Up + FVector::Right) * Speed * _DeltaTime);
+	}
+	else if (RandomMove == 3)
+	{
+		AddActorLocation((FVector::Up + FVector::Left * 0.2f) * Speed * _DeltaTime);
+	}
+	else if (RandomMove == 4)
+	{
+		AddActorLocation((FVector::Up + FVector::Left) * Speed * _DeltaTime);
+	}
+
+	if (Delay < 0)
+	{
 		pattern.ChangeState("ImpAttackEnd");
+		return;
+	}
+
+	if (true == DieCheck)
+	{
+		pattern.ChangeState("Die");
 		return;
 	}
 }
 
 void AImp::ImpAttackEnd(float _DeltaTime)
 {
+
+	CalDir(_DeltaTime);
 	if (true == Imp->IsCurAnimationEnd())
 	{
-		Delay = 1.5;
+		Delay = 1.5f;
 		pattern.ChangeState("Start");
+		return;
+	}
+
+	if (true == DieCheck)
+	{
+		pattern.ChangeState("Die");
+		return;
+	}
+}
+
+void AImp::RealDie(float _DeltaTime)
+{
+	if (true == Imp->IsCurAnimationEnd())
+	{
+		Destroy();
 		return;
 	}
 }
