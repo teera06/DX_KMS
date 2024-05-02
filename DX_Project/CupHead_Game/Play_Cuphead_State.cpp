@@ -116,6 +116,7 @@ void APlay_Cuphead::GroundObject()
 
 	PlayerCollision->CollisionEnter(ECollisionOrder::Boss2Object1, [=](std::shared_ptr<UCollision> _Collison)
 	{
+		GetWorld()->SpawnActor<AGroundDust>("AGroundDust");
 		Devil2GrounCheck = true;
 		JumpVector = FVector::Zero;
 		State.ChangeState("Idle");
@@ -1513,15 +1514,16 @@ void APlay_Cuphead::Jump(float _DeltaTime)
 		return;
 	}
 
+	PlayerCollision->CollisionEnter(ECollisionOrder::Boss2Object1, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		GetWorld()->SpawnActor<AGroundDust>("AGroundDust");
+		JumpVector = FVector::Zero;
+		State.ChangeState("Idle");
+		return;
+	});
+
 	GroundObject();
 
-
-	//if (true == PlayCuphead->IsCurAnimationEnd())
-	//{
-		//JumpVector = FVector::Zero;
-		//State.ChangeState("Idle");
-		//return;
-	//}
 }
 
 void APlay_Cuphead::JumpShoot(float _DeltaTime)
