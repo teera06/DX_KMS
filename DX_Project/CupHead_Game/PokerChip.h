@@ -26,6 +26,9 @@ private:
 	USpriteRenderer* picec2 = nullptr;
 	USpriteRenderer* picec3 = nullptr;
 	USpriteRenderer* picec4 = nullptr;
+	USpriteRenderer* picec5 = nullptr;
+	USpriteRenderer* picec6 = nullptr;
+	USpriteRenderer* picec7 = nullptr;
 
 	UCollision* PokerChipCollision = nullptr;
 

@@ -36,6 +36,7 @@ APokerChip::APokerChip()
 	picec1->SetSprite("devil_ph3_poker_chip_piece_a_0001.png");
 	picec1->SetSamplering(ETextureSampling::LINEAR);
 	picec1->SetAutoSize(1.0f, true);
+	picec1->SetPosition(FVector(-5.0f, -10.0f, 0.0f));
 
 
 	picec2 = CreateDefaultSubObject<USpriteRenderer>("picec2");
@@ -45,6 +46,7 @@ APokerChip::APokerChip()
 	picec2->SetSprite("devil_ph3_poker_chip_piece_b_0001.png");
 	picec2->SetSamplering(ETextureSampling::LINEAR);
 	picec2->SetAutoSize(1.0f, true);
+	picec2->SetPosition(FVector(-100.0f,-50.0f, 0.0f));
 
 	picec3 = CreateDefaultSubObject<USpriteRenderer>("picec3");
 	picec3->SetupAttachment(Root);
@@ -53,6 +55,8 @@ APokerChip::APokerChip()
 	picec3->SetSprite("devil_ph3_poker_chip_piece_c_0001.png");
 	picec3->SetSamplering(ETextureSampling::LINEAR);
 	picec3->SetAutoSize(1.0f, true);
+	picec3->SetRotationDeg(FVector(0.0f, 0.0f, 15.0f));
+	picec3->SetPosition(FVector(-50.0f, 10.0f, 0.0f));
 
 	picec4 = CreateDefaultSubObject<USpriteRenderer>("picec4");
 	picec4->SetupAttachment(Root);
@@ -61,6 +65,34 @@ APokerChip::APokerChip()
 	picec4->SetSprite("devil_ph3_poker_chip_piece_d_0001.png");
 	picec4->SetSamplering(ETextureSampling::LINEAR);
 	picec4->SetAutoSize(1.0f, true);
+	picec4->SetPosition(FVector(-40.0f, 100.0f, 0.0f));
+
+	picec5 = CreateDefaultSubObject<USpriteRenderer>("picec5");
+	picec5->SetupAttachment(Root);
+		 
+	picec5->SetOrder(ERenderOrder::FrontSkill);
+	picec5->SetSprite("devil_ph3_poker_chip_piece_d_0001.png");
+	picec5->SetSamplering(ETextureSampling::LINEAR);
+	picec5->SetAutoSize(1.0f, true);
+	picec5->SetPosition(FVector(40.0f, 150.0f, 0.0f));
+
+	picec6 = CreateDefaultSubObject<USpriteRenderer>("picec6");
+	picec6->SetupAttachment(Root);
+		 
+	picec6->SetOrder(ERenderOrder::FrontSkill);
+	picec6->SetSprite("devil_ph3_poker_chip_piece_d_0001.png");
+	picec6->SetSamplering(ETextureSampling::LINEAR);
+	picec6->SetAutoSize(1.0f, true);
+	picec6->SetPosition(FVector(100.0f, 30.0f, 0.0f));
+
+	picec7 = CreateDefaultSubObject<USpriteRenderer>("picec7");
+	picec7->SetupAttachment(Root);
+		 
+	picec7->SetOrder(ERenderOrder::FrontSkill);
+	picec7->SetSprite("devil_ph3_poker_chip_piece_d_0001.png");
+	picec7->SetSamplering(ETextureSampling::LINEAR);
+	picec7->SetAutoSize(1.0f, true);
+	picec7->SetPosition(FVector(40.0f, -30.0f, 0.0f));
 
 	PokerChipCollision = CreateDefaultSubObject<UCollision>("PokerChipCollision");
 	PokerChipCollision->SetupAttachment(Root);
@@ -78,6 +110,9 @@ APokerChip::APokerChip()
 	picec2->SetActive(false);
 	picec3->SetActive(false);
 	picec4->SetActive(false);
+	picec5->SetActive(false);
+	picec6->SetActive(false);
+	picec7->SetActive(false);
 }
 
 APokerChip::~APokerChip()
@@ -95,6 +130,9 @@ void APokerChip::BeginPlay()
 	picec2->CreateAnimation("ChipPiece1", "ChipPiece1", 0.075f);
 	picec3->CreateAnimation("ChipPiece2", "ChipPiece2", 0.075f);
 	picec4->CreateAnimation("ChipPiece3", "ChipPiece3", 0.075f);
+	picec5->CreateAnimation("ChipPiece1", "ChipPiece1", 0.075f);
+	picec6->CreateAnimation("ChipPiece2", "ChipPiece2", 0.075f);
+	picec7->CreateAnimation("ChipPiece3", "ChipPiece3", 0.075f);
 
 	Effect->ChangeAnimation("BurningChip");
 	PokerChip->ChangeAnimation("PokerChip");
@@ -102,6 +140,9 @@ void APokerChip::BeginPlay()
 	picec2->ChangeAnimation("ChipPiece1");
 	picec3->ChangeAnimation("ChipPiece2");
 	picec4->ChangeAnimation("ChipPiece3");
+	picec5->ChangeAnimation("ChipPiece1");
+	picec6->ChangeAnimation("ChipPiece2");
+	picec7->ChangeAnimation("ChipPiece3");
 }
 
 void APokerChip::Tick(float _DeltaTime)
@@ -135,5 +176,8 @@ void APokerChip::CollisionCheck()
 		picec2->SetActive(true);
 		picec3->SetActive(true);
 		picec4->SetActive(true);
+		picec5->SetActive(true);
+		picec6->SetActive(true);
+		picec7->SetActive(true);
 	});
 }
