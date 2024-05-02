@@ -159,7 +159,7 @@ void ADevil2::AniCreate()
 	DevilNeck->CreateAnimation("DevilNeck", "DevilNeck", 0.085f);
 
 	Hand->CreateAnimation("FatDemonIntro", "FatDemonIntro", 0.075f);
-	Hand->CreateAnimation("FatDemonRelease", "FatDemonRelease", 0.075f);
+	Hand->CreateAnimation("FatDemonRelease", "FatDemonRelease", 0.065f,false);
 
 	Summon1->CreateAnimation("SpawnImp", "SpawnImp", 0.045f);
 	Summon2->CreateAnimation("SpawnImp", "SpawnImp", 0.045f);
@@ -365,9 +365,19 @@ void ADevil2::FatDemonIntro(float _DeltaTime)
 {
 	Hand->AddPosition(FVector(FVector::Up * 200.0f * _DeltaTime));
 
-	if (Hand->GetWorldPosition().iY() >= 500)
+	if (Hand->GetWorldPosition().iY() == 250)
+	{
+		Hand->ChangeAnimation("FatDemonRelease");
+	}
+
+	if (Hand->GetWorldPosition().iY() == 300)
 	{
 		CreateFatDemon();
+	
+	}
+
+	if (Hand->GetWorldPosition().iY() >= 450)
+	{
 		Hand->SetActive(false);
 		coolDownTime = 6.0f;
 		attOrder = 1;
