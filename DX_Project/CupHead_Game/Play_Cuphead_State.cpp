@@ -507,12 +507,20 @@ void APlay_Cuphead::CalGravityVector(float _DeltaTime)
 	PlayerCollision->CollisionEnter(ECollisionOrder::Boss1Top, [=](std::shared_ptr<UCollision> _Collison)
 	{
 		GravityVector = FVector::Zero;
+
+		AddActorLocation(FVector::Up * 5);
 	});
 
 	PlayerCollision->CollisionStay(ECollisionOrder::Boss1Top, [=](std::shared_ptr<UCollision> _Collison)
 	{
 		GravityVector = FVector::Zero;
 		CollisionMove.X += (-300.0f * _DeltaTime);
+	});
+
+	PlayerCollision->CollisionEnter(ECollisionOrder::Boss2Object1, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		GravityVector = FVector::Zero;
+		AddActorLocation(FVector::Up * 5);
 	});
 
 	PlayerCollision->CollisionStay(ECollisionOrder::Boss2Object1, [=](std::shared_ptr<UCollision> _Collison)
