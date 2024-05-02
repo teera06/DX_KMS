@@ -159,6 +159,7 @@ void ADevil2::AniCreate()
 	DevilNeck->CreateAnimation("DevilNeck", "DevilNeck", 0.085f);
 
 	Hand->CreateAnimation("FatDemonIntro", "FatDemonIntro", 0.075f);
+	Hand->CreateAnimation("FatDemonRelease", "FatDemonRelease", 0.075f);
 
 	Summon1->CreateAnimation("SpawnImp", "SpawnImp", 0.045f);
 	Summon2->CreateAnimation("SpawnImp", "SpawnImp", 0.045f);

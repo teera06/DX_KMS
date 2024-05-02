@@ -251,6 +251,9 @@ void ABoss1_Monster2::Phase2StateInit()
 	Phase2.CreateState("Phase3SlotStart");
 	Phase2.CreateState("Phase3AttReady");
 	Phase2.CreateState("Phase3Att");
+	Phase2.CreateState("DieTransition");
+	Phase2.CreateState("LastDie");
+
 
 	Phase2.SetUpdateFunction("phase3Intro", std::bind(&ABoss1_Monster2::phase3Intro, this, std::placeholders::_1));
 	Phase2.SetStartFunction("phase3Intro", [=] {BigBoss1->ChangeAnimation("phase3Intro"); });
@@ -311,6 +314,9 @@ void ABoss1_Monster2::AniCreate()
 
 	BigBoss1->CreateAnimation("Phase3AttReady", "Phase3AttReady", 0.075f);
 	BigBoss1->CreateAnimation("Phase3Att", "Phase3Att", 0.075f);
+
+	BigBoss1->CreateAnimation("DieTransition", "DieTransition", 0.075f);
+	BigBoss1->CreateAnimation("LastDie", "LastDie", 0.075f);
 
 	SlotMouse->CreateAnimation("CoinAtt", "CoinAtt", 0.1f);
 
