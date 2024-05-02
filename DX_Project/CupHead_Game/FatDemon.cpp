@@ -65,11 +65,11 @@ void AFatDemon::CreateSkill()
 {
 	if (GetActorLocation().X < 0)
 	{
-		GetWorld()->SpawnActor<AFatDemonSkill>("FatDemonSkill")->SetActorLocation(GetActorLocation() + FVector::Right * 100.0f);
+		GetWorld()->SpawnActor<AFatDemonSkill>("FatDemonSkill")->SetActorLocation(GetActorLocation() + FVector::Right * 180.0f);
 	}
 	else
 	{
-		GetWorld()->SpawnActor<AFatDemonSkill>("FatDemonSkill")->SetActorLocation(GetActorLocation()+FVector::Left*100.0f);
+		GetWorld()->SpawnActor<AFatDemonSkill>("FatDemonSkill")->SetActorLocation(GetActorLocation()+FVector::Left*180.0f);
 	}
 }
 
@@ -141,12 +141,14 @@ void AFatDemon::FatDemonAttack(float _DeltaTime)
 	{
 		pattern.ChangeState("FatDemonDeath");
 		return;
+	
 	}
+
+	FatDemon ->SetFrameCallback("FatDemonAttack", 2, [=] {CreateSkill(); });
 
 	if (true == FatDemon->IsCurAnimationEnd())
 	{
 		Delay = 3.0f;
-		CreateSkill();
 		pattern.ChangeState("FatDemonIdle");
 		return;
 	}
