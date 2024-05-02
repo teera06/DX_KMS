@@ -26,5 +26,9 @@ private:
 
 	int order = 1;
 	int Add = 1;
+
+	void CreateChip1(float _DeltaTime);
+	void CreateChip2(float _DeltaTime);
+	void CreateChip3(float _DeltaTime);
 };
 

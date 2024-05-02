@@ -6,13 +6,14 @@
 #include <EngineCore/Collision.h>
 
 #include "ContentsENum.h"
-#include "PokerChip.h"
 
 #include "Boss2Common.h"
 #include "Play_Cuphead.h"
 
 
 int ADevilPlatform::count=1;
+int ADevilPlatform::PhaseCount = 1;
+bool ADevilPlatform::Groundpattern = false;
 std::vector<int> ADevilPlatform::num;
 
 ADevilPlatform::ADevilPlatform()
@@ -79,131 +80,39 @@ void ADevilPlatform::Tick(float _DeltaTime)
 		CheckYUP = GetActorLocation().iY() + 180;
 	}
 
-	if (PhaseCount==2) // 페이지 2
+	if (50 == ABoss2Common::GetHp())
 	{
-		CreateChip1(_DeltaTime);
+		PhaseCount = 2;
 	}
-	else if (PhaseCount == 3) // 페이지 3
+	else if (25 == ABoss2Common::GetHp())
 	{
-		CreateChip2(_DeltaTime);
+		PhaseCount = 3;
 	}
-	else if (PhaseCount == 4)
-	{
-		CreateChip3(_DeltaTime);
-	}
-
-
-	
 
 	PlayerCollision();
 
-	if (40 == ABoss2Common::GetHp())
-	{
-		if (GroundOrder == 1)
-		{
-			DownDie(_DeltaTime);
-		}
-	
-		if (GroundOrder == 5)
-		{
-			DownDie(_DeltaTime);
-		}
-		count = 3;
-		return;
-	}
-	else if (10 == ABoss2Common::GetHp())
-	{
-		if (GroundOrder == 2)
-		{
-			DownDie(_DeltaTime);
-		}
 
-		if (GroundOrder == 4)
-		{
-			DownDie(_DeltaTime);
-		}
-		count = 3;
-		return;
+	if (PhaseCount == 1 && count==GroundOrder)
+	{ 
+		
+		pattern1.Update(_DeltaTime);
 	}
-
-	if (count == GroundOrder)
+	else if (PhaseCount == 2) // 페이지 3
 	{
-		pattern.Update(_DeltaTime);
+		
+		pattern2.Update(_DeltaTime);
+	}
+	else if (PhaseCount == 3)
+	{
+		pattern3.Update(_DeltaTime);
 	}
 }
 
-void ADevilPlatform::CreateChip1(float _DeltaTime)
-{
-	Delay -= _DeltaTime;
 
-	if (Delay < 0)
-	{
-		if (order == 1)
-		{
-			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(580.0f, 500.0f, 10.0f));
-		}
-		else if (order == 2)
-		{
-			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(290.0f, 500.0f, 10.0f));
-		}
-		else if (order == 3)
-		{
-			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(0.0f, 500.0f, 10.0f));
-		}
-		else if (order == 4)
-		{
-			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(-290.0f, 500.0f, 10.0f));
-		}
-		else if (order == 5)
-		{
-			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(-580.0f, 500.0f, 10.0f));
-		}
-		else if (order == 6 || order == 0) {
-			Add *= -1;
-		}
 
-		order += Add;
-		Delay = 4.0f;
-	}
-}
 
-void ADevilPlatform::CreateChip2(float _DeltaTime)
-{
-	Delay -= _DeltaTime;
 
-	if (Delay < 0)
-	{
-		if (order == 1)
-		{
-			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(290.0f, 500.0f, 10.0f));
-		}
-		else if (order == 2)
-		{
-			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(0.0f, 500.0f, 10.0f));
-		}
-		else if (order == 3)
-		{
-			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(-290.0f, 500.0f, 10.0f));
-		}
-		else if (order == 4 || order == 0) {
-			Add *= -1;
-		}
 
-		order += Add;
-		Delay = 4.0f;
-	}
-}
-
-void ADevilPlatform::CreateChip3(float _DeltaTime)
-{
-	Delay -= _DeltaTime;
-
-	if (Delay < 0)
-	{
-		GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(0.0f, 500.0f, 10.0f));
-		Delay = 4.0f;
-	}
-}
 
 void ADevilPlatform::PlayerCollision()
 {
@@ -218,25 +127,57 @@ void ADevilPlatform::PlayerCollision()
 
 void ADevilPlatform::patternInit()
 {
-	pattern.CreateState("UP");
-	pattern.CreateState("DOWN");
-	pattern.CreateState("DownDie");
+	pattern1.CreateState("UP");
+	pattern1.CreateState("DOWN");
+	pattern1.CreateState("DownDie");
 
-	pattern.SetUpdateFunction("UP", std::bind(&ADevilPlatform::UP, this, std::placeholders::_1));
+	pattern1.SetUpdateFunction("UP", std::bind(&ADevilPlatform::UP, this, std::placeholders::_1));
 	
 
-	pattern.SetUpdateFunction("DOWN", std::bind(&ADevilPlatform::Down, this, std::placeholders::_1));
+	pattern1.SetUpdateFunction("DOWN", std::bind(&ADevilPlatform::Down, this, std::placeholders::_1));
 
-	pattern.SetUpdateFunction("DownDie", std::bind(&ADevilPlatform::DownDie, this, std::placeholders::_1));
+	pattern1.SetUpdateFunction("DownDie", std::bind(&ADevilPlatform::DownDie, this, std::placeholders::_1));
 	
-	pattern.ChangeState("UP");
+	pattern1.ChangeState("UP");
+}
+
+void ADevilPlatform::patternInit2()
+{
+	pattern2.CreateState("UP");
+	pattern2.CreateState("DOWN");
+	pattern2.CreateState("DownDie");
+		   
+	pattern2.SetUpdateFunction("UP", std::bind(&ADevilPlatform::UP, this, std::placeholders::_1));
+		   
+		   
+	pattern2.SetUpdateFunction("DOWN", std::bind(&ADevilPlatform::Down, this, std::placeholders::_1));
+		   
+	pattern2.SetUpdateFunction("DownDie", std::bind(&ADevilPlatform::DownDie, this, std::placeholders::_1));
+		   
+	pattern2.ChangeState("UP");
+}
+
+void ADevilPlatform::patternInit3()
+{
+	pattern3.CreateState("UP");
+	pattern3.CreateState("DOWN");
+	pattern3.CreateState("DownDie");
+		   
+	pattern3.SetUpdateFunction("UP", std::bind(&ADevilPlatform::UP, this, std::placeholders::_1));
+		   
+		   
+	pattern3.SetUpdateFunction("DOWN", std::bind(&ADevilPlatform::Down, this, std::placeholders::_1));
+		   
+	pattern3.SetUpdateFunction("DownDie", std::bind(&ADevilPlatform::DownDie, this, std::placeholders::_1));
+		   
+	pattern3.ChangeState("UP");
 }
 
 void ADevilPlatform::UP(float _DeltaTime)
 {
 	if (GetActorLocation().iY() == CheckYUP)
 	{
-		pattern.ChangeState("DOWN");
+		pattern1.ChangeState("DOWN");
 		return;
 	}
 	
@@ -251,20 +192,78 @@ void ADevilPlatform::UP(float _DeltaTime)
 
 void ADevilPlatform::Down(float _DeltaTime)
 {
-
 	if (GetActorLocation().iY() == CheckYDown)
 	{
 
-		if (count == 5)
+		if (false == Groundpattern)
 		{
-			count = 1;
-			pattern.ChangeState("UP");
-			return;
+			if (count == 1)
+			{
+				count = 5;
+				pattern1.ChangeState("UP");
+				return;
+			
+			}else if (count == 5)
+			{
+				count = 4;
+				pattern1.ChangeState("UP");
+				return;
+			}
+			else if (count == 4)
+			{
+				count = 2;
+				pattern1.ChangeState("UP");
+				return;
+			}
+			else if (count == 2)
+			{
+				count = 3;
+				pattern1.ChangeState("UP");
+				return;
+			}
+			else if (count == 3)
+			{
+				Groundpattern = true;
+				count = 1;
+				pattern1.ChangeState("UP");
+				return;
+			}
 		}
-		
-		++count;
-		pattern.ChangeState("UP");
-		return;
+		else if (true == Groundpattern)
+		{
+			if (count == 1)
+			{
+				count = 3;
+				pattern1.ChangeState("UP");
+				return;
+			}
+			else if (count == 3)
+			{
+				count = 5;
+				pattern1.ChangeState("UP");
+				return;
+			}
+			else if (count == 5)
+			{
+				count = 4;
+				pattern1.ChangeState("UP");
+				return;
+			}
+			else if (count == 4)
+			{
+				count = 2;
+				pattern1.ChangeState("UP");
+				return;
+				
+			}
+			else if (count == 2)
+			{
+				Groundpattern = false;
+				count = 1;
+				pattern1.ChangeState("UP");
+				return;
+			}
+		}
 	}
 
 
@@ -280,6 +279,7 @@ void ADevilPlatform::Down(float _DeltaTime)
 
 void ADevilPlatform::DownDie(float _DeltaTime)
 {
+
 	if (GetActorLocation().iY() <=-400)
 	{
 		num.push_back(GroundOrder);

@@ -24,7 +24,15 @@ public:
 		GroundOrder = _GroundOrder;
 	}
 
-	UStateManager pattern;
+	static int GetPhaseCount()
+	{
+		return PhaseCount;
+	}
+
+
+	UStateManager pattern1;
+	UStateManager pattern2;
+	UStateManager pattern3;
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -35,31 +43,28 @@ private:
 
 	static std::vector<int> num;
 
-	int PhaseCount = 2;
-
-	int order = 1;
-	int Add = 1;
+	static int PhaseCount;
+	static int count;
+	static bool Groundpattern;
 
 	int CheckYUP = 0;
 	int CheckYDown = 0;
 
 	int GroundOrder = 0;
-
-	static int count;
+	
 
 	float Speed = 250.0f;
-	float Delay = 4.0f;
 
 	bool OneCheck = false;
 
-	void CreateChip1(float _DeltaTime);
-	void CreateChip2(float _DeltaTime);
-	void CreateChip3(float _DeltaTime);
+	
 
 	void PlayerCollision();
 
 	// ป๓ลย
 	void patternInit();
+	void patternInit2();
+	void patternInit3();
 	void UP(float _DeltaTime);
 	void Down(float _DeltaTime);
 	void DownDie(float _DeltaTime);

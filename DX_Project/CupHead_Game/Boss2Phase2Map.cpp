@@ -8,6 +8,7 @@
 #include "ContentsENum.h"
 
 #include "PokerChip.h"
+#include "DevilPlatform.h"
 
 ABoss2Phase2Map::ABoss2Phase2Map()
 {
@@ -45,4 +46,91 @@ void ABoss2Phase2Map::BeginPlay()
 void ABoss2Phase2Map::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+	if (ADevilPlatform::GetPhaseCount() == 1)
+	{
+		CreateChip1(_DeltaTime);
+	}
+	else if (ADevilPlatform::GetPhaseCount() == 2)
+	{
+		CreateChip2(_DeltaTime);
+	}
+	else if (ADevilPlatform::GetPhaseCount() == 3)
+	{
+		CreateChip3(_DeltaTime);
+	}
+}
+
+void ABoss2Phase2Map::CreateChip1(float _DeltaTime)
+{
+	Delay -= _DeltaTime;
+
+	if (Delay < 0)
+	{
+		if (order == 1)
+		{
+			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(580.0f, 500.0f, 10.0f));
+		}
+		else if (order == 2)
+		{
+			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(290.0f, 500.0f, 10.0f));
+		}
+		else if (order == 3)
+		{
+			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(0.0f, 500.0f, 10.0f));
+		}
+		else if (order == 4)
+		{
+			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(-290.0f, 500.0f, 10.0f));
+		}
+		else if (order == 5)
+		{
+			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(-580.0f, 500.0f, 10.0f));
+		}
+		else if (order == 6 || order == 0) {
+			Add *= -1;
+		}
+
+		order += Add;
+		Delay = 4.0f;
+	}
+}
+
+void ABoss2Phase2Map::CreateChip2(float _DeltaTime)
+{
+	Delay -= _DeltaTime;
+
+	if (Delay < 0)
+	{
+		if (order == 1)
+		{
+			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(290.0f, 500.0f, 10.0f));
+		}
+		else if (order == 2)
+		{
+			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(0.0f, 500.0f, 10.0f));
+		}
+		else if (order == 3)
+		{
+			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(-290.0f, 500.0f, 10.0f));
+		}
+		else if (order == 4 || order == 0) {
+			Add *= -1;
+		}
+
+		order += Add;
+		Delay = 4.0f;
+	}
+
+}
+
+void ABoss2Phase2Map::CreateChip3(float _DeltaTime)
+{
+	Delay -= _DeltaTime;
+
+	if (Delay < 0)
+	{
+		GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(0.0f, 500.0f, 10.0f));
+		Delay = 4.0f;
+	}
 }
