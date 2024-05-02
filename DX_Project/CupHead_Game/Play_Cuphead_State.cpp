@@ -887,6 +887,7 @@ void APlay_Cuphead::Idle(float _DeltaTime)
 
 	DirCheck();
 
+	BulletStart->SetActive(false);
 	if (true == IsDown('1'))
 	{
 		if (100 == ABoss1Common::GetHp())
@@ -1585,9 +1586,8 @@ void APlay_Cuphead::DashAfterJump(float _DeltaTime)
 
 void APlay_Cuphead::hit(float _DeltaTime)
 {
-
 	
-
+	BulletStart->SetActive(false);
 	PlayerCollision->SetActive(false);
 
 	if (false == IsHitEffect)
