@@ -65,5 +65,7 @@ private:
 	void bigSkillIdle(float _DeltaTime);
 	void bigskillLRMove(float _DeltaTime);
 	void Death(float _DeltaTime);
+
+	void CollisionCheck();
 };
 
