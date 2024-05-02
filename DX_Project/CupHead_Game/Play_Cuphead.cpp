@@ -2,7 +2,7 @@
 #include "Play_Cuphead.h"
 #include "ContentsENum.h"
 #include <EngineCore/SpriteRenderer.h>
-
+#include <EngineCore/Image.h>
 #include <EngineCore/Collision.h>
 
 #include <EngineCore/DefaultSceneComponent.h>
@@ -56,6 +56,7 @@ APlay_Cuphead::APlay_Cuphead()
 
 	InputOn();
 
+	
 }
 
 APlay_Cuphead::~APlay_Cuphead()
@@ -113,6 +114,15 @@ void APlay_Cuphead::BeginPlay()
 	
 	BulletStart->SetActive(false);
 	Effect->SetActive(false);
+
+	HpBar = CreateWidget<UImage>(GetWorld(), "HpBar");
+	HpBar->AddToViewPort(ERenderOrder::HPBar);
+
+	HpBar->SetSprite("HP3.png");
+
+	HpBar->SetAutoSize(1.0f, true);
+
+	HpBar->SetPosition({ -570.0f, -310.0f });
 	//PlayCuphead->ChangeAnimation("Idle");
 }
 

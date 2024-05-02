@@ -7,6 +7,7 @@
 #include <EngineCore/EngineDebugMsgWindow.h>
 #include <EngineCore/EngineEnums.h>
 #include <EngineCore/Camera.h>
+#include <EngineCore/Image.h>
 
 #include "RunDust.h"
 #include "DashDust.h"

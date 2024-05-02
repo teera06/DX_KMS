@@ -47,28 +47,6 @@ void ABossStage1GameMode::BeginPlay()
 
 	GetWorld()->GetLastTarget()->AddEffect<UBlurEffect>();
 
-	{
-		// UI를 만들겠다.
-		HpImage = CreateWidget<UImage>(GetWorld(), "HpBar");
-
-		// 언리얼 따라한것
-		// 언리얼 안나옵니다.
-		HpImage->AddToViewPort(ERenderOrder::HPBar);
-		HpImage->SetSprite("HP3.png");
-		HpImage->SetAutoSize(1.0f, true);
-		HpImage->SetPosition({ -570.0f, -310.0f });
-
-		HpImage ->CreateAnimation("HP1", "HP1", 0.05f);
-		HpImage->CreateAnimation("HP0", "HP0", 0.05f);
-		
-
-		
-		// Image->SetScale({200, 200});
-
-		// 화면에 떠야 한다.
-		// Image->SetSprite("HPBar");
-		// Image->SetScale();
-	}
 
 	{
 		// UI를 만들겠다.
@@ -92,18 +70,6 @@ void ABossStage1GameMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
-	if (APlay_Cuphead::GetHp() == 2)
-	{
-		HpImage->SetSprite("HP2.png");
-	}
-	else if (APlay_Cuphead::GetHp() == 1)
-	{
-		HpImage->ChangeAnimation("HP1");
-	}
-	else if (APlay_Cuphead::GetHp() <= 0)
-	{
-		HpImage->ChangeAnimation("HP0");
-	}
 }
 
 void ABossStage1GameMode::LevelEnd(ULevel* _NextLevel)
