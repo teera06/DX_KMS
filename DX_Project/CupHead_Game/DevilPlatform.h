@@ -46,6 +46,8 @@ private:
 	static int PhaseCount;
 	static int count;
 	static bool Groundpattern;
+	static bool HPCheck1;
+	static bool HPCheck2;
 
 	int CheckYUP = 0;
 	int CheckYDown = 0;
@@ -64,9 +66,11 @@ private:
 	// ป๓ลย
 	void patternInit();
 	void patternInit2();
-	void patternInit3();
 	void UP(float _DeltaTime);
 	void Down(float _DeltaTime);
+	void Down2(float _DeltaTime);
+
+
 	void DownDie(float _DeltaTime);
 
 };

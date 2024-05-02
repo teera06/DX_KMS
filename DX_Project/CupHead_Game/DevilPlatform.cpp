@@ -14,6 +14,9 @@
 int ADevilPlatform::count=1;
 int ADevilPlatform::PhaseCount = 1;
 bool ADevilPlatform::Groundpattern = false;
+bool ADevilPlatform::HPCheck1 = false;
+bool ADevilPlatform::HPCheck2 = false;
+
 std::vector<int> ADevilPlatform::num;
 
 ADevilPlatform::ADevilPlatform()
@@ -75,21 +78,62 @@ void ADevilPlatform::Tick(float _DeltaTime)
 	if (false == OneCheck)
 	{
 		OneCheck = true;
-
+		patternInit2();
 		CheckYDown = GetActorLocation().iY();
 		CheckYUP = GetActorLocation().iY() + 180;
 	}
 
-	if (50 == ABoss2Common::GetHp())
+	if (50 == ABoss2Common::GetHp() && false==HPCheck1)
 	{
+		HPCheck1 = true;
 		PhaseCount = 2;
+		count = 3;
 	}
-	else if (25 == ABoss2Common::GetHp())
+	else if (25 == ABoss2Common::GetHp() && false == HPCheck2)
 	{
+		HPCheck2 = true;
 		PhaseCount = 3;
+
+		if (GroundOrder == 2)
+		{
+			DownDie(_DeltaTime);
+		}
+
+		if (GroundOrder == 4)
+		{
+			DownDie(_DeltaTime);
+		}
 	}
 
 	PlayerCollision();
+
+	if (true == HPCheck1)
+	{
+		if (GroundOrder == 1)
+		{
+			DownDie(_DeltaTime);
+		}
+
+		if (GroundOrder == 5)
+		{
+			DownDie(_DeltaTime);
+		}
+	}
+
+
+	if (true == HPCheck2)
+	{
+		if (GroundOrder == 2)
+		{
+			DownDie(_DeltaTime);
+		}
+
+		if (GroundOrder == 4)
+		{
+			DownDie(_DeltaTime);
+		}
+	}
+
 
 
 	if (PhaseCount == 1 && count==GroundOrder)
@@ -97,14 +141,14 @@ void ADevilPlatform::Tick(float _DeltaTime)
 		
 		pattern1.Update(_DeltaTime);
 	}
-	else if (PhaseCount == 2) // 페이지 3
+	else if (PhaseCount == 2 && count == GroundOrder) // 페이지 3
 	{
 		
 		pattern2.Update(_DeltaTime);
 	}
-	else if (PhaseCount == 3)
+	else if (PhaseCount == 3 && count == GroundOrder)
 	{
-		pattern3.Update(_DeltaTime);
+		return;
 	}
 }
 
@@ -129,14 +173,13 @@ void ADevilPlatform::patternInit()
 {
 	pattern1.CreateState("UP");
 	pattern1.CreateState("DOWN");
-	pattern1.CreateState("DownDie");
+	
 
 	pattern1.SetUpdateFunction("UP", std::bind(&ADevilPlatform::UP, this, std::placeholders::_1));
 	
 
 	pattern1.SetUpdateFunction("DOWN", std::bind(&ADevilPlatform::Down, this, std::placeholders::_1));
 
-	pattern1.SetUpdateFunction("DownDie", std::bind(&ADevilPlatform::DownDie, this, std::placeholders::_1));
 	
 	pattern1.ChangeState("UP");
 }
@@ -145,39 +188,29 @@ void ADevilPlatform::patternInit2()
 {
 	pattern2.CreateState("UP");
 	pattern2.CreateState("DOWN");
-	pattern2.CreateState("DownDie");
+	
 		   
 	pattern2.SetUpdateFunction("UP", std::bind(&ADevilPlatform::UP, this, std::placeholders::_1));
 		   
 		   
-	pattern2.SetUpdateFunction("DOWN", std::bind(&ADevilPlatform::Down, this, std::placeholders::_1));
+	pattern2.SetUpdateFunction("DOWN", std::bind(&ADevilPlatform::Down2, this, std::placeholders::_1));
 		   
-	pattern2.SetUpdateFunction("DownDie", std::bind(&ADevilPlatform::DownDie, this, std::placeholders::_1));
 		   
 	pattern2.ChangeState("UP");
 }
 
-void ADevilPlatform::patternInit3()
-{
-	pattern3.CreateState("UP");
-	pattern3.CreateState("DOWN");
-	pattern3.CreateState("DownDie");
-		   
-	pattern3.SetUpdateFunction("UP", std::bind(&ADevilPlatform::UP, this, std::placeholders::_1));
-		   
-		   
-	pattern3.SetUpdateFunction("DOWN", std::bind(&ADevilPlatform::Down, this, std::placeholders::_1));
-		   
-	pattern3.SetUpdateFunction("DownDie", std::bind(&ADevilPlatform::DownDie, this, std::placeholders::_1));
-		   
-	pattern3.ChangeState("UP");
-}
 
 void ADevilPlatform::UP(float _DeltaTime)
 {
 	if (GetActorLocation().iY() == CheckYUP)
 	{
-		pattern1.ChangeState("DOWN");
+		if (PhaseCount == 1)
+		{
+			pattern1.ChangeState("DOWN");
+		}else if (PhaseCount == 2)
+		{
+			pattern2.ChangeState("DOWN");
+		}
 		return;
 	}
 	
@@ -277,12 +310,77 @@ void ADevilPlatform::Down(float _DeltaTime)
 	});
 }
 
+
+void ADevilPlatform::Down2(float _DeltaTime)
+{
+	if (GetActorLocation().iY() == CheckYDown)
+	{
+
+		if (false == Groundpattern)
+		{
+			if (count == 3)
+			{
+				count = 2;
+				pattern2.ChangeState("UP");
+				return;
+
+			}
+			else if (count == 2)
+			{
+				count = 4;
+				pattern2.ChangeState("UP");
+				return;
+			}
+			else if (count == 4)
+			{
+				count = 2;
+				Groundpattern = true;
+				pattern2.ChangeState("UP");
+				return;
+			}
+		}
+		else if (true == Groundpattern)
+		{
+			if (count == 2)
+			{
+				count = 3;
+				pattern2.ChangeState("UP");
+				return;
+
+			}
+			else if (count == 3)
+			{
+				count = 4;
+				pattern2.ChangeState("UP");
+				return;
+			}
+			else if (count == 4)
+			{
+				count = 2;
+				Groundpattern = false;
+				pattern2.ChangeState("UP");
+				return;
+			}
+		}
+	}
+
+
+	AddActorLocation(FVector::Down * Speed * _DeltaTime);
+
+	GroundCollision->CollisionStay(ECollisionOrder::Player, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		AActor* Ptr = _Collison->GetActor();
+		APlay_Cuphead* Player = dynamic_cast<APlay_Cuphead*>(Ptr);
+		Player->AddActorLocation(FVector::Down * Speed * _DeltaTime);
+	});
+}
+
+
 void ADevilPlatform::DownDie(float _DeltaTime)
 {
 
 	if (GetActorLocation().iY() <=-400)
 	{
-		num.push_back(GroundOrder);
 		Destroy();
 		return;
 	}
