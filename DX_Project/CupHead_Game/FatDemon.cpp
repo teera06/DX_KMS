@@ -65,11 +65,11 @@ void AFatDemon::CreateSkill()
 {
 	if (GetActorLocation().X < 0)
 	{
-		GetWorld()->SpawnActor<AFatDemonSkill>("FatDemonSkill")->SetActorLocation(GetActorLocation() + FVector::Right * 190.0f);
+		GetWorld()->SpawnActor<AFatDemonSkill>("FatDemonSkill")->SetActorLocation(GetActorLocation() + FVector::Right * 200.0f);
 	}
 	else
 	{
-		GetWorld()->SpawnActor<AFatDemonSkill>("FatDemonSkill")->SetActorLocation(GetActorLocation()+FVector::Left*190.0f);
+		GetWorld()->SpawnActor<AFatDemonSkill>("FatDemonSkill")->SetActorLocation(GetActorLocation()+FVector::Left*200.0f);
 	}
 }
 
