@@ -7,6 +7,7 @@
 
 #include "ContentsENum.h"
 #include "DevilPlatform.h"
+#include "Play_Cuphead.h"
 
 APokerChip::APokerChip()
 {
@@ -172,6 +173,27 @@ void APokerChip::CollisionCheck()
 		Effect->SetActive(false);
 		PokerChip->SetActive(false);
 		
+		picec1->SetActive(true);
+		picec2->SetActive(true);
+		picec3->SetActive(true);
+		picec4->SetActive(true);
+		picec5->SetActive(true);
+		picec6->SetActive(true);
+		picec7->SetActive(true);
+	});
+
+	PokerChipCollision->CollisionEnter(ECollisionOrder::Player, [=](std::shared_ptr<UCollision> _Collison)
+	{
+
+		AActor* Ptr = _Collison->GetActor();
+		APlay_Cuphead* Player = dynamic_cast<APlay_Cuphead*>(Ptr);
+
+		Player->AddActorLocation(FVector::Up * 100.0f);
+		Player->State.ChangeState("hit");
+
+		Effect->SetActive(false);
+		PokerChip->SetActive(false);
+
 		picec1->SetActive(true);
 		picec2->SetActive(true);
 		picec3->SetActive(true);
