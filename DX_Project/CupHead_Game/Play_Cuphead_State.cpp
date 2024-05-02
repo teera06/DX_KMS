@@ -47,12 +47,12 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 
 		Hand->SetSlotTouch(true);
 
-		//GEngine->SetGlobalTimeScale(0.6f);
+
 
 		GEngine->SetOrderTimeScale(static_cast<int>(ERenderOrder::Cuphead), 0.6f);
 		//AddActorLocation(FVector::Up * 1000.0f* _DeltaTime);
 
-		GravityVector = FVector::Down * 250.0f;
+		GravityVector = FVector::Down * 300.0f;
 	});
 
 	ParryCollision->CollisionStay(ECollisionOrder::Boss1Monster2Hand, [=](std::shared_ptr<UCollision> _Collison)
@@ -66,7 +66,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 		GEngine->SetGlobalTimeScale(0.6f);
 
 		//AddActorLocation(FVector::Up * 1000.0f * _DeltaTime);
-		GravityVector = FVector::Down*250.0f;
+		GravityVector = FVector::Down*300.0f;
 	});
 
 	ParryCollision->CollisionEnter(ECollisionOrder::Orb_Fire1, [=](std::shared_ptr<UCollision> _Collison)
@@ -78,7 +78,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 		{
 			Effect->SetActive(true);
 			GEngine->SetGlobalTimeScale(0.6f);
-			GravityVector = FVector::Down * 250.0f;
+			GravityVector = FVector::Down * 300.0f;
 
 			Fire1->Destroy();
 		}
@@ -94,7 +94,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 		{
 			Effect->SetActive(true);
 			GEngine->SetGlobalTimeScale(0.6f);
-			GravityVector = FVector::Down * 250.0f;
+			GravityVector = FVector::Down * 300.0f;
 
 			Fire1->Destroy();
 		}
@@ -109,7 +109,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 		{
 			Effect->SetActive(true);
 			GEngine->SetGlobalTimeScale(0.6f);
-			GravityVector = FVector::Down * 250.0f;
+			GravityVector = FVector::Down * 300.0f;
 
 			skill->Destroy();
 		}
@@ -125,7 +125,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 		{
 			Effect->SetActive(true);
 			GEngine->SetGlobalTimeScale(0.6f);
-			GravityVector = FVector::Down * 250.0f;
+			GravityVector = FVector::Down * 300.0f;
 
 			skill->Destroy();
 		}
