@@ -35,7 +35,7 @@ private:
 
 	static std::vector<int> num;
 
-	float Delay = 4.0f;
+	int PhaseCount = 2;
 
 	int order = 1;
 	int Add = 1;
@@ -46,12 +46,15 @@ private:
 	int GroundOrder = 0;
 
 	static int count;
-	float Speed = 250.0f;
 
+	float Speed = 250.0f;
+	float Delay = 4.0f;
 
 	bool OneCheck = false;
 
-	void CreateChip(float _DeltaTime);
+	void CreateChip1(float _DeltaTime);
+	void CreateChip2(float _DeltaTime);
+	void CreateChip3(float _DeltaTime);
 
 	void PlayerCollision();
 

@@ -159,7 +159,7 @@ void ADevil2::CreateFatDemon()
 
 void ADevil2::DevilPhase2Idle(float _DeltaTime)
 {
-	if (phasecheck == 2 && GetHp() <= 40)
+	if (phasecheck == 2 && GetHp() <= 50)
 	{
 		Phase1.ChangeState("Phase2ToPhase3");
 		return;
@@ -252,7 +252,7 @@ void ADevil2::Phase2StateInit()
 
 void ADevil2::Phase3Idle(float _DeltaTime)
 {
-	if (phasecheck == 3 && GetHp() <= 10)
+	if (phasecheck == 3 && GetHp() <= 25)
 	{
 		Phase2.ChangeState("DevilStartCrying");
 		return;

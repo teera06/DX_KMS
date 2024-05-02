@@ -337,7 +337,7 @@ void ADevil1::Phase1Intro(float _DeltaTime)
 
 void ADevil1::Phase1Idle(float _DeltaTime)
 {
-	if (phasecheck == 1 && GetHp() <= 70)
+	if (phasecheck == 1 && GetHp() <= 75)
 	{
 		AddActorLocation(FVector(45.0f, 20.0f, 0.0f));
 		Boss2Phase2->AddPosition(FVector(-45.0f, -20.0f, 0.0f));

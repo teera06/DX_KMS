@@ -79,7 +79,21 @@ void ADevilPlatform::Tick(float _DeltaTime)
 		CheckYUP = GetActorLocation().iY() + 180;
 	}
 
-	CreateChip(_DeltaTime);
+	if (PhaseCount==2) // 페이지 2
+	{
+		CreateChip1(_DeltaTime);
+	}
+	else if (PhaseCount == 3) // 페이지 3
+	{
+		CreateChip2(_DeltaTime);
+	}
+	else if (PhaseCount == 4)
+	{
+		CreateChip3(_DeltaTime);
+	}
+
+
+	
 
 	PlayerCollision();
 
@@ -118,7 +132,7 @@ void ADevilPlatform::Tick(float _DeltaTime)
 	}
 }
 
-void ADevilPlatform::CreateChip(float _DeltaTime)
+void ADevilPlatform::CreateChip1(float _DeltaTime)
 {
 	Delay -= _DeltaTime;
 
@@ -126,63 +140,22 @@ void ADevilPlatform::CreateChip(float _DeltaTime)
 	{
 		if (order == 1)
 		{
-			for (int i = 0; i < num.size(); i++)
-			{
-				if (0 == order - num[i])
-				{
-					order += Add;
-					return;
-				}
-			}
-
 			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(580.0f, 500.0f, 10.0f));
 		}
 		else if (order == 2)
 		{
-			for (int i = 0; i < num.size(); i++)
-			{
-				if (0 == order - num[i])
-				{
-					order += Add;
-					return;
-				}
-			}
 			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(290.0f, 500.0f, 10.0f));
 		}
 		else if (order == 3)
 		{
-			for (int i = 0; i < num.size(); i++)
-			{
-				if (0 == order - num[i])
-				{
-					order += Add;
-					return;
-				}
-			}
 			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(0.0f, 500.0f, 10.0f));
 		}
 		else if (order == 4)
 		{
-			for (int i = 0; i < num.size(); i++)
-			{
-				if (0 == order - num[i])
-				{
-					order += Add;
-					return;
-				}
-			}
 			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(-290.0f, 500.0f, 10.0f));
 		}
 		else if (order == 5)
 		{
-			for (int i = 0; i < num.size(); i++)
-			{
-				if (0 == order - num[i])
-				{
-					order += Add;
-					return;
-				}
-			}
 			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(-580.0f, 500.0f, 10.0f));
 		}
 		else if (order == 6 || order == 0) {
@@ -190,6 +163,44 @@ void ADevilPlatform::CreateChip(float _DeltaTime)
 		}
 
 		order += Add;
+		Delay = 4.0f;
+	}
+}
+
+void ADevilPlatform::CreateChip2(float _DeltaTime)
+{
+	Delay -= _DeltaTime;
+
+	if (Delay < 0)
+	{
+		if (order == 1)
+		{
+			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(290.0f, 500.0f, 10.0f));
+		}
+		else if (order == 2)
+		{
+			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(0.0f, 500.0f, 10.0f));
+		}
+		else if (order == 3)
+		{
+			GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(-290.0f, 500.0f, 10.0f));
+		}
+		else if (order == 4 || order == 0) {
+			Add *= -1;
+		}
+
+		order += Add;
+		Delay = 4.0f;
+	}
+}
+
+void ADevilPlatform::CreateChip3(float _DeltaTime)
+{
+	Delay -= _DeltaTime;
+
+	if (Delay < 0)
+	{
+		GetWorld()->SpawnActor<APokerChip>("PokerChip")->SetActorLocation(FVector(0.0f, 500.0f, 10.0f));
 		Delay = 4.0f;
 	}
 }
