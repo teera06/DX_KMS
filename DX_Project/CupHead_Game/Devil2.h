@@ -48,6 +48,8 @@ private:
 
 	float UpdateDelay = 5.0f;
 
+	int Impcount = 0;
+
 	bool LRHand = false;
 	// false-> Left
 	// true-> Right

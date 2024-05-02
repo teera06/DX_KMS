@@ -325,9 +325,14 @@ void ADevil2::Phase3Idle(float _DeltaTime)
 
 void ADevil2::DevilSummonImpIdle(float _DeltaTime)
 {
+	
 	Summon1->SetActive(true);
 	Summon2->SetActive(true);
 	Summon3->SetActive(true);
+
+	Summon1->ChangeAnimation("SpawnImp");
+	Summon2->ChangeAnimation("SpawnImp");
+	Summon3->ChangeAnimation("SpawnImp");
 
 	Summon1->SetFrameCallback("SpawnImp", 9, [=] {CreateImp(Summon1->GetWorldPosition());});
 	Summon2->SetFrameCallback("SpawnImp", 9, [=] {CreateImp(Summon2->GetWorldPosition()); });
@@ -336,10 +341,28 @@ void ADevil2::DevilSummonImpIdle(float _DeltaTime)
 	if (true == Summon1->IsCurAnimationEnd())
 	{
 		Summon1->SetActive(false);
+		
+
+		++Impcount;
+	}
+
+	if (true == Summon2->IsCurAnimationEnd())
+	{
 		Summon2->SetActive(false);
+		++Impcount;
+	}
+
+	if (true == Summon3->IsCurAnimationEnd())
+	{
 		Summon3->SetActive(false);
 
-		attOrder = 1;
+		++Impcount;
+	}
+
+	if (Impcount == 3)
+	{
+		Impcount = 0;
+		attOrder = 2;
 		coolDownTime = 6.0f;
 		Phase2.ChangeState("Phase3Idle");
 		return;
@@ -355,6 +378,7 @@ void ADevil2::FatDemonIntro(float _DeltaTime)
 		CreateFatDemon();
 		Hand->SetActive(false);
 		coolDownTime = 6.0f;
+		attOrder = 1;
 		Phase2.ChangeState("Phase3Idle");
 		return;
 	}
