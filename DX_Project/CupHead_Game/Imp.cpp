@@ -129,7 +129,7 @@ void AImp::ImpFlying(float _DeltaTime)
 
 	if (RandomMove == 1)
 	{
-		AddActorLocation((FVector::Down + FVector::Right * 0.2f) * Speed * _DeltaTime);
+		AddActorLocation((FVector::Down + FVector::Right * 0.5f) * Speed * _DeltaTime);
 	}
 	else if (RandomMove == 2)
 	{
@@ -137,7 +137,7 @@ void AImp::ImpFlying(float _DeltaTime)
 	}
 	else if (RandomMove == 3)
 	{
-		AddActorLocation((FVector::Down + FVector::Left * 0.2f) * Speed * _DeltaTime);
+		AddActorLocation((FVector::Down + FVector::Left * 0.5f) * Speed * _DeltaTime);
 	}
 	else if (RandomMove == 4)
 	{
@@ -167,7 +167,7 @@ void AImp::ImpAttack(float _DeltaTime)
 
 	if (Delay < 0)
 	{
-		Delay = 2.0f;
+		Delay = 1.5f;
 		RandomMove = UEngineRandom::MainRandom.RandomInt(1, 4);
 		pattern.ChangeState("ImpRandomMove");
 		return;
@@ -186,7 +186,7 @@ void AImp::ImpRandomMove(float _DeltaTime)
 
 	if (RandomMove == 1)
 	{
-		AddActorLocation((FVector::Up + FVector::Right * 0.2f) * Speed * _DeltaTime);
+		AddActorLocation((FVector::Up + FVector::Right * 0.5f) * Speed * _DeltaTime);
 	}
 	else if (RandomMove == 2)
 	{
@@ -194,7 +194,7 @@ void AImp::ImpRandomMove(float _DeltaTime)
 	}
 	else if (RandomMove == 3)
 	{
-		AddActorLocation((FVector::Up + FVector::Left * 0.2f) * Speed * _DeltaTime);
+		AddActorLocation((FVector::Up + FVector::Left * 0.5f) * Speed * _DeltaTime);
 	}
 	else if (RandomMove == 4)
 	{
