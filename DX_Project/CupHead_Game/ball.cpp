@@ -39,7 +39,7 @@ void Aball::BeginPlay()
 {
 	Super::BeginPlay();
 
-	SetActorLocation(FVector(-300.0f, 0.0f, 0.0f));
+	SetActorLocation(FVector(-300.0f, -50.0f, 0.0f));
 
 	ballRender->SetOrder(ERenderOrder::skilleffect);
 	ballRender->SetSprite("shorfrog_clap_ball_0001.png");
