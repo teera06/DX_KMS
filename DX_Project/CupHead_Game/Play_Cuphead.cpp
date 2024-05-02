@@ -37,10 +37,17 @@ APlay_Cuphead::APlay_Cuphead()
 	PlayerCollision->SetCollisionGroup(ECollisionOrder::Player);
 	PlayerCollision->SetCollisionType(ECollisionType::RotRect);
 
+	ParryCollision = CreateDefaultSubObject<UCollision>("Collision");
+	ParryCollision->SetupAttachment(Root);
+	ParryCollision->SetPosition(FVector(0.0f, 60.0f, 0.0f));
+	ParryCollision->SetScale(FVector(100.0f, 120.0f, 100.0f));
+
+	ParryCollision->SetCollisionGroup(ECollisionOrder::Parry);
+	ParryCollision->SetCollisionType(ECollisionType::RotRect);
 
 	SetRoot(Root);
 
-
+	ParryCollision->SetActive(false);
 	PlayCuphead->SetOrder(ERenderOrder::Cuphead);
 	PlayCuphead->SetSprite("cuphead_idle_0001.png");
 	PlayCuphead->SetSamplering(ETextureSampling::LINEAR);

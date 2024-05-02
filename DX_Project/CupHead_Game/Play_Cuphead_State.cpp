@@ -23,7 +23,9 @@
 #include "Boss1_Monster2.h"
 #include "MoveObject2.h"
 
+// ÆÐ¸µ
 #include "Orb_Fire.h"
+#include "smallskill.h"
 
 #include "Hole.h"
 
@@ -37,7 +39,7 @@
 
 void APlay_Cuphead::ParryCheck(float _DeltaTime)
 {
-	PlayerCollision->CollisionEnter(ECollisionOrder::Boss1Monster2Hand, [=](std::shared_ptr<UCollision> _Collison)
+	ParryCollision->CollisionEnter(ECollisionOrder::Boss1Monster2Hand, [=](std::shared_ptr<UCollision> _Collison)
 	{
 		Effect->SetActive(true);
 		AActor* Ptr = _Collison->GetActor();
@@ -45,14 +47,15 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 
 		Hand->SetSlotTouch(true);
 
-		GEngine->SetGlobalTimeScale(0.6f);
+		//GEngine->SetGlobalTimeScale(0.6f);
 
+		GEngine->SetOrderTimeScale(static_cast<int>(ERenderOrder::Cuphead), 0.6f);
 		//AddActorLocation(FVector::Up * 1000.0f* _DeltaTime);
 
 		GravityVector = FVector::Down * 250.0f;
 	});
 
-	PlayerCollision->CollisionStay(ECollisionOrder::Boss1Monster2Hand, [=](std::shared_ptr<UCollision> _Collison)
+	ParryCollision->CollisionStay(ECollisionOrder::Boss1Monster2Hand, [=](std::shared_ptr<UCollision> _Collison)
 	{
 		Effect->SetActive(true);
 		AActor* Ptr = _Collison->GetActor();
@@ -66,7 +69,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 		GravityVector = FVector::Down*250.0f;
 	});
 
-	PlayerCollision->CollisionEnter(ECollisionOrder::Orb_Fire1, [=](std::shared_ptr<UCollision> _Collison)
+	ParryCollision->CollisionEnter(ECollisionOrder::Orb_Fire1, [=](std::shared_ptr<UCollision> _Collison)
 	{
 		AActor* Ptr = _Collison->GetActor();
 		AOrb_Fire* Fire1 = dynamic_cast<AOrb_Fire*>(Ptr);
@@ -82,7 +85,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 
 	});
 
-	PlayerCollision->CollisionStay(ECollisionOrder::Orb_Fire1, [=](std::shared_ptr<UCollision> _Collison)
+	ParryCollision->CollisionStay(ECollisionOrder::Orb_Fire1, [=](std::shared_ptr<UCollision> _Collison)
 	{
 		AActor* Ptr = _Collison->GetActor();
 		AOrb_Fire* Fire1 = dynamic_cast<AOrb_Fire*>(Ptr);
@@ -97,6 +100,36 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 		}
 	});
 
+	ParryCollision->CollisionEnter(ECollisionOrder::MonsterSkill, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		AActor* Ptr = _Collison->GetActor();
+		Asmallskill* skill = dynamic_cast<Asmallskill*>(Ptr);
+
+		if (true == skill->GetParryCheck())
+		{
+			Effect->SetActive(true);
+			GEngine->SetGlobalTimeScale(0.6f);
+			GravityVector = FVector::Down * 250.0f;
+
+			skill->Destroy();
+		}
+
+	});
+
+	ParryCollision->CollisionStay(ECollisionOrder::MonsterSkill, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		AActor* Ptr = _Collison->GetActor();
+		Asmallskill* skill = dynamic_cast<Asmallskill*>(Ptr);
+
+		if (true == skill->GetParryCheck())
+		{
+			Effect->SetActive(true);
+			GEngine->SetGlobalTimeScale(0.6f);
+			GravityVector = FVector::Down * 250.0f;
+
+			skill->Destroy();
+		}
+	});
 }
 
 void APlay_Cuphead::GroundObject()
@@ -1488,6 +1521,7 @@ void APlay_Cuphead::Jump(float _DeltaTime)
 
 	if (true == IsDown('Z'))
 	{
+		ParryCollision->SetActive(true);
 		State.ChangeState("Parry");
 		return;
 	}
@@ -1627,6 +1661,7 @@ void APlay_Cuphead::Parry(float _DeltaTime)
 
 	if (true == PlayCuphead->IsCurAnimationEnd())
 	{
+		ParryCollision->SetActive(false);
 		Effect->SetActive(false);
 		GEngine->SetGlobalTimeScale(1.0f);
 		State.ChangeState("Jump");

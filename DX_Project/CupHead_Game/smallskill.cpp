@@ -6,6 +6,7 @@
 #include <EngineCore/Collision.h>
 
 #include "ContentsENum.h"
+#include "Play_Cuphead.h"
 
 Asmallskill::Asmallskill()
 {
@@ -83,6 +84,18 @@ void Asmallskill::Tick(float _DeltaTime)
 
 void Asmallskill::Collisiongather()
 {
+
+	smallskillCollision->CollisionEnter(ECollisionOrder::Player, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		AActor* Ptr = _Collison->GetActor();
+		APlay_Cuphead* Player = dynamic_cast<APlay_Cuphead*>(Ptr);
+
+		Player->AddActorLocation(FVector::Up * 100.0f);
+		Player->State.ChangeState("hit");
+	});
+
+	
+
 	if (GetActorLocation().iX() <= -600 || GetActorLocation().iX() >= 600) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
 	{
 		Destroy();

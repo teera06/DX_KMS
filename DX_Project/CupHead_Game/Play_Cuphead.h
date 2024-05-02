@@ -65,6 +65,7 @@ private:
 	USpriteRenderer* BulletStart = nullptr;
 	USpriteRenderer* Effect = nullptr;
 	UCollision* PlayerCollision=nullptr;
+	UCollision* ParryCollision = nullptr;
 
 	std::shared_ptr<ABaseBullet> NewBullet = nullptr;
 	std::shared_ptr<ABaseSSBullet> NewSSBullet = nullptr;
