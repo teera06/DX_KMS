@@ -11,6 +11,9 @@
 #include "Axe.h"
 #include "Imp.h"
 #include "FatDemon.h"
+#include "DevilTear.h"
+#include "ScreenEffect.h"
+
 
 
 ADevil2::ADevil2()
@@ -151,6 +154,7 @@ void ADevil2::AniCreate()
 
 	Boss2->CreateAnimation("DevilStartCrying", "DevilStartCrying", 0.075f);
 	Boss2->CreateAnimation("DevilCrying", "DevilCrying", 0.075f);
+	Boss2->CreateAnimation("DevilKnockout", "DevilKnockout", 0.075f);
 
 	DevilNeck->CreateAnimation("DevilNeck", "DevilNeck", 0.085f);
 
@@ -271,6 +275,7 @@ void ADevil2::Phase2StateInit()
 	Phase2.CreateState("FatDemonIntro");
 	Phase2.CreateState("DevilStartCrying");
 	Phase2.CreateState("DevilCrying");
+	Phase2.CreateState("DevilKnockout");
 	
 	Phase2.SetUpdateFunction("Phase3Idle", std::bind(&ADevil2::Phase3Idle, this, std::placeholders::_1));
 	Phase2.SetStartFunction("Phase3Idle", [=] {Boss2->ChangeAnimation("Phase3Idle"); });
@@ -287,6 +292,9 @@ void ADevil2::Phase2StateInit()
 	Phase2.SetUpdateFunction("DevilCrying", std::bind(&ADevil2::DevilCrying, this, std::placeholders::_1));
 	Phase2.SetStartFunction("DevilCrying", [=] {Boss2->ChangeAnimation("DevilCrying"); });
 
+	Phase2.SetUpdateFunction("DevilKnockout", std::bind(&ADevil2::DevilKnockout, this, std::placeholders::_1));
+	Phase2.SetStartFunction("DevilKnockout", [=] {Boss2->ChangeAnimation("DevilKnockout"); });
+
 	Phase2.ChangeState("Phase3Idle");
 }
 
@@ -294,6 +302,7 @@ void ADevil2::Phase3Idle(float _DeltaTime)
 {
 	if (phasecheck == 3 && GetHp() <= 25)
 	{
+		coolDownTime = 1.0f;
 		Phase2.ChangeState("DevilStartCrying");
 		return;
 	}
@@ -376,6 +385,32 @@ void ADevil2::DevilStartCrying(float _DeltaTime)
 }
 
 void ADevil2::DevilCrying(float _DeltaTime)
+{
+	if (coolDownTime < 0)
+	{
+		if (false == LRTear)
+		{
+			LRTear = true;
+			GetWorld()->SpawnActor<ADevilTear>("Tear")->AddActorLocation(FVector(- 200.0f, 320.0f, 5.0f));
+		}
+		else
+		{
+			LRTear = false;
+			GetWorld()->SpawnActor<ADevilTear>("Tear")->AddActorLocation(FVector(200.0f, 320.0f, 5.0f));
+		}
+
+		coolDownTime = 1.0f;
+	}
+
+	if (GetHp() <= 0)
+	{
+		GetWorld()->SpawnActor<AScreenEffect>("Knockout")->SetScreenEffect(EScreenEffect::Knockout);
+		Phase2.ChangeState("DevilKnockout");
+		return;
+	}
+}
+
+void ADevil2::DevilKnockout(float _DeltaTime)
 {
 
 }

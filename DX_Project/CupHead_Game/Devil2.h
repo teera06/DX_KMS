@@ -51,6 +51,7 @@ private:
 	
 
 	bool LRHand = false;
+	bool LRTear = false;
 	// false-> Left
 	// true-> Right
 
@@ -75,5 +76,7 @@ private:
 
 	void DevilStartCrying(float _DeltaTime);
 	void DevilCrying(float _DeltaTime);
+
+	void DevilKnockout(float _DeltaTime);
 };
 

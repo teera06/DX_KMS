@@ -36,6 +36,7 @@ void AScreenEffect::BeginPlay()
 	FilterEffect->CreateAnimation("Iris", "Iris", 0.05f,false);
 	FilterEffect->CreateAnimation("IrisRe", "Iris", 0.05f, false,16,1);
 	FilterEffect->CreateAnimation("ReadyWALLOP!", "ReadyWALLOP!", 0.05f, false);
+	FilterEffect->CreateAnimation("Knockout", "Knockout", 0.05f, false);
 
 }
 
@@ -63,6 +64,14 @@ void AScreenEffect::Tick(float _DeltaTime)
 		break;
 	case EScreenEffect::Iris2:
 		FilterEffect->ChangeAnimation("Iris");
+
+		if (true == FilterEffect->IsCurAnimationEnd())
+		{
+			Destroy();
+		}
+		break;
+	case EScreenEffect::Knockout:
+		FilterEffect->ChangeAnimation("Knockout");
 
 		if (true == FilterEffect->IsCurAnimationEnd())
 		{

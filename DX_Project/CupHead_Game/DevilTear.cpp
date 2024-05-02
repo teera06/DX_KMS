@@ -31,7 +31,7 @@ void ADevilTear::BeginPlay()
 {
 	Super::BeginPlay();
 
-	SetActorLocation(FVector(0.0f, 500.0f, 5.0f));
+	//SetActorLocation(FVector(0.0f, 500.0f, 5.0f));
 
 	Tear->CreateAnimation("DevilTear1", "DevilTear1", 0.075f);
 	
