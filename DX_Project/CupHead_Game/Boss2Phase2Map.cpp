@@ -53,10 +53,20 @@ void ABoss2Phase2Map::Tick(float _DeltaTime)
 	}
 	else if (ADevilPlatform::GetPhaseCount() == 2)
 	{
+		if (false == OneCheck1)
+		{
+			OneCheck1 = true;
+			order = 1;
+		}
 		CreateChip2(_DeltaTime);
 	}
 	else if (ADevilPlatform::GetPhaseCount() == 3)
 	{
+		if (false == OneCheck2)
+		{
+			OneCheck2 = true;
+			order = 1;
+		}
 		CreateChip3(_DeltaTime);
 	}
 }
