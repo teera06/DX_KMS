@@ -22,7 +22,7 @@ protected:
 private:
 	USpriteRenderer* Boss2Phase2Map = nullptr;
 
-	float Delay = 4.0f;
+	float Delay = 8.0f;
 
 	int order = 1;
 	int Add = 1;

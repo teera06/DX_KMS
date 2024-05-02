@@ -21,7 +21,14 @@ protected:
 private:
 	USpriteRenderer* PokerChip = nullptr;
 	USpriteRenderer* Effect = nullptr;
+
+	USpriteRenderer* picec1 = nullptr;
+	USpriteRenderer* picec2 = nullptr;
+	USpriteRenderer* picec3 = nullptr;
+	USpriteRenderer* picec4 = nullptr;
+
 	UCollision* PokerChipCollision = nullptr;
+
 	
 
 	FVector GravityVector = FVector::Zero;
@@ -31,5 +38,7 @@ private:
 	bool DestoryCheck = false;
 
 	void GroundCheck(float _DeltaTime);
+
+	void CollisionCheck();
 };
 
