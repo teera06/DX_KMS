@@ -14,7 +14,7 @@ AFatDemonSkill::AFatDemonSkill()
 	Skill = CreateDefaultSubObject<USpriteRenderer>("Skill");
 	Skill->SetupAttachment(Root);
 
-	Skill->SetOrder(ERenderOrder::backSkill);
+	Skill->SetOrder(ERenderOrder::SkillMonsterSkill);
 	Skill->SetSprite("devil_ph3_fat_demon_skull_0005.png");
 	Skill->SetSamplering(ETextureSampling::LINEAR);
 	Skill->SetAutoSize(0.85f, true);
