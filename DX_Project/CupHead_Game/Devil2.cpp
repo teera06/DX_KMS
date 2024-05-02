@@ -152,7 +152,7 @@ void ADevil2::AniCreate()
 	Boss2->CreateAnimation("DevilStartCrying", "DevilStartCrying", 0.075f);
 	Boss2->CreateAnimation("DevilCrying", "DevilCrying", 0.075f);
 
-	DevilNeck->CreateAnimation("DevilNeck", "DevilNeck", 0.075f);
+	DevilNeck->CreateAnimation("DevilNeck", "DevilNeck", 0.085f);
 
 	Hand->CreateAnimation("FatDemonIntro", "FatDemonIntro", 0.075f);
 
