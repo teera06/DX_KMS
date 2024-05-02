@@ -41,6 +41,11 @@ private:
 
 	USpriteRenderer* Hand = nullptr;
 
+
+	USpriteRenderer* Summon1 = nullptr;
+	USpriteRenderer* Summon2 = nullptr;
+	USpriteRenderer* Summon3 = nullptr;
+
 	float UpdateDelay = 5.0f;
 
 	bool LRHand = false;
@@ -50,7 +55,7 @@ private:
 	void CreateBombBat();
 	void CreateAxe();
 
-	void CreateImp();
+	void CreateImp(const FVector& _Pos);
 	void CreateFatDemon();
 
 	void DevilPhase2Idle(float _DeltaTime);

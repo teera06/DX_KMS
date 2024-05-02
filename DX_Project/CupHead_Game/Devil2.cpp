@@ -43,9 +43,42 @@ ADevil2::ADevil2()
 	Hand->SetSamplering(ETextureSampling::LINEAR);
 	Hand->SetAutoSize(0.8f, true);
 
+	Summon1 = CreateDefaultSubObject<USpriteRenderer>("Summon1");
+	
+	Summon1->SetupAttachment(Root);
+
+	Summon1->SetOrder(ERenderOrder::FrontSkillMonster);
+	Summon1->SetSprite("_0011_devil_ph3_small_demon_pimple_0001.png");
+	Summon1->SetSamplering(ETextureSampling::LINEAR);
+	Summon1->SetAutoSize(1.0f, true);
+	Summon1->AddPosition(FVector(-150.0f, 150.0f, 0.0f));
+
+	Summon2 = CreateDefaultSubObject<USpriteRenderer>("Summon2");
+	
+	Summon2->SetupAttachment(Root);
+
+	Summon2->SetOrder(ERenderOrder::FrontSkillMonster);
+	Summon2->SetSprite("_0011_devil_ph3_small_demon_pimple_0001.png");
+	Summon2->SetSamplering(ETextureSampling::LINEAR);
+	Summon2->SetAutoSize(1.0f, true);
+	Summon2->AddPosition(FVector(150.0f, 140.0f, 0.0f));
+
+	Summon3 = CreateDefaultSubObject<USpriteRenderer>("Summon3");
+	Summon3->SetupAttachment(Root);
+	
+	Summon3->SetOrder(ERenderOrder::FrontSkillMonster);
+	Summon3->SetSprite("_0011_devil_ph3_small_demon_pimple_0001.png");
+	Summon3->SetSamplering(ETextureSampling::LINEAR);
+	Summon3->SetAutoSize(1.0f, true);
+	Summon3->AddPosition(FVector(180.0f, 160.0f, 0.0f));
+
+
 	SetRoot(Root);
 
 	Hand->SetActive(false);
+	Summon1->SetActive(false);
+	Summon2->SetActive(false);
+	Summon3->SetActive(false);
 	DevilNeck->AddPosition(FVector(40.0f, -400.0f, 0.0f));
 }
 
@@ -122,6 +155,14 @@ void ADevil2::AniCreate()
 	DevilNeck->CreateAnimation("DevilNeck", "DevilNeck", 0.075f);
 
 	Hand->CreateAnimation("FatDemonIntro", "FatDemonIntro", 0.075f);
+
+	Summon1->CreateAnimation("SpawnImp", "SpawnImp", 0.075f);
+	Summon2->CreateAnimation("SpawnImp", "SpawnImp", 0.075f);
+	Summon3->CreateAnimation("SpawnImp", "SpawnImp", 0.075f);
+
+	Summon1->ChangeAnimation("SpawnImp");
+	Summon2->ChangeAnimation("SpawnImp");
+	Summon3->ChangeAnimation("SpawnImp");
 }
 
 void ADevil2::CreateBombBat()
@@ -134,12 +175,11 @@ void ADevil2::CreateAxe()
 	NewAxe = GetWorld()->SpawnActor<AAxe>("Axe");
 }
 
-void ADevil2::CreateImp()
+void ADevil2::CreateImp(const FVector& _Pos)
 {
 
-	GetWorld()->SpawnActor<AImp>("Imp1")->SetActorLocation(FVector(200.0f, 300.0f, 5.0f));
-	GetWorld()->SpawnActor<AImp>("Imp2")->SetActorLocation(FVector(50.0f, 300.0f, 5.0f));
-	GetWorld()->SpawnActor<AImp>("Imp3")->SetActorLocation(FVector(-200.0f, 300.0f, 5.0f));
+	GetWorld()->SpawnActor<AImp>("Imp")->SetActorLocation(_Pos);
+	
 }
 
 void ADevil2::CreateFatDemon()
@@ -258,7 +298,7 @@ void ADevil2::Phase3Idle(float _DeltaTime)
 		return;
 	}
 
-	if (coolDownTime < 0 && 1 == attOrder)
+	if (coolDownTime < 0 && 2 == attOrder)
 	{
 		if (false == LRHand)
 		{
@@ -276,7 +316,7 @@ void ADevil2::Phase3Idle(float _DeltaTime)
 		return;
 	}
 
-	if (coolDownTime < 0 && 2 == attOrder)
+	if (coolDownTime < 0 && 1 == attOrder)
 	{
 		Phase2.ChangeState("DevilSummonImpIdle");
 		return;
@@ -285,9 +325,20 @@ void ADevil2::Phase3Idle(float _DeltaTime)
 
 void ADevil2::DevilSummonImpIdle(float _DeltaTime)
 {
-	if (true == Boss2->IsCurAnimationEnd())
+	Summon1->SetActive(true);
+	Summon2->SetActive(true);
+	Summon3->SetActive(true);
+
+	Summon1->SetFrameCallback("SpawnImp", 9, [=] {CreateImp(Summon1->GetWorldPosition());});
+	Summon2->SetFrameCallback("SpawnImp", 9, [=] {CreateImp(Summon2->GetWorldPosition()); });
+	Summon3->SetFrameCallback("SpawnImp", 9, [=] {CreateImp(Summon3->GetWorldPosition()); });
+
+	if (true == Summon1->IsCurAnimationEnd())
 	{
-		CreateImp();
+		Summon1->SetActive(false);
+		Summon2->SetActive(false);
+		Summon3->SetActive(false);
+
 		attOrder = 1;
 		coolDownTime = 6.0f;
 		Phase2.ChangeState("Phase3Idle");
