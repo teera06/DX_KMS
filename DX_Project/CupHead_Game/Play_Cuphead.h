@@ -59,6 +59,8 @@ private:
 
 	UImage* HpBar = nullptr;
 
+	std::vector<UImage*> Guage;
+
 	USpriteRenderer* PlayCuphead= nullptr;
 	USpriteRenderer* BulletStart = nullptr;
 	USpriteRenderer* Effect = nullptr;

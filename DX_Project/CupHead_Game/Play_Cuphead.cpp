@@ -61,6 +61,7 @@ APlay_Cuphead::APlay_Cuphead()
 
 APlay_Cuphead::~APlay_Cuphead()
 {
+	Guage.clear();
 }
 
 
@@ -114,6 +115,23 @@ void APlay_Cuphead::BeginPlay()
 	
 	BulletStart->SetActive(false);
 	Effect->SetActive(false);
+
+	Guage.resize(5);
+
+	for (int i = 0; i < Guage.size(); i++)
+	{
+		Guage[i]= CreateWidget<UImage>(GetWorld(), "skillBar");
+		Guage[i]->AddToViewPort(ERenderOrder::skiilBar);
+		Guage[i]->SetSprite("SuperMeterCard.png");
+		Guage[i]->SetAutoSize(1.0f, true);
+	}
+
+	Guage[0]->SetPosition({ -510.0f, -310.0f });
+	Guage[1]->SetPosition({ -490.0f, -310.0f });
+	Guage[2]->SetPosition({ -470.0f, -310.0f });
+	Guage[3]->SetPosition({ -450.0f, -310.0f });
+	Guage[4]->SetPosition({ -430.0f, -310.0f });
+
 
 	HpBar = CreateWidget<UImage>(GetWorld(), "HpBar");
 	HpBar->AddToViewPort(ERenderOrder::HPBar);

@@ -73,6 +73,7 @@ enum class ERenderOrder
 	ObjectFront2,
 	FrontGround1,
 	FrontGround2,
+	skiilBar,
 	HPBar,
 	FilterEffect,
 	Filter
