@@ -4,6 +4,8 @@
 #include "ScreenEffect.h"
 #include "WorldMap.h"
 #include "WorldPlayer.h"
+#include "Boss1Start.h"
+
 #include "ContentsHelper.h"
 #include "ContentsENum.h"
 
@@ -27,6 +29,7 @@ void AWorldGameMode::BeginPlay()
 	std::shared_ptr<UCamera> Camera = GetWorld()->GetMainCamera();
 	Camera->SetActorLocation(FVector(1500.0f / 2.0f, -1700.0f / 2.0f, -100.0f));
 	GetWorld()->SpawnActor<AWorldPlayer>("WorldPlayer");
+	GetWorld()->SpawnActor<ABoss1Start>("Boss1Start");
 	{
 		std::shared_ptr<AWorldMap> Front = GetWorld()->SpawnActor<AWorldMap>("WorldMap");
 
