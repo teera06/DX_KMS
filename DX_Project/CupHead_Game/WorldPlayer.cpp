@@ -23,6 +23,10 @@ AWorldPlayer::AWorldPlayer()
 
 	Boss2title->SetupAttachment(Root);
 
+	Boss1title = CreateDefaultSubObject<USpriteRenderer>("Boss1title");
+
+	Boss1title->SetupAttachment(Root);
+
 
 	PlayerCollision = CreateDefaultSubObject<UCollision>("Collision");
 	PlayerCollision->SetupAttachment(Root);
@@ -56,6 +60,11 @@ void AWorldPlayer::BeginPlay()
 	Boss2title ->SetSprite("ImageC88.png");
 	Boss2title ->SetSamplering(ETextureSampling::LINEAR);
 	Boss2title ->SetAutoSize(1.0f, true);
+
+	Boss1title->SetOrder(ERenderOrder::ScreenBar);
+	Boss1title->SetSprite("ImageC88.png");
+	Boss1title->SetSamplering(ETextureSampling::LINEAR);
+	Boss1title->SetAutoSize(1.0f, true);
 
 
 	WorldPlayerRenderer->SetOrder(ERenderOrder::Cuphead);
