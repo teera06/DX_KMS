@@ -26,6 +26,12 @@ public:
 	{
 		Hp=_Hp;
 	}
+
+	static void addHp(const int& _Hp)
+	{
+		Hp -= _Hp;
+	}
+
 	static int phasecheck;
 	static float coolDownTime;
 	static bool attOrder;

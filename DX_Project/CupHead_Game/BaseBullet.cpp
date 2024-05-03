@@ -99,6 +99,7 @@ void ABaseBullet::Collisiongather()
 		AActor* Ptr = _Collison->GetActor();
 		ABoss1_Monster1* Monster = dynamic_cast<ABoss1_Monster1*>(Ptr);
 		Monster->GetRender()->SetPlusColor({ 0.2f, 0.2f, 0.2f });
+		Monster->addHp(1);
 		DestroyCheck = true;
 		BulletRender->ChangeAnimation("Peashot_Death");
 		//Destroy();
