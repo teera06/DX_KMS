@@ -155,6 +155,10 @@ void APlay_Cuphead::BeginPlay()
 	HpBar->CreateAnimation("HP0", "HP0", 0.75f);
 
 	HpBar->ChangeAnimation("HP3");
+
+	BaseBulletSound= UEngineSound::SoundPlay("sfx_player_default_fire_loop_01.wav");
+	BaseBulletSound.Loop();
+	BaseBulletSound.Off();
 }
 
 void APlay_Cuphead::Tick(float _DeltaTime)

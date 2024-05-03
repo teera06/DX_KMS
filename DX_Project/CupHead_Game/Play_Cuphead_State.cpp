@@ -1195,6 +1195,7 @@ void APlay_Cuphead::Run_Shoot_DiagonalUp(float _DeltaTime)
 	skillCoolTime -= _DeltaTime;
 	if (true == IsPress('X') && skillCoolTime < 0.0f)
 	{
+		BaseBulletSound.On();
 		createBullet();
 		skillCoolTime = SaveSkilltime;
 		return;
@@ -1211,6 +1212,7 @@ void APlay_Cuphead::Run_Shoot_DiagonalUp(float _DeltaTime)
 	FVector MovePos = FVector::Zero;
 	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT) && true == IsFree('X'))
 	{
+		BaseBulletSound.Off();
 		BulletStart->SetActive(false);
 		State.ChangeState("Idle");
 		return;
@@ -1350,7 +1352,7 @@ void APlay_Cuphead::Shoot_Straight(float _DeltaTime)
 	skillCoolTime -= _DeltaTime;
 	if (true == IsPress('X') && skillCoolTime<0.0f)
 	{
-		UEngineSound::SoundPlay("sfx_player_weapon_peashot_death_001.wav");
+		BaseBulletSound.On();
 		createBullet();
 		skillCoolTime = SaveSkilltime;
 		return;
@@ -1358,6 +1360,7 @@ void APlay_Cuphead::Shoot_Straight(float _DeltaTime)
 
 	if (true == IsFree('X'))
 	{
+		BaseBulletSound.Off();
 		BulletStart->SetActive(false);
 		State.ChangeState("Idle");
 		return;
@@ -1402,6 +1405,7 @@ void APlay_Cuphead::Duck_Shoot(float _DeltaTime)
 	skillCoolTime -= _DeltaTime;
 	if (true == IsPress('X') && skillCoolTime < 0.0f)
 	{
+		BaseBulletSound.On();
 		createBullet();
 		skillCoolTime = SaveSkilltime;
 		return;
@@ -1415,6 +1419,7 @@ void APlay_Cuphead::Duck_Shoot(float _DeltaTime)
 
 	if (true == IsFree('X'))
 	{
+		BaseBulletSound.Off();
 		BulletStart->SetActive(false);
 		State.ChangeState("Duck");
 		return;
@@ -1455,6 +1460,7 @@ void APlay_Cuphead::Shoot_Up(float _DeltaTime)
 	skillCoolTime -= _DeltaTime;
 	if (true == IsPress('X') && skillCoolTime < 0.0f)
 	{
+		BaseBulletSound.On();
 		createBullet();
 		skillCoolTime = SaveSkilltime;
 		return;
@@ -1484,6 +1490,7 @@ void APlay_Cuphead::Shoot_Up(float _DeltaTime)
 
 	if (true == IsFree('X'))
 	{
+		BaseBulletSound.Off();
 		BulletStart->SetActive(false);
 		State.ChangeState("Aim_Up");
 		return;
@@ -1574,6 +1581,7 @@ void APlay_Cuphead::JumpShoot(float _DeltaTime)
 	skillCoolTime -= _DeltaTime;
 	if (true == IsPress('X') && skillCoolTime < 0.0f)
 	{
+		BaseBulletSound.On();
 		createBullet();
 		skillCoolTime = SaveSkilltime;
 		return;
@@ -1581,6 +1589,7 @@ void APlay_Cuphead::JumpShoot(float _DeltaTime)
 
 	if (true == IsFree('X'))
 	{
+		BaseBulletSound.Off();
 		BulletStart->SetActive(false);
 		State.ChangeState("Jump");
 		return;
@@ -1632,7 +1641,7 @@ void APlay_Cuphead::DashAfterJump(float _DeltaTime)
 
 void APlay_Cuphead::hit(float _DeltaTime)
 {
-	
+	BaseBulletSound.Off();
 	BulletStart->SetActive(false);
 	PlayerCollision->SetActive(false);
 
@@ -1656,7 +1665,7 @@ void APlay_Cuphead::hit(float _DeltaTime)
 void APlay_Cuphead::Parry(float _DeltaTime)
 {
 	DirCheck();
-
+	BaseBulletSound.Off();
 
 	ParryCheck(_DeltaTime);
 
