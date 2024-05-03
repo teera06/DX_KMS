@@ -50,6 +50,13 @@ void ABoss1_Monster1::BeginPlay()
 void ABoss1_Monster1::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+	DamgeColorDelay -= _DeltaTime;
+
+	if (DamgeColorDelay < 0)
+	{
+		SmallBoss1->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
+		DamgeColorDelay = 0.35f;
+	}
 
 	if (1 == phasecheck)
 	{

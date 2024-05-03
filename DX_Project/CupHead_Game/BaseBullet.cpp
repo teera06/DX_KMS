@@ -9,6 +9,8 @@
 
 #include "ContentsENum.h"
 
+
+#include "Boss1_Monster1.h"
 #include "Firefly.h"
 #include "DemonMonster.h"
 #include "Imp.h"
@@ -92,10 +94,22 @@ void ABaseBullet::Collisiongather()
 {
 	BulletCollision->CollisionEnter(ECollisionOrder::Boss1Monster1, [=](std::shared_ptr<UCollision> _Collison)
 	{
+		AActor* Ptr = _Collison->GetActor();
+		ABoss1_Monster1* Monster = dynamic_cast<ABoss1_Monster1*>(Ptr);
+		Monster->GetRender()->SetPlusColor({ 0.2f, 0.2f, 0.2f });
 		DestroyCheck = true;
 		BulletRender->ChangeAnimation("Peashot_Death");
 		//Destroy();
 		//_Collison->GetActor()->Destroy();
+	});
+
+	
+
+	BulletCollision->CollisionExit(ECollisionOrder::Boss1Monster1, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		AActor* Ptr = _Collison->GetActor();
+		ABoss1_Monster1* Monster = dynamic_cast<ABoss1_Monster1*>(Ptr);
+		//Monster->GetRender()->SetPlusColor({ 0.1f, 0.1f, 0.1f });
 	});
 
 	BulletCollision->CollisionEnter(ECollisionOrder::Boss1SkillMonster, [=](std::shared_ptr<UCollision> _Collison)

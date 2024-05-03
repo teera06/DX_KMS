@@ -21,6 +21,10 @@ public:
 	ABoss1_Monster1& operator=(const ABoss1_Monster1& _Other) = delete; // 디폴트 대입 연산자
 	ABoss1_Monster1& operator=(ABoss1_Monster1&& _Other) noexcept = delete;
 
+	USpriteRenderer* GetRender()
+	{
+		return SmallBoss1;
+	}
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -40,6 +44,8 @@ private:
 	int ballattcount = 0;
 	int Delay = 0;
 	int phase2changecount = 0;
+
+	float DamgeColorDelay = 0.35f;
 	bool ballatt = false;
 
 
