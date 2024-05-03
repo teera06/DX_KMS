@@ -11,6 +11,7 @@
 #include <EngineCore/Camera.h>
 #include <EngineCore/Image.h>
 #include <EngineCore/BlurEffect.h>
+#include <EnginePlatform/EngineSound.h>
 
 
 AMainTitleGameMode::AMainTitleGameMode()
@@ -65,7 +66,6 @@ void AMainTitleGameMode::BeginPlay()
 	}
 
 	CreateActor();
-	UEngineSound::SoundPlay("MUS_Intro_DontDealWithDevil_Vocal.wav");
 }
 
 void AMainTitleGameMode::Tick(float _DeltaTime)
@@ -84,11 +84,13 @@ void AMainTitleGameMode::Tick(float _DeltaTime)
 void AMainTitleGameMode::LevelEnd(ULevel* _NextLevel)
 {
 	Super::LevelEnd(_NextLevel);
+	titleBGM.Off();
 }
 
 void AMainTitleGameMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
+	titleBGM = UEngineSound::SoundPlay("MUS_Intro_DontDealWithDevil_Vocal.wav");
 	GEngine->CreateLevel<ALoadingGameMode>("Loading");
 }
 

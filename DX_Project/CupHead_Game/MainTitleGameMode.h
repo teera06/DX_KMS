@@ -2,6 +2,8 @@
 #include <EngineCore/GameMode.h>
 
 class AScreenEffect;
+class UEngineSoundPlayer;
+
 class AMainTitleGameMode : public AGameMode
 {
 	GENERATED_BODY(AGameMode)
@@ -24,6 +26,7 @@ protected:
 	void LevelStart(ULevel* _PrevLevel);
 private:
 
+	UEngineSoundPlayer titleBGM;
 	std::shared_ptr<AScreenEffect> NewScreenEffect = nullptr;
 
 

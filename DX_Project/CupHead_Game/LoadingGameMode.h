@@ -47,11 +47,16 @@ private:
 	std::atomic_int SubFolderCount2 = -1;
 	std::atomic_int SubFolderCount3 = -1;
 	std::atomic_int SubFolderCount4 = -1;
+	
+	std::atomic_int Boss1Sound = -1;
 
 	// Boss2
 	std::atomic_int SubFolder2Count = -1;
 	std::atomic_int SubFolder2Count2 = -1;
 	std::atomic_int SubFolder2Count3 = -1;
+
+	std::atomic_int Boss2Sound = -1;
+
 
 	static bool CreatePlayer;
 	static bool CreateLevelCheck1;

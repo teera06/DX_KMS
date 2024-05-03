@@ -68,11 +68,14 @@ void ABossStage2GameMode::BeginPlay()
 		// Image->SetSprite("HPBar");
 		// Image->SetScale();
 	}
+
+	UEngineSound::SoundPlay("MUS_DevilPhase3.wav");
 }
 
 void ABossStage2GameMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+	UEngineSound::Update();
 }
 
 void ABossStage2GameMode::LevelEnd(ULevel* _NextLevel)
