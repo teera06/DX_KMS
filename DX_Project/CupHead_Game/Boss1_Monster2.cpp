@@ -78,8 +78,8 @@ ABoss1_Monster2::ABoss1_Monster2()
 
 	BigBossCollision = CreateDefaultSubObject<UCollision>("BigBossCollision");
 	BigBossCollision->SetupAttachment(Root);
-	BigBossCollision->SetPosition(FVector(0.0f, 150.0f, 100.0f));
-	BigBossCollision->SetScale(FVector(200.0f, 200.0f, 100.0f));
+	BigBossCollision->SetPosition(FVector(50.0f, 240.0f, 0.0f));
+	BigBossCollision->SetScale(FVector(200.0f, 450.0f, 100.0f));
 	BigBossCollision->SetCollisionGroup(ECollisionOrder::Boss1Monster2);
 	BigBossCollision->SetCollisionType(ECollisionType::RotRect);
 
@@ -168,6 +168,14 @@ void ABoss1_Monster2::BeginPlay()
 void ABoss1_Monster2::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+	DamgeColorDelay -= _DeltaTime;
+
+	if (DamgeColorDelay < 0)
+	{
+		BigBoss1->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
+		DamgeColorDelay = 0.35f;
+	}
 
 	coolDownTime -= _DeltaTime;
 	if (1 == phasecheck || 2 == phasecheck)

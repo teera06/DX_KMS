@@ -23,6 +23,11 @@ public:
 	ABoss1_Monster2& operator=(const ABoss1_Monster2& _Other) = delete; // 디폴트 대입 연산자
 	ABoss1_Monster2& operator=(ABoss1_Monster2&& _Other) noexcept = delete;
 
+	USpriteRenderer* GetRender()
+	{
+		return BigBoss1;
+	}
+
 	void SetSlotTouch(const bool& _SlotTouch)
 	{
 		SlotTouch = _SlotTouch;
@@ -69,6 +74,8 @@ private:
 	float SlotSpeed = 3.0f;
 	float SlotSpeed2 = 6.0f;
 	float SlotSpeed3 = 9.0f;
+
+	float DamgeColorDelay = 0.35f;
 
 	int Bigattcount = 0;
 
