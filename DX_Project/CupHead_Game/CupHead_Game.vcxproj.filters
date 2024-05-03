@@ -311,6 +311,9 @@
     <ClCompile Include="Boss1Start.cpp">
       <Filter>WorldStage\Actor\Object</Filter>
     </ClCompile>
+    <ClCompile Include="CommonStart.cpp">
+      <Filter>WorldStage\Actor\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -497,6 +500,9 @@
       <Filter>Dustandhiteffect</Filter>
     </ClInclude>
     <ClInclude Include="Boss1Start.h">
+      <Filter>WorldStage\Actor\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonStart.h">
       <Filter>WorldStage\Actor\Object</Filter>
     </ClInclude>
   </ItemGroup>

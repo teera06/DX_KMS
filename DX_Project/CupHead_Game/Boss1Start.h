@@ -1,11 +1,9 @@
 #pragma once
-#include <EngineCore/Actor.h>
+#include "CommonStart.h"
 
-
-class USpriteRenderer;
-
-class ABoss1Start : public AActor
+class ABoss1Start : public ACommonStart
 {
+	GENERATED_BODY(ACommonStart)
 public:
 	// constrcuter destructer
 	ABoss1Start(); // 디폴트 생성자
@@ -21,8 +19,8 @@ protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
-	
+	void AniCreate() override;
 private:
-	USpriteRenderer* StartRender = nullptr;
+	
 };
 
