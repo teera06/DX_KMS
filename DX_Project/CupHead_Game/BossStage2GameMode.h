@@ -2,6 +2,8 @@
 #include <EngineCore/GameMode.h>
 
 class ADevil1;
+class UEngineSoundPlayer;
+
 class ABossStage2GameMode : public AGameMode
 {
 	GENERATED_BODY(AGameMode)
@@ -25,5 +27,6 @@ protected:
 	void LevelEnd(ULevel* _NextLevel);
 	void LevelStart(ULevel* _PrevLevel);
 private:
+	UEngineSoundPlayer BossStageBGM;
 };
 

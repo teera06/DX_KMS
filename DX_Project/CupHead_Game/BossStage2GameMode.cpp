@@ -69,7 +69,6 @@ void ABossStage2GameMode::BeginPlay()
 		// Image->SetScale();
 	}
 
-	UEngineSound::SoundPlay("MUS_DevilPhase3.wav");
 }
 
 void ABossStage2GameMode::Tick(float _DeltaTime)
@@ -81,9 +80,11 @@ void ABossStage2GameMode::Tick(float _DeltaTime)
 void ABossStage2GameMode::LevelEnd(ULevel* _NextLevel)
 {
 	Super::LevelEnd(_NextLevel);
+	BossStageBGM.Off();
 }
 
 void ABossStage2GameMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
+	BossStageBGM = UEngineSound::SoundPlay("MUS_DevilPhase3.wav");
 }
