@@ -27,7 +27,7 @@ ABoss2Start::ABoss2Start()
 	startCollision = CreateDefaultSubObject<UCollision>("startCollision1");
 	startCollision->SetupAttachment(Root);
 
-	startCollision->SetScale(FVector(50.0f, 60.0f, 100.0f));
+	startCollision->SetScale(FVector(400.0f, 250.0f, 100.0f));
 
 	startCollision->SetCollisionGroup(ECollisionOrder::WorldObject2);
 	startCollision->SetCollisionType(ECollisionType::RotRect);
