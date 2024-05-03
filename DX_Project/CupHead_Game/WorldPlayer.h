@@ -1,9 +1,10 @@
 #pragma once
 #include <Enginecore/Actor.h>
-#include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/StateManager.h>
 #include "ContentsENum.h"
 #include "PlayerCommon.h"
+
+class USpriteRenderer;
 class AWorldPlayer : public AActor, public APlayerCommon
 {
 	GENERATED_BODY(AActor)
@@ -29,6 +30,7 @@ protected:
 	void DebugMessageFunction() override;
 private:
 	USpriteRenderer* WorldPlayerRenderer = nullptr;
+	UCollision* PlayerCollision = nullptr;
 
 	float Speed = 300.0f;
 

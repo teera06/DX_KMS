@@ -3,6 +3,9 @@
 #include "ContentsENum.h"
 
 #include <EngineCore/DefaultSceneComponent.h>
+#include <EngineCore/SpriteRenderer.h>
+#include <EngineCore/Collision.h>
+
 
 AWorldPlayer::AWorldPlayer()
 {
@@ -11,6 +14,14 @@ AWorldPlayer::AWorldPlayer()
 	WorldPlayerRenderer = CreateDefaultSubObject<USpriteRenderer>("WorldPlayer");
 
 	WorldPlayerRenderer->SetupAttachment(Root);
+
+	PlayerCollision = CreateDefaultSubObject<UCollision>("Collision");
+	PlayerCollision->SetupAttachment(Root);
+	
+	PlayerCollision->SetScale(FVector(70.0f, 100.0f, 100.0f));
+
+	PlayerCollision->SetCollisionGroup(ECollisionOrder::Player);
+	PlayerCollision->SetCollisionType(ECollisionType::RotRect);
 
 	SetRoot(Root);
 	InputOn();
