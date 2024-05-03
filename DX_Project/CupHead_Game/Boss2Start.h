@@ -19,10 +19,7 @@ public:
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
-
-	void AniCreate() override;
-
 private:
-	UCollision* WallCollision = nullptr;
+	
 };
 

@@ -32,10 +32,13 @@ private:
 	USpriteRenderer* WorldPlayerRenderer = nullptr;
 	UCollision* PlayerCollision = nullptr;
 
+	FVector PlayMove = FVector::Zero;
+
 	float Speed = 300.0f;
 	
+	
 
-
+	
 	///////////////////////// State
 	void StateInit();
 

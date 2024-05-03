@@ -82,7 +82,6 @@ enum class ERenderOrder
 enum class ECollisionOrder
 {
 	Player,
-	WorldWall,
 	WorldObject1,
 	WorldObject2,
 	Boss1SkillMonster,

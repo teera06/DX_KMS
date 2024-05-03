@@ -7,6 +7,8 @@
 #include <EngineCore/EngineCore.h>
 #include <EngineCore/Camera.h>
 
+#include <EngineCore/Collision.h>
+
 //void Function(URenderer* Renderer)
 //{
 //	Renderer->ChangeAnimation("Idle");
@@ -58,7 +60,7 @@ void AWorldPlayer::MoveUpDate(float _DeltaTime,const FVector& _MovePos)
 	}
 #endif
 
-	FVector PlayMove = _MovePos;
+	PlayMove = _MovePos;
 	// 방향 별 픽셀 충돌 인식 범위
 	float4 Pos = GetActorLocation();
 
@@ -89,10 +91,12 @@ void AWorldPlayer::MoveUpDate(float _DeltaTime,const FVector& _MovePos)
 		PlayMove = FVector::Zero;
 	}
 
+
 	GetWorld()->GetMainCamera()->AddActorLocation(PlayMove);
 	AddActorLocation(PlayMove);
 
 }
+
 
 void AWorldPlayer::StateInit()
 {

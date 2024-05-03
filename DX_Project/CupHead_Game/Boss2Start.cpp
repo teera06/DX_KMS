@@ -16,24 +16,18 @@ ABoss2Start::ABoss2Start()
 
 	startRender->SetupAttachment(Root);
 
-	startRender->SetOrder(ERenderOrder::ObjectFront2);
-	startRender->SetSprite("DevilZone.png");
+	startRender->SetOrder(ERenderOrder::MidObject);
+	startRender->SetSprite("world_platforming_icon_0001.png");
 	startRender->SetSamplering(ETextureSampling::LINEAR);
 	startRender->SetAutoSize(1.0f, true);
 
-	WallCollision = CreateDefaultSubObject<UCollision>("WallCollision");
-	WallCollision->SetupAttachment(Root);
 
-	WallCollision->SetScale(FVector(150.0f, 150.0f, 100.0f));
-
-	WallCollision->SetCollisionGroup(ECollisionOrder::WorldWall);
-	WallCollision->SetCollisionType(ECollisionType::RotRect);
 
 
 	startCollision = CreateDefaultSubObject<UCollision>("startCollision1");
 	startCollision->SetupAttachment(Root);
 
-	startCollision->SetScale(FVector(200.0f, 200.0f, 100.0f));
+	startCollision->SetScale(FVector(50.0f, 60.0f, 100.0f));
 
 	startCollision->SetCollisionGroup(ECollisionOrder::WorldObject2);
 	startCollision->SetCollisionType(ECollisionType::RotRect);
@@ -48,12 +42,7 @@ ABoss2Start::~ABoss2Start()
 void ABoss2Start::BeginPlay()
 {
 	Super::BeginPlay();
-	startRender->SetDir(EEngineDir::Left);
-	SetActorRotation(FVector(0.0f, 0.0f, 10.0f));
-	SetActorLocation({ 2200.0f, -1085.0f, 100.0f });
-	AniCreate();
-
-	startRender->ChangeAnimation("DevilZone");
+	SetActorLocation({ 2200.0f, -950.0f, 100.0f });
 }
 
 void ABoss2Start::Tick(float _DeltaTime)
@@ -62,7 +51,4 @@ void ABoss2Start::Tick(float _DeltaTime)
 
 }
 
-void ABoss2Start::AniCreate()
-{
-	startRender->CreateAnimation("DevilZone", "DevilZone.png", 0.075f, 0, 2, true);
-}
+

@@ -19,7 +19,7 @@ protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
-	void AniCreate() override;
+	void AniCreate();
 private:
 	
 };

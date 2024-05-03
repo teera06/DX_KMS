@@ -23,7 +23,6 @@ protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 
-	virtual void AniCreate() = 0; // 순수 가상함수
 
 	USpriteRenderer* startRender = nullptr;
 	UCollision* startCollision = nullptr;
