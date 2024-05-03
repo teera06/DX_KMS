@@ -23,5 +23,6 @@ protected:
 	void AniCreate() override;
 
 private:
+	UCollision* WallCollision = nullptr;
 };
 

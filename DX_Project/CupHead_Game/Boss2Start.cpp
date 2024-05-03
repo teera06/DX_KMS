@@ -21,6 +21,23 @@ ABoss2Start::ABoss2Start()
 	startRender->SetSamplering(ETextureSampling::LINEAR);
 	startRender->SetAutoSize(1.0f, true);
 
+	WallCollision = CreateDefaultSubObject<UCollision>("WallCollision");
+	WallCollision->SetupAttachment(Root);
+
+	WallCollision->SetScale(FVector(150.0f, 150.0f, 100.0f));
+
+	WallCollision->SetCollisionGroup(ECollisionOrder::WorldWall);
+	WallCollision->SetCollisionType(ECollisionType::RotRect);
+
+
+	startCollision = CreateDefaultSubObject<UCollision>("startCollision1");
+	startCollision->SetupAttachment(Root);
+
+	startCollision->SetScale(FVector(200.0f, 200.0f, 100.0f));
+
+	startCollision->SetCollisionGroup(ECollisionOrder::WorldObject2);
+	startCollision->SetCollisionType(ECollisionType::RotRect);
+
 	SetRoot(Root);
 }
 

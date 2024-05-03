@@ -33,6 +33,7 @@ private:
 	UCollision* PlayerCollision = nullptr;
 
 	float Speed = 300.0f;
+	
 
 
 	///////////////////////// State

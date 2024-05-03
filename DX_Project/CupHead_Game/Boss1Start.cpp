@@ -21,6 +21,17 @@ ABoss1Start::ABoss1Start()
 	startRender->SetSamplering(ETextureSampling::LINEAR);
 	startRender->SetAutoSize(1.0f, true);
 
+	
+
+	startCollision = CreateDefaultSubObject<UCollision>("startCollision1");
+	startCollision->SetupAttachment(Root);
+
+	startCollision->SetScale(FVector(100.0f, 100.0f, 100.0f));
+	
+	startCollision->SetCollisionGroup(ECollisionOrder::WorldObject1);
+	startCollision->SetCollisionType(ECollisionType::RotRect);
+
+
 	SetRoot(Root);
 }
 
