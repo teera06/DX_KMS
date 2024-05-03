@@ -116,6 +116,8 @@ void AWorldPlayer::StateInit()
 
 	State.CreateState("DiagonalDownIdle");
 	State.CreateState("DiagonalDownWalk");
+
+	State.CreateState("BossStartBefore");
 	//State.CreateState("Run");
 
 	// 함수들 세팅하고
@@ -151,6 +153,9 @@ void AWorldPlayer::StateInit()
 
 	State.SetUpdateFunction("DiagonalDownWalk", std::bind(&AWorldPlayer::DiagonalDownWalk, this, std::placeholders::_1));
 	State.SetStartFunction("DiagonalDownWalk", [=] {WorldPlayerRenderer->ChangeAnimation("DiagonalDownWalk"); });
+
+	State.SetUpdateFunction("BossStartBefore", std::bind(&AWorldPlayer::BossStartBefore, this, std::placeholders::_1));
+	State.SetStartFunction("BossStartBefore", [=] {WorldPlayerRenderer->ChangeAnimation("DownIdle"); });
 	//State.SetUpdateFunction("Run", std::bind(&AWorldPlayer::Run, this, std::placeholders::_1));
 
 	//State.SetStartFunction("Run", std::bind(&AWorldPlayer::RunStart, this));
@@ -517,5 +522,18 @@ void AWorldPlayer::DiagonalDownWalk(float _DeltaTime)
 	}
 
 	MoveUpDate(_DeltaTime, MovePos);
+}
+
+void AWorldPlayer::BossStartBefore(float _DeltaTime)
+{
+	if (true == IsPress(VK_ESCAPE))
+	{
+		State.ChangeState("DownIdle");
+		return;
+	}
+
+	if (true == IsDown('A'))
+	{
+	}
 }
 

@@ -58,5 +58,7 @@ private:
 	void DiagonalDownIdle(float _DeltaTime);
 	void DiagonalDownWalk(float _DeltaTime);
 
+	void BossStartBefore(float _DeltaTime);
+
 };
 
