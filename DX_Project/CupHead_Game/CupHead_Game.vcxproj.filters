@@ -115,6 +115,9 @@
     <Filter Include="Dustandhiteffect">
       <UniqueIdentifier>{d5cff12f-f61a-43c8-ba17-ebf2840d0e56}</UniqueIdentifier>
     </Filter>
+    <Filter Include="WorldStage\Actor\Object">
+      <UniqueIdentifier>{cf65a8d4-64e4-4c11-8640-1a4a1d64bd4c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game_Core.cpp">
@@ -305,6 +308,9 @@
     <ClCompile Include="hitEffect.cpp">
       <Filter>Dustandhiteffect</Filter>
     </ClCompile>
+    <ClCompile Include="Boss1Start.cpp">
+      <Filter>WorldStage\Actor\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -489,6 +495,9 @@
     </ClInclude>
     <ClInclude Include="hitEffect.h">
       <Filter>Dustandhiteffect</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss1Start.h">
+      <Filter>WorldStage\Actor\Object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
