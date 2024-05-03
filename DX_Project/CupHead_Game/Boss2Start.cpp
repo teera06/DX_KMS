@@ -17,7 +17,7 @@ ABoss2Start::ABoss2Start()
 	startRender->SetupAttachment(Root);
 
 	startRender->SetOrder(ERenderOrder::ObjectFront2);
-	startRender->SetSprite("Boss1Zone.png");
+	startRender->SetSprite("DevilZone.png");
 	startRender->SetSamplering(ETextureSampling::LINEAR);
 	startRender->SetAutoSize(1.0f, true);
 
@@ -31,11 +31,12 @@ ABoss2Start::~ABoss2Start()
 void ABoss2Start::BeginPlay()
 {
 	Super::BeginPlay();
-	SetActorRotation(FVector(0.0f, 0.0f, 7.0f));
-	SetActorLocation({ 2300.0f, -1500.0f, 100.0f });
+	startRender->SetDir(EEngineDir::Left);
+	SetActorRotation(FVector(0.0f, 0.0f, 10.0f));
+	SetActorLocation({ 2200.0f, -1085.0f, 100.0f });
 	AniCreate();
 
-	startRender->ChangeAnimation("Boss1Zone");
+	startRender->ChangeAnimation("DevilZone");
 }
 
 void ABoss2Start::Tick(float _DeltaTime)
@@ -46,5 +47,5 @@ void ABoss2Start::Tick(float _DeltaTime)
 
 void ABoss2Start::AniCreate()
 {
-	startRender->CreateAnimation("Boss1Zone", "Boss1Zone.png", 0.075f, 0, 2, true);
+	startRender->CreateAnimation("DevilZone", "DevilZone.png", 0.075f, 0, 2, true);
 }
