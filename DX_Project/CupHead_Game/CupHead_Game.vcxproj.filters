@@ -317,6 +317,9 @@
     <ClCompile Include="Boss2Start.cpp">
       <Filter>WorldStage\Actor\Object</Filter>
     </ClCompile>
+    <ClCompile Include="WorldDust.cpp">
+      <Filter>Dustandhiteffect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -510,6 +513,9 @@
     </ClInclude>
     <ClInclude Include="Boss2Start.h">
       <Filter>WorldStage\Actor\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldDust.h">
+      <Filter>Dustandhiteffect</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
