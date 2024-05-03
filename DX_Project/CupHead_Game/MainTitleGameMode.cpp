@@ -91,6 +91,7 @@ void AMainTitleGameMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
 	titleBGM = UEngineSound::SoundPlay("MUS_Intro_DontDealWithDevil_Vocal.wav");
+	titleBGM.Loop();
 	GEngine->CreateLevel<ALoadingGameMode>("Loading");
 }
 

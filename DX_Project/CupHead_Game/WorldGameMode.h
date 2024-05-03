@@ -1,5 +1,7 @@
 #pragma once
 #include <EngineCore/GameMode.h>
+
+class UEngineSoundPlayer;
 class AWorldGameMode : public AGameMode
 {
 	GENERATED_BODY(AGameMode)
@@ -21,5 +23,6 @@ protected:
 	void LevelEnd(ULevel* _NextLevel);
 	void LevelStart(ULevel* _PrevLevel);
 private:
+	UEngineSoundPlayer WorldBGM;
 };
 

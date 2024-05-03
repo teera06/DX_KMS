@@ -93,14 +93,18 @@ void AWorldGameMode::BeginPlay()
 void AWorldGameMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+	UEngineSound::Update();
 }
 
 void AWorldGameMode::LevelEnd(ULevel* _NextLevel)
 {
 	Super::LevelEnd(_NextLevel);
+	WorldBGM.Off();
 }
 
 void AWorldGameMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
+	WorldBGM = UEngineSound::SoundPlay("MUS_InkwellIsleOne.wav");
+	WorldBGM.Loop();
 }
