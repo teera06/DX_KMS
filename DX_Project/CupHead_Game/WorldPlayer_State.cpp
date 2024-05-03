@@ -118,11 +118,13 @@ void AWorldPlayer::BossStartCheck()
 
 	PlayerCollision->CollisionStay(ECollisionOrder::WorldObject1, [=](std::shared_ptr<UCollision> _Collison)
 	{
+		Boss1Check = true;
 		AButton->SetActive(true);
 	});
 
 	PlayerCollision->CollisionExit(ECollisionOrder::WorldObject1, [=](std::shared_ptr<UCollision> _Collison)
 	{
+		Boss1Check = false;
 		AButton->SetActive(false);
 	});
 }
@@ -220,6 +222,16 @@ void AWorldPlayer::UpIdle(float _DeltaTime)
 		State.ChangeState("BossStartBefore");
 		return;
 	}
+
+	if (true == UEngineInput::IsDown('A') && true == Boss1Check)
+	{
+
+		//GEngine->ChangeLevel("Loading");
+		Boss1title->SetActive(true);
+		State.ChangeState("BossStartBefore");
+		return;
+	}
+
 	if (true == UEngineInput::IsDown('Z'))
 	{
 		GEngine->ChangeLevel("Loading");
@@ -313,6 +325,15 @@ void AWorldPlayer::DownIdle(float _DeltaTime)
 		return;
 	}
 
+	if (true == UEngineInput::IsDown('A') && true == Boss1Check)
+	{
+
+		//GEngine->ChangeLevel("Loading");
+		Boss1title->SetActive(true);
+		State.ChangeState("BossStartBefore");
+		return;
+	}
+
 	if (true == IsPress(VK_DOWN))
 	{
 		State.ChangeState("DownWalk");
@@ -391,6 +412,16 @@ void AWorldPlayer::StraightIdle(float _DeltaTime)
 		State.ChangeState("BossStartBefore");
 		return;
 	}
+
+	if (true == UEngineInput::IsDown('A') && true == Boss1Check)
+	{
+
+		//GEngine->ChangeLevel("Loading");
+		Boss1title->SetActive(true);
+		State.ChangeState("BossStartBefore");
+		return;
+	}
+
 	if (true == UEngineInput::IsDown('Z'))
 	{
 		GEngine->ChangeLevel("Loading");
@@ -480,6 +511,16 @@ void AWorldPlayer::DiagonalUpIdle(float _DeltaTime)
 		State.ChangeState("BossStartBefore");
 		return;
 	}
+
+	if (true == UEngineInput::IsDown('A') && true == Boss1Check)
+	{
+
+		//GEngine->ChangeLevel("Loading");
+		Boss1title->SetActive(true);
+		State.ChangeState("BossStartBefore");
+		return;
+	}
+
 	if (true == UEngineInput::IsDown('Z'))
 	{
 		GEngine->ChangeLevel("Loading");
@@ -575,6 +616,16 @@ void AWorldPlayer::DiagonalDownIdle(float _DeltaTime)
 		State.ChangeState("BossStartBefore");
 		return;
 	}
+
+	if (true == UEngineInput::IsDown('A') && true == Boss1Check)
+	{
+
+		//GEngine->ChangeLevel("Loading");
+		Boss1title->SetActive(true);
+		State.ChangeState("BossStartBefore");
+		return;
+	}
+
 	if (true == UEngineInput::IsDown('Z'))
 	{
 		GEngine->ChangeLevel("Loading");
@@ -662,11 +713,19 @@ void AWorldPlayer::BossStartBefore(float _DeltaTime)
 	if (true == IsPress(VK_ESCAPE))
 	{
 		Boss2title->SetActive(false);
+		Boss1title->SetActive(false);
 		State.ChangeState("DownIdle");
 		return;
 	}
 
 	if (true == IsDown('Z') && true == Boss2Check)
+	{
+		std::shared_ptr<AScreenEffect> NewScreen = GetWorld()->SpawnActor<AScreenEffect>("ScreenEffect");
+		NewScreen->SetActorLocation(GetActorLocation());
+		NewScreen->SetScreenEffect(EScreenEffect::IrisRe);
+	}
+
+	if (true == IsDown('Z') && true == Boss1Check)
 	{
 		std::shared_ptr<AScreenEffect> NewScreen = GetWorld()->SpawnActor<AScreenEffect>("ScreenEffect");
 		NewScreen->SetActorLocation(GetActorLocation());

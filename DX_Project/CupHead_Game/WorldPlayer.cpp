@@ -57,12 +57,12 @@ void AWorldPlayer::BeginPlay()
 	AButton->SetAutoSize(1.0f, true);
 
 	Boss2title ->SetOrder(ERenderOrder::ScreenBar);
-	Boss2title ->SetSprite("ImageC88.png");
+	Boss2title ->SetSprite("DevilC8.png");
 	Boss2title ->SetSamplering(ETextureSampling::LINEAR);
 	Boss2title ->SetAutoSize(1.0f, true);
 
 	Boss1title->SetOrder(ERenderOrder::ScreenBar);
-	Boss1title->SetSprite("ImageC88.png");
+	Boss1title->SetSprite("SlotC8.png");
 	Boss1title->SetSamplering(ETextureSampling::LINEAR);
 	Boss1title->SetAutoSize(1.0f, true);
 
@@ -87,6 +87,7 @@ void AWorldPlayer::BeginPlay()
 	StateInit();
 	WorldPlayerRenderer->SetAutoSize(1.0f, true);
 	AButton->SetActive(false);
+	Boss1title->SetActive(false);
 	Boss2title->SetActive(false);
 	//WorldPlayerRenderer->ChangeAnimation("Idle");
 }
