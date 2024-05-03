@@ -19,6 +19,10 @@ AWorldPlayer::AWorldPlayer()
 
 	AButton ->SetupAttachment(Root);
 
+	Boss2title = CreateDefaultSubObject<USpriteRenderer>("Boss2title");
+
+	Boss2title->SetupAttachment(Root);
+
 
 	PlayerCollision = CreateDefaultSubObject<UCollision>("Collision");
 	PlayerCollision->SetupAttachment(Root);
@@ -48,6 +52,11 @@ void AWorldPlayer::BeginPlay()
 	AButton->SetPosition(FVector::Up * 55.0f);
 	AButton->SetAutoSize(1.0f, true);
 
+	Boss2title ->SetOrder(ERenderOrder::ScreenBar);
+	Boss2title ->SetSprite("ImageC88.png");
+	Boss2title ->SetSamplering(ETextureSampling::LINEAR);
+	Boss2title ->SetAutoSize(1.0f, true);
+
 
 	WorldPlayerRenderer->SetOrder(ERenderOrder::Cuphead);
 	WorldPlayerRenderer->SetSprite("WorldDiagonalIdle_01.png");
@@ -69,6 +78,7 @@ void AWorldPlayer::BeginPlay()
 	StateInit();
 	WorldPlayerRenderer->SetAutoSize(1.0f, true);
 	AButton->SetActive(false);
+	Boss2title->SetActive(false);
 	//WorldPlayerRenderer->ChangeAnimation("Idle");
 }
 

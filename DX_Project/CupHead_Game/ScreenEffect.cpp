@@ -53,6 +53,11 @@ void AScreenEffect::Tick(float _DeltaTime)
 		break;
 	case EScreenEffect::IrisRe:
 		FilterEffect->ChangeAnimation("IrisRe");
+
+		if (true == FilterEffect->IsCurAnimationEnd())
+		{
+			Destroy();
+		}
 		break;
 	case EScreenEffect::ReadyWALLOP:
 		FilterEffect->ChangeAnimation("ReadyWALLOP!");

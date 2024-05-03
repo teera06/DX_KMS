@@ -31,6 +31,8 @@ protected:
 private:
 	USpriteRenderer* WorldPlayerRenderer = nullptr;
 	USpriteRenderer* AButton = nullptr;
+	USpriteRenderer* Boss1title = nullptr;
+	USpriteRenderer* Boss2title = nullptr;
 	UCollision* PlayerCollision = nullptr;
 
 	FVector PlayMove = FVector::Zero;
