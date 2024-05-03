@@ -287,6 +287,7 @@ void ALoadingGameMode::FolderWorldLoad()
 		LoadMap["Cuphead"] = true;
 
 		UEngineSprite::CreateCutting("Boss1Zone.png", 3, 1);
+		UEngineSprite::CreateCutting("DevilZone.png", 3, 1);
 	}
 }
 

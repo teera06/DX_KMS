@@ -5,6 +5,7 @@
 #include "WorldMap.h"
 #include "WorldPlayer.h"
 #include "Boss1Start.h"
+#include "Boss2Start.h"
 
 #include "ContentsHelper.h"
 #include "ContentsENum.h"
@@ -30,6 +31,7 @@ void AWorldGameMode::BeginPlay()
 	Camera->SetActorLocation(FVector(1500.0f / 2.0f, -1700.0f / 2.0f, -100.0f));
 	GetWorld()->SpawnActor<AWorldPlayer>("WorldPlayer");
 	GetWorld()->SpawnActor<ABoss1Start>("Boss1Start");
+	GetWorld()->SpawnActor<ABoss2Start>("Boss2Start");
 	{
 		std::shared_ptr<AWorldMap> Front = GetWorld()->SpawnActor<AWorldMap>("WorldMap");
 

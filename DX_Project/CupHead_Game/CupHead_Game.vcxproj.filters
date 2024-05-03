@@ -314,6 +314,9 @@
     <ClCompile Include="CommonStart.cpp">
       <Filter>WorldStage\Actor\Object</Filter>
     </ClCompile>
+    <ClCompile Include="Boss2Start.cpp">
+      <Filter>WorldStage\Actor\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -503,6 +506,9 @@
       <Filter>WorldStage\Actor\Object</Filter>
     </ClInclude>
     <ClInclude Include="CommonStart.h">
+      <Filter>WorldStage\Actor\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss2Start.h">
       <Filter>WorldStage\Actor\Object</Filter>
     </ClInclude>
   </ItemGroup>
