@@ -9,6 +9,7 @@
 
 #include <EngineCore/Collision.h>
 
+#include "WorldDust.h"
 #include "ScreenEffect.h"
 
 
@@ -283,6 +284,14 @@ void AWorldPlayer::UpWalk(float _DeltaTime)
 		return;
 	}
 
+	DustTime -= _DeltaTime;
+
+	if (DustTime < 0)
+	{
+		GetWorld()->SpawnActor<AWorldDust>("WorldDust");
+		DustTime = 0.45f;
+	}
+
 	if (true == IsPress(VK_UP))
 	{
 		MovePos+=FVector::Up * _DeltaTime * Speed;
@@ -352,6 +361,14 @@ void AWorldPlayer::DownWalk(float _DeltaTime)
 	{
 		State.ChangeState("DiagonalDownWalk");
 		return;
+	}
+
+	DustTime -= _DeltaTime;
+
+	if (DustTime < 0)
+	{
+		GetWorld()->SpawnActor<AWorldDust>("WorldDust");
+		DustTime = 0.45f;
 	}
 
 	if (true == IsPress(VK_DOWN))
@@ -428,6 +445,13 @@ void AWorldPlayer::StraightWalk(float _DeltaTime)
 		return;
 	}
 
+	DustTime -= _DeltaTime;
+
+	if (DustTime < 0)
+	{
+		GetWorld()->SpawnActor<AWorldDust>("WorldDust");
+		DustTime = 0.45f;
+	}
 
 	if (true == IsPress(VK_LEFT))
 	{
@@ -517,6 +541,14 @@ void AWorldPlayer::DiagonalUpWalk(float _DeltaTime)
 		return;
 	}
 
+	DustTime -= _DeltaTime;
+
+	if (DustTime < 0)
+	{
+		GetWorld()->SpawnActor<AWorldDust>("WorldDust");
+		DustTime = 0.45f;
+	}
+
 	if (true == IsPress(VK_LEFT) && true == IsPress(VK_UP))
 	{
 		MovePos+=(FVector::Left+ FVector::Up) * _DeltaTime * Speed;
@@ -601,6 +633,14 @@ void AWorldPlayer::DiagonalDownWalk(float _DeltaTime)
 	{
 		State.ChangeState("DiagonalDownIdle");
 		return;
+	}
+
+	DustTime -= _DeltaTime;
+
+	if (DustTime < 0)
+	{
+		GetWorld()->SpawnActor<AWorldDust>("WorldDust");
+		DustTime = 0.45f;
 	}
 
 	if (true == IsPress(VK_LEFT) && true == IsPress(VK_DOWN))

@@ -6,7 +6,7 @@
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/Collision.h>
 
-
+FVector AWorldPlayer::PlayerPos = FVector::Zero;
 AWorldPlayer::AWorldPlayer()
 {
 	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("WorldMap");
@@ -86,5 +86,8 @@ void AWorldPlayer::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 	State.Update(_DeltaTime);
+
+	PlayerPos = GetActorLocation();
 	DebugMessageFunction();
+
 }

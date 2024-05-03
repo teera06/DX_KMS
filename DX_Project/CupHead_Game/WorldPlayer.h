@@ -19,6 +19,11 @@ public:
 	AWorldPlayer& operator=(const AWorldPlayer& _Other) = delete; // 디폴트 대입 연산자
 	AWorldPlayer& operator=(AWorldPlayer&& _Other) noexcept = delete;
 
+	static FVector GetPlayerPos()
+	{
+		return PlayerPos;
+	}
+
 	UStateManager State;
 protected:
 	void BeginPlay() override;
@@ -35,10 +40,13 @@ private:
 	USpriteRenderer* Boss2title = nullptr;
 	UCollision* PlayerCollision = nullptr;
 
+	static FVector PlayerPos;
 	FVector PlayMove = FVector::Zero;
 
 	float Speed = 300.0f;
 	
+	float DustTime = 0.45f;
+
 	bool Boss1Check = false;
 	bool Boss2Check = false;
 	

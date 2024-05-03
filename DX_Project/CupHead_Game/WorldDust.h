@@ -20,7 +20,13 @@ public:
 	AWorldDust& operator=(AWorldDust&& _Other) noexcept = delete;
 
 protected:
-
+	void BeginPlay() override;
+	void Tick(float _DeltaTime) override;
 private:
+	USpriteRenderer* Effect = nullptr;
+
+	FVector PlayerPos = FVector::Zero;
+
+	FVector DushDir = FVector::Zero;
 };
 
