@@ -16,7 +16,7 @@ ABoss1Start::ABoss1Start()
 	
 	startRender->SetupAttachment(Root);
 	
-	startRender->SetOrder(ERenderOrder::FrontGround1);
+	startRender->SetOrder(ERenderOrder::ObjectFront2);
 	startRender->SetSprite("Boss1Zone.png");
 	startRender->SetSamplering(ETextureSampling::LINEAR);
 	startRender->SetAutoSize(1.0f, true);
@@ -31,10 +31,11 @@ ABoss1Start::~ABoss1Start()
 void ABoss1Start::BeginPlay()
 {
 	Super::BeginPlay();
-	SetActorLocation({ -500.0f, -500.0f, 100.0f });
-	//AniCreate();
+	SetActorRotation(FVector(0.0f, 0.0f, 7.0f));
+	SetActorLocation({ 2300.0f, -1912.0f, 100.0f });
+	AniCreate();
 
-	//startRender->ChangeAnimation("Boss1Zone");
+	startRender->ChangeAnimation("Boss1Zone");
 }
 
 void ABoss1Start::Tick(float _DeltaTime)
@@ -45,5 +46,5 @@ void ABoss1Start::Tick(float _DeltaTime)
 
 void ABoss1Start::AniCreate()
 {
-	//startRender->CreateAnimation("Boss1Zone", "Boss1Zone.png", 0.075f, 0, 2, true);
+	startRender->CreateAnimation("Boss1Zone", "Boss1Zone.png", 0.075f, 0, 2, true);
 }
