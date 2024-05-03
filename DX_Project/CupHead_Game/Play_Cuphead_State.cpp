@@ -1350,6 +1350,7 @@ void APlay_Cuphead::Shoot_Straight(float _DeltaTime)
 	skillCoolTime -= _DeltaTime;
 	if (true == IsPress('X') && skillCoolTime<0.0f)
 	{
+		UEngineSound::SoundPlay("sfx_player_weapon_peashot_death_001.wav");
 		createBullet();
 		skillCoolTime = SaveSkilltime;
 		return;
