@@ -69,15 +69,18 @@ void ABossStage1GameMode::BeginPlay()
 void ABossStage1GameMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-
+	UEngineSound::Update();
 }
 
 void ABossStage1GameMode::LevelEnd(ULevel* _NextLevel)
 {
 	Super::LevelEnd(_NextLevel);
+	BossStageBGM.Off();
 }
 
 void ABossStage1GameMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
+	BossStageBGM = UEngineSound::SoundPlay("Boss1BGM.mp3");
+	BossStageBGM.Loop();
 }

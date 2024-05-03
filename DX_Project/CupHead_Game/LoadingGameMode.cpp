@@ -337,6 +337,25 @@ void ALoadingGameMode::MainBoss1Load()
 		}
 	}
 
+
+	{
+		{
+			UEngineDirectory Dir;
+			Dir.MoveToSearchChild("GameResource");
+			Dir.Move("Sound\\Boss1Sound");
+			std::vector<UEngineFile> Files = Dir.GetAllFile({ ".mp3" });
+			for (UEngineFile& File : Files)
+			{
+				File.Open(EIOOpenMode::Read, EIODataType::Binary);
+
+				char Arr[100];
+				File.Read(Arr, 100);
+
+				UEngineSound::Load(File.GetFullPath());
+			}
+		}
+	}
+
 	{
 		{
 			UEngineDirectory Dir;

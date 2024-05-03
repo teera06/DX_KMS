@@ -87,4 +87,5 @@ void ABossStage2GameMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
 	BossStageBGM = UEngineSound::SoundPlay("MUS_DevilPhase3.wav");
+	BossStageBGM.Loop();
 }

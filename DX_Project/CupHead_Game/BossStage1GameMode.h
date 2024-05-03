@@ -24,6 +24,6 @@ protected:
 	void LevelEnd(ULevel* _NextLevel);
 	void LevelStart(ULevel* _PrevLevel);
 private:
-
+	UEngineSoundPlayer BossStageBGM;
 };
 
