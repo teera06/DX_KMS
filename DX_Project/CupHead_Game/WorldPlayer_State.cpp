@@ -98,6 +98,19 @@ void AWorldPlayer::MoveUpDate(float _DeltaTime,const FVector& _MovePos)
 }
 
 
+void AWorldPlayer::BossStartCheck()
+{
+	PlayerCollision->CollisionStay(ECollisionOrder::WorldObject2 , [=](std::shared_ptr<UCollision> _Collison)
+	{
+		AButton->SetActive(true);
+	});
+
+	PlayerCollision->CollisionExit(ECollisionOrder::WorldObject2, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		AButton->SetActive(false);
+	});
+}
+
 void AWorldPlayer::StateInit()
 {
 	// 스테이트 만들고
@@ -178,10 +191,10 @@ void AWorldPlayer::StateInit()
 
 
 
-void AWorldPlayer::UpIdle(float _Update)
+void AWorldPlayer::UpIdle(float _DeltaTime)
 {
 	DirCheck();
-
+	BossStartCheck();
 	if (true == UEngineInput::IsDown('Z'))
 	{
 		GEngine->ChangeLevel("Loading");
@@ -212,11 +225,14 @@ void AWorldPlayer::UpIdle(float _Update)
 		State.ChangeState("StraightWalk");
 		return;
 	}
+
+	MoveUpDate(_DeltaTime);
 }
 
 void AWorldPlayer::UpWalk(float _DeltaTime)
 {
 	DirCheck();
+	BossStartCheck();
 	FVector MovePos = FVector::Zero;
 	if (true == IsFree(VK_UP))
 	{
@@ -243,9 +259,10 @@ void AWorldPlayer::UpWalk(float _DeltaTime)
 	MoveUpDate(_DeltaTime, MovePos);
 }
 
-void AWorldPlayer::DownIdle(float _Update)
+void AWorldPlayer::DownIdle(float _DeltaTime)
 {
 	DirCheck();
+	BossStartCheck();
 	if (true == UEngineInput::IsDown('Z'))
 	{
 		GEngine->ChangeLevel("Loading");
@@ -274,11 +291,14 @@ void AWorldPlayer::DownIdle(float _Update)
 		State.ChangeState("StraightWalk");
 		return;
 	}
+
+	MoveUpDate(_DeltaTime);
 }
 
 void AWorldPlayer::DownWalk(float _DeltaTime)
 {
 	DirCheck();
+	BossStartCheck();
 	FVector MovePos = FVector::Zero;
 	if (true == IsFree(VK_DOWN))
 	{
@@ -305,9 +325,10 @@ void AWorldPlayer::DownWalk(float _DeltaTime)
 	MoveUpDate(_DeltaTime, MovePos);
 }
 
-void AWorldPlayer::StraightIdle(float _Update)
+void AWorldPlayer::StraightIdle(float _DeltaTime)
 {
 	DirCheck();
+	BossStartCheck();
 	if (true == UEngineInput::IsDown('Z'))
 	{
 		GEngine->ChangeLevel("Loading");
@@ -336,13 +357,13 @@ void AWorldPlayer::StraightIdle(float _Update)
 		State.ChangeState("StraightWalk");
 		return;
 	}
-
-
+	MoveUpDate(_DeltaTime);
 }
 
 void AWorldPlayer::StraightWalk(float _DeltaTime)
 {
 	DirCheck();
+	BossStartCheck();
 	FVector MovePos = FVector::Zero;
 	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
 	{
@@ -377,9 +398,10 @@ void AWorldPlayer::StraightWalk(float _DeltaTime)
 }
 
 
-void AWorldPlayer::DiagonalUpIdle(float _Update)
+void AWorldPlayer::DiagonalUpIdle(float _DeltaTime)
 {
 	DirCheck();
+	BossStartCheck();
 	if (true == UEngineInput::IsDown('Z'))
 	{
 		GEngine->ChangeLevel("Loading");
@@ -420,11 +442,14 @@ void AWorldPlayer::DiagonalUpIdle(float _Update)
 		State.ChangeState("DiagonalUpWalk");
 		return;
 	}
+
+	MoveUpDate(_DeltaTime);
 }
 
 void AWorldPlayer::DiagonalUpWalk(float _DeltaTime)
 {
 	DirCheck();
+	BossStartCheck();
 	FVector MovePos = FVector::Zero;
 	if (true == IsFree(VK_UP))
 	{
@@ -451,9 +476,10 @@ void AWorldPlayer::DiagonalUpWalk(float _DeltaTime)
 	MoveUpDate(_DeltaTime, MovePos);
 }
 
-void AWorldPlayer::DiagonalDownIdle(float _Update)
+void AWorldPlayer::DiagonalDownIdle(float _DeltaTime)
 {
 	DirCheck();
+	BossStartCheck();
 	if (true == UEngineInput::IsDown('Z'))
 	{
 		GEngine->ChangeLevel("Loading");
@@ -494,11 +520,14 @@ void AWorldPlayer::DiagonalDownIdle(float _Update)
 		State.ChangeState("DiagonalDownWalk");
 		return;
 	}
+
+	MoveUpDate(_DeltaTime);
 }
 
 void AWorldPlayer::DiagonalDownWalk(float _DeltaTime)
 {
 	DirCheck();
+	BossStartCheck();
 	FVector MovePos = FVector::Zero;
 	if (true == IsFree(VK_DOWN))
 	{
@@ -526,6 +555,7 @@ void AWorldPlayer::DiagonalDownWalk(float _DeltaTime)
 
 void AWorldPlayer::BossStartBefore(float _DeltaTime)
 {
+
 	if (true == IsPress(VK_ESCAPE))
 	{
 		State.ChangeState("DownIdle");

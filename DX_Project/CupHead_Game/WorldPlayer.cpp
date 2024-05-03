@@ -15,6 +15,11 @@ AWorldPlayer::AWorldPlayer()
 
 	WorldPlayerRenderer->SetupAttachment(Root);
 
+	AButton  = CreateDefaultSubObject<USpriteRenderer>("AButton ");
+
+	AButton ->SetupAttachment(Root);
+
+
 	PlayerCollision = CreateDefaultSubObject<UCollision>("Collision");
 	PlayerCollision->SetupAttachment(Root);
 	
@@ -37,7 +42,13 @@ void AWorldPlayer::BeginPlay()
 	//SetActorScale3D(FVector(10.0f, 10.0f, 100.0f));
 	SetActorLocation(FVector(1500.0f/2.0f, -1700.0f/2.0f, 50.0f));
 
-	//DelayCallBack(1.0f, std::bind(&ATitleLogo::RendererOff, this));
+	AButton->SetOrder(ERenderOrder::Cuphead);
+	AButton->SetSprite("PressSign.png");
+	AButton->SetSamplering(ETextureSampling::LINEAR);
+	AButton->SetPosition(FVector::Up * 55.0f);
+	AButton->SetAutoSize(1.0f, true);
+
+
 	WorldPlayerRenderer->SetOrder(ERenderOrder::Cuphead);
 	WorldPlayerRenderer->SetSprite("WorldDiagonalIdle_01.png");
 	WorldPlayerRenderer->SetSamplering(ETextureSampling::LINEAR);
@@ -57,7 +68,7 @@ void AWorldPlayer::BeginPlay()
 
 	StateInit();
 	WorldPlayerRenderer->SetAutoSize(1.0f, true);
-
+	AButton->SetActive(false);
 	//WorldPlayerRenderer->ChangeAnimation("Idle");
 }
 

@@ -30,14 +30,17 @@ protected:
 	void DebugMessageFunction() override;
 private:
 	USpriteRenderer* WorldPlayerRenderer = nullptr;
+	USpriteRenderer* AButton = nullptr;
 	UCollision* PlayerCollision = nullptr;
 
 	FVector PlayMove = FVector::Zero;
 
 	float Speed = 300.0f;
 	
+	bool Boss1Check = false;
+	bool Boss2Check = false;
 	
-
+	void BossStartCheck();
 	
 	///////////////////////// State
 	void StateInit();

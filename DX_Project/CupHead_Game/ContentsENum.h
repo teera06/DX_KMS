@@ -75,6 +75,7 @@ enum class ERenderOrder
 	FrontGround2,
 	skiilBar,
 	HPBar,
+	ScreenBar,
 	FilterEffect,
 	Filter
 };
