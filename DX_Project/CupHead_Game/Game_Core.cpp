@@ -54,20 +54,19 @@ void UGame_Core::Initialize()
 	}
 
 	{
-		//UEngineDirectory Dir;
-		//Dir.MoveToSearchChild("ContentsResources");
-		//Dir.Move("Sound");
-		//std::vector<UEngineFile> Files = Dir.GetAllFile({ ".wav" });
-		//for (UEngineFile& File : Files)
-		//{
-			//File.Open(EIOOpenMode::Read, EIODataType::Binary);
+		UEngineDirectory Dir;
+		Dir.MoveToSearchChild("GameResource");
+		Dir.Move("Sound\\title_WorldSound");
+		std::vector<UEngineFile> Files = Dir.GetAllFile({ ".wav" });
+		for (UEngineFile& File : Files)
+		{
+			File.Open(EIOOpenMode::Read, EIODataType::Binary);
 
-			//char Arr[100];
-			//File.Read(Arr, 100);
+			char Arr[100];
+			File.Read(Arr, 100);
 
-			//UEngineSound::Load(File.GetFullPath());
-		//}
-		// UEngineSound::SoundPlay("anipang_ingame_wav.wav");
+			UEngineSound::Load(File.GetFullPath());
+		}
 	}
 
 	GEngine->CreateLevel<AMainTitleGameMode>("MainTitle");

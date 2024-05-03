@@ -65,6 +65,7 @@ void AMainTitleGameMode::BeginPlay()
 	}
 
 	CreateActor();
+	UEngineSound::SoundPlay("MUS_Intro_DontDealWithDevil_Vocal.wav");
 }
 
 void AMainTitleGameMode::Tick(float _DeltaTime)
@@ -76,6 +77,8 @@ void AMainTitleGameMode::Tick(float _DeltaTime)
 		UContentsHelper::StageCount = 1;
 		GEngine->ChangeLevel("Loading");
 	}
+
+	UEngineSound::Update();
 }
 
 void AMainTitleGameMode::LevelEnd(ULevel* _NextLevel)
