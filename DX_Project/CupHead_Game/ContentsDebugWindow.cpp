@@ -58,6 +58,11 @@ void UContentsDebugWindow::OnGui(ULevel* Level, float _Delta)
 			}
 			return;
 		}
+		
+		int Hp = ABoss1Common::GetHp();
+		std::string Msg = std::format("Boss1 : {}\n", std::to_string(Hp));
+		
+		ImGui::Text(&Msg[0]);
 	}
 
 	if (UContentsHelper::StageCount == 3)
@@ -82,5 +87,9 @@ void UContentsDebugWindow::OnGui(ULevel* Level, float _Delta)
 			}
 			return;
 		}
+		int Hp = ABoss2Common::GetHp();
+		std::string Msg = std::format("Boss2 : {}\n", std::to_string(Hp));
+
+		ImGui::Text(&Msg[0]);
 	}
 }
