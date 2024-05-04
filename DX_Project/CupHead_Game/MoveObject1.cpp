@@ -99,19 +99,16 @@ void AMoveObject1::Tick(float _DeltaTime)
 {
 	if (false == OneCheck)
 	{
+		ObjectFront->AddPosition(FVector(1.2f, 3.5f, 0.0f));
 		if (UpDownSet.iY() > 0)
 		{
-			ObjectFront->AddPosition(FVector(1.2f, 3.5f, 0.0f));
-			
 			Fire->SetDir(EEngineDir::Up);
 		
-			Fire->SetPosition(FVector(0.0f, 150.0f, 0.0f));
+			Fire->SetPosition(FVector(0.0f, 140.0f, 0.0f));
 			TopCollision->SetActive(false);
 		}
 		else
 		{
-			ObjectFront->AddPosition(FVector(1.2f, 3.5f, 0.0f));
-			
 			Fire->SetDir(EEngineDir::Down);
 			
 			Fire->SetPosition(FVector(0.0f, -10.0f, 0.0f));
@@ -179,12 +176,12 @@ void AMoveObject1::ChangeFirePos()
 
 	if (UpDownSet.iY() > 0)
 	{
-		Fire->AddPosition(FVector(0.0f, 315.0f, 0.0f));
+		Fire->AddPosition(FVector(0.0f, 305.0f, 0.0f));
 		FireCollision->SetPosition(FVector(0.0f, 320.0f, 0.0f));
 	}
 	else
 	{
-		Fire->AddPosition(FVector(0.0f, -315.0f, 0.0f));
+		Fire->AddPosition(FVector(0.0f, -305.0f, 0.0f));
 		FireCollision->SetPosition(FVector(0.0f, -320.0f, 0.0f));
 	}
 }
