@@ -150,6 +150,7 @@ private:
 	
 	void CalGravityVector(float _DeltaTime);
 	void CalLastMoveVector(float _DeltaTime, const FVector& _MovePos = FVector::Zero);
+	void GroupUp(float _DeltaTime);
 	//false =Left
 	// true = Right
 	///////////////////////// State

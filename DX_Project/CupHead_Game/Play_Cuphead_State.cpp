@@ -613,6 +613,21 @@ void APlay_Cuphead::CalLastMoveVector(float _DeltaTime, const FVector& _MovePos)
 	CollisionMove = FVector::Zero;
 }
 
+void APlay_Cuphead::GroupUp(float _DeltaTime)
+{
+	while (true)
+	{
+		if (GetActorLocation().iY() < GrounYCheck)
+		{
+			AddActorLocation(FVector::Up * 2.0f * _DeltaTime);
+		}
+		else
+		{
+			break;
+		}
+	}
+}
+
 // 콜리전으로 충돌 하기
 void APlay_Cuphead::StateInit()
 {
@@ -899,7 +914,7 @@ void APlay_Cuphead::MoveUpDate(float _DeltaTime,const FVector& _MovePos)
 //#endif
 	CalGravityVector(_DeltaTime);
 	CalLastMoveVector(_DeltaTime, _MovePos);
-
+	GroupUp(_DeltaTime);
 	// 방향 별 픽셀 충돌 인식 범위
 	//float4 Pos = GetActorLocation();
 	//Pos.Y = -Pos.Y;
