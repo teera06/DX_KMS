@@ -25,6 +25,7 @@ AMoveObject3::AMoveObject3()
 	ObjectRender->SetPivot(EPivot::BOT);
 	ObjectFront->SetPivot(EPivot::BOT);
 	ObjectFront->AddPosition(FVector(1.2f, 3.5f, 0.0f));
+
 	BoxCollision = CreateDefaultSubObject<UCollision>("BoxCollision ");
 	BoxCollision->SetupAttachment(Root);
 	BoxCollision->AddPosition(FVector(0.0f, 110.0f, 0.0f));
@@ -33,6 +34,12 @@ AMoveObject3::AMoveObject3()
 	BoxCollision->SetCollisionGroup(ECollisionOrder::Boss1Object3);
 	BoxCollision->SetCollisionType(ECollisionType::RotRect);
 
+	ballCollision = CreateDefaultSubObject<UCollision>("ballCollision");
+	ballCollision->SetupAttachment(Root);
+	ballCollision->SetScale(FVector(100.0f, 100.0f, 100.0f));
+
+	ballCollision->SetCollisionGroup(ECollisionOrder::ball);
+	ballCollision->SetCollisionType(ECollisionType::RotRect);
 
 	SetRoot(Root);
 }
@@ -66,7 +73,7 @@ void AMoveObject3::BeginPlay()
 	ObjectRender->CreateAnimation("Object3", "Object3", 0.092f);
 	ObjectBallRender->CreateAnimation("Object3Ball", "Object3Ball", 0.1f);
 	ObjectFront->CreateAnimation("Object3Front", "Object3Front", 0.1f);
-	//smallskillRender->CreateAnimation("Peashot_Loop", "Peashot_Loop", 0.05f);
+	
 
 	ObjectBallRender->ChangeAnimation("Object3Ball");
 	ObjectRender->ChangeAnimation("Object3");
@@ -107,4 +114,5 @@ void AMoveObject3::BallMove(float _DeltaTime)
 		GravityVector = FVector::Zero;
 	}
 	ObjectBallRender->AddPosition((JumpVector +GravityVector) * _DeltaTime);
+	ballCollision->AddPosition((JumpVector + GravityVector) * _DeltaTime);
 }

@@ -25,6 +25,7 @@ private:
 	USpriteRenderer* ObjectFront = nullptr;
 	USpriteRenderer* ObjectBallRender = nullptr;
 	UCollision* BoxCollision = nullptr;
+	UCollision* ballCollision = nullptr;
 
 	FVector GravityVector = FVector::Zero; // 중력값 받기
 
