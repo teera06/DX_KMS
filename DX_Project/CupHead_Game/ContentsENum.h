@@ -91,6 +91,7 @@ enum class ECollisionOrder
 	Boss1Monster2Hand,
 	Boss1Top,
 	Boss1LR,
+	Boss1Fire,
 	Boss1Object3,
 	Boss1Ball,
 	Boss2Object1,

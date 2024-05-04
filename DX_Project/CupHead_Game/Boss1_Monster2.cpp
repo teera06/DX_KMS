@@ -92,7 +92,7 @@ ABoss1_Monster2::ABoss1_Monster2()
 
 	HandCollision = CreateDefaultSubObject<UCollision>("HandCollision");
 	HandCollision->SetupAttachment(Root);
-	HandCollision->SetPosition(FVector(-360.0f, 280.0f, 100.0f));
+	HandCollision->SetPosition(FVector(-380.0f, 290.0f, 100.0f));
 	HandCollision->SetScale(FVector(100.0f, 100.0f, 100.0f));
 	HandCollision->SetCollisionGroup(ECollisionOrder::Boss1Monster2Hand);
 	HandCollision->SetCollisionType(ECollisionType::RotRect);

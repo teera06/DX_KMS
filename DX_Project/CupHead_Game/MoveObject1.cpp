@@ -41,6 +41,12 @@ AMoveObject1::AMoveObject1()
 	BodyCollision->SetCollisionGroup(ECollisionOrder::Boss1LR);
 	BodyCollision->SetCollisionType(ECollisionType::RotRect);
 
+	FireCollision = CreateDefaultSubObject<UCollision>("TopCollision ");
+	FireCollision->SetupAttachment(Root);
+	//FireCollision->AddPosition(FVector(0.0f, 60.0f, 0.0f));
+	FireCollision->SetScale(FVector(50.0f, 300.0f, 100.0f));
+	FireCollision->SetCollisionGroup(ECollisionOrder::Boss1Fire);
+	FireCollision->SetCollisionType(ECollisionType::RotRect);
 
 	SetRoot(Root);
 }
@@ -85,6 +91,8 @@ void AMoveObject1::BeginPlay()
 	ObjectFront->ChangeAnimation("Object1Front");
 	ObjectRender->ChangeAnimation("Object1");
 	Fire->ChangeAnimation("Object1SmallFire");
+
+	FireCollision->SetActive(false);
 }
 
 void AMoveObject1::Tick(float _DeltaTime)
@@ -129,6 +137,15 @@ void AMoveObject1::PlayerCollision()
 		Player->AddActorLocation(FVector::Up * 100.0f);
 		Player->State.ChangeState("hit");
 	});
+
+	FireCollision->CollisionEnter(ECollisionOrder::Player, [=](std::shared_ptr<UCollision> _Collison)
+		{
+			AActor* Ptr = _Collison->GetActor();
+			APlay_Cuphead* Player = dynamic_cast<APlay_Cuphead*>(Ptr);
+
+			Player->AddActorLocation(FVector::Up * 100.0f);
+			Player->State.ChangeState("hit");
+		});
 }
 
 void AMoveObject1::Collisiongather(float _DeltaTime)
@@ -137,7 +154,7 @@ void AMoveObject1::Collisiongather(float _DeltaTime)
 	{
 		Fire->ChangeAnimation("Object1BigFire");
 
-		Fire->SetFrameCallback("Object1BigFire", 2, [=] {ChangeFirePos(); });
+		Fire->SetFrameCallback("Object1BigFire", 1, [=] {ChangeFirePos(); });
 		changeFire = true;
 	}
 
@@ -148,7 +165,7 @@ void AMoveObject1::Collisiongather(float _DeltaTime)
 
 	UpPower = FVector::Up * 500.0f;
 
-	if (GetActorLocation().iY() >= -140)
+	if (GetActorLocation().iY() >= -130)
 	{
 		UpPower = FVector::Zero;
 	}
@@ -158,12 +175,16 @@ void AMoveObject1::Collisiongather(float _DeltaTime)
 
 void AMoveObject1::ChangeFirePos()
 {
+	FireCollision->SetActive(true);
+
 	if (UpDownSet.iY() > 0)
 	{
-		Fire->AddPosition(FVector(0.0f, 320.0f, 0.0f));
+		Fire->AddPosition(FVector(0.0f, 315.0f, 0.0f));
+		FireCollision->SetPosition(FVector(0.0f, 320.0f, 0.0f));
 	}
 	else
 	{
-		Fire->AddPosition(FVector(0.0f, -320.0f, 0.0f));
+		Fire->AddPosition(FVector(0.0f, -315.0f, 0.0f));
+		FireCollision->SetPosition(FVector(0.0f, -320.0f, 0.0f));
 	}
 }
