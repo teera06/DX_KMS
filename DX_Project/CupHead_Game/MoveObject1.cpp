@@ -44,7 +44,7 @@ AMoveObject1::AMoveObject1()
 	FireCollision = CreateDefaultSubObject<UCollision>("TopCollision ");
 	FireCollision->SetupAttachment(Root);
 	//FireCollision->AddPosition(FVector(0.0f, 60.0f, 0.0f));
-	FireCollision->SetScale(FVector(50.0f, 300.0f, 100.0f));
+	FireCollision->SetScale(FVector(50.0f, 400.0f, 100.0f));
 	FireCollision->SetCollisionGroup(ECollisionOrder::Boss1Fire);
 	FireCollision->SetCollisionType(ECollisionType::RotRect);
 
@@ -82,7 +82,7 @@ void AMoveObject1::BeginPlay()
 
 
 	ObjectRender->CreateAnimation("Object1", "Object1", 0.092f);
-	ObjectFront->CreateAnimation("Object1Front", "Object1Front", 0.1f);
+	ObjectFront->CreateAnimation("Object1Front", "Object1Front", 0.092f);
 
 	Fire->CreateAnimation("Object1SmallFire", "Object1SmallFire", 0.1f);
 	Fire->CreateAnimation("Object1BigFire", "Object1BigFire", 0.1f,false);
@@ -177,11 +177,11 @@ void AMoveObject1::ChangeFirePos()
 	if (UpDownSet.iY() > 0)
 	{
 		Fire->AddPosition(FVector(0.0f, 305.0f, 0.0f));
-		FireCollision->SetPosition(FVector(0.0f, 320.0f, 0.0f));
+		FireCollision->SetPosition(FVector(0.0f, 280.0f, 0.0f));
 	}
 	else
 	{
 		Fire->AddPosition(FVector(0.0f, -305.0f, 0.0f));
-		FireCollision->SetPosition(FVector(0.0f, -320.0f, 0.0f));
+		FireCollision->SetPosition(FVector(0.0f, -120.0f, 0.0f));
 	}
 }
