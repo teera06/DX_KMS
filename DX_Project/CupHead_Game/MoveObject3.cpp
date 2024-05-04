@@ -6,6 +6,7 @@
 #include <EngineCore/Collision.h>
 
 #include "ContentsENum.h"
+#include "Play_Cuphead.h"
 AMoveObject3::AMoveObject3()
 {
 	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("smallskill");
@@ -86,6 +87,7 @@ void AMoveObject3::Tick(float _DeltaTime)
 	AddActorLocation(FVector::Left * Speed * _DeltaTime);
 	Collisiongather(_DeltaTime);
 	BallMove(_DeltaTime);
+	PlayerCollisionCheck();
 }
 
 void AMoveObject3::Collisiongather(float _DeltaTime)
@@ -115,4 +117,25 @@ void AMoveObject3::BallMove(float _DeltaTime)
 	}
 	ObjectBallRender->AddPosition((JumpVector +GravityVector) * _DeltaTime);
 	ballCollision->AddPosition((JumpVector + GravityVector) * _DeltaTime);
+}
+
+void AMoveObject3::PlayerCollisionCheck()
+{
+	ballCollision->CollisionEnter(ECollisionOrder::Player, [=](std::shared_ptr<UCollision> _Collison)
+		{
+			AActor* Ptr = _Collison->GetActor();
+			APlay_Cuphead* Player = dynamic_cast<APlay_Cuphead*>(Ptr);
+
+			Player->State.ChangeState("hit");
+
+		});
+
+	BoxCollision->CollisionEnter(ECollisionOrder::Player, [=](std::shared_ptr<UCollision> _Collison)
+		{
+			AActor* Ptr = _Collison->GetActor();
+			APlay_Cuphead* Player = dynamic_cast<APlay_Cuphead*>(Ptr);
+
+			Player->State.ChangeState("hit");
+
+		});
 }

@@ -39,5 +39,7 @@ private:
 
 	void Collisiongather(float _DeltaTime);
 	void BallMove(float _DeltaTime);
+
+	void PlayerCollisionCheck();
 };
 
