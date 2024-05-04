@@ -6,6 +6,7 @@
 #include <EngineCore/Collision.h>
 
 #include "ContentsENum.h"
+#include "Play_Cuphead.h"
 
 
 Aball::Aball()
@@ -96,6 +97,8 @@ void Aball::Tick(float _DeltaTime)
 	{
 		CollisiongatherDown(_DeltaTime);
 	}
+
+	PlayerCollisionCheck();
 	
 }
 
@@ -157,4 +160,16 @@ void Aball::CollisiongatherDown(float _DeltaTime)
 	FxRender->SetRotationDeg(RenderRot * 1.0f);
 	ballRender->SetRotationDeg(RenderRot*-1.0f);
 	AddActorLocation(StartPos * Speed * _DeltaTime);
+}
+
+void Aball::PlayerCollisionCheck()
+{
+	ballCollision->CollisionEnter(ECollisionOrder::Player, [=](std::shared_ptr<UCollision> _Collison)
+		{
+			AActor* Ptr = _Collison->GetActor();
+			APlay_Cuphead* Player = dynamic_cast<APlay_Cuphead*>(Ptr);
+
+			Player->State.ChangeState("hit");
+
+		});
 }

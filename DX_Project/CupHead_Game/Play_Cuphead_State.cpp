@@ -1124,6 +1124,7 @@ void APlay_Cuphead::Run_Shoot_Straight(float  _DeltaTime)
 	skillCoolTime -= _DeltaTime;
 	if (true == IsPress('X') && skillCoolTime < 0.0f)
 	{
+		BaseBulletSound.On();
 		createBullet();
 		skillCoolTime = SaveSkilltime;
 		return;
@@ -1132,6 +1133,7 @@ void APlay_Cuphead::Run_Shoot_Straight(float  _DeltaTime)
 	FVector MovePos = FVector::Zero;
 	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT) && true == IsFree('X'))
 	{
+		BaseBulletSound.Off();
 		BulletStart->SetActive(false);
 		State.ChangeState("Idle");
 		return;
@@ -1156,6 +1158,7 @@ void APlay_Cuphead::Run_Shoot_Straight(float  _DeltaTime)
 
 	if (true == IsFree('X'))
 	{
+		BaseBulletSound.Off();
 		BulletStart->SetActive(false);
 		State.ChangeState("Run");
 		return;
@@ -1203,6 +1206,7 @@ void APlay_Cuphead::Run_Shoot_DiagonalUp(float _DeltaTime)
 
 	if (true == IsDown('V'))
 	{
+		BaseBulletSound.Off();
 		BulletStart->SetActive(false);
 		ShootStyle = EShootDir::DiagonalUpShoot;
 		State.ChangeState("SSGround_DiagonalUp");
@@ -1220,6 +1224,7 @@ void APlay_Cuphead::Run_Shoot_DiagonalUp(float _DeltaTime)
 
 	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT) && true == IsPress(VK_UP))
 	{
+		BaseBulletSound.Off();
 		BulletStart->SetActive(false);
 		State.ChangeState("Aim_Up");
 		return;
@@ -1245,6 +1250,7 @@ void APlay_Cuphead::Run_Shoot_DiagonalUp(float _DeltaTime)
 
 	if (true == IsFree('X'))
 	{
+		BaseBulletSound.Off();
 		BulletStart->SetActive(false);
 		State.ChangeState("Run");
 		return;
@@ -1614,6 +1620,7 @@ void APlay_Cuphead::JumpShoot(float _DeltaTime)
 
 	if (GetActorLocation().iY() <= GrounYCheck)
 	{
+		BaseBulletSound.Off();
 		GetWorld()->SpawnActor<AGroundDust>("AGroundDust");
 		BulletStart->SetActive(false);
 		JumpVector = FVector::Zero;

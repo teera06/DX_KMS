@@ -53,5 +53,7 @@ private:
 
 	void CollisiongatherUp(float _DeltaTime);
 	void CollisiongatherDown(float _DeltaTime);
+
+	void PlayerCollisionCheck();
 };
 
