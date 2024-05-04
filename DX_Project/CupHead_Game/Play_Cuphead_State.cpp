@@ -42,6 +42,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 	ParryCollision->CollisionEnter(ECollisionOrder::Boss1Monster2Hand, [=](std::shared_ptr<UCollision> _Collison)
 	{
 		Effect->SetActive(true);
+		UEngineSound::SoundPlay("sfx_player_parry_slap_01.wav");
 		AActor* Ptr = _Collison->GetActor();
 		ABoss1_Monster2* Hand = dynamic_cast<ABoss1_Monster2*>(Ptr);
 
@@ -58,6 +59,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 	ParryCollision->CollisionStay(ECollisionOrder::Boss1Monster2Hand, [=](std::shared_ptr<UCollision> _Collison)
 	{
 		Effect->SetActive(true);
+		UEngineSound::SoundPlay("sfx_player_parry_slap_01.wav");
 		AActor* Ptr = _Collison->GetActor();
 		ABoss1_Monster2* Hand = dynamic_cast<ABoss1_Monster2*>(Ptr);
 
@@ -77,6 +79,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 		if (true == Fire1->GetParryCheck())
 		{
 			Effect->SetActive(true);
+			UEngineSound::SoundPlay("sfx_player_parry_slap_01.wav");
 			GEngine->SetGlobalTimeScale(0.6f);
 			GravityVector = FVector::Down * 300.0f;
 
@@ -93,6 +96,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 		if (true == Fire1->GetParryCheck())
 		{
 			Effect->SetActive(true);
+			UEngineSound::SoundPlay("sfx_player_parry_slap_01.wav");
 			GEngine->SetGlobalTimeScale(0.6f);
 			GravityVector = FVector::Down * 300.0f;
 
@@ -108,6 +112,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 		if (true == skill->GetParryCheck())
 		{
 			Effect->SetActive(true);
+			UEngineSound::SoundPlay("sfx_player_parry_slap_01.wav");
 			GEngine->SetGlobalTimeScale(0.6f);
 			GravityVector = FVector::Down * 300.0f;
 
@@ -124,6 +129,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 		if (true == skill->GetParryCheck())
 		{
 			Effect->SetActive(true);
+			UEngineSound::SoundPlay("sfx_player_parry_slap_01.wav");
 			GEngine->SetGlobalTimeScale(0.6f);
 			GravityVector = FVector::Down * 300.0f;
 
