@@ -615,6 +615,11 @@ void APlay_Cuphead::CalLastMoveVector(float _DeltaTime, const FVector& _MovePos)
 
 void APlay_Cuphead::GroupUp(float _DeltaTime)
 {
+	if (true == Devil2GrounCheck)
+	{
+		return;
+	}
+
 	while (true)
 	{
 		if (GetActorLocation().iY() < GrounYCheck)
