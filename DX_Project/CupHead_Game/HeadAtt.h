@@ -29,8 +29,11 @@ protected:
 
 private:
 	USpriteRenderer* headatt = nullptr;
+	UCollision* DevilHeadCol = nullptr;
 
 	float speed = 500.0f;
+
+	void PlayerCollisionCheck();
 
 	void DragonHeadAppear(float _DeltaTime);
 	void DragonHeadSmile(float _DeltaTime);

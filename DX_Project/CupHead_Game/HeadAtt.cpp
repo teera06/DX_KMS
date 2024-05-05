@@ -6,6 +6,7 @@
 #include <EngineCore/Collision.h>
 
 #include "ContentsENum.h"
+#include "Play_Cuphead.h"
 
 AHeadAtt::AHeadAtt()
 {
@@ -14,6 +15,12 @@ AHeadAtt::AHeadAtt()
 
 	headatt->SetupAttachment(Root);
 	//Boss2->SetPivot(EPivot::LEFTTOP);
+
+	DevilHeadCol = CreateDefaultSubObject<UCollision>("DevilBallCol");
+	DevilHeadCol->SetupAttachment(Root);
+	DevilHeadCol->SetScale(FVector(100.0f, 100.0f, 100.0f));
+	DevilHeadCol->SetCollisionGroup(ECollisionOrder::DevilHeadCol);
+	DevilHeadCol->SetCollisionType(ECollisionType::RotRect);
 
 	SetRoot(Root);
 
@@ -41,6 +48,7 @@ void AHeadAtt::Tick(float _DeltaTime)
 	Super::Tick(_DeltaTime);
 	//coolDownTime -= _DeltaTime;
 	Phase1.Update(_DeltaTime);
+	PlayerCollisionCheck();
 }
 
 void AHeadAtt::Phase1StateInit()
@@ -66,6 +74,18 @@ void AHeadAtt::AniCreate()
 	headatt->CreateAnimation("DragonHeadAppear", "DragonHeadAppear", 0.075f);
 	headatt->CreateAnimation("DragonHeadSmile", "DragonHeadSmile", 0.075f);
 	headatt->CreateAnimation("DragonHeadDisappear", "DragonHeadDisappear", 0.075f,false);
+}
+
+void AHeadAtt::PlayerCollisionCheck()
+{
+	DevilHeadCol->CollisionEnter(ECollisionOrder::Player, [=](std::shared_ptr<UCollision> _Collison)
+		{
+			AActor* Ptr = _Collison->GetActor();
+			APlay_Cuphead* Player = dynamic_cast<APlay_Cuphead*>(Ptr);
+
+			Player->State.ChangeState("hit");
+
+		});
 }
 
 void AHeadAtt::DragonHeadAppear(float _DeltaTime)

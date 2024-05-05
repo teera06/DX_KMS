@@ -110,6 +110,7 @@ enum class ECollisionOrder
 	Orb_Fire2_Parry,
 	Orb_Fire2_Sub,
 	Devil1ball,
+	DevilHeadCol,
 	Demon,
 	imp,
 	FatDemon,
