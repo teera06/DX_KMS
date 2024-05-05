@@ -979,7 +979,7 @@ void APlay_Cuphead::Idle(float _DeltaTime)
 	if (true == IsDown(VK_SHIFT))
 	{
 
-		
+		UEngineSound::SoundPlay("sfx_player_dash_01.wav");
 		GetWorld()->SpawnActor<ADashDust>("DashDust")->SetDushDir(BulletDir);
 		State.ChangeState("Dash");
 		return;
@@ -1034,7 +1034,7 @@ void APlay_Cuphead::Idle(float _DeltaTime)
 
 	if (true == IsDown('Z'))
 	{
-
+		UEngineSound::SoundPlay("sfx_player_jump_01.wav");
 		JumpVector = JumpPowerPress;
 		State.ChangeState("Jump");
 		return;
@@ -1087,7 +1087,7 @@ void APlay_Cuphead::Run(float  _DeltaTime)
 	if (true == IsDown(VK_SHIFT))
 	{
 		
-
+		UEngineSound::SoundPlay("sfx_player_dash_01.wav");
 		GetWorld()->SpawnActor<ADashDust>("DashDust")->SetDushDir(BulletDir);
 		State.ChangeState("Dash");
 		return;
@@ -1097,6 +1097,7 @@ void APlay_Cuphead::Run(float  _DeltaTime)
 	if (true == IsDown('Z') && true == IsPress('X'))
 	{
 		//BulletStart->SetActive(false);
+		UEngineSound::SoundPlay("sfx_player_jump_01.wav");
 		ShootStyle = EShootDir::IdleShoot;
 		BulletStart->SetActive(true);
 		JumpVector = JumpPowerPress;
@@ -1114,7 +1115,7 @@ void APlay_Cuphead::Run(float  _DeltaTime)
 
 	if (true == IsDown('Z'))
 	{
-
+		UEngineSound::SoundPlay("sfx_player_jump_01.wav");
 		JumpVector = JumpPowerPress;
 		State.ChangeState("Jump");
 		return;
