@@ -38,11 +38,12 @@ protected:
 	void AniCreate() override;
 private:
 	USpriteRenderer* RamArms = nullptr;
+	UCollision* RamArmCol = nullptr;
 
 	FVector MoveLR = FVector::Zero;
 
 	float speed = 800.0f;
-
+	void PlayerCollisionCheck();
 
 	void RamArmsStart(float _DeltaTime);
 	void RamArmsEnd(float _DeltaTime);

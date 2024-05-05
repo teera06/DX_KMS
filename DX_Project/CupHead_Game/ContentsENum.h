@@ -111,6 +111,8 @@ enum class ECollisionOrder
 	Orb_Fire2_Sub,
 	Devil1ball,
 	DevilHeadCol,
+	SpiderHeadCol,
+	RamArmCol,
 	Demon,
 	imp,
 	FatDemon,

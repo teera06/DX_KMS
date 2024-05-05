@@ -6,12 +6,19 @@
 #include <EngineCore/Collision.h>
 
 #include "ContentsENum.h"
-
+#include "Play_Cuphead.h"
 ARamArms::ARamArms()
 {
 	UDefaultSceneComponent* Root = CreateDefaultSubObject<UDefaultSceneComponent>("RamArms");
 	RamArms = CreateDefaultSubObject<USpriteRenderer>("RamArms");
 	RamArms->SetupAttachment(Root);
+
+
+	RamArmCol = CreateDefaultSubObject<UCollision>("RamArmCol");
+	RamArmCol->SetupAttachment(Root);
+	RamArmCol->SetScale(FVector(500.0f, 100.0f, 100.0f));
+	RamArmCol->SetCollisionGroup(ECollisionOrder::RamArmCol);
+	RamArmCol->SetCollisionType(ECollisionType::RotRect);
 
 	SetRoot(Root);
 
@@ -38,6 +45,7 @@ void ARamArms::Tick(float _DeltaTime)
 	Super::Tick(_DeltaTime);
 
 	Phase1.Update(_DeltaTime);
+	PlayerCollisionCheck();
 }
 
 void ARamArms::AniCreate()
@@ -58,6 +66,18 @@ void ARamArms::Phase1StateInit()
 	Phase1.SetStartFunction("RamArmsEnd", [=] {RamArms->ChangeAnimation("RamArmsEnd"); });
 
 	Phase1.ChangeState("RamArmsStart");
+}
+
+void ARamArms::PlayerCollisionCheck()
+{
+	RamArmCol->CollisionEnter(ECollisionOrder::Player, [=](std::shared_ptr<UCollision> _Collison)
+		{
+			AActor* Ptr = _Collison->GetActor();
+			APlay_Cuphead* Player = dynamic_cast<APlay_Cuphead*>(Ptr);
+
+			Player->State.ChangeState("hit");
+
+		});
 }
 
 void ARamArms::RamArmsStart(float _DeltaTime)

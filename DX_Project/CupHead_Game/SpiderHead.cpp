@@ -16,12 +16,19 @@ ASpiderHead::ASpiderHead()
 	SpiderHead = CreateDefaultSubObject<USpriteRenderer>("SpiderHead");
 	SpiderHead->SetupAttachment(Root);
 
+	SpiderHeadCol = CreateDefaultSubObject<UCollision>("SpiderHeadCol");
+	SpiderHeadCol->SetupAttachment(Root);
+	SpiderHeadCol->SetScale(FVector(200.0f, 100.0f, 100.0f));
+	SpiderHeadCol->SetCollisionGroup(ECollisionOrder::SpiderHeadCol);
+	SpiderHeadCol->SetCollisionType(ECollisionType::RotRect);
 	SetRoot(Root);
 
 	SpiderHead->SetOrder(ERenderOrder::backSkill);
 	SpiderHead->SetSprite("devil_ph1_spider_attack_0001.png");
 	SpiderHead->SetSamplering(ETextureSampling::LINEAR);
 	SpiderHead->SetAutoSize(1.0f, true);
+
+	SpiderHeadCol->AddPosition(FVector::Down * 50.0f);
 }
 
 ASpiderHead::~ASpiderHead()
@@ -41,6 +48,7 @@ void ASpiderHead::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 	Phase1.Update(_DeltaTime);
+	PlayerCollisionCheck();
 }
 
 void ASpiderHead::Phase1StateInit()
@@ -71,6 +79,18 @@ void ASpiderHead::AniCreate()
 	SpiderHead->CreateAnimation("SpiderHead_FallToFloor", "SpiderHead_FallToFloor", 0.085f,false);
 	SpiderHead->CreateAnimation("SpiderHead_FlyToSky", "SpiderHead_FlyToSky", 0.075f,false);
 	SpiderHead->CreateAnimation("SpiderHead_FlyToSky2", "SpiderHead_FlyToSky2", 0.075f);
+}
+
+void ASpiderHead::PlayerCollisionCheck()
+{
+	SpiderHeadCol->CollisionEnter(ECollisionOrder::Player, [=](std::shared_ptr<UCollision> _Collison)
+		{
+			AActor* Ptr = _Collison->GetActor();
+			APlay_Cuphead* Player = dynamic_cast<APlay_Cuphead*>(Ptr);
+
+			Player->State.ChangeState("hit");
+
+		});
 }
 
 void ASpiderHead::SpiderHead_FallFromSky(float _DeltaTime)

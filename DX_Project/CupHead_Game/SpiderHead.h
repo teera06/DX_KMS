@@ -28,7 +28,7 @@ protected:
 	void AniCreate() override;
 private:
 	USpriteRenderer* SpiderHead = nullptr;
-
+	UCollision* SpiderHeadCol = nullptr;
 	//FVector MoveLR = FVector::Zero;
 	FVector GravityVector = FVector::Zero; // 중력값 받기
 	FVector UpVector = FVector::Zero; // 중력값 받기
@@ -44,6 +44,8 @@ private:
 	int Attcount = 0;
 
 	bool XPos = false;
+
+	void PlayerCollisionCheck();
 
 	void SpiderHead_FallFromSky(float _DeltaTime);
 	void SpiderHead_FallToFloor(float _DeltaTime);
