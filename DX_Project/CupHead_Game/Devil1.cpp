@@ -289,9 +289,9 @@ void ADevil1::CreateBall()
 	NewDevilBalls[3]->SetStartPos(FVector::Down + FVector::Right);
 
 	NewDevilBalls[0]->SetWallHitCount(7);
-	NewDevilBalls[1]->SetWallHitCount(6);
+	NewDevilBalls[1]->SetWallHitCount(8);
 	NewDevilBalls[2]->SetWallHitCount(7);
-	NewDevilBalls[3]->SetWallHitCount(6);
+	NewDevilBalls[3]->SetWallHitCount(8);
 }
 
 void ADevil1::CreateFire()

@@ -32,11 +32,17 @@ public:
 		ParryCheck = _ParryCheck;
 	}
 
+	bool GetParryCheck()
+	{
+		return ParryCheck;
+	}
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 private:
 	USpriteRenderer* DevilBall = nullptr;
+	UCollision* DevilBallCol = nullptr;
 
 	FVector StartPos = FVector::Zero;
 

@@ -14,6 +14,12 @@ ADevilBall::ADevilBall()
 
 	DevilBall->SetupAttachment(Root);
 
+	DevilBallCol = CreateDefaultSubObject<UCollision>("DevilBallCol");
+	DevilBallCol->SetupAttachment(Root);
+	DevilBallCol->SetScale(FVector(70.0f, 70.0f, 100.0f));
+	DevilBallCol->SetCollisionGroup(ECollisionOrder::Devil1ball);
+	DevilBallCol->SetCollisionType(ECollisionType::RotRect);
+
 	SetRoot(Root);
 
 	DevilBall->SetOrder(ERenderOrder::backSkill);

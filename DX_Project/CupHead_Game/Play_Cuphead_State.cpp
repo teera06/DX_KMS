@@ -26,6 +26,7 @@
 // ÆÐ¸µ
 #include "Orb_Fire.h"
 #include "Orb_Fire2.h"
+#include "DevilBall.h"
 #include "smallskill.h"
 
 #include "Hole.h"
@@ -168,6 +169,39 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 			Fire->GetMainRender()->SetActive(false);
 			Fire->GetMainCollision()->SetActive(false);
 			
+		});
+
+	ParryCollision->CollisionEnter(ECollisionOrder::Devil1ball, [=](std::shared_ptr<UCollision> _Collison)
+		{
+			AActor* Ptr = _Collison->GetActor();
+			ADevilBall* ball = dynamic_cast<ADevilBall*>(Ptr);
+
+			if (true == ball->GetParryCheck())
+			{
+				Effect->SetActive(true);
+				UEngineSound::SoundPlay("sfx_player_parry_slap_01.wav");
+				GEngine->SetGlobalTimeScale(0.6f);
+				GravityVector = FVector::Down * 300.0f;
+
+				ball->Destroy();
+			}
+
+		});
+
+	ParryCollision->CollisionStay(ECollisionOrder::Devil1ball, [=](std::shared_ptr<UCollision> _Collison)
+		{
+			AActor* Ptr = _Collison->GetActor();
+			ADevilBall* ball = dynamic_cast<ADevilBall*>(Ptr);
+
+			if (true == ball->GetParryCheck())
+			{
+				Effect->SetActive(true);
+				UEngineSound::SoundPlay("sfx_player_parry_slap_01.wav");
+				GEngine->SetGlobalTimeScale(0.6f);
+				GravityVector = FVector::Down * 300.0f;
+
+				ball->Destroy();
+			}
 		});
 }
 
