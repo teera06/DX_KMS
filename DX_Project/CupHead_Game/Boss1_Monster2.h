@@ -28,6 +28,16 @@ public:
 		return BigBoss1;
 	}
 
+	USpriteRenderer* GetSlotMouse()
+	{
+		return SlotMouse;
+	}
+
+	USpriteRenderer* GetFrontSlot()
+	{
+		return FrontSlot;
+	}
+
 	void SetSlotTouch(const bool& _SlotTouch)
 	{
 		SlotTouch = _SlotTouch;

@@ -174,6 +174,8 @@ void ABoss1_Monster2::Tick(float _DeltaTime)
 	if (DamgeColorDelay < 0)
 	{
 		BigBoss1->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
+		FrontSlot->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
+		SlotMouse->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 		DamgeColorDelay = 0.35f;
 	}
 
@@ -354,7 +356,7 @@ void ABoss1_Monster2::AniCreate()
 
 	WindSkill->CreateAnimation("Wind", "Wind", 0.12f);
 
-	FrontSlot->CreateAnimation("SlotFront", "SlotFront", 0.075f);
+	FrontSlot->CreateAnimation("SlotFront", "SlotFront", 0.07f);
 
 }
 
