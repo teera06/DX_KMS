@@ -41,8 +41,8 @@ ABoss1_Monster2::ABoss1_Monster2()
 	FrontSlot = CreateDefaultSubObject<USpriteRenderer>("FrontSlot");
 	
 	FrontSlot->SetupAttachment(Root);
-	FrontSlot->SetPivot(EPivot::BOT);
-	FrontSlot->AddPosition(FVector(122.0f, 100.0f, 0.0f));
+	FrontSlot->SetPivot(EPivot::RIGHTBOTTOM);
+	FrontSlot->AddPosition(FVector(262.0f, 100.0f, 0.0f));
 
 	FrontSlot->SetActive(false);
 
@@ -356,7 +356,7 @@ void ABoss1_Monster2::AniCreate()
 
 	WindSkill->CreateAnimation("Wind", "Wind", 0.12f);
 
-	FrontSlot->CreateAnimation("SlotFront", "SlotFront", 0.07f);
+	FrontSlot->CreateAnimation("SlotFront", "SlotFront", 0.072f);
 
 }
 
@@ -852,6 +852,7 @@ void ABoss1_Monster2::Phase3Att(float _DeltaTime)
 	{
 		if (Bigattcount == 39)
 		{
+			FrontSlot->SetActive(false);
 			Phase2.ChangeState("Phase3AttEnd");
 			return;
 		}
@@ -860,6 +861,7 @@ void ABoss1_Monster2::Phase3Att(float _DeltaTime)
 	{
 		if (Bigattcount == 26)
 		{
+			FrontSlot->SetActive(false);
 			Phase2.ChangeState("Phase3AttEnd");
 			return;
 		}
@@ -874,7 +876,6 @@ void ABoss1_Monster2::Phase3AttEnd(float _DeltaTime)
 		coolDownTime = 4.0f;
 		Bigattcount = 0;
 		SlotTouch = false;
-		FrontSlot->SetActive(false);
 		Phase2.ChangeState("phase3Idle");
 		return;
 	}
