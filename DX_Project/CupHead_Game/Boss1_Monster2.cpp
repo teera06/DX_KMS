@@ -259,6 +259,7 @@ void ABoss1_Monster2::Phase2StateInit()
 	Phase2.CreateState("Phase3SlotStart");
 	Phase2.CreateState("Phase3AttReady");
 	Phase2.CreateState("Phase3Att");
+	Phase2.CreateState("Phase3AttEnd");
 	Phase2.CreateState("DieTransition");
 	Phase2.CreateState("LastDie");
 
@@ -292,6 +293,9 @@ void ABoss1_Monster2::Phase2StateInit()
 
 	Phase2.SetUpdateFunction("Phase3Att", std::bind(&ABoss1_Monster2::Phase3Att, this, std::placeholders::_1));
 	Phase2.SetStartFunction("Phase3Att", [=] {BigBoss1->ChangeAnimation("Phase3Att"); });
+
+	Phase2.SetUpdateFunction("Phase3AttEnd", std::bind(&ABoss1_Monster2::Phase3AttEnd, this, std::placeholders::_1));
+	Phase2.SetStartFunction("Phase3AttEnd", [=] {BigBoss1->ChangeAnimation("Phase3AttEnd"); });
 
 	Phase2.SetUpdateFunction("DieTransition", std::bind(&ABoss1_Monster2::DieTransition, this, std::placeholders::_1));
 	Phase2.SetStartFunction("DieTransition", [=] {BigBoss1->ChangeAnimation("DieTransition"); });
@@ -328,6 +332,7 @@ void ABoss1_Monster2::AniCreate()
 
 	BigBoss1->CreateAnimation("Phase3AttReady", "Phase3AttReady", 0.075f);
 	BigBoss1->CreateAnimation("Phase3Att", "Phase3Att", 0.075f);
+	BigBoss1->CreateAnimation("Phase3AttEnd", "Phase3AttReady", 0.075f,false,6,0);
 
 	BigBoss1->CreateAnimation("DieTransition", "DieTransition", 0.075f);
 	BigBoss1->CreateAnimation("LastDie", "LastDie", 0.075f);
@@ -845,12 +850,7 @@ void ABoss1_Monster2::Phase3Att(float _DeltaTime)
 	{
 		if (Bigattcount == 39)
 		{
-			SlotAttCount++;
-			coolDownTime = 4.0f;
-			Bigattcount = 0;
-			SlotTouch = false;
-			FrontSlot->SetActive(false);
-			Phase2.ChangeState("phase3Idle");
+			Phase2.ChangeState("Phase3AttEnd");
 			return;
 		}
 	}
@@ -858,14 +858,23 @@ void ABoss1_Monster2::Phase3Att(float _DeltaTime)
 	{
 		if (Bigattcount == 26)
 		{
-			SlotAttCount++;
-			coolDownTime = 4.0f;
-			Bigattcount = 0;
-			SlotTouch = false;
-			FrontSlot->SetActive(false);
-			Phase2.ChangeState("phase3Idle");
+			Phase2.ChangeState("Phase3AttEnd");
 			return;
 		}
+	}
+}
+
+void ABoss1_Monster2::Phase3AttEnd(float _DeltaTime)
+{
+	if (true == BigBoss1->IsCurAnimationEnd())
+	{
+		SlotAttCount++;
+		coolDownTime = 4.0f;
+		Bigattcount = 0;
+		SlotTouch = false;
+		FrontSlot->SetActive(false);
+		Phase2.ChangeState("phase3Idle");
+		return;
 	}
 }
 
