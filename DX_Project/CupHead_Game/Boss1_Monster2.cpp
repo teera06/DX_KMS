@@ -42,7 +42,7 @@ ABoss1_Monster2::ABoss1_Monster2()
 	
 	FrontSlot->SetupAttachment(Root);
 	FrontSlot->SetPivot(EPivot::RIGHTBOTTOM);
-	FrontSlot->AddPosition(FVector(262.0f, 100.0f, 0.0f));
+	FrontSlot->AddPosition(FVector(263.0f, 103.0f, 0.0f));
 
 	FrontSlot->SetActive(false);
 
@@ -356,7 +356,7 @@ void ABoss1_Monster2::AniCreate()
 
 	WindSkill->CreateAnimation("Wind", "Wind", 0.12f);
 
-	FrontSlot->CreateAnimation("SlotFront", "SlotFront", 0.072f);
+	FrontSlot->CreateAnimation("SlotFront", "SlotFront", 0.08f);
 
 }
 
