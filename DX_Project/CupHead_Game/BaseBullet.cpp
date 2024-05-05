@@ -18,6 +18,8 @@
 #include "Imp.h"
 #include "FatDemon.h"
 
+#include "Devil1.h"
+
 
 
 ABaseBullet::ABaseBullet()
@@ -159,6 +161,19 @@ void ABaseBullet::Collisiongather()
 		DestroyCheck = true;
 		BulletRender->ChangeAnimation("Peashot_Death");
 	});
+
+	// Devil
+
+	BulletCollision->CollisionEnter(ECollisionOrder::Devil1, [=](std::shared_ptr<UCollision> _Collison)
+		{
+			AActor* Ptr = _Collison->GetActor();
+			ADevil1* Monster = dynamic_cast<ADevil1*>(Ptr);
+			Monster->GetBoss2Render()->SetPlusColor(FVector(0.2f, 0.2f, 0.2f));
+			DestroyCheck = true;
+			BulletRender->ChangeAnimation("Peashot_Death");
+			//Destroy();
+			//_Collison->GetActor()->Destroy();
+		});
 
 	if (GetActorLocation().iX() <= -600 || GetActorLocation().iX() >= 600 || GetActorLocation().iY() >= 360) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
 	{

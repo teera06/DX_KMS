@@ -27,6 +27,11 @@ public:
 	ADevil1& operator=(const ADevil1& _Other) = delete; // 디폴트 대입 연산자
 	ADevil1& operator=(ADevil1&& _Other) noexcept = delete;
 
+	USpriteRenderer* GetBoss2Render()
+	{
+		return Boss2;
+	}
+
 	void SetDieTime(const float& _DieTime)
 	{
 		DieTime = _DieTime;
@@ -58,6 +63,7 @@ private:
 	USpriteRenderer* BossBody = nullptr;
 	USpriteRenderer* spear = nullptr;
 
+	UCollision* Devil1 = nullptr;
 	UCollision* Boss2Phase2 = nullptr;
 
 	float DieTime = -2.0f;

@@ -35,6 +35,8 @@ protected:
 	virtual void Phase1StateInit();
 
 	virtual void AniCreate();
+
+	float DamgeColorDelay = 0.35f;
 private:
 	static int Hp;
 };
