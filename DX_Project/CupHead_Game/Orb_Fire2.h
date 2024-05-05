@@ -19,6 +19,15 @@ public:
 	AOrb_Fire2& operator=(const AOrb_Fire2& _Other) = delete; // 디폴트 대입 연산자
 	AOrb_Fire2& operator=(AOrb_Fire2&& _Other) noexcept = delete;
 
+	USpriteRenderer* GetMainRender()
+	{
+		return MainRender;
+	}
+
+	UCollision* GetMainCollision()
+	{
+		return Orb_Fire2Col;
+	}
 
 	UStateManager pattern;
 protected:
@@ -30,7 +39,10 @@ private:
 	USpriteRenderer* Orb_Fire2Render2 = nullptr;
 	USpriteRenderer* Orb_Fire2Render3 = nullptr;
 	USpriteRenderer* Orb_Fire2Render4 = nullptr;
+
 	UCollision* Orb_Fire2Col = nullptr;
+
+	std::vector<UCollision*> subCols;
 
 	float RotSpeed = 6000.0f;
 	float MoveSpeed = 200.0f;

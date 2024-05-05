@@ -35,16 +35,28 @@ AOrb_Fire2::AOrb_Fire2()
 	Orb_Fire2Col = CreateDefaultSubObject<UCollision>("Orb_Fire2");
 	Orb_Fire2Col->SetupAttachment(Root);
 	Orb_Fire2Col->SetScale(FVector(100.0f, 100.0f, 100.0f));
-	Orb_Fire2Col->SetCollisionGroup(ECollisionOrder::Orb_Fire2);
+	Orb_Fire2Col->SetCollisionGroup(ECollisionOrder::Orb_Fire2_Parry);
 	Orb_Fire2Col->SetCollisionType(ECollisionType::RotRect);
 
+	subCols.resize(4);
 
+	for (int i = 0; i < subCols.size(); i++)
+	{
+		subCols[i]= CreateDefaultSubObject<UCollision>("subCol"); 
+		subCols[i]->SetupAttachment(Root);
+		subCols[i]->SetScale(FVector(100.0f, 100.0f, 100.0f));
+		subCols[i]->SetCollisionGroup(ECollisionOrder::Orb_Fire2_Sub);
+		subCols[i]->SetCollisionType(ECollisionType::RotRect);
+	}
+
+	
 
 	SetRoot(Root);
 }
 
 AOrb_Fire2::~AOrb_Fire2()
 {
+	subCols.clear();
 }
 
 void AOrb_Fire2::BeginPlay()
@@ -106,7 +118,10 @@ void AOrb_Fire2::BeginPlay()
 	Orb_Fire2Render3->SetPosition(FVector(-200.0f, -150.0f, 0.0f));
 	Orb_Fire2Render4->SetPosition(FVector(-200.0f, 200.0f, 0.0f));
 
-
+	subCols[0]->SetPosition(FVector(200.0f, 150.0f, 0.0f));
+	subCols[1]->SetPosition(FVector(200.0f, -200.0f, 0.0f));
+	subCols[2]->SetPosition(FVector(-200.0f, -150.0f, 0.0f));
+	subCols[3]->SetPosition(FVector(-200.0f, 200.0f, 0.0f));
 
 	patternInit();
 }

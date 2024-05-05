@@ -25,6 +25,7 @@
 
 // ÆÐ¸µ
 #include "Orb_Fire.h"
+#include "Orb_Fire2.h"
 #include "smallskill.h"
 
 #include "Hole.h"
@@ -136,6 +137,38 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 			skill->Destroy();
 		}
 	});
+
+	ParryCollision->CollisionEnter(ECollisionOrder::Orb_Fire2_Parry, [=](std::shared_ptr<UCollision> _Collison)
+		{
+			AActor* Ptr = _Collison->GetActor();
+			AOrb_Fire2* Fire = dynamic_cast<AOrb_Fire2*>(Ptr);
+
+
+			Effect->SetActive(true);
+			UEngineSound::SoundPlay("sfx_player_parry_slap_01.wav");
+			GEngine->SetGlobalTimeScale(0.6f);
+			GravityVector = FVector::Down * 300.0f;
+
+			Fire->GetMainRender()->SetActive(false);
+			Fire->GetMainCollision()->SetActive(false);
+
+		});
+
+	ParryCollision->CollisionStay(ECollisionOrder::Orb_Fire2_Parry, [=](std::shared_ptr<UCollision> _Collison)
+		{
+			AActor* Ptr = _Collison->GetActor();
+			AOrb_Fire2* Fire = dynamic_cast<AOrb_Fire2*>(Ptr);
+
+			
+			Effect->SetActive(true);
+			UEngineSound::SoundPlay("sfx_player_parry_slap_01.wav");
+			GEngine->SetGlobalTimeScale(0.6f);
+			GravityVector = FVector::Down * 300.0f;
+
+			Fire->GetMainRender()->SetActive(false);
+			Fire->GetMainCollision()->SetActive(false);
+			
+		});
 }
 
 void APlay_Cuphead::GroundObject()
