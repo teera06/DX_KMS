@@ -76,6 +76,7 @@ void ABossStage1GameMode::LevelEnd(ULevel* _NextLevel)
 {
 	Super::LevelEnd(_NextLevel);
 	BossStageBGM.Off();
+	GEngine->DestroyLevel("BossStage1GameMode"); // 종료되는 시점 레벨 삭제 (그 안의 액터 같이 삭제 정리)
 }
 
 void ABossStage1GameMode::LevelStart(ULevel* _PrevLevel)

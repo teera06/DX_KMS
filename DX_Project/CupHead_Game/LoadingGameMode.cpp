@@ -134,6 +134,10 @@ void ALoadingGameMode::LevelStart(ULevel* _PrevLevel)
 		MainBoss2Load();
 	}
 
+	if (true == CreateLevelCheck2 && 2 == UContentsHelper::StageCount)
+	{
+		GEngine->CreateLevel<ABossStage1GameMode>("BossStage1GameMode");
+	}
 
 }
 

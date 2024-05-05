@@ -163,6 +163,9 @@ void ABoss1_Monster2::BeginPlay()
 
 	WindSkill->ChangeAnimation("Wind");
 	FrontSlot->ChangeAnimation("SlotFront");
+
+	phasecheck = 1;
+	SetHp(100);
 }
 
 void ABoss1_Monster2::Tick(float _DeltaTime)
