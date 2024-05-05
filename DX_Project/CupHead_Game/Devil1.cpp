@@ -90,9 +90,9 @@ ADevil1::ADevil1()
 	Boss2Phase2->SetCollisionGroup(ECollisionOrder::Devil1Change);
 	Boss2Phase2->SetCollisionType(ECollisionType::RotRect);
 
-	Devil1 = CreateDefaultSubObject<UCollision>("Boss2Phase2");
+	Devil1 = CreateDefaultSubObject<UCollision>("Devil1");
 	Devil1->SetupAttachment(Root);
-	//Devil1->SetPosition(FVector(-30.0f, -350.0f, 0.0f));
+	Devil1->AddPosition(FVector(-30.0f, 50.0f, 0.0f));
 	Devil1->SetScale(FVector(200.0f, 250.0f, 100.0f));
 	Devil1->SetCollisionGroup(ECollisionOrder::Devil1);
 	Devil1->SetCollisionType(ECollisionType::RotRect);
