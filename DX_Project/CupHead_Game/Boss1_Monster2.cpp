@@ -42,7 +42,7 @@ ABoss1_Monster2::ABoss1_Monster2()
 	
 	FrontSlot->SetupAttachment(Root);
 	FrontSlot->SetPivot(EPivot::RIGHTBOTTOM);
-	FrontSlot->AddPosition(FVector(264.4f, 104.0f, 0.0f));
+	FrontSlot->AddPosition(FVector(264.3f, 104.0f, 0.0f));
 
 	FrontSlot->SetActive(false);
 
