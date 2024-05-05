@@ -236,7 +236,7 @@ void ABoss1_Monster1::smallIdle(float _DeltaTime)
 		return;
 	}
 
-	if (GetHp() <= 50 && 2 == phasecheck)
+	if (GetHp() <= 50 && 2 == phasecheck && true==Ready3Phase)
 	{
 		Phase2.ChangeState("phase3changeReady");
 		return;
