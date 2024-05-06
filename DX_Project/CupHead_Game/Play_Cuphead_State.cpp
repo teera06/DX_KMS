@@ -1835,6 +1835,12 @@ void APlay_Cuphead::Aim_Straight(float _DeltaTime)
 		return;
 	}
 
+	if (true == IsPress(VK_UP))
+	{
+		State.ChangeState("Aim_Up");
+		return;
+	}
+
 	if (true == IsPress('X'))
 	{
 		ShootStyle = EShootDir::IdleShoot;
