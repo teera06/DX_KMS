@@ -6,7 +6,7 @@
 #include <EngineCore/Collision.h>
 
 #include "ContentsENum.h"
-
+#include "ContentsHelper.h"
 #include "ScreenEffect.h"
 #include "HeadAtt.h"
 #include "RamArms.h"
@@ -125,6 +125,10 @@ void ADevil1::BeginPlay()
 
 	NewFireS.resize(6);
 	NewDevilBalls.resize(4);
+
+	UContentsHelper::DelMapCheck = false;
+	phasecheck = 1;
+	SetHp(100);
 }
 
 void ADevil1::Tick(float _DeltaTime)

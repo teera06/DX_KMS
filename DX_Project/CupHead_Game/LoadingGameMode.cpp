@@ -129,7 +129,7 @@ void ALoadingGameMode::LevelStart(ULevel* _PrevLevel)
 	{
 		MainBoss1Load();
 	}
-	else if (3 == UContentsHelper::StageCount)
+	else if (3 == UContentsHelper::StageCount && false == CreateLevelCheck3)
 	{
 		MainBoss2Load();
 	}
@@ -139,6 +139,10 @@ void ALoadingGameMode::LevelStart(ULevel* _PrevLevel)
 		GEngine->CreateLevel<ABossStage1GameMode>("BossStage1GameMode");
 	}
 
+	if (true == CreateLevelCheck3 && 3 == UContentsHelper::StageCount)
+	{
+		GEngine->CreateLevel<ABossStage2GameMode>("BossStage2GameMode");
+	}
 }
 
 void ALoadingGameMode::MainPlayerLoad()

@@ -41,7 +41,6 @@ private:
 	UCollision* GroundCollision = nullptr;
 	UCollision* LRCollision = nullptr;
 
-	static std::vector<int> num;
 
 	static int PhaseCount;
 	static int count;

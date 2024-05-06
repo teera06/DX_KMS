@@ -17,7 +17,6 @@ bool ADevilPlatform::Groundpattern = false;
 bool ADevilPlatform::HPCheck1 = false;
 bool ADevilPlatform::HPCheck2 = false;
 
-std::vector<int> ADevilPlatform::num;
 
 ADevilPlatform::ADevilPlatform()
 {
@@ -52,7 +51,6 @@ ADevilPlatform::ADevilPlatform()
 
 ADevilPlatform::~ADevilPlatform()
 {
-	num.clear();
 }
 
 void ADevilPlatform::BeginPlay()
@@ -68,7 +66,12 @@ void ADevilPlatform::BeginPlay()
 
 	patternInit();
 
-	num.resize(4);
+
+	PhaseCount = 1;
+	count = 1;
+	Groundpattern = false;
+	HPCheck1=false;
+	HPCheck2= false;
 }
 
 void ADevilPlatform::Tick(float _DeltaTime)
