@@ -173,6 +173,13 @@ private:
 	void hit(float _DeltaTime);
 	void Parry(float _DeltaTime);
 
+	// Ãß°¡
+	void Shoot_Down(float _DeltaTIme);
+	void Shoot_DiagonalUp(float _DeltaTIme);
+	void Shoot_DiagonalDown(float _DeltaTIme);
+
+
+
 	void SSGround_Straight(float _DeltaTime);
 	void SSGround_Down(float _DeltaTime);
 	void SSGround_DiagonalUp(float _DeltaTime);

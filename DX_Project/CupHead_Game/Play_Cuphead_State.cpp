@@ -1782,6 +1782,18 @@ void APlay_Cuphead::Parry(float _DeltaTime)
 	MoveUpDate(_DeltaTime); // 최종 움직임
 }
 
+void APlay_Cuphead::Shoot_Down(float _DeltaTIme)
+{
+}
+
+void APlay_Cuphead::Shoot_DiagonalUp(float _DeltaTIme)
+{
+}
+
+void APlay_Cuphead::Shoot_DiagonalDown(float _DeltaTIme)
+{
+}
+
 void APlay_Cuphead::SSGround_Straight(float _DeltaTime)
 {
 	DirCheck();
