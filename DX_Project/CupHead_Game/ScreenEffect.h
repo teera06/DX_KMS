@@ -27,6 +27,11 @@ public:
 		Effect = _Effect;
 	}
 
+	void SetBossZone(const int& _BossZone)
+	{
+		BossZone = _BossZone;
+	}
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -34,5 +39,7 @@ private:
 	USpriteRenderer* FilterEffect = nullptr;
 
 	EScreenEffect Effect = EScreenEffect::None;
+
+	int BossZone = 0;
 };
 

@@ -12,6 +12,8 @@ public:
 	// Stage 3 º¸½º ¸Ê 2
 
 	static bool DelMapCheck;
+
+	static bool bossEntrance;
 protected:
 private:
 };

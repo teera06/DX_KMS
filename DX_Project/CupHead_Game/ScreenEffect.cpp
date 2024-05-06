@@ -4,6 +4,9 @@
 
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/DefaultSceneComponent.h>
+
+#include "ContentsHelper.h"
+
 AScreenEffect::AScreenEffect()
 {
 
@@ -56,6 +59,16 @@ void AScreenEffect::Tick(float _DeltaTime)
 
 		if (true == FilterEffect->IsCurAnimationEnd())
 		{
+			if (BossZone == 1)
+			{
+				UContentsHelper::StageCount = 2;
+			}
+			else if (BossZone == 2)
+			{
+				UContentsHelper::StageCount = 3;
+			}
+
+			GEngine->ChangeLevel("Loading");
 			Destroy();
 		}
 		break;

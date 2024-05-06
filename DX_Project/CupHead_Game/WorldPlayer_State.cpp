@@ -720,14 +720,18 @@ void AWorldPlayer::BossStartBefore(float _DeltaTime)
 
 	if (true == IsDown('Z') && true == Boss2Check)
 	{
+		Boss2Check = false;
 		std::shared_ptr<AScreenEffect> NewScreen = GetWorld()->SpawnActor<AScreenEffect>("ScreenEffect");
+		NewScreen->SetBossZone(2);
 		NewScreen->SetActorLocation(GetActorLocation());
 		NewScreen->SetScreenEffect(EScreenEffect::IrisRe);
 	}
 
 	if (true == IsDown('Z') && true == Boss1Check)
 	{
+		Boss1Check = false;
 		std::shared_ptr<AScreenEffect> NewScreen = GetWorld()->SpawnActor<AScreenEffect>("ScreenEffect");
+		NewScreen->SetBossZone(1);
 		NewScreen->SetActorLocation(GetActorLocation());
 		NewScreen->SetScreenEffect(EScreenEffect::IrisRe);
 	}
