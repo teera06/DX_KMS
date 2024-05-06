@@ -725,6 +725,10 @@ void AWorldPlayer::BossStartBefore(float _DeltaTime)
 		NewScreen->SetBossZone(2);
 		NewScreen->SetActorLocation(GetActorLocation());
 		NewScreen->SetScreenEffect(EScreenEffect::IrisRe);
+		Boss2title->SetActive(false);
+		Boss1title->SetActive(false);
+		State.ChangeState("DownIdle");
+		return;
 	}
 
 	if (true == IsDown('Z') && true == Boss1Check)
@@ -734,6 +738,10 @@ void AWorldPlayer::BossStartBefore(float _DeltaTime)
 		NewScreen->SetBossZone(1);
 		NewScreen->SetActorLocation(GetActorLocation());
 		NewScreen->SetScreenEffect(EScreenEffect::IrisRe);
+		Boss2title->SetActive(false);
+		Boss1title->SetActive(false);
+		State.ChangeState("DownIdle");
+		return;
 	}
 }
 
