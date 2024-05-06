@@ -1541,6 +1541,7 @@ void APlay_Cuphead::Duck_Shoot(float _DeltaTime)
 
 void APlay_Cuphead::Aim_Up(float _DeltaTime)
 {
+	DirCheck();
 	if (true == IsFree(VK_UP))
 	{
 		State.ChangeState("Idle");
@@ -1563,6 +1564,8 @@ void APlay_Cuphead::Aim_Up(float _DeltaTime)
 		State.ChangeState("SSGround_Up");
 		return;
 	}
+
+	MoveUpDate(_DeltaTime);
 }
 
 void APlay_Cuphead::Shoot_Up(float _DeltaTime)
@@ -1795,6 +1798,8 @@ void APlay_Cuphead::Parry(float _DeltaTime)
 
 void APlay_Cuphead::Aim_Straight(float _DeltaTime)
 {
+
+	DirCheck();
 	if (true == IsFree('C'))
 	{
 		State.ChangeState("Idle");
@@ -1816,6 +1821,8 @@ void APlay_Cuphead::Aim_Straight(float _DeltaTime)
 		//State.ChangeState("SSGround_Up");
 		return;
 	}
+
+	MoveUpDate(_DeltaTime);
 }
 
 void APlay_Cuphead::Shoot_Down(float _DeltaTIme)
