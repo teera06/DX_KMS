@@ -24,18 +24,31 @@ void UContentsDebugWindow::OnGui(ULevel* Level, float _Delta)
 {
 	if (true == ImGui::Button("PlayeLevel"))
 	{
+		if (UContentsHelper::StageCount == 2)
+		{
+			return;
+		}
 		UContentsHelper::StageCount = 2;
 		GEngine->ChangeLevel("Loading");
 	}
 
 	if (true == ImGui::Button("PlayeLevel2"))
 	{
+		if (UContentsHelper::StageCount == 3)
+		{
+			return;
+		}
 		UContentsHelper::StageCount = 3;
 		GEngine->ChangeLevel("Loading");
 	}
 
 	if (true == ImGui::Button("WorldLevel"))
 	{
+
+		if (UContentsHelper::StageCount == 1)
+		{
+			return;
+		}
 		UContentsHelper::StageCount = 1;
 		GEngine->ChangeLevel("Loading");
 	}
