@@ -106,6 +106,7 @@ void APlay_Cuphead::BeginPlay()
 	PlayCuphead->CreateAnimation("SSGround_Up", "SSGround_Up", 0.05f);
 
 	PlayCuphead->CreateAnimation("Aim_Straight", "Aim_Straight", 0.05f);
+	PlayCuphead->CreateAnimation("Aim_DiagonalDown", "Aim_DiagonalDown", 0.05f);
 
 
 	Effect->CreateAnimation("ParryEffect", "ParryEffect", 0.055f);

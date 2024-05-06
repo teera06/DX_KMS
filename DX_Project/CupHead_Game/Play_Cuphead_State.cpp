@@ -723,6 +723,7 @@ void APlay_Cuphead::StateInit()
 	State.CreateState("hit");
 	State.CreateState("Parry");
 	State.CreateState("Aim_Straight");
+	State.CreateState("Aim_DiagonalDown");
 
 	State.CreateState("Boss2PhaseChange");
 	State.CreateState("Scared");
@@ -787,6 +788,9 @@ void APlay_Cuphead::StateInit()
 
 	State.SetUpdateFunction("Aim_Straight", std::bind(&APlay_Cuphead::Aim_Straight, this, std::placeholders::_1));
 	State.SetStartFunction("Aim_Straight", [=] {PlayCuphead->ChangeAnimation("Aim_Straight"); });
+
+	State.SetUpdateFunction("Aim_DiagonalDown", std::bind(&APlay_Cuphead::Aim_DiagonalDown, this, std::placeholders::_1));
+	State.SetStartFunction("Aim_DiagonalDown", [=] {PlayCuphead->ChangeAnimation("Aim_DiagonalDown"); });
 
 
 	State.SetUpdateFunction("Boss2PhaseChange", std::bind(&APlay_Cuphead::Boss2PhaseChange, this, std::placeholders::_1));
@@ -1806,6 +1810,12 @@ void APlay_Cuphead::Aim_Straight(float _DeltaTime)
 		return;
 	}
 
+	if (true == IsPress(VK_DOWN) && (true==IsPress(VK_RIGHT) || true == IsPress(VK_LEFT)))
+	{
+		State.ChangeState("Aim_DiagonalDown");
+		return;
+	}
+
 	if (true == IsPress('X'))
 	{
 		ShootStyle = EShootDir::IdleShoot;
@@ -1821,6 +1831,26 @@ void APlay_Cuphead::Aim_Straight(float _DeltaTime)
 		//State.ChangeState("SSGround_Up");
 		return;
 	}
+
+	MoveUpDate(_DeltaTime);
+}
+
+void APlay_Cuphead::Aim_DiagonalDown(float _DeltaTime)
+{
+	DirCheck();
+
+	if (true == IsFree('C'))
+	{
+		State.ChangeState("Idle");
+		return;
+	}
+
+	if (true == IsFree(VK_DOWN))
+	{
+		State.ChangeState("Aim_Straight");
+		return;
+	}
+
 
 	MoveUpDate(_DeltaTime);
 }
