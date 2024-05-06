@@ -1800,6 +1800,22 @@ void APlay_Cuphead::Aim_Straight(float _DeltaTime)
 		State.ChangeState("Idle");
 		return;
 	}
+
+	if (true == IsPress('X'))
+	{
+		ShootStyle = EShootDir::IdleShoot;
+		BulletStart->SetActive(true);
+		State.ChangeState("Shoot_Straight");
+		return;
+	}
+
+	if (true == IsPress('V'))
+	{
+		BulletStart->SetActive(false);
+		//ShootStyle = EShootDir::IdleShoot;
+		//State.ChangeState("SSGround_Up");
+		return;
+	}
 }
 
 void APlay_Cuphead::Shoot_Down(float _DeltaTIme)
