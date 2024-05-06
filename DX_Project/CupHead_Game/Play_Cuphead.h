@@ -176,6 +176,7 @@ private:
 	// Ãß°¡
 	void Aim_Straight(float _DeltaTime);
 	void Aim_DiagonalDown(float _DeltaTime);
+	void Aim_Down(float _DeltaTime);
 
 	void Shoot_Down(float _DeltaTIme);
 	void Shoot_DiagonalUp(float _DeltaTIme);
