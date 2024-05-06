@@ -722,6 +722,7 @@ void APlay_Cuphead::StateInit()
 	State.CreateState("DashAfterJump");
 	State.CreateState("hit");
 	State.CreateState("Parry");
+	State.CreateState("Aim_Straight");
 
 	State.CreateState("Boss2PhaseChange");
 	State.CreateState("Scared");
@@ -783,6 +784,10 @@ void APlay_Cuphead::StateInit()
 
 	State.SetUpdateFunction("Parry", std::bind(&APlay_Cuphead::Parry, this, std::placeholders::_1));
 	State.SetStartFunction("Parry", [=] {PlayCuphead->ChangeAnimation("Parry"); });
+
+	State.SetUpdateFunction("Aim_Straight", std::bind(&APlay_Cuphead::Aim_Straight, this, std::placeholders::_1));
+	State.SetStartFunction("Aim_Straight", [=] {PlayCuphead->ChangeAnimation("Aim_Straight"); });
+
 
 	State.SetUpdateFunction("Boss2PhaseChange", std::bind(&APlay_Cuphead::Boss2PhaseChange, this, std::placeholders::_1));
 	State.SetStartFunction("Boss2PhaseChange", [=] {PlayCuphead->ChangeAnimation("Jump"); });
@@ -1055,6 +1060,12 @@ void APlay_Cuphead::Idle(float _DeltaTime)
 	if (true == IsPress(VK_DOWN))
 	{
 		State.ChangeState("Duck");
+		return;
+	}
+
+	if (true == IsPress('C'))
+	{
+		State.ChangeState("Aim_Straight");
 		return;
 	}
 
@@ -1780,6 +1791,15 @@ void APlay_Cuphead::Parry(float _DeltaTime)
 	}
 
 	MoveUpDate(_DeltaTime); // 최종 움직임
+}
+
+void APlay_Cuphead::Aim_Straight(float _DeltaTime)
+{
+	if (true == IsFree('C'))
+	{
+		State.ChangeState("Idle");
+		return;
+	}
 }
 
 void APlay_Cuphead::Shoot_Down(float _DeltaTIme)
