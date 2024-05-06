@@ -725,6 +725,7 @@ void APlay_Cuphead::StateInit()
 	State.CreateState("Aim_Straight");
 	State.CreateState("Aim_DiagonalDown");
 	State.CreateState("Aim_Down");
+	State.CreateState("Aim_DiagonalUp");
 
 	State.CreateState("Boss2PhaseChange");
 	State.CreateState("Scared");
@@ -796,6 +797,8 @@ void APlay_Cuphead::StateInit()
 	State.SetUpdateFunction("Aim_Down", std::bind(&APlay_Cuphead::Aim_Down, this, std::placeholders::_1));
 	State.SetStartFunction("Aim_Down", [=] {PlayCuphead->ChangeAnimation("Aim_Down"); });
 
+	State.SetUpdateFunction("Aim_DiagonalUp", std::bind(&APlay_Cuphead::Aim_DiagonalUp, this, std::placeholders::_1));
+	State.SetStartFunction("Aim_DiagonalUp", [=] {PlayCuphead->ChangeAnimation("Aim_DiagonalUp"); });
 
 	State.SetUpdateFunction("Boss2PhaseChange", std::bind(&APlay_Cuphead::Boss2PhaseChange, this, std::placeholders::_1));
 	State.SetStartFunction("Boss2PhaseChange", [=] {PlayCuphead->ChangeAnimation("Jump"); });
@@ -1820,6 +1823,12 @@ void APlay_Cuphead::Aim_Straight(float _DeltaTime)
 		return;
 	}
 
+	if (true == IsPress(VK_UP) && (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT)))
+	{
+		State.ChangeState("Aim_DiagonalUp");
+		return;
+	}
+
 	if (true == IsPress(VK_DOWN))
 	{
 		State.ChangeState("Aim_Down");
@@ -1893,6 +1902,32 @@ void APlay_Cuphead::Aim_Down(float _DeltaTime)
 		return;
 	}
 
+
+
+	MoveUpDate(_DeltaTime);
+}
+
+void APlay_Cuphead::Aim_DiagonalUp(float _DeltaTime)
+{
+	DirCheck();
+
+	if (true == IsFree('C'))
+	{
+		State.ChangeState("Idle");
+		return;
+	}
+
+	if (true == IsFree(VK_UP))
+	{
+		State.ChangeState("Aim_Straight");
+		return;
+	}
+
+	if (true == IsFree(VK_RIGHT) && true == IsFree(VK_LEFT))
+	{
+		State.ChangeState("Aim_Up");
+		return;
+	}
 
 
 	MoveUpDate(_DeltaTime);
