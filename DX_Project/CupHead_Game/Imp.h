@@ -31,6 +31,7 @@ protected:
 
 	UStateManager pattern;
 private:
+	UEngineSoundPlayer spinSound;
 	USpriteRenderer* Imp = nullptr;
 
 	UCollision* MonsterCollision = nullptr;

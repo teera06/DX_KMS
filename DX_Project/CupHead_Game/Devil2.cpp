@@ -159,8 +159,8 @@ void ADevil2::AniCreate()
 	Boss2->CreateAnimation("Phase3Idle", "Phase3Idle", 0.075f);
 	Boss2->CreateAnimation("DevilSummonImpIdle", "DevilSummonImpIdle", 0.075f);
 
-	Boss2->CreateAnimation("DevilStartCrying", "DevilStartCrying", 0.075f);
-	Boss2->CreateAnimation("DevilCrying", "DevilCrying", 0.075f);
+	Boss2->CreateAnimation("DevilStartCrying", "DevilStartCrying", 0.065f);
+	Boss2->CreateAnimation("DevilCrying", "DevilCrying", 0.055f);
 	Boss2->CreateAnimation("DevilKnockout", "DevilKnockout", 0.075f);
 
 	DevilNeck->CreateAnimation("DevilNeck", "DevilNeck", 0.085f);
@@ -184,7 +184,7 @@ void ADevil2::CreateBombBat()
 
 void ADevil2::CreateAxe()
 {
-	//UEngineSound::SoundPlay("sfx_level_devil_sitting_devil_trident_attack_01.wav");
+	UEngineSound::SoundPlay("devil_head_devil_spiral_attack.wav");
 	NewAxe = GetWorld()->SpawnActor<AAxe>("Axe");
 }
 

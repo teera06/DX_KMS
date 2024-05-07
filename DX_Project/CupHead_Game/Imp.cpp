@@ -33,6 +33,7 @@ AImp::AImp()
 
 AImp::~AImp()
 {
+	spinSound.Off();
 }
 
 void AImp::BeginPlay()
@@ -51,6 +52,10 @@ void AImp::BeginPlay()
 	RandomMove = UEngineRandom::MainRandom.RandomInt(1, 4);
 	patternInit();
 	UEngineSound::SoundPlay("sfx_devil_imp_spawn_01.wav");
+
+	spinSound = UEngineSound::SoundPlay("devil_bat_bomb_spin_01.wav");
+	spinSound.Loop();
+	spinSound.Off();
 }
 
 void AImp::Tick(float _DeltaTime)
@@ -149,12 +154,14 @@ void AImp::ImpFlying(float _DeltaTime)
 	if (Delay < 0)
 	{
 		Delay = 3.0f;
+		spinSound.On();
 		pattern.ChangeState("ImpAttack");
 		return;
 	}
 
 	if (true == DieCheck)
 	{
+		spinSound.Off();
 		UEngineSound::SoundPlay("sfx_devil_imp_death_01.wav");
 		pattern.ChangeState("Die");
 		return;
@@ -169,6 +176,7 @@ void AImp::ImpAttack(float _DeltaTime)
 
 	if (Delay < 0)
 	{
+		spinSound.Off();
 		Delay = 1.5f;
 		RandomMove = UEngineRandom::MainRandom.RandomInt(1, 4);
 		pattern.ChangeState("ImpRandomMove");
@@ -177,6 +185,7 @@ void AImp::ImpAttack(float _DeltaTime)
 
 	if (true == DieCheck)
 	{
+		spinSound.Off();
 		pattern.ChangeState("Die");
 		return;
 	}

@@ -68,6 +68,7 @@ APlay_Cuphead::APlay_Cuphead()
 
 APlay_Cuphead::~APlay_Cuphead()
 {
+	BaseBulletSound.Off();
 	Guage.clear();
 }
 
