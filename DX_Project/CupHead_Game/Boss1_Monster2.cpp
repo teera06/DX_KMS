@@ -662,6 +662,7 @@ void ABoss1_Monster2::phase3Idle(float _DeltaTime)
 {
 	if (GetHp() <= 0)
 	{
+		UEngineSound::SoundPlay("frogs_morphed_death_loop_01.wav");
 		Phase2.ChangeState("DieTransition");
 		return;
 	}
@@ -696,6 +697,7 @@ void ABoss1_Monster2::CoinAtt(float _DeltaTime)
 {
 	if (GetHp() <= 0)
 	{
+		UEngineSound::SoundPlay("frogs_morphed_death_loop_01.wav");
 		Phase2.ChangeState("DieTransition");
 		return;
 	}
@@ -741,6 +743,7 @@ void ABoss1_Monster2::Phase3Slot(float _DeltaTime)
 	HandCollision->SetActive(true);
 	if (GetHp() <= 0)
 	{
+		UEngineSound::SoundPlay("frogs_morphed_death_loop_01.wav");
 		Phase2.ChangeState("DieTransition");
 		return;
 	}
@@ -768,6 +771,7 @@ void ABoss1_Monster2::Phase3SlotCoinAtt(float _DeltaTime)
 {
 	if (GetHp() <= 0)
 	{
+		UEngineSound::SoundPlay("frogs_morphed_death_loop_01.wav");
 		Phase2.ChangeState("DieTransition");
 		return;
 	}
@@ -812,6 +816,7 @@ void ABoss1_Monster2::Phase3SlotStart(float _DeltaTime)
 {
 	if (GetHp() <= 0)
 	{
+		UEngineSound::SoundPlay("frogs_morphed_death_loop_01.wav");
 		Phase2.ChangeState("DieTransition");
 		return;
 	}
@@ -832,6 +837,7 @@ void ABoss1_Monster2::Phase3AttReady(float _DeltaTime)
 {
 	if (GetHp() <= 0)
 	{
+		UEngineSound::SoundPlay("frogs_morphed_death_loop_01.wav");
 		Phase2.ChangeState("DieTransition");
 		return;
 	}
@@ -850,6 +856,7 @@ void ABoss1_Monster2::Phase3Att(float _DeltaTime)
 {
 	if (GetHp() <= 0)
 	{
+		UEngineSound::SoundPlay("frogs_morphed_death_loop_01.wav");
 		Phase2.ChangeState("DieTransition");
 		return;
 	}
