@@ -68,6 +68,7 @@ APlay_Cuphead::APlay_Cuphead()
 
 APlay_Cuphead::~APlay_Cuphead()
 {
+	GrountSound.Off();
 	BaseBulletSound.Off();
 	Guage.clear();
 }
@@ -165,6 +166,10 @@ void APlay_Cuphead::BeginPlay()
 	BaseBulletSound= UEngineSound::SoundPlay("sfx_player_default_fire_loop_01.wav");
 	BaseBulletSound.Loop();
 	BaseBulletSound.Off();
+
+	GrountSound = UEngineSound::SoundPlay("sfx_player_land_ground_01.wav");
+	GrountSound.Loop();
+	GrountSound.Off();
 
 }
 

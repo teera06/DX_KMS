@@ -869,12 +869,14 @@ void APlay_Cuphead::StateInit()
 
 
 	// Ã¼ÀÎÁö
+	UEngineSound::SoundPlay("sfx_player_intro_cuphead.wav");
 	State.ChangeState("Intro");
 }
 
 void APlay_Cuphead::Intro(float _DeltaTime)
 {
 	DirCheck();
+	GrountSound.Off();
 	if (true == PlayCuphead->IsCurAnimationEnd())
 	{
 		State.ChangeState("Idle");
@@ -1068,7 +1070,7 @@ void APlay_Cuphead::Idle(float _DeltaTime)
 {
 
 	DirCheck();
-
+	GrountSound.Off();
 	BulletStart->SetActive(false);
 	if (true == IsDown('1'))
 	{
@@ -1165,9 +1167,10 @@ void APlay_Cuphead::Idle(float _DeltaTime)
 void APlay_Cuphead::Run(float  _DeltaTime)
 {
 	DirCheck();
-
+	GrountSound.On();
 	if (true == IsDown('V') && true == IsPress(VK_UP))
 	{
+		GrountSound.Off();
 		ShootStyle = EShootDir::DiagonalUpShoot;
 		State.ChangeState("SSGround_DiagonalUp");
 		return;
@@ -1175,6 +1178,7 @@ void APlay_Cuphead::Run(float  _DeltaTime)
 
 	if (true == IsDown('V') && true == IsPress(VK_DOWN))
 	{
+		GrountSound.Off();
 		ShootStyle = EShootDir::DiagonalDownShoot;
 		State.ChangeState("SSGround_DiagonalDown");
 		return;
@@ -1182,6 +1186,7 @@ void APlay_Cuphead::Run(float  _DeltaTime)
 
 	if (true == IsDown('V'))
 	{
+		GrountSound.Off();
 		ShootStyle = EShootDir::IdleShoot;
 		State.ChangeState("SSGround_Straight");
 		return;
@@ -1199,13 +1204,14 @@ void APlay_Cuphead::Run(float  _DeltaTime)
 	FVector MovePos = FVector::Zero;
 	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
 	{
+		GrountSound.Off();
 		State.ChangeState("Idle");
 		return;
 	}
 
 	if (true == IsDown(VK_SHIFT))
 	{
-		
+		GrountSound.Off();
 		UEngineSound::SoundPlay("sfx_player_dash_01.wav");
 		GetWorld()->SpawnActor<ADashDust>("DashDust")->SetDushDir(BulletDir);
 		State.ChangeState("Dash");
@@ -1215,6 +1221,7 @@ void APlay_Cuphead::Run(float  _DeltaTime)
 
 	if (true == IsDown('Z') && true == IsPress('X'))
 	{
+		GrountSound.Off();
 		//BulletStart->SetActive(false);
 		UEngineSound::SoundPlay("sfx_player_jump_01.wav");
 		ShootStyle = EShootDir::IdleShoot;
@@ -1234,6 +1241,7 @@ void APlay_Cuphead::Run(float  _DeltaTime)
 
 	if (true == IsDown('Z'))
 	{
+		GrountSound.Off();
 		UEngineSound::SoundPlay("sfx_player_jump_01.wav");
 		JumpVector = JumpPowerPress;
 		State.ChangeState("Jump");
@@ -1258,7 +1266,7 @@ void APlay_Cuphead::Run(float  _DeltaTime)
 void APlay_Cuphead::Run_Shoot_Straight(float  _DeltaTime)
 {
 	DirCheck();
-
+	GrountSound.On();
 	DustTime -= _DeltaTime;
 
 	if (DustTime < 0)
@@ -1279,6 +1287,7 @@ void APlay_Cuphead::Run_Shoot_Straight(float  _DeltaTime)
 	FVector MovePos = FVector::Zero;
 	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT) && true == IsFree('X'))
 	{
+		GrountSound.Off();
 		BaseBulletSound.Off();
 		BulletStart->SetActive(false);
 		State.ChangeState("Idle");
@@ -1312,6 +1321,7 @@ void APlay_Cuphead::Run_Shoot_Straight(float  _DeltaTime)
 
 	if (true == IsDown('Z'))
 	{
+		GrountSound.Off();
 		//BulletStart->SetActive(false);
 		ShootStyle = EShootDir::IdleShoot;
 		JumpVector = JumpPowerPress;
@@ -1321,6 +1331,7 @@ void APlay_Cuphead::Run_Shoot_Straight(float  _DeltaTime)
 
 	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
 	{
+		GrountSound.Off();
 		ShootStyle = EShootDir::IdleShoot;
 		State.ChangeState("Shoot_Straight");
 		return;
@@ -1332,7 +1343,7 @@ void APlay_Cuphead::Run_Shoot_Straight(float  _DeltaTime)
 void APlay_Cuphead::Run_Shoot_DiagonalUp(float _DeltaTime)
 {
 	DirCheck();
-
+	GrountSound.On();
 	DustTime -= _DeltaTime;
 
 	if (DustTime < 0)
@@ -1352,6 +1363,7 @@ void APlay_Cuphead::Run_Shoot_DiagonalUp(float _DeltaTime)
 
 	if (true == IsDown('V'))
 	{
+		GrountSound.Off();
 		BaseBulletSound.Off();
 		BulletStart->SetActive(false);
 		ShootStyle = EShootDir::DiagonalUpShoot;
@@ -1362,6 +1374,7 @@ void APlay_Cuphead::Run_Shoot_DiagonalUp(float _DeltaTime)
 	FVector MovePos = FVector::Zero;
 	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT) && true == IsFree('X'))
 	{
+		GrountSound.Off();
 		BaseBulletSound.Off();
 		BulletStart->SetActive(false);
 		State.ChangeState("Idle");
@@ -1370,6 +1383,7 @@ void APlay_Cuphead::Run_Shoot_DiagonalUp(float _DeltaTime)
 
 	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT) && true == IsPress(VK_UP))
 	{
+		GrountSound.Off();
 		BaseBulletSound.Off();
 		BulletStart->SetActive(false);
 		State.ChangeState("Aim_Up");
@@ -1404,6 +1418,7 @@ void APlay_Cuphead::Run_Shoot_DiagonalUp(float _DeltaTime)
 
 	if (true == IsDown('Z'))
 	{
+		GrountSound.Off();
 		//BulletStart->SetActive(false);
 		ShootStyle = EShootDir::IdleShoot;
 		JumpVector = JumpPowerPress;
@@ -1413,6 +1428,7 @@ void APlay_Cuphead::Run_Shoot_DiagonalUp(float _DeltaTime)
 
 	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
 	{
+		GrountSound.Off();
 		ShootStyle = EShootDir::IdleShoot;
 		State.ChangeState("Shoot_Straight");
 		return;
@@ -1423,7 +1439,6 @@ void APlay_Cuphead::Run_Shoot_DiagonalUp(float _DeltaTime)
 
 void APlay_Cuphead::Dash(float _DeltaTime)
 {
-
 	if (true == PlayCuphead->IsCurAnimationEnd())
 	{
 		State.ChangeState("Idle");
@@ -1804,7 +1819,8 @@ void APlay_Cuphead::hit(float _DeltaTime)
 	if (false == IsHitEffect)
 	{
 		IsHitEffect = true;
-		GetWorld()->SpawnActor<AhitEffect>("DashDust")->SethitDir(BulletDir);
+		UEngineSound::SoundPlay("sfx_player_hit_01.wav");
+		GetWorld()->SpawnActor<AhitEffect>("hitEffect")->SethitDir(BulletDir);
 	}
 
 	if (true == PlayCuphead->IsCurAnimationEnd())
@@ -2123,6 +2139,7 @@ void APlay_Cuphead::Boss2PhaseChange(float _DeltaTime)
 
 	if (GetActorLocation().iY() <= -1200)
 	{
+		UEngineSound::SoundPlay("sfx_player_intro_scared.wav");
 		PlayCuphead->SetActive(true);
 		SetActorLocation(FVector(-200.0f, 0.0f, 0.0f));
 		State.ChangeState("Scared");
