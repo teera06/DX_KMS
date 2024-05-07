@@ -17,11 +17,6 @@ public:
 	UStateManager Phase1;
 	UStateManager Phase2;
 
-	static int phasecheck;
-	static float coolDownTime;
-	static int attOrder;
-	static bool SkillDestory;
-
 	static int GetHp()
 	{
 		return Hp;
@@ -31,12 +26,23 @@ public:
 	{
 		Hp = _Hp;
 	}
+
+	static int Getphasecheck()
+	{
+		return phasecheck;
+	}
+
 protected:
 	virtual void Phase1StateInit();
 
 	virtual void AniCreate();
 
 	float DamgeColorDelay = 0.35f;
+
+	static int phasecheck;
+	static float coolDownTime;
+	static int attOrder;
+	static bool SkillDestory;
 private:
 	static int Hp;
 };

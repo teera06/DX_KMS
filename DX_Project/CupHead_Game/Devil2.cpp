@@ -115,7 +115,7 @@ void ADevil2::Tick(float _DeltaTime)
 	{
 		Phase1.Update(_DeltaTime);
 	}
-	else if (phasecheck == 3)
+	else if (phasecheck >= 3)
 	{
 		Phase2.Update(_DeltaTime);
 	}
@@ -399,6 +399,7 @@ void ADevil2::DevilStartCrying(float _DeltaTime)
 {
 	if (true == Boss2->IsCurAnimationEnd())
 	{
+		phasecheck = 4;
 		CrySound.On();
 		Phase2.ChangeState("DevilCrying");
 		return;
