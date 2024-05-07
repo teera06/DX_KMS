@@ -44,7 +44,7 @@ void ABombBat::BeginPlay()
 	BombBat->CreateAnimation("BombExplosion", "BombExplosion", 0.075f);
 
 	//BombBat->ChangeAnimation("BombBat");
-
+	UEngineSound::SoundPlay("devil_head_devil_bomb_appear.wav");
 	patternInit();
 }
 

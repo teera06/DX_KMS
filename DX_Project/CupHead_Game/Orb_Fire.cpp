@@ -73,6 +73,7 @@ void AOrb_Fire::Tick(float _DeltaTime)
 
 	if (true == Orb_Fire->IsCurAnimationEnd() && true==StartAni)
 	{
+		UEngineSound::SoundPlay("devil_projectile_attack_generic_stop.wav");
 		EndAni = true;
 
 		if (false == ParryCheck)

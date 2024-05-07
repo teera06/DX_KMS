@@ -214,6 +214,7 @@ void ADevil2::DevilPhase2Idle(float _DeltaTime)
 {
 	if (phasecheck == 2 && GetHp() <= 50)
 	{
+		UEngineSound::SoundPlay("devil_head_devil_hurt_trans_A_001.wav");
 		Phase1.ChangeState("Phase2ToPhase3");
 		return;
 	}
