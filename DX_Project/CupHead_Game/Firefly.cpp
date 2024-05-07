@@ -170,6 +170,7 @@ void AFirefly::Death(float _DeltaTime)
 {
 	if (true == FireflyRender->IsCurAnimationEnd())
 	{
+		UEngineSound::SoundPlay("frogs_tall_firefly_death_01.wav");
 		Destroy();
 	}
 }

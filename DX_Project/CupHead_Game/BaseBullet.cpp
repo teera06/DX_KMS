@@ -130,6 +130,7 @@ void ABaseBullet::Collisiongather()
 		Monster->SetDie(true);
 		DestroyCheck = true;
 		BulletRender->ChangeAnimation("Peashot_Death");
+		
 	});
 
 	BulletCollision->CollisionEnter(ECollisionOrder::Demon, [=](std::shared_ptr<UCollision> _Collison)
