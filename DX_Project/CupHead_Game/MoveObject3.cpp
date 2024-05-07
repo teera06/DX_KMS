@@ -113,6 +113,7 @@ void AMoveObject3::BallMove(float _DeltaTime)
 
 	if (ObjectBallRender->GetWorldPosition().iY() <= -250)
 	{
+		UEngineSound::SoundPlay("frogs_ball_platform_ball_launch_01.wav");
 		GravityVector = FVector::Zero;
 	}
 	ObjectBallRender->AddPosition((JumpVector +GravityVector) * _DeltaTime);
