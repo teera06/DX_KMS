@@ -149,6 +149,7 @@ void AMoveObject1::Collisiongather(float _DeltaTime)
 {
 	if (GetActorLocation().iX() <= -50 && false==changeFire)
 	{
+		UEngineSound::SoundPlay("frogs_flame_platform_fire_burst_01.wav");
 		Fire->ChangeAnimation("Object1BigFire");
 
 		Fire->SetFrameCallback("Object1BigFire", 1, [=] {ChangeFirePos(); });
