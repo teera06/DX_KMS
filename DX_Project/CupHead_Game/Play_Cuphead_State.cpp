@@ -1683,6 +1683,7 @@ void APlay_Cuphead::Jump(float _DeltaTime)
 
 	if (true == IsDown(VK_SHIFT))
 	{
+		UEngineSound::SoundPlay("sfx_player_dash_01.wav");
 		GetWorld()->SpawnActor<ADashDust>("DashDust")->SetDushDir(BulletDir);
 		NoGravity = true;
 		JumpVector = FVector::Zero;
