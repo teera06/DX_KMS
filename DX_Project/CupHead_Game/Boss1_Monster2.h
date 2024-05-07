@@ -102,6 +102,8 @@ private:
 
 	bool SlotTouch = false;
 
+	bool DieSCreen = false;
+
 	void createSkill();
 
 	void createCoinAtt();

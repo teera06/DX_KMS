@@ -941,8 +941,11 @@ void ABoss1_Monster2::LastDie(float _DeltaTime)
 {
 	ClearLevelChange -= _DeltaTime;
 
-	if (ClearLevelChange < 0)
+	if (ClearLevelChange < 0 && false == DieSCreen)
 	{
-		GetWorld()->SpawnActor<AScreenEffect>("IrisReBoss1Clear")->SetScreenEffect(EScreenEffect::IrisReBoss1Clear);
+		DieSCreen = true;
+		std::shared_ptr<AScreenEffect> NewScreen = GetWorld()->SpawnActor<AScreenEffect>("ScreenEffect");
+		NewScreen->SetActorLocation(FVector(0.0f, 0.0f, 50.0f));
+		NewScreen->SetScreenEffect(EScreenEffect::IrisReBoss1Clear);
 	}
 }

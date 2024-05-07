@@ -54,6 +54,7 @@ private:
 
 	bool LRHand = false;
 	bool LRTear = false;
+	bool DieSCreen = false;
 	// false-> Left
 	// true-> Right
 
