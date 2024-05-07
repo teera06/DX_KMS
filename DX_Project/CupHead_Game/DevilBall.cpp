@@ -39,7 +39,6 @@ void ADevilBall::BeginPlay()
 
 	DevilBall->CreateAnimation("Orb_Bubble", "Orb_Bubble",0.05f);
 	DevilBall->CreateAnimation("Orb_Bubble_Parry", "Orb_Bubble_Parry", 0.05f);
-
 }
 
 void ADevilBall::Tick(float _DeltaTime)
