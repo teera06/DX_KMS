@@ -51,6 +51,7 @@ void AFatDemon::BeginPlay()
 	//BombBat->ChangeAnimation("BombBat");
 
 	patternInit();
+	UEngineSound::SoundPlay("fat_bat_spawn_01.wav");
 }
 
 void AFatDemon::Tick(float _DeltaTime)
@@ -116,6 +117,7 @@ void AFatDemon::FatDemonIdle(float _DeltaTime)
 {
 	if (Hp <= 0)
 	{
+		UEngineSound::SoundPlay("fat_bat_die_01.wav");
 		pattern.ChangeState("FatDemonDeath");
 		return;
 	}

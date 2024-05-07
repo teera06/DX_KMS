@@ -177,6 +177,7 @@ void ADevil2::CreateBombBat()
 
 void ADevil2::CreateAxe()
 {
+	//UEngineSound::SoundPlay("sfx_level_devil_sitting_devil_trident_attack_01.wav");
 	NewAxe = GetWorld()->SpawnActor<AAxe>("Axe");
 }
 
@@ -399,6 +400,7 @@ void ADevil2::DevilCrying(float _DeltaTime)
 {
 	if (coolDownTime < 0)
 	{
+		UEngineSound::SoundPlay("sfx_level_devil_head_devil_cry_idle_001.wav");
 		if (false == LRTear)
 		{
 			LRTear = true;

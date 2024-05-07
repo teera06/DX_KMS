@@ -50,6 +50,7 @@ void AImp::BeginPlay()
 	//BombBat->ChangeAnimation("BombBat");
 	RandomMove = UEngineRandom::MainRandom.RandomInt(1, 4);
 	patternInit();
+	UEngineSound::SoundPlay("sfx_devil_imp_spawn_01.wav");
 }
 
 void AImp::Tick(float _DeltaTime)
@@ -154,6 +155,7 @@ void AImp::ImpFlying(float _DeltaTime)
 
 	if (true == DieCheck)
 	{
+		UEngineSound::SoundPlay("sfx_devil_imp_death_01.wav");
 		pattern.ChangeState("Die");
 		return;
 	}

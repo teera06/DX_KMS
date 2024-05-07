@@ -86,12 +86,14 @@ void ARamArms::RamArmsStart(float _DeltaTime)
 
 	if (GetActorLocation().iX() >= -460 && MoveLR.iX()==1)
 	{
+		UEngineSound::SoundPlay("sfx_level_devil_ram_hand_clap_03.wav");
 		Phase1.ChangeState("RamArmsEnd");
 		return;
 	}
 
 	if (GetActorLocation().iX() <= 460 && MoveLR.iX() == -1)
 	{
+		UEngineSound::SoundPlay("sfx_level_devil_ram_hand_clap_03.wav");
 		Phase1.ChangeState("RamArmsEnd");
 		return;
 	}

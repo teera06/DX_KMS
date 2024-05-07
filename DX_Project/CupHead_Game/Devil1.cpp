@@ -359,6 +359,8 @@ void ADevil1::Phase1Idle(float _DeltaTime)
 {
 	if (phasecheck == 1 && GetHp() <= 75)
 	{
+
+		UEngineSound::SoundPlay("sfx_level_devil_sitting_devil_p1_death_start.wav");
 		AddActorLocation(FVector(45.0f, 20.0f, 0.0f));
 		Boss2Phase2->AddPosition(FVector(-45.0f, -20.0f, 0.0f));
 		phasecheck = 2;
