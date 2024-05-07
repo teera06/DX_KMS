@@ -18,6 +18,15 @@ ABombBat::ABombBat()
 	BombBat->SetSamplering(ETextureSampling::LINEAR);
 	BombBat->SetAutoSize(0.85f, true);
 
+	ColBat = CreateDefaultSubObject<UCollision>("ColBat");
+	ColBat->SetupAttachment(Root);
+
+	ColBat->SetScale(FVector(70.0f, 70.0f, 100.0f));
+
+	ColBat->SetCollisionGroup(ECollisionOrder::BombBat);
+	ColBat->SetCollisionType(ECollisionType::RotRect);
+
+
 	SetRoot(Root);
 }
 

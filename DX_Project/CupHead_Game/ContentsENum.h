@@ -114,6 +114,7 @@ enum class ECollisionOrder
 	SpiderHeadCol,
 	RamArmCol,
 	Demon,
+	BombBat,
 	imp,
 	FatDemon,
 	Parry

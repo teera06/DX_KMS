@@ -28,6 +28,7 @@
 #include "Orb_Fire2.h"
 #include "DevilBall.h"
 #include "smallskill.h"
+#include "BombBat.h"
 
 #include "Hole.h"
 
@@ -203,6 +204,35 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 				ball->Destroy();
 			}
 		});
+
+
+	ParryCollision->CollisionEnter(ECollisionOrder::BombBat, [=](std::shared_ptr<UCollision> _Collison)
+	{
+
+		AActor* Ptr = _Collison->GetActor();
+		ABombBat* Monster = dynamic_cast<ABombBat*>(Ptr);
+		Effect->SetActive(true);
+		UEngineSound::SoundPlay("sfx_player_parry_slap_01.wav");
+		GEngine->SetGlobalTimeScale(0.6f);
+		GravityVector = FVector::Down * 300.0f;
+
+		Monster->Destroy();
+	});
+
+	ParryCollision->CollisionStay(ECollisionOrder::BombBat, [=](std::shared_ptr<UCollision> _Collison)
+	{
+
+		AActor* Ptr = _Collison->GetActor();
+		ABombBat* Monster = dynamic_cast<ABombBat*>(Ptr);
+		Effect->SetActive(true);
+		UEngineSound::SoundPlay("sfx_player_parry_slap_01.wav");
+		GEngine->SetGlobalTimeScale(0.6f);
+		GravityVector = FVector::Down * 300.0f;
+
+		Monster->Destroy();
+	});
+
+
 }
 
 void APlay_Cuphead::GroundObject()

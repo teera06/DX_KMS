@@ -25,6 +25,7 @@ protected:
 private:
 	USpriteRenderer* BombBat = nullptr;
 
+	UCollision* ColBat = nullptr;
 
 	float BoomTime = 8.0f;
 
