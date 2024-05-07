@@ -400,6 +400,7 @@ void ABoss1_Monster2::createCoinAtt()
 
 void ABoss1_Monster2::createObject()
 {
+	UEngineSound::SoundPlay("frogs_morphed_attack_01.wav");
 	if (SlotAttCount == 0)
 	{
 		NewMoveObject1 = GetWorld()->SpawnActor<AMoveObject1>("MoveObject1");
