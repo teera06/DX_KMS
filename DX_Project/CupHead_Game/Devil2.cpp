@@ -424,6 +424,8 @@ void ADevil2::DevilCrying(float _DeltaTime)
 
 	if (GetHp() <= 0)
 	{
+		UEngineSound::SoundPlay("sfx_level_knockout_bell.wav");
+		UEngineSound::SoundPlay("sfx_level_announcer_knockout_0004.wav");
 		CrySound.Off();
 		GetWorld()->SpawnActor<AScreenEffect>("Knockout")->SetScreenEffect(EScreenEffect::Knockout);
 		Phase2.ChangeState("DevilKnockout");
