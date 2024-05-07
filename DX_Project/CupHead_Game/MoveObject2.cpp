@@ -39,6 +39,7 @@ AMoveObject2::AMoveObject2()
 
 AMoveObject2::~AMoveObject2()
 {
+	LoopSound.Off();
 }
 
 void AMoveObject2::BeginPlay()

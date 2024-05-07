@@ -106,6 +106,8 @@ ABoss1_Monster2::ABoss1_Monster2()
 
 ABoss1_Monster2::~ABoss1_Monster2()
 {
+	windAttSound.Off();
+	SlotSound.Off();
 }
 
 void ABoss1_Monster2::BeginPlay()

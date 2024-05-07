@@ -53,6 +53,7 @@ AMoveObject1::AMoveObject1()
 
 AMoveObject1::~AMoveObject1()
 {
+	LoopSound.Off();
 }
 
 void AMoveObject1::BeginPlay()

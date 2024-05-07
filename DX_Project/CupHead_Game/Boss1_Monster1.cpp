@@ -28,6 +28,7 @@ ABoss1_Monster1::ABoss1_Monster1()
 
 ABoss1_Monster1::~ABoss1_Monster1()
 {
+	SmallAttSound.Off();
 }
 
 void ABoss1_Monster1::BeginPlay()
