@@ -462,6 +462,7 @@ void ADevil1::SpiderTransform(float _DeltaTime)
 {
 	if (true == Boss2->IsCurAnimationEnd())
 	{
+		UEngineSound::SoundPlay("devil_spider_head_intro.wav");
 		CreateSpider();
 		Phase1.ChangeState("SpiderIdle");
 		return;

@@ -131,6 +131,7 @@ void ASpiderHead::SpiderHead_FallToFloor(float _DeltaTime)
 
 	if (GetActorLocation().iY() <= -100)
 	{
+		UEngineSound::SoundPlay("devil_spiderhead_hitfloor_001.wav");
 		Gravity = 800.0f;
 		GravityVector = FVector::Zero;
 		Phase1.ChangeState("SpiderHead_FlyToSky");
@@ -161,6 +162,7 @@ void ASpiderHead::SpiderHead_FlyToSky2(float _DeltaTime)
 
 	if (GetActorLocation().iY() >= 600)
 	{
+		UEngineSound::SoundPlay("devil_spider_fall_001.wav");
 		speed = 800;
 		UpVector = FVector::Zero;
 		XPos = false;
