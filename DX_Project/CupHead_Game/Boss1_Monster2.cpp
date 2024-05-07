@@ -923,5 +923,10 @@ void ABoss1_Monster2::DieTransition(float _DeltaTime)
 
 void ABoss1_Monster2::LastDie(float _DeltaTime)
 {
+	ClearLevelChange -= _DeltaTime;
 
+	if (ClearLevelChange < 0)
+	{
+		GetWorld()->SpawnActor<AScreenEffect>("IrisReBoss1Clear")->SetScreenEffect(EScreenEffect::IrisReBoss1Clear);
+	}
 }

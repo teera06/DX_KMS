@@ -36,10 +36,10 @@ void AScreenEffect::BeginPlay()
 	
 	SetActorLocation(FVector(0.0f, 0.0f, -50.0f));
 	
-	FilterEffect->CreateAnimation("Iris", "Iris", 0.05f,false);
-	FilterEffect->CreateAnimation("IrisRe", "Iris", 0.05f, false,16,1);
-	FilterEffect->CreateAnimation("ReadyWALLOP!", "ReadyWALLOP!", 0.05f, false);
-	FilterEffect->CreateAnimation("Knockout", "Knockout", 0.05f, false);
+	FilterEffect->CreateAnimation("Iris", "Iris", 0.05f);
+	FilterEffect->CreateAnimation("IrisRe", "Iris", 0.05f, true,16,1);
+	FilterEffect->CreateAnimation("ReadyWALLOP!", "ReadyWALLOP!", 0.05f);
+	FilterEffect->CreateAnimation("Knockout", "Knockout", 0.05f);
 
 }
 
@@ -75,14 +75,15 @@ void AScreenEffect::Tick(float _DeltaTime)
 	case EScreenEffect::ReadyWALLOP:
 		FilterEffect->ChangeAnimation("ReadyWALLOP!");
 
+
 		if (true == FilterEffect->IsCurAnimationEnd())
 		{
 			Destroy();
 		}
 		break;
 	case EScreenEffect::Iris2:
+		
 		FilterEffect->ChangeAnimation("Iris");
-
 		if (true == FilterEffect->IsCurAnimationEnd())
 		{
 			Destroy();
@@ -93,6 +94,15 @@ void AScreenEffect::Tick(float _DeltaTime)
 
 		if (true == FilterEffect->IsCurAnimationEnd())
 		{
+			Destroy();
+		}
+		break;
+	case EScreenEffect::IrisReBoss1Clear:
+		FilterEffect->ChangeAnimation("IrisRe");
+		UContentsHelper::StageCount = 1;
+		if (true == FilterEffect->IsCurAnimationEnd())
+		{
+			GEngine->ChangeLevel("Loading");
 			Destroy();
 		}
 		break;

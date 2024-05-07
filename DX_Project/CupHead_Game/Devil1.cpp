@@ -342,6 +342,7 @@ void ADevil1::Phase1Intro(float _DeltaTime)
 		if (false == OneCheck)
 		{
 			OneCheck = true;
+
 			GetWorld()->SpawnActor<AScreenEffect>("ScreenEffect")->SetScreenEffect(EScreenEffect::ReadyWALLOP);
 		}
 

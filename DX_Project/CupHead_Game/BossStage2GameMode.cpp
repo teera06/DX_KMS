@@ -87,6 +87,7 @@ void ABossStage2GameMode::LevelEnd(ULevel* _NextLevel)
 void ABossStage2GameMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
+	UEngineSound::SoundPlay("sfx_level_announcer_0001_a.wav");
 	BossStageBGM = UEngineSound::SoundPlay("MUS_DevilPhase3.wav");
 	BossStageBGM.Loop();
 }

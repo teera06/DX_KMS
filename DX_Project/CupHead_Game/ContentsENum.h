@@ -126,6 +126,8 @@ enum class EScreenEffect
 	Iris2,
 	IrisRe,
 	ReadyWALLOP,
-    Knockout
+    Knockout,
+	IrisReBoss1Clear,
+	IrisReBoss2Clear
 
 };

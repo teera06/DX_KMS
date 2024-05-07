@@ -90,6 +90,7 @@ private:
 	float SlotSpeed3 = 9.0f;
 
 	float DamgeColorDelay = 0.35f;
+	float ClearLevelChange = 3.0f;
 
 	int Bigattcount = 0;
 

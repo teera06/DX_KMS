@@ -41,5 +41,7 @@ private:
 	EScreenEffect Effect = EScreenEffect::None;
 
 	int BossZone = 0;
+
+	bool OneCheck = false;
 };
 
