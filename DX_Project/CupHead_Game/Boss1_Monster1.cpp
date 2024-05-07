@@ -235,14 +235,14 @@ void ABoss1_Monster1::smallintro(float _DeltaTime)
 void ABoss1_Monster1::smallIdle(float _DeltaTime)
 {
 
-	if (GetHp() <= 80 && 1 == phasecheck)
+	if (GetHp() <= 70 && 1 == phasecheck)
 	{
 		attOrder = false;
 		Phase1.ChangeState("phase2changeReady");
 		return;
 	}
 
-	if (GetHp() <= 50 && 2 == phasecheck && true==Ready3Phase)
+	if (GetHp() <= 40 && 2 == phasecheck && true==Ready3Phase)
 	{
 		Phase2.ChangeState("phase3changeReady");
 		return;

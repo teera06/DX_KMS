@@ -57,15 +57,15 @@ void UContentsDebugWindow::OnGui(ULevel* Level, float _Delta)
 	{
 		if (true == ImGui::Button("Phase2Change"))
 		{
-			if (100 == ABoss1Common::GetHp())
+			if (1== ABoss1Common::Getphasecheck())
 			{
-				ABoss1Common::SetHp(80);
+				ABoss1Common::SetHp(70);
 			}
-			else if (80 == ABoss1Common::GetHp())
+			else if (2 == ABoss1Common::Getphasecheck())
 			{
-				ABoss1Common::SetHp(50);
+				ABoss1Common::SetHp(40);
 			}
-			else if (50 == ABoss1Common::GetHp())
+			else if (3 == ABoss1Common::Getphasecheck())
 			{
 				ABoss1Common::SetHp(0);
 			}
