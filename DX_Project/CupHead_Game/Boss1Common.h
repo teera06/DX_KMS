@@ -32,15 +32,21 @@ public:
 		Hp -= _Hp;
 	}
 
-	static int phasecheck;
-	static float coolDownTime;
-	static bool attOrder;
-	static bool Ready3Phase;
+	static int Getphasecheck()
+	{
+		return phasecheck;
+	}
+	
 protected:
 	virtual void Phase1StateInit();
 	virtual void Phase2StateInit();
 
 	virtual void AniCreate();
+
+	static int phasecheck;
+	static float coolDownTime;
+	static bool attOrder;
+	static bool Ready3Phase;
 private:
 
 	static int Hp;
