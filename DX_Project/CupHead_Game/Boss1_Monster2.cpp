@@ -166,6 +166,10 @@ void ABoss1_Monster2::BeginPlay()
 
 	phasecheck = 1;
 	SetHp(100);
+
+	windAttSound = UEngineSound::SoundPlay("frogs_tall_fan_attack_loop_01.wav");
+	windAttSound.Loop();
+	windAttSound.Off();
 }
 
 void ABoss1_Monster2::Tick(float _DeltaTime)
@@ -481,6 +485,7 @@ void ABoss1_Monster2::bigIdle(float _DeltaTime)
 
 	if (coolDownTime < 1.0f && 2 == phasecheck && false == attOrder)
 	{
+		UEngineSound::SoundPlay("frogs_tall_fan_start_01.wav");
 		Phase1.ChangeState("bigatt2Ready");
 		return;
 	}
@@ -555,6 +560,7 @@ void ABoss1_Monster2::bigatt2Ready2(float _DeltaTime)
 {
 	if (true == BigBoss1->IsCurAnimationEnd())
 	{
+		windAttSound.On();
 		WindSkill->SetActive(true);
 		WindCollision->SetActive(true);
 		Phase1.ChangeState("bigatt2");
@@ -564,7 +570,6 @@ void ABoss1_Monster2::bigatt2Ready2(float _DeltaTime)
 
 void ABoss1_Monster2::bigatt2(float _DeltaTime)
 {
-
 	WindCollisioncheck(_DeltaTime);
 	if (GetActorLocation().iX() <= 430) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
 	{
@@ -573,12 +578,13 @@ void ABoss1_Monster2::bigatt2(float _DeltaTime)
 
 	if (true == BigBoss1->IsCurAnimationEnd())
 	{
-		//createSkill();
 		Bigattcount++;
 	}
 
 	if (Bigattcount > 24)
 	{
+		windAttSound.Off();
+		UEngineSound::SoundPlay("frogs_tall_fan_end_01.wav");
 		WindSkill->SetActive(false);
 		WindCollision->SetActive(false);
 		Phase1.ChangeState("bigatt2end");

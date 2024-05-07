@@ -51,6 +51,9 @@ protected:
 	void Phase2StateInit() override;
 	void AniCreate() override;
 private:
+	UEngineSoundPlayer windAttSound;
+
+
 	std::shared_ptr<AFirefly> NewFirefly = nullptr;
 	std::shared_ptr<ACoin> NewCoin = nullptr;
 	std::shared_ptr<AMoveObject1> NewMoveObject1 = nullptr;
