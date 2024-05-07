@@ -22,6 +22,8 @@ protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 private:
+	UEngineSoundPlayer LoopSound;
+
 	USpriteRenderer* ObjectRender = nullptr;
 	UCollision* TopCollision = nullptr;
 	UCollision* LRCollision = nullptr;

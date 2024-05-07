@@ -59,6 +59,10 @@ void AMoveObject2::BeginPlay()
 	//smallskillRender->CreateAnimation("Peashot_Loop", "Peashot_Loop", 0.05f);
 
 	ObjectRender->ChangeAnimation("Object2");
+
+	LoopSound = UEngineSound::SoundPlay("frogs_platform_loop_01.wav");
+	LoopSound.Loop();
+	LoopSound.Off();
 }
 
 void AMoveObject2::Tick(float _DeltaTime)
