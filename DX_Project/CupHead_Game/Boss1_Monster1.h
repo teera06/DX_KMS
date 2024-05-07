@@ -34,6 +34,8 @@ protected:
 
 	void AniCreate() override;
 private:
+	UEngineSoundPlayer SmallAttSound;
+
 	std::shared_ptr<Asmallskill> NewSkill = nullptr;
 	std::shared_ptr<Aball> NewBall = nullptr;
 

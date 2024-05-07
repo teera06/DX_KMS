@@ -45,6 +45,10 @@ void ABoss1_Monster1::BeginPlay()
 	Phase1StateInit();
 
 	SmallBoss1->SetAutoSize(1.0f, true);
+
+	SmallAttSound =UEngineSound::SoundPlay("frogs_short_ragefist_attack_loop_01.wav");
+	SmallAttSound.Loop();
+	SmallAttSound.Off();
 }
 
 void ABoss1_Monster1::Tick(float _DeltaTime)
@@ -276,7 +280,7 @@ void ABoss1_Monster1::smallattready(float _DeltaTime)
 
 void ABoss1_Monster1::smallatt(float _DeltaTime)
 {
-
+	SmallAttSound.On();
 	SmallBoss1->SetFrameCallback("smallatt", 8, [=] {createSkill(); });
 
 	if (true == SmallBoss1->IsCurAnimationEnd())
@@ -295,6 +299,7 @@ void ABoss1_Monster1::smallattEnd(float _DeltaTime)
 {
 	if (true == SmallBoss1->IsCurAnimationEnd())
 	{
+		SmallAttSound.Off();
 		Phase1.ChangeState("smallIdle");
 		coolDownTime = 6.0f;
 		attOrder = true;
