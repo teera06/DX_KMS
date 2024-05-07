@@ -207,6 +207,7 @@ void ABoss1_Monster1::SkillYMove()
 
 void ABoss1_Monster1::createSkill2()
 {
+	UEngineSound::SoundPlay("frogs_short_clap_shock_01.wav");
 	NewBall = GetWorld()->SpawnActor<Aball>("ball");
 	
 	if (false == ballatt)
