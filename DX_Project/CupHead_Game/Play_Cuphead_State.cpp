@@ -1809,6 +1809,7 @@ void APlay_Cuphead::hit(float _DeltaTime)
 
 	if (true == PlayCuphead->IsCurAnimationEnd())
 	{
+		MoveUpDate(_DeltaTime);
 		Hp -= 1;
 		JumpVector = FVector::Zero;
 		PlayerCollision->SetActive(true);
@@ -1816,8 +1817,6 @@ void APlay_Cuphead::hit(float _DeltaTime)
 		State.ChangeState("Idle");
 		return;
 	}
-
-	MoveUpDate(_DeltaTime);
 }
 
 void APlay_Cuphead::Parry(float _DeltaTime)
