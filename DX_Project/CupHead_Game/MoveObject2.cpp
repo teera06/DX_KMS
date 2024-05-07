@@ -87,8 +87,10 @@ void AMoveObject2::PlayerCollision()
 
 void AMoveObject2::Collisiongather(float _DeltaTime)
 {
+	LoopSound.On();
 	if (GetActorLocation().iX() <= -600 || GetActorLocation().iX() >= 600) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
 	{
+		LoopSound.Off();
 		Destroy();
 	}
 

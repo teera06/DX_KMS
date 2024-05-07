@@ -93,6 +93,10 @@ void AMoveObject1::BeginPlay()
 	Fire->ChangeAnimation("Object1SmallFire");
 
 	FireCollision->SetActive(false);
+
+	LoopSound = UEngineSound::SoundPlay("frogs_platform_loop_01.wav");
+	LoopSound.Loop();
+	LoopSound.Off();
 }
 
 void AMoveObject1::Tick(float _DeltaTime)
@@ -147,6 +151,7 @@ void AMoveObject1::PlayerCollision()
 
 void AMoveObject1::Collisiongather(float _DeltaTime)
 {
+	LoopSound.On();
 	if (GetActorLocation().iX() <= -50 && false==changeFire)
 	{
 		UEngineSound::SoundPlay("frogs_flame_platform_fire_burst_01.wav");
@@ -158,6 +163,7 @@ void AMoveObject1::Collisiongather(float _DeltaTime)
 
 	if (GetActorLocation().iX() <= -600 || GetActorLocation().iX() >= 600) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
 	{
+		LoopSound.Off();
 		Destroy();
 	}
 

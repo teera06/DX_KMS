@@ -35,6 +35,17 @@ AMainTitleActor::AMainTitleActor()
 	
 	SetRoot(Root);
 
+
+}
+
+AMainTitleActor::~AMainTitleActor()
+{
+}
+
+void AMainTitleActor::BeginPlay()
+{
+	Super::BeginPlay();
+
 	titleRenderer->SetOrder(ERenderOrder::background);
 	titleRenderer->SetSprite("title_screen_background.png");
 	titleRenderer->SetAutoSize(1.0f, true);
@@ -50,15 +61,6 @@ AMainTitleActor::AMainTitleActor()
 	button->SetSprite("TitleButton.png");
 	button->SetAutoSize(0.8f, true);
 	button->SetSamplering(ETextureSampling::LINEAR);
-}
-
-AMainTitleActor::~AMainTitleActor()
-{
-}
-
-void AMainTitleActor::BeginPlay()
-{
-	Super::BeginPlay();
 	CupRenderer->CreateAnimation("CupDence", "CupDence", 0.042f);
 
 	CupRenderer->ChangeAnimation("CupDence");

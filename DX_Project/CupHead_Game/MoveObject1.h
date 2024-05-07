@@ -25,7 +25,7 @@ protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 private:
-
+	UEngineSoundPlayer LoopSound;
 	USpriteRenderer* ObjectRender = nullptr;
 	USpriteRenderer* ObjectFront = nullptr;
 	USpriteRenderer* Fire = nullptr;

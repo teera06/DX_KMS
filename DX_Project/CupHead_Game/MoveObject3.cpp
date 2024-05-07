@@ -79,6 +79,11 @@ void AMoveObject3::BeginPlay()
 	ObjectBallRender->ChangeAnimation("Object3Ball");
 	ObjectRender->ChangeAnimation("Object3");
 	ObjectFront->ChangeAnimation("Object3Front");
+
+
+	LoopSound = UEngineSound::SoundPlay("frogs_platform_loop_01.wav");
+	LoopSound.Loop();
+	LoopSound.Off();
 }
 
 void AMoveObject3::Tick(float _DeltaTime)
@@ -92,8 +97,11 @@ void AMoveObject3::Tick(float _DeltaTime)
 
 void AMoveObject3::Collisiongather(float _DeltaTime)
 {
+	LoopSound.On();
+
 	if (GetActorLocation().iX() <= -600 || GetActorLocation().iX() >= 600) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
 	{
+		LoopSound.Off();
 		Destroy();
 	}
 
