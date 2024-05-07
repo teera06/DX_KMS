@@ -344,6 +344,7 @@ void ABoss1_Monster1::phase2change1(float _DeltaTime)
 
 	if (true == SmallBoss1->IsCurAnimationEnd())
 	{
+		UEngineSound::SoundPlay("frogs_short_rolling_start_01.wav");
 		Phase1.ChangeState("phase2change2");
 		return;
 	}
@@ -404,6 +405,7 @@ void ABoss1_Monster1::phase3change1(float _DeltaTime)
 {
 	if (true == SmallBoss1->IsCurAnimationEnd())
 	{
+		UEngineSound::SoundPlay("frogs_short_rolling_start_01.wav");
 		Phase2.ChangeState("phase3change2");
 		return;
 	}
