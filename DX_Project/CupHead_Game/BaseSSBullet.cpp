@@ -85,6 +85,7 @@ void ABaseSSBullet::Collisiongather()
 {
 	BulletCollision->CollisionEnter(ECollisionOrder::Boss1Monster1, [=](std::shared_ptr<UCollision> _Collison)
 	{
+		UEngineSound::SoundPlay("sfx_player_weapon_peashoot_ex_impact_01.wav");
 		DestroyCheck = true;
 		BulletRender->ChangeAnimation("PeaEX_Death");
 		//Destroy();
