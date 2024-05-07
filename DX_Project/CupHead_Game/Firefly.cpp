@@ -113,6 +113,7 @@ void AFirefly::Intro(float _DeltaTime)
 
 	if (true == Die)
 	{
+		UEngineSound::SoundPlay("frogs_tall_firefly_death_01.wav");
 		pattern.ChangeState("Death");
 		return;
 	}
@@ -133,6 +134,7 @@ void AFirefly::bigSkillIdle(float _DeltaTime)
 
 	if (true == Die)
 	{
+		UEngineSound::SoundPlay("frogs_tall_firefly_death_01.wav");
 		pattern.ChangeState("Death");
 		return;
 	}
@@ -153,6 +155,7 @@ void AFirefly::bigskillLRMove(float _DeltaTime)
 
 	if (true == Die)
 	{
+		UEngineSound::SoundPlay("frogs_tall_firefly_death_01.wav");
 		pattern.ChangeState("Death");
 		return;
 	}
@@ -170,7 +173,6 @@ void AFirefly::Death(float _DeltaTime)
 {
 	if (true == FireflyRender->IsCurAnimationEnd())
 	{
-		UEngineSound::SoundPlay("frogs_tall_firefly_death_01.wav");
 		Destroy();
 	}
 }
