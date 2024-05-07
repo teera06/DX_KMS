@@ -100,6 +100,7 @@ void ABaseBullet::Collisiongather()
 {
 	BulletCollision->CollisionEnter(ECollisionOrder::Boss1Monster1, [=](std::shared_ptr<UCollision> _Collison)
 	{
+		UEngineSound::SoundPlay("sfx_player_shoot_hit_01.wav");
 		AActor* Ptr = _Collison->GetActor();
 		ABoss1_Monster1* Monster = dynamic_cast<ABoss1_Monster1*>(Ptr);
 		Monster->GetRender()->SetPlusColor({ 0.2f, 0.2f, 0.2f });
@@ -113,6 +114,7 @@ void ABaseBullet::Collisiongather()
 
 	BulletCollision->CollisionEnter(ECollisionOrder::Boss1Monster2, [=](std::shared_ptr<UCollision> _Collison)
 	{
+		UEngineSound::SoundPlay("sfx_player_shoot_hit_01.wav");
 		AActor* Ptr = _Collison->GetActor();
 		ABoss1_Monster2* Monster = dynamic_cast<ABoss1_Monster2*>(Ptr);
 		Monster->GetRender()->SetPlusColor({ 0.2f, 0.2f, 0.2f });
@@ -129,7 +131,7 @@ void ABaseBullet::Collisiongather()
 
 	BulletCollision->CollisionEnter(ECollisionOrder::Boss1SkillMonster, [=](std::shared_ptr<UCollision> _Collison)
 	{
-
+		UEngineSound::SoundPlay("sfx_player_shoot_hit_01.wav");
 		AActor* Ptr = _Collison->GetActor();
 		AFirefly* Monster = dynamic_cast<AFirefly*>(Ptr);
 		Monster->SetDie(true);
@@ -141,7 +143,7 @@ void ABaseBullet::Collisiongather()
 
 	BulletCollision->CollisionEnter(ECollisionOrder::Demon, [=](std::shared_ptr<UCollision> _Collison)
 	{
-
+		UEngineSound::SoundPlay("sfx_player_shoot_hit_01.wav");
 		AActor* Ptr = _Collison->GetActor();
 		ADemonMonster* Monster = dynamic_cast<ADemonMonster*>(Ptr);
 		Monster->IsDieCheck(true);
@@ -152,7 +154,7 @@ void ABaseBullet::Collisiongather()
 
 	BulletCollision->CollisionEnter(ECollisionOrder::imp, [=](std::shared_ptr<UCollision> _Collison)
 	{
-
+		UEngineSound::SoundPlay("sfx_player_shoot_hit_01.wav");
 		AActor* Ptr = _Collison->GetActor();
 		AImp* Monster = dynamic_cast<AImp*>(Ptr);
 		Monster->IsDieCheck(true);
@@ -163,7 +165,7 @@ void ABaseBullet::Collisiongather()
 
 	BulletCollision->CollisionEnter(ECollisionOrder::BombBat, [=](std::shared_ptr<UCollision> _Collison)
 	{
-
+		UEngineSound::SoundPlay("sfx_player_shoot_hit_01.wav");
 		AActor* Ptr = _Collison->GetActor();
 		ABombBat* Monster = dynamic_cast<ABombBat*>(Ptr);
 		Monster->Destroy();
@@ -174,7 +176,7 @@ void ABaseBullet::Collisiongather()
 
 	BulletCollision->CollisionEnter(ECollisionOrder::FatDemon, [=](std::shared_ptr<UCollision> _Collison)
 	{
-
+		UEngineSound::SoundPlay("sfx_player_shoot_hit_01.wav");
 		AActor* Ptr = _Collison->GetActor();
 		AFatDemon* Monster = dynamic_cast<AFatDemon*>(Ptr);
 		Monster->AddHp(1);
@@ -187,6 +189,7 @@ void ABaseBullet::Collisiongather()
 
 	BulletCollision->CollisionEnter(ECollisionOrder::Devil1, [=](std::shared_ptr<UCollision> _Collison)
 		{
+		    UEngineSound::SoundPlay("sfx_player_shoot_hit_01.wav");
 			AActor* Ptr = _Collison->GetActor();
 			ADevil1* Monster = dynamic_cast<ADevil1*>(Ptr);
 			Monster->GetBoss2Render()->SetPlusColor(FVector(0.2f, 0.2f, 0.2f));
