@@ -56,6 +56,7 @@ AOrb_Fire2::AOrb_Fire2()
 
 AOrb_Fire2::~AOrb_Fire2()
 {
+	FireSound.Off();
 	subCols.clear();
 }
 
@@ -123,7 +124,12 @@ void AOrb_Fire2::BeginPlay()
 	subCols[2]->SetPosition(FVector(-200.0f, -150.0f, 0.0f));
 	subCols[3]->SetPosition(FVector(-200.0f, 200.0f, 0.0f));
 
+	FireSound = UEngineSound::SoundPlay("devil_projectile_fireball_loop.wav");
+	FireSound.Loop();
+	FireSound.On();
+
 	patternInit();
+
 }
 
 void AOrb_Fire2::Tick(float _DeltaTime)
@@ -186,6 +192,7 @@ void AOrb_Fire2::MoveL(float _DeltaTime)
 	AddActorLocation(FVector::Left* MoveLR * _DeltaTime);
 	if (GetActorLocation().iX() <= -800)
 	{
+		FireSound.Off();
 		Destroy();
 	}
 }

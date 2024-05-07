@@ -34,6 +34,8 @@ protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 private:
+
+	UEngineSoundPlayer FireSound;
 	USpriteRenderer* MainRender = nullptr;
 	USpriteRenderer* Orb_Fire2Render = nullptr;
 	USpriteRenderer* Orb_Fire2Render2 = nullptr;
