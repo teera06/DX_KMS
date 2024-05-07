@@ -394,6 +394,7 @@ void ABoss1_Monster2::createSkill()
 
 void ABoss1_Monster2::createCoinAtt()
 {
+	UEngineSound::SoundPlay("frogs_morphed_mouth_01.wav");
 	NewCoin = GetWorld()->SpawnActor<ACoin>("Coin");
 }
 
@@ -624,6 +625,7 @@ void ABoss1_Monster2::phase3changeReady2(float _DeltaTime)
 	
 	if (true == Change3)
 	{
+		UEngineSound::SoundPlay("frogs_tall_morph_end_01.wav");
 		phasecheck = 3;
 		coolDownTime = 6.0f;
 		Phase2StateInit();
@@ -835,6 +837,7 @@ void ABoss1_Monster2::Phase3AttReady(float _DeltaTime)
 
 	if (true == BigBoss1->IsCurAnimationEnd())
 	{
+		UEngineSound::SoundPlay("frogs_morphed_open_01.wav");
 		Bigattcount = 0;
 		FrontSlot->SetActive(true);
 		Phase2.ChangeState("Phase3Att");
