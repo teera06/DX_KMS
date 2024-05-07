@@ -170,6 +170,10 @@ void ABoss1_Monster2::BeginPlay()
 	windAttSound = UEngineSound::SoundPlay("frogs_tall_fan_attack_loop_01.wav");
 	windAttSound.Loop();
 	windAttSound.Off();
+
+	SlotSound = UEngineSound::SoundPlay("frogs_morphed_dial_spin_loop_01.wav");
+	SlotSound.Loop();
+	SlotSound.Off();
 }
 
 void ABoss1_Monster2::Tick(float _DeltaTime)
@@ -441,6 +445,7 @@ void ABoss1_Monster2::Phase3Collisioncheck()
 
 void ABoss1_Monster2::SlotStartImage(float _DeltaTime)
 {
+	SlotSound.On();
 
 	if (true==ISSlotSpeed)
 	{
@@ -703,6 +708,7 @@ void ABoss1_Monster2::CoinAtt(float _DeltaTime)
 
 	if (Bigattcount == 3)
 	{
+		UEngineSound::SoundPlay("frogs_morphed_arm_down_01.wav");
 		SlotMouse->SetActive(false);
 		Phase2.ChangeState("Phase3SlotReady");
 		return;
@@ -738,6 +744,7 @@ void ABoss1_Monster2::Phase3Slot(float _DeltaTime)
 
 	if (true == SlotTouch)
 	{
+		UEngineSound::SoundPlay("frogs_morphed_arm_up_01.wav");
 		HandCollision->SetActive(false);
 		Bigattcount = 0;
 		coolDownTime = 4.0f;
@@ -811,6 +818,7 @@ void ABoss1_Monster2::Phase3SlotStart(float _DeltaTime)
 
 	if (true == BigBoss1->IsCurAnimationEnd())
 	{
+		SlotSound.Off();
 		Bigattcount = 0;
 		Phase2.ChangeState("phase3Idle");
 		return;

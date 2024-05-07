@@ -52,6 +52,7 @@ protected:
 	void AniCreate() override;
 private:
 	UEngineSoundPlayer windAttSound;
+	UEngineSoundPlayer SlotSound;
 
 
 	std::shared_ptr<AFirefly> NewFirefly = nullptr;
