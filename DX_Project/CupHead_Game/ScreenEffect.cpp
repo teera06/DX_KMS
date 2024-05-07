@@ -106,6 +106,15 @@ void AScreenEffect::Tick(float _DeltaTime)
 			Destroy();
 		}
 		break;
+	case EScreenEffect::IrisReBoss2Clear:
+		FilterEffect->ChangeAnimation("IrisRe");
+		UContentsHelper::StageCount = 2;
+		if (true == FilterEffect->IsCurAnimationEnd())
+		{
+			GEngine->ChangeLevel("Loading");
+			Destroy();
+		}
+		break;
 	default:
 		break;
 	}
