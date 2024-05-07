@@ -32,6 +32,8 @@ protected:
 
 	void AniCreate() override;
 private:
+	UEngineSoundPlayer CrySound;
+
 	std::shared_ptr<ABombBat> NewBombBat = nullptr;
 	std::shared_ptr<AAxe> NewAxe = nullptr;
 	std::shared_ptr<AFatDemon> NewFatDemon = nullptr;
@@ -48,7 +50,7 @@ private:
 
 	float UpdateDelay = 5.0f;
 
-	
+	float ClearLevelChange = 3.0f;
 
 	bool LRHand = false;
 	bool LRTear = false;

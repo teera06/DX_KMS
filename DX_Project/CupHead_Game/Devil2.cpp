@@ -87,6 +87,7 @@ ADevil2::ADevil2()
 
 ADevil2::~ADevil2()
 {
+	CrySound.Off();
 }
 
 void ADevil2::BeginPlay()
@@ -97,6 +98,12 @@ void ADevil2::BeginPlay()
 	AniCreate();
 	DevilNeck->ChangeAnimation("DevilNeck");
 	Phase1StateInit();
+
+	
+
+	CrySound = UEngineSound::SoundPlay("sfx_level_devil_head_devil_cry_idle_001.wav");
+	CrySound.Loop();
+	CrySound.Off();
 }
 
 void ADevil2::Tick(float _DeltaTime)
@@ -391,6 +398,7 @@ void ADevil2::DevilStartCrying(float _DeltaTime)
 {
 	if (true == Boss2->IsCurAnimationEnd())
 	{
+		CrySound.On();
 		Phase2.ChangeState("DevilCrying");
 		return;
 	}
@@ -400,7 +408,6 @@ void ADevil2::DevilCrying(float _DeltaTime)
 {
 	if (coolDownTime < 0)
 	{
-		UEngineSound::SoundPlay("sfx_level_devil_head_devil_cry_idle_001.wav");
 		if (false == LRTear)
 		{
 			LRTear = true;
@@ -417,6 +424,7 @@ void ADevil2::DevilCrying(float _DeltaTime)
 
 	if (GetHp() <= 0)
 	{
+		CrySound.Off();
 		GetWorld()->SpawnActor<AScreenEffect>("Knockout")->SetScreenEffect(EScreenEffect::Knockout);
 		Phase2.ChangeState("DevilKnockout");
 		return;
@@ -425,5 +433,10 @@ void ADevil2::DevilCrying(float _DeltaTime)
 
 void ADevil2::DevilKnockout(float _DeltaTime)
 {
+	ClearLevelChange -= _DeltaTime;
 
+	if (ClearLevelChange < 0)
+	{
+		GetWorld()->SpawnActor<AScreenEffect>("IrisReBoss1Clear")->SetScreenEffect(EScreenEffect::IrisReBoss1Clear);
+	}
 }
