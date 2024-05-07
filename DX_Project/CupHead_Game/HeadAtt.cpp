@@ -37,7 +37,7 @@ AHeadAtt::~AHeadAtt()
 void AHeadAtt::BeginPlay()
 {
 	Super::BeginPlay();
-	SetActorLocation(FVector(-900.0f, -100.0f, 0.0f));
+	SetActorLocation(FVector(-1300.0f, -100.0f, 0.0f));
 	AniCreate();
 
 	Phase1StateInit();
