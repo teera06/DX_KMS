@@ -367,6 +367,7 @@ void ABoss1_Monster2::AniCreate()
 
 void ABoss1_Monster2::createSkill()
 {
+	UEngineSound::SoundPlay("frogs_tall_spit_shoot_01.wav");
 	RandomSkillDelay = UEngineRandom::MainRandom.RandomFloat(0.3f, 1.5f);
 
 
