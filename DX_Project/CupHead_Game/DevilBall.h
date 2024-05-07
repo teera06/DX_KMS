@@ -56,5 +56,6 @@ private:
 	bool ParryCheck=false;
 
 	void Collisiongather(float _DeltaTime);
+	void PlayerCollisionCheck();
 };
 

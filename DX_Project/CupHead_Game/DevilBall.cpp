@@ -6,6 +6,7 @@
 #include <EngineCore/Collision.h>
 
 #include "ContentsENum.h"
+#include "Play_Cuphead.h"
 
 ADevilBall::ADevilBall()
 {
@@ -56,6 +57,7 @@ void ADevilBall::Tick(float _DeltaTime)
 	if (Delay < 0)
 	{
 		Collisiongather(_DeltaTime);
+		PlayerCollisionCheck();
 	}
 }
 
@@ -82,3 +84,16 @@ void ADevilBall::Collisiongather(float _DeltaTime)
 
 	AddActorLocation(StartPos * Speed * _DeltaTime);
 }
+
+void ADevilBall::PlayerCollisionCheck()
+{
+	DevilBallCol->CollisionEnter(ECollisionOrder::Player, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		AActor* Ptr = _Collison->GetActor();
+		APlay_Cuphead* Player = dynamic_cast<APlay_Cuphead*>(Ptr);
+
+		Player->State.ChangeState("hit");
+
+	});
+}
+
