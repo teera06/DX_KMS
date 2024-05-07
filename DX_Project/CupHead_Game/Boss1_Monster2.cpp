@@ -931,6 +931,8 @@ void ABoss1_Monster2::DieTransition(float _DeltaTime)
 {
 	if (true == BigBoss1->IsCurAnimationEnd())
 	{
+		SlotMouse->SetActive(false);
+		FrontSlot->SetActive(false);
 		GetWorld()->SpawnActor<AScreenEffect>("Knockout")->SetScreenEffect(EScreenEffect::Knockout);
 		Phase2.ChangeState("LastDie");
 		return;

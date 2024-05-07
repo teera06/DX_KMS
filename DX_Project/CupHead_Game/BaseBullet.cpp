@@ -106,6 +106,7 @@ void ABaseBullet::Collisiongather()
 		Monster->addHp(1);
 		DestroyCheck = true;
 		BulletRender->ChangeAnimation("Peashot_Death");
+		BulletCollision->SetActive(false);
 		//Destroy();
 		//_Collison->GetActor()->Destroy();
 	});
@@ -117,8 +118,10 @@ void ABaseBullet::Collisiongather()
 		Monster->GetRender()->SetPlusColor({ 0.2f, 0.2f, 0.2f });
 		Monster->GetSlotMouse()->SetPlusColor({0.2f, 0.2f, 0.2f});
 		Monster->GetFrontSlot()->SetPlusColor({0.2f, 0.2f, 0.2f});
+		Monster->addHp(1);
 		DestroyCheck = true;
 		BulletRender->ChangeAnimation("Peashot_Death");
+		BulletCollision->SetActive(false);
 		//Destroy();
 		//_Collison->GetActor()->Destroy();
 	});
@@ -132,6 +135,7 @@ void ABaseBullet::Collisiongather()
 		Monster->SetDie(true);
 		DestroyCheck = true;
 		BulletRender->ChangeAnimation("Peashot_Death");
+		BulletCollision->SetActive(false);
 		
 	});
 
@@ -143,6 +147,7 @@ void ABaseBullet::Collisiongather()
 		Monster->IsDieCheck(true);
 		DestroyCheck = true;
 		BulletRender->ChangeAnimation("Peashot_Death");
+		BulletCollision->SetActive(false);
 	});
 
 	BulletCollision->CollisionEnter(ECollisionOrder::imp, [=](std::shared_ptr<UCollision> _Collison)
@@ -153,6 +158,7 @@ void ABaseBullet::Collisiongather()
 		Monster->IsDieCheck(true);
 		DestroyCheck = true;
 		BulletRender->ChangeAnimation("Peashot_Death");
+		BulletCollision->SetActive(false);
 	});
 
 	BulletCollision->CollisionEnter(ECollisionOrder::BombBat, [=](std::shared_ptr<UCollision> _Collison)
@@ -163,6 +169,7 @@ void ABaseBullet::Collisiongather()
 		Monster->Destroy();
 		DestroyCheck = true;
 		BulletRender->ChangeAnimation("Peashot_Death");
+		BulletCollision->SetActive(false);
 	});
 
 	BulletCollision->CollisionEnter(ECollisionOrder::FatDemon, [=](std::shared_ptr<UCollision> _Collison)
@@ -173,6 +180,7 @@ void ABaseBullet::Collisiongather()
 		Monster->AddHp(1);
 		DestroyCheck = true;
 		BulletRender->ChangeAnimation("Peashot_Death");
+		BulletCollision->SetActive(false);
 	});
 
 	// Devil
@@ -184,6 +192,7 @@ void ABaseBullet::Collisiongather()
 			Monster->GetBoss2Render()->SetPlusColor(FVector(0.2f, 0.2f, 0.2f));
 			DestroyCheck = true;
 			BulletRender->ChangeAnimation("Peashot_Death");
+			BulletCollision->SetActive(false);
 			//Destroy();
 			//_Collison->GetActor()->Destroy();
 		});

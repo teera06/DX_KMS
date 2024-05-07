@@ -40,13 +40,12 @@ void AFirefly::BeginPlay()
 {
 	Super::BeginPlay();
 
-	SetActorLocation({280.0f,185.0f,0.0f });
+	SetActorLocation({275.0f,185.0f,0.0f });
 	FireflyRender->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 
 	FireflyRender->CreateAnimation("bigskillLRMove", "bigskillLRMove", 0.1f);
 	FireflyRender->CreateAnimation("bigSkillIdle", "bigSkillIdle", 0.1f);
 	FireflyRender->CreateAnimation("BigSkillDeath", "BigSkillDeath", 0.1f);
-	//smallskillRender->CreateAnimation("Peashot_Loop", "Peashot_Loop", 0.05f);
 
 	patternStateInit();
 
