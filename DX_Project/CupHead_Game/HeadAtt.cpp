@@ -18,6 +18,7 @@ AHeadAtt::AHeadAtt()
 
 	DevilHeadCol = CreateDefaultSubObject<UCollision>("DevilBallCol");
 	DevilHeadCol->SetupAttachment(Root);
+	DevilHeadCol->SetPosition(FVector(400.0f, 0.0f, 0.0f));
 	DevilHeadCol->SetScale(FVector(500.0f, 100.0f, 100.0f));
 	DevilHeadCol->SetCollisionGroup(ECollisionOrder::DevilHeadCol);
 	DevilHeadCol->SetCollisionType(ECollisionType::RotRect);
