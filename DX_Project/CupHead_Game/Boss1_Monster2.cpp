@@ -42,7 +42,7 @@ ABoss1_Monster2::ABoss1_Monster2()
 	
 	FrontSlot->SetupAttachment(Root);
 	FrontSlot->SetPivot(EPivot::RIGHTBOTTOM);
-	FrontSlot->AddPosition(FVector(264.3f, 104.0f, 0.0f));
+	FrontSlot->AddPosition(FVector(270.0f, 0.0f, 0.0f));
 
 	FrontSlot->SetActive(false);
 
@@ -139,7 +139,7 @@ void ABoss1_Monster2::BeginPlay()
 	SlotImage3->SetSamplering(ETextureSampling::LINEAR);
 
 	FrontSlot->SetOrder(ERenderOrder::ObjectFront2);
-	FrontSlot->SetSprite("tallfrog_slotman_attack_top_0001.png");
+	FrontSlot->SetSprite("front1test.png");
 	FrontSlot->SetSamplering(ETextureSampling::LINEAR);
 	FrontSlot->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 
