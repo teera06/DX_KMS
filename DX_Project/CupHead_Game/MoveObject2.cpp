@@ -19,7 +19,7 @@ AMoveObject2::AMoveObject2()
 	ObjectRender->SetPivot(EPivot::BOT);
 	TopCollision = CreateDefaultSubObject<UCollision>("TopCollision ");
 	TopCollision->SetupAttachment(Root);
-	TopCollision->AddPosition(FVector(0.0f, 110.0f, 0.0f));
+	TopCollision->AddPosition(FVector(0.0f, 115.0f, 0.0f));
 	TopCollision->SetScale(FVector(130.0f, 5.0f, 100.0f));
 	
 	TopCollision->SetCollisionGroup(ECollisionOrder::Boss1Top);

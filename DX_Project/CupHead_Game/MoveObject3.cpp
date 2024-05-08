@@ -30,7 +30,7 @@ AMoveObject3::AMoveObject3()
 
 	TopCollision = CreateDefaultSubObject<UCollision>("BoxCollision ");
 	TopCollision->SetupAttachment(Root);
-	TopCollision->AddPosition(FVector(0.0f, 130.0f, 0.0f));
+	TopCollision->AddPosition(FVector(0.0f, 120.0f, 0.0f));
 	TopCollision->SetScale(FVector(130.0f, 5.0f, 100.0f));
 
 	TopCollision->SetCollisionGroup(ECollisionOrder::Boss1Top);
@@ -66,7 +66,7 @@ void AMoveObject3::BeginPlay()
 	//SetActorLocation(FVector(400.0f, -200.0f, 0.0f));
 	SetActorLocation(FVector(400.0f, -200.0f, 0.0f));
 
-	ObjectRender->SetOrder(ERenderOrder::Object3);
+	ObjectRender->SetOrder(ERenderOrder::Object1Back);
 	ObjectRender->SetSprite("tallfrog_slotman_platform_bison_0001.png");
 	ObjectRender->SetSamplering(ETextureSampling::LINEAR);
 	ObjectRender->SetAutoSize(1.0f, true);
@@ -76,7 +76,7 @@ void AMoveObject3::BeginPlay()
 	ObjectBallRender->SetSamplering(ETextureSampling::LINEAR);
 	ObjectBallRender->SetAutoSize(1.0f, true);
 
-	ObjectFront->SetOrder(ERenderOrder::ObjectFront);
+	ObjectFront->SetOrder(ERenderOrder::MidObject);
 	ObjectFront->SetSprite("tallfrog_slotman_platform_tiger_top_0001.png");
 	ObjectFront->SetSamplering(ETextureSampling::LINEAR);
 	ObjectFront->SetAutoSize(1.0f, true);

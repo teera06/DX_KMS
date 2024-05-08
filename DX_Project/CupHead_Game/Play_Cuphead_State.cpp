@@ -653,7 +653,7 @@ void APlay_Cuphead::CalGravityVector(float _DeltaTime)
 	PlayerCollision->CollisionStay(ECollisionOrder::Boss1Top, [=](std::shared_ptr<UCollision> _Collison)
 	{
 		GravityVector = FVector::Zero;
-		CollisionMove.X += (-300.0f * _DeltaTime);
+		CollisionMove.X += (-450.0f * _DeltaTime);
 	});
 
 	PlayerCollision->CollisionEnter(ECollisionOrder::Boss2Object1, [=](std::shared_ptr<UCollision> _Collison)
@@ -694,10 +694,14 @@ void APlay_Cuphead::CalLastMoveVector(float _DeltaTime, const FVector& _MovePos)
 		break;
 	}
 
+	if (CheckPos.iX() <= -590 || CheckPos.iX() >= 590) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
+	{
+		CollisionMove = FVector::Zero;
+	}
+
 	if (CheckPos.iX()<=-600 || CheckPos.iX()>=600) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
 	{
 		MovePos = FVector::Zero;
-		CollisionMove = FVector::Zero;
 	}
 
 	AddActorLocation(MovePos + (PlayerMoveY * _DeltaTime)+ CollisionMove);
@@ -717,6 +721,17 @@ void APlay_Cuphead::GroupUp(float _DeltaTime)
 	{
 		return;
 	}
+
+
+	PlayerCollision->CollisionStay(ECollisionOrder::Boss1Top, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		AddActorLocation(FVector::Up * _DeltaTime);
+	});
+
+	PlayerCollision->CollisionStay(ECollisionOrder::Boss2Object1, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		AddActorLocation(FVector::Up * _DeltaTime);
+	});
 
 	while (true)
 	{
