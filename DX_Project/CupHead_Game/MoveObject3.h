@@ -25,6 +25,7 @@ private:
 	USpriteRenderer* ObjectRender = nullptr;
 	USpriteRenderer* ObjectFront = nullptr;
 	USpriteRenderer* ObjectBallRender = nullptr;
+	UCollision* TopCollision = nullptr;
 	UCollision* BoxCollision = nullptr;
 	UCollision* ballCollision = nullptr;
 

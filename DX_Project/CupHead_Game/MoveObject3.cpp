@@ -27,10 +27,19 @@ AMoveObject3::AMoveObject3()
 	ObjectFront->SetPivot(EPivot::BOT);
 	ObjectFront->AddPosition(FVector(1.2f, 3.5f, 0.0f));
 
+
+	TopCollision = CreateDefaultSubObject<UCollision>("BoxCollision ");
+	TopCollision->SetupAttachment(Root);
+	TopCollision->AddPosition(FVector(0.0f, 130.0f, 0.0f));
+	TopCollision->SetScale(FVector(130.0f, 5.0f, 100.0f));
+
+	TopCollision->SetCollisionGroup(ECollisionOrder::Boss1Top);
+	TopCollision->SetCollisionType(ECollisionType::RotRect);
+
 	BoxCollision = CreateDefaultSubObject<UCollision>("BoxCollision ");
 	BoxCollision->SetupAttachment(Root);
-	BoxCollision->AddPosition(FVector(0.0f, 110.0f, 0.0f));
-	BoxCollision->SetScale(FVector(160.0f, 20.0f, 100.0f));
+	BoxCollision->AddPosition(FVector(0.0f, 60.0f, 0.0f));
+	BoxCollision->SetScale(FVector(160.0f, 100.0f, 100.0f));
 
 	BoxCollision->SetCollisionGroup(ECollisionOrder::Boss1Object3);
 	BoxCollision->SetCollisionType(ECollisionType::RotRect);
