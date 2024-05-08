@@ -1338,7 +1338,7 @@ void APlay_Cuphead::Run_Shoot_Straight(float  _DeltaTime)
 		State.ChangeState("Shoot_Straight");
 		return;
 	}
-
+	EventCollision(_DeltaTime);
 	MoveUpDate(_DeltaTime, MovePos);
 }
 
@@ -1435,7 +1435,7 @@ void APlay_Cuphead::Run_Shoot_DiagonalUp(float _DeltaTime)
 		State.ChangeState("Shoot_Straight");
 		return;
 	}
-
+	EventCollision(_DeltaTime);
 	MoveUpDate(_DeltaTime, MovePos);
 }
 
@@ -1460,7 +1460,7 @@ void APlay_Cuphead::Dash(float _DeltaTime)
 	default:
 		break;
 	}
-
+	EventCollision(_DeltaTime);
 	MoveUpDate(_DeltaTime, MovePos);
 }
 
