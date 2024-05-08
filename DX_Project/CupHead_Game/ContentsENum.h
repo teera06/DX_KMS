@@ -38,6 +38,7 @@ enum class EShootDir
 
 enum class ERenderOrder
 {
+	None,
 	background,
 	WorldCol,
 	CupheadDence,
