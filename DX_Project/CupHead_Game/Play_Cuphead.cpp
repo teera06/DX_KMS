@@ -78,6 +78,7 @@ APlay_Cuphead::~APlay_Cuphead()
 	GrountSound.Off();
 	BaseBulletSound.Off();
 	Guage.clear();
+	Guageint.clear();
 }
 
 
