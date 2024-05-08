@@ -44,9 +44,10 @@ private:
 	USpriteRenderer* Hand = nullptr;
 
 
-	USpriteRenderer* Summon1 = nullptr;
-	USpriteRenderer* Summon2 = nullptr;
-	USpriteRenderer* Summon3 = nullptr;
+	std::vector<USpriteRenderer*> Summons;
+
+
+	UCollision* Devil2 = nullptr;
 
 	float UpdateDelay = 5.0f;
 

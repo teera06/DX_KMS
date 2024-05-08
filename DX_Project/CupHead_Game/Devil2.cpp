@@ -46,47 +46,46 @@ ADevil2::ADevil2()
 	Hand->SetSamplering(ETextureSampling::LINEAR);
 	Hand->SetAutoSize(0.8f, true);
 
-	Summon1 = CreateDefaultSubObject<USpriteRenderer>("Summon1");
+
+	Summons.resize(3);
+
+	for (int i = 0; i < Summons.size(); i++)
+	{
+		Summons[i] = CreateDefaultSubObject<USpriteRenderer>("Summon1");
+		
+		Summons[i]->SetupAttachment(Root);
+		
+		Summons[i]->SetOrder(ERenderOrder::FrontSkillMonster);
+		Summons[i]->SetSprite("_0011_devil_ph3_small_demon_pimple_0001.png");
+		Summons[i]->SetSamplering(ETextureSampling::LINEAR);
+		Summons[i]->SetAutoSize(1.0f, true);
+	}
+
 	
-	Summon1->SetupAttachment(Root);
+	Summons[0]->AddPosition(FVector(-150.0f, 150.0f, 0.0f));
 
-	Summon1->SetOrder(ERenderOrder::FrontSkillMonster);
-	Summon1->SetSprite("_0011_devil_ph3_small_demon_pimple_0001.png");
-	Summon1->SetSamplering(ETextureSampling::LINEAR);
-	Summon1->SetAutoSize(1.0f, true);
-	Summon1->AddPosition(FVector(-150.0f, 150.0f, 0.0f));
-
-	Summon2 = CreateDefaultSubObject<USpriteRenderer>("Summon2");
 	
-	Summon2->SetupAttachment(Root);
+	Summons[1]->AddPosition(FVector(150.0f, 140.0f, 0.0f));
 
-	Summon2->SetOrder(ERenderOrder::FrontSkillMonster);
-	Summon2->SetSprite("_0011_devil_ph3_small_demon_pimple_0001.png");
-	Summon2->SetSamplering(ETextureSampling::LINEAR);
-	Summon2->SetAutoSize(1.0f, true);
-	Summon2->AddPosition(FVector(150.0f, 140.0f, 0.0f));
-
-	Summon3 = CreateDefaultSubObject<USpriteRenderer>("Summon3");
-	Summon3->SetupAttachment(Root);
 	
-	Summon3->SetOrder(ERenderOrder::FrontSkillMonster);
-	Summon3->SetSprite("_0011_devil_ph3_small_demon_pimple_0001.png");
-	Summon3->SetSamplering(ETextureSampling::LINEAR);
-	Summon3->SetAutoSize(1.0f, true);
-	Summon3->AddPosition(FVector(180.0f, 160.0f, 0.0f));
+	Summons[2]->AddPosition(FVector(180.0f, 160.0f, 0.0f));
 
 
 	SetRoot(Root);
 
 	Hand->SetActive(false);
-	Summon1->SetActive(false);
-	Summon2->SetActive(false);
-	Summon3->SetActive(false);
+
+	for (int i = 0; i < Summons.size(); i++)
+	{
+		Summons[i]->SetActive(false);
+	}
+	
 	DevilNeck->AddPosition(FVector(40.0f, -400.0f, 0.0f));
 }
 
 ADevil2::~ADevil2()
 {
+	Summons.clear();
 	CrySound.Off();
 }
 
@@ -168,13 +167,13 @@ void ADevil2::AniCreate()
 	Hand->CreateAnimation("FatDemonIntro", "FatDemonIntro", 0.075f);
 	Hand->CreateAnimation("FatDemonRelease", "FatDemonRelease", 0.065f,false);
 
-	Summon1->CreateAnimation("SpawnImp", "SpawnImp", 0.045f);
-	Summon2->CreateAnimation("SpawnImp", "SpawnImp", 0.045f);
-	Summon3->CreateAnimation("SpawnImp", "SpawnImp", 0.045f);
 
-	Summon1->ChangeAnimation("SpawnImp");
-	Summon2->ChangeAnimation("SpawnImp");
-	Summon3->ChangeAnimation("SpawnImp");
+	for (int i = 0; i < Summons.size(); i++)
+	{
+		Summons[i]->CreateAnimation("SpawnImp", "SpawnImp", 0.045f);
+		Summons[i]->ChangeAnimation("SpawnImp");
+	}
+	
 }
 
 void ADevil2::CreateBombBat()
@@ -190,7 +189,6 @@ void ADevil2::CreateAxe()
 
 void ADevil2::CreateImp(const FVector& _Pos)
 {
-
 	GetWorld()->SpawnActor<AImp>("Imp")->SetActorLocation(_Pos);
 	
 }
@@ -345,23 +343,22 @@ void ADevil2::Phase3Idle(float _DeltaTime)
 void ADevil2::DevilSummonImpIdle(float _DeltaTime)
 {
 	
-	Summon1->SetActive(true);
-	Summon2->SetActive(true);
-	Summon3->SetActive(true);
+	for (int i = 0; i < Summons.size(); i++)
+	{
+		Summons[i]->SetActive(true);
+		Summons[i]->ChangeAnimation("SpawnImp");
+		Summons[i]->SetFrameCallback("SpawnImp", 9, [=] {CreateImp(Summons[i]->GetWorldPosition()); });
+	}
 
-	Summon1->ChangeAnimation("SpawnImp");
-	Summon2->ChangeAnimation("SpawnImp");
-	Summon3->ChangeAnimation("SpawnImp");
-
-	Summon1->SetFrameCallback("SpawnImp", 9, [=] {CreateImp(Summon1->GetWorldPosition());});
-	Summon2->SetFrameCallback("SpawnImp", 9, [=] {CreateImp(Summon2->GetWorldPosition()); });
-	Summon3->SetFrameCallback("SpawnImp", 9, [=] {CreateImp(Summon3->GetWorldPosition()); });
 
 	if (true == Boss2->IsCurAnimationEnd())
 	{
-		Summon1->SetActive(false);
-		Summon2->SetActive(false);
-		Summon3->SetActive(false);
+
+		for (int i = 0; i < Summons.size(); i++)
+		{
+			Summons[i]->SetActive(false);
+		}
+		
 	
 		attOrder = 2;
 		coolDownTime = 6.0f;
