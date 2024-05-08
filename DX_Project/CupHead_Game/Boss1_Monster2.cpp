@@ -165,9 +165,13 @@ void ABoss1_Monster2::BeginPlay()
 	WindSkill->ChangeAnimation("Wind");
 	FrontSlot->ChangeAnimation("SlotFront");
 
+	// 공통
+	coolDownTime = 6.0f;
+	attOrder = false;
+	Ready3Phase = false;
 	phasecheck = 1;
 	SetHp(100);
-
+	// 공통
 	windAttSound = UEngineSound::SoundPlay("frogs_tall_fan_attack_loop_01.wav");
 	windAttSound.Loop();
 	windAttSound.Off();

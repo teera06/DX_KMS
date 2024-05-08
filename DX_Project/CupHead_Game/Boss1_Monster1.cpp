@@ -45,7 +45,7 @@ void ABoss1_Monster1::BeginPlay()
 
 	Phase1StateInit();
 
-	SmallBoss1->SetAutoSize(1.0f, true);
+	SmallBoss1->SetAutoSize(1.1f, true);
 
 	SmallAttSound =UEngineSound::SoundPlay("frogs_short_ragefist_attack_loop_01.wav");
 	SmallAttSound.Loop();
@@ -347,6 +347,7 @@ void ABoss1_Monster1::phase2change1(float _DeltaTime)
 	if (true == SmallBoss1->IsCurAnimationEnd())
 	{
 		UEngineSound::SoundPlay("frogs_short_rolling_start_01.wav");
+		smallBossCollision->SetPosition(FVector(-100.0f, 150.0f, 100.0f));
 		Phase1.ChangeState("phase2change2");
 		return;
 	}
@@ -359,6 +360,7 @@ void ABoss1_Monster1::phase2change2(float _DeltaTime)
 
 	if (GetActorLocation().iX() <= -580)
 	{
+		smallBossCollision->SetPosition(FVector(0.0f, 150.0f, 100.0f));
 		Phase2StateInit();
 		phasecheck = 2;
 		return;
@@ -407,6 +409,7 @@ void ABoss1_Monster1::phase3change1(float _DeltaTime)
 {
 	if (true == SmallBoss1->IsCurAnimationEnd())
 	{
+		smallBossCollision->SetPosition(FVector(100.0f, 150.0f, 100.0f));
 		UEngineSound::SoundPlay("frogs_short_rolling_start_01.wav");
 		Phase2.ChangeState("phase3change2");
 		return;
