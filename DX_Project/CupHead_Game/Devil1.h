@@ -32,6 +32,21 @@ public:
 		return Boss2;
 	}
 
+	USpriteRenderer* GetBossHead()
+	{
+		return BossHead;
+	}
+
+	USpriteRenderer* GetBossBody()
+	{
+		return BossBody;
+	}
+
+	USpriteRenderer* Getspear()
+	{
+		return spear;
+	}
+
 	void SetDieTime(const float& _DieTime)
 	{
 		DieTime = _DieTime;

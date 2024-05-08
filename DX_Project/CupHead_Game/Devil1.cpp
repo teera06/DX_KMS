@@ -140,6 +140,9 @@ void ADevil1::Tick(float _DeltaTime)
 	if (DamgeColorDelay < 0)
 	{
 		Boss2->SetPlusColor(FVector(0.0f, 0.0f, 0.0f));
+		BossHead->SetPlusColor(FVector(0.0f, 0.0f, 0.0f));
+		BossBody->SetPlusColor(FVector(0.0f, 0.0f, 0.0f));
+		spear->SetPlusColor(FVector(0.0f, 0.0f, 0.0f));
 		DamgeColorDelay = 0.35f;
 	}
 
