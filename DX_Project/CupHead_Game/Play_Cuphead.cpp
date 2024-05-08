@@ -8,7 +8,14 @@
 #include <EngineCore/DefaultSceneComponent.h>
 
 FVector APlay_Cuphead::PlayerPos = FVector::Zero;
+APlay_Cuphead* APlay_Cuphead::MainPlayer=nullptr;
+
 int APlay_Cuphead::Hp=3;
+
+APlay_Cuphead* APlay_Cuphead::GetMainPlayer()
+{
+	return MainPlayer;
+}
 
 APlay_Cuphead::APlay_Cuphead()
 {
@@ -131,13 +138,14 @@ void APlay_Cuphead::BeginPlay()
 	Effect->SetActive(false);
 
 	Guage.resize(5);
-
+	Guageint.resize(5);
 	for (int i = 0; i < Guage.size(); i++)
 	{
 		Guage[i]= CreateWidget<UImage>(GetWorld(), "skillBar");
 		Guage[i]->AddToViewPort(ERenderOrder::skiilBar);
 		Guage[i]->SetSprite("SuperMeterCard.png");
 		Guage[i]->SetAutoSize(1.0f, true);
+		Guageint[i] = 0;
 	}
 
 	Guage[0]->SetPosition({ -510.0f, -310.0f });
@@ -165,6 +173,7 @@ void APlay_Cuphead::BeginPlay()
 	GrountSound.Loop();
 	GrountSound.Off();
 
+	MainPlayer = this;
 }
 
 void APlay_Cuphead::Tick(float _DeltaTime)
@@ -184,40 +193,11 @@ void APlay_Cuphead::Tick(float _DeltaTime)
 		}
 	}
 
-	if (Hp == 2)
-	{
-		HpBar->SetSprite("HP2.png");
-	}
-	else if (Hp == 1)
-	{
-		Hp1Time -= _DeltaTime;
+	CalHp(_DeltaTime);
 
-		if (Hp1Time < 0)
-		{
-			if (false == Hp1OnOff)
-			{
-				HpBar->SetSprite("HP1.png");
-				Hp1OnOff = true;
-			}
-			else
-			{
-				HpBar->SetSprite("HP1Warn.png");
-				Hp1OnOff = false;
-			}
-			Hp1Time = 0.55f;
-		}
-	}
-	else if (Hp <= 0)
-	{
-		HpBar->SetSprite("HPDead.png");
-	}
 
 
 	PlayerPos = GetActorLocation();
-
-	
-
-
 	DebugMessageFunction();
 }
 

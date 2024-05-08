@@ -626,6 +626,37 @@ void APlay_Cuphead::createSSBullet()
 	NewSSBullet->SetBulletDir(BulletDir);
 }
 
+void APlay_Cuphead::CalHp(float _DeltaTime)
+{
+	if (Hp == 2)
+	{
+		HpBar->SetSprite("HP2.png");
+	}
+	else if (Hp == 1)
+	{
+		Hp1Time -= _DeltaTime;
+
+		if (Hp1Time < 0)
+		{
+			if (false == Hp1OnOff)
+			{
+				HpBar->SetSprite("HP1.png");
+				Hp1OnOff = true;
+			}
+			else
+			{
+				HpBar->SetSprite("HP1Warn.png");
+				Hp1OnOff = false;
+			}
+			Hp1Time = 0.55f;
+		}
+	}
+	else if (Hp <= 0)
+	{
+		HpBar->SetSprite("HPDead.png");
+	}
+}
+
 void APlay_Cuphead::CalGravityVector(float _DeltaTime)
 {
 	GravityVector += (FVector::Down * Gravity * _DeltaTime); // 중력은 계속 가해진다.

@@ -23,6 +23,8 @@ public:
 	APlay_Cuphead& operator=(const APlay_Cuphead& _Other) = delete; // 디폴트 대입 연산자
 	APlay_Cuphead& operator=(APlay_Cuphead&& _Other) noexcept = delete;
 
+	static APlay_Cuphead* GetMainPlayer(); // 몬스터나 상태창이 플레이어에 대한 정보를 알아야 할 때 사용
+
 	static FVector GetPlayerPos()
 	{
 		return PlayerPos;
@@ -60,9 +62,12 @@ private:
 	UEngineSoundPlayer BaseBulletSound;
 	UEngineSoundPlayer GrountSound;
 
+	static APlay_Cuphead* MainPlayer;
+
 	UImage* HpBar = nullptr;
 
 	std::vector<UImage*> Guage;
+	std::vector<int> Guageint;
 
 	USpriteRenderer* PlayCuphead= nullptr;
 	USpriteRenderer* BulletStart = nullptr;
@@ -154,6 +159,8 @@ private:
 	void SSUpShoot();
 
 	void createSSBullet();
+
+	void CalHp(float _DeltaTime);
 
 	// 이동함수
 	

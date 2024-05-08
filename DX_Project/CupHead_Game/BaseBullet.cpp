@@ -8,7 +8,7 @@
 #include <EngineCore/Collision.h>
 
 #include "ContentsENum.h"
-
+#include "Play_Cuphead.h"
 
 #include "Boss1_Monster1.h"
 #include "Boss1_Monster2.h"
@@ -111,6 +111,8 @@ void ABaseBullet::Collisiongather()
 		BulletCollision->SetActive(false);
 		//Destroy();
 		//_Collison->GetActor()->Destroy();
+
+		//APlay_Cuphead::GetMainPlayer()->Destroy();
 	});
 
 	BulletCollision->CollisionEnter(ECollisionOrder::Boss1Monster2, [=](std::shared_ptr<UCollision> _Collison)
