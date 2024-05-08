@@ -46,6 +46,10 @@ public:
 		return Hp;
 	}
 
+	void AddGuage(const int& _GuageGet)
+	{
+		GuageGet += _GuageGet;
+	}
 
 	UStateManager State;
 protected:
@@ -123,6 +127,9 @@ private:
 	float Hp1Time = 0.55f;
 
 	int GrounYCheck = 0;
+	int GuageGet = 0;
+	int GuageCount = 0;
+
 	static int Hp;
 
 	bool shootY = false;
@@ -161,6 +168,7 @@ private:
 	void createSSBullet();
 
 	void CalHp(float _DeltaTime);
+	void CalGuage(float _DeltaTime);
 
 	// 이동함수
 	

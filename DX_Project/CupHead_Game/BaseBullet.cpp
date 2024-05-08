@@ -112,7 +112,7 @@ void ABaseBullet::Collisiongather()
 		//Destroy();
 		//_Collison->GetActor()->Destroy();
 
-		//APlay_Cuphead::GetMainPlayer()->Destroy();
+		APlay_Cuphead::GetMainPlayer()->AddGuage(5);
 	});
 
 	BulletCollision->CollisionEnter(ECollisionOrder::Boss1Monster2, [=](std::shared_ptr<UCollision> _Collison)

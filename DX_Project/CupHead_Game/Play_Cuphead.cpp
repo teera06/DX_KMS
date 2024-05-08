@@ -145,6 +145,7 @@ void APlay_Cuphead::BeginPlay()
 		Guage[i]->AddToViewPort(ERenderOrder::skiilBar);
 		Guage[i]->SetSprite("SuperMeterCard.png");
 		Guage[i]->SetAutoSize(1.0f, true);
+		Guage[i]->SetActive(false);
 		Guageint[i] = 0;
 	}
 
@@ -194,6 +195,7 @@ void APlay_Cuphead::Tick(float _DeltaTime)
 	}
 
 	CalHp(_DeltaTime);
+	CalGuage(_DeltaTime);
 
 
 

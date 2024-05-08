@@ -657,6 +657,23 @@ void APlay_Cuphead::CalHp(float _DeltaTime)
 	}
 }
 
+void APlay_Cuphead::CalGuage(float _DeltaTime)
+{
+	if (GuageCount == 5)
+	{
+		return;
+	}
+
+	Guageint[GuageCount] += GuageGet;
+	if (Guageint[GuageCount] == 100)
+	{
+		Guage[GuageCount]->SetActive(true);
+		++GuageCount;
+	}
+	GuageGet = 0;
+}
+
+
 void APlay_Cuphead::CalGravityVector(float _DeltaTime)
 {
 	GravityVector += (FVector::Down * Gravity * _DeltaTime); // 중력은 계속 가해진다.
