@@ -57,6 +57,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 		//AddActorLocation(FVector::Up * 1000.0f* _DeltaTime);
 
 		GravityVector = FVector::Down * 300.0f;
+		AddGuage(40);
 	});
 
 	ParryCollision->CollisionStay(ECollisionOrder::Boss1Monster2Hand, [=](std::shared_ptr<UCollision> _Collison)
@@ -72,6 +73,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 
 		//AddActorLocation(FVector::Up * 1000.0f * _DeltaTime);
 		GravityVector = FVector::Down*300.0f;
+		AddGuage(40);
 	});
 
 	ParryCollision->CollisionEnter(ECollisionOrder::Orb_Fire1, [=](std::shared_ptr<UCollision> _Collison)
@@ -87,6 +89,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 			GravityVector = FVector::Down * 300.0f;
 
 			Fire1->Destroy();
+			AddGuage(40);
 		}
 
 	});
@@ -104,6 +107,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 			GravityVector = FVector::Down * 300.0f;
 
 			Fire1->Destroy();
+			AddGuage(40);
 		}
 	});
 
@@ -120,6 +124,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 			GravityVector = FVector::Down * 300.0f;
 
 			skill->Destroy();
+			AddGuage(40);
 		}
 
 	});
@@ -137,6 +142,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 			GravityVector = FVector::Down * 300.0f;
 
 			skill->Destroy();
+			AddGuage(40);
 		}
 	});
 
@@ -153,7 +159,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 
 			Fire->GetMainRender()->SetActive(false);
 			Fire->GetMainCollision()->SetActive(false);
-
+			AddGuage(40);
 		});
 
 	ParryCollision->CollisionStay(ECollisionOrder::Orb_Fire2_Parry, [=](std::shared_ptr<UCollision> _Collison)
@@ -169,7 +175,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 
 			Fire->GetMainRender()->SetActive(false);
 			Fire->GetMainCollision()->SetActive(false);
-			
+			AddGuage(40);
 		});
 
 	ParryCollision->CollisionEnter(ECollisionOrder::Devil1ball, [=](std::shared_ptr<UCollision> _Collison)
@@ -185,6 +191,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 				GravityVector = FVector::Down * 300.0f;
 
 				ball->Destroy();
+				AddGuage(40);
 			}
 
 		});
@@ -202,6 +209,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 				GravityVector = FVector::Down * 300.0f;
 
 				ball->Destroy();
+				AddGuage(40);
 			}
 		});
 
@@ -217,6 +225,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 		GravityVector = FVector::Down * 300.0f;
 
 		Monster->Destroy();
+		AddGuage(40);
 	});
 
 	ParryCollision->CollisionStay(ECollisionOrder::BombBat, [=](std::shared_ptr<UCollision> _Collison)
@@ -230,6 +239,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 		GravityVector = FVector::Down * 300.0f;
 
 		Monster->Destroy();
+		AddGuage(40);
 	});
 
 
@@ -664,7 +674,14 @@ void APlay_Cuphead::CalGuage()
 		return;
 	}
 
-	Guageint[CurGuageCount] += GuageGet;
+	Guageint[CurGuageCount] += (GuageGet+ overGuageGet);
+	overGuageGet = 0;
+	if (Guageint[CurGuageCount] > 100)
+	{
+		overGuageGet = Guageint[CurGuageCount] - 100;
+		Guageint[CurGuageCount] = 100;
+	}
+
 	if (Guageint[CurGuageCount] == 100)
 	{
 		Guage[CurGuageCount]->SetSprite("SuperMeterCard.png");
@@ -673,22 +690,27 @@ void APlay_Cuphead::CalGuage()
 	}
 	else if (Guageint[CurGuageCount] <= 90 && Guageint[CurGuageCount] > 80)
 	{
+		Guage[CurGuageCount]->SetActive(true);
 		Guage[CurGuageCount]->SetSprite("Super6.png");
 	}
 	else if (Guageint[CurGuageCount] <= 80 && Guageint[CurGuageCount] > 60)
 	{
+		Guage[CurGuageCount]->SetActive(true);
 		Guage[CurGuageCount]->SetSprite("Super5.png");
 	}
 	else if (Guageint[CurGuageCount] <= 60 && Guageint[CurGuageCount] > 50)
 	{
+		Guage[CurGuageCount]->SetActive(true);
 		Guage[CurGuageCount]->SetSprite("Super4.png");
 	}
 	else if (Guageint[CurGuageCount] <= 50 && Guageint[CurGuageCount] > 40)
 	{
+		Guage[CurGuageCount]->SetActive(true);
 		Guage[CurGuageCount]->SetSprite("Super3.png");
 	}
 	else if (Guageint[CurGuageCount] <= 40 && Guageint[CurGuageCount] > 5)
 	{
+		Guage[CurGuageCount]->SetActive(true);
 		Guage[CurGuageCount]->SetSprite("Super2.png");
 	}
 	else if (Guageint[CurGuageCount] <= 5 && Guageint[CurGuageCount] > 0)

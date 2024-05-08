@@ -131,6 +131,7 @@ private:
 	int CurGuageCount = 0;
 	int PrevGuageCount = 0;
 
+	int overGuageGet = 0;
 
 	static int Hp;
 
