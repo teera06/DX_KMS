@@ -678,7 +678,16 @@ void APlay_Cuphead::UseSSBullet()
 {
 	Guage[CurGuageCount]->SetActive(false);
 	Guageint[CurGuageCount] = 0;
+
+	--CurGuageCount;
 	--GuageCount;
+	
+	if (CurGuageCount < 0)
+	{
+		CurGuageCount = 0;
+		return;
+	}
+	
 }
 
 
@@ -1242,24 +1251,28 @@ void APlay_Cuphead::Run(float  _DeltaTime)
 {
 	DirCheck();
 	GrountSound.On();
-	if (true == IsDown('V') && true == IsPress(VK_UP))
+	if (true == IsDown('V') && true == IsPress(VK_UP) && true == Guage[CurGuageCount]->IsActive()
+		)
 	{
+		UseSSBullet();
 		GrountSound.Off();
 		ShootStyle = EShootDir::DiagonalUpShoot;
 		State.ChangeState("SSGround_DiagonalUp");
 		return;
 	}
 
-	if (true == IsDown('V') && true == IsPress(VK_DOWN))
+	if (true == IsDown('V') && true == IsPress(VK_DOWN) && true == Guage[CurGuageCount]->IsActive())
 	{
+		UseSSBullet();
 		GrountSound.Off();
 		ShootStyle = EShootDir::DiagonalDownShoot;
 		State.ChangeState("SSGround_DiagonalDown");
 		return;
 	}
 
-	if (true == IsDown('V'))
+	if (true == IsDown('V') && true == Guage[CurGuageCount]->IsActive())
 	{
+		UseSSBullet();
 		GrountSound.Off();
 		ShootStyle = EShootDir::IdleShoot;
 		State.ChangeState("SSGround_Straight");
@@ -1435,8 +1448,10 @@ void APlay_Cuphead::Run_Shoot_DiagonalUp(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsDown('V'))
+	if (true == IsDown('V') && true == Guage[CurGuageCount]->IsActive()
+		)
 	{
+		UseSSBullet();
 		GrountSound.Off();
 		BaseBulletSound.Off();
 		BulletStart->SetActive(false);
@@ -1577,8 +1592,10 @@ void APlay_Cuphead::Duck(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsPress('V'))
+	if (true == IsPress('V') && true == Guage[CurGuageCount]->IsActive()
+		)
 	{
+		UseSSBullet();
 		ShootStyle = EShootDir::DownShoot;
 		State.ChangeState("SSGround_Down");
 		return;
@@ -1687,8 +1704,10 @@ void APlay_Cuphead::Aim_Up(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsPress('V'))
+	if (true == IsPress('V') && true == Guage[CurGuageCount]->IsActive()
+		)
 	{
+		UseSSBullet();
 		BulletStart->SetActive(false);
 		ShootStyle = EShootDir::UpShoot;
 		State.ChangeState("SSGround_Up");
@@ -1970,7 +1989,7 @@ void APlay_Cuphead::Aim_Straight(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsPress('V'))
+	if (true == IsDown('V'))
 	{
 		BulletStart->SetActive(false);
 		//ShootStyle = EShootDir::IdleShoot;
