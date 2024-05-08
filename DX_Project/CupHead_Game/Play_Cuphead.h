@@ -128,8 +128,8 @@ private:
 
 	int GrounYCheck = 0;
 	int GuageGet = 0;
-	int GuageCount = 0;
 	int CurGuageCount = 0;
+	int PrevGuageCount = 0;
 
 
 	static int Hp;
@@ -170,7 +170,7 @@ private:
 	void createSSBullet();
 
 	void CalHp(float _DeltaTime);
-	void CalGuage(float _DeltaTime);
+	void CalGuage();
 
 	void UseSSBullet();
 

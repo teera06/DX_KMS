@@ -657,59 +657,81 @@ void APlay_Cuphead::CalHp(float _DeltaTime)
 	}
 }
 
-void APlay_Cuphead::CalGuage(float _DeltaTime)
+void APlay_Cuphead::CalGuage()
 {
-	if (GuageCount == 5)
+	if (CurGuageCount == 5)
 	{
 		return;
 	}
 
-	Guageint[GuageCount] += GuageGet;
-	if (Guageint[GuageCount] == 100)
+	Guageint[CurGuageCount] += GuageGet;
+	if (Guageint[CurGuageCount] == 100)
 	{
-		Guage[GuageCount]->SetSprite("SuperMeterCard.png");
-		CurGuageCount = GuageCount;
-		++GuageCount;
+		Guage[CurGuageCount]->SetSprite("SuperMeterCard.png");
+		PrevGuageCount = CurGuageCount;
+		++CurGuageCount;
 	}
-	else if (Guageint[GuageCount] == 90)
+	else if (Guageint[CurGuageCount] <= 90 && Guageint[CurGuageCount] > 80)
 	{
-		Guage[GuageCount]->SetSprite("Super6.png");
+		Guage[CurGuageCount]->SetSprite("Super6.png");
 	}
-	else if (Guageint[GuageCount] == 80)
+	else if (Guageint[CurGuageCount] <= 80 && Guageint[CurGuageCount] > 60)
 	{
-		Guage[GuageCount]->SetSprite("Super5.png");
+		Guage[CurGuageCount]->SetSprite("Super5.png");
 	}
-	else if (Guageint[GuageCount] == 60)
+	else if (Guageint[CurGuageCount] <= 60 && Guageint[CurGuageCount] > 50)
 	{
-		Guage[GuageCount]->SetSprite("Super4.png");
+		Guage[CurGuageCount]->SetSprite("Super4.png");
 	}
-	else if (Guageint[GuageCount] == 50)
+	else if (Guageint[CurGuageCount] <= 50 && Guageint[CurGuageCount] > 40)
 	{
-		Guage[GuageCount]->SetSprite("Super3.png");
+		Guage[CurGuageCount]->SetSprite("Super3.png");
 	}
-	else if (Guageint[GuageCount] == 40)
+	else if (Guageint[CurGuageCount] <= 40 && Guageint[CurGuageCount] > 5)
 	{
-		Guage[GuageCount]->SetSprite("Super2.png");
+		Guage[CurGuageCount]->SetSprite("Super2.png");
 	}
-	else if (Guageint[GuageCount] == 20)
+	else if (Guageint[CurGuageCount] <= 5 && Guageint[CurGuageCount] > 0)
 	{
-		Guage[GuageCount]->SetActive(true);
-		Guage[GuageCount]->SetSprite("Super1.png");
+		Guage[CurGuageCount]->SetActive(true);
+		Guage[CurGuageCount]->SetSprite("Super1.png");
 	}
 	GuageGet = 0;
 }
 
 void APlay_Cuphead::UseSSBullet()
 {
-	Guage[CurGuageCount]->SetActive(false);
-	Guageint[CurGuageCount] = 0;
-
-	--CurGuageCount;
-	--GuageCount;
-	
-	if (CurGuageCount < 0)
+	if (CurGuageCount < 5)
 	{
-		CurGuageCount = 0;
+		if (Guageint[CurGuageCount] > 0 && Guageint[CurGuageCount] < 100)
+		{
+			Guage[CurGuageCount]->SetActive(false);
+			Guageint[PrevGuageCount] = Guageint[CurGuageCount];
+			Guageint[CurGuageCount] = 0;
+			--CurGuageCount;
+			--PrevGuageCount;
+
+			if (PrevGuageCount < 0)
+			{
+				PrevGuageCount = 0;
+			}
+			//CalGuage();
+			return;
+		}
+	}
+	
+
+	Guage[PrevGuageCount]->SetActive(false);
+	Guageint[PrevGuageCount] = 0;
+	
+
+	--PrevGuageCount;
+	--CurGuageCount;
+
+	
+	if (PrevGuageCount < 0)
+	{
+		PrevGuageCount = 0;
 		return;
 	}
 	
@@ -1246,7 +1268,7 @@ void APlay_Cuphead::Idle(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsDown('V') && true==Guage[CurGuageCount]->IsActive())
+	if (true == IsDown('V') && 100==Guageint[PrevGuageCount])
 	{
 		UseSSBullet();
 		UEngineSound::SoundPlay("sfx_player_plane_shmup_bomb_explode_01.wav");
@@ -1276,7 +1298,7 @@ void APlay_Cuphead::Run(float  _DeltaTime)
 {
 	DirCheck();
 	GrountSound.On();
-	if (true == IsDown('V') && true == IsPress(VK_UP) && true == Guage[CurGuageCount]->IsActive()
+	if (true == IsDown('V') && true == IsPress(VK_UP) && 100 == Guageint[PrevGuageCount]
 		)
 	{
 		UseSSBullet();
@@ -1286,7 +1308,7 @@ void APlay_Cuphead::Run(float  _DeltaTime)
 		return;
 	}
 
-	if (true == IsDown('V') && true == IsPress(VK_DOWN) && true == Guage[CurGuageCount]->IsActive())
+	if (true == IsDown('V') && true == IsPress(VK_DOWN) && 100 == Guageint[PrevGuageCount])
 	{
 		UseSSBullet();
 		GrountSound.Off();
@@ -1295,7 +1317,7 @@ void APlay_Cuphead::Run(float  _DeltaTime)
 		return;
 	}
 
-	if (true == IsDown('V') && true == Guage[CurGuageCount]->IsActive())
+	if (true == IsDown('V') && 100 == Guageint[PrevGuageCount])
 	{
 		UseSSBullet();
 		GrountSound.Off();
@@ -1473,7 +1495,7 @@ void APlay_Cuphead::Run_Shoot_DiagonalUp(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsDown('V') && true == Guage[CurGuageCount]->IsActive()
+	if (true == IsDown('V') && 100 == Guageint[PrevGuageCount]
 		)
 	{
 		UseSSBullet();
@@ -1617,7 +1639,7 @@ void APlay_Cuphead::Duck(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsPress('V') && true == Guage[CurGuageCount]->IsActive()
+	if (true == IsPress('V') && 100 == Guageint[PrevGuageCount]
 		)
 	{
 		UseSSBullet();
@@ -1729,7 +1751,7 @@ void APlay_Cuphead::Aim_Up(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsPress('V') && true == Guage[CurGuageCount]->IsActive()
+	if (true == IsPress('V') && 100 == Guageint[PrevGuageCount]
 		)
 	{
 		UseSSBullet();

@@ -112,7 +112,7 @@ void ABaseBullet::Collisiongather()
 		//Destroy();
 		//_Collison->GetActor()->Destroy();
 
-		APlay_Cuphead::GetMainPlayer()->AddGuage(20);
+		APlay_Cuphead::GetMainPlayer()->AddGuage(5);
 	});
 
 	BulletCollision->CollisionEnter(ECollisionOrder::Boss1Monster2, [=](std::shared_ptr<UCollision> _Collison)
@@ -127,6 +127,7 @@ void ABaseBullet::Collisiongather()
 			Monster->GetSlotMouse()->SetPlusColor({ 0.2f, 0.2f, 0.2f });
 			Monster->GetFrontSlot()->SetPlusColor({ 0.2f, 0.2f, 0.2f });
 			Monster->addHp(1);
+			APlay_Cuphead::GetMainPlayer()->AddGuage(5);
 		}
 		else
 		{
@@ -136,6 +137,7 @@ void ABaseBullet::Collisiongather()
 				Monster->GetSlotMouse()->SetPlusColor({ 0.2f, 0.2f, 0.2f });
 				Monster->GetFrontSlot()->SetPlusColor({ 0.2f, 0.2f, 0.2f });
 				Monster->addHp(1);
+				APlay_Cuphead::GetMainPlayer()->AddGuage(5);
 			}
 		}
 		DestroyCheck = true;
@@ -155,7 +157,7 @@ void ABaseBullet::Collisiongather()
 		DestroyCheck = true;
 		BulletRender->ChangeAnimation("Peashot_Death");
 		BulletCollision->SetActive(false);
-		
+		APlay_Cuphead::GetMainPlayer()->AddGuage(5);
 	});
 
 	BulletCollision->CollisionEnter(ECollisionOrder::Demon, [=](std::shared_ptr<UCollision> _Collison)
@@ -167,6 +169,7 @@ void ABaseBullet::Collisiongather()
 		DestroyCheck = true;
 		BulletRender->ChangeAnimation("Peashot_Death");
 		BulletCollision->SetActive(false);
+		APlay_Cuphead::GetMainPlayer()->AddGuage(5);
 	});
 
 	BulletCollision->CollisionEnter(ECollisionOrder::imp, [=](std::shared_ptr<UCollision> _Collison)
@@ -178,6 +181,7 @@ void ABaseBullet::Collisiongather()
 		DestroyCheck = true;
 		BulletRender->ChangeAnimation("Peashot_Death");
 		BulletCollision->SetActive(false);
+		APlay_Cuphead::GetMainPlayer()->AddGuage(5);
 	});
 
 	BulletCollision->CollisionEnter(ECollisionOrder::BombBat, [=](std::shared_ptr<UCollision> _Collison)
@@ -189,6 +193,7 @@ void ABaseBullet::Collisiongather()
 		DestroyCheck = true;
 		BulletRender->ChangeAnimation("Peashot_Death");
 		BulletCollision->SetActive(false);
+		APlay_Cuphead::GetMainPlayer()->AddGuage(5);
 	});
 
 	BulletCollision->CollisionEnter(ECollisionOrder::FatDemon, [=](std::shared_ptr<UCollision> _Collison)
@@ -200,6 +205,7 @@ void ABaseBullet::Collisiongather()
 		DestroyCheck = true;
 		BulletRender->ChangeAnimation("Peashot_Death");
 		BulletCollision->SetActive(false);
+		APlay_Cuphead::GetMainPlayer()->AddGuage(5);
 	});
 
 	// Devil
@@ -216,6 +222,7 @@ void ABaseBullet::Collisiongather()
 			DestroyCheck = true;
 			BulletRender->ChangeAnimation("Peashot_Death");
 			BulletCollision->SetActive(false);
+			APlay_Cuphead::GetMainPlayer()->AddGuage(5);
 			//Destroy();
 			//_Collison->GetActor()->Destroy();
 		});
@@ -230,6 +237,7 @@ void ABaseBullet::Collisiongather()
 		DestroyCheck = true;
 		BulletRender->ChangeAnimation("Peashot_Death");
 		BulletCollision->SetActive(false);
+		APlay_Cuphead::GetMainPlayer()->AddGuage(5);
 		//Destroy();
 		//_Collison->GetActor()->Destroy();
 	});

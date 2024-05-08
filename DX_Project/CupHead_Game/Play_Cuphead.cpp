@@ -196,7 +196,7 @@ void APlay_Cuphead::Tick(float _DeltaTime)
 	}
 
 	CalHp(_DeltaTime);
-	CalGuage(_DeltaTime);
+	CalGuage();
 
 
 
