@@ -119,7 +119,6 @@ void ABoss1_Monster2::BeginPlay()
 	BigBoss1->SetOrder(ERenderOrder::Monster1);
 	BigBoss1->SetSprite("tallfrog_idle_0001.png");
 	BigBoss1->SetSamplering(ETextureSampling::LINEAR);
-	BigBoss1->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 
 	SlotMouse->SetOrder(ERenderOrder::SlotMouse);
 	SlotMouse->SetSprite("tallfrog_slotman_spit_0001.png");
