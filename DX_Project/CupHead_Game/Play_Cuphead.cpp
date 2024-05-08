@@ -156,12 +156,6 @@ void APlay_Cuphead::BeginPlay()
 
 	HpBar->SetPosition({ -570.0f, -310.0f });
 
-	HpBar->CreateAnimation("HP3", "HP3", 0.75f);
-	HpBar->CreateAnimation("HP2", "HP2", 0.75f);
-	HpBar->CreateAnimation("HP1", "HP1", 0.75f);
-	HpBar->CreateAnimation("HP0", "HP0", 0.75f);
-
-	HpBar->ChangeAnimation("HP3");
 
 	BaseBulletSound= UEngineSound::SoundPlay("sfx_player_default_fire_loop_01.wav");
 	BaseBulletSound.Loop();
@@ -192,15 +186,30 @@ void APlay_Cuphead::Tick(float _DeltaTime)
 
 	if (Hp == 2)
 	{
-		HpBar->ChangeAnimation("HP2");
+		HpBar->SetSprite("HP2.png");
 	}
 	else if (Hp == 1)
 	{
-		HpBar->ChangeAnimation("HP1");
+		Hp1Time -= _DeltaTime;
+
+		if (Hp1Time < 0)
+		{
+			if (false == Hp1OnOff)
+			{
+				HpBar->SetSprite("HP1.png");
+				Hp1OnOff = true;
+			}
+			else
+			{
+				HpBar->SetSprite("HP1Warn.png");
+				Hp1OnOff = false;
+			}
+			Hp1Time = 0.55f;
+		}
 	}
 	else if (Hp <= 0)
 	{
-		HpBar->ChangeAnimation("HP0");
+		HpBar->SetSprite("HPDead.png");
 	}
 
 

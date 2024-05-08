@@ -115,6 +115,8 @@ private:
 
 	float ColOnTime = 1.5f;
 
+	float Hp1Time = 0.55f;
+
 	int GrounYCheck = 0;
 	static int Hp;
 
@@ -127,6 +129,9 @@ private:
 	bool DevilDieCheck = false;
 
 	bool Devil2GrounCheck = false;
+
+	bool Hp1OnOff = false;
+
 	// false -> 기본 공격
 	// true -> 게이지 공격
 
