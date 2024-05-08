@@ -273,7 +273,8 @@ void APlay_Cuphead::EventCollision(float _DeltaTime)
 {
 	PlayerCollision->CollisionEnter(ECollisionOrder::Hole, [=](std::shared_ptr<UCollision> _Collison)
 	{
-	
+		BaseBulletSound.Off();
+		GrountSound.Off();
 		GetWorld()->SpawnActor<APhaseChangeBack>("PhaseChangeBack");
 		State.ChangeState("Boss2PhaseChange");
 		return;
