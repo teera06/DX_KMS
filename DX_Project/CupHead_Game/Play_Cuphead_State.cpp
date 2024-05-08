@@ -1846,7 +1846,6 @@ void APlay_Cuphead::hit(float _DeltaTime)
 		MoveUpDate(_DeltaTime);
 		Hp -= 1;
 		JumpVector = FVector::Zero;
-		PlayerCollision->SetActive(true);
 		IsHitEffect = false;
 		State.ChangeState("Idle");
 		return;

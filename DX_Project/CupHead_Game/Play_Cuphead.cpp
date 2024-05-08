@@ -180,6 +180,16 @@ void APlay_Cuphead::Tick(float _DeltaTime)
 	
 	State.Update(_DeltaTime);
 
+	if (false == PlayerCollision->IsActive())
+	{
+		ColOnTime -= _DeltaTime;
+		if (ColOnTime < 0)
+		{
+			PlayerCollision->SetActive(true);
+			ColOnTime = 1.5f;
+		}
+	}
+
 	if (Hp == 2)
 	{
 		HpBar->ChangeAnimation("HP2");

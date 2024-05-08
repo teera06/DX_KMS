@@ -32,6 +32,7 @@ private:
 	float Delay = 1.0f;
 
 	void CalDir(float _DeltaTime);
+	void CollisionCheck();
 
 	void patternInit();
 	void Start(float _DeltaTime);

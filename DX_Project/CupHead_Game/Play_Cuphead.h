@@ -113,6 +113,8 @@ private:
 
 	float DustTime = 0.45f;
 
+	float ColOnTime = 1.5f;
+
 	int GrounYCheck = 0;
 	static int Hp;
 

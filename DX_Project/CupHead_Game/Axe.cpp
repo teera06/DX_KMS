@@ -52,6 +52,7 @@ void AAxe::Tick(float _DeltaTime)
 
 	Super::Tick(_DeltaTime);
 	pattern.Update(_DeltaTime);
+	CollisionCheck();
 
 	
 	//AddActorRotation(FVector(0.0f, 0.0f, UEngineMath::DToR) * OneSpeed * _DeltaTime);
@@ -68,6 +69,20 @@ void AAxe::CalDir(float _DeltaTime)
 	FVector MoveNorMalize = Move.Normalize3DReturn();
 
 	AddActorLocation(MoveNorMalize * MoveSpeed * _DeltaTime);
+}
+
+void AAxe::CollisionCheck()
+{
+	AxeCollision->CollisionEnter(ECollisionOrder::Player, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		AActor* Ptr = _Collison->GetActor();
+		APlay_Cuphead* Player = dynamic_cast<APlay_Cuphead*>(Ptr);
+
+		Player->AddActorLocation(FVector::Up * 100.0f);
+		Player->State.ChangeState("hit");
+
+		Destroy();
+	});
 }
 
 void AAxe::patternInit()
