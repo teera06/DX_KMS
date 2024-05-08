@@ -92,7 +92,7 @@ ADevil1::ADevil1()
 
 	Devil1 = CreateDefaultSubObject<UCollision>("Devil1");
 	Devil1->SetupAttachment(Root);
-	Devil1->AddPosition(FVector(-30.0f, 50.0f, 0.0f));
+	Devil1->AddPosition(FVector(-15.0f, 50.0f, 0.0f));
 	Devil1->SetScale(FVector(200.0f, 250.0f, 100.0f));
 	Devil1->SetCollisionGroup(ECollisionOrder::Devil1);
 	Devil1->SetCollisionType(ECollisionType::RotRect);
@@ -242,10 +242,10 @@ void ADevil1::AniCreate()
 	BossBody->CreateAnimation("CreateOrbsBody", "CreateOrbsBody", 0.075f);
 	spear->CreateAnimation("CreateOrbsTrident", "CreateOrbsTrident", 0.075f);
 	IntroAni->CreateAnimation("PupilIntro", "PupilIntro", 0.055f);
-	PhaseChange2->CreateAnimation("Phase1Death", "Phase1Death", 0.075f,false);
+	PhaseChange2->CreateAnimation("Phase1Death", "Phase1Death", 0.055f,false);
 
-	Boss2->CreateAnimation("Phase1Death", "Phase1Death", 0.075f);
-	Boss2->CreateAnimation("Phase2Change", "Phase2Change", 0.075f);
+	Boss2->CreateAnimation("Phase1Death", "Phase1Death", 0.055f);
+	Boss2->CreateAnimation("Phase2Change", "Phase2Change", 0.055f);
 
 }
 
@@ -362,7 +362,7 @@ void ADevil1::Phase1Idle(float _DeltaTime)
 {
 	if (phasecheck == 1 && GetHp() <= 75)
 	{
-
+		Devil1->SetActive(false);
 		UEngineSound::SoundPlay("sfx_level_devil_sitting_devil_p1_death_start.wav");
 		AddActorLocation(FVector(45.0f, 20.0f, 0.0f));
 		Boss2Phase2->AddPosition(FVector(-45.0f, -20.0f, 0.0f));
