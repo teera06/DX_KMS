@@ -668,9 +668,17 @@ void APlay_Cuphead::CalGuage(float _DeltaTime)
 	if (Guageint[GuageCount] == 100)
 	{
 		Guage[GuageCount]->SetActive(true);
+		CurGuageCount = GuageCount;
 		++GuageCount;
 	}
 	GuageGet = 0;
+}
+
+void APlay_Cuphead::UseSSBullet()
+{
+	Guage[CurGuageCount]->SetActive(false);
+	Guageint[CurGuageCount] = 0;
+	--GuageCount;
 }
 
 
@@ -1204,8 +1212,9 @@ void APlay_Cuphead::Idle(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsDown('V'))
+	if (true == IsDown('V') && true==Guage[CurGuageCount]->IsActive())
 	{
+		UseSSBullet();
 		UEngineSound::SoundPlay("sfx_player_plane_shmup_bomb_explode_01.wav");
 		ShootStyle = EShootDir::IdleShoot;
 		State.ChangeState("SSGround_Straight");

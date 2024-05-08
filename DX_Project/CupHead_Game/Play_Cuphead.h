@@ -129,6 +129,8 @@ private:
 	int GrounYCheck = 0;
 	int GuageGet = 0;
 	int GuageCount = 0;
+	int CurGuageCount = 0;
+
 
 	static int Hp;
 
@@ -169,6 +171,8 @@ private:
 
 	void CalHp(float _DeltaTime);
 	void CalGuage(float _DeltaTime);
+
+	void UseSSBullet();
 
 	// 이동함수
 	
