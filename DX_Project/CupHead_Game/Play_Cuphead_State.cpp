@@ -667,9 +667,34 @@ void APlay_Cuphead::CalGuage(float _DeltaTime)
 	Guageint[GuageCount] += GuageGet;
 	if (Guageint[GuageCount] == 100)
 	{
-		Guage[GuageCount]->SetActive(true);
+		Guage[GuageCount]->SetSprite("SuperMeterCard.png");
 		CurGuageCount = GuageCount;
 		++GuageCount;
+	}
+	else if (Guageint[GuageCount] == 90)
+	{
+		Guage[GuageCount]->SetSprite("Super6.png");
+	}
+	else if (Guageint[GuageCount] == 80)
+	{
+		Guage[GuageCount]->SetSprite("Super5.png");
+	}
+	else if (Guageint[GuageCount] == 60)
+	{
+		Guage[GuageCount]->SetSprite("Super4.png");
+	}
+	else if (Guageint[GuageCount] == 50)
+	{
+		Guage[GuageCount]->SetSprite("Super3.png");
+	}
+	else if (Guageint[GuageCount] == 40)
+	{
+		Guage[GuageCount]->SetSprite("Super2.png");
+	}
+	else if (Guageint[GuageCount] == 20)
+	{
+		Guage[GuageCount]->SetActive(true);
+		Guage[GuageCount]->SetSprite("Super1.png");
 	}
 	GuageGet = 0;
 }
