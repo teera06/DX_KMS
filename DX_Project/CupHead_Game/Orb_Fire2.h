@@ -37,11 +37,9 @@ private:
 
 	UEngineSoundPlayer FireSound;
 	USpriteRenderer* MainRender = nullptr;
-	USpriteRenderer* Orb_Fire2Render = nullptr;
-	USpriteRenderer* Orb_Fire2Render2 = nullptr;
-	USpriteRenderer* Orb_Fire2Render3 = nullptr;
-	USpriteRenderer* Orb_Fire2Render4 = nullptr;
 
+	std::vector<USpriteRenderer*> Orb_Fire2Renders;
+	
 	UCollision* Orb_Fire2Col = nullptr;
 
 	std::vector<UCollision*> subCols;
@@ -53,6 +51,7 @@ private:
 	bool EndAni = false;
 
 	void RotMove(float _DeltaTime);
+	void Collisiongather();
 
 	// 상태 함수
 	void patternInit();
