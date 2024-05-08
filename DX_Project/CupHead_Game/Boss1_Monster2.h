@@ -43,6 +43,11 @@ public:
 		SlotTouch = _SlotTouch;
 	}
 
+	bool GetPhase3ColOnOff()
+	{
+		return Phase3ColOnOff;
+	}
+
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
@@ -103,6 +108,8 @@ private:
 	bool SlotTouch = false;
 
 	bool DieSCreen = false;
+
+	bool Phase3ColOnOff = false;
 
 	void createSkill();
 

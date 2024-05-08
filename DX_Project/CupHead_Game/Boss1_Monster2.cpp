@@ -615,6 +615,8 @@ void ABoss1_Monster2::phase3changeReady1(float _DeltaTime)
 {
 	if (true == BigBoss1->IsCurAnimationEnd())
 	{
+		BigBossCollision->SetPosition(FVector(50.0f, 150.0f, 0.0f));
+		BigBossCollision->SetScale(FVector(200.0f, 200.0f, 100.0f));
 		Ready3Phase = true;
 		Phase1.ChangeState("phase3changeReady2");
 		return;
@@ -627,6 +629,9 @@ void ABoss1_Monster2::phase3changeReady2(float _DeltaTime)
 	
 	if (true == Change3)
 	{
+		BigBossCollision->SetPosition(FVector(50.0f, 240.0f, 0.0f));
+		BigBossCollision->SetScale(FVector(200.0f, 450.0f, 100.0f));
+		Phase3ColOnOff = false;
 		UEngineSound::SoundPlay("frogs_tall_morph_end_01.wav");
 		phasecheck = 3;
 		coolDownTime = 6.0f;
@@ -857,6 +862,7 @@ void ABoss1_Monster2::Phase3AttReady(float _DeltaTime)
 
 	if (true == BigBoss1->IsCurAnimationEnd())
 	{
+		Phase3ColOnOff = true;
 		UEngineSound::SoundPlay("frogs_morphed_open_01.wav");
 		Bigattcount = 0;
 		FrontSlot->SetActive(true);
@@ -917,6 +923,7 @@ void ABoss1_Monster2::Phase3AttEnd(float _DeltaTime)
 {
 	if (true == BigBoss1->IsCurAnimationEnd())
 	{
+		Phase3ColOnOff = false;
 		SlotAttCount++;
 		coolDownTime = 4.0f;
 		Bigattcount = 0;
