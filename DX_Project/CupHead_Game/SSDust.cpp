@@ -54,6 +54,14 @@ void ASSDust::Tick(float _DeltaTime)
 	{
 		Effect->SetDir(EEngineDir::Left);
 	}
+	else if (DushDir.iY() == -1)
+	{
+		Effect->SetDir(EEngineDir::Down);
+	}
+	else if (DushDir.iY() == 1)
+	{
+		Effect->SetDir(EEngineDir::Up);
+	}
 
 	if (true == Effect->IsCurAnimationEnd())
 	{
