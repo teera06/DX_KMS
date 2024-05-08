@@ -71,6 +71,14 @@ ADevil2::ADevil2()
 	Summons[2]->AddPosition(FVector(180.0f, 160.0f, 0.0f));
 
 
+	Devil2 = CreateDefaultSubObject<UCollision>("Devil2");
+	Devil2->SetupAttachment(Root);
+	Devil2->AddPosition(FVector(-30.0f, 50.0f, 0.0f));
+	Devil2->SetScale(FVector(200.0f, 250.0f, 100.0f));
+	Devil2->SetCollisionGroup(ECollisionOrder::Devil2);
+	Devil2->SetCollisionType(ECollisionType::RotRect);
+
+
 	SetRoot(Root);
 
 	Hand->SetActive(false);
@@ -108,6 +116,14 @@ void ADevil2::BeginPlay()
 void ADevil2::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+	DamgeColorDelay -= _DeltaTime;
+
+	if (DamgeColorDelay < 0)
+	{
+		Boss2->SetPlusColor(FVector(0.0f, 0.0f, 0.0f));
+		DamgeColorDelay = 0.35f;
+	}
+
 	coolDownTime -= _DeltaTime;
 	UpdateDelay -= _DeltaTime;
 	if (phasecheck == 2 && UpdateDelay<0)

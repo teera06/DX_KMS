@@ -21,6 +21,7 @@
 
 
 #include "Devil1.h"
+#include "Devil2.h"
 
 
 
@@ -216,6 +217,20 @@ void ABaseBullet::Collisiongather()
 			//Destroy();
 			//_Collison->GetActor()->Destroy();
 		});
+
+	BulletCollision->CollisionEnter(ECollisionOrder::Devil2, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		UEngineSound::SoundPlay("sfx_player_shoot_hit_01.wav");
+		AActor* Ptr = _Collison->GetActor();
+		ADevil2* Monster = dynamic_cast<ADevil2*>(Ptr);
+		Monster->GetBoss2Render()->SetPlusColor(FVector(0.2f, 0.2f, 0.2f));
+	
+		DestroyCheck = true;
+		BulletRender->ChangeAnimation("Peashot_Death");
+		BulletCollision->SetActive(false);
+		//Destroy();
+		//_Collison->GetActor()->Destroy();
+	});
 
 	if (GetActorLocation().iX() <= -600 || GetActorLocation().iX() >= 600 || GetActorLocation().iY() >= 360) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
 	{

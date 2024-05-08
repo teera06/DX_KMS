@@ -107,6 +107,7 @@ enum class ECollisionOrder
 	Chip,
 	Wind,
 	Devil1,
+	Devil2,
 	Devil1Change,
 	Orb_Fire1,
 	Orb_Fire2_Parry,
