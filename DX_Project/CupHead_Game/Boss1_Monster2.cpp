@@ -346,7 +346,7 @@ void ABoss1_Monster2::AniCreate()
 	BigBoss1->CreateAnimation("Phase3SlotStart", "Phase3SlotReady", 0.1f, false, 8, 0);
 
 	BigBoss1->CreateAnimation("Phase3AttReady", "Phase3AttReady", 0.075f);
-	BigBoss1->CreateAnimation("Phase3Att", "Phase3Att", 0.0752f);
+	BigBoss1->CreateAnimation("Phase3Att", "Phase3Att", 0.075f);
 	BigBoss1->CreateAnimation("Phase3AttEnd", "Phase3AttReady", 0.075f,false,6,0);
 
 	BigBoss1->CreateAnimation("DieTransition", "DieTransition", 0.075f);
