@@ -184,6 +184,7 @@ private:
 
 	void UseSSBullet();
 
+	void SSBulletBehavir();
 	// 이동함수
 	
 	void CalGravityVector(float _DeltaTime);

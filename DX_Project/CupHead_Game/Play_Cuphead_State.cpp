@@ -941,6 +941,15 @@ void APlay_Cuphead::UseSSBullet()
 	
 }
 
+void APlay_Cuphead::SSBulletBehavir()
+{
+	UseSSBullet();
+	GrountSound.Off();
+	BaseBulletSound.Off();
+	UEngineSound::SoundPlay("sfx_player_plane_shmup_bomb_explode_01.wav");
+	BulletStart->SetActive(false);
+}
+
 
 void APlay_Cuphead::CalGravityVector(float _DeltaTime)
 {
@@ -1525,8 +1534,7 @@ void APlay_Cuphead::Idle(float _DeltaTime)
 
 	if (true == IsDown('V') && 100==Guageint[PrevGuageCount])
 	{
-		UseSSBullet();
-		UEngineSound::SoundPlay("sfx_player_plane_shmup_bomb_explode_01.wav");
+		SSBulletBehavir();
 		ShootStyle = EShootDir::IdleShoot;
 		State.ChangeState("SSGround_Straight");
 		return;
@@ -1556,8 +1564,7 @@ void APlay_Cuphead::Run(float  _DeltaTime)
 	if (true == IsDown('V') && true == IsPress(VK_UP) && 100 == Guageint[PrevGuageCount]
 		)
 	{
-		UseSSBullet();
-		GrountSound.Off();
+		SSBulletBehavir();
 		ShootStyle = EShootDir::DiagonalUpShoot;
 		State.ChangeState("SSGround_DiagonalUp");
 		return;
@@ -1565,8 +1572,7 @@ void APlay_Cuphead::Run(float  _DeltaTime)
 
 	if (true == IsDown('V') && true == IsPress(VK_DOWN) && 100 == Guageint[PrevGuageCount])
 	{
-		UseSSBullet();
-		GrountSound.Off();
+		SSBulletBehavir();
 		ShootStyle = EShootDir::DiagonalDownShoot;
 		State.ChangeState("SSGround_DiagonalDown");
 		return;
@@ -1574,8 +1580,7 @@ void APlay_Cuphead::Run(float  _DeltaTime)
 
 	if (true == IsDown('V') && 100 == Guageint[PrevGuageCount])
 	{
-		UseSSBullet();
-		GrountSound.Off();
+		SSBulletBehavir();
 		ShootStyle = EShootDir::IdleShoot;
 		State.ChangeState("SSGround_Straight");
 		return;
@@ -1702,8 +1707,7 @@ void APlay_Cuphead::Run_Shoot_Straight(float  _DeltaTime)
 
 	if (true == IsDown('V') && 100 == Guageint[PrevGuageCount])
 	{
-		UseSSBullet();
-		UEngineSound::SoundPlay("sfx_player_plane_shmup_bomb_explode_01.wav");
+		SSBulletBehavir();
 		ShootStyle = EShootDir::IdleShoot;
 		State.ChangeState("SSGround_Straight");
 		return;
@@ -1762,10 +1766,7 @@ void APlay_Cuphead::Run_Shoot_DiagonalUp(float _DeltaTime)
 	if (true == IsDown('V') && 100 == Guageint[PrevGuageCount]
 		)
 	{
-		UseSSBullet();
-		GrountSound.Off();
-		BaseBulletSound.Off();
-		BulletStart->SetActive(false);
+		SSBulletBehavir();
 		ShootStyle = EShootDir::DiagonalUpShoot;
 		State.ChangeState("SSGround_DiagonalUp");
 		return;
@@ -1906,7 +1907,7 @@ void APlay_Cuphead::Duck(float _DeltaTime)
 	if (true == IsPress('V') && 100 == Guageint[PrevGuageCount]
 		)
 	{
-		UseSSBullet();
+		SSBulletBehavir();
 		ShootStyle = EShootDir::DownShoot;
 		State.ChangeState("SSGround_Down");
 		return;
@@ -2018,8 +2019,7 @@ void APlay_Cuphead::Aim_Up(float _DeltaTime)
 	if (true == IsPress('V') && 100 == Guageint[PrevGuageCount]
 		)
 	{
-		UseSSBullet();
-		BulletStart->SetActive(false);
+		SSBulletBehavir();
 		ShootStyle = EShootDir::UpShoot;
 		State.ChangeState("SSGround_Up");
 		return;
@@ -2278,9 +2278,9 @@ void APlay_Cuphead::Aim_Straight(float _DeltaTime)
 
 	if (true == IsDown('V'))
 	{
-		BulletStart->SetActive(false);
-		//ShootStyle = EShootDir::IdleShoot;
-		//State.ChangeState("SSGround_Up");
+		SSBulletBehavir();
+		ShootStyle = EShootDir::IdleShoot;
+		State.ChangeState("SSGround_Up");
 		return;
 	}
 
@@ -2627,10 +2627,10 @@ void APlay_Cuphead::SSGround_Straight(float _DeltaTime)
 
 void APlay_Cuphead::SSGround_Down(float _DeltaTime)
 {
-	DirCheck();
 
 	if (false == PowerShoot)
 	{
+		DirCheck();
 		std::shared_ptr<ASSDust> NewSSDust = GetWorld()->SpawnActor<ASSDust>("SSDust");
 		NewSSDust->SetDushDir(BulletDir);
 		NewSSDust->SetActorRotation({ 0.0f,0.0f,270.0f });
@@ -2650,10 +2650,10 @@ void APlay_Cuphead::SSGround_Down(float _DeltaTime)
 
 void APlay_Cuphead::SSGround_DiagonalUp(float _DeltaTime)
 {
-	DirCheck();
 
 	if (false == PowerShoot)
 	{
+		DirCheck();
 		std::shared_ptr<ASSDust> NewSSDust = GetWorld()->SpawnActor<ASSDust>("SSDust");
 		NewSSDust->SetDushDir(BulletDir);
 
@@ -2682,10 +2682,10 @@ void APlay_Cuphead::SSGround_DiagonalUp(float _DeltaTime)
 
 void APlay_Cuphead::SSGround_DiagonalDown(float _DeltaTime)
 {
-	DirCheck();
 
 	if (false == PowerShoot)
 	{
+		DirCheck();
 		std::shared_ptr<ASSDust> NewSSDust = GetWorld()->SpawnActor<ASSDust>("SSDust");
 		NewSSDust->SetDushDir(BulletDir);
 		if (BulletDir.iX() == 1)
@@ -2712,10 +2712,10 @@ void APlay_Cuphead::SSGround_DiagonalDown(float _DeltaTime)
 
 void APlay_Cuphead::SSGround_Up(float _DeltaTime)
 {
-	DirCheck();
 
 	if (false == PowerShoot)
 	{
+		DirCheck();
 		std::shared_ptr<ASSDust> NewSSDust = GetWorld()->SpawnActor<ASSDust>("SSDust");
 		NewSSDust->SetDushDir(BulletDir);
 		NewSSDust->SetActorRotation({ 0.0f,0.0f,90.0f });
