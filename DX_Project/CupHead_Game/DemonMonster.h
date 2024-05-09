@@ -52,6 +52,7 @@ private:
 	// true -> ¿À¸¥ÂÊ 2
 
 	void AniCreate();
+	void PlayerCollision();
 
 	void StateInit();
 	void DemonIntro1(float _DeltaTime);

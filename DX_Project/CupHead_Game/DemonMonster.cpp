@@ -7,6 +7,7 @@
 #include <Functional>
 
 #include "ContentsENum.h"
+#include "Play_Cuphead.h"
 
 ADemonMonster::ADemonMonster()
 {
@@ -86,6 +87,19 @@ void ADemonMonster::AniCreate()
 	
 }
 
+void ADemonMonster::PlayerCollision()
+{
+	MonsterCollision->CollisionEnter(ECollisionOrder::Player, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		AActor* Ptr = _Collison->GetActor();
+		APlay_Cuphead* Player = dynamic_cast<APlay_Cuphead*>(Ptr);
+
+		Player->AddActorLocation(FVector::Up * 100.0f);
+		Player->State.ChangeState("hit");
+	});
+
+}
+
 void ADemonMonster::StateInit()
 {
 	State.CreateState("DemonIntro1");
@@ -154,7 +168,7 @@ void ADemonMonster::DemonAttack1(float _DeltaTime)
 void ADemonMonster::DemonAttack2(float _DeltaTime)
 {
 	AddActorLocation(MoveL * speed * _DeltaTime);
-
+	PlayerCollision();
 	if (MoveL.iX()==1 && GetActorLocation().iX() >= 700) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
 	{
 		Destroy();
@@ -165,6 +179,8 @@ void ADemonMonster::DemonAttack2(float _DeltaTime)
 		State.ChangeState("Die");
 		return;
 	}
+
+	
 }
 
 void ADemonMonster::StateInit2()
@@ -237,7 +253,7 @@ void ADemonMonster::Demon2Attack1(float _DeltaTime)
 void ADemonMonster::Demon2Attack2(float _DeltaTime)
 {
 	AddActorLocation(MoveR * speed * _DeltaTime);
-
+	PlayerCollision();
 	if (MoveR.iX() == -1 && GetActorLocation().iX() <= -700) // 벽(Red)랑 충돌인 경우 -> 움직이는 값 0
 	{
 		Destroy();
