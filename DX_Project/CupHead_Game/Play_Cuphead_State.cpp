@@ -1700,6 +1700,15 @@ void APlay_Cuphead::Run_Shoot_Straight(float  _DeltaTime)
 		return;
 	}
 
+	if (true == IsDown('V') && 100 == Guageint[PrevGuageCount])
+	{
+		UseSSBullet();
+		UEngineSound::SoundPlay("sfx_player_plane_shmup_bomb_explode_01.wav");
+		ShootStyle = EShootDir::IdleShoot;
+		State.ChangeState("SSGround_Straight");
+		return;
+	}
+
 	if (true == IsFree('X'))
 	{
 		BaseBulletSound.Off();
