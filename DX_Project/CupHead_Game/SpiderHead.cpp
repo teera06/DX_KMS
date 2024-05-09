@@ -29,7 +29,6 @@ ASpiderHead::ASpiderHead()
 	SpiderHead->SetAutoSize(1.0f, true);
 
 	SpiderHeadCol->AddPosition(FVector::Down * 50.0f);
-	SpiderHead->SetPlusColor(FVector(0.05f, 0.05f, 0.05f));
 }
 
 ASpiderHead::~ASpiderHead()
@@ -57,7 +56,7 @@ void ASpiderHead::Tick(float _DeltaTime)
 
 	if (DamgeColorDelay < 0)
 	{
-		SpiderHead->SetPlusColor(FVector(0.05f, 0.05f, 0.05f));
+		SpiderHead->SetPlusColor(FVector(0.0f, 0.0f, 0.0f));
 		DamgeColorDelay = 0.25f;
 	}
 	Phase1.Update(_DeltaTime);

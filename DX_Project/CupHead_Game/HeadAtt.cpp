@@ -29,7 +29,6 @@ AHeadAtt::AHeadAtt()
 	headatt->SetSprite("devil_ph1_dragon_attack_0001.png");
 	headatt->SetSamplering(ETextureSampling::LINEAR);
 	headatt->SetAutoSize(1.0f, true);
-	headatt->SetPlusColor(FVector(0.05f, 0.05f, 0.05f));
 }
 
 AHeadAtt::~AHeadAtt()
@@ -57,7 +56,7 @@ void AHeadAtt::Tick(float _DeltaTime)
 
 	if (DamgeColorDelay < 0)
 	{
-		headatt->SetPlusColor(FVector(0.05f, 0.05f, 0.05f));
+		headatt->SetPlusColor(FVector(0.0f, 0.0f, 0.0f));
 		DamgeColorDelay = 0.25f;
 	}
 

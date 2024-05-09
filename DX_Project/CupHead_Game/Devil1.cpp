@@ -38,7 +38,6 @@ ADevil1::ADevil1()
 	PhaseChange2->SetOrder(ERenderOrder::BossSkillMonster);
 	PhaseChange2->SetSprite("devil_intro_pupil_0002.png");
 	PhaseChange2->SetSamplering(ETextureSampling::LINEAR);
-	PhaseChange2->SetPlusColor(FVector(0.05f, 0.05f, 0.05f));
 	PhaseChange2->SetAutoSize(1.0f, true);
 
 	Boss2 = CreateDefaultSubObject<USpriteRenderer>("Boss2");
@@ -83,10 +82,6 @@ ADevil1::ADevil1()
 
 	spear->AddPosition(FVector(-40.0f, -22.0f, 0.0f));
 
-	Boss2->SetPlusColor(FVector(0.05f, 0.05f, 0.05f));
-	BossHead->SetPlusColor(FVector(0.05f, 0.05f, 0.05f));
-	BossBody->SetPlusColor(FVector(0.05f, 0.05f, 0.05f));
-	spear->SetPlusColor(FVector(0.05f, 0.05f, 0.05f));
 
 	Boss2Phase2 = CreateDefaultSubObject<UCollision>("Boss2Phase2");
 	Boss2Phase2->SetupAttachment(Root);
@@ -156,10 +151,10 @@ void ADevil1::Tick(float _DeltaTime)
 
 	if (DamgeColorDelay < 0)
 	{
-		Boss2->SetPlusColor(FVector(0.05f, 0.05f, 0.05f));
-		BossHead->SetPlusColor(FVector(0.05f, 0.05f, 0.05f));
-		BossBody->SetPlusColor(FVector(0.05f, 0.05f, 0.05f));
-		spear->SetPlusColor(FVector(0.05f, 0.05f, 0.05f));
+		Boss2->SetPlusColor(FVector(0.0f, 0.0f, 0.0f));
+		BossHead->SetPlusColor(FVector(0.0f, 0.0f, 0.0f));
+		BossBody->SetPlusColor(FVector(0.0f, 0.0f, 0.0f));
+		spear->SetPlusColor(FVector(0.0f, 0.0f, 0.0f));
 		hitCheck = false;
 		DamgeColorDelay = 0.25f;
 	}
