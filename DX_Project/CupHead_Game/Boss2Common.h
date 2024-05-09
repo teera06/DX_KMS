@@ -37,7 +37,7 @@ protected:
 
 	virtual void AniCreate();
 
-	float DamgeColorDelay = 0.35f;
+	float DamgeColorDelay = 0.25f;
 
 	static int phasecheck;
 	static float coolDownTime;

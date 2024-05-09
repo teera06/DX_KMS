@@ -38,6 +38,7 @@ ADevil1::ADevil1()
 	PhaseChange2->SetOrder(ERenderOrder::BossSkillMonster);
 	PhaseChange2->SetSprite("devil_intro_pupil_0002.png");
 	PhaseChange2->SetSamplering(ETextureSampling::LINEAR);
+	PhaseChange2->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 	PhaseChange2->SetAutoSize(1.0f, true);
 
 	Boss2 = CreateDefaultSubObject<USpriteRenderer>("Boss2");
@@ -48,6 +49,7 @@ ADevil1::ADevil1()
 	Boss2->SetSprite("devil_ph1_intro_0004.png");
 	Boss2->SetSamplering(ETextureSampling::LINEAR);
 	Boss2->SetAutoSize(1.0f, true);
+	Boss2->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 
 	BossHead= CreateDefaultSubObject<USpriteRenderer>("BossHead");
 
@@ -57,6 +59,7 @@ ADevil1::ADevil1()
 	BossHead->SetSprite("devil_ph1_trident_spin_head_0001.png");
 	BossHead->SetSamplering(ETextureSampling::LINEAR);
 	BossHead->SetAutoSize(1.0f, true);
+	BossHead->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 
 	BossHead->AddPosition(FVector(-50.0f, 230.0f, 0.0f));
 
@@ -68,6 +71,7 @@ ADevil1::ADevil1()
 	BossBody->SetSprite("devil_ph1_trident_spin_body_0001.png");
 	BossBody->SetSamplering(ETextureSampling::LINEAR);
 	BossBody->SetAutoSize(1.0f, true);
+	BossBody->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 
 	BossBody->AddPosition(FVector(-50.0f, -75.0f, 0.0f));
 
@@ -79,7 +83,8 @@ ADevil1::ADevil1()
 	spear->SetSprite("devil_ph1_trident_spin_attack_0001.png");
 	spear->SetSamplering(ETextureSampling::LINEAR);
 	spear->SetAutoSize(1.0f, true);
-	
+	spear->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
+
 	spear->AddPosition(FVector(-40.0f, -22.0f, 0.0f));
 
 
@@ -146,7 +151,7 @@ void ADevil1::Tick(float _DeltaTime)
 		BossHead->SetPlusColor(FVector(0.0f, 0.0f, 0.0f));
 		BossBody->SetPlusColor(FVector(0.0f, 0.0f, 0.0f));
 		spear->SetPlusColor(FVector(0.0f, 0.0f, 0.0f));
-		DamgeColorDelay = 0.35f;
+		DamgeColorDelay = 0.25f;
 	}
 
 	coolDownTime -= _DeltaTime;
