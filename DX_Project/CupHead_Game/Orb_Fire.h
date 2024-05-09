@@ -52,7 +52,7 @@ private:
 
 	
 
-	float Speed = 350.0f;
+	float Speed = 450.0f;
 
 	float Delay = 1.5f;
 

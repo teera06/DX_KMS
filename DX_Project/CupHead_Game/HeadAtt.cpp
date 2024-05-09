@@ -111,7 +111,7 @@ void AHeadAtt::DragonHeadSmile(float _DeltaTime)
 
 void AHeadAtt::DragonHeadDisappear(float _DeltaTime)
 {
-	AddActorLocation(FVector::Left * 1500.0f * _DeltaTime);
+	AddActorLocation(FVector::Left * 1600.0f * _DeltaTime);
 
 	if (GetActorLocation().iX() <= -1000)
 	{
