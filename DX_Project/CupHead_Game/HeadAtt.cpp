@@ -29,6 +29,7 @@ AHeadAtt::AHeadAtt()
 	headatt->SetSprite("devil_ph1_dragon_attack_0001.png");
 	headatt->SetSamplering(ETextureSampling::LINEAR);
 	headatt->SetAutoSize(1.0f, true);
+	headatt->SetPlusColor(FVector(0.05f, 0.05f, 0.05f));
 }
 
 AHeadAtt::~AHeadAtt()
@@ -47,7 +48,19 @@ void AHeadAtt::BeginPlay()
 void AHeadAtt::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-	
+	if (true == hitCheck)
+	{
+		headatt->SetPlusColor(FVector(0.15f, 0.15f, 0.15f));
+	}
+
+	DamgeColorDelay -= _DeltaTime;
+
+	if (DamgeColorDelay < 0)
+	{
+		headatt->SetPlusColor(FVector(0.05f, 0.05f, 0.05f));
+		DamgeColorDelay = 0.25f;
+	}
+
 	Phase1.Update(_DeltaTime);
 	PlayerCollisionCheck();
 }

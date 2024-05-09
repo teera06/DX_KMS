@@ -402,6 +402,7 @@ void ADevil1::Phase1Idle(float _DeltaTime)
 	{
 		UEngineSound::SoundPlay("devil_spider_head_intro.wav");
 		Boss2->SetPosition(FVector(-60.0f, 0.0f, 0.0f));
+		Devil1->SetActive(false);
 		Phase1.ChangeState("SpiderTransform");
 		return;
 	}
@@ -409,6 +410,7 @@ void ADevil1::Phase1Idle(float _DeltaTime)
 	if (coolDownTime < 0 && 3 == attOrder)
 	{
 		UEngineSound::SoundPlay("devil_handclap_snake_001.wav");
+		Devil1->SetActive(false);
 		Phase1.ChangeState("DragonTransform");
 		return;
 	}
@@ -417,6 +419,7 @@ void ADevil1::Phase1Idle(float _DeltaTime)
 	{
 		UEngineSound::SoundPlay("sfx_level_devil_sitting_devil_ram_morph_start.wav");
 		Boss2->SetPosition(FVector(-45.0f, 0.0f, 0.0f));
+		Devil1->SetActive(false);
 		Phase1.ChangeState("RamTransform");
 		return;
 	}
@@ -449,6 +452,7 @@ void ADevil1::DragonReverse(float _DeltaTime)
 		coolDownTime = 6.0f;
 		attOrder = 4;
 		SkillDestory = false;
+		Devil1->SetActive(true);
 		Phase1.ChangeState("Phase1Idle");
 		return;
 	}
@@ -482,6 +486,7 @@ void ADevil1::RamReverse(float _DeltaTime)
 		attOrder = 1;
 		SkillDestory = false;
 		Boss2->SetPosition(FVector(0.0f, 0.0f, 0.0f));
+		Devil1->SetActive(true);
 		Phase1.ChangeState("Phase1Idle");
 		return;
 	}
@@ -515,6 +520,7 @@ void ADevil1::SpiderReverse(float _DeltaTime)
 		attOrder = 3;
 		SkillDestory = false;
 		Boss2->SetPosition(FVector(0.0f, 0.0f, 0.0f));
+		Devil1->SetActive(true);
 		Phase1.ChangeState("Phase1Idle");
 		return;
 	}
