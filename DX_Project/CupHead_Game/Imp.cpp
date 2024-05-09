@@ -22,11 +22,11 @@ AImp::AImp()
 	Imp->SetSamplering(ETextureSampling::LINEAR);
 	Imp->SetAutoSize(1.0f, true);
 
-	MonsterCollision = CreateDefaultSubObject<UCollision>("MonsterCollision2");
-	MonsterCollision->SetupAttachment(Root);
-	MonsterCollision->SetScale(FVector(70.0f, 70.0f, 100.0f));
-	MonsterCollision->SetCollisionGroup(ECollisionOrder::imp);
-	MonsterCollision->SetCollisionType(ECollisionType::RotRect);
+	ImpCollision = CreateDefaultSubObject<UCollision>("ImpCollision");
+	ImpCollision->SetupAttachment(Root);
+	ImpCollision->SetScale(FVector(70.0f, 70.0f, 100.0f));
+	ImpCollision->SetCollisionGroup(ECollisionOrder::imp);
+	ImpCollision->SetCollisionType(ECollisionType::RotRect);
 
 	SetRoot(Root);
 }
@@ -82,6 +82,21 @@ void AImp::CalDir(float _DeltaTime)
 	else {
 		Imp->SetDir(EEngineDir::Right);
 	}
+}
+
+void AImp::PlayerCollisionCheck()
+{
+	ImpCollision->CollisionEnter(ECollisionOrder::Player, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		AActor* Ptr = _Collison->GetActor();
+		APlay_Cuphead* Player = dynamic_cast<APlay_Cuphead*>(Ptr);
+
+		if (nullptr != Player)
+		{
+			Player->AddActorLocation(FVector::Up * 100.0f);
+			Player->State.ChangeState("hit");
+		}
+	});
 }
 
 void AImp::patternInit()
@@ -173,7 +188,7 @@ void AImp::ImpAttack(float _DeltaTime)
 	CalDir(_DeltaTime);
 
 	AddActorLocation(MoveNorMalize * Speed * _DeltaTime);
-
+	PlayerCollisionCheck();
 	if (Delay < 0)
 	{
 		spinSound.Off();
@@ -211,7 +226,7 @@ void AImp::ImpRandomMove(float _DeltaTime)
 	{
 		AddActorLocation((FVector::Up + FVector::Left) * Speed * _DeltaTime);
 	}
-
+	PlayerCollisionCheck();
 	if (Delay < 0)
 	{
 		pattern.ChangeState("ImpAttackEnd");

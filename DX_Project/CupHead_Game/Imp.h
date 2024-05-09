@@ -34,7 +34,7 @@ private:
 	UEngineSoundPlayer spinSound;
 	USpriteRenderer* Imp = nullptr;
 
-	UCollision* MonsterCollision = nullptr;
+	UCollision* ImpCollision = nullptr;
 
 	FVector MoveNorMalize = FVector::Zero;
 
@@ -46,6 +46,7 @@ private:
 	bool DieCheck = false;
 
 	void CalDir(float _DeltaTime);
+	void PlayerCollisionCheck();
 
 	void patternInit();
 	void Start(float _DeltaTime);
