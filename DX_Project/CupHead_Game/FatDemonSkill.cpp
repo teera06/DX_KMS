@@ -6,7 +6,7 @@
 #include <EngineCore/Collision.h>
 
 #include "ContentsENum.h"
-#include "Play_Cuphead.h";
+#include "Play_Cuphead.h"
 
 AFatDemonSkill::AFatDemonSkill()
 {
@@ -14,7 +14,7 @@ AFatDemonSkill::AFatDemonSkill()
 	Skill = CreateDefaultSubObject<USpriteRenderer>("Skill");
 	Skill->SetupAttachment(Root);
 
-	Skill->SetOrder(ERenderOrder::SkillMonsterSkill);
+	Skill->SetOrder(ERenderOrder::FrontSkill);
 	Skill->SetSprite("devil_ph3_fat_demon_skull_0005.png");
 	Skill->SetSamplering(ETextureSampling::LINEAR);
 	Skill->SetAutoSize(0.85f, true);

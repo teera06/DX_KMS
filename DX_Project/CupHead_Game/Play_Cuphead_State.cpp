@@ -29,6 +29,7 @@
 #include "DevilBall.h"
 #include "smallskill.h"
 #include "BombBat.h"
+#include "FatDemonSkill.h"
 
 #include "Hole.h"
 
@@ -57,7 +58,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 		//AddActorLocation(FVector::Up * 1000.0f* _DeltaTime);
 
 		GravityVector = FVector::Down * 300.0f;
-		AddGuage(60);
+		AddGuage(ParryGuage);
 
 		PlayerCollision->SetActive(false);
 	});
@@ -75,7 +76,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 
 		//AddActorLocation(FVector::Up * 1000.0f * _DeltaTime);
 		GravityVector = FVector::Down*300.0f;
-		AddGuage(40);
+		AddGuage(ParryGuage);
 		PlayerCollision->SetActive(false);
 	});
 
@@ -92,7 +93,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 			GravityVector = FVector::Down * 300.0f;
 
 			Fire1->Destroy();
-			AddGuage(40);
+			AddGuage(ParryGuage);
 			PlayerCollision->SetActive(false);
 		}
 
@@ -111,7 +112,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 			GravityVector = FVector::Down * 300.0f;
 
 			Fire1->Destroy();
-			AddGuage(40);
+			AddGuage(ParryGuage);
 			PlayerCollision->SetActive(false);
 		}
 	});
@@ -129,7 +130,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 			GravityVector = FVector::Down * 300.0f;
 
 			skill->Destroy();
-			AddGuage(40);
+			AddGuage(ParryGuage);
 			PlayerCollision->SetActive(false);
 		}
 
@@ -148,7 +149,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 			GravityVector = FVector::Down * 300.0f;
 
 			skill->Destroy();
-			AddGuage(40);
+			AddGuage(ParryGuage);
 			PlayerCollision->SetActive(false);
 		}
 	});
@@ -166,7 +167,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 
 			Fire->GetMainRender()->SetActive(false);
 			Fire->GetMainCollision()->SetActive(false);
-			AddGuage(40);
+			AddGuage(ParryGuage);
 			PlayerCollision->SetActive(false);
 		});
 
@@ -183,7 +184,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 
 			Fire->GetMainRender()->SetActive(false);
 			Fire->GetMainCollision()->SetActive(false);
-			AddGuage(40);
+			AddGuage(ParryGuage);
 			PlayerCollision->SetActive(false);
 		});
 
@@ -200,7 +201,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 				GravityVector = FVector::Down * 300.0f;
 
 				ball->Destroy();
-				AddGuage(40);
+				AddGuage(ParryGuage);
 				PlayerCollision->SetActive(false);
 			}
 
@@ -219,7 +220,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 				GravityVector = FVector::Down * 300.0f;
 
 				ball->Destroy();
-				AddGuage(40);
+				AddGuage(ParryGuage);
 				PlayerCollision->SetActive(false);
 			}
 		});
@@ -236,7 +237,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 		GravityVector = FVector::Down * 300.0f;
 
 		Monster->Destroy();
-		AddGuage(40);
+		AddGuage(ParryGuage);
 		PlayerCollision->SetActive(false);
 	});
 
@@ -244,17 +245,58 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 	{
 
 		AActor* Ptr = _Collison->GetActor();
-		ABombBat* Monster = dynamic_cast<ABombBat*>(Ptr);
-		Effect->SetActive(true);
-		UEngineSound::SoundPlay("sfx_player_parry_slap_01.wav");
-		GEngine->SetGlobalTimeScale(0.6f);
-		GravityVector = FVector::Down * 300.0f;
+		Asmallskill* skill = dynamic_cast<Asmallskill*>(Ptr);
 
-		Monster->Destroy();
-		AddGuage(40);
-		PlayerCollision->SetActive(false);
+		if (true == skill->GetParryCheck())
+		{
+			Effect->SetActive(true);
+			UEngineSound::SoundPlay("sfx_player_parry_slap_01.wav");
+			GEngine->SetGlobalTimeScale(0.6f);
+			GravityVector = FVector::Down * 300.0f;
+
+			skill->Destroy();
+			AddGuage(ParryGuage);
+			PlayerCollision->SetActive(false);
+		}
 	});
 
+
+	ParryCollision->CollisionEnter(ECollisionOrder::FatSkill, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		AActor* Ptr = _Collison->GetActor();
+		AFatDemonSkill* skill = dynamic_cast<AFatDemonSkill*>(Ptr);
+
+		if (true == skill->GetParryCheck())
+		{
+			Effect->SetActive(true);
+			UEngineSound::SoundPlay("sfx_player_parry_slap_01.wav");
+			GEngine->SetGlobalTimeScale(0.6f);
+			GravityVector = FVector::Down * 300.0f;
+
+			skill->Destroy();
+			AddGuage(ParryGuage);
+			PlayerCollision->SetActive(false);
+		}
+
+	});
+
+	ParryCollision->CollisionStay(ECollisionOrder::FatSkill, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		AActor* Ptr = _Collison->GetActor();
+		AFatDemonSkill* skill = dynamic_cast<AFatDemonSkill*>(Ptr);
+
+		if (true == skill->GetParryCheck())
+		{
+			Effect->SetActive(true);
+			UEngineSound::SoundPlay("sfx_player_parry_slap_01.wav");
+			GEngine->SetGlobalTimeScale(0.6f);
+			GravityVector = FVector::Down * 300.0f;
+
+			skill->Destroy();
+			AddGuage(ParryGuage);
+			PlayerCollision->SetActive(false);
+		}
+	});
 
 }
 

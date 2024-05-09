@@ -128,11 +128,14 @@ private:
 	float Hp1Time = 0.55f;
 
 	int GrounYCheck = 0;
+
+	// 게이지 바 관련 변수들 함부로 건들지 말것
 	int GuageGet = 0;
 	int CurGuageCount = 0;
 	int PrevGuageCount = 0;
-
 	int overGuageGet = 0;
+
+	int ParryGuage = 60;
 
 	static int Hp;
 
