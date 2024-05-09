@@ -165,22 +165,22 @@ void ADevil2::Phase1StateInit()
 
 void ADevil2::AniCreate()
 {
-	Boss2->CreateAnimation("DevilPhase2Idle", "DevilPhase2Idle", 0.075f);
-	Boss2->CreateAnimation("BombAttack", "BombAttack", 0.075f);
-	Boss2->CreateAnimation("SpiralAttack", "SpiralAttack", 0.075f);
-	Boss2->CreateAnimation("SpiralAttackEnd", "SpiralAttackEnd", 0.075f);
+	Boss2->CreateAnimation("DevilPhase2Idle", "DevilPhase2Idle", 0.065f);
+	Boss2->CreateAnimation("BombAttack", "BombAttack", 0.065f);
+	Boss2->CreateAnimation("SpiralAttack", "SpiralAttack", 0.065f);
+	Boss2->CreateAnimation("SpiralAttackEnd", "SpiralAttackEnd", 0.065f);
 
-	Boss2->CreateAnimation("Phase2ToPhase3", "Phase2ToPhase3", 0.075f);
-	Boss2->CreateAnimation("Phase3Idle", "Phase3Idle", 0.075f);
+	Boss2->CreateAnimation("Phase2ToPhase3", "Phase2ToPhase3", 0.065f);
+	Boss2->CreateAnimation("Phase3Idle", "Phase3Idle", 0.065f);
 	Boss2->CreateAnimation("DevilSummonImpIdle", "DevilSummonImpIdle", 0.075f);
 
 	Boss2->CreateAnimation("DevilStartCrying", "DevilStartCrying", 0.065f);
 	Boss2->CreateAnimation("DevilCrying", "DevilCrying", 0.055f);
 	Boss2->CreateAnimation("DevilKnockout", "DevilKnockout", 0.075f);
 
-	DevilNeck->CreateAnimation("DevilNeck", "DevilNeck", 0.085f);
+	DevilNeck->CreateAnimation("DevilNeck", "DevilNeck", 0.075f);
 
-	Hand->CreateAnimation("FatDemonIntro", "FatDemonIntro", 0.075f);
+	Hand->CreateAnimation("FatDemonIntro", "FatDemonIntro", 0.065f);
 	Hand->CreateAnimation("FatDemonRelease", "FatDemonRelease", 0.065f,false);
 
 

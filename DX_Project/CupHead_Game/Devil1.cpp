@@ -222,25 +222,25 @@ void ADevil1::Phase1StateInit()
 void ADevil1::AniCreate()
 {
 	Boss2->CreateAnimation("Phase1Intro", "DevilIntro", 0.1f);
-	Boss2->CreateAnimation("Phase1Idle", "DevilIdle", 0.075f);
-	Boss2->CreateAnimation("DragonTransform", "DragonTransform", 0.075f);
-	Boss2->CreateAnimation("DragonIdle", "DragonIdle", 0.075f);
+	Boss2->CreateAnimation("Phase1Idle", "DevilIdle", 0.065f);
+	Boss2->CreateAnimation("DragonTransform", "DragonTransform", 0.065f);
+	Boss2->CreateAnimation("DragonIdle", "DragonIdle", 0.065f);
 	Boss2->CreateAnimation("DragonReverse", "DragonTransform", 0.055f,false,31,2);
 
-	Boss2->CreateAnimation("RamTransform", "RamTransform", 0.075f);
-	Boss2->CreateAnimation("RamIdle", "RamIdle", 0.075f);
+	Boss2->CreateAnimation("RamTransform", "RamTransform", 0.065f);
+	Boss2->CreateAnimation("RamIdle", "RamIdle", 0.065f);
 	Boss2->CreateAnimation("RamReverse", "RamTransform", 0.055f, true, 27, 2);
 
-	Boss2->CreateAnimation("SpiderTransform", "SpiderTransform", 0.075f);
-	Boss2->CreateAnimation("SpiderIdle", "SpiderIdle", 0.075f);
+	Boss2->CreateAnimation("SpiderTransform", "SpiderTransform", 0.065f);
+	Boss2->CreateAnimation("SpiderIdle", "SpiderIdle", 0.065f);
 	Boss2->CreateAnimation("SpiderReverse", "SpiderTransform", 0.055f, false, 53, 2);
 
-	Boss2->CreateAnimation("CreateOrbsIntro", "CreateOrbsIntro", 0.075f);
+	Boss2->CreateAnimation("CreateOrbsIntro", "CreateOrbsIntro", 0.065f);
 	Boss2->CreateAnimation("CreateOrbsReverse", "CreateOrbsIntro", 0.055f,false,7,0);
 
-	BossHead->CreateAnimation("CreateOrbsHead", "CreateOrbsHead", 0.075f);
-	BossBody->CreateAnimation("CreateOrbsBody", "CreateOrbsBody", 0.075f);
-	spear->CreateAnimation("CreateOrbsTrident", "CreateOrbsTrident", 0.075f);
+	BossHead->CreateAnimation("CreateOrbsHead", "CreateOrbsHead", 0.065f);
+	BossBody->CreateAnimation("CreateOrbsBody", "CreateOrbsBody", 0.065f);
+	spear->CreateAnimation("CreateOrbsTrident", "CreateOrbsTrident", 0.065f);
 	IntroAni->CreateAnimation("PupilIntro", "PupilIntro", 0.055f);
 	PhaseChange2->CreateAnimation("Phase1Death", "Phase1Death", 0.055f,false);
 

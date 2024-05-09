@@ -1995,6 +1995,8 @@ void APlay_Cuphead::hit(float _DeltaTime)
 		State.ChangeState("Idle");
 		return;
 	}
+
+	MoveUpDate(_DeltaTime);
 }
 
 void APlay_Cuphead::Parry(float _DeltaTime)

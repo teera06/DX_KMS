@@ -22,7 +22,6 @@ AAxe::AAxe()
 
 	AxeCollision = CreateDefaultSubObject<UCollision>("Collision");
 	AxeCollision->SetupAttachment(Root);
-	AxeCollision->SetPosition(FVector(0.0f, 00.0f, 0.0f));
 	AxeCollision->SetScale(FVector(70.0f, 70.0f, 100.0f));
 
 	AxeCollision->SetCollisionGroup(ECollisionOrder::Axe);
@@ -52,7 +51,6 @@ void AAxe::Tick(float _DeltaTime)
 
 	Super::Tick(_DeltaTime);
 	pattern.Update(_DeltaTime);
-	CollisionCheck();
 
 	
 	//AddActorRotation(FVector(0.0f, 0.0f, UEngineMath::DToR) * OneSpeed * _DeltaTime);
@@ -80,8 +78,6 @@ void AAxe::CollisionCheck()
 
 		Player->AddActorLocation(FVector::Up * 100.0f);
 		Player->State.ChangeState("hit");
-
-		Destroy();
 	});
 }
 
