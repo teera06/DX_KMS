@@ -16,8 +16,8 @@ ARamArms::ARamArms()
 
 	RamArmCol = CreateDefaultSubObject<UCollision>("RamArmCol");
 	RamArmCol->SetupAttachment(Root);
-	RamArmCol->SetPosition(FVector(200.0f, 0.0f, 0.0f));
-	RamArmCol->SetScale(FVector(500.0f, 100.0f, 100.0f));
+	RamArmCol->SetPosition(FVector(0.0f, -50.0f, 0.0f));
+	RamArmCol->SetScale(FVector(930.0f, 100.0f, 100.0f));
 	RamArmCol->SetCollisionGroup(ECollisionOrder::RamArmCol);
 	RamArmCol->SetCollisionType(ECollisionType::RotRect);
 
