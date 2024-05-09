@@ -2205,6 +2205,7 @@ void APlay_Cuphead::hit(float _DeltaTime)
 		GroundObject();
 		Hp -= 1;
 		JumpVector = FVector::Zero;
+		PowerShoot = false;
 		NoGravity = false;
 		IsHitEffect = false;
 		State.ChangeState("Idle");
