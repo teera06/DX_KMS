@@ -215,10 +215,7 @@ void ABaseBullet::Collisiongather()
 		    UEngineSound::SoundPlay("sfx_player_shoot_hit_01.wav");
 			AActor* Ptr = _Collison->GetActor();
 			ADevil1* Monster = dynamic_cast<ADevil1*>(Ptr);
-			Monster->GetBoss2Render()->SetPlusColor(FVector(0.15f, 0.15f, 0.15f));
-			Monster->GetBossHead()->SetPlusColor(FVector(0.15f, 0.15f, 0.15f));
-			Monster->GetBossBody()->SetPlusColor(FVector(0.15f, 0.15f, 0.15f));
-			Monster->Getspear()->SetPlusColor(FVector(0.15f, 0.15f, 0.15f));
+			Monster->SethitCheck(true);
 			DestroyCheck = true;
 			BulletRender->ChangeAnimation("Peashot_Death");
 			BulletCollision->SetActive(false);

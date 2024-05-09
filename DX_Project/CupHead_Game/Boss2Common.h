@@ -22,7 +22,7 @@ public:
 		return Hp;
 	}
 
-	static void SetHp(const int& _Hp)
+	static void SetHp(int _Hp)
 	{
 		Hp = _Hp;
 	}
@@ -30,6 +30,11 @@ public:
 	static int Getphasecheck()
 	{
 		return phasecheck;
+	}
+
+	static void SethitCheck(bool _hitCheck)
+	{
+		hitCheck = _hitCheck;
 	}
 
 protected:
@@ -43,6 +48,8 @@ protected:
 	static float coolDownTime;
 	static int attOrder;
 	static bool SkillDestory;
+
+	static bool hitCheck;
 private:
 	static int Hp;
 };

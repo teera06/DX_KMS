@@ -27,26 +27,7 @@ public:
 	ADevil1& operator=(const ADevil1& _Other) = delete; // 디폴트 대입 연산자
 	ADevil1& operator=(ADevil1&& _Other) noexcept = delete;
 
-	USpriteRenderer* GetBoss2Render()
-	{
-		return Boss2;
-	}
-
-	USpriteRenderer* GetBossHead()
-	{
-		return BossHead;
-	}
-
-	USpriteRenderer* GetBossBody()
-	{
-		return BossBody;
-	}
-
-	USpriteRenderer* Getspear()
-	{
-		return spear;
-	}
-
+	
 	void SetDieTime(const float& _DieTime)
 	{
 		DieTime = _DieTime;
