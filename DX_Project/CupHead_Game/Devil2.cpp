@@ -89,12 +89,17 @@ ADevil2::ADevil2()
 	}
 	
 	DevilNeck->AddPosition(FVector(40.0f, -400.0f, 0.0f));
+
+	BossStage2BGM = UEngineSound::SoundPlay("MUS_DevilPhase3.wav");
+	BossStage2BGM.Loop();
+
 }
 
 ADevil2::~ADevil2()
 {
 	Summons.clear();
 	CrySound.Off();
+	BossStage2BGM.Off();
 }
 
 void ADevil2::BeginPlay()

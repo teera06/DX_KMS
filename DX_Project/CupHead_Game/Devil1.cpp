@@ -100,11 +100,14 @@ ADevil1::ADevil1()
 	SetRoot(Root);
 
 	
+	BossStage1BGM = UEngineSound::SoundPlay("MUS_DevilPhase1_2.wav");
+	BossStage1BGM.Loop();
 
 }
 
 ADevil1::~ADevil1()
 {
+	BossStage1BGM.Off();
 	NewFireS.clear();
 	NewDevilBalls.clear();
 }
@@ -594,6 +597,7 @@ void ADevil1::Phase2Change(float _DeltaTime)
 		DieTime -= _DeltaTime;
 		if (DieTime < 0)
 		{
+			BossStage1BGM.Off();
 			Destroy();
 		}
 	}

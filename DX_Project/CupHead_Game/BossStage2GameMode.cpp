@@ -78,7 +78,6 @@ void ABossStage2GameMode::Tick(float _DeltaTime)
 void ABossStage2GameMode::LevelEnd(ULevel* _NextLevel)
 {
 	Super::LevelEnd(_NextLevel);
-	BossStageBGM.Off();
 	GEngine->DestroyLevel("BossStage2GameMode"); // 종료되는 시점 레벨 삭제 (그 안의 액터 같이 삭제 정리)
 }
 
@@ -86,6 +85,4 @@ void ABossStage2GameMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
 	UEngineSound::SoundPlay("sfx_level_announcer_0001_a.wav");
-	BossStageBGM = UEngineSound::SoundPlay("MUS_DevilPhase3.wav");
-	BossStageBGM.Loop();
 }

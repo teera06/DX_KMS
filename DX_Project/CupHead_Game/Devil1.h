@@ -61,6 +61,8 @@ protected:
 
 	void AniCreate() override;
 private:
+	UEngineSoundPlayer BossStage1BGM;
+
 	std::shared_ptr<AHeadAtt> NewHeadAtt = nullptr;
 	std::shared_ptr<ARamArms> NewRamArmsL = nullptr;
 	std::shared_ptr<ARamArms> NewRamArmsR = nullptr;

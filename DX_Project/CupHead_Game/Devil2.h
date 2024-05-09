@@ -37,6 +37,7 @@ protected:
 
 	void AniCreate() override;
 private:
+	UEngineSoundPlayer BossStage2BGM;
 	UEngineSoundPlayer CrySound;
 
 	std::shared_ptr<ABombBat> NewBombBat = nullptr;
