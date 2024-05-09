@@ -401,9 +401,13 @@ void APlay_Cuphead::createBullet()
 		UpShoot();
 		break;
 	case EShootDir::DownShoot:
+		DownShoot();
 		break;
 	case EShootDir::DuckShoot:
 		DuckShoot();
+		break;
+	case EShootDir::DiagonalDownShoot:
+		DiagonalDownShoot();
 		break;
 	case EShootDir::DiagonalUpShoot:
 		DiagonalUpShoot();
@@ -603,6 +607,79 @@ void APlay_Cuphead::DiagonalUpShootCB()
 		}
 		else {
 			NewBullet->SetActorLocation({ GetActorLocation().X - shootXpos,GetActorLocation().Y + bulletY2 + 10.0f,0.0f });
+			shootY = false;
+
+		}
+	}
+}
+
+void APlay_Cuphead::DownShoot()
+{
+	BulletDir = FVector::Down;
+
+	NewBullet->SetActorRotation({ 0.0f,0.0f,-90.0f });
+	switch (Dir)
+	{
+	case EDir::None:
+		break;
+	case EDir::Left:
+		if (BulletDir.iY() == -1)
+		{
+			NewBullet->SetActorLocation({ GetActorLocation().X - 95.0f + shootXpos,GetActorLocation().Y,0.0f });
+			if (false == shootY)
+			{
+				shootY = true;
+			}
+			else {
+				shootY = false;
+			}
+		}
+		break;
+	case EDir::Right:
+		if (BulletDir.iY() == -1)
+		{
+			NewBullet->SetActorLocation({ GetActorLocation().X - 35.0f + shootXpos,GetActorLocation().Y,0.0f });
+			if (false == shootY)
+			{
+				shootY = true;
+			}
+			else {
+
+				shootY = false;
+			}
+		}
+		break;
+	default:
+		break;
+	}
+}
+
+void APlay_Cuphead::DiagonalDownShoot()
+{
+
+	if (BulletDir.iX() == 1)
+	{
+		NewBullet->SetActorRotation({ 0.0f,0.0f,315.0f });
+		if (false == shootY)
+		{
+			NewBullet->SetActorLocation({ GetActorLocation().X + shootXpos,GetActorLocation().Y + 35.0f,0.0f });
+			shootY = true;
+		}
+		else {
+			NewBullet->SetActorLocation({ GetActorLocation().X + shootXpos,GetActorLocation().Y  + 25.0f,0.0f });
+			shootY = false;
+		}
+	}
+	else if (BulletDir.iX() == -1)
+	{
+		NewBullet->SetActorRotation({ 0.0f,0.0f,-315.0f });
+		if (false == shootY)
+		{
+			NewBullet->SetActorLocation({ GetActorLocation().X - shootXpos,GetActorLocation().Y + 35.0f,0.0f });
+			shootY = true;
+		}
+		else {
+			NewBullet->SetActorLocation({ GetActorLocation().X - shootXpos,GetActorLocation().Y + 25.0f,0.0f });
 			shootY = false;
 
 		}
@@ -1202,9 +1279,14 @@ void APlay_Cuphead::DirCheck()
 				BulletStart->SetPosition({ -30.0f,155.0f,0.0f });
 				break;
 			case EShootDir::DownShoot:
+				BulletStart->SetPosition({ -30.0f,0.0f,0.0f });
 				break;
 			case EShootDir::DuckShoot:
 				BulletStart->SetPosition({ -75.0f,40.0f,0.0f });
+				break;
+			case EShootDir::DiagonalDownShoot:
+				BulletDir += FVector::Down;
+				BulletStart->SetPosition({ -60.0f,30.0f,0.0f });
 				break;
 			case EShootDir::DiagonalUpShoot:
 				BulletDir += FVector::Up;
@@ -1234,9 +1316,14 @@ void APlay_Cuphead::DirCheck()
 				BulletStart->SetPosition({ 30.0f,155.0f,0.0f });
 				break;
 			case EShootDir::DownShoot:
+				BulletStart->SetPosition({ 30.0f,0.0f,0.0f });
 				break;
 			case EShootDir::DuckShoot:
 				BulletStart->SetPosition({70.0f,40.0f,0.0f });
+				break;
+			case EShootDir::DiagonalDownShoot:
+				BulletDir += FVector::Down;
+				BulletStart->SetPosition({ 60.0f,30.0f,0.0f });
 				break;
 			case EShootDir::DiagonalUpShoot:
 				BulletDir += FVector::Up;
@@ -2212,6 +2299,14 @@ void APlay_Cuphead::Aim_DiagonalDown(float _DeltaTime)
 		return;
 	}
 
+	if (true == IsPress('X'))
+	{
+		ShootStyle = EShootDir::DiagonalDownShoot;
+		BulletStart->SetActive(true);
+		State.ChangeState("Shoot_DiagonalDown");
+		return;
+	}
+
 
 	MoveUpDate(_DeltaTime);
 }
@@ -2238,7 +2333,13 @@ void APlay_Cuphead::Aim_Down(float _DeltaTime)
 		return;
 	}
 
-
+	if (true == IsPress('X'))
+	{
+		ShootStyle = EShootDir::DownShoot;
+		BulletStart->SetActive(true);
+		State.ChangeState("Shoot_Down");
+		return;
+	}
 
 	MoveUpDate(_DeltaTime);
 }
@@ -2344,8 +2445,41 @@ void APlay_Cuphead::Shoot_StraightCB(float _DeltaTime)
 	}
 }
 
-void APlay_Cuphead::Shoot_Down(float _DeltaTIme)
+void APlay_Cuphead::Shoot_Down(float _DeltaTime)
 {
+	DirCheck();
+	skillCoolTime -= _DeltaTime;
+	if (true == IsPress('X') && skillCoolTime < 0.0f)
+	{
+		BaseBulletSound.On();
+		createBullet();
+		skillCoolTime = SaveSkilltime;
+		return;
+	}
+
+	if (true == IsFree(VK_DOWN))
+	{
+		ShootStyle = EShootDir::IdleShoot;
+		State.ChangeState("Shoot_StraightCB");
+		return;
+	}
+
+	if ((true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT)))
+	{
+		ShootStyle = EShootDir::DiagonalDownShoot;
+		State.ChangeState("Shoot_DiagonalDown");
+		return;
+	}
+
+	if (true == IsFree('X'))
+	{
+		BaseBulletSound.Off();
+		BulletStart->SetActive(false);
+		State.ChangeState("Aim_Down");
+		return;
+	}
+
+	MoveUpDate(_DeltaTime);
 }
 
 void APlay_Cuphead::Shoot_DiagonalUp(float _DeltaTime)
@@ -2385,9 +2519,41 @@ void APlay_Cuphead::Shoot_DiagonalUp(float _DeltaTime)
 	MoveUpDate(_DeltaTime);
 }
 
-void APlay_Cuphead::Shoot_DiagonalDown(float _DeltaTIme)
+void APlay_Cuphead::Shoot_DiagonalDown(float _DeltaTime)
 {
+	DirCheck();
+	skillCoolTime -= _DeltaTime;
+	if (true == IsPress('X') && skillCoolTime < 0.0f)
+	{
+		int a = 0;
+		BaseBulletSound.On();
+		createBullet();
+		skillCoolTime = SaveSkilltime;
+		return;
+	}
 
+	if (true == IsFree('X'))
+	{
+		BaseBulletSound.Off();
+		BulletStart->SetActive(false);
+		State.ChangeState("Aim_DiagonalDown");
+		return;
+	}
+
+	if (true == IsFree(VK_DOWN))
+	{
+		ShootStyle = EShootDir::IdleShoot;
+		State.ChangeState("Shoot_StraightCB");
+		return;
+	}
+
+	if (true == IsFree(VK_RIGHT) && true == IsFree(VK_LEFT))
+	{
+		ShootStyle = EShootDir::DownShoot;
+		State.ChangeState("Shoot_Down");
+		return;
+	}
+	MoveUpDate(_DeltaTime);
 }
 
 void APlay_Cuphead::Shoot_UpCB(float _DeltaTime)
