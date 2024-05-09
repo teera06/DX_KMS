@@ -18,8 +18,8 @@ AHeadAtt::AHeadAtt()
 
 	DevilHeadCol = CreateDefaultSubObject<UCollision>("DevilBallCol");
 	DevilHeadCol->SetupAttachment(Root);
-	DevilHeadCol->SetPosition(FVector(400.0f, 0.0f, 0.0f));
-	DevilHeadCol->SetScale(FVector(500.0f, 100.0f, 100.0f));
+	//DevilHeadCol->SetPosition(FVector(400.0f, 0.0f, 0.0f));
+	DevilHeadCol->SetScale(FVector(1400.0f, 100.0f, 100.0f));
 	DevilHeadCol->SetCollisionGroup(ECollisionOrder::DevilHeadCol);
 	DevilHeadCol->SetCollisionType(ECollisionType::RotRect);
 
@@ -47,7 +47,7 @@ void AHeadAtt::BeginPlay()
 void AHeadAtt::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
-	//coolDownTime -= _DeltaTime;
+	
 	Phase1.Update(_DeltaTime);
 	PlayerCollisionCheck();
 }
