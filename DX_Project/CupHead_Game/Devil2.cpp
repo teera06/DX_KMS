@@ -121,10 +121,19 @@ void ADevil2::BeginPlay()
 void ADevil2::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+
+	if (true == hitCheck)
+	{
+		Boss2->SetPlusColor(ColorGet);
+		DevilNeck->SetPlusColor(ColorGet);
+	}
+
 	DamgeColorDelay -= _DeltaTime;
 
 	if (DamgeColorDelay < 0)
 	{
+		hitCheck = false;
 		Boss2->SetPlusColor(FVector(0.0f, 0.0f, 0.0f));
 		DamgeColorDelay = 0.35f;
 	}

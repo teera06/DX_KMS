@@ -24,11 +24,6 @@ public:
 	ADevil2& operator=(const ADevil2& _Other) = delete; // 디폴트 대입 연산자
 	ADevil2& operator=(ADevil2&& _Other) noexcept = delete;
 
-	USpriteRenderer* GetBoss2Render()
-	{
-		return Boss2;
-	}
-
 protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;

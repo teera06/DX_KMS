@@ -2453,6 +2453,8 @@ void APlay_Cuphead::Shoot_StraightCB(float _DeltaTime)
 		State.ChangeState("Shoot_DiagonalUp");
 		return;
 	}
+
+	MoveUpDate(_DeltaTime);
 }
 
 void APlay_Cuphead::Shoot_Down(float _DeltaTime)
@@ -2746,7 +2748,8 @@ void APlay_Cuphead::Boss2PhaseChange(float _DeltaTime)
 	{
 		UEngineSound::SoundPlay("sfx_player_intro_scared.wav");
 		PlayCuphead->SetActive(true);
-		SetActorLocation(FVector(-200.0f, 0.0f, 0.0f));
+		PlayCuphead->SetDir(EEngineDir::Right);
+		SetActorLocation(FVector(-200.0f, -130.0f, 0.0f));
 		State.ChangeState("Scared");
 		return;
 	}

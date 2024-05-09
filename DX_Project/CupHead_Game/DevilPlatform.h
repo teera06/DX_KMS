@@ -54,7 +54,7 @@ private:
 	int GroundOrder = 0;
 	
 
-	float Speed = 250.0f;
+	float Speed = 200.0f;
 
 	bool OneCheck = false;
 

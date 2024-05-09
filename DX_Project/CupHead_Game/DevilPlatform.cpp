@@ -83,7 +83,7 @@ void ADevilPlatform::Tick(float _DeltaTime)
 		OneCheck = true;
 		patternInit2();
 		CheckYDown = GetActorLocation().iY();
-		CheckYUP = GetActorLocation().iY() + 180;
+		CheckYUP = GetActorLocation().iY() + 100;
 	}
 
 	if (50 == ABoss2Common::GetHp() && false==HPCheck1)

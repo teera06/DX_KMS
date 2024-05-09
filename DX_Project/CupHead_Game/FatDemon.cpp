@@ -21,11 +21,10 @@ AFatDemon::AFatDemon()
 	FatDemon->SetSprite("devil_ph3_fat_demon_flying_idle_0001.png");
 	FatDemon->SetSamplering(ETextureSampling::LINEAR);
 	FatDemon->SetAutoSize(0.85f, true);
-	FatDemon->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 
 	MonsterCollision = CreateDefaultSubObject<UCollision>("MonsterCollision3");
 	MonsterCollision->SetupAttachment(Root);
-	MonsterCollision->SetScale(FVector(70.0f, 70.0f, 100.0f));
+	MonsterCollision->SetScale(FVector(150.0f, 120.0f, 100.0f));
 	MonsterCollision->SetCollisionGroup(ECollisionOrder::FatDemon);
 	MonsterCollision->SetCollisionType(ECollisionType::RotRect);
 
@@ -58,6 +57,15 @@ void AFatDemon::BeginPlay()
 void AFatDemon::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+	DamgeColorDelay -= _DeltaTime;
+
+	if (DamgeColorDelay < 0)
+	{
+		FatDemon->SetPlusColor(FVector(0.0f, 0.0f, 0.0f));
+		DamgeColorDelay = 0.25f;
+	}
+
 	Delay -= _DeltaTime;
 
 	pattern.Update(_DeltaTime);

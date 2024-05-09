@@ -43,9 +43,9 @@ private:
 
 	float Speed = 200.0f;
 	float Delay = 3.0f;
-
+	float DamgeColorDelay = 0.25f;
 	int randomAtt = 0;
-	int Hp = 8;
+	int Hp = 10;
 
 	bool ParryAttcheck = false;
 
