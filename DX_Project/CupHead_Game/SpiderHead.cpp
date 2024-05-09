@@ -29,6 +29,7 @@ ASpiderHead::ASpiderHead()
 	SpiderHead->SetAutoSize(1.0f, true);
 
 	SpiderHeadCol->AddPosition(FVector::Down * 50.0f);
+	SpiderHead->SetPlusColor(FVector(0.05f, 0.05f, 0.05f));
 }
 
 ASpiderHead::~ASpiderHead()
@@ -47,6 +48,18 @@ void ASpiderHead::BeginPlay()
 void ASpiderHead::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+	if (true == hitCheck)
+	{
+		SpiderHead->SetPlusColor(FVector(0.15f, 0.15f, 0.15f));
+	}
+
+	DamgeColorDelay -= _DeltaTime;
+
+	if (DamgeColorDelay < 0)
+	{
+		SpiderHead->SetPlusColor(FVector(0.05f, 0.05f, 0.05f));
+		DamgeColorDelay = 0.25f;
+	}
 	Phase1.Update(_DeltaTime);
 	PlayerCollisionCheck();
 }

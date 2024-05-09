@@ -27,6 +27,7 @@ ARamArms::ARamArms()
 	RamArms->SetSprite("devil_ph1_ram_hand_attack_0001.png");
 	RamArms->SetSamplering(ETextureSampling::LINEAR);
 	RamArms->SetAutoSize(1.0f, true);
+	RamArms->SetPlusColor(FVector(0.05f, 0.05f, 0.05f));
 }
 
 ARamArms::~ARamArms()
@@ -44,6 +45,18 @@ void ARamArms::BeginPlay()
 void ARamArms::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+	if (true == hitCheck)
+	{
+		RamArms->SetPlusColor(FVector(0.15f, 0.15f, 0.15f));
+	}
+
+	DamgeColorDelay -= _DeltaTime;
+
+	if (DamgeColorDelay < 0)
+	{
+		RamArms->SetPlusColor(FVector(0.05f, 0.05f, 0.05f));
+		DamgeColorDelay = 0.25f;
+	}
 
 	Phase1.Update(_DeltaTime);
 	PlayerCollisionCheck();

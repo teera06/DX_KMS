@@ -22,6 +22,9 @@
 
 #include "Devil1.h"
 #include "Devil2.h"
+#include "SpiderHead.h"
+#include "RamArms.h"
+#include "HeadAtt.h"
 
 
 
@@ -223,6 +226,49 @@ void ABaseBullet::Collisiongather()
 			//Destroy();
 			//_Collison->GetActor()->Destroy();
 		});
+
+	BulletCollision->CollisionEnter(ECollisionOrder::SpiderHeadCol, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		UEngineSound::SoundPlay("sfx_player_shoot_hit_01.wav");
+		AActor* Ptr = _Collison->GetActor();
+		ASpiderHead* Monster = dynamic_cast<ASpiderHead*>(Ptr);
+		Monster->SethitCheck(true);
+		DestroyCheck = true;
+		BulletRender->ChangeAnimation("Peashot_Death");
+		BulletCollision->SetActive(false);
+		APlay_Cuphead::GetMainPlayer()->AddGuage(5);
+		//Destroy();
+		//_Collison->GetActor()->Destroy();
+	});
+
+	BulletCollision->CollisionEnter(ECollisionOrder::DevilHeadCol, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		UEngineSound::SoundPlay("sfx_player_shoot_hit_01.wav");
+		AActor* Ptr = _Collison->GetActor();
+		AHeadAtt* Monster = dynamic_cast<AHeadAtt*>(Ptr);
+		Monster->SethitCheck(true);
+		DestroyCheck = true;
+		BulletRender->ChangeAnimation("Peashot_Death");
+		BulletCollision->SetActive(false);
+		APlay_Cuphead::GetMainPlayer()->AddGuage(5);
+		//Destroy();
+		//_Collison->GetActor()->Destroy();
+	});
+
+
+	BulletCollision->CollisionEnter(ECollisionOrder::RamArmCol, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		UEngineSound::SoundPlay("sfx_player_shoot_hit_01.wav");
+		AActor* Ptr = _Collison->GetActor();
+		ARamArms* Monster = dynamic_cast<ARamArms*>(Ptr);
+		Monster->SethitCheck(true);
+		DestroyCheck = true;
+		BulletRender->ChangeAnimation("Peashot_Death");
+		BulletCollision->SetActive(false);
+		APlay_Cuphead::GetMainPlayer()->AddGuage(5);
+		//Destroy();
+		//_Collison->GetActor()->Destroy();
+	});
 
 	BulletCollision->CollisionEnter(ECollisionOrder::Devil2, [=](std::shared_ptr<UCollision> _Collison)
 	{
