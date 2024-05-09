@@ -25,7 +25,7 @@ protected:
 	void Tick(float _DeltaTime) override;
 private:
 	USpriteRenderer* Axe= nullptr;
-	UCollision* AxeCollision = nullptr;
+	UCollision* AxeCol = nullptr;
 	float RotSpeed = 6000.0f;
 	float MoveSpeed =200.0f;
 

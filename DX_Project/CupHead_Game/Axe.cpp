@@ -20,13 +20,17 @@ AAxe::AAxe()
 	Axe->SetSamplering(ETextureSampling::LINEAR);
 	Axe->SetAutoSize(1.0f, true);
 
-	AxeCollision = CreateDefaultSubObject<UCollision>("Axe");
-	AxeCollision->SetupAttachment(Root);
 
-	AxeCollision->SetScale(FVector(70.0f, 70.0f, 100.0f));
+	AxeCol = CreateDefaultSubObject<UCollision>("Collision");
+	AxeCol->SetupAttachment(Root);
+	
+	AxeCol->SetScale(FVector(70.0f, 100.0f, 100.0f));
 
-	AxeCollision->SetCollisionGroup(ECollisionOrder::Axe);
-	AxeCollision->SetCollisionType(ECollisionType::RotBox);
+	AxeCol->SetCollisionGroup(ECollisionOrder::Axe);
+	AxeCol->SetCollisionType(ECollisionType::RotRect);
+
+
+	
 
 	SetRoot(Root);
 }
@@ -72,7 +76,7 @@ void AAxe::CalDir(float _DeltaTime)
 
 void AAxe::CollisionCheck()
 {
-	AxeCollision->CollisionEnter(ECollisionOrder::Player, [=](std::shared_ptr<UCollision> _Collison)
+	AxeCol->CollisionEnter(ECollisionOrder::Player, [=](std::shared_ptr<UCollision> _Collison)
 	{
 		AActor* Ptr = _Collison->GetActor();
 		APlay_Cuphead* Player = dynamic_cast<APlay_Cuphead*>(Ptr);
