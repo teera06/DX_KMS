@@ -260,30 +260,46 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 
 void APlay_Cuphead::GroundObject()
 {
-	PlayerCollision->CollisionEnter(ECollisionOrder::Boss1Top, [=](std::shared_ptr<UCollision> _Collison)
-	{
-		JumpVector = FVector::Zero;
-		State.ChangeState("Idle");
-		return;
-	});
 
-	PlayerCollision->CollisionStay(ECollisionOrder::Boss1Top, [=](std::shared_ptr<UCollision> _Collison)
+	if (GetActorLocation().iY() <= GrounYCheck)
 	{
-		JumpVector = FVector::Zero;
-		State.ChangeState("Idle");
-		return;
-	});
-
-	PlayerCollision->CollisionEnter(ECollisionOrder::Boss2Object1, [=](std::shared_ptr<UCollision> _Collison)
-	{
+		BaseBulletSound.Off();
 		GetWorld()->SpawnActor<AGroundDust>("AGroundDust");
+		BulletStart->SetActive(false);
+		JumpVector = FVector::Zero;
+		State.ChangeState("Idle");
+		return;
+	}
+
+	GroundCollision->CollisionEnter(ECollisionOrder::Boss1Top, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		BaseBulletSound.Off();
+		GetWorld()->SpawnActor<AGroundDust>("AGroundDust");
+		BulletStart->SetActive(false);
+		JumpVector = FVector::Zero;
+		State.ChangeState("Idle");
+		return;
+	});
+
+	GroundCollision->CollisionStay(ECollisionOrder::Boss1Top, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		JumpVector = FVector::Zero;
+		State.ChangeState("Idle");
+		return;
+	});
+
+	GroundCollision->CollisionEnter(ECollisionOrder::Boss2Object1, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		BaseBulletSound.Off();
+		GetWorld()->SpawnActor<AGroundDust>("AGroundDust");
+		BulletStart->SetActive(false);
 		Devil2GrounCheck = true;
 		JumpVector = FVector::Zero;
 		State.ChangeState("Idle");
 		return;
 	});
 
-	PlayerCollision->CollisionStay(ECollisionOrder::Boss2Object1, [=](std::shared_ptr<UCollision> _Collison)
+	GroundCollision->CollisionStay(ECollisionOrder::Boss2Object1, [=](std::shared_ptr<UCollision> _Collison)
 	{
 		Devil2GrounCheck = true;
 		JumpVector = FVector::Zero;
@@ -790,26 +806,26 @@ void APlay_Cuphead::CalGravityVector(float _DeltaTime)
 		GravityVector = FVector::Zero;
 	}
 
-	PlayerCollision->CollisionEnter(ECollisionOrder::Boss1Top, [=](std::shared_ptr<UCollision> _Collison)
+	GroundCollision->CollisionEnter(ECollisionOrder::Boss1Top, [=](std::shared_ptr<UCollision> _Collison)
 	{
 		GravityVector = FVector::Zero;
 
 		AddActorLocation(FVector::Up * 3.0f);
 	});
 
-	PlayerCollision->CollisionStay(ECollisionOrder::Boss1Top, [=](std::shared_ptr<UCollision> _Collison)
+	GroundCollision->CollisionStay(ECollisionOrder::Boss1Top, [=](std::shared_ptr<UCollision> _Collison)
 	{
 		GravityVector = FVector::Zero;
 		CollisionMove.X += (-450.0f * _DeltaTime);
 	});
 
-	PlayerCollision->CollisionEnter(ECollisionOrder::Boss2Object1, [=](std::shared_ptr<UCollision> _Collison)
+	GroundCollision->CollisionEnter(ECollisionOrder::Boss2Object1, [=](std::shared_ptr<UCollision> _Collison)
 	{
 		GravityVector = FVector::Zero;
 		AddActorLocation(FVector::Up * 3.0f);
 	});
 
-	PlayerCollision->CollisionStay(ECollisionOrder::Boss2Object1, [=](std::shared_ptr<UCollision> _Collison)
+	GroundCollision->CollisionStay(ECollisionOrder::Boss2Object1, [=](std::shared_ptr<UCollision> _Collison)
 	{
 		GravityVector = FVector::Zero;
 	});
@@ -870,12 +886,12 @@ void APlay_Cuphead::GroupUp(float _DeltaTime)
 	}
 
 
-	PlayerCollision->CollisionStay(ECollisionOrder::Boss1Top, [=](std::shared_ptr<UCollision> _Collison)
+	GroundCollision->CollisionStay(ECollisionOrder::Boss1Top, [=](std::shared_ptr<UCollision> _Collison)
 	{
 		AddActorLocation(FVector::Up * _DeltaTime);
 	});
 
-	PlayerCollision->CollisionStay(ECollisionOrder::Boss2Object1, [=](std::shared_ptr<UCollision> _Collison)
+	GroundCollision->CollisionStay(ECollisionOrder::Boss2Object1, [=](std::shared_ptr<UCollision> _Collison)
 	{
 		AddActorLocation(FVector::Up * _DeltaTime);
 	});
@@ -1895,22 +1911,7 @@ void APlay_Cuphead::Jump(float _DeltaTime)
 
 
 	MoveUpDate(_DeltaTime, MovePos); // 최종 움직임
-	if (GetActorLocation().iY() <= GrounYCheck)
-	{
-		GetWorld()->SpawnActor<AGroundDust>("AGroundDust");
-		JumpVector = FVector::Zero;
-		State.ChangeState("Idle");
-		return;
-	}
-
-	PlayerCollision->CollisionEnter(ECollisionOrder::Boss2Object1, [=](std::shared_ptr<UCollision> _Collison)
-	{
-		GetWorld()->SpawnActor<AGroundDust>("AGroundDust");
-		JumpVector = FVector::Zero;
-		State.ChangeState("Idle");
-		return;
-	});
-
+	
 	GroundObject();
 
 }
@@ -1958,15 +1959,7 @@ void APlay_Cuphead::JumpShoot(float _DeltaTime)
 
 	MoveUpDate(_DeltaTime, MovePos); // 최종 움직임
 
-	if (GetActorLocation().iY() <= GrounYCheck)
-	{
-		BaseBulletSound.Off();
-		GetWorld()->SpawnActor<AGroundDust>("AGroundDust");
-		BulletStart->SetActive(false);
-		JumpVector = FVector::Zero;
-		State.ChangeState("Idle");
-		return;
-	}
+	
 
 	GroundObject();
 
@@ -1975,13 +1968,7 @@ void APlay_Cuphead::JumpShoot(float _DeltaTime)
 void APlay_Cuphead::DashAfterJump(float _DeltaTime)
 {
 	MoveUpDate(_DeltaTime); // 최종 움직임
-	if (GetActorLocation().iY() <= GrounYCheck)
-	{
-		GetWorld()->SpawnActor<AGroundDust>("AGroundDust");
-		JumpVector = FVector::Zero;
-		State.ChangeState("Idle");
-		return;
-	}
+	
 
 	GroundObject();
 }
@@ -2008,6 +1995,8 @@ void APlay_Cuphead::hit(float _DeltaTime)
 		State.ChangeState("Idle");
 		return;
 	}
+
+	GroundObject();
 }
 
 void APlay_Cuphead::Parry(float _DeltaTime)

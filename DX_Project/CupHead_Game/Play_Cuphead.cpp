@@ -52,6 +52,14 @@ APlay_Cuphead::APlay_Cuphead()
 	ParryCollision->SetCollisionGroup(ECollisionOrder::Parry);
 	ParryCollision->SetCollisionType(ECollisionType::RotRect);
 
+	GroundCollision = CreateDefaultSubObject<UCollision>("GroundCollision");
+	GroundCollision->SetupAttachment(Root);
+	GroundCollision->SetPosition(FVector(0.0f, 60.0f, 0.0f));
+	GroundCollision->SetScale(FVector(70.0f, 100.0f, 100.0f));
+
+	GroundCollision->SetCollisionGroup(ECollisionOrder::PlayerGround);
+	GroundCollision->SetCollisionType(ECollisionType::RotRect);
+
 	SetRoot(Root);
 
 	ParryCollision->SetActive(false);

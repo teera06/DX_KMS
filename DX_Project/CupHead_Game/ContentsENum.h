@@ -85,6 +85,7 @@ enum class ECollisionOrder
 {
 	None,
 	Player,
+	PlayerGround,
 	WorldObject1,
 	WorldObject2,
 	Boss1SkillMonster,
