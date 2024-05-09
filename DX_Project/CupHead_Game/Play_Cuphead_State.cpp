@@ -1989,14 +1989,15 @@ void APlay_Cuphead::hit(float _DeltaTime)
 	if (true == PlayCuphead->IsCurAnimationEnd())
 	{
 		MoveUpDate(_DeltaTime);
+		GroundObject();
 		Hp -= 1;
 		JumpVector = FVector::Zero;
+		NoGravity = false;
 		IsHitEffect = false;
 		State.ChangeState("Idle");
 		return;
 	}
 
-	GroundObject();
 }
 
 void APlay_Cuphead::Parry(float _DeltaTime)
