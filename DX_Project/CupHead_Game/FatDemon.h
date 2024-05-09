@@ -44,7 +44,10 @@ private:
 	float Speed = 200.0f;
 	float Delay = 3.0f;
 
-	int Hp = 3;
+	int randomAtt = 0;
+	int Hp = 8;
+
+	bool ParryAttcheck = false;
 
 	void CreateSkill();
 

@@ -121,6 +121,7 @@ enum class ECollisionOrder
 	BombBat,
 	imp,
 	FatDemon,
+	FatSkill,
 	Parry
 };
 

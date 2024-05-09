@@ -2,6 +2,7 @@
 #include "PreCompile.h"
 #include "FatDemon.h"
 
+#include <EngineBase/EngineRandom.h>
 #include <EngineCore/DefaultSceneComponent.h>
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/Collision.h>
@@ -64,14 +65,27 @@ void AFatDemon::Tick(float _DeltaTime)
 
 void AFatDemon::CreateSkill()
 {
-	if (GetActorLocation().X < 0)
+	randomAtt = UEngineRandom::MainRandom.RandomInt(1, 3);
+
+	if (randomAtt != 2)
 	{
-		GetWorld()->SpawnActor<AFatDemonSkill>("FatDemonSkill")->SetActorLocation(GetActorLocation() + FVector::Right * 200.0f);
+		ParryAttcheck = false;
 	}
 	else
 	{
-		GetWorld()->SpawnActor<AFatDemonSkill>("FatDemonSkill")->SetActorLocation(GetActorLocation()+FVector::Left*200.0f);
+		ParryAttcheck = true;
 	}
+	std::shared_ptr<AFatDemonSkill> NewFatDemonSkill = GetWorld()->SpawnActor<AFatDemonSkill>("FatDemonSkill");
+	if (GetActorLocation().X < 0)
+	{
+		NewFatDemonSkill->SetActorLocation(GetActorLocation() + FVector::Right * 200.0f);
+	}
+	else
+	{
+		NewFatDemonSkill->SetActorLocation(GetActorLocation() + FVector::Left * 200.0f);
+	}
+
+	NewFatDemonSkill->SetParryCheck(ParryAttcheck);
 }
 
 void AFatDemon::patternInit()
@@ -159,6 +173,7 @@ void AFatDemon::FatDemonAttack(float _DeltaTime)
 
 void AFatDemon::FatDemonDeath(float _DeltaTime)
 {
+	MonsterCollision->SetActive(false);
 	if (true == FatDemon->IsCurAnimationEnd())
 	{
 		pattern.ChangeState("FatDemonDeathIdle");

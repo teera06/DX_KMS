@@ -29,7 +29,7 @@ public:
 		Delay = _Delay;
 	}
 
-	inline void SetParryCheck(const bool& _ParryCheck)
+	inline void SetParryCheck(bool _ParryCheck)
 	{
 		ParryCheck = _ParryCheck;
 	}
