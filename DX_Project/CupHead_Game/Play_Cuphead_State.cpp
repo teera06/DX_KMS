@@ -2387,6 +2387,7 @@ void APlay_Cuphead::Shoot_DiagonalUp(float _DeltaTime)
 
 void APlay_Cuphead::Shoot_DiagonalDown(float _DeltaTIme)
 {
+
 }
 
 void APlay_Cuphead::Shoot_UpCB(float _DeltaTime)
