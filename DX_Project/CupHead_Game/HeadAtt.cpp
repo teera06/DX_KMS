@@ -49,7 +49,7 @@ void AHeadAtt::Tick(float _DeltaTime)
 	Super::Tick(_DeltaTime);
 	if (true == hitCheck)
 	{
-		headatt->SetPlusColor(FVector(0.15f, 0.15f, 0.15f));
+		headatt->SetPlusColor(ColorGet);
 	}
 
 	DamgeColorDelay -= _DeltaTime;

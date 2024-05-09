@@ -46,7 +46,7 @@ void ARamArms::Tick(float _DeltaTime)
 	Super::Tick(_DeltaTime);
 	if (true == hitCheck)
 	{
-		RamArms->SetPlusColor(FVector(0.15f, 0.15f, 0.15f));
+		RamArms->SetPlusColor(ColorGet);
 	}
 
 	DamgeColorDelay -= _DeltaTime;

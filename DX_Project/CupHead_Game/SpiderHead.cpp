@@ -49,7 +49,7 @@ void ASpiderHead::Tick(float _DeltaTime)
 	Super::Tick(_DeltaTime);
 	if (true == hitCheck)
 	{
-		SpiderHead->SetPlusColor(FVector(0.15f, 0.15f, 0.15f));
+		SpiderHead->SetPlusColor(ColorGet);
 	}
 
 	DamgeColorDelay -= _DeltaTime;

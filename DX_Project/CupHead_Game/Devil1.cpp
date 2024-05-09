@@ -141,10 +141,10 @@ void ADevil1::Tick(float _DeltaTime)
 
 	if (true == hitCheck)
 	{
-		Boss2->SetPlusColor(FVector(0.15f, 0.15f, 0.15f));
-		BossHead->SetPlusColor(FVector(0.15f, 0.15f, 0.15f));
-		BossBody->SetPlusColor(FVector(0.15f, 0.15f, 0.15f));
-		spear->SetPlusColor(FVector(0.15f, 0.15f, 0.15f));
+		Boss2->SetPlusColor(ColorGet);
+		BossHead->SetPlusColor(ColorGet);
+		BossBody->SetPlusColor(ColorGet);
+		spear->SetPlusColor(ColorGet);
 	}
 
 	DamgeColorDelay -= _DeltaTime;

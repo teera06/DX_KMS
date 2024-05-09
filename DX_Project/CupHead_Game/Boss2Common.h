@@ -42,6 +42,7 @@ protected:
 
 	virtual void AniCreate();
 
+	FVector ColorGet = FVector(0.05f, 0.05f, 0.05f);
 	float DamgeColorDelay = 0.25f;
 
 	static int phasecheck;
