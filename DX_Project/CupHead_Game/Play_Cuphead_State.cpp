@@ -57,7 +57,9 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 		//AddActorLocation(FVector::Up * 1000.0f* _DeltaTime);
 
 		GravityVector = FVector::Down * 300.0f;
-		AddGuage(40);
+		AddGuage(60);
+
+		PlayerCollision->SetActive(false);
 	});
 
 	ParryCollision->CollisionStay(ECollisionOrder::Boss1Monster2Hand, [=](std::shared_ptr<UCollision> _Collison)
@@ -74,6 +76,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 		//AddActorLocation(FVector::Up * 1000.0f * _DeltaTime);
 		GravityVector = FVector::Down*300.0f;
 		AddGuage(40);
+		PlayerCollision->SetActive(false);
 	});
 
 	ParryCollision->CollisionEnter(ECollisionOrder::Orb_Fire1, [=](std::shared_ptr<UCollision> _Collison)
@@ -90,6 +93,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 
 			Fire1->Destroy();
 			AddGuage(40);
+			PlayerCollision->SetActive(false);
 		}
 
 	});
@@ -108,6 +112,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 
 			Fire1->Destroy();
 			AddGuage(40);
+			PlayerCollision->SetActive(false);
 		}
 	});
 
@@ -125,6 +130,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 
 			skill->Destroy();
 			AddGuage(40);
+			PlayerCollision->SetActive(false);
 		}
 
 	});
@@ -143,6 +149,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 
 			skill->Destroy();
 			AddGuage(40);
+			PlayerCollision->SetActive(false);
 		}
 	});
 
@@ -160,6 +167,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 			Fire->GetMainRender()->SetActive(false);
 			Fire->GetMainCollision()->SetActive(false);
 			AddGuage(40);
+			PlayerCollision->SetActive(false);
 		});
 
 	ParryCollision->CollisionStay(ECollisionOrder::Orb_Fire2_Parry, [=](std::shared_ptr<UCollision> _Collison)
@@ -176,6 +184,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 			Fire->GetMainRender()->SetActive(false);
 			Fire->GetMainCollision()->SetActive(false);
 			AddGuage(40);
+			PlayerCollision->SetActive(false);
 		});
 
 	ParryCollision->CollisionEnter(ECollisionOrder::Devil1ball, [=](std::shared_ptr<UCollision> _Collison)
@@ -192,6 +201,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 
 				ball->Destroy();
 				AddGuage(40);
+				PlayerCollision->SetActive(false);
 			}
 
 		});
@@ -210,6 +220,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 
 				ball->Destroy();
 				AddGuage(40);
+				PlayerCollision->SetActive(false);
 			}
 		});
 
@@ -226,6 +237,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 
 		Monster->Destroy();
 		AddGuage(40);
+		PlayerCollision->SetActive(false);
 	});
 
 	ParryCollision->CollisionStay(ECollisionOrder::BombBat, [=](std::shared_ptr<UCollision> _Collison)
@@ -240,6 +252,7 @@ void APlay_Cuphead::ParryCheck(float _DeltaTime)
 
 		Monster->Destroy();
 		AddGuage(40);
+		PlayerCollision->SetActive(false);
 	});
 
 
@@ -1995,8 +2008,6 @@ void APlay_Cuphead::hit(float _DeltaTime)
 		State.ChangeState("Idle");
 		return;
 	}
-
-	MoveUpDate(_DeltaTime);
 }
 
 void APlay_Cuphead::Parry(float _DeltaTime)
@@ -2008,6 +2019,7 @@ void APlay_Cuphead::Parry(float _DeltaTime)
 
 	if (true == PlayCuphead->IsCurAnimationEnd())
 	{
+		PlayerCollision->SetActive(true);
 		ParryCollision->SetActive(false);
 		Effect->SetActive(false);
 		GEngine->SetGlobalTimeScale(1.0f);

@@ -252,6 +252,7 @@ void ADemonMonster::Demon2Attack2(float _DeltaTime)
 
 void ADemonMonster::RealDie(float _DeltaTime)
 {
+	MonsterCollision->SetActive(false);
 	if (true == Demon->IsCurAnimationEnd())
 	{
 		Destroy();

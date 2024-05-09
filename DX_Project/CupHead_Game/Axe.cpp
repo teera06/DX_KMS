@@ -20,8 +20,9 @@ AAxe::AAxe()
 	Axe->SetSamplering(ETextureSampling::LINEAR);
 	Axe->SetAutoSize(1.0f, true);
 
-	AxeCollision = CreateDefaultSubObject<UCollision>("Collision");
+	AxeCollision = CreateDefaultSubObject<UCollision>("Axe");
 	AxeCollision->SetupAttachment(Root);
+
 	AxeCollision->SetScale(FVector(70.0f, 70.0f, 100.0f));
 
 	AxeCollision->SetCollisionGroup(ECollisionOrder::Axe);
@@ -76,8 +77,11 @@ void AAxe::CollisionCheck()
 		AActor* Ptr = _Collison->GetActor();
 		APlay_Cuphead* Player = dynamic_cast<APlay_Cuphead*>(Ptr);
 
-		Player->AddActorLocation(FVector::Up * 100.0f);
-		Player->State.ChangeState("hit");
+		if (nullptr != Player)
+		{
+			Player->AddActorLocation(FVector::Up * 100.0f);
+			Player->State.ChangeState("hit");
+		}
 	});
 }
 
@@ -118,6 +122,8 @@ void AAxe::StartMove(float _DeltaTime)
 		pattern.ChangeState("AttMove");
 		return;
 	}
+
+	CollisionCheck();
 }
 
 void AAxe::AttMove(float _DeltaTime)
@@ -145,4 +151,6 @@ void AAxe::AttMove(float _DeltaTime)
 		Destroy();
 		return;
 	}
+
+	CollisionCheck();
 }
