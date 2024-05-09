@@ -166,6 +166,11 @@ private:
 	void DiagonalUpShoot();
 	void UpShoot();
 
+	void DiagonalUpShootCB();
+	void DownShoot();
+	void DiagonalDownShoot();
+
+
 	void SSIdleShoot();
 	void SSDownShoot();
 	void SSDiagonalUpShoot();

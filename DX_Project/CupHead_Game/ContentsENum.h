@@ -33,6 +33,7 @@ enum class EShootDir
 	DownShoot,
 	DuckShoot,
 	DiagonalUpShoot,
+	DiagonalUpShootCB,
 	DiagonalDownShoot
 };
 
