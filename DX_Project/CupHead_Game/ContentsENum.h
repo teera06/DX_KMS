@@ -122,6 +122,7 @@ enum class ECollisionOrder
 	imp,
 	FatDemon,
 	FatSkill,
+	Tear,
 	Parry
 };
 

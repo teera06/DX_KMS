@@ -24,6 +24,7 @@ protected:
 
 private:
 	USpriteRenderer* Tear = nullptr;
+	UCollision* TearCollision = nullptr;
 
 	FVector GravityVector = FVector::Zero;
 
@@ -31,6 +32,9 @@ private:
 
 	bool DestoryCheck = false;
 
+	void PlayerCollisionCheck();
 	void GroundCheck(float _DeltaTime);
+
+
 };
 

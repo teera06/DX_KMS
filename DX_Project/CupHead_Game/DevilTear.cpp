@@ -6,7 +6,7 @@
 #include <EngineCore/Collision.h>
 
 #include "ContentsENum.h"
-
+#include "Play_Cuphead.h"
 
 ADevilTear::ADevilTear()
 {
@@ -20,6 +20,15 @@ ADevilTear::ADevilTear()
 	Tear->SetAutoSize(0.85f, true);
 	Tear->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 
+	TearCollision  = CreateDefaultSubObject<UCollision>("TearCollision");
+	TearCollision ->SetupAttachment(Root);
+
+	TearCollision ->SetScale(FVector(50.0f, 60.0f, 100.0f));
+
+	TearCollision ->SetCollisionGroup(ECollisionOrder::Tear);
+	TearCollision ->SetCollisionType(ECollisionType::RotRect);
+
+
 	SetRoot(Root);
 }
 
@@ -31,7 +40,6 @@ void ADevilTear::BeginPlay()
 {
 	Super::BeginPlay();
 
-	//SetActorLocation(FVector(0.0f, 500.0f, 5.0f));
 
 	Tear->CreateAnimation("DevilTear1", "DevilTear1", 0.075f);
 	
@@ -42,6 +50,22 @@ void ADevilTear::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 	GroundCheck(_DeltaTime);
+	PlayerCollisionCheck();
+}
+
+void ADevilTear::PlayerCollisionCheck()
+{
+	TearCollision->CollisionEnter(ECollisionOrder::Player, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		AActor* Ptr = _Collison->GetActor();
+		APlay_Cuphead* Player = dynamic_cast<APlay_Cuphead*>(Ptr);
+
+		if (nullptr != Player)
+		{
+			Player->AddActorLocation(FVector::Up * 100.0f);
+			Player->State.ChangeState("hit");
+		}
+	});
 }
 
 void ADevilTear::GroundCheck(float _DeltaTime)

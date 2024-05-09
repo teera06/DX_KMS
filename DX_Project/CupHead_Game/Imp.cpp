@@ -260,6 +260,7 @@ void AImp::ImpAttackEnd(float _DeltaTime)
 
 void AImp::RealDie(float _DeltaTime)
 {
+	ImpCollision->SetActive(false);
 	if (true == Imp->IsCurAnimationEnd())
 	{
 		Destroy();

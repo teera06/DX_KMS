@@ -431,12 +431,12 @@ void ADevil2::DevilCrying(float _DeltaTime)
 		if (false == LRTear)
 		{
 			LRTear = true;
-			GetWorld()->SpawnActor<ADevilTear>("Tear")->AddActorLocation(FVector(- 200.0f, 165.0f, 5.0f));
+			GetWorld()->SpawnActor<ADevilTear>("Tear")->AddActorLocation(FVector(- 200.0f, 135.0f, 5.0f));
 		}
 		else
 		{
 			LRTear = false;
-			GetWorld()->SpawnActor<ADevilTear>("Tear")->AddActorLocation(FVector(200.0f, 165.0f, 5.0f));
+			GetWorld()->SpawnActor<ADevilTear>("Tear")->AddActorLocation(FVector(200.0f, 135.0f, 5.0f));
 		}
 
 		coolDownTime = 1.0f;
