@@ -2595,14 +2595,14 @@ void APlay_Cuphead::Shoot_UpCB(float _DeltaTime)
 
 void APlay_Cuphead::SSGround_Straight(float _DeltaTime)
 {
-	DirCheck();
 	if (false == PowerShoot)
 	{
+		DirCheck();
 		std::shared_ptr<ASSDust> NewSSDust = GetWorld()->SpawnActor<ASSDust>("SSDust");
 		NewSSDust->SetDushDir(BulletDir);
 		NewSSDust->SetActorRotation(FVector::Zero);
-		PowerShoot = true;
 		createSSBullet();
+		PowerShoot = true;
 	}
 
 	if (true == PlayCuphead->IsCurAnimationEnd())

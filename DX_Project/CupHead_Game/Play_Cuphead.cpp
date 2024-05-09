@@ -117,11 +117,11 @@ void APlay_Cuphead::BeginPlay()
 	PlayCuphead->CreateAnimation("hit", "Hit_Ground", 0.075f, false);
 	PlayCuphead->CreateAnimation("Parry", "Parry", 0.03f, false);
 	PlayCuphead->CreateAnimation("Scared", "Scared", 0.075f, false);
-	PlayCuphead->CreateAnimation("SSGround_Straight", "SSGround_Straight", 0.05f);
-	PlayCuphead->CreateAnimation("SSGround_Down", "SSGround_Down", 0.05f);
-	PlayCuphead->CreateAnimation("SSGround_DiagonalUp", "SSGround_DiagonalUp", 0.05f);
-	PlayCuphead->CreateAnimation("SSGround_DiagonalDown", "SSGround_DiagonalDown", 0.05f);
-	PlayCuphead->CreateAnimation("SSGround_Up", "SSGround_Up", 0.05f);
+	PlayCuphead->CreateAnimation("SSGround_Straight", "SSGround_Straight", 0.04f);
+	PlayCuphead->CreateAnimation("SSGround_Down", "SSGround_Down", 0.04f);
+	PlayCuphead->CreateAnimation("SSGround_DiagonalUp", "SSGround_DiagonalUp", 0.04f);
+	PlayCuphead->CreateAnimation("SSGround_DiagonalDown", "SSGround_DiagonalDown", 0.04f);
+	PlayCuphead->CreateAnimation("SSGround_Up", "SSGround_Up", 0.04f);
 
 	PlayCuphead->CreateAnimation("Aim_Straight", "Aim_Straight", 0.05f);
 	PlayCuphead->CreateAnimation("Aim_DiagonalDown", "Aim_DiagonalDown", 0.05f);
