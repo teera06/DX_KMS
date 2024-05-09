@@ -977,6 +977,13 @@ void APlay_Cuphead::StateInit()
 	State.CreateState("Aim_DiagonalDown");
 	State.CreateState("Aim_Down");
 	State.CreateState("Aim_DiagonalUp");
+	State.CreateState("Aim_Up2");
+
+	State.CreateState("Shoot_StraightCB");
+	State.CreateState("Shoot_DiagonalDown");
+	State.CreateState("Shoot_DiagonalUp");
+	State.CreateState("Shoot_Down");
+	State.CreateState("Shoot_UpCB");
 
 	State.CreateState("Boss2PhaseChange");
 	State.CreateState("Scared");
@@ -1051,11 +1058,29 @@ void APlay_Cuphead::StateInit()
 	State.SetUpdateFunction("Aim_DiagonalUp", std::bind(&APlay_Cuphead::Aim_DiagonalUp, this, std::placeholders::_1));
 	State.SetStartFunction("Aim_DiagonalUp", [=] {PlayCuphead->ChangeAnimation("Aim_DiagonalUp"); });
 
+	State.SetUpdateFunction("Aim_Up2", std::bind(&APlay_Cuphead::Aim_Up2, this, std::placeholders::_1));
+	State.SetStartFunction("Aim_Up2", [=] {PlayCuphead->ChangeAnimation("Aim_Up"); });
+
 	State.SetUpdateFunction("Boss2PhaseChange", std::bind(&APlay_Cuphead::Boss2PhaseChange, this, std::placeholders::_1));
 	State.SetStartFunction("Boss2PhaseChange", [=] {PlayCuphead->ChangeAnimation("Jump"); });
 
 	State.SetUpdateFunction("Scared", std::bind(&APlay_Cuphead::Scared, this, std::placeholders::_1));
 	State.SetStartFunction("Scared", [=] {PlayCuphead->ChangeAnimation("Scared"); });
+
+	State.SetUpdateFunction("Shoot_StraightCB", std::bind(&APlay_Cuphead::Shoot_StraightCB, this, std::placeholders::_1));
+	State.SetStartFunction("Shoot_StraightCB", [=] {PlayCuphead->ChangeAnimation("Shoot_Straight"); });
+
+	State.SetUpdateFunction("Shoot_DiagonalDown", std::bind(&APlay_Cuphead::Shoot_DiagonalDown, this, std::placeholders::_1));
+	State.SetStartFunction("Shoot_DiagonalDown", [=] {PlayCuphead->ChangeAnimation("Shoot_DiagonalDown"); });
+
+	State.SetUpdateFunction("Shoot_DiagonalUp", std::bind(&APlay_Cuphead::Shoot_DiagonalUp, this, std::placeholders::_1));
+	State.SetStartFunction("Shoot_DiagonalUp", [=] {PlayCuphead->ChangeAnimation("Shoot_DiagonalUp"); });
+
+	State.SetUpdateFunction("Shoot_Down", std::bind(&APlay_Cuphead::Shoot_Down, this, std::placeholders::_1));
+	State.SetStartFunction("Shoot_Down", [=] {PlayCuphead->ChangeAnimation("Shoot_Down"); });
+
+	State.SetUpdateFunction("Shoot_UpCB", std::bind(&APlay_Cuphead::Shoot_UpCB, this, std::placeholders::_1));
+	State.SetStartFunction("Shoot_UpCB", [=] {PlayCuphead->ChangeAnimation("Shoot_Up"); });
 
 	State.SetUpdateFunction("SSGround_Straight", std::bind(&APlay_Cuphead::SSGround_Straight, this, std::placeholders::_1));
 	State.SetStartFunction("SSGround_Straight", [=] {PlayCuphead->ChangeAnimation("SSGround_Straight"); });
@@ -1210,6 +1235,12 @@ void APlay_Cuphead::DirCheck()
 			case EShootDir::DiagonalDownShoot:
 				BulletDir += FVector::Down;
 				break;
+			case EShootDir::UpShoot:
+				BulletDir = FVector::Up;
+				break;
+			case EShootDir::DownShoot:
+				BulletDir = FVector::Down;
+				break;
 			default:
 				break;
 			}
@@ -1227,13 +1258,15 @@ void APlay_Cuphead::DirCheck()
 			case EShootDir::DiagonalDownShoot:
 				BulletDir += FVector::Down;
 				break;
+			case EShootDir::UpShoot:
+				BulletDir = FVector::Up;
+				break;
+			case EShootDir::DownShoot:
+				BulletDir = FVector::Down;
+				break;
 			default:
 				break;
 			}
-			break;
-		case EDir::Up:
-			break;
-		case EDir::Down:
 			break;
 		default:
 			break;
@@ -2092,7 +2125,7 @@ void APlay_Cuphead::Aim_Straight(float _DeltaTime)
 
 	if (true == IsPress(VK_UP))
 	{
-		State.ChangeState("Aim_Up");
+		State.ChangeState("Aim_Up2");
 		return;
 	}
 
@@ -2100,7 +2133,7 @@ void APlay_Cuphead::Aim_Straight(float _DeltaTime)
 	{
 		ShootStyle = EShootDir::IdleShoot;
 		BulletStart->SetActive(true);
-		State.ChangeState("Shoot_Straight");
+		State.ChangeState("Shoot_StraightCB");
 		return;
 	}
 
@@ -2186,23 +2219,135 @@ void APlay_Cuphead::Aim_DiagonalUp(float _DeltaTime)
 
 	if (true == IsFree(VK_RIGHT) && true == IsFree(VK_LEFT))
 	{
-		State.ChangeState("Aim_Up");
+		State.ChangeState("Aim_Up2");
 		return;
 	}
 
+	if (true == IsPress('X'))
+	{
+		ShootStyle = EShootDir::DiagonalUpShoot;
+		BulletStart->SetActive(true);
+		State.ChangeState("Shoot_DiagonalUp");
+		return;
+	}
 
 	MoveUpDate(_DeltaTime);
+}
+
+void APlay_Cuphead::Aim_Up2(float _DeltaTime)
+{
+	DirCheck();
+
+	if (true == IsFree('C'))
+	{
+		State.ChangeState("Idle");
+		return;
+	}
+
+	if (true == IsFree(VK_UP))
+	{
+		State.ChangeState("Aim_Straight");
+		return;
+	}
+
+	if ((true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT)))
+	{
+		State.ChangeState("Aim_DiagonalUp");
+		return;
+	}
+
+	if (true == IsPress('X'))
+	{
+		ShootStyle = EShootDir::UpShoot;
+		BulletStart->SetActive(true);
+		State.ChangeState("Shoot_Up");
+		return;
+	}
+
+	MoveUpDate(_DeltaTime);
+}
+
+void APlay_Cuphead::Shoot_StraightCB(float _DeltaTime)
+{
+	DirCheck();
+	skillCoolTime -= _DeltaTime;
+	if (true == IsPress('X') && skillCoolTime < 0.0f)
+	{
+		BaseBulletSound.On();
+		createBullet();
+		skillCoolTime = SaveSkilltime;
+		return;
+	}
+
+	if (true == IsFree('X'))
+	{
+		BaseBulletSound.Off();
+		BulletStart->SetActive(false);
+		State.ChangeState("Aim_Straight");
+		return;
+	}
+
+	if (true == IsPress(VK_DOWN) && (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT)))
+	{
+		ShootStyle = EShootDir::DiagonalDownShoot;
+		State.ChangeState("Shoot_DiagonalDown");
+		return;
+	}
+
+	if (true == IsPress(VK_UP) && (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT)))
+	{
+		ShootStyle = EShootDir::DiagonalUpShoot;
+		State.ChangeState("Shoot_DiagonalUp");
+		return;
+	}
 }
 
 void APlay_Cuphead::Shoot_Down(float _DeltaTIme)
 {
 }
 
-void APlay_Cuphead::Shoot_DiagonalUp(float _DeltaTIme)
+void APlay_Cuphead::Shoot_DiagonalUp(float _DeltaTime)
 {
+	DirCheck();
+	skillCoolTime -= _DeltaTime;
+	if (true == IsPress('X') && skillCoolTime < 0.0f)
+	{
+		int a = 0;
+		BaseBulletSound.On();
+		createBullet();
+		skillCoolTime = SaveSkilltime;
+		return;
+	}
+
+	if (true == IsFree('X'))
+	{
+		BaseBulletSound.Off();
+		BulletStart->SetActive(false);
+		State.ChangeState("Aim_DiagonalUp");
+		return;
+	}
+
+	if (true == IsFree(VK_UP))
+	{
+		ShootStyle = EShootDir::UpShoot;
+		State.ChangeState("Shoot_UpCB");
+		return;
+	}
+
+	if (true == IsFree(VK_RIGHT) && true == IsFree(VK_LEFT))
+	{
+		ShootStyle = EShootDir::IdleShoot;
+		State.ChangeState("Aim_Up2");
+		return;
+	}
+	MoveUpDate(_DeltaTime);
 }
 
 void APlay_Cuphead::Shoot_DiagonalDown(float _DeltaTIme)
+{
+}
+
+void APlay_Cuphead::Shoot_UpCB(float _DeltaTime)
 {
 }
 

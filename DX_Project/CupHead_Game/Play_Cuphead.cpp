@@ -128,6 +128,10 @@ void APlay_Cuphead::BeginPlay()
 	PlayCuphead->CreateAnimation("Aim_Down", "Aim_Down", 0.05f);
 	PlayCuphead->CreateAnimation("Aim_DiagonalUp", "Aim_DiagonalUp", 0.05f);
 
+	PlayCuphead->CreateAnimation("Shoot_DiagonalUp", "Shoot_DiagonalUp", 0.05f);
+	PlayCuphead->CreateAnimation("Shoot_Down", "Shoot_Down", 0.05f);
+	PlayCuphead->CreateAnimation("Shoot_DiagonalDown", "Shoot_DiagonalDown", 0.05f);
+
 
 	Effect->CreateAnimation("ParryEffect", "ParryEffect", 0.055f);
 	Effect->ChangeAnimation("ParryEffect");

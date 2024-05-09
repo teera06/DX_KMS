@@ -211,10 +211,13 @@ private:
 	void Aim_DiagonalDown(float _DeltaTime);
 	void Aim_Down(float _DeltaTime);
 	void Aim_DiagonalUp(float _DeltaTime);
+	void Aim_Up2(float _DeltaTime);
 
-	void Shoot_Down(float _DeltaTIme);
-	void Shoot_DiagonalUp(float _DeltaTIme);
-	void Shoot_DiagonalDown(float _DeltaTIme);
+	void Shoot_StraightCB(float _DeltaTime);
+	void Shoot_Down(float _DeltaTime);
+	void Shoot_DiagonalUp(float _DeltaTime);
+	void Shoot_DiagonalDown(float _DeltaTime);
+	void Shoot_UpCB(float _DeltaTime);
 
 
 
