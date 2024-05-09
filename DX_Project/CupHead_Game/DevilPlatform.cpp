@@ -205,7 +205,7 @@ void ADevilPlatform::patternInit2()
 
 void ADevilPlatform::UP(float _DeltaTime)
 {
-	if (GetActorLocation().iY() == CheckYUP)
+	if (GetActorLocation().iY() >= CheckYUP)
 	{
 		if (PhaseCount == 1)
 		{
@@ -228,7 +228,7 @@ void ADevilPlatform::UP(float _DeltaTime)
 
 void ADevilPlatform::Down(float _DeltaTime)
 {
-	if (GetActorLocation().iY() == CheckYDown)
+	if (GetActorLocation().iY() <= CheckYDown)
 	{
 
 		if (false == Groundpattern)
@@ -315,7 +315,7 @@ void ADevilPlatform::Down(float _DeltaTime)
 
 void ADevilPlatform::LastPos(float _DeltaTime)
 {
-	if (GetActorLocation().iY() == CheckYDown)
+	if (GetActorLocation().iY() <= CheckYDown)
 	{
 		return;
 	}
@@ -333,7 +333,7 @@ void ADevilPlatform::LastPos(float _DeltaTime)
 
 void ADevilPlatform::Down2(float _DeltaTime)
 {
-	if (GetActorLocation().iY() == CheckYDown)
+	if (GetActorLocation().iY() <= CheckYDown)
 	{
 
 		if (false == Groundpattern)
