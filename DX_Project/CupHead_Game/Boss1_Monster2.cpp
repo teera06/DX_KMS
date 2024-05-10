@@ -326,7 +326,7 @@ void ABoss1_Monster2::Phase2StateInit()
 
 void ABoss1_Monster2::AniCreate()
 {
-	BigBoss1->CreateAnimation("bigintro", "bigintro", 0.15f,false);
+	BigBoss1->CreateAnimation("bigintro", "bigintro", 0.15f);
 	BigBoss1->CreateAnimation("bigIdle", "bigIdle", 0.075f);
 	BigBoss1->CreateAnimation("bigattReady1", "bigattReady1", 0.075f);
 	BigBoss1->CreateAnimation("bigattReady2", "bigattReady1", 0.1f,true,9,10);
