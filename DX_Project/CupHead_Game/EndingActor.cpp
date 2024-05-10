@@ -15,6 +15,8 @@ AEndingActor::AEndingActor()
 
 	end->SetupAttachment(Root);
 
+	SetRoot(Root);
+
 }
 
 AEndingActor::~AEndingActor()
@@ -26,12 +28,12 @@ void AEndingActor::BeginPlay()
 	Super::BeginPlay();
 
 	end->SetOrder(ERenderOrder::Log);
-	end->SetSprite("shorfrog_clap_ball_0001.png");
+	end->SetSprite("book_outro_0000.png");
 	end->SetSamplering(ETextureSampling::LINEAR);
 	end->SetAutoSize(1.0f, true);
-	end->CreateAnimation("Ending", "Ending", 0.075f);
+	end->CreateAnimation("TheEnd", "TheEnd", 0.075f);
 
-	end->ChangeAnimation("Endgind");
+	end->ChangeAnimation("TheEnd");
 }
 
 void AEndingActor::Tick(float _DeltaTime)
@@ -40,6 +42,7 @@ void AEndingActor::Tick(float _DeltaTime)
 
 	if (true == end->IsCurAnimationEnd())
 	{
+		Destroy();
 		GEngine->ChangeLevel("Loading");
 	}
 }

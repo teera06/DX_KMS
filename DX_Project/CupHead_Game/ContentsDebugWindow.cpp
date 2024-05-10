@@ -22,6 +22,17 @@ void UContentsDebugWindow::Init()
 
 void UContentsDebugWindow::OnGui(ULevel* Level, float _Delta)
 {
+	if (true == ImGui::Button("title"))
+	{
+
+		if (UContentsHelper::StageCount == 0)
+		{
+			return;
+		}
+		UContentsHelper::StageCount = 0;
+		GEngine->ChangeLevel("Loading");
+	}
+
 	if (true == ImGui::Button("PlayeLevel"))
 	{
 		if (UContentsHelper::StageCount == 2)
@@ -52,6 +63,7 @@ void UContentsDebugWindow::OnGui(ULevel* Level, float _Delta)
 		UContentsHelper::StageCount = 1;
 		GEngine->ChangeLevel("Loading");
 	}
+
 
 	if (true == ImGui::Button("Ending"))
 	{
