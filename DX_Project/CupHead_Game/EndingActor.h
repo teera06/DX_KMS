@@ -20,6 +20,8 @@ protected:
 	void BeginPlay() override;
 	void Tick(float _DeltaTime) override;
 private:
+	UEngineSoundPlayer BGM;
 	USpriteRenderer* end = nullptr;
+
 };
 

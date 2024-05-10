@@ -21,6 +21,7 @@ AEndingActor::AEndingActor()
 
 AEndingActor::~AEndingActor()
 {
+	BGM.Off();
 }
 
 void AEndingActor::BeginPlay()
@@ -34,14 +35,18 @@ void AEndingActor::BeginPlay()
 	end->CreateAnimation("TheEnd", "TheEnd", 0.075f);
 
 	end->ChangeAnimation("TheEnd");
+	BGM = UEngineSound::SoundPlay("MUS_GoodEnding.wav");
+
 }
 
 void AEndingActor::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
 
+
 	if (true == end->IsCurAnimationEnd())
 	{
+		BGM.Off();
 		UContentsHelper::StageCount = 0;
 		GEngine->ChangeLevel("Loading");
 		Destroy();
