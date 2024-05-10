@@ -1494,6 +1494,8 @@ void APlay_Cuphead::Idle(float _DeltaTime)
 
 	if (true == IsPress(VK_DOWN))
 	{
+		PlayerCollision->SetScale(FVector(70.0f, 50.0f, 100.0f));
+		PlayerCollision->SetPosition(FVector(0.0f, 30.0f, 0.0f));
 		State.ChangeState("Duck");
 		return;
 	}
@@ -1892,12 +1894,16 @@ void APlay_Cuphead::Duck(float _DeltaTime)
 	DirCheck();
 	if (true == IsFree(VK_DOWN))
 	{
+		PlayerCollision->SetScale(FVector(70.0f, 100.0f, 100.0f));
+		PlayerCollision->SetPosition(FVector(0.0f, 60.0f, 0.0f));
+
 		State.ChangeState("Idle");
 		return;
 	}
 
 	if (true == IsPress('X'))
 	{
+
 		ShootStyle = EShootDir::DuckShoot;
 		BulletStart->SetActive(true);
 		State.ChangeState("Duck_Shoot");
@@ -1982,6 +1988,8 @@ void APlay_Cuphead::Duck_Shoot(float _DeltaTime)
 	}
 	if (true == IsFree(VK_DOWN))
 	{
+		PlayerCollision->SetScale(FVector(70.0f, 100.0f, 100.0f));
+		PlayerCollision->SetPosition(FVector(0.0f, 60.0f, 0.0f));
 		ShootStyle = EShootDir::IdleShoot;
 		State.ChangeState("Shoot_Straight");
 		return;
@@ -2643,6 +2651,8 @@ void APlay_Cuphead::SSGround_Down(float _DeltaTime)
 	if (true == PlayCuphead->IsCurAnimationEnd())
 	{
 		PowerShoot = false;
+		PlayerCollision->SetScale(FVector(70.0f, 50.0f, 100.0f));
+		PlayerCollision->SetPosition(FVector(0.0f, 30.0f, 0.0f));
 		State.ChangeState("Duck");
 		return;
 	}
@@ -2705,6 +2715,8 @@ void APlay_Cuphead::SSGround_DiagonalDown(float _DeltaTime)
 	if (true == PlayCuphead->IsCurAnimationEnd())
 	{
 		PowerShoot = false;
+		PlayerCollision->SetScale(FVector(70.0f, 50.0f, 100.0f));
+		PlayerCollision->SetPosition(FVector(0.0f, 30.0f, 0.0f));
 		State.ChangeState("Duck");
 		return;
 	}
