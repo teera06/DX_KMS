@@ -225,15 +225,18 @@ void ADevil2::CreateImp(const FVector& _Pos)
 
 void ADevil2::CreateFatDemon()
 {
-	NewFatDemon = GetWorld()->SpawnActor<AFatDemon>("FatDemon");
-	NewFatDemon->SetActorLocation(FVector(Hand->GetWorldPosition().X
-		, Hand->GetWorldPosition().Y-400.0f, Hand->GetWorldPosition().Z));
 	if (true == LRHand)
 	{
+		NewFatDemon = GetWorld()->SpawnActor<AFatDemon>("FatDemon");
+		NewFatDemon->SetActorLocation(FVector(Hand->GetWorldPosition().X
+			, Hand->GetWorldPosition().Y - 400.0f, Hand->GetWorldPosition().Z));
 		NewFatDemon->GetRender()->SetDir(EEngineDir::Right);
 	}
 	else
 	{
+		NewFatDemon = GetWorld()->SpawnActor<AFatDemon>("FatDemon");
+		NewFatDemon->SetActorLocation(FVector(Hand->GetWorldPosition().X
+			, Hand->GetWorldPosition().Y - 400.0f, Hand->GetWorldPosition().Z));
 		NewFatDemon->GetRender()->SetDir(EEngineDir::Left);
 	}
 }

@@ -188,6 +188,7 @@ void APlay_Cuphead::BeginPlay()
 	GrountSound.Off();
 
 	MainPlayer = this;
+	Hp = 3;
 }
 
 void APlay_Cuphead::Tick(float _DeltaTime)

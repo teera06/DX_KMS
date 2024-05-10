@@ -1220,6 +1220,9 @@ void APlay_Cuphead::StateInit()
 	State.SetUpdateFunction("SSGround_DiagonalDown", std::bind(&APlay_Cuphead::SSGround_DiagonalDown, this, std::placeholders::_1));
 	State.SetStartFunction("SSGround_DiagonalDown", [=] {PlayCuphead->ChangeAnimation("SSGround_DiagonalDown"); });
 
+	State.SetUpdateFunction("SSGround_Up", std::bind(&APlay_Cuphead::SSGround_Up, this, std::placeholders::_1));
+	State.SetStartFunction("SSGround_Up", [=] {PlayCuphead->ChangeAnimation("SSGround_Up"); });
+
 	State.SetUpdateFunction("Air_SSGround_Up", std::bind(&APlay_Cuphead::Air_SSGround_Up, this, std::placeholders::_1));
 	State.SetStartFunction("Air_SSGround_Up", [=] {PlayCuphead->ChangeAnimation("SSGround_Up"); });
 							 
@@ -2043,7 +2046,7 @@ void APlay_Cuphead::Aim_Up(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsPress('V') && 100 == Guageint[PrevGuageCount]
+	if (true == IsDown('V') && 100 == Guageint[PrevGuageCount]
 		)
 	{
 		SSBulletBehavir();
@@ -2094,66 +2097,6 @@ void APlay_Cuphead::Shoot_Up(float _DeltaTime)
 		BaseBulletSound.Off();
 		BulletStart->SetActive(false);
 		State.ChangeState("Aim_Up");
-		return;
-	}
-
-	if (true == IsDown('V') && true == IsPress(VK_DOWN) && (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT)) && 100 == Guageint[PrevGuageCount])
-	{
-		BaseBulletSound.Off();
-		BulletStart->SetActive(false);
-		JumpVector = FVector::Zero;
-		NoGravity = true;
-		SSBulletBehavir();
-		ShootStyle = EShootDir::DiagonalDownShoot;
-		State.ChangeState("Air_SSGround_DiagonalDown");
-		return;
-	}
-
-	if (true == IsDown('V') && true == IsPress(VK_UP) && (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT)) && 100 == Guageint[PrevGuageCount])
-	{
-		BaseBulletSound.Off();
-		BulletStart->SetActive(false);
-		JumpVector = FVector::Zero;
-		NoGravity = true;
-		SSBulletBehavir();
-		ShootStyle = EShootDir::DiagonalUpShoot;
-		State.ChangeState("Air_SSGround_DiagonalUp");
-		return;
-	}
-
-	if (true == IsDown('V') && true == IsPress(VK_UP) && 100 == Guageint[PrevGuageCount])
-	{
-		BaseBulletSound.Off();
-		BulletStart->SetActive(false);
-		JumpVector = FVector::Zero;
-		NoGravity = true;
-		SSBulletBehavir();
-		ShootStyle = EShootDir::UpShoot;
-		State.ChangeState("Air_SSGround_Up");
-		return;
-	}
-
-	if (true == IsDown('V') && true == IsPress(VK_DOWN) && 100 == Guageint[PrevGuageCount])
-	{
-		BaseBulletSound.Off();
-		BulletStart->SetActive(false);
-		JumpVector = FVector::Zero;
-		NoGravity = true;
-		SSBulletBehavir();
-		ShootStyle = EShootDir::DownShoot;
-		State.ChangeState("Air_SSGround_Down");
-		return;
-	}
-
-	if (true == IsDown('V') && (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT)) && 100 == Guageint[PrevGuageCount])
-	{
-		BaseBulletSound.Off();
-		BulletStart->SetActive(false);
-		JumpVector = FVector::Zero;
-		NoGravity = true;
-		SSBulletBehavir();
-		ShootStyle = EShootDir::IdleShoot;
-		State.ChangeState("Air_SSGround_Straight");
 		return;
 	}
 
