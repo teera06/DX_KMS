@@ -138,7 +138,7 @@ void AAxe::AttMove(float _DeltaTime)
 	RotationZMat.RotationZDeg(GetActorTransform().GetRotation().Z);
 	RotationMat = RotationXMat * RotationYMat * RotationZMat;
 
-	MoveSpeed += 0.1f;
+	MoveSpeed += 0.2f;
 
 	AddActorRotation(FVector(0.0f, 0.0f, UEngineMath::DToR * RotSpeed * _DeltaTime));
 	AddActorLocation(RotationMat.RightVector() * MoveSpeed * _DeltaTime);
