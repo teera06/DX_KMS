@@ -170,7 +170,7 @@ void ABoss1_Monster2::BeginPlay()
 	attOrder = false;
 	Ready3Phase = false;
 	phasecheck = 1;
-	SetHp(100);
+	SetHp(600);
 	// °øÅë
 	windAttSound = UEngineSound::SoundPlay("frogs_tall_fan_attack_loop_01.wav");
 	windAttSound.Loop();
@@ -482,7 +482,7 @@ void ABoss1_Monster2::bigintro(float _DeltaTime)
 
 void ABoss1_Monster2::bigIdle(float _DeltaTime)
 {
-	if (GetHp() <= 40 && 2 == phasecheck)
+	if (GetHp() <= 200 && 2 == phasecheck)
 	{
 		attOrder = false;
 		Phase1.ChangeState("phase3changeReady1");
