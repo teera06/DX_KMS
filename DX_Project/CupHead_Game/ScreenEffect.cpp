@@ -108,7 +108,7 @@ void AScreenEffect::Tick(float _DeltaTime)
 		break;
 	case EScreenEffect::IrisReBoss2Clear:
 		FilterEffect->ChangeAnimation("IrisRe");
-		UContentsHelper::StageCount = 0;
+		UContentsHelper::StageCount = 4;
 		if (true == FilterEffect->IsCurAnimationEnd())
 		{
 			GEngine->ChangeLevel("Loading");

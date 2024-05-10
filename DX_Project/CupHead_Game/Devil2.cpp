@@ -474,6 +474,6 @@ void ADevil2::DevilKnockout(float _DeltaTime)
 		DieSCreen = true;
 		std::shared_ptr<AScreenEffect> NewScreen = GetWorld()->SpawnActor<AScreenEffect>("ScreenEffect");
 		NewScreen->SetActorLocation(FVector(0.0f,0.0f,50.0f));
-		NewScreen->SetScreenEffect(EScreenEffect::IrisReBoss1Clear);
+		NewScreen->SetScreenEffect(EScreenEffect::IrisReBoss2Clear);
 	}
 }
