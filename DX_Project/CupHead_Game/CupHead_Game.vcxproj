@@ -329,14 +329,6 @@
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="MainMenuActor.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="MainMenuMode.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="MainTitleActor.h">
       <SubType>
       </SubType>
@@ -589,14 +581,6 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="LoadingGameMode.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="MainMenuActor.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="MainMenuMode.cpp">
       <SubType>
       </SubType>
     </ClCompile>

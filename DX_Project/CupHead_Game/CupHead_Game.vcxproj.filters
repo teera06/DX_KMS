@@ -70,15 +70,6 @@
     <Filter Include="LoadingStage\Level\Actor">
       <UniqueIdentifier>{36702449-37e1-420e-a1ab-aeb1829cd17f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MainMenu">
-      <UniqueIdentifier>{646a3fac-b05d-46d6-8561-1c51ab4cbc4d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MainMenu\Level">
-      <UniqueIdentifier>{2a3ba0fc-1d5d-4e5b-804e-63635ab17a0b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="MainMenu\Actor">
-      <UniqueIdentifier>{2613c706-cc0a-44b2-93b9-b7aec582bb5e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ContentsDebug">
       <UniqueIdentifier>{63a9a676-b174-489e-8625-af1bfc8b86b2}</UniqueIdentifier>
     </Filter>
@@ -117,6 +108,15 @@
     </Filter>
     <Filter Include="WorldStage\Actor\Object">
       <UniqueIdentifier>{cf65a8d4-64e4-4c11-8640-1a4a1d64bd4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EndingLevel">
+      <UniqueIdentifier>{646a3fac-b05d-46d6-8561-1c51ab4cbc4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EndingLevel\Level">
+      <UniqueIdentifier>{2a3ba0fc-1d5d-4e5b-804e-63635ab17a0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EndingLevel\Actor">
+      <UniqueIdentifier>{2613c706-cc0a-44b2-93b9-b7aec582bb5e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -205,12 +205,6 @@
     </ClCompile>
     <ClCompile Include="MoveObject1.cpp">
       <Filter>PlayStage\Boss1\Monster\skill</Filter>
-    </ClCompile>
-    <ClCompile Include="MainMenuMode.cpp">
-      <Filter>MainMenu\Level</Filter>
-    </ClCompile>
-    <ClCompile Include="MainMenuActor.cpp">
-      <Filter>MainMenu\Actor</Filter>
     </ClCompile>
     <ClCompile Include="ContentsDebugWindow.cpp">
       <Filter>ContentsDebug</Filter>
@@ -402,12 +396,6 @@
     </ClInclude>
     <ClInclude Include="MoveObject1.h">
       <Filter>PlayStage\Boss1\Monster\skill</Filter>
-    </ClInclude>
-    <ClInclude Include="MainMenuMode.h">
-      <Filter>MainMenu\Level</Filter>
-    </ClInclude>
-    <ClInclude Include="MainMenuActor.h">
-      <Filter>MainMenu\Actor</Filter>
     </ClInclude>
     <ClInclude Include="ContentsDebugWindow.h">
       <Filter>ContentsDebug</Filter>
