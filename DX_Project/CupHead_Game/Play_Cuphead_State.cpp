@@ -853,6 +853,8 @@ void APlay_Cuphead::CalGuage()
 {
 	if (CurGuageCount == 5)
 	{
+		GuageGet = 0;
+		overGuageGet = 0;
 		return;
 	}
 
