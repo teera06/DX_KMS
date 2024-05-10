@@ -235,6 +235,12 @@ private:
 	void SSGround_DiagonalDown(float _DeltaTime);
 	void SSGround_Up(float _DeltaTime);
 
+	void Air_SSGround_Straight(float _DeltaTime);
+	void Air_SSGround_Down(float _DeltaTime);
+	void Air_SSGround_DiagonalUp(float _DeltaTime);
+	void Air_SSGround_DiagonalDown(float _DeltaTime);
+	void Air_SSGround_Up(float _DeltaTime);
+
 	void Boss2PhaseChange(float _DeltaTime);
 	void Scared(float _DeltaTime);
 };

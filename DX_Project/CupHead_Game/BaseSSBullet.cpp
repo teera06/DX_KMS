@@ -220,7 +220,7 @@ void ABaseSSBullet::Collisiongather()
 		Monster->SethitCheck(true);
 		Monster->addHp(Att);
 		DestroyCheck = true;
-		BulletRender->ChangeAnimation("Peashot_Death");
+		BulletRender->ChangeAnimation("PeaEX_Death");
 		BulletCollision->SetActive(false);
 		//Destroy();
 		//_Collison->GetActor()->Destroy();
@@ -234,7 +234,7 @@ void ABaseSSBullet::Collisiongather()
 		Monster->SethitCheck(true);
 		Monster->addHp(Att);
 		DestroyCheck = true;
-		BulletRender->ChangeAnimation("Peashot_Death");
+		BulletRender->ChangeAnimation("PeaEX_Death");
 		BulletCollision->SetActive(false);
 		//_Collison->GetActor()->Destroy();
 	});
@@ -248,7 +248,7 @@ void ABaseSSBullet::Collisiongather()
 		Monster->SethitCheck(true);
 		Monster->addHp(Att);
 		DestroyCheck = true;
-		BulletRender->ChangeAnimation("Peashot_Death");
+		BulletRender->ChangeAnimation("PeaEX_Death");
 		BulletCollision->SetActive(false);
 		//Destroy();
 		//_Collison->GetActor()->Destroy();

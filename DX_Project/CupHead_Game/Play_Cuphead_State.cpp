@@ -1113,6 +1113,12 @@ void APlay_Cuphead::StateInit()
 	State.CreateState("SSGround_DiagonalUp");
 	State.CreateState("SSGround_DiagonalDown");
 	State.CreateState("SSGround_Up");
+
+	State.CreateState("Air_SSGround_Straight");
+	State.CreateState("Air_SSGround_Down");
+	State.CreateState("Air_SSGround_DiagonalUp");
+	State.CreateState("Air_SSGround_DiagonalDown");
+	State.CreateState("Air_SSGround_Up");
 	
 	State.SetUpdateFunction("Intro", std::bind(&APlay_Cuphead::Intro, this, std::placeholders::_1));
 	State.SetStartFunction("Intro", [=] {PlayCuphead->ChangeAnimation("Intro"); });
@@ -1214,10 +1220,23 @@ void APlay_Cuphead::StateInit()
 	State.SetUpdateFunction("SSGround_DiagonalDown", std::bind(&APlay_Cuphead::SSGround_DiagonalDown, this, std::placeholders::_1));
 	State.SetStartFunction("SSGround_DiagonalDown", [=] {PlayCuphead->ChangeAnimation("SSGround_DiagonalDown"); });
 
-	State.SetUpdateFunction("SSGround_Up", std::bind(&APlay_Cuphead::SSGround_Up, this, std::placeholders::_1));
-	State.SetStartFunction("SSGround_Up", [=] {PlayCuphead->ChangeAnimation("SSGround_Up"); });
-
-
+	State.SetUpdateFunction("Air_SSGround_Up", std::bind(&APlay_Cuphead::Air_SSGround_Up, this, std::placeholders::_1));
+	State.SetStartFunction("Air_SSGround_Up", [=] {PlayCuphead->ChangeAnimation("SSGround_Up"); });
+							 
+	State.SetUpdateFunction("Air_SSGround_Straight", std::bind(&APlay_Cuphead::Air_SSGround_Straight, this, std::placeholders::_1));
+	State.SetStartFunction("Air_SSGround_Straight", [=] {PlayCuphead->ChangeAnimation("SSGround_Straight"); });
+							 
+	State.SetUpdateFunction("Air_SSGround_Down", std::bind(&APlay_Cuphead::Air_SSGround_Down, this, std::placeholders::_1));
+	State.SetStartFunction("Air_SSGround_Down", [=] {PlayCuphead->ChangeAnimation("SSGround_Down"); });
+	//						
+	State.SetUpdateFunction("Air_SSGround_DiagonalUp", std::bind(&APlay_Cuphead::Air_SSGround_DiagonalUp, this, std::placeholders::_1));
+	State.SetStartFunction("Air_SSGround_DiagonalUp", [=] {PlayCuphead->ChangeAnimation("SSGround_DiagonalUp"); });
+	//						
+	State.SetUpdateFunction("Air_SSGround_DiagonalDown", std::bind(&APlay_Cuphead::Air_SSGround_DiagonalDown, this, std::placeholders::_1));
+	State.SetStartFunction("Air_SSGround_DiagonalDown", [=] {PlayCuphead->ChangeAnimation("SSGround_DiagonalDown"); });
+	//					
+	//State.SetUpdateFunction("Air_SSGround_Up", std::bind(&APlay_Cuphead::SSGround_Up, this, std::placeholders::_1));
+	//State.SetStartFunction("Air_SSGround_Up", [=] {PlayCuphead->ChangeAnimation("SSGround_Up"); });
 	//State.SetUpdateFunction("Run", std::bind(&AWorldPlayer::Run, this, std::placeholders::_1));
 
 	//State.SetStartFunction("Run", std::bind(&AWorldPlayer::RunStart, this));
@@ -2078,6 +2097,66 @@ void APlay_Cuphead::Shoot_Up(float _DeltaTime)
 		return;
 	}
 
+	if (true == IsDown('V') && true == IsPress(VK_DOWN) && (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT)) && 100 == Guageint[PrevGuageCount])
+	{
+		BaseBulletSound.Off();
+		BulletStart->SetActive(false);
+		JumpVector = FVector::Zero;
+		NoGravity = true;
+		SSBulletBehavir();
+		ShootStyle = EShootDir::DiagonalDownShoot;
+		State.ChangeState("Air_SSGround_DiagonalDown");
+		return;
+	}
+
+	if (true == IsDown('V') && true == IsPress(VK_UP) && (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT)) && 100 == Guageint[PrevGuageCount])
+	{
+		BaseBulletSound.Off();
+		BulletStart->SetActive(false);
+		JumpVector = FVector::Zero;
+		NoGravity = true;
+		SSBulletBehavir();
+		ShootStyle = EShootDir::DiagonalUpShoot;
+		State.ChangeState("Air_SSGround_DiagonalUp");
+		return;
+	}
+
+	if (true == IsDown('V') && true == IsPress(VK_UP) && 100 == Guageint[PrevGuageCount])
+	{
+		BaseBulletSound.Off();
+		BulletStart->SetActive(false);
+		JumpVector = FVector::Zero;
+		NoGravity = true;
+		SSBulletBehavir();
+		ShootStyle = EShootDir::UpShoot;
+		State.ChangeState("Air_SSGround_Up");
+		return;
+	}
+
+	if (true == IsDown('V') && true == IsPress(VK_DOWN) && 100 == Guageint[PrevGuageCount])
+	{
+		BaseBulletSound.Off();
+		BulletStart->SetActive(false);
+		JumpVector = FVector::Zero;
+		NoGravity = true;
+		SSBulletBehavir();
+		ShootStyle = EShootDir::DownShoot;
+		State.ChangeState("Air_SSGround_Down");
+		return;
+	}
+
+	if (true == IsDown('V') && (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT)) && 100 == Guageint[PrevGuageCount])
+	{
+		BaseBulletSound.Off();
+		BulletStart->SetActive(false);
+		JumpVector = FVector::Zero;
+		NoGravity = true;
+		SSBulletBehavir();
+		ShootStyle = EShootDir::IdleShoot;
+		State.ChangeState("Air_SSGround_Straight");
+		return;
+	}
+
 	MoveUpDate(_DeltaTime);
 }
 
@@ -2116,6 +2195,57 @@ void APlay_Cuphead::Jump(float _DeltaTime)
 		State.ChangeState("Parry");
 		return;
 	}
+
+	if (true == IsDown('V') && true == IsPress(VK_DOWN) && (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT)) && 100 == Guageint[PrevGuageCount])
+	{
+		JumpVector = FVector::Zero;
+		NoGravity = true;
+		SSBulletBehavir();
+		ShootStyle = EShootDir::DiagonalDownShoot;
+		State.ChangeState("Air_SSGround_DiagonalDown");
+		return;
+	}
+
+	if (true == IsDown('V') && true == IsPress(VK_UP) && (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT)) && 100 == Guageint[PrevGuageCount])
+	{
+		JumpVector = FVector::Zero;
+		NoGravity = true;
+		SSBulletBehavir();
+		ShootStyle = EShootDir::DiagonalUpShoot;
+		State.ChangeState("Air_SSGround_DiagonalUp");
+		return;
+	}
+
+	if (true == IsDown('V') && true == IsPress(VK_UP) && 100 == Guageint[PrevGuageCount])
+	{
+		JumpVector = FVector::Zero;
+		NoGravity = true;
+		SSBulletBehavir();
+		ShootStyle = EShootDir::UpShoot;
+		State.ChangeState("Air_SSGround_Up");
+		return;
+	}
+
+	if (true == IsDown('V') && true == IsPress(VK_DOWN)  && 100 == Guageint[PrevGuageCount])
+	{
+		JumpVector = FVector::Zero;
+		NoGravity = true;
+		SSBulletBehavir();
+		ShootStyle = EShootDir::DownShoot;
+		State.ChangeState("Air_SSGround_Down");
+		return;
+	}
+
+	if (true == IsDown('V') && (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT)) && 100 == Guageint[PrevGuageCount])
+	{
+		JumpVector = FVector::Zero;
+		NoGravity = true;
+		SSBulletBehavir();
+		ShootStyle = EShootDir::IdleShoot;
+		State.ChangeState("Air_SSGround_Straight");
+		return;
+	}
+
 
 	FVector MovePos;
 
@@ -2741,6 +2871,141 @@ void APlay_Cuphead::SSGround_Up(float _DeltaTime)
 	{
 		PowerShoot = false;
 		State.ChangeState("Aim_Up");
+		return;
+	}
+
+	MoveUpDate(_DeltaTime); // 최종 움직임
+}
+
+void APlay_Cuphead::Air_SSGround_Straight(float _DeltaTime)
+{
+	if (false == PowerShoot)
+	{
+		DirCheck();
+		std::shared_ptr<ASSDust> NewSSDust = GetWorld()->SpawnActor<ASSDust>("SSDust");
+		NewSSDust->SetDushDir(BulletDir);
+		NewSSDust->SetActorRotation(FVector::Zero);
+		createSSBullet();
+		PowerShoot = true;
+	}
+
+	if (true == PlayCuphead->IsCurAnimationEnd())
+	{
+		NoGravity = false;
+		PowerShoot = false;
+		State.ChangeState("DashAfterJump");
+		return;
+	}
+
+	MoveUpDate(_DeltaTime); // 최종 움직임
+}
+
+void APlay_Cuphead::Air_SSGround_Down(float _DeltaTime)
+{
+	if (false == PowerShoot)
+	{
+		DirCheck();
+		std::shared_ptr<ASSDust> NewSSDust = GetWorld()->SpawnActor<ASSDust>("SSDust");
+		NewSSDust->SetDushDir(BulletDir);
+		NewSSDust->SetActorRotation({ 0.0f,0.0f,270.0f });
+		PowerShoot = true;
+		createSSBullet();
+	}
+
+	if (true == PlayCuphead->IsCurAnimationEnd())
+	{
+		PlayerCollision->SetScale(FVector(70.0f, 50.0f, 100.0f));
+		PlayerCollision->SetPosition(FVector(0.0f, 30.0f, 0.0f));
+		NoGravity = false;
+		PowerShoot = false;
+		State.ChangeState("DashAfterJump");
+		return;
+	}
+
+	MoveUpDate(_DeltaTime); // 최종 움직임
+}
+
+void APlay_Cuphead::Air_SSGround_DiagonalUp(float _DeltaTime)
+{
+	if (false == PowerShoot)
+	{
+		DirCheck();
+		std::shared_ptr<ASSDust> NewSSDust = GetWorld()->SpawnActor<ASSDust>("SSDust");
+		NewSSDust->SetDushDir(BulletDir);
+
+		if (BulletDir.iX() == 1)
+		{
+			NewSSDust->SetActorRotation({ 0.0f,0.0f,45.0f });
+		}
+		else if (BulletDir.iX() == -1)
+		{
+			NewSSDust->SetActorRotation({ 0.0f,0.0f,-45.0f });
+		}
+		PowerShoot = true;
+		createSSBullet();
+	}
+
+	if (true == PlayCuphead->IsCurAnimationEnd())
+	{
+		NoGravity = false;
+		PowerShoot = false;
+		BulletStart->SetActive(true);
+		State.ChangeState("DashAfterJump");
+		return;
+	}
+
+	MoveUpDate(_DeltaTime); // 최종 움직임
+}
+
+void APlay_Cuphead::Air_SSGround_DiagonalDown(float _DeltaTime)
+{
+	if (false == PowerShoot)
+	{
+		DirCheck();
+		std::shared_ptr<ASSDust> NewSSDust = GetWorld()->SpawnActor<ASSDust>("SSDust");
+		NewSSDust->SetDushDir(BulletDir);
+		if (BulletDir.iX() == 1)
+		{
+			NewSSDust->SetActorRotation({ 0.0f,0.0f,315.0f });
+		}
+		else if (BulletDir.iX() == -1)
+		{
+			NewSSDust->SetActorRotation({ 0.0f,0.0f,-315.0f });
+		}
+		PowerShoot = true;
+		createSSBullet();
+	}
+
+	if (true == PlayCuphead->IsCurAnimationEnd())
+	{
+		NoGravity = false;
+		PowerShoot = false;
+		PlayerCollision->SetScale(FVector(70.0f, 50.0f, 100.0f));
+		PlayerCollision->SetPosition(FVector(0.0f, 30.0f, 0.0f));
+		State.ChangeState("DashAfterJump");
+		return;
+	}
+
+	MoveUpDate(_DeltaTime); // 최종 움직임
+}
+
+void APlay_Cuphead::Air_SSGround_Up(float _DeltaTime)
+{
+	if (false == PowerShoot)
+	{
+		DirCheck();
+		std::shared_ptr<ASSDust> NewSSDust = GetWorld()->SpawnActor<ASSDust>("SSDust");
+		NewSSDust->SetDushDir(BulletDir);
+		NewSSDust->SetActorRotation({ 0.0f,0.0f,90.0f });
+		PowerShoot = true;
+		createSSBullet();
+	}
+
+	if (true == PlayCuphead->IsCurAnimationEnd())
+	{
+		NoGravity = false;
+		PowerShoot = false;
+		State.ChangeState("DashAfterJump");
 		return;
 	}
 
