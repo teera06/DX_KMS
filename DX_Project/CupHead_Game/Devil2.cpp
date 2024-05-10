@@ -1,6 +1,7 @@
 #include "PreCompile.h"
 #include "Devil2.h"
 
+#include <EnginePlatform/EngineSound.h>
 #include <EngineCore/DefaultSceneComponent.h>
 #include <EngineCore/SpriteRenderer.h>
 #include <EngineCore/Collision.h>
@@ -112,7 +113,6 @@ void ADevil2::BeginPlay()
 	Phase1StateInit();
 
 	
-
 	CrySound = UEngineSound::SoundPlay("sfx_level_devil_head_devil_cry_idle_001.wav");
 	CrySound.Loop();
 	CrySound.Off();
