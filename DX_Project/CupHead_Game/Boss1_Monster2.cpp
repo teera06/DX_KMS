@@ -430,7 +430,7 @@ void ABoss1_Monster2::createObject()
 
 void ABoss1_Monster2::WindCollisioncheck(float _DeltaTime)
 {
-	WindCollision->CollisionStay(ECollisionOrder::Player, [=](std::shared_ptr<UCollision> _Collison)
+	WindCollision->CollisionStay(ECollisionOrder::PlayerGround, [=](std::shared_ptr<UCollision> _Collison)
 	{
 		AActor* Ptr = _Collison->GetActor();
 		APlay_Cuphead* Player = dynamic_cast<APlay_Cuphead*>(Ptr);
