@@ -285,6 +285,14 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="EndingActor.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="EndingLevel.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="FatDemon.h">
       <SubType>
       </SubType>
@@ -537,6 +545,14 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="DashDust.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="EndingActor.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="EndingLevel.cpp">
       <SubType>
       </SubType>
     </ClCompile>

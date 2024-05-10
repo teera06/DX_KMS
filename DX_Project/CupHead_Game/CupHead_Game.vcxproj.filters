@@ -314,6 +314,12 @@
     <ClCompile Include="WorldDust.cpp">
       <Filter>Dustandhiteffect</Filter>
     </ClCompile>
+    <ClCompile Include="EndingLevel.cpp">
+      <Filter>EndingLevel\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="EndingActor.cpp">
+      <Filter>EndingLevel\Actor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Core.h">
@@ -504,6 +510,12 @@
     </ClInclude>
     <ClInclude Include="WorldDust.h">
       <Filter>Dustandhiteffect</Filter>
+    </ClInclude>
+    <ClInclude Include="EndingLevel.h">
+      <Filter>EndingLevel\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="EndingActor.h">
+      <Filter>EndingLevel\Actor</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
