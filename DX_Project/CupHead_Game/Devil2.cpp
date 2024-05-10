@@ -402,7 +402,7 @@ void ADevil2::DevilSummonImpIdle(float _DeltaTime)
 
 void ADevil2::FatDemonIntro(float _DeltaTime)
 {
-	Hand->AddPosition(FVector(FVector::Up * 200.0f * _DeltaTime));
+	Hand->AddPosition(FVector::Up * 200.0f * _DeltaTime);
 
 	if (Hand->GetWorldPosition().iY() == 250)
 	{
