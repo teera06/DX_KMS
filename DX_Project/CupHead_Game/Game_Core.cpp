@@ -18,9 +18,12 @@ UGame_Core::~UGame_Core()
 
 void UGame_Core::Initialize()
 {
-
+	
 	UEngineEditorGUI::CreateEditorWindow<UContentsDebugWindow>("CupheadHelpMe");
 
+	GEngine->EngineWindow.SetWindowPosition(FVector(100.0f, 100.0f));
+	GEngine->EngineWindow.SetWindowTitle("CupHead");
+	GEngine->EngineWindow.SetWindowSmallIcon();
 	{
 		// 파일의 헤더
 		UEngineDirectory Dir;
