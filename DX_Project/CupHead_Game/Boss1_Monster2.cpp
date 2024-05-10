@@ -204,6 +204,7 @@ void ABoss1_Monster2::Tick(float _DeltaTime)
 	{
 		Phase2.Update(_DeltaTime);
 	}
+	PlayerCollisionCheck();
 }
 
 void ABoss1_Monster2::Phase1StateInit()
@@ -377,6 +378,21 @@ void ABoss1_Monster2::AniCreate()
 }
 
 
+
+void ABoss1_Monster2::PlayerCollisionCheck()
+{
+	BigBossCollision->CollisionEnter(ECollisionOrder::Player, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		AActor* Ptr = _Collison->GetActor();
+		APlay_Cuphead* Player = dynamic_cast<APlay_Cuphead*>(Ptr);
+
+		if (nullptr != Player)
+		{
+			Player->AddActorLocation(FVector::Up * 100.0f);
+			Player->State.ChangeState("hit");
+		}
+	});
+}
 
 void ABoss1_Monster2::createSkill()
 {

@@ -111,6 +111,7 @@ private:
 
 	bool Phase3ColOnOff = false;
 
+	void PlayerCollisionCheck();
 	void createSkill();
 
 	void createCoinAtt();

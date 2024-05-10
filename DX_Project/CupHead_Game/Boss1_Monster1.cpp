@@ -5,6 +5,7 @@
 #include <EngineCore/Collision.h>
 #include <EngineCore/DefaultSceneComponent.h>
 
+#include "Play_Cuphead.h"
 #include "smallskill.h"
 #include "ball.h"
 
@@ -70,6 +71,7 @@ void ABoss1_Monster1::Tick(float _DeltaTime)
 	else {
 		Phase2.Update(_DeltaTime);
 	}
+	PlayerCollisionCheck();
 }
 
 void ABoss1_Monster1::Phase1StateInit()
@@ -169,6 +171,21 @@ void ABoss1_Monster1::AniCreate()
 	SmallBoss1->CreateAnimation("smallatt2", "smallatt2", 0.075f);
 }
 
+
+void ABoss1_Monster1::PlayerCollisionCheck()
+{
+	smallBossCollision->CollisionEnter(ECollisionOrder::Player, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		AActor* Ptr = _Collison->GetActor();
+		APlay_Cuphead* Player = dynamic_cast<APlay_Cuphead*>(Ptr);
+
+		if (nullptr != Player)
+		{
+			Player->AddActorLocation(FVector::Up * 100.0f);
+			Player->State.ChangeState("hit");
+		}
+	});
+}
 
 void ABoss1_Monster1::createSkill()
 {

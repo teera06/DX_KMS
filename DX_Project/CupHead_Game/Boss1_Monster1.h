@@ -52,7 +52,7 @@ private:
 
 
 
-
+	void PlayerCollisionCheck();
 	void createSkill();
 	void SkillYMove();
 
