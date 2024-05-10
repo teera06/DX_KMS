@@ -220,6 +220,7 @@ void ABaseBullet::Collisiongather()
 			AActor* Ptr = _Collison->GetActor();
 			ADevil1* Monster = dynamic_cast<ADevil1*>(Ptr);
 			Monster->SethitCheck(true);
+			Monster->addHp(1);
 			DestroyCheck = true;
 			BulletRender->ChangeAnimation("Peashot_Death");
 			BulletCollision->SetActive(false);
@@ -234,6 +235,7 @@ void ABaseBullet::Collisiongather()
 		AActor* Ptr = _Collison->GetActor();
 		ASpiderHead* Monster = dynamic_cast<ASpiderHead*>(Ptr);
 		Monster->SethitCheck(true);
+		Monster->addHp(1);
 		DestroyCheck = true;
 		BulletRender->ChangeAnimation("Peashot_Death");
 		BulletCollision->SetActive(false);
@@ -248,6 +250,7 @@ void ABaseBullet::Collisiongather()
 		AActor* Ptr = _Collison->GetActor();
 		AHeadAtt* Monster = dynamic_cast<AHeadAtt*>(Ptr);
 		Monster->SethitCheck(true);
+		Monster->addHp(1);
 		DestroyCheck = true;
 		BulletRender->ChangeAnimation("Peashot_Death");
 		BulletCollision->SetActive(false);
@@ -263,6 +266,7 @@ void ABaseBullet::Collisiongather()
 		AActor* Ptr = _Collison->GetActor();
 		ARamArms* Monster = dynamic_cast<ARamArms*>(Ptr);
 		Monster->SethitCheck(true);
+		Monster->addHp(1);
 		DestroyCheck = true;
 		BulletRender->ChangeAnimation("Peashot_Death");
 		BulletCollision->SetActive(false);
@@ -277,6 +281,7 @@ void ABaseBullet::Collisiongather()
 		AActor* Ptr = _Collison->GetActor();
 		ADevil2* Monster = dynamic_cast<ADevil2*>(Ptr);
 		Monster->SethitCheck(true);
+		Monster->addHp(1);
 		DestroyCheck = true;
 		BulletRender->ChangeAnimation("Peashot_Death");
 		BulletCollision->SetActive(false);

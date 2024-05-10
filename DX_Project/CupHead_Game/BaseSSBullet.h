@@ -24,6 +24,8 @@ protected:
 	void Collisiongather() override;
 private:
 
-	float Speed = 500.0f;
+	float Speed = 600.0f;
+
+	int Att = 10;
 };
 

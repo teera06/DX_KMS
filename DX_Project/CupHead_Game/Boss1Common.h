@@ -22,12 +22,12 @@ public:
 		return Hp;
 	}
 
-	static void SetHp(const int& _Hp)
+	static void SetHp(const int _Hp)
 	{
 		Hp=_Hp;
 	}
 
-	static void addHp(const int& _Hp)
+	static void addHp(const int _Hp)
 	{
 		Hp -= _Hp;
 	}

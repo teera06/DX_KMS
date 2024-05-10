@@ -20,7 +20,9 @@
 
 #include "Devil1.h"
 #include "Devil2.h"
-
+#include "SpiderHead.h"
+#include "RamArms.h"
+#include "HeadAtt.h"
 
 ABaseSSBullet::ABaseSSBullet()
 {
@@ -101,7 +103,7 @@ void ABaseSSBullet::Collisiongather()
 		AActor* Ptr = _Collison->GetActor();
 		ABoss1_Monster1* Monster = dynamic_cast<ABoss1_Monster1*>(Ptr);
 		Monster->GetRender()->SetPlusColor({ 0.2f, 0.2f, 0.2f });
-		Monster->addHp(1);
+		Monster->addHp(Att);
 		DestroyCheck = true;
 		BulletRender->ChangeAnimation("PeaEX_Death");
 		BulletCollision->SetActive(false);
@@ -121,7 +123,7 @@ void ABaseSSBullet::Collisiongather()
 			Monster->GetRender()->SetPlusColor({ 0.2f, 0.2f, 0.2f });
 			Monster->GetSlotMouse()->SetPlusColor({ 0.2f, 0.2f, 0.2f });
 			Monster->GetFrontSlot()->SetPlusColor({ 0.2f, 0.2f, 0.2f });
-			Monster->addHp(1);
+			Monster->addHp(Att);
 		}
 		else
 		{
@@ -130,7 +132,7 @@ void ABaseSSBullet::Collisiongather()
 				Monster->GetRender()->SetPlusColor({ 0.2f, 0.2f, 0.2f });
 				Monster->GetSlotMouse()->SetPlusColor({ 0.2f, 0.2f, 0.2f });
 				Monster->GetFrontSlot()->SetPlusColor({ 0.2f, 0.2f, 0.2f });
-				Monster->addHp(1);
+				Monster->addHp(Att);
 			}
 		}
 		DestroyCheck = true;
@@ -190,7 +192,7 @@ void ABaseSSBullet::Collisiongather()
 		UEngineSound::SoundPlay("sfx_player_shoot_hit_01.wav");
 		AActor* Ptr = _Collison->GetActor();
 		AFatDemon* Monster = dynamic_cast<AFatDemon*>(Ptr);
-		Monster->AddHp(1);
+		Monster->AddHp(Att);
 		DestroyCheck = true;
 		BulletRender->ChangeAnimation("PeaEX_Death");
 		BulletCollision->SetActive(false);
@@ -204,8 +206,49 @@ void ABaseSSBullet::Collisiongather()
 		AActor* Ptr = _Collison->GetActor();
 		ADevil1* Monster = dynamic_cast<ADevil1*>(Ptr);
 		Monster->SethitCheck(true);
+		Monster->addHp(Att);
 		DestroyCheck = true;
 		BulletRender->ChangeAnimation("PeaEX_Death");
+		BulletCollision->SetActive(false);
+	});
+
+	BulletCollision->CollisionEnter(ECollisionOrder::SpiderHeadCol, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		UEngineSound::SoundPlay("sfx_player_shoot_hit_01.wav");
+		AActor* Ptr = _Collison->GetActor();
+		ASpiderHead* Monster = dynamic_cast<ASpiderHead*>(Ptr);
+		Monster->SethitCheck(true);
+		Monster->addHp(Att);
+		DestroyCheck = true;
+		BulletRender->ChangeAnimation("Peashot_Death");
+		BulletCollision->SetActive(false);
+		//Destroy();
+		//_Collison->GetActor()->Destroy();
+	});
+
+	BulletCollision->CollisionEnter(ECollisionOrder::DevilHeadCol, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		UEngineSound::SoundPlay("sfx_player_shoot_hit_01.wav");
+		AActor* Ptr = _Collison->GetActor();
+		AHeadAtt* Monster = dynamic_cast<AHeadAtt*>(Ptr);
+		Monster->SethitCheck(true);
+		Monster->addHp(Att);
+		DestroyCheck = true;
+		BulletRender->ChangeAnimation("Peashot_Death");
+		BulletCollision->SetActive(false);
+		//_Collison->GetActor()->Destroy();
+	});
+
+
+	BulletCollision->CollisionEnter(ECollisionOrder::RamArmCol, [=](std::shared_ptr<UCollision> _Collison)
+	{
+		UEngineSound::SoundPlay("sfx_player_shoot_hit_01.wav");
+		AActor* Ptr = _Collison->GetActor();
+		ARamArms* Monster = dynamic_cast<ARamArms*>(Ptr);
+		Monster->SethitCheck(true);
+		Monster->addHp(Att);
+		DestroyCheck = true;
+		BulletRender->ChangeAnimation("Peashot_Death");
 		BulletCollision->SetActive(false);
 		//Destroy();
 		//_Collison->GetActor()->Destroy();
@@ -217,11 +260,10 @@ void ABaseSSBullet::Collisiongather()
 		AActor* Ptr = _Collison->GetActor();
 		ADevil2* Monster = dynamic_cast<ADevil2*>(Ptr);
 		Monster->SethitCheck(true);
+		Monster->addHp(Att);
 		DestroyCheck = true;
 		BulletRender->ChangeAnimation("PeaEX_Death");
 		BulletCollision->SetActive(false);
-		//Destroy();
-		//_Collison->GetActor()->Destroy();
 	});
 
 

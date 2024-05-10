@@ -86,13 +86,13 @@ void ADevilPlatform::Tick(float _DeltaTime)
 		CheckYUP = GetActorLocation().iY() + 100;
 	}
 
-	if (50 == ABoss2Common::GetHp() && false==HPCheck1)
+	if (3 == ABoss2Common::Getphasecheck() && false == HPCheck1)
 	{
 		HPCheck1 = true;
 		PhaseCount = 2;
 		count = 3;
 	}
-	else if (25 == ABoss2Common::GetHp() && false == HPCheck2)
+	else if (4 == ABoss2Common::Getphasecheck() && false == HPCheck2)
 	{
 		HPCheck2 = true;
 		PhaseCount = 3;

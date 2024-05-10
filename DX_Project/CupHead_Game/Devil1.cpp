@@ -132,7 +132,7 @@ void ADevil1::BeginPlay()
 	UContentsHelper::DelMapCheck = false;
 	hitCheck = false;
 	phasecheck = 1;
-	SetHp(100);
+	SetHp(700);
 }
 
 void ADevil1::Tick(float _DeltaTime)
@@ -373,7 +373,7 @@ void ADevil1::Phase1Intro(float _DeltaTime)
 
 void ADevil1::Phase1Idle(float _DeltaTime)
 {
-	if (phasecheck == 1 && GetHp() <= 75)
+	if (phasecheck == 1 && GetHp() <= 500)
 	{
 		Devil1->SetActive(false);
 		UEngineSound::SoundPlay("sfx_level_devil_sitting_devil_p1_death_start.wav");

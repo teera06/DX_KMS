@@ -240,7 +240,7 @@ void ADevil2::CreateFatDemon()
 
 void ADevil2::DevilPhase2Idle(float _DeltaTime)
 {
-	if (phasecheck == 2 && GetHp() <= 50)
+	if (phasecheck == 2 && GetHp() <= 300)
 	{
 		UEngineSound::SoundPlay("devil_head_devil_hurt_trans_A_001.wav");
 		Phase1.ChangeState("Phase2ToPhase3");
@@ -299,8 +299,8 @@ void ADevil2::Phase2ToPhase3(float _DeltaTime)
 	if (true == Boss2->IsCurAnimationEnd())
 	{
 		attOrder = 1;
-		coolDownTime = 6.0f;
 		phasecheck = 3;
+		coolDownTime = 6.0f;
 		Phase2StateInit();
 		return;
 	}
@@ -338,7 +338,7 @@ void ADevil2::Phase2StateInit()
 
 void ADevil2::Phase3Idle(float _DeltaTime)
 {
-	if (phasecheck == 3 && GetHp() <= 25)
+	if (phasecheck == 3 && GetHp() <= 100)
 	{
 		coolDownTime = 1.0f;
 		Phase2.ChangeState("DevilStartCrying");

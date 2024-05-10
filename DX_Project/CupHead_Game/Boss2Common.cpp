@@ -5,7 +5,7 @@ float ABoss2Common::coolDownTime = 6.0f;
 
 int ABoss2Common::phasecheck = 1;
 int ABoss2Common::attOrder = 1;
-int ABoss2Common::Hp = 100;
+int ABoss2Common::Hp = 700;
 
 bool ABoss2Common::SkillDestory = false;
 bool ABoss2Common::hitCheck = false;

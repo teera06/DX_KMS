@@ -84,15 +84,15 @@ void UContentsDebugWindow::OnGui(ULevel* Level, float _Delta)
 		{
 			if (1 == ABoss2Common::Getphasecheck())
 			{
-				ABoss2Common::SetHp(75);
+				ABoss2Common::SetHp(500);
 			}
 			else if (2 == ABoss2Common::Getphasecheck())
 			{
-				ABoss2Common::SetHp(50);
+				ABoss2Common::SetHp(300);
 			}
 			else if (3 == ABoss2Common::Getphasecheck())
 			{
-				ABoss2Common::SetHp(25);
+				ABoss2Common::SetHp(100);
 			}
 			else if (4 == ABoss2Common::Getphasecheck())
 			{

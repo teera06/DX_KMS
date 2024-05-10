@@ -22,9 +22,14 @@ public:
 		return Hp;
 	}
 
-	static void SetHp(int _Hp)
+	static void SetHp(const int _Hp)
 	{
 		Hp = _Hp;
+	}
+	
+	static void addHp(const int _Hp)
+	{
+		Hp -= _Hp;
 	}
 
 	static int Getphasecheck()
@@ -32,7 +37,7 @@ public:
 		return phasecheck;
 	}
 
-	static void SethitCheck(bool _hitCheck)
+	static void SethitCheck(const bool _hitCheck)
 	{
 		hitCheck = _hitCheck;
 	}
