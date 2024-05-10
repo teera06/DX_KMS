@@ -21,14 +21,16 @@ void AEndingLevel::BeginPlay()
 void AEndingLevel::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+	UEngineSound::Update();
 }
 
 void AEndingLevel::LevelEnd(ULevel* _NextLevel)
 {
 	Super::LevelEnd(_NextLevel);
+	GEngine->DestroyLevel("EndingLevel"); // 종료되는 시점 레벨 삭제 (그 안의 액터 같이 삭제 정리)
 }
 
 void AEndingLevel::LevelStart(ULevel* _PrevLevel)
 {
-	Super::LevelEnd(_PrevLevel);
+	Super::LevelStart(_PrevLevel);
 }

@@ -118,6 +118,12 @@ void ALoadingGameMode::Tick(float _DeltaTime)
 		coolDowntime = 4.0f;
 		//UPlayerCommon::StageCount = 2;
 	}
+	else if (0 == UContentsHelper::StageCount)
+	{
+		GEngine->ChangeLevel("MainTitle");
+		coolDowntime = 4.0f;
+		//UPlayerCommon::StageCount = 2;
+	}
 }
 
 void ALoadingGameMode::LevelEnd(ULevel* _NextLevel)
@@ -163,7 +169,7 @@ void ALoadingGameMode::LevelStart(ULevel* _PrevLevel)
 
 	if (true == CreateLevelend && 4 == UContentsHelper::StageCount)
 	{
-		GEngine->CreateLevel<ABossStage2GameMode>("BossStage2GameMode");
+		GEngine->CreateLevel<AEndingLevel>("EndingLevel");
 	}
 }
 

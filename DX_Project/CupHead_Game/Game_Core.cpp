@@ -41,6 +41,34 @@ void UGame_Core::Initialize()
 			std::string Name = Directorys[i].GetFolderName();
 			UEngineSprite::LoadFolder(Directorys[i].GetFullPath());
 		}
+	}
+
+	{
+		// 파일의 헤더
+		UEngineDirectory Dir;
+		Dir.MoveToSearchChild("GameResource");
+		Dir.Move("Image");
+		Dir.Move("Screen");
+		std::vector<UEngineFile> Files = Dir.GetAllFile({ ".png" }, true);
+		for (UEngineFile& File : Files)
+		{
+			// CuttingTest.png texture로도 한장이 로드가 됐고
+			// 스프라이트로도 1장짜리로 로드가 된 상황이야.
+			std::string FileName = File.GetFileName();
+
+			UEngineSprite::Load(File.GetFullPath());
+		}
+
+		std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory();
+
+		for (size_t i = 0; i < Directorys.size(); i++)
+		{
+			std::string Name = Directorys[i].GetFolderName();
+
+			UEngineSprite::LoadFolder(Directorys[i].GetFullPath());
+		}
+		// 로드폴더는 이렇게 한다고 칩시다.
+
 
 		// 특정 스프라이트나 
 		// 특정 텍스처를 찾아서

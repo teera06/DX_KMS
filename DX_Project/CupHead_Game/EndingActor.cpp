@@ -42,7 +42,8 @@ void AEndingActor::Tick(float _DeltaTime)
 
 	if (true == end->IsCurAnimationEnd())
 	{
-		Destroy();
+		UContentsHelper::StageCount = 0;
 		GEngine->ChangeLevel("Loading");
+		Destroy();
 	}
 }
