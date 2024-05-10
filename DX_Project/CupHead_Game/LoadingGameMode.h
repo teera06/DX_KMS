@@ -28,6 +28,9 @@ private:
 
 	static std::map<std::string, bool> LoadMap;
 
+	std::atomic_int endMainCount = -1;
+	std::atomic_int endForderCount = -1;
+
 	std::atomic_int CommonCount1 = -1;
 	std::atomic_int CommonCount2 = -1;
 
@@ -62,7 +65,7 @@ private:
 	static bool CreateLevelCheck1;
 	static bool CreateLevelCheck2;
 	static bool CreateLevelCheck3;
-
+	static bool CreateLevelend;
 	// 공통 로드 목록
 	void MainPlayerLoad();
 	void PlayerFolderLoad();
@@ -70,6 +73,10 @@ private:
 	// World Map Load
 	void MainWorldLoad();
 	void FolderWorldLoad();
+
+	// World Map Load
+	void endLoad();
+	void endFolderLoad();
 
 	// Boss1 Load
 	void MainBoss1Load();
@@ -83,6 +90,6 @@ private:
 	void LastWorldLoad();
 	void LastBoss1Load();
 	void LastBoss2Load();
-
+	void LastEndLoad();
 };
 

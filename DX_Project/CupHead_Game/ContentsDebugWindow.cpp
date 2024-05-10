@@ -53,6 +53,17 @@ void UContentsDebugWindow::OnGui(ULevel* Level, float _Delta)
 		GEngine->ChangeLevel("Loading");
 	}
 
+	if (true == ImGui::Button("Ending"))
+	{
+
+		if (UContentsHelper::StageCount == 4)
+		{
+			return;
+		}
+		UContentsHelper::StageCount = 4;
+		GEngine->ChangeLevel("Loading");
+	}
+
 	if (UContentsHelper::StageCount == 2)
 	{
 		if (true == ImGui::Button("Phase2Change"))

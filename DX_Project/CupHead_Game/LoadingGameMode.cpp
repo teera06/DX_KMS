@@ -14,6 +14,7 @@
 #include "WorldGameMode.h"
 #include "BossStage1GameMode.h"
 #include "BossStage2GameMode.h"
+#include "EndingLevel.h"
 
 std::map<std::string, bool> ALoadingGameMode::LoadMap;
 
@@ -21,6 +22,7 @@ bool ALoadingGameMode::CreatePlayer = false;
 bool ALoadingGameMode::CreateLevelCheck1=false;
 bool ALoadingGameMode::CreateLevelCheck2=false;
 bool ALoadingGameMode::CreateLevelCheck3 = false;
+bool ALoadingGameMode::CreateLevelend = false;
 
 ALoadingGameMode::ALoadingGameMode()
 {
@@ -87,6 +89,11 @@ void ALoadingGameMode::Tick(float _DeltaTime)
 		LastBoss2Load();
 	}
 
+	if (false == CreateLevelend)
+	{
+		LastEndLoad();
+	}
+
 	coolDowntime -= _DeltaTime;
 	if (true== CreateLevelCheck1 && 1 == UContentsHelper::StageCount)
 	{
@@ -102,6 +109,12 @@ void ALoadingGameMode::Tick(float _DeltaTime)
 	else if (true == CreateLevelCheck3 && 3 == UContentsHelper::StageCount)
 	{
 		GEngine->ChangeLevel("BossStage2GameMode");
+		coolDowntime = 4.0f;
+		//UPlayerCommon::StageCount = 2;
+	}
+	else if (true == CreateLevelend && 4 == UContentsHelper::StageCount)
+	{
+		GEngine->ChangeLevel("EndingLevel");
 		coolDowntime = 4.0f;
 		//UPlayerCommon::StageCount = 2;
 	}
@@ -133,6 +146,10 @@ void ALoadingGameMode::LevelStart(ULevel* _PrevLevel)
 	{
 		MainBoss2Load();
 	}
+	else if (4 == UContentsHelper::StageCount && false == CreateLevelend)
+	{
+		endLoad();
+	}
 
 	if (true == CreateLevelCheck2 && 2 == UContentsHelper::StageCount)
 	{
@@ -140,6 +157,11 @@ void ALoadingGameMode::LevelStart(ULevel* _PrevLevel)
 	}
 
 	if (true == CreateLevelCheck3 && 3 == UContentsHelper::StageCount)
+	{
+		GEngine->CreateLevel<ABossStage2GameMode>("BossStage2GameMode");
+	}
+
+	if (true == CreateLevelend && 4 == UContentsHelper::StageCount)
 	{
 		GEngine->CreateLevel<ABossStage2GameMode>("BossStage2GameMode");
 	}
@@ -313,6 +335,58 @@ void ALoadingGameMode::FolderWorldLoad()
 		LoadMap["Cuphead"] = true;
 
 		UEngineSprite::CreateCutting("Boss1Zone.png", 3, 1);
+	}
+}
+
+void ALoadingGameMode::endLoad()
+{
+	UEngineDirectory Dir;
+	Dir.MoveToSearchChild("GameResource");
+	Dir.Move("Image");
+	Dir.Move("End");
+	if (false == LoadMap.contains("End"))
+	{
+		std::vector<UEngineFile> Files = Dir.GetAllFile({ ".png" }, true);
+		endMainCount = static_cast<int>(Files.size());
+		for (UEngineFile& File : Files)
+		{
+			// CuttingTest.png texture로도 한장이 로드가 됐고
+			// 스프라이트로도 1장짜리로 로드가 된 상황이야.
+			GEngine->JobWorker.Work([=]()
+			{
+
+				UEngineSprite::ThreadSafeLoad(File.GetFullPath());
+
+				--endMainCount;
+			});
+		}
+
+		LoadMap["End"] = true;
+	}
+}
+
+void ALoadingGameMode::endFolderLoad()
+{
+	UEngineDirectory Dir;
+	Dir.MoveToSearchChild("GameResource");
+	Dir.Move("Image");
+	Dir.Move("End");
+
+	// 로드폴더는 이렇게 한다고 칩시다.
+
+	if (true == LoadMap.contains("End"))
+	{
+		std::vector<UEngineDirectory> Directorys = Dir.GetAllDirectory();
+		endForderCount = static_cast<int>(Directorys.size());
+		for (size_t i = 0; i < Directorys.size(); i++)
+		{
+			GEngine->JobWorker.Work([=]()
+			{
+				UEngineSprite::ThreadSafeLoadFolder(Directorys[i].GetFullPath());
+
+				--endForderCount;
+			});
+		}
 	}
 }
 
@@ -668,6 +742,22 @@ void ALoadingGameMode::LastBoss2Load()
 		SubFolder2Count3 = -1;
 		GEngine->CreateLevel<ABossStage2GameMode>("BossStage2GameMode");
 		CreateLevelCheck3 = true;
+	}
+}
+
+void ALoadingGameMode::LastEndLoad()
+{
+	if (0 == endMainCount && false == CreateLevelend)
+	{
+		endMainCount = -1;
+		endFolderLoad();
+	}
+
+	if (0 == endForderCount && false == CreateLevelend)
+	{
+		endForderCount = -1;
+		GEngine->CreateLevel<AEndingLevel>("EndingLevel");
+		CreateLevelend = true;
 	}
 }
 
