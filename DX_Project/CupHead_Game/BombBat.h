@@ -30,6 +30,9 @@ private:
 	float BoomTime = 8.0f;
 
 	float speed = 500.0f;
+
+	void PlayerCollision();
+
 	void patternInit();
 	void LeftMove(float _DeltaTime);
 	void UpMove(float _DeltaTime);

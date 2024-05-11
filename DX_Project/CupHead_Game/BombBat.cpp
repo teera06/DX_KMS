@@ -6,6 +6,7 @@
 #include <EngineCore/Collision.h>
 
 #include "ContentsENum.h"
+#include "Play_Cuphead.h"
 
 ABombBat::ABombBat()
 {
@@ -53,6 +54,22 @@ void ABombBat::Tick(float _DeltaTime)
 	Super::Tick(_DeltaTime);
 	BoomTime -= _DeltaTime;
 	pattern.Update(_DeltaTime);
+	PlayerCollision();
+}
+
+void ABombBat::PlayerCollision()
+{
+	ColBat->CollisionEnter(ECollisionOrder::Player, [=](std::shared_ptr<UCollision> _Collison)
+		{
+			AActor* Ptr = _Collison->GetActor();
+			APlay_Cuphead* Player = dynamic_cast<APlay_Cuphead*>(Ptr);
+
+			if (nullptr != Player)
+			{
+				Player->AddActorLocation(FVector::Up * 100.0f);
+				Player->State.ChangeState("hit");
+			}
+		});
 }
 
 void ABombBat::patternInit()
