@@ -2079,6 +2079,17 @@ void APlay_Cuphead::Shoot_Up(float _DeltaTime)
 		return;
 	}
 
+	if (true == IsDown('V') && 100 == Guageint[PrevGuageCount]
+		)
+	{
+		BaseBulletSound.Off();
+		BulletStart->SetActive(false);
+		SSBulletBehavir();
+		ShootStyle = EShootDir::UpShoot;
+		State.ChangeState("SSGround_Up");
+		return;
+	}
+
 	if (true == IsPress(VK_RIGHT) || true == IsPress(VK_LEFT))
 	{
 		ShootStyle = EShootDir::RunShoot;
