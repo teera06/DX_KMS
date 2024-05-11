@@ -1734,6 +1734,8 @@ void APlay_Cuphead::Run_Shoot_Straight(float  _DeltaTime)
 
 	if (true == IsDown('V') && 100 == Guageint[PrevGuageCount])
 	{
+		BaseBulletSound.Off();
+		BulletStart->SetActive(false);
 		SSBulletBehavir();
 		ShootStyle = EShootDir::IdleShoot;
 		State.ChangeState("SSGround_Straight");
@@ -1964,6 +1966,16 @@ void APlay_Cuphead::Shoot_Straight(float _DeltaTime)
 		BaseBulletSound.Off();
 		BulletStart->SetActive(false);
 		State.ChangeState("Idle");
+		return;
+	}
+
+	if (true == IsDown('V') && 100 == Guageint[PrevGuageCount])
+	{
+		BaseBulletSound.Off();
+		BulletStart->SetActive(false);
+		SSBulletBehavir();
+		ShootStyle = EShootDir::IdleShoot;
+		State.ChangeState("SSGround_Straight");
 		return;
 	}
 
