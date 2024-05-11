@@ -54,9 +54,7 @@ void ABoss2Map::BeginPlay()
 	Super::BeginPlay();
 	SetActorLocation(FVector(0.0f, 180.0f, 160.0f));
 
-	crowd2->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
-	JazzGirls->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
-	Waiter->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
+
 	
 	crowd2->CreateAnimation("B", "B", 0.1f);
 	crowd2->ChangeAnimation("B");

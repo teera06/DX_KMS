@@ -34,7 +34,6 @@ ABoss3Map::ABoss3Map()
 	crowd3->SetSprite("jazz_crowdA_0001.png");
 	crowd3->SetSamplering(ETextureSampling::LINEAR);
 	crowd3->SetAutoSize(0.97f, true);
-	crowd3->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 
 	Object1->SetOrder(ERenderOrder::FrontGround1);
 	Object1->SetSprite("table.png");
