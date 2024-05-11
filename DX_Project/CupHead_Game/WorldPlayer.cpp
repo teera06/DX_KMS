@@ -47,7 +47,7 @@ AWorldPlayer::~AWorldPlayer()
 void AWorldPlayer::BeginPlay()
 {
 	Super::BeginPlay();
-	SetActorLocation(FVector(1600.0f/2.0f, -1600.0f/2.0f, 50.0f));
+	SetActorLocation(FVector(1500.0f/2.0f, -1700.0f/2.0f, 50.0f));
 
 	AButton->SetOrder(ERenderOrder::Cuphead);
 	AButton->SetSprite("PressSign.png");

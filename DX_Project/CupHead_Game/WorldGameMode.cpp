@@ -12,6 +12,7 @@
 
 #include <EngineCore/Camera.h>
 #include <EngineCore/Image.h>
+#include <EngineCore/BlurEffect.h>
 
 AWorldGameMode::AWorldGameMode()
 {
@@ -32,6 +33,8 @@ void AWorldGameMode::BeginPlay()
 	GetWorld()->SpawnActor<AWorldPlayer>("WorldPlayer");
 	GetWorld()->SpawnActor<ABoss1Start>("Boss1Start");
 	GetWorld()->SpawnActor<ABoss2Start>("Boss2Start");
+	GetWorld()->GetLastTarget()->AddEffect<UBlurEffect>();
+
 	{
 		std::shared_ptr<AWorldMap> Front = GetWorld()->SpawnActor<AWorldMap>("WorldMap");
 
@@ -65,34 +68,19 @@ void AWorldGameMode::BeginPlay()
 		// Image->SetSprite("HPBar");
 		// Image->SetScale();
 	}
-
-	{
-		// UI를 만들겠다.
-		UImage* Image = CreateWidget<UImage>(GetWorld(), "Iris");
-
-		// 언리얼 따라한것
-		// 언리얼 안나옵니다.
-		Image->AddToViewPort(ERenderOrder::FilterEffect);
-		Image->SetSprite("irisA_0000.png");
-		Image->SetScale(FVector(1280.0f, 720.0f, 0.0f));
-		//Image->SetAutoSize(1.0f, true);
-
-		Image->CreateAnimation("Iris", "Iris", 0.05f,false);
-		//Image->SetPosition({ -570.0f, -310.0f });
-		Image->ChangeAnimation("Iris");
-
-
-		// Image->SetScale({200, 200});
-
-		// 화면에 떠야 한다.
-		// Image->SetSprite("HPBar");
-		// Image->SetScale();
-	}
 }
 
 void AWorldGameMode::Tick(float _DeltaTime)
 {
 	Super::Tick(_DeltaTime);
+
+	if (false == OneCheck)
+	{
+		std::shared_ptr<AScreenEffect> NewScreen = GetWorld()->SpawnActor<AScreenEffect>("ScreenEffect");
+		NewScreen->SetActorLocation(AWorldPlayer::GetPlayerPos());
+		NewScreen->SetScreenEffect(EScreenEffect::Iris2);
+		OneCheck = true;
+	}
 	UEngineSound::Update();
 }
 
@@ -105,6 +93,10 @@ void AWorldGameMode::LevelEnd(ULevel* _NextLevel)
 void AWorldGameMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
+	std::shared_ptr<AScreenEffect> NewScreen = GetWorld()->SpawnActor<AScreenEffect>("ScreenEffect");
+	NewScreen->SetActorLocation(AWorldPlayer::GetPlayerPos());
+	NewScreen->SetScreenEffect(EScreenEffect::Iris2);
+
 	WorldBGM = UEngineSound::SoundPlay("MUS_InkwellIsleOne.wav");
 	WorldBGM.Loop();
 }

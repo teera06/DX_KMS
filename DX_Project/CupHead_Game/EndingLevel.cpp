@@ -2,6 +2,8 @@
 #include "EndingLevel.h"
 #include "EndingActor.h"
 
+#include <EngineCore/BlurEffect.h>
+
 AEndingLevel::AEndingLevel()
 {
 }
@@ -16,6 +18,7 @@ void AEndingLevel::BeginPlay()
 	std::shared_ptr<UCamera> Camera = GetWorld()->GetMainCamera();
 	Camera->SetActorLocation(FVector(0.0f, 0.0f, -100.0f));
 	GetWorld()->SpawnActor<AEndingActor>("Ending");
+	GetWorld()->GetLastTarget()->AddEffect<UBlurEffect>();
 }
 
 void AEndingLevel::Tick(float _DeltaTime)

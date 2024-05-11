@@ -24,5 +24,7 @@ protected:
 	void LevelStart(ULevel* _PrevLevel);
 private:
 	UEngineSoundPlayer WorldBGM;
+
+	bool OneCheck = false;
 };
 

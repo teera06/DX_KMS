@@ -577,6 +577,18 @@ void AWorldPlayer::DiagonalUpWalk(float _DeltaTime)
 		return;
 	}
 
+	if (true == IsFree(VK_UP))
+	{
+		State.ChangeState("StraightWalk");
+		return;
+	}
+
+	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
+	{
+		State.ChangeState("UpWalk");
+		return;
+	}
+
 	DustTime -= _DeltaTime;
 
 	if (DustTime < 0)
@@ -621,10 +633,6 @@ void AWorldPlayer::DiagonalDownIdle(float _DeltaTime)
 		return;
 	}
 
-	if (true == UEngineInput::IsDown('Z'))
-	{
-		GEngine->ChangeLevel("Loading");
-	}
 
 	if (true == IsPress(VK_UP))
 	{
@@ -678,6 +686,18 @@ void AWorldPlayer::DiagonalDownWalk(float _DeltaTime)
 	if (true == IsFree(VK_DOWN) && true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
 	{
 		State.ChangeState("DiagonalDownIdle");
+		return;
+	}
+
+	if (true == IsFree(VK_DOWN))
+	{
+		State.ChangeState("StraightWalk");
+		return;
+	}
+
+	if (true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
+	{
+		State.ChangeState("DownWalk");
 		return;
 	}
 
