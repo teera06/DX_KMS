@@ -204,7 +204,7 @@ void AWorldPlayer::StateInit()
 
 
 	// √º¿Œ¡ˆ
-	State.ChangeState("UpIdle");
+	State.ChangeState("DownIdle");
 }
 
 
@@ -550,13 +550,8 @@ void AWorldPlayer::DiagonalUpIdle(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsPress(VK_RIGHT) && true == IsPress(VK_UP))
-	{
-		State.ChangeState("DiagonalUpWalk");
-		return;
-	}
 
-	if (true == IsPress(VK_LEFT) && true == IsPress(VK_UP))
+	if ((true == IsPress(VK_LEFT)|| true == IsPress(VK_RIGHT)) && true == IsPress(VK_UP))
 	{
 		State.ChangeState("DiagonalUpWalk");
 		return;
@@ -576,7 +571,7 @@ void AWorldPlayer::DiagonalUpWalk(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsPress(VK_UP) && true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
+	if (true == IsFree(VK_UP) && true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
 	{
 		State.ChangeState("DiagonalUpIdle");
 		return;
@@ -680,7 +675,7 @@ void AWorldPlayer::DiagonalDownWalk(float _DeltaTime)
 		State.ChangeState("DiagonalDownIdle");
 		return;
 	}
-	if (true == IsPress(VK_DOWN) && true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
+	if (true == IsFree(VK_DOWN) && true == IsFree(VK_LEFT) && true == IsFree(VK_RIGHT))
 	{
 		State.ChangeState("DiagonalDownIdle");
 		return;
