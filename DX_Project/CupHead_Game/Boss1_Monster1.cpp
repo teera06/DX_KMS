@@ -41,7 +41,6 @@ void ABoss1_Monster1::BeginPlay()
 	SmallBoss1->SetOrder(ERenderOrder::Monster2);
 	SmallBoss1->SetSprite("shortFrog_idle_0001.png");
 	SmallBoss1->SetSamplering(ETextureSampling::LINEAR);
-	SmallBoss1->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 	AniCreate();
 
 	Phase1StateInit();
@@ -60,7 +59,7 @@ void ABoss1_Monster1::Tick(float _DeltaTime)
 
 	if (DamgeColorDelay < 0)
 	{
-		SmallBoss1->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
+		SmallBoss1->SetPlusColor(FVector::Zero);
 		DamgeColorDelay = 0.35f;
 	}
 

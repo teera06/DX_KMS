@@ -51,7 +51,6 @@ ABoss1_Monster2::ABoss1_Monster2()
 	SlotImage1->SetPivot(EPivot::BOT);
 	SlotImage1->AddPosition(FVector(-125.0f, 135.0f, 0.0f));
 	SlotImage1->AddRotationDeg(FVector(0.0f, 35.0f, 0.0f));
-	//SlotImage1->SetPlusColor(FVector(0.0f, 0.5f, 0.0f));
 
 	SlotImage2 = CreateDefaultSubObject<USpriteRenderer>("SlotImage2");
 	SlotImage2->SetupAttachment(Root);
@@ -189,9 +188,9 @@ void ABoss1_Monster2::Tick(float _DeltaTime)
 
 	if (DamgeColorDelay < 0)
 	{
-		BigBoss1->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
-		FrontSlot->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
-		SlotMouse->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
+		BigBoss1->SetPlusColor(FVector::Zero);
+		FrontSlot->SetPlusColor(FVector::Zero);
+		SlotMouse->SetPlusColor(FVector::Zero);
 		DamgeColorDelay = 0.35f;
 	}
 
