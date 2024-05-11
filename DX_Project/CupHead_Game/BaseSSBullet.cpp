@@ -99,7 +99,7 @@ void ABaseSSBullet::Collisiongather()
 {
 	BulletCollision->CollisionEnter(ECollisionOrder::Boss1Monster1, [=](std::shared_ptr<UCollision> _Collison)
 	{
-		UEngineSound::SoundPlay("sfx_player_shoot_hit_01.wav");
+		UEngineSound::SoundPlay("sfx_player_weapon_peashoot_ex_impact_01.wav");
 		AActor* Ptr = _Collison->GetActor();
 		ABoss1_Monster1* Monster = dynamic_cast<ABoss1_Monster1*>(Ptr);
 		Monster->GetRender()->SetPlusColor({ 0.2f, 0.2f, 0.2f });
@@ -114,7 +114,7 @@ void ABaseSSBullet::Collisiongather()
 
 	BulletCollision->CollisionEnter(ECollisionOrder::Boss1Monster2, [=](std::shared_ptr<UCollision> _Collison)
 	{
-		UEngineSound::SoundPlay("sfx_player_shoot_hit_01.wav");
+		UEngineSound::SoundPlay("sfx_player_weapon_peashoot_ex_impact_01.wav");
 		AActor* Ptr = _Collison->GetActor();
 		ABoss1_Monster2* Monster = dynamic_cast<ABoss1_Monster2*>(Ptr);
 
@@ -145,7 +145,7 @@ void ABaseSSBullet::Collisiongather()
 
 	BulletCollision->CollisionEnter(ECollisionOrder::Boss1SkillMonster, [=](std::shared_ptr<UCollision> _Collison)
 	{
-		UEngineSound::SoundPlay("sfx_player_shoot_hit_01.wav");
+		UEngineSound::SoundPlay("sfx_player_weapon_peashoot_ex_impact_01.wav");
 		AActor* Ptr = _Collison->GetActor();
 		AFirefly* Monster = dynamic_cast<AFirefly*>(Ptr);
 		Monster->SetDie(true);
@@ -156,7 +156,7 @@ void ABaseSSBullet::Collisiongather()
 
 	BulletCollision->CollisionEnter(ECollisionOrder::Demon, [=](std::shared_ptr<UCollision> _Collison)
 	{
-		UEngineSound::SoundPlay("sfx_player_shoot_hit_01.wav");
+		UEngineSound::SoundPlay("sfx_player_weapon_peashoot_ex_impact_01.wav");
 		AActor* Ptr = _Collison->GetActor();
 		ADemonMonster* Monster = dynamic_cast<ADemonMonster*>(Ptr);
 		Monster->IsDieCheck(true);
@@ -167,7 +167,7 @@ void ABaseSSBullet::Collisiongather()
 
 	BulletCollision->CollisionEnter(ECollisionOrder::imp, [=](std::shared_ptr<UCollision> _Collison)
 	{
-		UEngineSound::SoundPlay("sfx_player_shoot_hit_01.wav");
+		UEngineSound::SoundPlay("sfx_player_weapon_peashoot_ex_impact_01.wav");
 		AActor* Ptr = _Collison->GetActor();
 		AImp* Monster = dynamic_cast<AImp*>(Ptr);
 		Monster->IsDieCheck(true);
@@ -178,7 +178,7 @@ void ABaseSSBullet::Collisiongather()
 
 	BulletCollision->CollisionEnter(ECollisionOrder::BombBat, [=](std::shared_ptr<UCollision> _Collison)
 	{
-		UEngineSound::SoundPlay("sfx_player_shoot_hit_01.wav");
+		UEngineSound::SoundPlay("sfx_player_weapon_peashoot_ex_impact_01.wav");
 		AActor* Ptr = _Collison->GetActor();
 		ABombBat* Monster = dynamic_cast<ABombBat*>(Ptr);
 		Monster->Destroy();
@@ -189,7 +189,7 @@ void ABaseSSBullet::Collisiongather()
 
 	BulletCollision->CollisionEnter(ECollisionOrder::FatDemon, [=](std::shared_ptr<UCollision> _Collison)
 	{
-		UEngineSound::SoundPlay("sfx_player_shoot_hit_01.wav");
+		UEngineSound::SoundPlay("sfx_player_weapon_peashoot_ex_impact_01.wav");
 		AActor* Ptr = _Collison->GetActor();
 		AFatDemon* Monster = dynamic_cast<AFatDemon*>(Ptr);
 		Monster->AddHp(Att);
@@ -202,7 +202,7 @@ void ABaseSSBullet::Collisiongather()
 
 	BulletCollision->CollisionEnter(ECollisionOrder::Devil1, [=](std::shared_ptr<UCollision> _Collison)
 	{
-		UEngineSound::SoundPlay("sfx_player_shoot_hit_01.wav");
+		UEngineSound::SoundPlay("sfx_player_weapon_peashoot_ex_impact_01.wav");
 		AActor* Ptr = _Collison->GetActor();
 		ADevil1* Monster = dynamic_cast<ADevil1*>(Ptr);
 		Monster->SethitCheck(true);
@@ -214,7 +214,7 @@ void ABaseSSBullet::Collisiongather()
 
 	BulletCollision->CollisionEnter(ECollisionOrder::SpiderHeadCol, [=](std::shared_ptr<UCollision> _Collison)
 	{
-		UEngineSound::SoundPlay("sfx_player_shoot_hit_01.wav");
+		UEngineSound::SoundPlay("sfx_player_weapon_peashoot_ex_impact_01.wav");
 		AActor* Ptr = _Collison->GetActor();
 		ASpiderHead* Monster = dynamic_cast<ASpiderHead*>(Ptr);
 		Monster->SethitCheck(true);
@@ -228,7 +228,7 @@ void ABaseSSBullet::Collisiongather()
 
 	BulletCollision->CollisionEnter(ECollisionOrder::DevilHeadCol, [=](std::shared_ptr<UCollision> _Collison)
 	{
-		UEngineSound::SoundPlay("sfx_player_shoot_hit_01.wav");
+		UEngineSound::SoundPlay("sfx_player_weapon_peashoot_ex_impact_01.wav");
 		AActor* Ptr = _Collison->GetActor();
 		AHeadAtt* Monster = dynamic_cast<AHeadAtt*>(Ptr);
 		Monster->SethitCheck(true);
@@ -242,7 +242,7 @@ void ABaseSSBullet::Collisiongather()
 
 	BulletCollision->CollisionEnter(ECollisionOrder::RamArmCol, [=](std::shared_ptr<UCollision> _Collison)
 	{
-		UEngineSound::SoundPlay("sfx_player_shoot_hit_01.wav");
+		UEngineSound::SoundPlay("sfx_player_weapon_peashoot_ex_impact_01.wav");
 		AActor* Ptr = _Collison->GetActor();
 		ARamArms* Monster = dynamic_cast<ARamArms*>(Ptr);
 		Monster->SethitCheck(true);
@@ -256,7 +256,7 @@ void ABaseSSBullet::Collisiongather()
 
 	BulletCollision->CollisionEnter(ECollisionOrder::Devil2, [=](std::shared_ptr<UCollision> _Collison)
 	{
-		UEngineSound::SoundPlay("sfx_player_shoot_hit_01.wav");
+		UEngineSound::SoundPlay("sfx_player_weapon_peashoot_ex_impact_01.wav");
 		AActor* Ptr = _Collison->GetActor();
 		ADevil2* Monster = dynamic_cast<ADevil2*>(Ptr);
 		Monster->SethitCheck(true);

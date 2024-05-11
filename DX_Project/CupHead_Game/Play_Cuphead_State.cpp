@@ -949,6 +949,7 @@ void APlay_Cuphead::SSBulletBehavir()
 	UseSSBullet();
 	GrountSound.Off();
 	BaseBulletSound.Off();
+	UEngineSound::SoundPlay("sfx_player_ex_forward_ground_01.wav");
 	UEngineSound::SoundPlay("sfx_player_plane_shmup_bomb_explode_01.wav");
 	BulletStart->SetActive(false);
 }
