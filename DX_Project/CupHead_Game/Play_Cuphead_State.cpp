@@ -354,6 +354,7 @@ void APlay_Cuphead::EventCollision(float _DeltaTime)
 {
 	PlayerCollision->CollisionEnter(ECollisionOrder::Hole, [=](std::shared_ptr<UCollision> _Collison)
 	{
+		BulletStart->SetActive(false);
 		BaseBulletSound.Off();
 		GrountSound.Off();
 		GetWorld()->SpawnActor<APhaseChangeBack>("PhaseChangeBack");
@@ -2238,6 +2239,66 @@ void APlay_Cuphead::JumpShoot(float _DeltaTime)
 		return;
 	}
 
+
+	if (true == IsDown('V') && true == IsPress(VK_DOWN) && (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT)) && 100 == Guageint[PrevGuageCount])
+	{
+		BaseBulletSound.Off();
+		BulletStart->SetActive(false);
+		JumpVector = FVector::Zero;
+		NoGravity = true;
+		SSBulletBehavir();
+		ShootStyle = EShootDir::DiagonalDownShoot;
+		State.ChangeState("Air_SSGround_DiagonalDown");
+		return;
+	}
+
+	if (true == IsDown('V') && true == IsPress(VK_UP) && (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT)) && 100 == Guageint[PrevGuageCount])
+	{
+		BaseBulletSound.Off();
+		BulletStart->SetActive(false);
+		JumpVector = FVector::Zero;
+		NoGravity = true;
+		SSBulletBehavir();
+		ShootStyle = EShootDir::DiagonalUpShoot;
+		State.ChangeState("Air_SSGround_DiagonalUp");
+		return;
+	}
+
+	if (true == IsDown('V') && true == IsPress(VK_UP) && 100 == Guageint[PrevGuageCount])
+	{
+		BaseBulletSound.Off();
+		BulletStart->SetActive(false);
+		JumpVector = FVector::Zero;
+		NoGravity = true;
+		SSBulletBehavir();
+		ShootStyle = EShootDir::UpShoot;
+		State.ChangeState("Air_SSGround_Up");
+		return;
+	}
+
+	if (true == IsDown('V') && true == IsPress(VK_DOWN) && 100 == Guageint[PrevGuageCount])
+	{
+		BaseBulletSound.Off();
+		BulletStart->SetActive(false);
+		JumpVector = FVector::Zero;
+		NoGravity = true;
+		SSBulletBehavir();
+		ShootStyle = EShootDir::DownShoot;
+		State.ChangeState("Air_SSGround_Down");
+		return;
+	}
+
+	if (true == IsDown('V') && (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT)) && 100 == Guageint[PrevGuageCount])
+	{
+		BaseBulletSound.Off();
+		BulletStart->SetActive(false);
+		JumpVector = FVector::Zero;
+		NoGravity = true;
+		SSBulletBehavir();
+		ShootStyle = EShootDir::IdleShoot;
+		State.ChangeState("Air_SSGround_Straight");
+		return;
+	}
 
 	FVector MovePos;
 
