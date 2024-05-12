@@ -46,6 +46,7 @@ private:
 	float VectorX = -0.1f;
 	float VectorY = 0.36f;
 
+	bool OnePosUpDown = false;
 	bool OneCheck = false;
 	bool UpDown = false;
 	// false== Up

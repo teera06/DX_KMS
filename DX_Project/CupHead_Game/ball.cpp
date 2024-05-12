@@ -142,15 +142,20 @@ void Aball::CollisiongatherDown(float _DeltaTime)
 
 	if (GetActorLocation().iY() <= -300 || GetActorLocation().iY() >= 360)
 	{
-		UEngineSound::SoundPlay("frogs_short_clap_bounce_01.wav");
-		FxRender->SetActive(true);
-		FxRender->ChangeAnimation("FX");
-		StartPos.Y *= -1.0f;
-		RenderRot *= -1.0f;
-		Renderpox *= -1.0f;
+		if (false == OnePosUpDown)
+		{
+			UEngineSound::SoundPlay("frogs_short_clap_bounce_01.wav");
+			FxRender->SetActive(true);
+			FxRender->ChangeAnimation("FX");
+			StartPos.Y *= -1.0f;
+			RenderRot *= -1.0f;
+			Renderpox *= -1.0f;
+			OnePosUpDown = true;
+		}
 	}
 	else
 	{
+		OnePosUpDown = false;
 		if (true == FxRender->IsActive() && true == FxRender->IsCurAnimationEnd())
 		{
 			FxRender->SetActive(false);
