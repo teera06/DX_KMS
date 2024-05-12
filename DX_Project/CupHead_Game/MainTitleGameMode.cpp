@@ -53,6 +53,8 @@ void AMainTitleGameMode::LevelEnd(ULevel* _NextLevel)
 void AMainTitleGameMode::LevelStart(ULevel* _PrevLevel)
 {
 	Super::LevelStart(_PrevLevel);
+	ScreenBGM = UEngineSound::SoundPlay("OpticalLoop.wav");
+	ScreenBGM.Loop();
 	titleBGM = UEngineSound::SoundPlay("MUS_Intro_DontDealWithDevil_Vocal.wav");
 	titleBGM.Loop();
 }

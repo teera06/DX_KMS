@@ -15,7 +15,7 @@ AAxe::AAxe()
 	Axe = CreateDefaultSubObject<USpriteRenderer>("Axe");
 	Axe->SetupAttachment(Root);
 
-	Axe->SetOrder(ERenderOrder::FrontSkillMonster);
+	Axe->SetOrder(ERenderOrder::FrontSkill);
 	Axe->SetSprite("devil_ph3_axe_spin_0001.png");
 	Axe->SetSamplering(ETextureSampling::LINEAR);
 	Axe->SetAutoSize(1.0f, true);
@@ -43,7 +43,7 @@ void AAxe::BeginPlay()
 {
 	Super::BeginPlay();
 
-	SetActorLocation(FVector(0.0f, 0.0f, 5.0f));
+	SetActorLocation(FVector(0.0f, 50.0f, 5.0f));
 
 	Axe->CreateAnimation("Spiral_Spawn", "Spiral_Spawn", 0.075f);
 	Axe->CreateAnimation("Spiral_Spin", "Spiral_Spin", 0.075f);

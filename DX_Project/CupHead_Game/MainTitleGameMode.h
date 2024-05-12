@@ -25,7 +25,7 @@ protected:
 	void LevelEnd(ULevel* _NextLevel);
 	void LevelStart(ULevel* _PrevLevel);
 private:
-
+	UEngineSoundPlayer ScreenBGM;
 	UEngineSoundPlayer titleBGM;
 	std::shared_ptr<AScreenEffect> NewScreenEffect = nullptr;
 
