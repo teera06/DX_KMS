@@ -107,25 +107,25 @@ void AWorldPlayer::BossStartCheck()
 	PlayerCollision->CollisionStay(ECollisionOrder::WorldObject2 , [=](std::shared_ptr<UCollision> _Collison)
 	{
 		Boss2Check = true;
-		AButton->SetActive(true);
+		ZButton->SetActive(true);
 	});
 
 	PlayerCollision->CollisionExit(ECollisionOrder::WorldObject2, [=](std::shared_ptr<UCollision> _Collison)
 	{
 		Boss2Check = false;
-		AButton->SetActive(false);
+		ZButton->SetActive(false);
 	});
 
 	PlayerCollision->CollisionStay(ECollisionOrder::WorldObject1, [=](std::shared_ptr<UCollision> _Collison)
 	{
 		Boss1Check = true;
-		AButton->SetActive(true);
+		ZButton->SetActive(true);
 	});
 
 	PlayerCollision->CollisionExit(ECollisionOrder::WorldObject1, [=](std::shared_ptr<UCollision> _Collison)
 	{
 		Boss1Check = false;
-		AButton->SetActive(false);
+		ZButton->SetActive(false);
 	});
 }
 
@@ -214,19 +214,17 @@ void AWorldPlayer::UpIdle(float _DeltaTime)
 	DirCheck();
 	BossStartCheck();
 
-	if (true == UEngineInput::IsDown('A') && true == Boss2Check)
+	if (true == UEngineInput::IsDown('Z') && true == Boss2Check)
 	{
 
-		//GEngine->ChangeLevel("Loading");
 		Boss2title->SetActive(true);
 		State.ChangeState("BossStartBefore");
 		return;
 	}
 
-	if (true == UEngineInput::IsDown('A') && true == Boss1Check)
+	if (true == UEngineInput::IsDown('Z') && true == Boss1Check)
 	{
 
-		//GEngine->ChangeLevel("Loading");
 		Boss1title->SetActive(true);
 		State.ChangeState("BossStartBefore");
 		return;
@@ -316,19 +314,19 @@ void AWorldPlayer::DownIdle(float _DeltaTime)
 	DirCheck();
 	BossStartCheck();
 
-	if (true == UEngineInput::IsDown('A') && true==Boss2Check)
+	if (true == UEngineInput::IsDown('Z') && true==Boss2Check)
 	{
 
-		//GEngine->ChangeLevel("Loading");
+	
 		Boss2title->SetActive(true);
 		State.ChangeState("BossStartBefore");
 		return;
 	}
 
-	if (true == UEngineInput::IsDown('A') && true == Boss1Check)
+	if (true == UEngineInput::IsDown('Z') && true == Boss1Check)
 	{
 
-		//GEngine->ChangeLevel("Loading");
+		
 		Boss1title->SetActive(true);
 		State.ChangeState("BossStartBefore");
 		return;
@@ -404,19 +402,19 @@ void AWorldPlayer::StraightIdle(float _DeltaTime)
 	DirCheck();
 	BossStartCheck();
 
-	if (true == UEngineInput::IsDown('A') && true == Boss2Check)
+	if (true == UEngineInput::IsDown('Z') && true == Boss2Check)
 	{
 
-		//GEngine->ChangeLevel("Loading");
+		
 		Boss2title->SetActive(true);
 		State.ChangeState("BossStartBefore");
 		return;
 	}
 
-	if (true == UEngineInput::IsDown('A') && true == Boss1Check)
+	if (true == UEngineInput::IsDown('Z') && true == Boss1Check)
 	{
 
-		//GEngine->ChangeLevel("Loading");
+		
 		Boss1title->SetActive(true);
 		State.ChangeState("BossStartBefore");
 		return;
@@ -503,19 +501,19 @@ void AWorldPlayer::DiagonalUpIdle(float _DeltaTime)
 	DirCheck();
 	BossStartCheck();
 
-	if (true == UEngineInput::IsDown('A') && true == Boss2Check)
+	if (true == UEngineInput::IsDown('Z') && true == Boss2Check)
 	{
 
-		//GEngine->ChangeLevel("Loading");
+	
 		Boss2title->SetActive(true);
 		State.ChangeState("BossStartBefore");
 		return;
 	}
 
-	if (true == UEngineInput::IsDown('A') && true == Boss1Check)
+	if (true == UEngineInput::IsDown('Z') && true == Boss1Check)
 	{
 
-		//GEngine->ChangeLevel("Loading");
+		
 		Boss1title->SetActive(true);
 		State.ChangeState("BossStartBefore");
 		return;
@@ -615,19 +613,19 @@ void AWorldPlayer::DiagonalDownIdle(float _DeltaTime)
 	DirCheck();
 	BossStartCheck();
 
-	if (true == UEngineInput::IsDown('A') && true == Boss2Check)
+	if (true == UEngineInput::IsDown('Z') && true == Boss2Check)
 	{
 
-		//GEngine->ChangeLevel("Loading");
+		
 		Boss2title->SetActive(true);
 		State.ChangeState("BossStartBefore");
 		return;
 	}
 
-	if (true == UEngineInput::IsDown('A') && true == Boss1Check)
+	if (true == UEngineInput::IsDown('Z') && true == Boss1Check)
 	{
 
-		//GEngine->ChangeLevel("Loading");
+		
 		Boss1title->SetActive(true);
 		State.ChangeState("BossStartBefore");
 		return;

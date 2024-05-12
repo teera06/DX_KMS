@@ -15,9 +15,9 @@ AWorldPlayer::AWorldPlayer()
 
 	WorldPlayerRenderer->SetupAttachment(Root);
 
-	AButton  = CreateDefaultSubObject<USpriteRenderer>("AButton ");
+	ZButton  = CreateDefaultSubObject<USpriteRenderer>("AButton ");
 
-	AButton ->SetupAttachment(Root);
+	ZButton ->SetupAttachment(Root);
 
 	Boss2title = CreateDefaultSubObject<USpriteRenderer>("Boss2title");
 
@@ -49,11 +49,11 @@ void AWorldPlayer::BeginPlay()
 	Super::BeginPlay();
 	SetActorLocation(FVector(1500.0f/2.0f, -1700.0f/2.0f, 50.0f));
 
-	AButton->SetOrder(ERenderOrder::Cuphead);
-	AButton->SetSprite("PressSign.png");
-	AButton->SetSamplering(ETextureSampling::LINEAR);
-	AButton->SetPosition(FVector::Up * 55.0f);
-	AButton->SetAutoSize(1.0f, true);
+	ZButton->SetOrder(ERenderOrder::Cuphead);
+	ZButton->SetSprite("overworld_zbutton.png");
+	ZButton->SetSamplering(ETextureSampling::LINEAR);
+	ZButton->SetPosition(FVector::Up * 55.0f);
+	ZButton->SetAutoSize(1.0f, true);
 
 	Boss2title ->SetOrder(ERenderOrder::ScreenBar);
 	Boss2title ->SetSprite("DevilC8.png");
@@ -85,7 +85,7 @@ void AWorldPlayer::BeginPlay()
 
 	StateInit();
 	WorldPlayerRenderer->SetAutoSize(1.0f, true);
-	AButton->SetActive(false);
+	ZButton->SetActive(false);
 	Boss1title->SetActive(false);
 	Boss2title->SetActive(false);
 	//WorldPlayerRenderer->ChangeAnimation("Idle");
