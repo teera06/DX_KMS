@@ -92,7 +92,7 @@ ADevil1::ADevil1()
 
 	Devil1 = CreateDefaultSubObject<UCollision>("Devil1");
 	Devil1->SetupAttachment(Root);
-	Devil1->AddPosition(FVector(-15.0f, 50.0f, 0.0f));
+	Devil1->AddPosition(FVector(-30.0f, 50.0f, 0.0f));
 	Devil1->SetScale(FVector(200.0f, 250.0f, 100.0f));
 	Devil1->SetCollisionGroup(ECollisionOrder::Devil1);
 	Devil1->SetCollisionType(ECollisionType::RotRect);
@@ -134,7 +134,7 @@ void ADevil1::BeginPlay()
 	phasecheck = 1;
 	SetHp(700);
 
-	Boss2->SetActive(false);
+	Devil1->SetActive(false);
 }
 
 void ADevil1::Tick(float _DeltaTime)
@@ -353,7 +353,7 @@ void ADevil1::Phase1Intro(float _DeltaTime)
 	{
 		Boss2->ChangeAnimation("Phase1Intro");
 		IntroAni->SetActive(false);
-		Boss2->SetActive(true);
+		Devil1->SetActive(true);
 	}
 
 	if (false == IntroAni->IsActive())
