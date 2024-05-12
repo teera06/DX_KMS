@@ -59,6 +59,7 @@ private:
 	bool DieSCreen = false;
 	// false-> Left
 	// true-> Right
+	bool OneCreate = false;
 
 	void CreateBombBat();
 	void CreateAxe();

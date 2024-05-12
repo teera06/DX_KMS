@@ -411,12 +411,16 @@ void ADevil2::FatDemonIntro(float _DeltaTime)
 
 	if (Hand->GetWorldPosition().iY() == 300)
 	{
-		CreateFatDemon();
-	
+		if (false == OneCreate)
+		{
+			CreateFatDemon();
+			OneCreate = true;
+		}
 	}
 
 	if (Hand->GetWorldPosition().iY() >= 450)
 	{
+		OneCreate = false;
 		Hand->SetActive(false);
 		coolDownTime = 6.0f;
 		attOrder = 1;
