@@ -372,7 +372,7 @@ void ABoss1_Monster1::phase2change1(float _DeltaTime)
 void ABoss1_Monster1::phase2change2(float _DeltaTime)
 {
 
-	AddActorLocation(FVector::Left * 500.0f * _DeltaTime);
+	AddActorLocation(FVector::Left * 600.0f * _DeltaTime);
 
 	if (GetActorLocation().iX() <= -580)
 	{
@@ -434,7 +434,7 @@ void ABoss1_Monster1::phase3change1(float _DeltaTime)
 
 void ABoss1_Monster1::phase3change2(float _DeltaTime)
 {
-	AddActorLocation(FVector::Right * 500.0f * _DeltaTime);
+	AddActorLocation(FVector::Right * 600.0f * _DeltaTime);
 }
 
 

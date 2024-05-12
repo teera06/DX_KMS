@@ -329,13 +329,13 @@ void ABoss1_Monster2::AniCreate()
 	BigBoss1->CreateAnimation("bigintro", "bigintro", 0.15f);
 	BigBoss1->CreateAnimation("bigIdle", "bigIdle", 0.075f);
 	BigBoss1->CreateAnimation("bigattReady1", "bigattReady1", 0.075f);
-	BigBoss1->CreateAnimation("bigattReady2", "bigattReady1", 0.1f,true,9,10);
+	BigBoss1->CreateAnimation("bigattReady2", "bigattReady1", 0.075f,true,9,10);
 	BigBoss1->CreateAnimation("bigatt", "bigatt", 0.065f);
 	BigBoss1->CreateAnimation("bigattEnd", "bigattEnd", 0.035f);
 
 	BigBoss1->CreateAnimation("bigatt2Ready", "bigatt2Ready", 0.1f);
 	BigBoss1->CreateAnimation("bigatt2Ready2", "bigatt2Ready2", 0.1f);
-	BigBoss1->CreateAnimation("bigatt2", "bigatt2", 0.1f);
+	BigBoss1->CreateAnimation("bigatt2", "bigatt2", 0.075f);
 	BigBoss1->CreateAnimation("bigatt2end", "bigatt2end", 0.1f);
 	BigBoss1->CreateAnimation("phase3changeReady1", "phase3changeReady1", 0.1f);
 	BigBoss1->CreateAnimation("phase3changeReady2", "phase3changeReady2", 0.1f);

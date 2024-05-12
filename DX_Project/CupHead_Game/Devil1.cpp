@@ -133,6 +133,8 @@ void ADevil1::BeginPlay()
 	hitCheck = false;
 	phasecheck = 1;
 	SetHp(700);
+
+	Boss2->SetActive(false);
 }
 
 void ADevil1::Tick(float _DeltaTime)
@@ -351,6 +353,7 @@ void ADevil1::Phase1Intro(float _DeltaTime)
 	{
 		Boss2->ChangeAnimation("Phase1Intro");
 		IntroAni->SetActive(false);
+		Boss2->SetActive(true);
 	}
 
 	if (false == IntroAni->IsActive())
