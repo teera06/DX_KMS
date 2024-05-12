@@ -35,7 +35,7 @@ void ACoin::BeginPlay()
 {
 	Super::BeginPlay();
 
-	SetActorLocation(FVector(350.0f,210.0f, 0.0f));
+	SetActorLocation(FVector(350.0f,160.0f, 0.0f));
 
 	CoinRender->SetOrder(ERenderOrder::skilleffect);
 	CoinRender->SetSprite("tallfrog_slotman_coin_0001.png");
