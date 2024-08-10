@@ -859,49 +859,49 @@ void APlay_Cuphead::CalGuage()
 		return;
 	}
 
-	Guageint[CurGuageCount] += (GuageGet+ overGuageGet);
+	GuageData[CurGuageCount].GuageValue += (GuageGet+ overGuageGet);
 	overGuageGet = 0;
-	if (Guageint[CurGuageCount] > 100)
+	if (GuageData[CurGuageCount].GuageValue > 100)
 	{
-		overGuageGet = Guageint[CurGuageCount] - 100;
-		Guageint[CurGuageCount] = 100;
+		overGuageGet = GuageData[CurGuageCount].GuageValue - 100;
+		GuageData[CurGuageCount].GuageValue = 100;
 	}
 
-	if (Guageint[CurGuageCount] == 100)
+	if (GuageData[CurGuageCount].GuageValue == 100)
 	{
-		Guage[CurGuageCount]->SetSprite("SuperMeterCard.png");
+		GuageData[CurGuageCount].GuageImage->SetSprite("SuperMeterCard.png");
 		PrevGuageCount = CurGuageCount;
 		++CurGuageCount;
 	}
-	else if (Guageint[CurGuageCount] <= 90 && Guageint[CurGuageCount] > 80)
+	else if (GuageData[CurGuageCount].GuageValue <= 90 && GuageData[CurGuageCount].GuageValue > 80)
 	{
-		Guage[CurGuageCount]->SetActive(true);
-		Guage[CurGuageCount]->SetSprite("Super6.png");
+		GuageData[CurGuageCount].GuageImage->SetActive(true);
+		GuageData[CurGuageCount].GuageImage->SetSprite("Super6.png");
 	}
-	else if (Guageint[CurGuageCount] <= 80 && Guageint[CurGuageCount] > 60)
+	else if (GuageData[CurGuageCount].GuageValue <= 80 && GuageData[CurGuageCount].GuageValue > 60)
 	{
-		Guage[CurGuageCount]->SetActive(true);
-		Guage[CurGuageCount]->SetSprite("Super5.png");
+		GuageData[CurGuageCount].GuageImage->SetActive(true);
+		GuageData[CurGuageCount].GuageImage->SetSprite("Super5.png");
 	}
-	else if (Guageint[CurGuageCount] <= 60 && Guageint[CurGuageCount] > 50)
+	else if (GuageData[CurGuageCount].GuageValue <= 60 && GuageData[CurGuageCount].GuageValue > 50)
 	{
-		Guage[CurGuageCount]->SetActive(true);
-		Guage[CurGuageCount]->SetSprite("Super4.png");
+		GuageData[CurGuageCount].GuageImage->SetActive(true);
+		GuageData[CurGuageCount].GuageImage->SetSprite("Super4.png");
 	}
-	else if (Guageint[CurGuageCount] <= 50 && Guageint[CurGuageCount] > 40)
+	else if (GuageData[CurGuageCount].GuageValue <= 50 && GuageData[CurGuageCount].GuageValue > 40)
 	{
-		Guage[CurGuageCount]->SetActive(true);
-		Guage[CurGuageCount]->SetSprite("Super3.png");
+		GuageData[CurGuageCount].GuageImage->SetActive(true);
+		GuageData[CurGuageCount].GuageImage->SetSprite("Super3.png");
 	}
-	else if (Guageint[CurGuageCount] <= 40 && Guageint[CurGuageCount] > 5)
+	else if (GuageData[CurGuageCount].GuageValue <= 40 && GuageData[CurGuageCount].GuageValue > 5)
 	{
-		Guage[CurGuageCount]->SetActive(true);
-		Guage[CurGuageCount]->SetSprite("Super2.png");
+		GuageData[CurGuageCount].GuageImage->SetActive(true);
+		GuageData[CurGuageCount].GuageImage->SetSprite("Super2.png");
 	}
-	else if (Guageint[CurGuageCount] <= 5 && Guageint[CurGuageCount] > 0)
+	else if (GuageData[CurGuageCount].GuageValue <= 5 && GuageData[CurGuageCount].GuageValue > 0)
 	{
-		Guage[CurGuageCount]->SetActive(true);
-		Guage[CurGuageCount]->SetSprite("Super1.png");
+		GuageData[CurGuageCount].GuageImage->SetActive(true);
+		GuageData[CurGuageCount].GuageImage->SetSprite("Super1.png");
 	}
 	GuageGet = 0;
 }
@@ -910,11 +910,11 @@ void APlay_Cuphead::UseSSBullet()
 {
 	if (CurGuageCount < 5)
 	{
-		if (Guageint[CurGuageCount] > 0 && Guageint[CurGuageCount] < 100)
+		if (GuageData[CurGuageCount].GuageValue > 0 && GuageData[CurGuageCount].GuageValue < 100)
 		{
-			Guage[CurGuageCount]->SetActive(false);
-			Guageint[PrevGuageCount] = Guageint[CurGuageCount];
-			Guageint[CurGuageCount] = 0;
+			GuageData[CurGuageCount].GuageImage->SetActive(false);
+			GuageData[PrevGuageCount].GuageValue = GuageData[CurGuageCount].GuageValue;
+			GuageData[CurGuageCount].GuageValue = 0;
 			--CurGuageCount;
 			--PrevGuageCount;
 
@@ -928,8 +928,8 @@ void APlay_Cuphead::UseSSBullet()
 	}
 	
 
-	Guage[PrevGuageCount]->SetActive(false);
-	Guageint[PrevGuageCount] = 0;
+	GuageData[PrevGuageCount].GuageImage->SetActive(false);
+	GuageData[PrevGuageCount].GuageValue = 0;
 	
 
 	--PrevGuageCount;
@@ -1560,7 +1560,7 @@ void APlay_Cuphead::Idle(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsDown('V') && 100==Guageint[PrevGuageCount])
+	if (true == IsDown('V') && 100== GuageData[PrevGuageCount].GuageValue)
 	{
 		SSBulletBehavir();
 		ShootStyle = EShootDir::IdleShoot;
@@ -1589,7 +1589,7 @@ void APlay_Cuphead::Run(float  _DeltaTime)
 {
 	DirCheck();
 	GrountSound.On();
-	if (true == IsDown('V') && true == IsPress(VK_UP) && 100 == Guageint[PrevGuageCount]
+	if (true == IsDown('V') && true == IsPress(VK_UP) && 100 == GuageData[PrevGuageCount].GuageValue
 		)
 	{
 		SSBulletBehavir();
@@ -1598,7 +1598,7 @@ void APlay_Cuphead::Run(float  _DeltaTime)
 		return;
 	}
 
-	if (true == IsDown('V') && true == IsPress(VK_DOWN) && 100 == Guageint[PrevGuageCount])
+	if (true == IsDown('V') && true == IsPress(VK_DOWN) && 100 == GuageData[PrevGuageCount].GuageValue)
 	{
 		SSBulletBehavir();
 		ShootStyle = EShootDir::DiagonalDownShoot;
@@ -1606,7 +1606,7 @@ void APlay_Cuphead::Run(float  _DeltaTime)
 		return;
 	}
 
-	if (true == IsDown('V') && 100 == Guageint[PrevGuageCount])
+	if (true == IsDown('V') && 100 == GuageData[PrevGuageCount].GuageValue)
 	{
 		SSBulletBehavir();
 		ShootStyle = EShootDir::IdleShoot;
@@ -1733,7 +1733,7 @@ void APlay_Cuphead::Run_Shoot_Straight(float  _DeltaTime)
 		return;
 	}
 
-	if (true == IsDown('V') && 100 == Guageint[PrevGuageCount])
+	if (true == IsDown('V') && 100 == GuageData[PrevGuageCount].GuageValue)
 	{
 		BaseBulletSound.Off();
 		BulletStart->SetActive(false);
@@ -1793,7 +1793,7 @@ void APlay_Cuphead::Run_Shoot_DiagonalUp(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsDown('V') && 100 == Guageint[PrevGuageCount]
+	if (true == IsDown('V') && 100 == GuageData[PrevGuageCount].GuageValue
 		)
 	{
 		SSBulletBehavir();
@@ -1938,7 +1938,7 @@ void APlay_Cuphead::Duck(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsPress('V') && 100 == Guageint[PrevGuageCount]
+	if (true == IsPress('V') && 100 == GuageData[PrevGuageCount].GuageValue
 		)
 	{
 		SSBulletBehavir();
@@ -1970,7 +1970,7 @@ void APlay_Cuphead::Shoot_Straight(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsDown('V') && 100 == Guageint[PrevGuageCount])
+	if (true == IsDown('V') && 100 == GuageData[PrevGuageCount].GuageValue)
 	{
 		BaseBulletSound.Off();
 		BulletStart->SetActive(false);
@@ -2062,7 +2062,7 @@ void APlay_Cuphead::Aim_Up(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsDown('V') && 100 == Guageint[PrevGuageCount]
+	if (true == IsDown('V') && 100 == GuageData[PrevGuageCount].GuageValue
 		)
 	{
 		SSBulletBehavir();
@@ -2092,7 +2092,7 @@ void APlay_Cuphead::Shoot_Up(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsDown('V') && 100 == Guageint[PrevGuageCount]
+	if (true == IsDown('V') && 100 == GuageData[PrevGuageCount].GuageValue
 		)
 	{
 		BaseBulletSound.Off();
@@ -2166,7 +2166,7 @@ void APlay_Cuphead::Jump(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsDown('V') && true == IsPress(VK_DOWN) && (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT)) && 100 == Guageint[PrevGuageCount])
+	if (true == IsDown('V') && true == IsPress(VK_DOWN) && (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT)) && 100 == GuageData[PrevGuageCount].GuageValue)
 	{
 		JumpVector = FVector::Zero;
 		NoGravity = true;
@@ -2176,7 +2176,7 @@ void APlay_Cuphead::Jump(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsDown('V') && true == IsPress(VK_UP) && (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT)) && 100 == Guageint[PrevGuageCount])
+	if (true == IsDown('V') && true == IsPress(VK_UP) && (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT)) && 100 == GuageData[PrevGuageCount].GuageValue)
 	{
 		JumpVector = FVector::Zero;
 		NoGravity = true;
@@ -2186,7 +2186,7 @@ void APlay_Cuphead::Jump(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsDown('V') && true == IsPress(VK_UP) && 100 == Guageint[PrevGuageCount])
+	if (true == IsDown('V') && true == IsPress(VK_UP) && 100 == GuageData[PrevGuageCount].GuageValue)
 	{
 		JumpVector = FVector::Zero;
 		NoGravity = true;
@@ -2196,7 +2196,7 @@ void APlay_Cuphead::Jump(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsDown('V') && true == IsPress(VK_DOWN)  && 100 == Guageint[PrevGuageCount])
+	if (true == IsDown('V') && true == IsPress(VK_DOWN)  && 100 == GuageData[PrevGuageCount].GuageValue)
 	{
 		JumpVector = FVector::Zero;
 		NoGravity = true;
@@ -2206,7 +2206,7 @@ void APlay_Cuphead::Jump(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsDown('V') && (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT)) && 100 == Guageint[PrevGuageCount])
+	if (true == IsDown('V') && (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT)) && 100 == GuageData[PrevGuageCount].GuageValue)
 	{
 		JumpVector = FVector::Zero;
 		NoGravity = true;
@@ -2264,7 +2264,7 @@ void APlay_Cuphead::JumpShoot(float _DeltaTime)
 	}
 
 
-	if (true == IsDown('V') && true == IsPress(VK_DOWN) && (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT)) && 100 == Guageint[PrevGuageCount])
+	if (true == IsDown('V') && true == IsPress(VK_DOWN) && (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT)) && 100 == GuageData[PrevGuageCount].GuageValue)
 	{
 		BaseBulletSound.Off();
 		BulletStart->SetActive(false);
@@ -2276,7 +2276,7 @@ void APlay_Cuphead::JumpShoot(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsDown('V') && true == IsPress(VK_UP) && (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT)) && 100 == Guageint[PrevGuageCount])
+	if (true == IsDown('V') && true == IsPress(VK_UP) && (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT)) && 100 == GuageData[PrevGuageCount].GuageValue)
 	{
 		BaseBulletSound.Off();
 		BulletStart->SetActive(false);
@@ -2288,7 +2288,7 @@ void APlay_Cuphead::JumpShoot(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsDown('V') && true == IsPress(VK_UP) && 100 == Guageint[PrevGuageCount])
+	if (true == IsDown('V') && true == IsPress(VK_UP) && 100 == GuageData[PrevGuageCount].GuageValue)
 	{
 		BaseBulletSound.Off();
 		BulletStart->SetActive(false);
@@ -2300,7 +2300,7 @@ void APlay_Cuphead::JumpShoot(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsDown('V') && true == IsPress(VK_DOWN) && 100 == Guageint[PrevGuageCount])
+	if (true == IsDown('V') && true == IsPress(VK_DOWN) && 100 == GuageData[PrevGuageCount].GuageValue)
 	{
 		BaseBulletSound.Off();
 		BulletStart->SetActive(false);
@@ -2312,7 +2312,7 @@ void APlay_Cuphead::JumpShoot(float _DeltaTime)
 		return;
 	}
 
-	if (true == IsDown('V') && (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT)) && 100 == Guageint[PrevGuageCount])
+	if (true == IsDown('V') && (true == IsPress(VK_LEFT) || true == IsPress(VK_RIGHT)) && 100 == GuageData[PrevGuageCount].GuageValue)
 	{
 		BaseBulletSound.Off();
 		BulletStart->SetActive(false);

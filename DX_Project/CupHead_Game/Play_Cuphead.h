@@ -7,8 +7,16 @@ class USpriteRenderer;
 class ABaseBullet;
 class ABaseSSBullet;
 class UImage;
-
 class UEngineSoundPlayer;
+
+struct FGaugeData
+{
+public:
+
+	UImage* GuageImage = nullptr;
+	int GuageValue = 0;
+};
+
 class APlay_Cuphead : public AActor, public APlayerCommon
 {
 	GENERATED_BODY(AActor)
@@ -70,8 +78,7 @@ private:
 
 	UImage* HpBar = nullptr;
 
-	std::vector<UImage*> Guage;
-	std::vector<int> Guageint;
+	std::vector<FGaugeData> GuageData;
 
 	USpriteRenderer* PlayCuphead= nullptr;
 	USpriteRenderer* BulletStart = nullptr;

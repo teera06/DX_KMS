@@ -85,8 +85,7 @@ APlay_Cuphead::~APlay_Cuphead()
 {
 	GrountSound.Off();
 	BaseBulletSound.Off();
-	Guage.clear();
-	Guageint.clear();
+	GuageData.clear();
 }
 
 
@@ -150,23 +149,23 @@ void APlay_Cuphead::BeginPlay()
 	BulletStart->SetActive(false);
 	Effect->SetActive(false);
 
-	Guage.resize(5);
-	Guageint.resize(5);
-	for (int i = 0; i < Guage.size(); i++)
+	GuageData.resize(5);
+
+	for (int i = 0; i < GuageData.size(); i++)
 	{
-		Guage[i]= CreateWidget<UImage>(GetWorld(), "skillBar");
-		Guage[i]->AddToViewPort(ERenderOrder::skiilBar);
-		Guage[i]->SetSprite("SuperMeterCard.png");
-		Guage[i]->SetAutoSize(1.0f, true);
-		Guage[i]->SetActive(false);
-		Guageint[i] = 0;
+		GuageData[i].GuageImage= CreateWidget<UImage>(GetWorld(), "skillBar");
+		GuageData[i].GuageImage->AddToViewPort(ERenderOrder::skiilBar);
+		GuageData[i].GuageImage->SetSprite("SuperMeterCard.png");
+		GuageData[i].GuageImage->SetAutoSize(1.0f, true);
+		GuageData[i].GuageImage->SetActive(false);
+		GuageData[i].GuageValue = 0;
 	}
 
-	Guage[0]->SetPosition({ -510.0f, -310.0f });
-	Guage[1]->SetPosition({ -490.0f, -310.0f });
-	Guage[2]->SetPosition({ -470.0f, -310.0f });
-	Guage[3]->SetPosition({ -450.0f, -310.0f });
-	Guage[4]->SetPosition({ -430.0f, -310.0f });
+	GuageData[0].GuageImage->SetPosition({ -510.0f, -310.0f });
+	GuageData[1].GuageImage->SetPosition({ -490.0f, -310.0f });
+	GuageData[2].GuageImage->SetPosition({ -470.0f, -310.0f });
+	GuageData[3].GuageImage->SetPosition({ -450.0f, -310.0f });
+	GuageData[4].GuageImage->SetPosition({ -430.0f, -310.0f });
 
 
 	HpBar = CreateWidget<UImage>(GetWorld(), "HpBar");
