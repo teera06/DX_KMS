@@ -70,9 +70,8 @@ private:
 	USpriteRenderer* SlotMouse = nullptr;
 	USpriteRenderer* FrontSlot = nullptr;
 
-	USpriteRenderer* SlotImage1 = nullptr;
-	USpriteRenderer* SlotImage2 = nullptr;
-	USpriteRenderer* SlotImage3 = nullptr;
+	std::vector<USpriteRenderer*> SlotImage;
+	
 
 	USpriteRenderer* WindSkill = nullptr;
 

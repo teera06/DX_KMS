@@ -13,8 +13,8 @@ struct FGaugeData
 {
 public:
 
-	UImage* GuageImage = nullptr;
-	int GuageValue = 0;
+	UImage* GuageImage = nullptr; // UI 이미지
+	int GuageValue = 0; // 게이지 수치
 };
 
 class APlay_Cuphead : public AActor, public APlayerCommon

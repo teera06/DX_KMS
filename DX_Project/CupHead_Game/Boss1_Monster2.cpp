@@ -46,27 +46,29 @@ ABoss1_Monster2::ABoss1_Monster2()
 
 	FrontSlot->SetActive(false);
 
-	SlotImage1 = CreateDefaultSubObject<USpriteRenderer>("SlotImage1");
-	SlotImage1->SetupAttachment(Root);
-	SlotImage1->SetPivot(EPivot::BOT);
-	SlotImage1->AddPosition(FVector(-125.0f, 135.0f, 0.0f));
-	SlotImage1->AddRotationDeg(FVector(0.0f, 35.0f, 0.0f));
+	SlotImage.resize(3);
 
-	SlotImage2 = CreateDefaultSubObject<USpriteRenderer>("SlotImage2");
-	SlotImage2->SetupAttachment(Root);
-	SlotImage2->SetPivot(EPivot::BOT);
-	SlotImage2->AddPosition(FVector(-70.0f, 135.0f, 0.0f));
-	SlotImage2->AddRotationDeg(FVector(0.0f, 35.0f, 0.0f));
+	for (int i = 0; i < SlotImage.size(); i++)
+	{
+		SlotImage[i] = CreateDefaultSubObject<USpriteRenderer>("SlotImage");
+		SlotImage[i]->SetupAttachment(Root);
+		SlotImage[i]->SetPivot(EPivot::BOT);
+		SlotImage[i]->SetActive(false);
+	}
 
-	SlotImage3 = CreateDefaultSubObject<USpriteRenderer>("SlotImage3");
-	SlotImage3->SetupAttachment(Root);
-	SlotImage3->SetPivot(EPivot::BOT);
-	SlotImage3->AddPosition(FVector(-15.0f, 135.0f, 0.0f));
-	SlotImage3->AddRotationDeg(FVector(0.0f, 35.0f, 0.0f));
 	
-	SlotImage1->SetActive(false);
-	SlotImage2->SetActive(false);
-	SlotImage3->SetActive(false);
+	SlotImage[0]->AddPosition(FVector(-125.0f, 135.0f, 0.0f));
+	SlotImage[0]->AddRotationDeg(FVector(0.0f, 35.0f, 0.0f));
+
+
+	SlotImage[1]->AddPosition(FVector(-70.0f, 135.0f, 0.0f));
+	SlotImage[1]->AddRotationDeg(FVector(0.0f, 35.0f, 0.0f));
+
+	
+	SlotImage[2]->AddPosition(FVector(-15.0f, 135.0f, 0.0f));
+	SlotImage[2]->AddRotationDeg(FVector(0.0f, 35.0f, 0.0f));
+	
+
 
 	WindSkill = CreateDefaultSubObject<USpriteRenderer>("WindSkill");
 
@@ -124,17 +126,16 @@ void ABoss1_Monster2::BeginPlay()
 	SlotMouse->SetSamplering(ETextureSampling::LINEAR);
 	SlotMouse->SetPlusColor(FVector(0.1f, 0.1f, 0.1f));
 
-	SlotImage1->SetOrder(ERenderOrder::SlotImage);
-	SlotImage1->SetSprite("TEMP1.png");
-	SlotImage1->SetSamplering(ETextureSampling::LINEAR);
+	SlotImage.resize(3);
 
-	SlotImage2->SetOrder(ERenderOrder::SlotImage);
-	SlotImage2->SetSprite("TEMP1.png");
-	SlotImage2->SetSamplering(ETextureSampling::LINEAR);
+	for (int i = 0; i < SlotImage.size(); i++)
+	{
+		SlotImage[i]->SetOrder(ERenderOrder::SlotImage);
+		SlotImage[i]->SetSprite("TEMP1.png");
+		SlotImage[i]->SetSamplering(ETextureSampling::LINEAR);
+		SlotImage[i]->SetAutoSize(1.0f, true);
+	}
 
-	SlotImage3->SetOrder(ERenderOrder::SlotImage);
-	SlotImage3->SetSprite("TEMP1.png");
-	SlotImage3->SetSamplering(ETextureSampling::LINEAR);
 
 	FrontSlot->SetOrder(ERenderOrder::ObjectFront2);
 	FrontSlot->SetSprite("front1test.png");
@@ -155,9 +156,6 @@ void ABoss1_Monster2::BeginPlay()
 
 	BigBoss1->SetAutoSize(1.0f, true);
 	SlotMouse->SetAutoSize(1.0f, true);
-	SlotImage1->SetAutoSize(1.0f, true);
-	SlotImage2->SetAutoSize(1.0f, true);
-	SlotImage3->SetAutoSize(1.0f, true);
 	WindSkill->SetAutoSize(1.0f, true);
 	FrontSlot->SetAutoSize(1.0f, true);
 
@@ -178,6 +176,7 @@ void ABoss1_Monster2::BeginPlay()
 	SlotSound = UEngineSound::SoundPlay("frogs_morphed_dial_spin_loop_01.wav");
 	SlotSound.Loop();
 	SlotSound.Off();
+
 }
 
 void ABoss1_Monster2::Tick(float _DeltaTime)
@@ -358,17 +357,13 @@ void ABoss1_Monster2::AniCreate()
 	SlotMouse->CreateAnimation("CoinAtt", "CoinAtt", 0.1f);
 
 	
-	SlotImage1->CreateAnimation("slotObject1", "TEMP2.png", 0.1f, false, 0, 0);
-	SlotImage1->CreateAnimation("slotObject2", "TEMP2.png", 0.1f, false, 0, 1);
-	SlotImage1->CreateAnimation("slotObject3", "TEMP2.png", 0.1f, false, 1, 2);
+	for (int i = 0; i < SlotImage.size(); i++)
+	{
+		SlotImage[i]->CreateAnimation("slotObject1", "TEMP2.png", 0.1f, false, 0, 0);
+		SlotImage[i]->CreateAnimation("slotObject2", "TEMP2.png", 0.1f, false, 0, 1);
+		SlotImage[i]->CreateAnimation("slotObject3", "TEMP2.png", 0.1f, false, 1, 2);
+	}
 
-	SlotImage2->CreateAnimation("slotObject1", "TEMP2.png", 0.1f, false, 0, 0);
-	SlotImage2->CreateAnimation("slotObject2", "TEMP2.png", 0.1f, false, 0, 1);
-	SlotImage2->CreateAnimation("slotObject3", "TEMP2.png", 0.1f, false, 1, 2);
-
-	SlotImage3->CreateAnimation("slotObject1", "TEMP2.png", 0.1f, false, 0, 0);
-	SlotImage3->CreateAnimation("slotObject2", "TEMP2.png", 0.1f, false, 0, 1);
-	SlotImage3->CreateAnimation("slotObject3", "TEMP2.png", 0.1f, false, 1, 2);
 
 	WindSkill->CreateAnimation("Wind", "Wind", 0.12f);
 
@@ -481,9 +476,11 @@ void ABoss1_Monster2::SlotStartImage(float _DeltaTime)
 
 	VertexY.Y -= (_DeltaTime* SlotSpeed);
 
-	SlotImage1->SetVertexUVPlus(VertexY);
-	SlotImage2->SetVertexUVPlus(VertexY);
-	SlotImage3->SetVertexUVPlus(VertexY);
+	for (int i = 0; i < SlotImage.size(); i++)
+	{
+		SlotImage[i]->SetVertexUVPlus(VertexY);
+	}
+
 }
 
 void ABoss1_Monster2::bigintro(float _DeltaTime)
@@ -670,9 +667,11 @@ void ABoss1_Monster2::phase3Intro(float _DeltaTime)
 
 void ABoss1_Monster2::phase3Intro2(float _DeltaTime)
 {
-	SlotImage1->SetActive(true);
-	SlotImage2->SetActive(true);
-	SlotImage3->SetActive(true);
+	for (int i = 0; i < SlotImage.size(); i++)
+	{
+		SlotImage[i]->SetActive(true);
+	}
+	
 	if (true == BigBoss1->IsCurAnimationEnd())
 	{
 		coolDownTime = 6.0f;
